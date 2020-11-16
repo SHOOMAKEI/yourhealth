@@ -1,0 +1,1 @@
+<img src="{{ asset('assets/images/flags/'. $code .'.png') }}" alt="{{ $name }}" class="{{ config('language.flags.img_class') }}" width="{{ config('language.flags.width') }}" /><span class="align-middle d-none d-sm-inline-block">{{$name}}</span> <i class="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i>
