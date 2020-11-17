@@ -14,7 +14,7 @@ class SpecializationController extends Controller
      */
     public function index()
     {
-        //
+        return view('specializations.index', ['specializations'=> Specialization::all()]);
     }
 
     /**
@@ -24,7 +24,7 @@ class SpecializationController extends Controller
      */
     public function create()
     {
-        //
+        return view('specializations.create');
     }
 
     /**
@@ -35,7 +35,13 @@ class SpecializationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validateRequest($request);
+
+        Specialization::create([
+            'name' => $request['name'],
+        ]);
+
+        return redirect()->route('specializations.index')->with(['success' => 'Specialization saved Successful']);
     }
 
     /**
@@ -57,7 +63,7 @@ class SpecializationController extends Controller
      */
     public function edit(Specialization $specialization)
     {
-        //
+        return view('specializations.edit', ['specialization' => $specialization]);
     }
 
     /**
@@ -69,7 +75,13 @@ class SpecializationController extends Controller
      */
     public function update(Request $request, Specialization $specialization)
     {
-        //
+        $this->validateRequest($request);
+
+        $specialization->update([
+            'name' => $request['name'],
+        ]);
+
+        return redirect()->route('specializations.index')->with(['success' => 'Specialization saved Successful']);
     }
 
     /**
@@ -81,5 +93,12 @@ class SpecializationController extends Controller
     public function destroy(Specialization $specialization)
     {
         //
+    }
+
+    private function validateRequest(Request $request)
+    {
+        $request->validate([
+            'name' => ['required']
+        ]);
     }
 }

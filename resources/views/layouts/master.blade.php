@@ -60,36 +60,60 @@
                         <li class="side-nav-title side-nav-item">Navigation</li>
 
                         <li class="side-nav-item">
-                            <a href="javascript: void(0);" class="side-nav-link">
+                        <a href="{{route('dashboard')}}" class="side-nav-link">
                                 <i class="uil-home-alt"></i>
-                                <span class="badge badge-success float-right">4</span>
                                 <span> Dashboards </span>
                             </a>
-                            <ul class="side-nav-second-level" aria-expanded="false">
-                                <li>
-                                    <a href="#">Analytics</a>
-                                </li>
-                               
-                            </ul>
                         </li>
-
-                        <li class="side-nav-title side-nav-item">Apps</li>
-
-                        <li class="side-nav-item">
-                            <a href="#" class="side-nav-link">
-                                <i class="uil-calender"></i>
-                                <span> Calendar </span>
-                            </a>
-                        </li>
-
-                         <li class="side-nav-title side-nav-item">Subscription Configuration</li>
-
+                        @role('super-admin')
+                         <li class="side-nav-title side-nav-item">System Configuration</li>
                         <li class="side-nav-item">
                             <a href="{{route('packages.index')}}" class="side-nav-link">
                                 <i class="uil-moneybag "></i>
                                 <span> Packages </span>
                             </a>
                         </li>
+
+                        <li class="side-nav-item">
+                            <a href="#" class="side-nav-link" aria-expanded="false">
+                                <i class="uil-clipboard-alt"></i>
+                                <span> Provider Profile </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="side-nav-second-level mm-collapse" aria-expanded="false" style="height: 0px;">
+                                <li>
+                                    <a href="{{route('specializations.index')}}">Spesialization</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('procedures.index')}}">Procedures</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="#" class="side-nav-link" aria-expanded="false">
+                                <i class="uil-award"></i>
+                                <span> Qualifications</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="side-nav-second-level mm-collapse" aria-expanded="false" style="height: 0px;">
+                                <li>
+                                    <a href="{{route('medical_institutes.index')}}">Medical Instistutes</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('medical_courses.index')}}">Medical Courses</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('medical_councils.index')}}">Medical Councils</a>
+                                </li>
+                            </ul>
+                        </li>
+                         <li class="side-nav-item">
+                            <a href="{{route('profile_validations.index')}}" class="side-nav-link">
+                                <i class="uil-shield-check"></i>
+                                <span> Validation Requirements </span>
+                            </a>
+                        </li>
+                        @endrole
                     </ul>
 
                     <!-- End Sidebar -->
@@ -158,37 +182,6 @@
                                                 <small class="text-muted">1 min ago</small>
                                             </p>
                                         </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon bg-primary">
-                                                <i class="mdi mdi-comment-account-outline"></i>
-                                            </div>
-                                            <p class="notify-details">Caleb Flakelar commented on Admin
-                                                <small class="text-muted">4 days ago</small>
-                                            </p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon">
-                                                <img src="assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" /> </div>
-                                            <p class="notify-details">Karen Robinson</p>
-                                            <p class="text-muted mb-0 user-msg">
-                                                <small>Wow ! this admin looks good and awesome design</small>
-                                            </p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon bg-info">
-                                                <i class="mdi mdi-heart"></i>
-                                            </div>
-                                            <p class="notify-details">Carlos Crouch liked
-                                                <b>Admin</b>
-                                                <small class="text-muted">13 days ago</small>
-                                            </p>
-                                        </a>
                                     </div>
 
                                     <!-- All-->
@@ -198,61 +191,6 @@
 
                                 </div>
                             </li>
-
-                            <li class="dropdown notification-list d-none d-sm-inline-block">
-                                <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                    <i class="dripicons-view-apps noti-icon"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg p-0">
-
-                                    <div class="p-2">
-                                        <div class="row no-gutters">
-                                            <div class="col">
-                                                <a class="dropdown-icon-item" href="#">
-                                                    <img src="assets/images/brands/slack.png" alt="slack">
-                                                    <span>Slack</span>
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a class="dropdown-icon-item" href="#">
-                                                    <img src="assets/images/brands/github.png" alt="Github">
-                                                    <span>GitHub</span>
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a class="dropdown-icon-item" href="#">
-                                                    <img src="assets/images/brands/dribbble.png" alt="dribbble">
-                                                    <span>Dribbble</span>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="row no-gutters">
-                                            <div class="col">
-                                                <a class="dropdown-icon-item" href="#">
-                                                    <img src="assets/images/brands/bitbucket.png" alt="bitbucket">
-                                                    <span>Bitbucket</span>
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a class="dropdown-icon-item" href="#">
-                                                    <img src="assets/images/brands/dropbox.png" alt="dropbox">
-                                                    <span>Dropbox</span>
-                                                </a>
-                                            </div>
-                                            <div class="col">
-                                                <a class="dropdown-icon-item" href="#">
-                                                    <img src="assets/images/brands/g-suite.png" alt="G Suite">
-                                                    <span>G Suite</span>
-                                                </a>
-                                            </div>
-            
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </li>
-
                             <li class="notification-list">
                                 <a class="nav-link right-bar-toggle" href="javascript: void(0);">
                                     <i class="dripicons-gear noti-icon"></i>

@@ -32,3 +32,15 @@ if (!function_exists('getPackageCategories')) {
         ];
     }
 }
+
+if (!function_exists('getEstablishmentCategories')) {
+    function getEstablishmentCategories()
+    {
+        return [
+            ['option'=> 'Doctor', 'value'=> 'doctor'],
+            ['option'=> 'Hospital', 'value'=> 'hospital'],
+            ['option'=> 'Pharmacy', 'value'=> 'pharmacy'],
+            ['option'=> 'Laboratory', 'value'=> 'laboratory'],
+        ];
+    }
+}

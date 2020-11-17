@@ -117,9 +117,9 @@ class PackagesController extends Controller
     }
 
 
-    public function validateRequest(Request $request) {
+    private function validateRequest(Request $request) {
         
-        $request->validate([
+       return $request->validate([
             'package_name' => ['required' ,'String'],
             'package_description' => ['required', 'String'],
             'package_price' => ['required', 'numeric'],

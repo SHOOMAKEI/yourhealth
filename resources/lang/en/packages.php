@@ -9,7 +9,7 @@ return [
     'description' => 'Descripiton',
     'price' => 'Price',
     'trial_period' => 'Trial Period',
-    'category' => 'Trial Period',
+    'category' => 'Category',
     'sort_order' => 'Sort Order',
     'more' => 'More',
   ],
