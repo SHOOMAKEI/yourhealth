@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Contracts\MustVerifyMobileNumber;
+use App\Services\MustVerifyMobileNumber as VerifyMobileNumber;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
 use Spatie\Permission\Traits\HasRoles;
@@ -13,7 +15,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Rinvex\Subscriptions\Traits\HasSubscriptions;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileNumber
 {
     use HasApiTokens;
     use HasFactory;
@@ -23,6 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasRoles;
     use HasPermissions;
     use HasSubscriptions;
+    use VerifyMobileNumber;
 
     /**
      * The attributes that are mass assignable.
@@ -36,6 +39,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'mobile_number',
         'is_active',
         'is_subscribe',
+        'verification_code',
+        'otp_code',
+        'enabled_otp',
+        'profile_stage',
+        'otp_expire_at',
     ];
 
     /**

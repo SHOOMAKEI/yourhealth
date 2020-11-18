@@ -28,7 +28,7 @@ if (!function_exists('getPackageCategories')) {
     {
         return [
             ['option'=> 'Service Provider', 'value'=> 'service-provider'],
-            ['option'=> 'Client', 'value'=> 'client'],
+            ['option'=> 'patient', 'value'=> 'patient'],
         ];
     }
 }

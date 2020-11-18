@@ -15,4 +15,5 @@ trait PasswordValidationRules
     {
         return ['required', 'string', new Password, 'confirmed'];
     }
+    //regex:/^(?=.\d)(?=.[a-z])(?=.*[A-Z]).{6,20}$/
 }
