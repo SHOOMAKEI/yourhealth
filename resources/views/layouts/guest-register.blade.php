@@ -23,7 +23,7 @@
         <div class="account-pages mt-5 mb-5">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-xl-12">
+                    <div class="col-xl-7">
                         @yield('contents')  
                         <div class="row mt-3">
                             <div class="col-12 text-center">

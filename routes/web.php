@@ -1,14 +1,15 @@
 <?php
 
+use App\Models\Plan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PackagesController;
-use App\Http\Controllers\SpecializationController;
-use App\Http\Controllers\MedicalProcedureController;
 use App\Http\Controllers\MedicalCourseController;
+use App\Http\Controllers\SpecializationController;
 use App\Http\Controllers\MedicalInstituteController;
-use App\Http\Controllers\MedicalRegistrationCouncilController;
+use App\Http\Controllers\MedicalProcedureController;
+use App\Http\Controllers\VerifyMobileNumberController;
 use App\Http\Controllers\RequiredVerificationController;
-use App\Models\Plan;
+use App\Http\Controllers\MedicalRegistrationCouncilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,20 +28,22 @@ Route::get('/', function () {
     return view('welcome', ['client_packages' =>  $client_packages, 'service_provider_packages' => $service_provider_packages ]);
 });
 
-Route::get('/register/client/{package}', function ($package) {
-    return view('register-client', ['package' =>  $package]);
-})->name('signup.client');
 
-Route::get('/register/provider/{package}', function ($package) {
-    return view('register-provider', ['package' =>  $package]);
-})->name('signup.service-provider');
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified', 'mobile_number_verified', 'complete_profile'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::middleware(['auth'])->get('/mobile_number/verify', [VerifyMobileNumberController::class, 'show'])->name('verify.mobile-number');
 
-Route::middleware(['web','auth:sanctum', 'verified', 'language', 'role:super-admin'])->group(function(){
+Route::post('/mobile_number/verification_code/verify', [VerifyMobileNumberController::class, 'verify'])
+            ->middleware(['auth', 'throttle:6,1'])
+            ->name('verification_code.verify');
+
+Route::post('/mobile_number/verification-code/resend', [VerifyMobileNumberController::class, 'resend'])
+    ->middleware(['auth', 'throttle:6,1'])
+    ->name('verification_code.send');
+
+Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:super-admin'])->group(function(){
 
     Route::resource('packages', PackagesController::class);
     Route::resource('specializations', SpecializationController::class);

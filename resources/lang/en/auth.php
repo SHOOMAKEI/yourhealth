@@ -16,4 +16,15 @@ return [
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    'register' =>[
+        'service_provider' => [
+            'full_name' => 'Full Name',
+            'email' => 'Email',
+            'mobile_number' => 'Mobile Number',
+            'password' => 'Password',
+            'password_confrimation' => 'Confirm Password',
+            'register' => 'Register'
+        ]
+    ]
+
 ];

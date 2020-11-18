@@ -71,7 +71,7 @@
                                 </li>
                                 @if (Route::has('register'))
                                     <li class="nav-item mr-0">
-                                        <a href="{{ route('register') }}" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex"><i class="mdi mdi-basket mr-2"></i>Service Provider Start Here</a>
+                                        <a href="{{ route('register') }}" class="btn btn-sm btn-light btn-rounded d-none d-lg-inline-flex"><i class="mdi mdi-account-plus-outline mr-2"></i>Get Started Here</a>
                                     </li>
                                 @endif
                             @endif
@@ -309,7 +309,7 @@
                                             <li>{{$feature->value}} {{$feature->name}}</li>
                                         @endforeach
                                     </ul>
-                                <a href="{{route('signup.client', ['package' => $package->id])}}" class="btn btn-primary mt-4 mb-2 btn-rounded">Get Started</a>
+                                <a href="{{ route('register') }}" class="btn btn-primary mt-4 mb-2 btn-rounded">Get Started</a>
                                 </div>
                             </div>
                             <!-- end Pricing_card -->
@@ -352,7 +352,7 @@
                                             <li>{{$feature->value}} {{$feature->name}}</li>
                                         @endforeach
                                     </ul>
-                                <a href="{{route('signup.service-provider', ['package' => $package->id])}}" class="btn btn-primary mt-4 mb-2 btn-rounded">Get Started</a>
+                                <a href="{{ route('register') }}" class="btn btn-primary mt-4 mb-2 btn-rounded">Get Started</a>
                                 </div>
                             </div>
                             <!-- end Pricing_card -->
