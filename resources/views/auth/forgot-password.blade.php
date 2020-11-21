@@ -8,7 +8,6 @@
                     <div class="card">
                         <div class="card-body px-4 pt-3 pb-2">
                             <div class="text-center w-75 m-auto pb-2">
-                                <h4 class="text-dark-50 text-center mt-0 font-weight-bold">Login</h4>
                                 <p>
                                     Forgot your password? No problem. Just let us know your email address and 
                                     we will email you a password reset link that will allow you to choose a new one.
@@ -31,7 +30,7 @@
                                         Please provide an email.
                                     </div>
                                 </div>
-                                <button class="btn btn-primary btn-block" type="submit"> Email password reset link </button>
+                                <button class="btn btn-primary btn-block mb-2" type="submit"> Email password reset link </button>
                             </form>
                         </div> <!-- end card-body -->
                     </div>

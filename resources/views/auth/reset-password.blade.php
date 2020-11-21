@@ -1,36 +1,76 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+@extends('layouts.base')
 
-        <x-jet-validation-errors class="mb-4" />
+@section('contents')
+    <div class="account-pages mt-5 mb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="card">
+                        <div class="card-body px-4 pt-3 pb-2">
 
-        <form method="POST" action="{{ route('password.update') }}">
-            @csrf
-
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
-
-            <div class="block">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+                            <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate>
+                                @csrf
+                                <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                                <div class="form-group position-relative mb-3">
+                                    <label for="emailaddress">Email address</label>
+                                <input class="form-control" type="email" name="email" value="{{ $request->email }}" required autofocus>
+                                    <div class="valid-tooltip">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        Please provide an email.
+                                    </div>
+                                </div>
+                                <div class="form-group position-relative mb-3">
+                                    <label for="password">Password</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="password" id="password" class="form-control" type="password" name="password" required autocomplete="new-password">
+                                        <div class="input-group-append" data-password="false">
+                                            <div class="input-group-text">
+                                                <span class="password-eye"></span>
+                                            </div>
+                                        </div>
+                                        <div class="valid-tooltip">
+                                            Looks good!
+                                        </div>
+                                        <div class="invalid-tooltip">
+                                            Please provide a password.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group position-relative mb-3">
+                                    <label for="password">Password</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="password" id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password">
+                                        <div class="input-group-append" data-password="false">
+                                            <div class="input-group-text">
+                                                <span class="password-eye"></span>
+                                            </div>
+                                        </div>
+                                        <div class="valid-tooltip">
+                                            Looks good!
+                                        </div>
+                                        <div class="invalid-tooltip">
+                                            Please provide a password.
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-block" type="submit"> Login </button>
+                                <div class="block mt-2">
+                                    <label for="remember_me" class="flex items-center">
+                                        <input id="remember_me" type="checkbox" class="form-checkbox" name="remember">
+                                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                                    </label>
+                                </div>
+                            </form>
+                        </div> <!-- end card-body -->
+                    </div>
+                    <!-- end card -->
+                </div> <!-- end col -->
             </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-jet-button>
-                    {{ __('Reset Password') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    
+@endsection
