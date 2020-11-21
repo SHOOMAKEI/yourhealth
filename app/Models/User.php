@@ -14,8 +14,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Rinvex\Subscriptions\Traits\HasSubscriptions;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileNumber
+class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileNumber, HasMedia
 {
     use HasApiTokens;
     use HasFactory;
@@ -26,6 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
     use HasPermissions;
     use HasSubscriptions;
     use VerifyMobileNumber;
+    use InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -77,4 +80,10 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    public function provider_profile()
+    {
+        return $this->hasOne(ProviderProfile::class, 'user_id');
+    }
 }

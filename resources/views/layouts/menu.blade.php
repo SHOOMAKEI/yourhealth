@@ -19,6 +19,22 @@
             <span> Dashboard </span>
         </a>
     </li>
+    <li class="side-nav-title side-nav-item">System Users Listing</li>
+    <li class="side-nav-item">
+        <a href="#" class="side-nav-link" aria-expanded="false">
+            <i class="uil-users-alt"></i>
+            <span> Service Provider </span>
+            <span class="menu-arrow"></span>
+        </a>
+        <ul class="side-nav-second-level mm-collapse" aria-expanded="false" style="height: 0px;">
+            <li>
+                <a href="{{route('service_provider_profiles.index')}}">Profile List</a>
+            </li>
+            <li>
+                <a href="#">Reported List</a>
+            </li>
+        </ul>
+    </li>
         <li class="side-nav-title side-nav-item">System Configuration</li>
     <li class="side-nav-item">
         <a href="{{route('packages.index')}}" class="side-nav-link">

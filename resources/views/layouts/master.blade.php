@@ -70,7 +70,7 @@
                             </div>
                         </div>     
                         <!-- end page title --> 
-                       @yield('layouts.contents')
+                       @yield('contents')
                     </div> <!-- container -->
 
                 </div> <!-- content -->

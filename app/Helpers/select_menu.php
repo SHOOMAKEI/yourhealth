@@ -37,9 +37,10 @@ if (!function_exists('getEstablishmentCategories')) {
     function getEstablishmentCategories()
     {
         return [
-            ['option'=> 'Doctor', 'value'=> 'doctor'],
             ['option'=> 'Hospital', 'value'=> 'hospital'],
             ['option'=> 'Pharmacy', 'value'=> 'pharmacy'],
+            ['option'=> 'Clinic', 'value'=> 'clinic'],
+            ['option'=> 'Dispensary', 'value'=> 'dispensary'],
             ['option'=> 'Laboratory', 'value'=> 'laboratory'],
         ];
     }

@@ -10,6 +10,9 @@ use App\Http\Controllers\MedicalProcedureController;
 use App\Http\Controllers\VerifyMobileNumberController;
 use App\Http\Controllers\RequiredVerificationController;
 use App\Http\Controllers\MedicalRegistrationCouncilController;
+use App\Http\Controllers\ProviderProfileController;
+use App\Http\Controllers\Admin\ProviderProfileAdminController;
+use App\Services\DumaPaymentOnline;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,5 +55,42 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:super-ad
     Route::resource('medical_institutes', MedicalInstituteController::class);
     Route::resource('medical_councils', MedicalRegistrationCouncilController::class);
     Route::resource('profile_validations', RequiredVerificationController::class);
+    Route::resource('service_provider_profiles', ProviderProfileAdminController::class);
 
+
+
+});
+
+Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:service-provider'])->group(function(){
+
+  Route::resource('provider_profiles',ProviderProfileController::class);
+
+});
+
+Route::get('/payment/pay', function(){
+
+$xmlBody = '
+<API3G>
+<CompanyToken>9F416C11-127B-4DE2-AC7F-D5710E4C5E0A</CompanyToken>
+<Request>createToken</Request>
+<Transaction>
+<PaymentAmount>120000.00</PaymentAmount>
+<PaymentCurrency>TZS</PaymentCurrency>
+<CompanyRef>49FKEOA</CompanyRef>
+<RedirectURL>http://www.domain.com/payurl.php</RedirectURL>
+<BackURL>http://www.domain.com/backurl.php </BackURL>
+<CompanyRefUnique>0</CompanyRefUnique>
+<PTL>5</PTL>
+</Transaction>
+<Services>
+  <Service>
+    <ServiceType>5525</ServiceType>
+    <ServiceDescription>Subscription fee</ServiceDescription>
+    <ServiceDate>2020/11/20 19:00</ServiceDate>
+  </Service>
+</Services>
+</API3G>';
+
+ return DumaPaymentOnline::createTransactionToken($xmlBody);
+ 
 });

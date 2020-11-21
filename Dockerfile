@@ -21,7 +21,7 @@ RUN apk update \
     && apk del build-deps
 
 # Install extensions and composer
-RUN docker-php-ext-install pdo_pgsql zip exif pcntl \
+RUN docker-php-ext-install pdo_pgsql zip exif pcntl bcmath \
     && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
     && docker-php-ext-install gd \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

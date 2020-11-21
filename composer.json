@@ -12,6 +12,7 @@
         "akaunting/language": "^1.0",
         "akaunting/money": "^1.2",
         "binarcode/rinvex-laravel-subscriptions": "^4.2",
+        "consoletvs/invoices": "^1.7",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
@@ -20,6 +21,7 @@
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
+        "spatie/array-to-xml": "^2.15",
         "spatie/laravel-activitylog": "^3.16",
         "spatie/laravel-medialibrary": "^9.0.0",
         "spatie/laravel-permission": "^3.17"
