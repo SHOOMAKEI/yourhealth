@@ -84,4 +84,20 @@ class ProviderProfileAdminController extends Controller
     {
         //
     }
+
+    public function verify(ProviderProfile $provider){
+        $provider->forceFill([
+            'is_verified' => 1,
+        ])->save();
+
+        return redirect()->back()->with(['success' =>'Information Save Successful']);
+    }
+
+    public function unverify(ProviderProfile $provider){
+        $provider->forceFill([
+            'is_verified' => 0,
+        ])->save();
+
+        return redirect()->back()->with(['success' =>'Information Save Successful']);
+    }
 }
