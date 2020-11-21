@@ -16,8 +16,8 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-        
-        foreach (json_decode(preg_replace('/\s+/', '',File::get(storage_path("app/public/data/countries.json")))) as $country) {
+        // dd(json_decode(File::get(public_path("storage/data/countries.json"))));
+        foreach (json_decode(File::get(public_path("storage/data/countries.json"))) as $country) {
             Country::firstOrCreate([
                 'name' => $country->name,
                 'code' => $country->code
