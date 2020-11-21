@@ -66,7 +66,7 @@
                                         name="mobile_number"
                                         required=""
                                         data-toggle="input-mask"
-                                        data-mask-format="+255 000 000 000"
+                                        data-mask-format="+255000000000"
                                         placeholder="{{__('auth.register.service_provider.mobile_number')}}">
                                     <div class="valid-tooltip">
                                         Looks good!
