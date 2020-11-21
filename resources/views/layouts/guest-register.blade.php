@@ -40,10 +40,6 @@
         </div>
         <!-- end page -->
 
-        <footer class="footer footer-alt">
-            <script>document.write(new Date().getFullYear())</script> © {{ config('app.name', 'Your Health') }}
-        </footer>
-
         <!-- bundle -->
         <script src="{{asset('assets/js/vendor.min.js')}}"></script>
         <script src="{{asset('assets/js/app.min.js')}}"></script>
