@@ -29,6 +29,8 @@ class ProviderProfileController extends Controller
      */
     public function index()
     {
+        $profile = ProviderProfile::where('user_id',Auth::user()->id)->first();
+
         return view('provider_profile.index', [
             'countries' =>Country::all(), 
             'cities' => City::all(),
@@ -39,7 +41,7 @@ class ProviderProfileController extends Controller
             'procedures' => MedicalProcedure::all(),
             'required_verifications' => RequiredVerification::all(),
             'profile'=> ProviderProfile::where('user_id',Auth::user()->id)->first(),
-            'education_qualifications' => EducationQualification::where('provider_profile_id',ProviderProfile::where('user_id',Auth::user()->id)->first()->id)->get(),
+            'education_qualifications' => empty($profile)?'':EducationQualification::where('provider_profile_id',$profile->id)->get(),
             ]);
     }
 

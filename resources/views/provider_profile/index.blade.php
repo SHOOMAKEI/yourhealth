@@ -18,67 +18,77 @@
 
                 <div class="text-left mt-3">
                     <h4 class="font-13 text-uppercase">About Me :</h4>
-                    @foreach ($education_qualifications as $qualification)
-                    <p class="text-muted font-13 mb-3">
-                        {{$qualification->medical_course->award_code}}&nbsp;{{$qualification->medical_course->name}} &nbsp; at <br>
-                        {{$qualification->medical_institute->name}} &nbsp; ({{$qualification->year_of_complition}})
-                        
-                    </p class="text-muted font-13 mb-3">
-                    @endforeach
-                   <p class="text-muted font-13 mb-3">
-                    {{$education_qualifications->sum('year_of_experience')}} &nbsp;Years of Experience
-                   </p>
-
-                   <p>
-                       Specializations
-                   </p>
-                   <p class="text-muted font-13 mb-3">
-                    @foreach ($profile->medical_specializations as $specialization)
-                    <span class="badge badge-outline-secondary badge-pill">{{$specialization->name}}</span>&nbsp;
-                    @endforeach
-                   </p>
-                   <p>
-                    Procedures
+                    @if (!empty($profile->education_qualifications))
+                        @foreach ($profile->education_qualifications as $qualification)
+                            <p class="text-muted font-13 mb-3">
+                                {{$qualification->medical_course->award_code}}&nbsp;{{$qualification->medical_course->name}} &nbsp; at <br>
+                                {{$qualification->medical_institute->name}} &nbsp; ({{$qualification->year_of_complition}})
+                                
+                            </p class="text-muted font-13 mb-3">
+                        @endforeach
+                        <p class="text-muted font-13 mb-3">
+                            {{$education_qualifications->sum('year_of_experience')}} &nbsp;Years of Experience
+                        </p>
+                    @endif
+                    @if (!empty($profile->medical_specializations))
+                        <p>
+                            Specializations
+                        </p>
+                        <p class="text-muted font-13 mb-3">
+                            @foreach ($profile->medical_specializations as $specialization)
+                                <span class="badge badge-outline-secondary badge-pill">{{$specialization->name}}</span>&nbsp;
+                            @endforeach
+                        </p>
+                    @endif
+                  @if (!empty($profile->medical_procedures))
+                    <p>
+                     Procedures
                     </p>
                     <p class="text-muted font-13 mb-3">
-                    @foreach ($profile->medical_procedures as $procedure)
-                    <span class="badge badge-outline-secondary badge-pill">{{$procedure->name}} </span>&nbsp;
-                    @money($procedure->pivot->price,$procedure->pivot->currency)<br>
-                    @endforeach
+                        @foreach ($profile->medical_procedures as $procedure)
+                            <span class="badge badge-outline-secondary badge-pill">{{$procedure->name}} </span>&nbsp;
+                            @money($procedure->pivot->price,$procedure->pivot->currency)<br>
+                        @endforeach
                     </p>
+                   
+                  @endif
+                   
+                    @if (!empty($profile))
                     <p class="text-muted mb-2 font-13"><strong>User Name :</strong> <span class="ml-2">{{ $profile->username}}
+                        </span>
+                    </p>
+                    
+                        <p class="text-muted mb-2 font-13"><strong>Mobile :</strong><span class="ml-2">@if(!empty($profile->establishments[0]->mobile_number)) 
+                            {{ $profile->establishments[0]->mobile_number}} <span class="badge badge-primary-lighten badge-pill">Work</span><br>
+                            {{Auth::user()->mobile_number}} <span class="badge badge-secondary-lighten badge-pill">Personal</span>
+                            @else 
+                            {{Auth::user()->mobile_number}} <span class="badge badge-primary-lighten badge-pill">Work</span> <span class="badge badge-secondary-lighten badge-pill">Personal</span>
+                            @endif
                         </span></p>
 
-                    <p class="text-muted mb-2 font-13"><strong>Mobile :</strong><span class="ml-2">@if(!empty($profile->establishments[0]->mobile_number)) 
-                        {{ $profile->establishments[0]->mobile_number}} <span class="badge badge-primary-lighten badge-pill">Work</span><br>
-                        {{Auth::user()->mobile_number}} <span class="badge badge-secondary-lighten badge-pill">Personal</span>
-                        @else 
-                        {{Auth::user()->mobile_number}} <span class="badge badge-primary-lighten badge-pill">Work</span> <span class="badge badge-secondary-lighten badge-pill">Personal</span>
+                        <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ml-2 ">@if(!empty($profile->email)) 
+                            {{ $profile->email}} <span class="badge badge-primary-lighten badge-pill">Work</span>
+                            {{Auth::user()->email}} <span class="badge badge-secondary-lighten badge-pill">Personal</span>
+                            @else 
+                            {{Auth::user()->email}} <span class="badge badge-primary-lighten badge-pill">Work</span> <span class="badge badge-secondary-lighten badge-pill">Personal</span>
+                            @endif</span></p>
+                            <p class="text-muted mb-1 font-13"><strong>Gender :</strong> <span class="ml-2">
+                                @if($profile->gender == 'F') 
+                                Female 
+                                @elseif($profile->gender == 'M') 
+                                Male @else Other @endif</span></p>
+                        <p class="text-muted mb-1 font-13"><strong>Location :</strong> <span class="ml-2">{{$profile->city->name}}, &nbsp;{{$profile->country->name}}</span></p>
+                        @if (!empty($profile->consultation_fee))
+                            <p class="text-muted mb-1 font-13"><strong>Constaltation Fee :</strong> <span class="ml-2">
+                                @money($profile->consultation_fee->price, $profile->consultation_fee->currency)</span></p>
                         @endif
-                    </span></p>
-
-                    <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ml-2 ">@if(!empty($profile->email)) 
-                        {{ $profile->email}} <span class="badge badge-primary-lighten badge-pill">Work</span>
-                        {{Auth::user()->email}} <span class="badge badge-secondary-lighten badge-pill">Personal</span>
-                        @else 
-                        {{Auth::user()->email}} <span class="badge badge-primary-lighten badge-pill">Work</span> <span class="badge badge-secondary-lighten badge-pill">Personal</span>
-                        @endif</span></p>
-                        <p class="text-muted mb-1 font-13"><strong>Gender :</strong> <span class="ml-2">
-                            @if($profile->gender == 'F') 
-                            Female 
-                            @elseif($profile->gender == 'M') 
-                            Male @else Other @endif</span></p>
-                    <p class="text-muted mb-1 font-13"><strong>Location :</strong> <span class="ml-2">{{$profile->city->name}}, &nbsp;{{$profile->country->name}}</span></p>
-                    @if (!empty($profile->consultation_fee))
-                        <p class="text-muted mb-1 font-13"><strong>Constaltation Fee :</strong> <span class="ml-2">
-                            @money($profile->consultation_fee->price, $profile->consultation_fee->currency)</span></p>
                     @endif
-                    
                 </div>
 
                 </ul>
             </div> <!-- end card-body -->
         </div> <!-- end card -->
+        @if (!empty($profile->establishments))
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title mt-0 mb-3">Establishment Information</h4>
@@ -102,6 +112,7 @@
                 @endforeach
             </div>
         </div>
+        @endif
     </div> <!-- end col-->
 
     <div class="col-xl-8 col-lg-7">
@@ -165,7 +176,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="firstname">Who Should We Call you ?</label>
-                                    <input type="text" class="form-control" id="firstname" name="username" value="{{$profile->username}}" placeholder="User Name">
+                                    <input type="text" class="form-control" id="firstname" name="username" value="{{empty($profile->username)?'': $profile->username}}" placeholder="User Name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -173,15 +184,15 @@
                                         <label for="lastname">Gender</label>
                                         <div class="mt-2">
                                             <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="customRadio3" name="gender" value="M" @if($profile->gender == 'M') default @endif class="custom-control-input">
+                                                <input type="radio" id="customRadio3" name="gender" value="M" class="custom-control-input">
                                                 <label class="custom-control-label" for="customRadio3">Male</label>
                                             </div>
                                             <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="customRadio4" name="gender" value="F" @if($profile->gender == 'F') default @endif class="custom-control-input">
+                                                <input type="radio" id="customRadio4" name="gender" value="F" class="custom-control-input">
                                                 <label class="custom-control-label" for="customRadio4">Female</label>
                                             </div>
                                             <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="customRadio4" name="gender" value="O" @if($profile->gender == 'O') default @endif class="custom-control-input">
+                                                <input type="radio" id="customRadio4" name="gender" value="O" class="custom-control-input">
                                                 <label class="custom-control-label" for="customRadio4">Other</label>
                                             </div>
                                         </div>
@@ -194,7 +205,7 @@
                                     <label for="country_id">Country</label>
                                     <select class="custom-select mb-3" name="country_id" required>
                                         @foreach ($countries as $country)
-                                        <option value="{{$country->id}}" @if($profile->country_id == $country->id) selected @endif >{{$country->name}}</option>
+                                        <option value="{{$country->id}}" >{{$country->name}}</option>
                                         @endforeach
                                     </select> 
                                     @error('country_id')
@@ -207,7 +218,7 @@
                                     <label for="city_id">City</label>
                                     <select class="custom-select mb-3" name="city_id" required>
                                         @foreach ($cities as $city)
-                                        <option value="{{$city->id}}" @if($profile->city_id == $city->id) selected @endif>{{$city->name}}</option>
+                                        <option value="{{$city->id}}" >{{$city->name}}</option>
                                         @endforeach
                                     </select> 
                                     @error('city_id')

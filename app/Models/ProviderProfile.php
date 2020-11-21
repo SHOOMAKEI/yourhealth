@@ -48,5 +48,10 @@ class ProviderProfile extends Model implements HasMedia
     {
         return $this->hasOne(ConsultationFee::class, 'provider_id');
     }
+
+    public function education_qualifications()
+    {
+        return $this->hasMany(EducationQualification::class, 'provider_profile_id');
+    }
    
 }
