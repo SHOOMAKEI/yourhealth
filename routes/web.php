@@ -47,7 +47,6 @@ Route::post('/mobile_number/verification-code/resend', [VerifyMobileNumberContro
     ->name('verification_code.send');
 
 Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:super-admin'])->group(function(){
-
     Route::resource('packages', PackagesController::class);
     Route::resource('specializations', SpecializationController::class);
     Route::resource('procedures', MedicalProcedureController::class);
@@ -56,15 +55,10 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:super-ad
     Route::resource('medical_councils', MedicalRegistrationCouncilController::class);
     Route::resource('profile_validations', RequiredVerificationController::class);
     Route::resource('service_provider_profiles', ProviderProfileAdminController::class);
-
-
-
 });
 
 Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:service-provider'])->group(function(){
-
   Route::resource('provider_profiles',ProviderProfileController::class);
-
 });
 
 Route::get('/payment/pay', function(){
