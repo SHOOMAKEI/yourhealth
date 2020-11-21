@@ -26,7 +26,7 @@
         @foreach ($packages as $package)
             <tr>
                 <td>
-                   {{$package->name}}
+                    {{$package->name}}
                 </td>
                 <td>{{$package->description}}</td>
                 <td>@money($package->price, $package->currency) {{ $package->currency}} per {{$package->invoice_interval}}</td>
@@ -39,8 +39,8 @@
                             <i class="dripicons-gear noti-icon"></i>&nbsp; More
                         </button>
                         <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{route('packages.show',['package' => $package->id])}}" class="action-icon" data-toggle="modal" data-target="#feature-modal-{{$package->id}}"> <i class="mdi mdi-eye"></i> {{__('packages.index.action.show')}}</a>
-                            @include('packages.show',$package)
+                            <a class="dropdown-item" href="{{route('packages.show',['package' => $package->id])}}" class="action-icon" data-toggle="modal" data-target="#feature-modal-{{$package->id}}"> <i class="mdi mdi-eye"></i> {{__('packages.index.action.show')}}</a>
+                            
                             <a class="dropdown-item" href="{{route('packages.edit',['package' => $package->id])}}" class="action-icon"> <i class="mdi mdi-pencil"></i> {{__('packages.index.action.edit')}}</a>
                             <form action="{{route('packages.destroy',['package' => $package->id])}}">
                                 @csrf
@@ -50,6 +50,7 @@
                             
                         </div>
                     </div>
+                    @include('packages.show',$package)
                 </td>
             </tr>
         @endforeach
@@ -58,4 +59,3 @@
                                                 
 @endsection
 
-                                                
