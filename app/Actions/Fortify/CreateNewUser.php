@@ -30,24 +30,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        
-        if($input['category'] == 'service-provider') {
-            $user =  User::create([
-                'name' => $input['name'],
-                'email' => $input['email'],
-                'mobile_number' => $input['mobile_number'],
-                'verification_code' => rand(100000,999999),
-                'password' => Hash::make($input['password']),
-            ]);
-
-            $user->assignRole('service-provider');
-
-            $this->sendVerificationCode($user->mobile_number, $user->verification_code);
-
-            return $user;
-        }
-
-        $user = User::create([
+        $user =  User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'mobile_number' => $input['mobile_number'],
@@ -55,9 +38,26 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
         ]);
 
-        $user->assignRole('patient');
+        
+        if($input['category'] == 'service-provider') {
+            $user->assignRole('service-provider');
+        } else {
+            $user->assignRole('patient');
+        }
 
+        $this->sendVerificationCode($user->mobile_number, $user->verification_code);
         return $user;
+    }
+
+    public function getVerificationCode() {
+        $verification_code = '';
+          
+        for ($i=0; $i < 6 ; $i++) { 
+            $number = rand(0, 9);
+            $verification_code = $verification_code.$number;
+        }
+        
+        return $verification_code;
     }
 
     public function sendVerificationCode(string $number, string $verification_code) 

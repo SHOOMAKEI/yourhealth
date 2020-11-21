@@ -13,7 +13,7 @@ trait PasswordValidationRules
      */
     protected function passwordRules()
     {
-        return ['required', 'string', new Password, 'confirmed'];
+        return ['required', 'string', new Password, 'confirmed', 'regex:/^(?=.\d)(?=.[a-z])(?=.*[A-Z]).{6,20}$/'];
     }
     //regex:/^(?=.\d)(?=.[a-z])(?=.*[A-Z]).{6,20}$/
 }
