@@ -27,7 +27,7 @@
 
             <div class="content-page">
                 <div class="content">
-                    @include('layouts.top-bar')
+                    @include('layouts.topbar.main')
                     <!-- Start Content-->
                     <div class="container-fluid">
                         <!-- start page title -->
