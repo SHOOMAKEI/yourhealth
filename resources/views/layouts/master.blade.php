@@ -24,27 +24,13 @@
     <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
         <div class="wrapper">
             @include('layouts.sidebar.main')
-
             <div class="content-page">
                 <div class="content">
                     @include('layouts.topbar.main')
-                    <!-- Start Content-->
                     <div class="container-fluid">
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box">
-                                    <div class="page-title-right">
-                                        @yield('menu-right')
-                                    </div>
-                                    <h4 class="page-title">@yield('header')</h4>
-                                </div>
-                            </div>
-                        </div>     
-                        <!-- end page title --> 
                        @yield('contents')
-                    </div> <!-- container -->
-                </div> <!-- content -->
+                    </div>
+                </div>
                @include('layouts.footer')
             </div>
         </div>
