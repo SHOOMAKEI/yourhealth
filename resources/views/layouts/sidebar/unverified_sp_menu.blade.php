@@ -1,7 +1,7 @@
 <li class="side-nav-item">
     <a href="{{route('profile_info.index')}}" class="side-nav-link">
         <i class="uil-user"></i>
-        <span> Profile Informations</span>
+        <span> Profile Information</span>
     </a>
 </li>
 

@@ -4,6 +4,11 @@
     <div class="container mt-4">
         <div class="row">
             <div class="card col-12">
+                <div class="card-header">
+                    <h5 class="text-uppercase p-2">
+                        Profile information
+                    </h5>
+                </div>
                 <div class="card-body">
                     <div class="col-md-5">
                         <form action="{{route('provider_profiles.store')}}" method="POST" class="needs-validation" novalidate>
@@ -17,6 +22,9 @@
                                 @endif
                                 <div class="valid-feedback">
                                     Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide fill this value
                                 </div>
                             </div>
                             <div class="form-group mb-3">
