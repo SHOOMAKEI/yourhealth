@@ -68,7 +68,9 @@
                                     <option value="both">Both Doctor and Establishment Owner</option>
                                 </select>
                             </div>
-                            <button class="btn btn-primary" type="submit">Save</button>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary mt-2"><i class="mdi mdi-content-save"></i> Save</button>
+                            </div>
                         </form>
                     </div>
                 </div>
