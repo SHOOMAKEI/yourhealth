@@ -16,18 +16,16 @@
                             <div class="row">
                                 <input type="text" name="profile_category" value="verification" hidden/>
                                 @foreach ($required_verifications as $verification)
-                                <div class="col-md-5">
                                     <div class="form-group">
-                                        <label for="price">{{$verification->name}}</label>
+                                        <label>{{$verification->name}}</label>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                            <input type="text" name="file[][verification_id]" value="{{$verification->id}}" hidden/>
-                                            <input type="file" class="custom-file-input" name="file[][file]" id="inputGroupFile04-{{$verification->id}}">
-                                                <label class="custom-file-label" for="inputGroupFile04-{{$verification->id}}">Choose {{$verification->name}} file</label>
+                                                <input type="text" name="file[][verification_id]" value="{{$verification->id}}" hidden/>
+                                                <input type="file" class="custom-file-input" name="file[][file]" id="file-input-{{$verification->id}}">
+                                                <label class="custom-file-label" for="file-input-{{$verification->id}}">Choose file</label>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 @endforeach
                             </div>
                             <div class="text-right">
