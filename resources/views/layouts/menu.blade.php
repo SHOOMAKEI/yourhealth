@@ -13,12 +13,12 @@
             <li class="side-nav-item">
                 <a href="{{route('profile_info.index')}}" class="side-nav-link">
                     <i class="uil-home-alt"></i>
-                    <span> Profile Informations</span>
+                    <span> Profile Informations</span>@dump($errors->all())
                 </a>
             </li>
         
             @role('doctor')
-                @if(empty(auth()->user()->account->id))
+                @if(!empty(auth()->user()->provider_profile->id))
                     <li class="side-nav-item">
                         <a href="{{route('medical_qualification.index')}}" class="side-nav-link">
                             <i class="uil-home-alt"></i>
@@ -28,7 +28,7 @@
                 @endif
             @endrole
             @role('owner')
-                @if(!empty(auth()->user()->account->id))
+                @if(!empty(auth()->user()->provider_profile->id))
                     <li class="side-nav-item">
                         <a href="{{route('establishments.index')}}" class="side-nav-link">
                             <i class="uil-home-alt"></i>
@@ -38,7 +38,7 @@
                 @endif
             @endrole
             @role('doctor')
-                @if(!empty(auth()->user()->account->medical_qualifications[0]->id))
+                @if(!empty(auth()->user()->provider_profile->medical_qualifications))
                     <li class="side-nav-item">
                         <a href="{{route('specializations.index')}}" class="side-nav-link">
                             <i class="uil-home-alt"></i>
@@ -47,15 +47,13 @@
                     </li>
                 @endif
             @endrole
-            @if(!empty(auth()->user()->account->specializations))
                 <li class="side-nav-item">
                     <a href="{{route('verifications.index')}}" class="side-nav-link">
                         <i class="uil-home-alt"></i>
                         <span> Verifications</span>
                     </a>
                 </li>
-            @endif
-            @if(!empty(auth()->user()->account->verifications))
+            @if(!empty(auth()->user()->provider_profile->verifications))
                 <li class="side-nav-item">
                     <a href="{{route('submittion.index')}}" class="side-nav-link">
                         <i class="uil-home-alt"></i>

@@ -1,5 +1,12 @@
 @extends('layouts.master')
 
+@section('header')
+    Priview Your Profile Before Submittion
+@endsection
+
+@section('menu-right')
+<a href="{{route('submittion.store')}}" class="btn btn-success btn-sm"><i class=" uil-pen"></i>Submit Details For Verification</a>
+@endsection
 @section('contents')
 <div class="col-xl-10 col-lg-10">
     <div class="card text-center">
@@ -25,6 +32,18 @@
                         {{$profile->education_qualifications->sum('year_of_experience')}} &nbsp;Years of Experience
                     </p>
                 @endif
+                @if (!empty($profile->medical_registrations))
+                    <p>
+                        Medical Registration
+                    </p>
+                    <p class="text-muted font-13 mb-3">
+                        @foreach ($profile->medical_registrations as $registration)
+                        <p class="text-muted mb-1 font-13"><strong>Medical Registration Council Name :</strong> <span class="ml-2">{{$registration->name}}</span></p>
+                        <p class="text-muted mb-1 font-13"><strong>Medical Registration Number :</strong> <span class="ml-2">{{$registration->pivot->registration_number}}</span></p>   
+                        @endforeach
+                    </p>
+                @endif
+                
                 @if (!empty($profile->medical_specializations))
                     <p>
                         Specializations

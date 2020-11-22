@@ -53,7 +53,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="registration_number">Registration Number</label>
-                <input type="text" class="form-control" id="registration_number" placeholder="Registration Number">
+                <input type="text" class="form-control" name="registration_number" id="registration_number" placeholder="Registration Number">
             </div>
         </div>
         <div class="form-group mb-2 col-md-6">

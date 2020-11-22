@@ -167,13 +167,8 @@ class ProviderProfileController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ProviderProfile  $providerProfile
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ProviderProfile $provider_profile)
+
+    public function submited()
     {
         // return view('')
     }
@@ -231,7 +226,7 @@ class ProviderProfileController extends Controller
         ]);
         
         $provider_profile = ProviderProfile::where('user_id',Auth::user()->id)->first();
-        $provider_profile->medical_registrations()->sync($request['medical_registration_id'], ['registration_number'=>$request['registration_number']]);
+        $provider_profile->medical_registrations()->sync([$request['medical_registration_id'] => ['registration_number'=> $request['registration_number']]]);
         EducationQualification::updateOrCreate([
             'medical_course_id' => $request['medical_course_id'],
             'medical_institute_id' => $request['medical_institute_id'],
@@ -242,7 +237,7 @@ class ProviderProfileController extends Controller
             
         ]);
 
-        if($provider_profile->hasRole('owner')) {
+        if(User::find(Auth::user()->id)->hasRole('owner')) {
 
             return redirect()->route('establishments.index')->with(['success' =>'Information Save Successful']);
         }

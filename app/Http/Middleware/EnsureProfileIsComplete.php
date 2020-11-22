@@ -20,7 +20,7 @@ class EnsureProfileIsComplete
     public function handle(Request $request, Closure $next, $redirectToRoute=null)
     {
         if (! $request->user() ||
-        ($request->user()->profile_stage != 10)) {
+        ($request->user()->profile_stage != 10)&& !$request->user()->hasRole('super-admin')) {
         return $request->expectsJson()
                 ? abort(403, 'Your Profile is not complete.')
                 : Redirect::route('profile_info.index');

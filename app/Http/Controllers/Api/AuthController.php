@@ -62,7 +62,9 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        //
+        $request->user()->currentAccessToken()->delete();
+
+        return new JsonResponse('user loged out', 204);
     }
 
     public function verifiyOtpCode(Request $request)
@@ -81,7 +83,17 @@ class AuthController extends Controller
 
     public function verifiy2faCode(Request $request)
     {
-        
+        $user = $request->challengedUser();
+
+        if ($code = $request->validRecoveryCode()) {
+            $user->replaceRecoveryCode($code);
+        } elseif (! $request->hasValidCode()) { 
+            throw ValidationException::withMessages([
+                 'otp_code' => ['Your Provided wrong two factory code'],
+            ]);
+        }
+
+        return ['user' => new UserResource($user),'token' => $user->createToken($request->device_name)->plainTextToken, 'token_type'=> 'bearer'];
     }
 
     public function verifiy2faRecoverdCode(Request $request)
