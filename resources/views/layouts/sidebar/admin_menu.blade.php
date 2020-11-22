@@ -1,12 +1,10 @@
-<li class="side-nav-title side-nav-item">Navigation</li>
-
 <li class="side-nav-item">
     <a href="{{route('dashboard')}}" class="side-nav-link">
         <i class="uil-home-alt"></i>
         <span> Dashboard </span>
     </a>
 </li>
-<li class="side-nav-title side-nav-item">System Users Listing</li>
+<li class="side-nav-title side-nav-item">User management</li>
 <li class="side-nav-item">
     <a href="#" class="side-nav-link" aria-expanded="false">
         <i class="uil-users-alt"></i>
@@ -15,10 +13,7 @@
     </a>
     <ul class="side-nav-second-level mm-collapse" aria-expanded="false" style="height: 0px;">
         <li>
-            <a href="{{route('service_provider_profiles.index')}}">Profile List</a>
-        </li>
-        <li>
-            <a href="#">Reported List</a>
+            <a href="{{route('service_provider_profiles.index')}}">Requests</a>
         </li>
     </ul>
 </li>
@@ -33,7 +28,7 @@
 <li class="side-nav-item">
     <a href="#" class="side-nav-link" aria-expanded="false">
         <i class="uil-clipboard-alt"></i>
-        <span> Provider Profile </span>
+        <span> Provider info </span>
         <span class="menu-arrow"></span>
     </a>
     <ul class="side-nav-second-level mm-collapse" aria-expanded="false" style="height: 0px;">
@@ -66,6 +61,23 @@
     <li class="side-nav-item">
     <a href="{{route('profile_validations.index')}}" class="side-nav-link">
         <i class="uil-shield-check"></i>
-        <span> Validation Requirements </span>
+        <span> Attachments </span>
     </a>
 </li>
+
+
+{{-- <li class="side-nav-item mm-active">
+    <a href="javascript: void(0);" class="side-nav-link" aria-expanded="true">
+        <i class="uil-location-point"></i>
+        <span> Maps </span>
+        <span class="menu-arrow"></span>
+    </a>
+    <ul class="side-nav-second-level mm-collapse mm-show" aria-expanded="false" style="">
+        <li>
+            <a href="maps-google.html">Google Maps</a>
+        </li>
+        <li>
+            <a href="maps-vector.html">Vector Maps</a>
+        </li>
+    </ul>
+</li> --}}

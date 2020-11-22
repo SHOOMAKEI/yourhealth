@@ -18,13 +18,15 @@
                                 @foreach ($required_verifications as $verification)
                                     <div class="form-group">
                                         <label>{{$verification->name}}</label>
-                                        <div class="input-group">
+                                        <input type="text" name="file[][verification_id]" value="{{$verification->id}}" hidden/>
+                                        <input type="file" name="file[][file]" id="file-input-{{$verification->id}}" class="form-control-file">
+                                        {{-- <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="text" name="file[][verification_id]" value="{{$verification->id}}" hidden/>
                                                 <input type="file" class="custom-file-input" name="file[][file]" id="file-input-{{$verification->id}}">
                                                 <label class="custom-file-label" for="file-input-{{$verification->id}}">Choose file</label>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 @endforeach
                             </div>
