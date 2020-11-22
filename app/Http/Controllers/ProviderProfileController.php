@@ -22,11 +22,6 @@ use App\Models\MedicalRegistrationCouncil;
 
 class ProviderProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $profile = ProviderProfile::where('user_id',Auth::user()->id)->first();
@@ -45,11 +40,6 @@ class ProviderProfileController extends Controller
             ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function profileInfo()
     {
         return view('provider_profile.profile_info', [
@@ -58,11 +48,6 @@ class ProviderProfileController extends Controller
         ]);
     }
 
-     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function establishments()
     {
         return view('provider_profile.establishments', [
@@ -70,11 +55,6 @@ class ProviderProfileController extends Controller
         'cities' => City::all()]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function specializations()
     {
         return view('provider_profile.specializations', [
@@ -83,21 +63,11 @@ class ProviderProfileController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function verifications()
     {
         return view('provider_profile.verifications', ['required_verifications' => RequiredVerification::all()]);
     }
 
-     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function medicalQualification()
     {
         return view('provider_profile.medical_qualification', [
@@ -107,11 +77,6 @@ class ProviderProfileController extends Controller
         ]);
     }
 
-       /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function submittion()
     {
         return view('provider_profile.submittion', [
@@ -119,13 +84,6 @@ class ProviderProfileController extends Controller
         ]);
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -137,42 +95,21 @@ class ProviderProfileController extends Controller
                 'specializations',
                 ])]
         ]);
-        
-        if($request['profile_category']=='profile') {
 
-            $this->storeProviderProfile($request);
+        switch ($request['profile_category']) {
+            case 'profile':
+                return $this->storeProviderProfile($request);
+            case 'education-qualification':
+                return $this->storeProviderProfileEducationQualification($request);
+            case 'establishment':
+                return $this->storeProviderProfileEstablishment($request);
+            case 'verification':
+                return $this->storeProviderProfileVerification($request);
+            default:
+                return $this->storeProviderProfileSpecializations($request);
         }
-
-        if($request['profile_category']=='education-qualification') {
-
-            $this->storeProviderProfileEducationQualification($request);
-        }
-
-
-        if($request['profile_category']=='establishment') {
-
-            $this->storeProviderProfileEstablishment($request);
-        }
-
-        if($request['profile_category']=='verification') {
-
-            $this->storeProviderProfileVerification($request);
-        }
-
-        if($request['profile_category']=='specializations') {
-
-            $this->storeProviderProfileSpecializations($request);
-        }
-        
-
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ProviderProfile  $providerProfile
-     * @return \Illuminate\Http\Response
-     */
     public function show(ProviderProfile $provider_profile)
     {
         // return view('')
