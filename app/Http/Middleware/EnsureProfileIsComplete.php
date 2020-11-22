@@ -20,11 +20,10 @@ class EnsureProfileIsComplete
     public function handle(Request $request, Closure $next, $redirectToRoute=null)
     {
         if (! $request->user() ||
-        ($request->user() instanceof MustCompleteProfile &&
-        ! $request->user()->hasVerifiedMobileNumber())) {
+        ($request->user()->profile_stage != 10)) {
         return $request->expectsJson()
-                ? abort(403, 'Your mobile number is not verified.')
-                : Redirect::guest(URL::route($redirectToRoute ?: 'verify.mobile-number'));
+                ? abort(403, 'Your Profile is not complete.')
+                : Redirect::route('profile_info.index');
         }
         return $next($request);
     }

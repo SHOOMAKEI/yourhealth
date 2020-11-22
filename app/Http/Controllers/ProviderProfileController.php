@@ -50,10 +50,75 @@ class ProviderProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function profileInfo()
     {
-        //
+        return view('provider_profile.profile_info', [
+            'countries' =>Country::all(), 
+            'cities' => City::all()
+        ]);
     }
+
+     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function establishments()
+    {
+        return view('provider_profile.establishments', [
+        'countries' =>Country::all(), 
+        'cities' => City::all()]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function specializations()
+    {
+        return view('provider_profile.specializations', [
+            'specializations' => Specialization::all(),
+            'procedures' => MedicalProcedure::all()
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function verifications()
+    {
+        return view('provider_profile.verifications', ['required_verifications' => RequiredVerification::all()]);
+    }
+
+     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function medicalQualification()
+    {
+        return view('provider_profile.medical_qualification', [
+            'medical_councils' => MedicalRegistrationCouncil::all(),
+            'medical_courses' => MedicalCourse::all(),
+            'medical_institutes' => MedicalInstitute::all(),
+        ]);
+    }
+
+       /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function submittion()
+    {
+        return view('provider_profile.submittion', [
+            'profile'=> ProviderProfile::where('user_id',Auth::user()->id)->first()
+        ]);
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -66,32 +131,16 @@ class ProviderProfileController extends Controller
         $request->validate([
             'profile_category' => ['required', Rule::in(
                 ['profile', 
-                'profile-category', 
-                'medical-registration', 
                 'education-qualification', 
                 'establishment', 
                 'verification', 
-                'procedures',
                 'specializations',
-                'consaltation-fee', 
-                'establishment-timmings',
-                'doctor-timmings'
                 ])]
         ]);
         
         if($request['profile_category']=='profile') {
 
             $this->storeProviderProfile($request);
-        }
-
-        if($request['profile_category']=='profile-category') {
-
-           $this->storeProviderProfileCategory($request);
-        }
-
-        if($request['profile_category']=='medical-registration') {
-
-           $this->storeProviderProfileMedicalRegistration($request);
         }
 
         if($request['profile_category']=='education-qualification') {
@@ -110,30 +159,12 @@ class ProviderProfileController extends Controller
             $this->storeProviderProfileVerification($request);
         }
 
-        if($request['profile_category']=='procedures') {
-
-            $this->storeProviderProfileProcedures($request);
-        }
-
         if($request['profile_category']=='specializations') {
 
             $this->storeProviderProfileSpecializations($request);
         }
-
-        if($request['profile_category']=='consaltation-fee') {
-
-            $this->storeProviderProfileConsaltationFee($request);
-        }
-
-        if($request['profile_category']=='doctor-timmings') {
-
-            $this->storeProviderProfileDoctorTimmings($request);
-        }
         
-        if($request['profile_category']=='establishment-timmings') {
 
-            $this->storeProviderProfileDoctorTimmings($request);
-        }
     }
 
     /**
@@ -142,44 +173,11 @@ class ProviderProfileController extends Controller
      * @param  \App\Models\ProviderProfile  $providerProfile
      * @return \Illuminate\Http\Response
      */
-    public function show(ProviderProfile $providerProfile)
+    public function show(ProviderProfile $provider_profile)
     {
-        //
+        // return view('')
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ProviderProfile  $providerProfile
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ProviderProfile $providerProfile)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ProviderProfile  $providerProfile
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ProviderProfile $providerProfile)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ProviderProfile  $providerProfile
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ProviderProfile $providerProfile)
-    {
-        //
-    }
 
     public function storeProviderProfile(Request $request)
     {
@@ -188,6 +186,7 @@ class ProviderProfileController extends Controller
             'gender' => ['required', Rule::in('F', 'M','O')],
             'country_id' => ['required', 'exists:countries,id'],
             'city_id' =>['required', 'exists:cities,id'],
+            'category' => ['required', Rule::in('both', 'owner','only')]
         ]);
 
         ProviderProfile::updateOrCreate([
@@ -198,39 +197,25 @@ class ProviderProfileController extends Controller
             'city_id' => $request['city_id'],
             
         ]);
-
-        return redirect()->back()->with(['success' =>'Information Save Successful']);
-    }
-
-    public function storeProviderProfileCategory(Request $request)
-    {
-        $request->validate([
-            'category' => ['required', Rule::in('both', 'owner')]
-        ]);
-        
+        // dd($request);
         if($request['category'] =='both') {
             
-            User::find(Auth::user()->id)->assignRole('doctor');
-            User::find(Auth::user()->id)->assignRole('owner');
+            User::find(Auth::user()->id)->assignRole('doctor', 'owner');
 
-            return redirect()->back()->with(['success' =>'Information Save Successful']);
+            return redirect()->route('medical_qualification.index')->with(['success' =>'Information Save Successful']);
         }
 
+        if($request['category'] =='only') {
+            
+            User::find(Auth::user()->id)->assignRole('doctor');
+            User::find(Auth::user()->id)->removeRole('owner');
+            return redirect()->route('medical_qualification.index')->with(['success' =>'Information Save Successful']);
+        }
+
+        User::find(Auth::user()->id)->removeRole('doctor');
         User::find(Auth::user()->id)->assignRole($request['category']);
 
-        return redirect()->back()->with(['success' =>'Information Save Successful']);
-    }
-
-    public function storeProviderProfileMedicalRegistration(Request $request)
-    {
-        $request->validate([
-            'medical_registration_id' => ['required', 'exists:medical_registration_councils,id'],
-            'registration_number' => ['required', 'string'],
-        ]);
-
-        ProviderProfile::where('user_id',Auth::user()->id)->first()->medical_registrations()->attach($request['medical_registration_id'], ['registration_number'=>$request['registration_number']]);
-
-        return redirect()->back()->with(['success' =>'Information Save Successful']);
+        return redirect()->route('establishments.index')->with(['success' =>'Information Save Successful']);
     }
 
     public function storeProviderProfileEducationQualification(Request $request)
@@ -240,20 +225,29 @@ class ProviderProfileController extends Controller
             'year_of_experience' => ['required', 'numeric'],
             'medical_course_id' => ['required', 'exists:medical_courses,id'],
             'medical_institute_id' => ['required', 'exists:medical_institutes,id'],
+            'medical_registration_id' => ['required', 'exists:medical_registration_councils,id'],
+            'registration_number' => ['required', 'string'],
 
         ]);
-            
+        
+        $provider_profile = ProviderProfile::where('user_id',Auth::user()->id)->first();
+        $provider_profile->medical_registrations()->sync($request['medical_registration_id'], ['registration_number'=>$request['registration_number']]);
         EducationQualification::updateOrCreate([
             'medical_course_id' => $request['medical_course_id'],
             'medical_institute_id' => $request['medical_institute_id'],
-            'provider_profile_id' => ProviderProfile::where('user_id',Auth::user()->id)->first()->id
+            'provider_profile_id' => $provider_profile->id
         ],
            ['year_of_complition' => $request['year_of_complition'],
             'year_of_experience' => $request['year_of_experience'],
             
         ]);
 
-        return redirect()->back()->with(['success' =>'Information Save Successful']);
+        if($provider_profile->hasRole('owner')) {
+
+            return redirect()->route('establishments.index')->with(['success' =>'Information Save Successful']);
+        }
+        
+        return redirect()->route('specializations.index')->with(['success' =>'Information Save Successful']);
     }
 
     public function storeProviderProfileEstablishment(Request $request)
@@ -271,15 +265,15 @@ class ProviderProfileController extends Controller
         $establishment = ProviderEstablishment::create([
             'name' => $request['name'],
             'mobile_number' => $request['mobile_number'],
-            'country_id' => $request['country_id'],
+            'email' => $request['email']],
+            ['country_id' => $request['country_id'],
             'city_id' => $request['city_id'],
             'category' => $request['category'],
-            'email' => $request['email'],
             'address' => $request['address'],
             'map_location' => is_null($request['map_location'])?'--':$request['map_location'] ,
         ]);
 
-        $establishment->provider_profiles()->attach(ProviderProfile::where('user_id',Auth::user()->id)->first()->id);
+        $establishment->provider_profiles()->sync(ProviderProfile::where('user_id',Auth::user()->id)->first()->id);
 
         return redirect()->back()->with(['success' =>'Information Save Successful']);
     }
@@ -297,63 +291,39 @@ class ProviderProfileController extends Controller
             $provider_profile->addMedia($file['file'])->toMediaCollection('provider_verificaiton_files');
 
             ProviderVerification::updateOrCreate([
-                'required_verification_id' => $file['verification_id']],
-                ['provider_id' => $provider_profile->id,
-                'is_submitted' => 1
+                'required_verification_id' => $file['verification_id'],
+                'provider_id' => $provider_profile->id],
+                ['is_submitted' => 1
             ]);
     
         }
        
-        return redirect()->back()->with(['success' =>'Information Save Successful']);
-    }
-
-    public function storeProviderProfileProcedures(Request $request)
-    {
-        $request->validate([
-            'procedure_id' => ['required', 'exists:medical_procedures,id'],
-            'price' => ['required', 'numeric'],
-            'currency' => ['required']
-        ]);
-        
-        $provider_profile = ProviderProfile::where('user_id', Auth::user()->id)->first();
-
-        $provider_profile->medical_procedures()->attach($request['procedure_id'], ['price'=> $request['price'], 'currency'=> $request['currency']]);
-
-        return redirect()->back()->with(['success' =>'Information Save Successful']);
+        return redirect()->route('submittion.index')->with(['success' =>'Information Save Successful']);
     }
 
     public function storeProviderProfileSpecializations(Request $request)
     {
         $request->validate([
             'specialization_id' => ['required', 'exists:specializations,id'],
+            'procedure_id' => ['required', 'exists:medical_procedures,id'],
+            'price' => ['required', 'numeric'],
+            'currency' => ['required'],
+            'consaltation_price' => ['required', 'numeric'],
+            'consaltation_currency' => ['required']
         ]);
 
         $provider_profile = ProviderProfile::where('user_id', Auth::user()->id)->first();
-
-        $provider_profile->medical_specializations()->attach($request['specialization_id']);
-
-        return redirect()->back()->with(['success' =>'Information Save Successful']);
-    }
-
-    public function storeProviderProfileConsaltationFee(Request $request)
-    {
-        $request->validate([
-            'price' => ['required', 'numeric'],
-            'currency' => ['required']
-        ]);
         
-        $consaltation = ConsultationFee::create([
-            'provider_id' => ProviderProfile::where('user_id', Auth::user()->id)->first()->id],
-           ['price' => $request['price'],
-            'currency' => $request['currency'],
+        $consaltation = ConsultationFee::UpdateOrCreate([
+            'provider_id' => $provider_profile->id],
+           ['price' => $request['consaltation_price'],
+            'currency' => $request['consaltation_currency'],
         ]);
 
-        return redirect()->back()->with(['success' =>'Information Save Successful']);
-    }
+        $provider_profile->medical_specializations()->sync($request['specialization_id']);
+        $provider_profile->medical_procedures()->sync($request['procedure_id'], ['price'=> $request['price'], 'currency'=> $request['currency']]);
 
-    public function storeProviderProfileDoctorTimmings(Request $requesr)
-    {
-        //
+        return redirect()->ourte('verifications.index')->with(['success' =>'Information Save Successful']);
     }
 
 }

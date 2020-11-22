@@ -20,48 +20,6 @@
             </div>
         </li>
 
-        <li class="dropdown notification-list">
-            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <i class="dripicons-bell noti-icon"></i>
-                <span class="noti-icon-badge"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg">
-
-                <!-- item-->
-                <div class="dropdown-item noti-title">
-                    <h5 class="m-0">
-                        <span class="float-right">
-                            <a href="javascript: void(0);" class="text-dark">
-                                <small>Clear All</small>
-                            </a>
-                        </span>Notification
-                    </h5>
-                </div>
-
-                <div style="max-height: 230px;" data-simplebar>
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-primary">
-                            <i class="mdi mdi-comment-account-outline"></i>
-                        </div>
-                        <p class="notify-details">Caleb Flakelar commented on Admin
-                            <small class="text-muted">1 min ago</small>
-                        </p>
-                    </a>
-                </div>
-
-                <!-- All-->
-                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
-                    View All
-                </a>
-
-            </div>
-        </li>
-        <li class="notification-list">
-            <a class="nav-link right-bar-toggle" href="javascript: void(0);">
-                <i class="dripicons-gear noti-icon"></i>
-            </a>
-        </li>
          {{-- @livewire('navigation-dropdown') --}}
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
@@ -91,10 +49,10 @@
                 </div>
                @role('service-provider')
                 <!-- item-->
-                <a href="{{route('provider_profiles.index')}}" class="dropdown-item notify-item">
+                {{-- <a href="{{route('provider_profiles.index')}}" class="dropdown-item notify-item">
                     <i class="mdi mdi-account-circle mr-1"></i>
                     <span>{{ __('Profile') }}</span>
-                </a>
+                </a> --}}
                 @endrole
                 <!-- item-->
                 <a href="{{ route('profile.show') }}" class="dropdown-item notify-item">

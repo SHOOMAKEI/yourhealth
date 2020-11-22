@@ -12,7 +12,7 @@ use App\Http\Controllers\RequiredVerificationController;
 use App\Http\Controllers\MedicalRegistrationCouncilController;
 use App\Http\Controllers\ProviderProfileController;
 use App\Http\Controllers\Admin\ProviderProfileAdminController;
-use App\Services\DumaPaymentOnline;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,22 +25,19 @@ use App\Services\DumaPaymentOnline;
 |
 */
 
-Route::get('/', function () {
-   $client_packages = Plan::where('category', 'client')->orderBy('sort_order', 'ASC')->get();
-   $service_provider_packages = Plan::where('category', 'service-provider')->orderBy('sort_order', 'ASC')->get();
-    return view('welcome', ['client_packages' =>  $client_packages, 'service_provider_packages' => $service_provider_packages ]);
-});
+Route::get('/', HomeController::class);
 
 
 Route::middleware(['auth:sanctum', 'verified', 'mobile_number_verified', 'complete_profile'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth'])->get('/mobile_number/verify', [VerifyMobileNumberController::class, 'show'])->name('verify.mobile-number');
+Route::middleware(['auth'])->get('/mobile_number/verify', [VerifyMobileNumberController::class, 'show'])
+    ->name('verify.mobile-number');
 
 Route::post('/mobile_number/verification_code/verify', [VerifyMobileNumberController::class, 'verify'])
-            ->middleware(['auth', 'throttle:6,1'])
-            ->name('verification_code.verify');
+    ->middleware(['auth', 'throttle:6,1'])
+    ->name('verification_code.verify');
 
 Route::post('/mobile_number/verification-code/resend', [VerifyMobileNumberController::class, 'resend'])
     ->middleware(['auth', 'throttle:6,1'])
@@ -57,34 +54,14 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:super-ad
     Route::resource('service_provider_profiles', ProviderProfileAdminController::class);
 });
 
-Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:service-provider'])->group(function(){
-  Route::resource('provider_profiles',ProviderProfileController::class);
+Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_verified', 'role:service-provider'])->group(function(){
+//   Route::resource('provider_profiles',ProviderProfileController::class);
+  Route::get('service_provider/profile_info', [ProviderProfileController::class ,'profileInfo'])->name('profile_info.index');
+  Route::get('service_provider/establishments', [ProviderProfileController::class ,'establishments'])->name('establishments.index');
+  Route::get('service_provider/specializations', [ProviderProfileController::class ,'specializations'])->name('specializations.index');
+  Route::get('service_provider/verifications', [ProviderProfileController::class ,'verifications'])->name('verifications.index');
+  Route::get('service_provider/submittion', [ProviderProfileController::class ,'submittion'])->name('submittion.index');
+  Route::get('service_provider/medical_qualification', [ProviderProfileController::class , 'medicalQualification'])->name('medical_qualification.index');
+  Route::post('service_provider/save', [ProviderProfileController::class ,'store'])->name('provider_profiles.store');
 });
 
-Route::get('/payment/pay', function(){
-
-$xmlBody = '
-<API3G>
-<CompanyToken>9F416C11-127B-4DE2-AC7F-D5710E4C5E0A</CompanyToken>
-<Request>createToken</Request>
-<Transaction>
-<PaymentAmount>120000.00</PaymentAmount>
-<PaymentCurrency>TZS</PaymentCurrency>
-<CompanyRef>49FKEOA</CompanyRef>
-<RedirectURL>http://www.domain.com/payurl.php</RedirectURL>
-<BackURL>http://www.domain.com/backurl.php </BackURL>
-<CompanyRefUnique>0</CompanyRefUnique>
-<PTL>5</PTL>
-</Transaction>
-<Services>
-  <Service>
-    <ServiceType>5525</ServiceType>
-    <ServiceDescription>Subscription fee</ServiceDescription>
-    <ServiceDate>2020/11/20 19:00</ServiceDate>
-  </Service>
-</Services>
-</API3G>';
-
- return DumaPaymentOnline::createTransactionToken($xmlBody);
- 
-});
