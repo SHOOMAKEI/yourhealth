@@ -140,28 +140,28 @@ class ProviderProfileController extends Controller
         
         if($request['profile_category']=='profile') {
 
-            $this->storeProviderProfile($request);
+           return $this->storeProviderProfile($request);
         }
 
         if($request['profile_category']=='education-qualification') {
 
-            $this->storeProviderProfileEducationQualification($request);
+            return $this->storeProviderProfileEducationQualification($request);
         }
 
 
         if($request['profile_category']=='establishment') {
 
-            $this->storeProviderProfileEstablishment($request);
+            return $this->storeProviderProfileEstablishment($request);
         }
 
         if($request['profile_category']=='verification') {
 
-            $this->storeProviderProfileVerification($request);
+            return $this->storeProviderProfileVerification($request);
         }
 
         if($request['profile_category']=='specializations') {
 
-            $this->storeProviderProfileSpecializations($request);
+            return $this->storeProviderProfileSpecializations($request);
         }
         
 
@@ -197,7 +197,11 @@ class ProviderProfileController extends Controller
             
             User::find(Auth::user()->id)->assignRole('doctor', 'owner');
 
-            return redirect()->route('medical_qualification.index')->with(['success' =>'Information Save Successful']);
+            return view('provider_profile.medical_qualification', [
+                'medical_councils' => MedicalRegistrationCouncil::all(),
+                'medical_courses' => MedicalCourse::all(),
+                'medical_institutes' => MedicalInstitute::all(),
+            ]);
         }
 
         if($request['category'] =='only') {
@@ -210,7 +214,9 @@ class ProviderProfileController extends Controller
         User::find(Auth::user()->id)->removeRole('doctor');
         User::find(Auth::user()->id)->assignRole($request['category']);
 
-        return redirect()->route('establishments.index')->with(['success' =>'Information Save Successful']);
+        return view('provider_profile.establishments', [
+            'countries' =>Country::all(), 
+            'cities' => City::all()]);
     }
 
     public function storeProviderProfileEducationQualification(Request $request)
@@ -257,7 +263,7 @@ class ProviderProfileController extends Controller
             'city_id' =>['required', 'exists:cities,id'],
         ]);
 
-        $establishment = ProviderEstablishment::create([
+        $establishment = ProviderEstablishment::UpdateOrcreate([
             'name' => $request['name'],
             'mobile_number' => $request['mobile_number'],
             'email' => $request['email']],
