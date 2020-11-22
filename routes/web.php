@@ -52,6 +52,9 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:super-ad
     Route::resource('medical_councils', MedicalRegistrationCouncilController::class);
     Route::resource('profile_validations', RequiredVerificationController::class);
     Route::resource('service_provider_profiles', ProviderProfileAdminController::class);
+    Route::get('service_provider_profiles/provider/{provider}/verify', [ProviderProfileAdminController::class, 'verify'])->name('service_provider_profiles.verify');
+    Route::get('service_provider_profiles/provider/{provider}/unverify', [ProviderProfileAdminController::class, 'unverify'])->name('service_provider_profiles.unverify');
+
 });
 
 Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_verified', 'role:service-provider'])->group(function(){

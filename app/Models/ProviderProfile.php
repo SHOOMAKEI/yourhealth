@@ -58,5 +58,9 @@ class ProviderProfile extends Model implements HasMedia
     {
         return $this->belongsToMany(RequiredVerification::class, 'provider_verifications','provider_id');
     }
+    public function account()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }    
    
 }
