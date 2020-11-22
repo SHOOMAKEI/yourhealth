@@ -5,7 +5,7 @@
         <div class=" dropdown-header noti-title">
             <h6 class="text-overflow m-0">{{ __('Manage Account') }}</h6>
         </div>
-    @role('service-provider')
+        @role('service-provider')
             <a href="{{route('provider_profiles.index')}}" class="dropdown-item notify-item">
                 <i class="mdi mdi-account-circle mr-1"></i>
                 <span>{{ __('Profile') }}</span>
