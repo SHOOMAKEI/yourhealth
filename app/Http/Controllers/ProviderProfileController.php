@@ -84,6 +84,19 @@ class ProviderProfileController extends Controller
         ]);
     }
 
+    public function submitted()
+    {
+        $user = User::find(auth()->user()->id);
+
+        $user->forceFill([
+            'profile_stage' => 10,
+        ])->save();
+        
+        return redirect()->back()->with(['success' => 'Your Profile has been sent for further informations we will contact your after verification']);
+    }
+
+
+
     public function store(Request $request)
     {
         $request->validate([
@@ -110,11 +123,6 @@ class ProviderProfileController extends Controller
         }
     }
 
-    public function show(ProviderProfile $provider_profile)
-    {
-        // return view('')
-    }
-
 
     public function storeProviderProfile(Request $request)
     {
@@ -134,7 +142,7 @@ class ProviderProfileController extends Controller
             'city_id' => $request['city_id'],
             
         ]);
-        // dd($request);
+
         if($request['category'] =='both') {
             
             User::find(Auth::user()->id)->assignRole('doctor', 'owner');

@@ -72,7 +72,7 @@ trait MustVerifyMobileNumber
             'otp_code' => rand(100000,999999),
         ])->save();
 
-        $sms = 'Your OTP Code is '. $this->verification_code;
+        $sms = 'Your OTP Code is '. $this->otp_code;
         
         SMSService::sendSMSToSingeUser($this->getMobileNumberForVerification(), $sms);
     }

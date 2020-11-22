@@ -8,7 +8,6 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -21,50 +20,53 @@ class AuthController extends Controller
         ]);
 
         $field =  $this->username($request);
-
-       
     
         $user = User::where($field, $request[$field])->first();
 
         if(! $user || ($user->is_active ==false)) {
-            throw ValidationException::withMessages([
-                'username' => ['User account has been disabled contact support team for more information.'],
-            ]);
+            return response()->json([
+                    'message' => 'User account has been disabled contact support team for more information.',
+                    'status' => 204
+                    ]);
         }
     
         if (! $user || ! Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'username' => ['The provided credentials are incorrect.'],
-            ]);
+            response()->json([
+                'message' => 'Incorrect Cridentials provided',
+                'status' => 204
+                ]);
         }
 
-        if(!($user->enabled_otp ==false) ) {
+        if(!($user->enabled_otp ==false)) {
 
+            $user->sendOtpCodeNotification();
             return ['user' => new UserResource($user), 'has_otp' =>true];
         }
 
         if(!is_null($user->two_factor_recovery_codes)) {
 
-            return ['user' => new UserResource($user), 'has_two_factory_aut' =>true];
+            return ['user' => new UserResource($user), 'has_two_factory_auth' =>true];
         }
     
-        return ['user' => new UserResource($user),'token' => $user->createToken($request->device_name)->plainTextToken, 'token_type'=> 'bearer'];
+        return ['user' => new UserResource($user),
+                'token' => $user->createToken($request->device_name)->plainTextToken, 
+                'token_type'=> 'bearer'];
     }
 
     public function sendOtpCode(Request $request)
     {
         $user = User::where('email', $request['email'])->first();
 
-        $user->sendMobileNumberVerificationNotification();
+        $user->sendOtpCodeNotification();
         
-        return new JsonResponse('otp code sent', 202);
+        return response()->json(['message' => 'otp code sent', 'status'=> 200]);
     }
 
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
 
-        return new JsonResponse('user loged out', 204);
+        return response()->json(['message' => 'user logged out successful', 'status'=> 200]);
     }
 
     public function verifiyOtpCode(Request $request)
@@ -73,32 +75,16 @@ class AuthController extends Controller
 
         if($user->getOtpCodeForVerification() != $request['opt_code'])
         {
-            throw ValidationException::withMessages([
-                'otp_code' => ['Your Provided wrong OTP code.'],
-            ]);
+            return response()->json(['message' => 'Incorrect OTP provided', 'status'=> 204]);
         }
         
-        return new JsonResponse('otp code is correct', 204);
-    }
+        $user->forceFill([
+            'otp_code' => null,
+        ])->save();
 
-    public function verifiy2faCode(Request $request)
-    {
-        $user = $request->challengedUser();
-
-        if ($code = $request->validRecoveryCode()) {
-            $user->replaceRecoveryCode($code);
-        } elseif (! $request->hasValidCode()) { 
-            throw ValidationException::withMessages([
-                 'otp_code' => ['Your Provided wrong two factory code'],
-            ]);
-        }
-
-        return ['user' => new UserResource($user),'token' => $user->createToken($request->device_name)->plainTextToken, 'token_type'=> 'bearer'];
-    }
-
-    public function verifiy2faRecoverdCode(Request $request)
-    {
-        
+        return ['user' => new UserResource($user),
+                'token' => $user->createToken($request->device_name)->plainTextToken, 
+                'token_type'=> 'bearer'];
     }
 
     public function username(Request $request)

@@ -25,6 +25,14 @@ class EnsureProfileIsComplete
                 ? abort(403, 'Your Profile is not complete.')
                 : Redirect::route('profile_info.index');
         }
+
+        if (! $request->user() ||
+        ($request->user()->profile_stage == 10)&& !$request->user()->hasRole('super-admin')) {
+        return $request->expectsJson()
+                ? abort(403, 'Please wait for verifications')
+                : Redirect::route('submittion.index');
+        }
+
         return $next($request);
     }
 }
