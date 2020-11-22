@@ -28,7 +28,7 @@
 @endrole
 
 @role('doctor')
-    @if(auth()->user()->provider_profile->medical_qualifications->isNotEmpty())
+    @if(auth()->user()->provider_profile->education_qualifications->isNotEmpty())
         <li class="side-nav-item">
             <a href="{{route('specializations.index')}}" class="side-nav-link">
                 <i class="uil-home-alt"></i>
