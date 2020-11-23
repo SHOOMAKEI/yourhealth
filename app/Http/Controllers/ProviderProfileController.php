@@ -94,9 +94,14 @@ class ProviderProfileController extends Controller
     public function submitted()
     {
         $user = User::find(auth()->user()->id);
-
+        $profile = ProviderProfile::where('user_id',$user->id)->first();
+        
         $user->forceFill([
             'profile_stage' => 10,
+        ])->save();
+
+        $profile->forceFill([
+            'is_submitted' => 10,
         ])->save();
         
         return redirect()->back()->with(['success' => 
