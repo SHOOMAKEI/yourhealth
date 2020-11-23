@@ -18,7 +18,7 @@
             @method('PUT')
                 <div class="form-group mb-3">
                     <label for="package-name">{{__('packages.create.package_name')}}</label>
-                <input type="text" id="package-name" name="package_name" value="{{$package->name}}" class="form-control @error('package_name') is-invalid @enderror" placeholder="{{__('packages.create.package_name')}}" required>
+                    <input type="text" id="package-name" name="package_name" value="{{$package->name}}" class="form-control @error('package_name') is-invalid @enderror" placeholder="{{__('packages.create.package_name')}}" required>
                     <div class="invalid-tooltip"> </div>
                     @error('package_name')
                         <span class="invalid-feedback" role="alert">
