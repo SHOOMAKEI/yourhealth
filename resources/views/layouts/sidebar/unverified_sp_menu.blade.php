@@ -1,5 +1,5 @@
 <li class="side-nav-item">
-    <a href="{{route('profile_info.index')}}" class="side-nav-link">
+    <a href="{{route('profile_info.index')}}" class="side-nav-link {{Request::routeIs('profile_info.index*') ? 'nm-active' : ''}}">
         <i class="uil-user"></i>
         <span> Profile Information</span>
     </a>
@@ -8,7 +8,7 @@
     @role('doctor')
         
             <li class="side-nav-item">
-                <a href="{{route('medical_qualification.index')}}" class="side-nav-link">
+                <a href="{{route('medical_qualification.index')}}" class="side-nav-link {{Request::routeIs('medical_qualification.index*') ? 'nm-active' : ''}}">
                     <i class="uil-medal"></i>
                     <span> Medical Qualifications</span>
                 </a>
@@ -19,7 +19,7 @@
     @role('owner')
         @if(!empty(auth()->user()->provider_profile))
             <li class="side-nav-item">
-                <a href="{{route('establishments.index')}}" class="side-nav-link">
+                <a href="{{route('establishments.index')}}" class="side-nav-link {{Request::routeIs('establishments.index*') ? 'nm-active' : ''}}">
                     <i class="uil-map-pin-alt"></i>
                     <span> Establishment Info</span>
                 </a>
@@ -30,7 +30,7 @@
     @role('doctor')
         @if(auth()->user()->provider_profile->education_qualifications->isNotEmpty())
             <li class="side-nav-item">
-                <a href="{{route('specializations.index')}}" class="side-nav-link">
+                <a href="{{route('provider_specializations.index')}}" class="side-nav-link {{Request::routeIs('provider_specializations.index*') ? 'nm-active' : ''}}">
                     <i class="uil-graduation-hat"></i>
                     <span> Specializations</span>
                 </a>
@@ -42,7 +42,7 @@
 
         @if(auth()->user()->provider_profile->medical_specializations->isNotEmpty() && auth()->user()->provider_profile->establishments->isNotEmpty())
             <li class="side-nav-item">
-                <a href="{{route('verifications.index')}}" class="side-nav-link">
+            <a href="{{route('verifications.index')}}" class="side-nav-link {{Request::routeIs('verifications.index*') ? 'nm-active' : ''}}">
                     <i class="uil-paperclip"></i>
                     <span> Attachments</span>
                 </a>
@@ -55,7 +55,7 @@
 
             @if(auth()->user()->provider_profile->medical_specializations->isNotEmpty())
                 <li class="side-nav-item">
-                    <a href="{{route('verifications.index')}}" class="side-nav-link">
+                    <a href="{{route('verifications.index')}}" class="side-nav-link {{Request::routeIs('verifications.index*') ? 'nm-active' : ''}}">
                         <i class="uil-paperclip"></i>
                         <span> Attachments</span>
                     </a>
@@ -66,7 +66,7 @@
 
             @if(auth()->user()->provider_profile->establishments->isNotEmpty())
                 <li class="side-nav-item">
-                    <a href="{{route('verifications.index')}}" class="side-nav-link">
+                    <a href="{{route('verifications.index')}}" class="side-nav-link {{Request::routeIs('verifications.index*') ? 'nm-active' : ''}}">
                         <i class="uil-paperclip"></i>
                         <span> Attachments</span>
                     </a>
@@ -79,7 +79,7 @@
 
     @if(auth()->user()->provider_profile->verifications->isNotEmpty())
         <li class="side-nav-item">
-            <a href="{{route('submittion.index')}}" class="side-nav-link">
+            <a href="{{route('submittion.index')}}" class="side-nav-link {{Request::routeIs('submittion.index*') ? 'nm-active' : ''}}">
                 <i class="uil-file-check-alt"></i>
                 <span> Submittion</span>
             </a>
