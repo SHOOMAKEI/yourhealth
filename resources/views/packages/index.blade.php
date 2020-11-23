@@ -35,6 +35,7 @@
                     <tbody>
                         @foreach ($packages as $package)
                             <tr>
+                                @include('packages.update_package_modal')
                                 <td>
                                     {{$package->name}}
                                 </td>
@@ -51,7 +52,7 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="{{route('packages.show',['package' => $package->id])}}" class="action-icon" data-toggle="modal" data-target="#feature-modal-{{$package->id}}"> <i class="mdi mdi-eye"></i> {{__('packages.index.action.show')}}</a>
                                             
-                                            <a class="dropdown-item" href="{{route('packages.edit',['package' => $package->id])}}" class="action-icon"> <i class="mdi mdi-pencil"></i> {{__('packages.index.action.edit')}}</a>
+                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#update-package-{{$package->id}}" class="action-icon"> <i class="mdi mdi-pencil"></i> {{__('profile_validations.index.action.edit')}}</a>
                                             <form action="{{route('packages.destroy',['package' => $package->id])}}">
                                                 @csrf
                                                 @method('DELETE')
