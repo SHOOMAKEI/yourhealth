@@ -29,7 +29,7 @@
                     {{$package->name}}
                 </td>
                 <td>{{$package->description}}</td>
-                <td>@money($package->price, $package->currency) {{ $package->currency}} per {{$package->invoice_interval}}</td>
+                <td>@money($package->price, $package->currency, true) {{ $package->currency}} per {{$package->invoice_interval}}</td>
                 <td>{{$package->trial_period}} {{$package->trial_interval}}</td>
                 <td>{{str_replace('-', ' ',$package->category)}}</td>
                 <td>{{$package->sort_order}}</td>

@@ -61,7 +61,7 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
 //   Route::resource('provider_profiles',ProviderProfileController::class);
   Route::get('service_provider/profile_info', [ProviderProfileController::class ,'profileInfo'])->name('profile_info.index');
   Route::get('service_provider/establishments', [ProviderProfileController::class ,'establishments'])->name('establishments.index');
-  Route::get('service_provider/specializations', [ProviderProfileController::class ,'specializations'])->name('specializations.index');
+  Route::get('service_provider/specializations', [ProviderProfileController::class ,'specializations'])->name('provider_specializations.index');
   Route::get('service_provider/verifications', [ProviderProfileController::class ,'verifications'])->name('verifications.index');
   Route::get('service_provider/submittion', [ProviderProfileController::class ,'submittion'])->name('submittion.index');
   Route::get('service_provider/medical_qualification', [ProviderProfileController::class , 'medicalQualification'])->name('medical_qualification.index');

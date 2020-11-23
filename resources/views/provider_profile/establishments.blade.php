@@ -18,19 +18,24 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="establishment-name">Establishment Name</label>
-                                    <input type="text" class="form-control" name="name" id="establishment-name" placeholder="Establishment Name" required>
+                                    <input type="text" class="form-control @if($errors->has('name')) is-invalid @endif" name="name" id="establishment-name" placeholder="Establishment Name" required>
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
                                     <div class="invalid-feedback">
                                         Please provide fill this value
                                     </div>
+                                    @if($errors->has('name'))
+                                        <div class="invalid-feedback" style="display: block">
+                                            {{$errors->first('name')}}
+                                        </div>
+                                    @endif 
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="mobile-number">Mobile Number</label>
-                                    <input type="text" class="form-control" name="mobile_number" id="mobile-number" data-toggle="input-mask"
+                                    <input type="text" class="form-control @if($errors->has('mobile_number')) is-invalid @endif" name="mobile_number" id="mobile-number" data-toggle="input-mask"
                                     data-mask-format="+255000000000" placeholder="+255XXXXXXXXX" required>
                                     <div class="valid-feedback">
                                         Looks good!
@@ -38,6 +43,11 @@
                                     <div class="invalid-feedback">
                                         Please provide fill this value
                                     </div>
+                                    @if($errors->has('mobile_number'))
+                                        <div class="invalid-feedback" style="display: block">
+                                            {{$errors->first('mobile_number')}}
+                                        </div>
+                                    @endif 
                                 </div>
                             </div>
                         </div> <!-- end row -->
@@ -45,25 +55,35 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                                    <input type="email" class="form-control @if($errors->has('email')) is-invalid @endif" name="email" id="email" placeholder="Email" required>
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
                                     <div class="invalid-feedback">
                                         Please provide fill this value
                                     </div>
+                                    @if($errors->has('email'))
+                                        <div class="invalid-feedback" style="display: block">
+                                            {{$errors->first('email')}}
+                                        </div>
+                                    @endif 
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="address">Postal Andress</label>
-                                    <input type="text" class="form-control" name="address" id="address" placeholder="P.O.Box XXX" required>
+                                    <input type="text" class="form-control @if($errors->has('address')) is-invalid @endif" name="address" id="address" placeholder="P.O.Box XXX" required>
                                     <div class="valid-feedback">
                                         Looks good!
                                     </div>
                                     <div class="invalid-feedback">
                                         Please provide fill this value
                                     </div>
+                                    @if($errors->has('address'))
+                                        <div class="invalid-feedback" style="display: block">
+                                            {{$errors->first('address')}}
+                                        </div>
+                                    @endif 
                                 </div>
                             </div>
                         </div> <!-- end row -->
@@ -71,48 +91,48 @@
                         <div class="row">
                             <div class="form-group mb-2 col-md-6">
                                 <label for="location">Country</label>
-                                <select class="custom-select mb-3" name="country_id" required>
+                                <select class="custom-select mb-3 @if($errors->has('country_id')) is-invalid @endif" name="country_id" required>
                                     <option selected disabled>Country</option>
                                     @foreach ($countries as $country)
                                     <option value="{{$country->id}}" >{{$country->name}}</option>
                                     @endforeach
                                 </select> 
-                                @error('location')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror  
+                                @if($errors->has('country_id'))
+                                    <div class="invalid-feedback" style="display: block">
+                                        {{$errors->first('country_id')}}
+                                    </div>
+                                @endif 
                             </div>
                             <div class="form-group mb-2 col-md-6">
                                 <label for="city">City</label>
-                                <select class="custom-select mb-3" name="city_id" required>
+                                <select class="custom-select mb-3 @if($errors->has('city_id')) is-invalid @endif" name="city_id" required>
                                     <option selected disabled>City</option>
                                     @foreach ($cities as $city)
                                     <option value="{{$city->id}}" >{{$city->name}}</option>
                                     @endforeach
                                 </select> 
-                                @error('city')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror  
+                                @if($errors->has('city_id'))
+                                    <div class="invalid-feedback" style="display: block">
+                                        {{$errors->first('city_id')}}
+                                    </div>
+                                @endif   
                             </div>
                         </div> <!-- end row -->
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
                                     <label for="category">Category</label>
-                                    <select class="custom-select mb-3" name="category" required>
+                                    <select class="custom-select mb-3 @if($errors->has('category')) is-invalid @endif" name="category" required>
                                         <option selected disabled>Category</option>
                                         @foreach (getEstablishmentCategories() as $category)
                                         <option value="{{$category['value']}}" >{{$category['option']}}</option>
                                         @endforeach
                                     </select> 
-                                    @error('category')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror  
+                                    @if($errors->has('category'))
+                                        <div class="invalid-feedback" style="display: block">
+                                            {{$errors->first('category')}}
+                                        </div>
+                                    @endif 
                                 </div>
                             </div>
                         </div>

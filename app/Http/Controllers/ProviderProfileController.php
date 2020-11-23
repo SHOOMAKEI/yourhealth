@@ -44,7 +44,8 @@ class ProviderProfileController extends Controller
     {
         return view('provider_profile.profile_info', [
             'countries' =>Country::all(), 
-            'cities' => City::all()
+            'cities' => City::all(),
+            'profile'=> ProviderProfile::where('user_id',Auth::user()->id)->first()
         ]);
     }
 
@@ -52,20 +53,25 @@ class ProviderProfileController extends Controller
     {
         return view('provider_profile.establishments', [
         'countries' =>Country::all(), 
-        'cities' => City::all()]);
+        'cities' => City::all(),
+        'profile'=> ProviderProfile::where('user_id',Auth::user()->id)->first()
+        ]);
     }
 
     public function specializations()
     {
         return view('provider_profile.specializations', [
             'specializations' => Specialization::all(),
-            'procedures' => MedicalProcedure::all()
+            'procedures' => MedicalProcedure::all(),
+            'profile'=> ProviderProfile::where('user_id',Auth::user()->id)->first()
         ]);
     }
 
     public function verifications()
     {
-        return view('provider_profile.verifications', ['required_verifications' => RequiredVerification::all()]);
+        return view('provider_profile.verifications', [
+            'required_verifications' => RequiredVerification::all()
+            ]);
     }
 
     public function medicalQualification()
@@ -74,6 +80,7 @@ class ProviderProfileController extends Controller
             'medical_councils' => MedicalRegistrationCouncil::all(),
             'medical_courses' => MedicalCourse::all(),
             'medical_institutes' => MedicalInstitute::all(),
+            'profile'=> ProviderProfile::where('user_id',Auth::user()->id)->first()
         ]);
     }
 
@@ -92,7 +99,8 @@ class ProviderProfileController extends Controller
             'profile_stage' => 10,
         ])->save();
         
-        return redirect()->back()->with(['success' => 'Your Profile has been sent for further informations we will contact your after verification']);
+        return redirect()->back()->with(['success' => 
+        'Your Profile has been sent for further informations we will contact your after verification']);
     }
 
 
@@ -147,11 +155,7 @@ class ProviderProfileController extends Controller
             
             User::find(Auth::user()->id)->assignRole('doctor', 'owner');
 
-            return view('provider_profile.medical_qualification', [
-                'medical_councils' => MedicalRegistrationCouncil::all(),
-                'medical_courses' => MedicalCourse::all(),
-                'medical_institutes' => MedicalInstitute::all(),
-            ]);
+            return redirect()->route('medical_qualification.index')->with(['success' =>'Information Save Successful']);
         }
 
         if($request['category'] =='only') {
@@ -164,9 +168,7 @@ class ProviderProfileController extends Controller
         User::find(Auth::user()->id)->removeRole('doctor');
         User::find(Auth::user()->id)->assignRole($request['category']);
 
-        return view('provider_profile.establishments', [
-            'countries' =>Country::all(), 
-            'cities' => City::all()]);
+        return redirect()->route('establishments.index')->with(['success' =>'Information Save Successful']);
     }
 
     public function storeProviderProfileEducationQualification(Request $request)
@@ -198,7 +200,7 @@ class ProviderProfileController extends Controller
             return redirect()->route('establishments.index')->with(['success' =>'Information Save Successful']);
         }
         
-        return redirect()->route('specializations.index')->with(['success' =>'Information Save Successful']);
+        return redirect()->route('provider_specializations.index')->with(['success' =>'Information Save Successful']);
     }
 
     public function storeProviderProfileEstablishment(Request $request)
@@ -226,7 +228,7 @@ class ProviderProfileController extends Controller
 
         $establishment->provider_profiles()->sync(ProviderProfile::where('user_id',Auth::user()->id)->first()->id);
 
-        return redirect()->back()->with(['success' =>'Information Save Successful']);
+        return redirect()->route('provider_specializations.index')->with(['success' =>'Information Save Successful']);
     }
 
     public function storeProviderProfileVerification(Request $request)

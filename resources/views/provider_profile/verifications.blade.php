@@ -23,6 +23,16 @@
                                                 <input type="text" name="file[][verification_id]" value="{{$verification->id}}" hidden/>
                                                 <input type="file" class="custom-file-input" name="file[][file]" id="file-input-{{$verification->id}}">
                                                 <label class="custom-file-label" for="file-input-{{$verification->id}}">Choose file</label>
+                                                @if($errors->has('verification_id'))
+                                                    <div class="invalid-feedback" style="display: block">
+                                                        {{$errors->first('verification_id')}}
+                                                    </div>
+                                                @endif 
+                                                @if($errors->has('file'))
+                                                <div class="invalid-feedback" style="display: block">
+                                                    {{$errors->first('file')}}
+                                                </div>
+                                            @endif 
                                             </div>
                                         </div>
                                     </div>
