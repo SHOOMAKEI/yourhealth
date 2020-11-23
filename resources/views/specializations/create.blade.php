@@ -15,19 +15,19 @@
             </p>
         <form action="{{route('specializations.store')}}" method="POST">
             @csrf
-                <div class="form-group mb-3">
-                    <label for="name">{{__('specializations.create.name')}}</label>
-                    <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="{{__('specializations.create.name')}}" required>
-                    <div class="invalid-tooltip"> </div>
-                    @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
+            <div class="form-group mb-3">
+                <label for="name">{{__('specializations.create.name')}}</label>
+                <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="{{__('specializations.create.name')}}" required>
+                <div class="invalid-tooltip"> </div>
+                @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
 
-                <button type="submit" class="btn btn-primary">{{__('specializations.create.save')}}</button>
-            </form>                                           
+            <button type="submit" class="btn btn-primary">{{__('specializations.create.save')}}</button>
+        </form>                                           
               
         </div> <!-- end card-body -->
     </div> <!-- end card -->

@@ -17,7 +17,7 @@
                                 <input type="text" name="profile_category" value="specializations" hidden/>
                                 <div class="form-group mb-2 col-md-6">
                                     <label for="specializations">Medical Specializations</label>
-                                    <select class="custom-select mb-3 @if($errors->has('specialization_id')) is-invalid @endif" name="specialization_id" required>
+                                    <select class="custom-select mb-3 @if($errors->has('specialization_id')) is-invalid @endif" name="specialization_id"  required>
                                         <option selected disabled>Medical Specializations</option>
                                         @foreach ($specializations as $specialization)
                                         <option value="{{$specialization->id}}" >{{$specialization->name}}</option>

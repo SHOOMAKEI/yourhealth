@@ -63,7 +63,7 @@ class ProviderProfileController extends Controller
         return view('provider_profile.specializations', [
             'specializations' => Specialization::all(),
             'procedures' => MedicalProcedure::all(),
-            'profile'=> ProviderProfile::where('user_id',Auth::user()->id)->first()
+            'profile_specializations'=> ProviderProfile::where('user_id',Auth::user()->id)->first()
         ]);
     }
 
@@ -76,11 +76,13 @@ class ProviderProfileController extends Controller
 
     public function medicalQualification()
     {
+        $profile = ProviderProfile::where('user_id',Auth::user()->id)->first();
         return view('provider_profile.medical_qualification', [
             'medical_councils' => MedicalRegistrationCouncil::all(),
             'medical_courses' => MedicalCourse::all(),
             'medical_institutes' => MedicalInstitute::all(),
-            'profile'=> ProviderProfile::where('user_id',Auth::user()->id)->first()
+            'qualification'=> $profile->education_qualifications->isNotEmpty()? 
+            $profile->education_qualification[0]: null
         ]);
     }
 
@@ -95,13 +97,13 @@ class ProviderProfileController extends Controller
     {
         $user = User::find(auth()->user()->id);
         $profile = ProviderProfile::where('user_id',$user->id)->first();
-        
+
         $user->forceFill([
             'profile_stage' => 10,
         ])->save();
 
         $profile->forceFill([
-            'is_submitted' => 10,
+            'is_submitted' => 1,
         ])->save();
         
         return redirect()->back()->with(['success' => 
