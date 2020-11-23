@@ -16,7 +16,7 @@ class ProviderProfileAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.provider_profile.index', ['profiles'=> ProviderProfile::all()]);
+        return view('admin.provider_profile.index', ['profiles'=> ProviderProfile::where('is_submitted',1)->get()]);
     }
 
     /**
