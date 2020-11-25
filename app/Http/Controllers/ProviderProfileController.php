@@ -51,26 +51,38 @@ class ProviderProfileController extends Controller
 
     public function establishments()
     {
+        $profile  = ProviderProfile::where('user_id',Auth::user()->id)->first();
         return view('provider_profile.establishments', [
         'countries' =>Country::all(), 
         'cities' => City::all(),
-        'profile'=> ProviderProfile::where('user_id',Auth::user()->id)->first()
+        'establishment'=> $profile->establishments->isNotEmpty()?
+        $profile->establishments[0]:null
         ]);
     }
 
     public function specializations()
     {
+        $profile  = ProviderProfile::where('user_id',Auth::user()->id)->first();
+
         return view('provider_profile.specializations', [
             'specializations' => Specialization::all(),
             'procedures' => MedicalProcedure::all(),
-            'profile_specializations'=> ProviderProfile::where('user_id',Auth::user()->id)->first()
+            'profile_specializations'=> $profile->medical_specializations->isNotEmpty()?
+            $profile->medical_specializations:null,
+            'profile_procedures'=> $profile->medical_procedures->isNotEmpty()?
+            $profile->medical_procedures:null,
+            'consultation'=> !empty($profile->consultation_fee)?
+            $profile->consultation_fee:null
         ]);
     }
 
     public function verifications()
     {
+        $profile = ProviderProfile::where('user_id',Auth::user()->id)->first();
         return view('provider_profile.verifications', [
-            'required_verifications' => RequiredVerification::all()
+            'required_verifications' => RequiredVerification::all(),
+            'submitted_verifications' =>  $profile->verifications->isNotEmpty()?
+            $profile->verifications:null
             ]);
     }
 
@@ -82,7 +94,9 @@ class ProviderProfileController extends Controller
             'medical_courses' => MedicalCourse::all(),
             'medical_institutes' => MedicalInstitute::all(),
             'qualification'=> $profile->education_qualifications->isNotEmpty()? 
-            $profile->education_qualification[0]: null
+            $profile->education_qualifications[0]: null,
+            'registration'=> $profile->medical_registrations->isNotEmpty()? 
+            $profile->medical_registrations[0]: null
         ]);
     }
 
@@ -263,13 +277,14 @@ class ProviderProfileController extends Controller
 
     public function storeProviderProfileSpecializations(Request $request)
     {
+        // dd($request);
         $request->validate([
-            'specialization_id' => ['required', 'exists:specializations,id'],
-            'procedure_id' => ['required', 'exists:medical_procedures,id'],
-            'price' => ['required', 'numeric'],
-            'currency' => ['required'],
+            'specialization.*.id' => ['required', 'exists:specializations,id'],
+            'procedure.*.id' => ['required', 'exists:medical_procedures,id'],
+            'procedure.*.price' => ['required', 'numeric'],
+            'procedure.*.currency' => ['required', Rule::in(array_column(getCurrency(), 'value'))],
             'consaltation_price' => ['required', 'numeric'],
-            'consaltation_currency' => ['required']
+            'consaltation_currency' => ['required', Rule::in(array_column(getCurrency(), 'value'))]
         ]);
 
         $provider_profile = ProviderProfile::where('user_id', Auth::user()->id)->first();
@@ -280,10 +295,16 @@ class ProviderProfileController extends Controller
             'currency' => $request['consaltation_currency'],
         ]);
 
-        $provider_profile->medical_specializations()->sync($request['specialization_id']);
-        $provider_profile->medical_procedures()->sync($request['procedure_id'], ['price'=> $request['price'], 'currency'=> $request['currency']]);
+        foreach($request['procedure'] as $procedure)
+        {
+            $data[$procedure['id']]['price'] = $procedure['price'];
+            $data[$procedure['id']]['currency'] = $procedure['currency'];
+        }
+        
+        $provider_profile->medical_specializations()->sync(array_column($request['specialization'],'id'));
+        $provider_profile->medical_procedures()->sync($data);
 
-        return redirect()->ourte('verifications.index')->with(['success' =>'Information Save Successful']);
+        return redirect()->route('verifications.index')->with(['success' =>'Information Save Successful']);
     }
 
 }

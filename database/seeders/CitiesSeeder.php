@@ -16,7 +16,7 @@ class CitiesSeeder extends Seeder
     public function run()
     {
         // dd(json_decode(preg_replace('/\s+/', '',File::get(storage_path("app/public/data/cities.json")))));
-        foreach (json_decode(preg_replace('/\s+/', '',File::get(public_path("data/cities.json")))) as $city) {
+        foreach (json_decode(File::get(public_path("data/cities.json"))) as $city) {
             City::firstOrCreate([
                 'country' => $city->country,
                 'name' => $city->name,

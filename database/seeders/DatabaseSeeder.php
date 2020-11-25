@@ -17,5 +17,10 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesAndPermissionsSeeder::class);
         $this->call(CountrySeeder::class);
         $this->call(CitiesSeeder::class);
+        $this->call(ProceduresSeeder::class);
+        $this->call(SpecializationSeeder::class);
+        $this->call(MedicalCoursesSeeder::class);
+        $this->call(MedicalInstitutesSeeder::class);
+        $this->call(MedicalCouncilsSeeder::class);
     }
 }

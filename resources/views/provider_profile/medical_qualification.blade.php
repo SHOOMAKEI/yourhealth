@@ -19,9 +19,9 @@
                                 <div class="form-group mb-2 col-md-6">
                                     <label for="medical_courses">Medical Course</label>
                                     <select class="custom-select mb-3 @if($errors->has('medical_course_id')) is-invalid @endif" name="medical_course_id" required>
-                                        <option selected disabled>Medical Course</option>
+                                        <option disabled>Medical Course</option>
                                         @foreach ($medical_courses as $medical_course)
-                                        <option value="{{$medical_course->id}}" >{{$medical_course->name}}</option>
+                                        <option value="{{$medical_course->id}}" {{!empty($qualification->medical_course_id)&& ($qualification->medical_course_id==$medical_course->id)? 'selected': null}} >{{$medical_course->name}}</option>
                                         @endforeach
                                     </select>
                                     @if($errors->has('medical_course_id'))
@@ -33,9 +33,9 @@
                                 <div class="form-group mb-2 col-md-6">
                                     <label for="location">Medical Institute</label>
                                     <select class="custom-select mb-3 @if($errors->has('medical_institute_id')) is-invalid @endif" name="medical_institute_id" required>
-                                        <option selected disabled>Medical Institute</option>
+                                        <option disabled>Medical Institute</option>
                                         @foreach ($medical_institutes as $medical_institute)
-                                        <option value="{{$medical_institute->id}}" >{{$medical_institute->name}}</option>
+                                        <option value="{{$medical_institute->id}}" {{!empty($qualification->medical_institute_id)&& ($qualification->medical_institute_id==$medical_institute->id)? 'selected': null}} >{{$medical_institute->name}}</option>
                                         @endforeach
                                     </select> 
                                     @if($errors->has('medical_institute_id'))
@@ -49,7 +49,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="year_of_complition">Year of Complition</label>
-                                        <input type="text" class="form-control @if($errors->has('year_of_complition')) is-invalid @endif" id="year_of_complition" name="year_of_complition" placeholder="Year Of Complition">
+                                        <input type="text" class="form-control @if($errors->has('year_of_complition')) is-invalid @endif" value="{{!empty($qualification->year_of_complition)? $qualification->year_of_complition: ''}}" id="year_of_complition" name="year_of_complition" placeholder="Year Of Complition">
                                     </div>
                                     @if($errors->has('year_of_complition'))
                                         <div class="invalid-feedback" style="display: block">
@@ -61,7 +61,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="year_of_experience">Year of Experience</label>
-                                        <input type="text" class="form-control @if($errors->has('year_of_experience')) is-invalid @endif" id="year_of_experience" name="year_of_experience" placeholder="Year of Experience">
+                                        <input type="text" class="form-control @if($errors->has('year_of_experience')) is-invalid @endif" value="{{!empty($qualification->year_of_experience)? $qualification->year_of_experience: ''}}"  id="year_of_experience" name="year_of_experience" placeholder="Year of Experience">
                                     </div>
                                     @if($errors->has('year_of_experience'))
                                         <div class="invalid-feedback" style="display: block">
@@ -74,7 +74,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="registration_number">Registration Number</label>
-                                        <input type="text" class="form-control @if($errors->has('registration_number')) is-invalid @endif" name="registration_number" id="registration_number" placeholder="Registration Number">
+                                        <input type="text" class="form-control @if($errors->has('registration_number')) is-invalid @endif" value="{{!empty($registration->pivot->registration_number)? $registration->pivot->registration_number: ''}}" name="registration_number" id="registration_number" placeholder="Registration Number">
                                     </div>
                                     @if($errors->has('registration_number'))
                                         <div class="invalid-feedback" style="display: block">
@@ -85,9 +85,9 @@
                                 <div class="form-group mb-2 col-md-6">
                                     <label for="location">Medical Registration Council</label>
                                     <select class="custom-select mb-3 @if($errors->has('medical_registration_id')) is-invalid @endif" name="medical_registration_id" required>
-                                        <option selected disabled>Medical Registration Council</option>
+                                        <option disabled>Medical Registration Council</option>
                                         @foreach ($medical_councils as $medical_council)
-                                        <option value="{{$medical_council->id}}" >{{$medical_council->name}}</option>
+                                        <option value="{{$medical_council->id}}" {{!empty($registration->pivot->medical_registration_council_id)&&($registration->pivot->medical_registration_council_id == $medical_council->id)? 'selected': null}} >{{$medical_council->name}}</option>
                                         @endforeach
                                     </select> 
                                     @if($errors->has('medical_registration_id'))

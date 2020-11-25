@@ -1,0 +1,58 @@
+[
+    {
+        "code": "MBBS",
+        "name": "Bachelor of Medicine and Bachelor of Surgery"
+    },
+    {
+        "code": "BHMS",
+        "name": "Bachelor of Homeopathic Medicine & Surgery"
+    },
+    {
+        "code": "DHMS",
+        "name": "Diploma in Homeopathic Medicine & Surgery"
+    },
+    {
+        "code": "B.V.Sc & AH",
+        "name": "Bachelor of Veterinary Sciences & Animal Husbandry"
+    },
+    {
+        "code": "D. Pharma",
+        "name": "Diploma of Pharmacy"
+    },
+    {
+        "code": "BMLT ",
+        "name": "Bachelor of Medical Laboratory Technology"
+    },
+    {
+        "code": "B.Sc. Nursing ",
+        "name": "Bachelor of Science in Nursing"
+    },
+    {
+        "code": "BDS",
+        "name": "Bachelor of Dental Sciences"
+    },
+    {
+        "code": "BAMS ",
+        "name": "Bachelor of Ayurvedic Medicine and Surgery"
+    },
+    {
+        "code": "BUMS ",
+        "name": "Bachelor in Unani Medicine"
+    },
+    {
+        "code": "B.Pharm ",
+        "name": "Bachelor of Pharmacy"
+    },
+    {
+        "code": "BOT",
+        "name": "Bachelor of Occupational Therapy"
+    },
+    {
+        "code": "BPT",
+        "name": "Bachelor of Physiotherapy"
+    },
+    {
+        "code": "BNYS ",
+        "name": "Bachelor of Naturopathy and Yogic Sciences"
+    }
+]
