@@ -66,6 +66,6 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
   Route::get('service_provider/submittion', [ProviderProfileController::class ,'submittion'])->name('submittion.index');
   Route::get('service_provider/medical_qualification', [ProviderProfileController::class , 'medicalQualification'])->name('medical_qualification.index');
   Route::post('service_provider/save', [ProviderProfileController::class ,'store'])->name('provider_profiles.store');
-  Route::get('service_provider/submittion/submit', [ProviderProfileController::class ,'submited'])->name('submittion.store');
+  Route::get('service_provider/submittion/submit', [ProviderProfileController::class ,'submitted'])->name('submittion.store');
 });
 

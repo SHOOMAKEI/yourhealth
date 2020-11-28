@@ -82,7 +82,11 @@ class ProviderProfileController extends Controller
         return view('provider_profile.verifications', [
             'required_verifications' => RequiredVerification::all(),
             'submitted_verifications' =>  $profile->verifications->isNotEmpty()?
-            $profile->verifications:null
+            $profile->verifications:null,
+            'establishment'=> $profile->establishments->isNotEmpty()?
+            $profile->establishments[0]:null,
+            'user' => User::find(Auth::user()->id),
+            'profile' => $profile
             ]);
     }
 

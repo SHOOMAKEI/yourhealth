@@ -5,10 +5,14 @@
 @endsection
 
 @section('menu-right')
-<a href="{{route('submittion.store')}}" class="btn btn-success btn-sm"><i class=" uil-pen"></i>Submit Details For Verification</a>
+
 @endsection
 @section('contents')
-<div class="col-xl-10 col-lg-10">
+<div class="col-xl-10 col-lg-10 mt-5">
+    @if ($profile->is_submitted != 1)
+    <a href="{{route('submittion.store')}}" class="btn btn-success btn-sm"><i class=" uil-pen"></i>Submit Details For Verification</a>
+    @endif
+   
     <div class="card text-center">
         <div class="card-body">
             <img src="{{ Auth::user()->profile_photo_url }}" class="rounded-circle avatar-lg img-thumbnail"
@@ -94,8 +98,9 @@
                     <p class="text-muted mb-1 font-13"><strong>Location :</strong> <span class="ml-2">{{$profile->city->name}}, &nbsp;{{$profile->country->name}}</span></p>
                     @if (!empty($profile->consultation_fee))
                         <p class="text-muted mb-1 font-13"><strong>Constaltation Fee :</strong> <span class="ml-2">
-                            @money($profile->consultation_fee->price, $profile->consultation_fee->currency)</span></p>
+                            @money($profile->consultation_fee->price, $profile->consultation_fee->currency,true)</span></p>
                     @endif
+                        <p class="text-muted mb-1 font-13"><strong>Profile Status :</strong> @if($profile->is_submitted ==1)<span class="badge badge-primary-lighten badge-pill">Submitted Wait for verification</span>@else<span class="badge badge-secondary-lighten badge-pill">Not Submitted</span> @endif</p>
                 @endif
             </div>
 

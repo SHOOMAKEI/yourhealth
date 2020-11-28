@@ -65,7 +65,7 @@
                                     <p class="text-muted font-13 mb-3">
                                     @foreach ($profile->medical_procedures as $procedure)
                                     <span class="badge badge-outline-secondary badge-pill">{{$procedure->name}} </span>&nbsp;
-                                    @money($procedure->pivot->price,$procedure->pivot->currency)<br>
+                                    @money($procedure->pivot->price,$procedure->pivot->currency,true)<br>
                                     @endforeach
                                     </p>
                                     <p class="text-muted mb-2 font-13"><strong>User Name :</strong> <span class="ml-2">{{ $profile->username}}
@@ -93,7 +93,7 @@
                                     <p class="text-muted mb-1 font-13"><strong>Location :</strong> <span class="ml-2">{{$profile->city->name}}, &nbsp;{{$profile->country->name}}</span></p>
                                     @if (!empty($profile->consultation_fee))
                                         <p class="text-muted mb-1 font-13"><strong>Constaltation Fee :</strong> <span class="ml-2">
-                                            @money($profile->consultation_fee->price, $profile->consultation_fee->currency)</span></p>
+                                            @money($profile->consultation_fee->price, $profile->consultation_fee->currency,true)</span></p>
                                     @endif
                                     
                                 </div>
@@ -103,7 +103,7 @@
                         </div> <!-- end card -->
                     </div>
                     <div class="tab-pane" id="profile1">
-                        {{-- @dump($profile->getMedia('provider_verificaiton_files')) --}}
+                        
                         @foreach ($profile->getMedia('provider_verificaiton_files') as $attachment)
                             <div class="col-xl-12 col-lg-12">
                                 <div class="card m-1 shadow-none border">
