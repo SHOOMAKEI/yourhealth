@@ -43,7 +43,7 @@ class MedicalRegistrationCouncilController extends Controller
             'country_id' => $request['country_id']
         ]);
 
-        return redirect()->route('medical_councils.index')->with(['success' => 'Medical Cuoncil Changes save successful']);
+        return redirect()->route('medical_councils.index')->with(['status' => 'success','message' => 'Medical Cuoncil Changes save successful']);
     }
 
     /**
@@ -84,7 +84,7 @@ class MedicalRegistrationCouncilController extends Controller
             'country_id' => $request['country_id']
         ]);
 
-        return redirect()->route('medical_councils.index')->with(['success' => 'Medical Cuoncil Changes save successful']);
+        return redirect()->route('medical_councils.index')->with(['status' => 'success','message' => 'Medical Cuoncil Changes save successful']);
     }
 
     /**

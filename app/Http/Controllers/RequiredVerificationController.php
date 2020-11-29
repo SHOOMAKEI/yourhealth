@@ -42,7 +42,7 @@ class RequiredVerificationController extends Controller
             'category' => $request['category'],
         ]);
 
-        return redirect()->route('profile_validations.index')->with(['success' => 'Required Verification changes save successfull']);
+        return redirect()->route('profile_validations.index')->with(['status' => 'success','message' => 'Required Verification changes save successfull']);
     }
 
     /**
@@ -83,7 +83,7 @@ class RequiredVerificationController extends Controller
             'category' => $request['category'],
         ]);
 
-        return redirect()->route('profile_validations.index')->with(['success' => 'Required Verification changes save successfull']);
+        return redirect()->route('profile_validations.index')->with(['status' => 'success','message' => 'Required Verification changes save successfull']);
     }
 
     /**

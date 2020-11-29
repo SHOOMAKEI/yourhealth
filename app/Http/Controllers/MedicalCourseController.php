@@ -44,7 +44,7 @@ class MedicalCourseController extends Controller
             'medical_institute_id' => $request['medical_institute_id']
         ]);
 
-        return  redirect()->route('medical_courses.index')->with(['success' => 'Medical Course Saved Successful!']);
+        return  redirect()->route('medical_courses.index')->with(['status' => 'success','message' => 'Medical Course Saved Successful!']);
     }
 
     /**
@@ -86,7 +86,7 @@ class MedicalCourseController extends Controller
             'medical_institute_id' => $request['medical_institute_id']
         ]);
 
-        return  redirect()->route('medical_courses.index')->with(['success' => 'Medical Course Saved Successful!']);
+        return  redirect()->route('medical_courses.index')->with(['status' => 'success','message' => 'Medical Course Saved Successful!']);
     }
 
     /**

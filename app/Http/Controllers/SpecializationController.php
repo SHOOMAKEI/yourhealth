@@ -41,7 +41,7 @@ class SpecializationController extends Controller
             'name' => $request['name'],
         ]);
 
-        return redirect()->route('specializations.index')->with(['success' => 'Specialization saved Successful']);
+        return redirect()->route('specializations.index')->with(['status' => 'success','message' => 'Specialization saved Successful']);
     }
 
     /**
@@ -81,7 +81,7 @@ class SpecializationController extends Controller
             'name' => $request['name'],
         ]);
 
-        return redirect()->route('specializations.index')->with(['success' => 'Specialization saved Successful']);
+        return redirect()->route('specializations.index')->with(['status' => 'success','message' => 'Specialization saved Successful']);
     }
 
     /**

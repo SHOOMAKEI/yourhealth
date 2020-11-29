@@ -83,7 +83,7 @@
                             <h5 class="text-uppercase p-2">
                                 Constultation Fee
                             </h5>
-                            <hr>
+                            <hr/>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="consaltation_price">Consaltation Price</label>

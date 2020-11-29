@@ -124,7 +124,7 @@ class ProviderProfileController extends Controller
             'is_submitted' => 1,
         ])->save();
         
-        return redirect()->back()->with(['success' => 
+        return redirect()->back()->with(['status' => 'success','message' => 
         'Your Profile has been sent for further informations we will contact your after verification']);
     }
 
@@ -180,20 +180,20 @@ class ProviderProfileController extends Controller
             
             User::find(Auth::user()->id)->assignRole('doctor', 'owner');
 
-            return redirect()->route('medical_qualification.index')->with(['success' =>'Information Save Successful']);
+            return redirect()->route('medical_qualification.index')->with(['status' => 'success','message' =>'Information Save Successful']);
         }
 
         if($request['category'] =='only') {
             
             User::find(Auth::user()->id)->assignRole('doctor');
             User::find(Auth::user()->id)->removeRole('owner');
-            return redirect()->route('medical_qualification.index')->with(['success' =>'Information Save Successful']);
+            return redirect()->route('medical_qualification.index')->with(['status' => 'success','message' =>'Information Save Successful']);
         }
 
         User::find(Auth::user()->id)->removeRole('doctor');
         User::find(Auth::user()->id)->assignRole($request['category']);
 
-        return redirect()->route('establishments.index')->with(['success' =>'Information Save Successful']);
+        return redirect()->route('establishments.index')->with(['status' => 'success','message' =>'Information Save Successful']);
     }
 
     public function storeProviderProfileEducationQualification(Request $request)
@@ -222,10 +222,10 @@ class ProviderProfileController extends Controller
 
         if(User::find(Auth::user()->id)->hasRole('owner')) {
 
-            return redirect()->route('establishments.index')->with(['success' =>'Information Save Successful']);
+            return redirect()->route('establishments.index')->with(['status' => 'success','message' =>'Information Save Successful']);
         }
         
-        return redirect()->route('provider_specializations.index')->with(['success' =>'Information Save Successful']);
+        return redirect()->route('provider_specializations.index')->with(['status' => 'success','message' =>'Information Save Successful']);
     }
 
     public function storeProviderProfileEstablishment(Request $request)
@@ -253,7 +253,7 @@ class ProviderProfileController extends Controller
 
         $establishment->provider_profiles()->sync(ProviderProfile::where('user_id',Auth::user()->id)->first()->id);
 
-        return redirect()->route('provider_specializations.index')->with(['success' =>'Information Save Successful']);
+        return redirect()->route('provider_specializations.index')->with(['status' => 'success','message' =>'Information Save Successful']);
     }
 
     public function storeProviderProfileVerification(Request $request)
@@ -276,7 +276,7 @@ class ProviderProfileController extends Controller
     
         }
        
-        return redirect()->route('submittion.index')->with(['success' =>'Information Save Successful']);
+        return redirect()->route('submittion.index')->with(['status' => 'success','message' =>'Information Save Successful']);
     }
 
     public function storeProviderProfileSpecializations(Request $request)
@@ -308,7 +308,7 @@ class ProviderProfileController extends Controller
         $provider_profile->medical_specializations()->sync(array_column($request['specialization'],'id'));
         $provider_profile->medical_procedures()->sync($data);
 
-        return redirect()->route('verifications.index')->with(['success' =>'Information Save Successful']);
+        return redirect()->route('verifications.index')->with(['status' => 'success','message' =>'Information Save Successful']);
     }
 
 }

@@ -52,7 +52,7 @@ class PackagesController extends Controller
             'category' => $request['package_category']
         ]);
 
-        return redirect()->route('packages.index')->with(['success'=> 'Packege Saved Successful!']);
+        return redirect()->route('packages.index')->with(['status' => 'success','message'=> 'Packege Saved Successful!']);
     }
 
     /**
@@ -102,7 +102,7 @@ class PackagesController extends Controller
             'category' => $request['package_category']
         ]);
 
-        return redirect()->route('packages.index')->with(['success'=> 'Packege Saved Successful!']);
+        return redirect()->route('packages.index')->with(['status' => 'success','message'=> 'Packege Saved Successful!']);
     }
 
     /**

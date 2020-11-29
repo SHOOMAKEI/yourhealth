@@ -44,7 +44,7 @@ class MedicalInstituteController extends Controller
             'location' => $request['location']
         ]);
 
-        return redirect()->route('medical_institutes.index')->with(['success' => 'Medical Institute Save Successful!']);
+        return redirect()->route('medical_institutes.index')->with(['status' => 'success','message' => 'Medical Institute Save Successful!']);
     }
 
     /**
@@ -86,7 +86,7 @@ class MedicalInstituteController extends Controller
             'location' => $request['location']
         ]);
 
-        return redirect()->route('medical_institutes.index')->with(['success' => 'Medical Institute Save Successful!']);
+        return redirect()->route('medical_institutes.index')->with(['status' => 'success','message' => 'Medical Institute Save Successful!']);
     }
 
     /**

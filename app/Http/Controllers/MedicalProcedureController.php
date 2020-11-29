@@ -41,7 +41,7 @@ class MedicalProcedureController extends Controller
             'name' => $request['name']
         ]);
 
-        return redirect()->route('procedures.index')->with(['success' => 'Medical Procedure changes Saved']);
+        return redirect()->route('procedures.index')->with(['status' => 'success','message' => 'Medical Procedure changes Saved']);
     }
 
     /**
@@ -81,7 +81,7 @@ class MedicalProcedureController extends Controller
             'name' => $request['name']
         ]);
 
-        return redirect()->route('procedures.index')->with(['success' => 'Medical Procedure changes Saved']);
+        return redirect()->route('procedures.index')->with(['status' => 'success','message' => 'Medical Procedure changes Saved']);
     }
 
     /**
