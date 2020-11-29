@@ -7,7 +7,7 @@
         <meta content="Christopher Shoo And Michael Assey" name="author" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+        <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}">
         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="light-style" />
         <link href="{{asset('assets/css/app-dark.min.css')}}" rel="stylesheet" type="text/css" id="dark-style" />
@@ -52,8 +52,8 @@
               }
             @endif
           </script>
-       <script src="{{asset('assets/js/vendor.min.js')}}"></script>
-       <script src="{{asset('assets/js/app.min.js')}}"></script>
+        <script src="{{asset('assets/js/vendor.min.js')}}"></script>
+        <script src="{{asset('assets/js/app.min.js')}}"></script>
         <script src="{{asset('assets/js/vendor/dataTables.buttons.min.js')}}"></script>
         <script src="{{asset('assets/js/vendor/buttons.bootstrap4.min.js')}}"></script>
         <script src="{{asset('assets/js/vendor/buttons.html5.min.js')}}"></script>

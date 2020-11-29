@@ -22,6 +22,8 @@ class UserResource extends JsonResource
             'profile_photo_path' => $this->profile_photo_path,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'settings' => $this->settings
+            
         ];
     }
 }

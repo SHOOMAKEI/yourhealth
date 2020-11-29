@@ -37,6 +37,7 @@ type User {
     profile_photo_path:String!
     created_at: DateTime!
     updated_at: DateTime!
+    settings: Settings!
 }
 
 
@@ -62,15 +63,21 @@ input resendOtpCodeInput {
 }
 
 type Settings {
-    type: String
-    status: Int
+    hasOtpEnabled: Boolean
+    textResendCounter: Int
+    loginTrialsCounter: Int
 }
 
 type loginResponse {
+    success: Boolean
+    errors: [Errors]
     user: User
-    settings: Settings
     token: String
     token_type: String
+}
+
+type Errors {
+    message: String!
 }
 
 type otpLoginResponse {
@@ -80,6 +87,7 @@ type otpLoginResponse {
     message: String
     status: Int
     type: String
+    errors:[Errors]
 }
 
 type Response {

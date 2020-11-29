@@ -81,6 +81,15 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
         'profile_photo_url',
     ];
 
+    public function getSettingsAttribute() 
+    { 
+        return  [
+                'hasOtpEnabled' => !($this->enabled_otp ==false)?true:false,
+                'textResendCounter' => 5,
+                'loginTrialsCounter'=> 5
+                ];
+    }
+
 
     public function provider_profile()
     {

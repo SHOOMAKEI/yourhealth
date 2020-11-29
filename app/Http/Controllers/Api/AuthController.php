@@ -30,60 +30,48 @@ class AuthController extends Controller
         if(! $user || ($user->is_active ==false)) {
             
             return (object)([
-                    'message' => 'User account has been disabled contact support team for more information.',
-                    'status' => 204,
-                    'type' => 'success'
-                    ]);
+                'user' => new UserResource($user),
+                'token' => null, 
+                'token_type'=> null,
+                'errors'=> [
+                    'message' => 'User account has been disabled contact support team for more information.'
+                ],
+                'success' => false
+                ]);
         }
     
         if (! $user || ! Hash::check($args['input']['password'], $user->password)) {
            
-            return  (object)([
-                'message' => 'Incorrect Cridentials provided',
-                'status' => 204,
-                'type' => 'error'
+            return (object)([
+                'user' => new UserResource($user),
+                'token' => null, 
+                'token_type'=> null,
+                'errors'=> [
+                    'message' => 'Incorrect Cridentials Provided'
+                ],
+                'success' => false
                 ]);
         }
 
         if(!($user->enabled_otp ==false)) {
 
-            $user->sendOtpCodeNotification();
-
+            // $user->sendOtpCodeNotification();
+            // dd(new UserResource($user));
             return (object)([
                 'user' => new UserResource($user),
-                'settings' => [
-                    'type' =>'otp',
-                    'status' => true
-                ], 
                 'token' => null, 
-                'token_type'=> null
+                'token_type'=> null,
+                'errors'=> null,
+                'success' => true
             ]);
-        }
-
-        if(!is_null($user->two_factor_recovery_codes)) {
-
-            return (object)([
-                'user' => new UserResource($user),
-                'settings' => [
-                    'type' =>'two_factor_auth',
-                    'status' => true
-                ], 
-                'token' => null, 
-                'token_type'=> null
-                ]);
         }
         
         return (object)([
             'user' => new UserResource($user),
             'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
             'token_type'=> 'bearer',
-            'user' => new UserResource($user),
-                'settings' => [
-                    'type' =>null,
-                    'status' => true
-                ], 
-                'token' => null, 
-                'token_type'=> null
+            'errors'=> null,
+            'success' => true
             ]);
     }
 
@@ -120,12 +108,13 @@ class AuthController extends Controller
         if($user->getOtpCodeForVerification() != $args['input']['otp_code'])
         {
             return (object)([
-                'user' => null,
+                'user' => new UserResource($user),
                 'token' => null, 
                 'token_type'=> null,
-                'message' => 'Incorrect OTP provided', 
-                'status'=> 204,
-                'type' => 'error'
+                'errors'=> [
+                    'message' => 'Incorrect OTP Provided'
+                ],
+                'success' => false
                 ]);
         }
         
@@ -137,9 +126,8 @@ class AuthController extends Controller
             'user' => new UserResource($user),
             'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
             'token_type'=> 'bearer',
-            'message' => 'OTP accepted', 
-            'status'=> 200,
-            'type' => 'success'
+            'errors'=> null,
+            'success' => true
             ]);
     }
 
