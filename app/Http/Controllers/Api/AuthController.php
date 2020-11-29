@@ -8,98 +8,154 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
+use GraphQL\Type\Definition\ResolveInfo;
+use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
-    {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-            'device_name' => 'required',
-        ]);
 
-        $field =  $this->username($request);
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum', ['except' => ['login', 'username', 'resendOtpCode', 'verifyOtpCode']]);
+    }
     
-        $user = User::where($field, $request[$field])->first();
+
+    public function login($rootVaule, array $args)
+    {
+    
+        $data =  $this->username($rootVaule, $args);
+       
+        $user = User::where($data['field'], $args['input']['username'])->first();
 
         if(! $user || ($user->is_active ==false)) {
-            return response()->json([
+            
+            return (object)([
                     'message' => 'User account has been disabled contact support team for more information.',
-                    'status' => 204
+                    'status' => 204,
+                    'type' => 'success'
                     ]);
         }
     
-        if (! $user || ! Hash::check($request->password, $user->password)) {
-            response()->json([
+        if (! $user || ! Hash::check($args['input']['password'], $user->password)) {
+           
+            return  (object)([
                 'message' => 'Incorrect Cridentials provided',
-                'status' => 204
+                'status' => 204,
+                'type' => 'error'
                 ]);
         }
 
         if(!($user->enabled_otp ==false)) {
 
             $user->sendOtpCodeNotification();
-            return ['user' => new UserResource($user), 'has_otp' =>true];
+
+            return (object)([
+                'user' => new UserResource($user),
+                'settings' => [
+                    'type' =>'otp',
+                    'status' => true
+                ], 
+                'token' => null, 
+                'token_type'=> null
+            ]);
         }
 
         if(!is_null($user->two_factor_recovery_codes)) {
 
-            return ['user' => new UserResource($user), 'has_two_factory_auth' =>true];
+            return (object)([
+                'user' => new UserResource($user),
+                'settings' => [
+                    'type' =>'two_factor_auth',
+                    'status' => true
+                ], 
+                'token' => null, 
+                'token_type'=> null
+                ]);
         }
-    
-        return ['user' => new UserResource($user),
-                'token' => $user->createToken($request->device_name)->plainTextToken, 
-                'token_type'=> 'bearer'];
+        
+        return (object)([
+            'user' => new UserResource($user),
+            'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
+            'token_type'=> 'bearer',
+            'user' => new UserResource($user),
+                'settings' => [
+                    'type' =>null,
+                    'status' => true
+                ], 
+                'token' => null, 
+                'token_type'=> null
+            ]);
     }
 
-    public function sendOtpCode(Request $request)
+    public function resendOtpCode($rootVaule, array $args)
     {
-        $user = User::where('email', $request['email'])->first();
+        $user = User::where('email', $args['input']['email'])->first();
 
         $user->sendOtpCodeNotification();
         
-        return response()->json(['message' => 'otp code sent', 'status'=> 200]);
+        return (object)([
+        'message' => 'otp code sent', 
+        'status'=> 200,
+        'type' => 'success'
+        ]);
     }
 
-    public function logout(Request $request)
+    public function logout($rootVaule, array $args)
     {
-        $request->user()->currentAccessToken()->delete();
+        $user = User::where('email', $args['input']['email'])->first();
 
-        return response()->json(['message' => 'user logged out successful', 'status'=> 200]);
+        $user->tokens()->where('name', $args['input']['device_name'])->delete();
+
+        return (object)([
+            'message' => 'user logged out successful', 
+            'status'=> 200,
+            'type' => 'success'
+            ]);
     }
 
-    public function verifiyOtpCode(Request $request)
+    public function verifyOtpCode($rootVaule, array $args)
     {
-        $user = User::where('email', $request['email'])->first();
+        $user = User::where('email', $args['input']['email'])->first();
 
-        if($user->getOtpCodeForVerification() != $request['opt_code'])
+        if($user->getOtpCodeForVerification() != $args['input']['otp_code'])
         {
-            return response()->json(['message' => 'Incorrect OTP provided', 'status'=> 204]);
+            return (object)([
+                'user' => null,
+                'token' => null, 
+                'token_type'=> null,
+                'message' => 'Incorrect OTP provided', 
+                'status'=> 204,
+                'type' => 'error'
+                ]);
         }
         
         $user->forceFill([
             'otp_code' => null,
         ])->save();
 
-        return ['user' => new UserResource($user),
-                'token' => $user->createToken($request->device_name)->plainTextToken, 
-                'token_type'=> 'bearer'];
+        return (object)([
+            'user' => new UserResource($user),
+            'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
+            'token_type'=> 'bearer',
+            'message' => 'OTP accepted', 
+            'status'=> 200,
+            'type' => 'success'
+            ]);
     }
 
-    public function username(Request $request)
+    public function username($rootVaule, array $args)
     {
-        $login = $request['username'];
+        $login = $args['input']['username'];
 
         if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
             $field = 'email';
         } else {
             $field = 'mobile_number';
         }
+       
+       $args =  array_merge([$field => $login], $args);
 
-        $request->merge([$field => $login]);
-
-        return $field;
+        return ['field' => $field, 'args' => $args];
     }
 
 }

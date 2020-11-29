@@ -2,7 +2,8 @@
 scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
-scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+scalar DateTime
+    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 type Query {
     users: [User!]! @paginate(defaultCount: 10)
@@ -15,4 +16,81 @@ type User {
     email: String!
     created_at: DateTime!
     updated_at: DateTime!
+}
+
+type Mutation {
+    login(input: loginInput!): loginResponse
+        @field(resolver: "App\\Http\\Controllers\\Api\\AuthController@login")
+    logout(input: logoutInput): Response
+        @field(resolver: "App\\Http\\Controllers\\Api\\AuthController@logout")
+    verifyOtpCode(input: verifyOtpCodeInput!): otpLoginResponse
+        @field(resolver: "App\\Http\\Controllers\\Api\\AuthController@verifyOtpCode")
+    resendOtpCode(input: resendOtpCodeInput!): Response
+        @field(resolver: "App\\Http\\Controllers\\Api\\AuthController@resendOtpCode")
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    mobile_number: String!
+    profile_photo_path:String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+
+input loginInput {
+    username: String!
+    password: String!
+    device_name: String!
+}
+
+input logoutInput {
+    email: String!
+    device_name: String!
+}
+
+input verifyOtpCodeInput {
+    email: String!
+    otp_code: Int!
+    device_name: String!
+}
+
+input resendOtpCodeInput {
+    email: String!
+}
+
+type Settings {
+    type: String
+    status: Int
+}
+
+type loginResponse {
+    user: User
+    settings: Settings
+    token: String
+    token_type: String
+}
+
+type otpLoginResponse {
+    user: User
+    token: String
+    token_type: String
+    message: String
+    status: Int
+    type: String
+}
+
+type Response {
+    message: String
+    status: Int
+    type: String
+}
+
+
+enum UserStatus {
+    DIACTIVE @enum(value: 0)
+    ACTIVE @enum(value: 1)
+    DELETED @enum(value: 2)
 }
