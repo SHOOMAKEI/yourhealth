@@ -13,6 +13,7 @@ use App\Http\Controllers\MedicalRegistrationCouncilController;
 use App\Http\Controllers\ProviderProfileController;
 use App\Http\Controllers\Admin\ProviderProfileAdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +29,13 @@ use App\Http\Controllers\HomeController;
 Route::get('/', HomeController::class);
 
 
-Route::middleware(['auth:sanctum', 'verified', 'mobile_number_verified', 'complete_profile'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware([ 'auth','auth:sanctum', 'verified', 'verified_sp','language', 'mobile_number_verified'])->group( function () {
+    
+    Route::get('/dashboard', function(){return view('dashboard');})->name('dashboard');
+    Route::get('/settings/enable_otp', [SettingsController::class, 'enableOtp'])->name('otp.enable');
+    Route::get('/settings/disable_otp', [SettingsController::class, 'disableOtp'])->name('otp.disable');
+
+});
 
 Route::middleware(['auth'])->get('/mobile_number/verify', [VerifyMobileNumberController::class, 'show'])
     ->name('verify.mobile-number');

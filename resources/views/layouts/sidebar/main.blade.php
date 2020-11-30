@@ -11,14 +11,15 @@
         <ul class="metismenu side-nav">
             <li class="side-nav-title side-nav-item">Navigation</li>
 
-            @role('service-provider')
-                @if (!empty(auth()->user()->account->is_verified))
-                    @include('layouts.sidebar.verified_sp_menu')
-                @else
-                    @include('layouts.sidebar.unverified_sp_menu')
-                @endif
-            @endrole
+            @hasallroles('service-provider|verified_sp')
+                @include('layouts.sidebar.verified_sp_menu')
+            @endhasallroles
 
+            @hasallroles('service-provider|unverified_sp')
+                @include('layouts.sidebar.unverified_sp_menu')
+            @endhasallroles
+            
+            
             @role('super-admin')
                 @include('layouts.sidebar.admin_menu')
             @endrole

@@ -132,6 +132,15 @@ class ProviderProfileController extends Controller
 
     public function store(Request $request)
     {
+
+        $provider_profile = ProviderProfile::where('user_id',Auth::user()->id)->first();
+
+        if(!empty($provider_profile) && $provider_profile->is_submitted == 1 )
+        {
+            return redirect()->route('submittion.index')->with(['status' => 'error','message' =>'Your cant edit your profile after submittion']);
+        }
+
+
         $request->validate([
             'profile_category' => ['required', Rule::in(
                 ['profile', 

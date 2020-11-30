@@ -8,14 +8,13 @@
                {{language()->flags()}}
             </div>
         </li>
-        @role('service-provider')
-            @if (!empty(auth()->user()->account->is_verified))
-                @include('layouts.topbar.verified_user_menu')
-            @else
-                @include('layouts.topbar.unverified_user_menu')
-            @endif
-        @endrole
+        @hasallroles('service-provider|verified_sp')
+            @include('layouts.topbar.verified_user_menu')
+        @endhasallroles
 
+        @hasallroles('service-provider|unverified_sp')
+            @include('layouts.topbar.unverified_user_menu')
+        @endhasallroles
         @role('super-admin')
             @include('layouts.topbar.verified_user_menu')
         @endrole

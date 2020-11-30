@@ -35,7 +35,7 @@ class AuthController extends Controller
                 'token_type'=> null,
                 'errors'=> [
                     [
-                    'message' => 'User account has been disabled contact support team for more information.'
+                    'message' => 'User account does not exist or has been disabled contact support team for more information.'
                     ]
                 ],
                 'success' => false

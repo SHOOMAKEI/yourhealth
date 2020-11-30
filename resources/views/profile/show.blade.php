@@ -22,6 +22,8 @@
     @endif
 
     <x-jet-section-border />
+        @include('profile.otp-authentication-form')
+    <x-jet-section-border />
 
     @livewire('profile.logout-other-browser-sessions-form')
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\ProviderProfile;
 use App\Http\Controllers\Controller;
@@ -85,18 +86,35 @@ class ProviderProfileAdminController extends Controller
         //
     }
 
-    public function verify(ProviderProfile $provider){
+    public function verify(ProviderProfile $provider)
+    {
+        $user = User::find($provider->user_id);
+
         $provider->forceFill([
             'is_verified' => 1,
         ])->save();
+
+        $user->forceFill([
+            'profile_stage' => 11,
+        ])->save();
+
+        $user->assignRole('verified_sp');
 
         return redirect()->back()->with(['success' =>'Information Save Successful']);
     }
 
     public function unverify(ProviderProfile $provider){
+        $user = User::find($provider->user_id);
+
         $provider->forceFill([
             'is_verified' => 0,
         ])->save();
+
+        $user->forceFill([
+            'profile_stage' => 0,
+        ])->save();
+
+        $user->removeRole('verified_sp');
 
         return redirect()->back()->with(['success' =>'Information Save Successful']);
     }

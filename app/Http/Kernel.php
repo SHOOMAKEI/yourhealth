@@ -63,6 +63,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'mobile_number_verified' => \App\Http\Middleware\EnsureMobileNumberIsVerified::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'verified_sp' => \App\Http\Middleware\VerifiedServiceProviderMiddleware::class,
         'complete_profile' => \App\Http\Middleware\EnsureProfileIsComplete::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
