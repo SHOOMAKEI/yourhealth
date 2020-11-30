@@ -99,6 +99,7 @@ class ProviderProfileAdminController extends Controller
         ])->save();
 
         $user->assignRole('verified_sp');
+        $user->removeRole('unverified_sp');
 
         return redirect()->back()->with(['success' =>'Information Save Successful']);
     }
@@ -115,6 +116,7 @@ class ProviderProfileAdminController extends Controller
         ])->save();
 
         $user->removeRole('verified_sp');
+        $user->assignRole('unverified_sp');
 
         return redirect()->back()->with(['success' =>'Information Save Successful']);
     }
