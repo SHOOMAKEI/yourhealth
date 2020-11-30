@@ -4,7 +4,7 @@
 
         <!-- logo -->
         <a href="index.html" class="navbar-brand mr-lg-5">
-            <img src="assets/images/logo.png" alt="" class="logo-dark" height="18" />
+            <img src="assets/images/logo.png" alt="" class="logo-dark" height="50" />
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
