@@ -42,6 +42,7 @@ if (!function_exists('getEstablishmentCategories')) {
             ['option'=> 'Clinic', 'value'=> 'clinic'],
             ['option'=> 'Dispensary', 'value'=> 'dispensary'],
             ['option'=> 'Laboratory', 'value'=> 'laboratory'],
+            ['option'=> 'Doctor', 'value'=> 'doctor'],
         ];
     }
 }
