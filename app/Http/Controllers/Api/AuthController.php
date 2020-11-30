@@ -116,7 +116,10 @@ class AuthController extends Controller
                 'token' => null, 
                 'token_type'=> null,
                 'errors'=> [
-                    'message' => 'Incorrect OTP Provided'
+                    [
+                        'message' => 'Incorrect OTP Provided'
+                    ]
+                    
                 ],
                 'success' => false
                 ]);

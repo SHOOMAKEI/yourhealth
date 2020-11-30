@@ -23,7 +23,7 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\AuthController@login")
     logout(input: logoutInput): Response
         @field(resolver: "App\\Http\\Controllers\\Api\\AuthController@logout")
-    verifyOtpCode(input: verifyOtpCodeInput!): otpLoginResponse
+    verifyOtpCode(input: verifyOtpCodeInput!): loginResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\AuthController@verifyOtpCode")
     resendOtpCode(input: resendOtpCodeInput!): Response
         @field(resolver: "App\\Http\\Controllers\\Api\\AuthController@resendOtpCode")
