@@ -21,7 +21,7 @@
                             @if ($loop->index==1) <div class="card-pricing-plan-tag">Recommended</div> @endif
                             <p class="card-pricing-plan-name font-weight-bold text-uppercase">{{$package->name}}</p>
                             <i class="card-pricing-icon dripicons-user text-primary"></i>
-                            <h2 class="card-pricing-price">@money($package->price, $package->currency)<span>/ {{$package->invoice_interval}}</span></h2>
+                            <h2 class="card-pricing-price">@money($package->price, $package->currency, true)<span>/ {{$package->invoice_interval}}</span></h2>
                             <ul class="card-pricing-features">
                                 @foreach ($package->features as $feature)
                                     <li>{{$feature->value}} {{$feature->name}}</li>
