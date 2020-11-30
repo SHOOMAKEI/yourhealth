@@ -27,12 +27,11 @@
                                     <div class="invalid-tooltip">
                                         Please enter full name.
                                     </div>
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                    @if($errors->has('name'))
+                                        <div class="invalid-feedback" style="display: block">
+                                            {{$errors->first('name')}}
+                                        </div>
+                                    @endif
                                 <div class="form-group position-relative mb-3">
                                     <input type="text" hidden name="category" value="service-provider" required="">
                                 </div>
@@ -51,11 +50,11 @@
                                     <div class="invalid-tooltip">
                                         Please provide an email.
                                     </div>
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    @if($errors->has('email'))
+                                        <div class="invalid-feedback" style="display: block">
+                                            {{$errors->first('email')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group position-relative mb-3">
                                     <label for="mobile_number">{{__('auth.register.service_provider.mobile_number')}}</label>
@@ -74,11 +73,11 @@
                                     <div class="invalid-tooltip">
                                         Please provide a phone number
                                     </div>
-                                    @error('mobile_number')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    @if($errors->has('mobile_number'))
+                                    <div class="invalid-feedback" style="display: block">
+                                        {{$errors->first('mobile_number')}}
+                                    </div>
+                                @endif
                                 </div>
                                 <div class="form-group position-relative mb-3">
                                     <label for="password1">{{__('auth.register.service_provider.password')}}</label>

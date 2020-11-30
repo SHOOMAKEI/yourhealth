@@ -14,13 +14,18 @@
                                 @csrf
                                 <div class="form-group position-relative mb-3">
                                     <label for="emailaddress">Email address</label>
-                                    <input class="form-control" type="email" name="email" :value="old('email')" required autofocus>
+                                    <input class="form-control" type="email" name="email" value="{{old('email')}}" required autofocus>
                                     <div class="valid-tooltip">
                                         Looks good!
                                     </div>
                                     <div class="invalid-tooltip">
                                         Please provide an email.
                                     </div>
+                                    @if($errors->has('email'))
+                                        <div class="invalid-feedback" style="display: block">
+                                            {{$errors->first('email')}}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="form-group position-relative mb-3">
                                     @if (Route::has('password.request'))
