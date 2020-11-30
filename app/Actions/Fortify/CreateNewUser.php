@@ -41,6 +41,7 @@ class CreateNewUser implements CreatesNewUsers
         
         if($input['category'] == 'service-provider') {
             $user->assignRole('service-provider');
+            $user->assignRole('unverified_sp');
         } else {
             $user->assignRole('patient');
         }
