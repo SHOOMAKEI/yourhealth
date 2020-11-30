@@ -77,7 +77,7 @@ type loginResponse {
 }
 
 type Errors {
-    message: String!
+    message: String
 }
 
 type otpLoginResponse {

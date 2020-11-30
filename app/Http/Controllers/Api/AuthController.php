@@ -30,11 +30,13 @@ class AuthController extends Controller
         if(! $user || ($user->is_active ==false)) {
             
             return (object)([
-                'user' => new UserResource($user),
+                'user' => null,
                 'token' => null, 
                 'token_type'=> null,
                 'errors'=> [
+                    [
                     'message' => 'User account has been disabled contact support team for more information.'
+                    ]
                 ],
                 'success' => false
                 ]);
@@ -43,11 +45,13 @@ class AuthController extends Controller
         if (! $user || ! Hash::check($args['input']['password'], $user->password)) {
            
             return (object)([
-                'user' => new UserResource($user),
+                'user' => null,
                 'token' => null, 
                 'token_type'=> null,
                 'errors'=> [
+                    [
                     'message' => 'Incorrect Cridentials Provided'
+                    ]
                 ],
                 'success' => false
                 ]);
@@ -55,7 +59,7 @@ class AuthController extends Controller
 
         if(!($user->enabled_otp ==false)) {
 
-            // $user->sendOtpCodeNotification();
+            $user->sendOtpCodeNotification();
             // dd(new UserResource($user));
             return (object)([
                 'user' => new UserResource($user),
