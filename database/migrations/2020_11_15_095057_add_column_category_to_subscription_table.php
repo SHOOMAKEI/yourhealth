@@ -14,7 +14,7 @@ class AddColumnCategoryToSubscriptionTable extends Migration
     public function up()
     {
         Schema::table(config('rinvex.subscriptions.tables.plans'), function (Blueprint $table) {
-            $table->string('category');
+            $table->string('category')->default('');
         });
     }
 
