@@ -12,7 +12,7 @@
     @if ($profile->is_submitted != 1)
     <a href="{{route('submittion.store')}}" class="btn btn-success btn-sm"><i class=" uil-pen"></i>Submit Details For Verification</a>
     @endif
-   
+   <br/>
     <div class="card text-center">
         <div class="card-body">
             <img src="{{ Auth::user()->profile_photo_url }}" class="rounded-circle avatar-lg img-thumbnail"
