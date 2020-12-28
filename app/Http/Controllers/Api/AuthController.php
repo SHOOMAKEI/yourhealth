@@ -86,10 +86,12 @@ class AuthController extends Controller
         $user->sendOtpCodeNotification();
         
         return (object)([
-        'message' => 'otp code sent', 
-        'status'=> 200,
-        'type' => 'success'
-        ]);
+            'user' => null,
+            'token' => null, 
+            'token_type'=> null,
+            'errors'=> null,
+            'success' => true
+            ]);
     }
 
     public function logout($rootVaule, array $args)
@@ -99,9 +101,11 @@ class AuthController extends Controller
         $user->tokens()->where('name', $args['input']['device_name'])->delete();
 
         return (object)([
-            'message' => 'user logged out successful', 
-            'status'=> 200,
-            'type' => 'success'
+            'user' => null,
+            'token' => null, 
+            'token_type'=> null,
+            'errors'=> null,
+            'success' => true
             ]);
     }
 
