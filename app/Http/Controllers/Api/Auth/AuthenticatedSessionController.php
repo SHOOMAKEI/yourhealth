@@ -37,16 +37,6 @@ class AuthenticatedSessionController extends Controller
         $this->guard = $guard;
     }
 
-    /**
-     * Show the login view.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Laravel\Fortify\Contracts\LoginViewResponse
-     */
-    public function create(Request $request): LoginViewResponse
-    {
-        return app(LoginViewResponse::class);
-    }
 
     /**
      * Attempt to authenticate a new session.
