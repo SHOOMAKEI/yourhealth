@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
-class AuthController extends Controller
+class MobileAuthController extends Controller
 {
 
     public function __construct()
@@ -57,10 +57,33 @@ class AuthController extends Controller
                 ]);
         }
 
-        if(!($user->enabled_otp ==false)) {
+        if($user->mobile_number_verified_at == null) {
+
+            $user->sendMobileNumberVerificationNotification();
+            return (object)([
+                'user' => new UserResource($user),
+                'token' => null, 
+                'token_type'=> null,
+                'errors'=> null,
+                'success' => true
+            ]);
+        }
+
+        if($user->email_verified_at == null) {
+
+            $user->sendEmailVerificationNotification();
+            return (object)([
+                'user' => new UserResource($user),
+                'token' => null, 
+                'token_type'=> null,
+                'errors'=> null,
+                'success' => true
+            ]);
+        }
+
+        if($user->enabled_otp == true) {
 
             $user->sendOtpCodeNotification();
-            // dd(new UserResource($user));
             return (object)([
                 'user' => new UserResource($user),
                 'token' => null, 
@@ -137,6 +160,67 @@ class AuthController extends Controller
             'user' => new UserResource($user),
             'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
             'token_type'=> 'bearer',
+            'errors'=> null,
+            'success' => true
+            ]);
+    }
+
+    public function resendMobileNumberVerificationCode($rootVaule, array $args)
+    {
+        $user = User::where('email', $args['input']['email'])->first();
+
+        $user->sendMobileNumberVerificationNotification();
+        
+        return (object)([
+            'user' => null,
+            'token' => null, 
+            'token_type'=> null,
+            'errors'=> null,
+            'success' => true
+            ]);
+    }
+
+    public function VerifyMobileVerificationCode($rootVaule, array $args)
+    {
+        $user = User::where('email', $args['input']['email'])->first();
+
+        if($user->getMobileNumberVerificationCode() != $args['input']['verification_code'])
+        {
+            return (object)([
+                'user' => new UserResource($user),
+                'token' => null, 
+                'token_type'=> null,
+                'errors'=> [
+                    [
+                        'message' => 'Incorrect Verification Code Provided'
+                    ]
+                    
+                ],
+                'success' => false
+                ]);
+        }
+        
+        $user->markMobileNumberAsVerified();
+
+        return (object)([
+            'user' => new UserResource($user),
+            'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
+            'token_type'=> 'bearer',
+            'errors'=> null,
+            'success' => true
+            ]);
+    }
+
+    public function resendEmailVerification($rootVaule, array $args)
+    {
+        $user = User::where('email', $args['input']['email'])->first();
+
+        $user->sendEmailVerificationNotification();
+        
+        return (object)([
+            'user' => null,
+            'token' => null, 
+            'token_type'=> null,
             'errors'=> null,
             'success' => true
             ]);
