@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Contracts\MustVerifyMobileNumber;
-use App\Services\MustVerifyMobileNumber as VerifyMobileNumber;
+use App\Traits\MustVerifyMobileNumber as VerifyMobileNumber;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
 use Spatie\Permission\Traits\HasRoles;
