@@ -10,12 +10,16 @@ scalar DateTime
 type Mutation {
     login(input: loginInput!): loginResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@login")
-    logout(input: logoutInput): Response
+    logout(input: logoutInput): loginResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@logout")
     verifyOtpCode(input: verifyOtpCodeInput!): loginResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@verifyOtpCode")
-    resendOtpCode(input: resendOtpCodeInput!): Response
+    resendOtpCode(input: resendOtpCodeInput!): loginResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@resendOtpCode")
+    resendMobileNumberVerificationCode(input: resendMobileNumberVerificationCodeInput!): loginResponse
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@resendMobileNumberVerificationCode")
+    resendEmailVerification(input: resendEmailVerificationInput!): loginResponse
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@resendEmailVerification")
 }
 
 type User {
@@ -51,8 +55,19 @@ input resendOtpCodeInput {
     email: String!
 }
 
+input resendEmailVerificationInput {
+    email: String!
+}
+
+input resendMobileNumberVerificationCodeInput {
+    email: String!
+}
+
 type Settings {
     hasOtpEnabled: Boolean
+    hasVerifiedEmail: Boolean
+    hasVerifiedMobileNumber: Boolean
+    hasTwoFactoryEnabled: Boolean
     textResendCounter: Int
     loginTrialsCounter: Int
 }
@@ -63,6 +78,7 @@ type loginResponse {
     user: User
     token: String
     token_type: String
+    settings: Settings
 }
 
 type Errors {
@@ -80,9 +96,8 @@ type otpLoginResponse {
 }
 
 type Response {
-    message: String
-    status: Int
-    type: String
+    success: Boolean
+    errors: [Errors]
 }
 
 
