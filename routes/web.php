@@ -14,6 +14,7 @@ use App\Http\Controllers\ProviderProfileController;
 use App\Http\Controllers\Admin\ProviderProfileAdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\Api\Auth\VerifyEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ use App\Http\Controllers\SettingsController;
 |
 */
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 
 
 Route::middleware([ 'auth','auth:sanctum', 'verified', 'verified_sp','language', 'mobile_number_verified'])->group( function () {
@@ -74,3 +75,9 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
   Route::get('service_provider/submittion/submit', [ProviderProfileController::class ,'submitted'])->name('submittion.store');
 });
 
+
+
+
+Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
+    ->middleware(['signed', 'throttle:6,1'])
+    ->name('verification.verify');
