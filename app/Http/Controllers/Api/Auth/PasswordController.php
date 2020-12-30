@@ -1,9 +1,10 @@
 <?php
 
-namespace Laravel\Fortify\Http\Controllers;
+namespace App\Http\Controllers\Api\Auth;
 
-use Illuminate\Http\JsonResponse;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 
@@ -16,12 +17,13 @@ class PasswordController extends Controller
      * @param  \Laravel\Fortify\Contracts\UpdatesUserPasswords  $updater
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UpdatesUserPasswords $updater)
+    public function update($rootVaule, $args, UpdatesUserPasswords $updater)
     {
-        $updater->update($request->user(), $request->all());
+        $updater->update(User::where('email', $args['input']['email']), $args);
 
-        return $request->wantsJson()
-                    ? new JsonResponse('', 200)
-                    : back()->with('status', 'password-updated');
+        return (object)[
+            'errors' => null,
+            'success' => true
+        ];
     }
 }

@@ -20,6 +20,8 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@resendMobileNumberVerificationCode")
     resendEmailVerification(input: resendEmailVerificationInput!): loginResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@resendEmailVerification")
+    updateUserPassword(input: updateUserPassword): Response @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@update")
 }
 
 type User {
@@ -63,6 +65,14 @@ input resendMobileNumberVerificationCodeInput {
     email: String!
 }
 
+input updateUserPassword {
+    email: String!
+    current_password: String!
+    password: String!
+    password_confirmed: String!
+    
+}
+
 type Settings {
     hasOtpEnabled: Boolean
     hasVerifiedEmail: Boolean
@@ -94,6 +104,7 @@ type otpLoginResponse {
     type: String
     errors:[Errors]
 }
+
 
 type Response {
     success: Boolean
