@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 
 
@@ -22,7 +23,7 @@ class SMSService
             'to' => str_replace('+','',$number),
             'text' => $sms,
          ]);
-
+         Log::info($respose);
          return $respose;
 
     }
