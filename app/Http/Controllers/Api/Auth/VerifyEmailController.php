@@ -1,10 +1,12 @@
 <?php
 
-namespace Laravel\Fortify\Http\Controllers;
+namespace App\Http\Controllers\Api\Auth;
 
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Controller;
 use Laravel\Fortify\Http\Requests\VerifyEmailRequest;
 
 class VerifyEmailController extends Controller
@@ -15,16 +17,17 @@ class VerifyEmailController extends Controller
      * @param  \Laravel\Fortify\Http\Requests\VerifyEmailRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function __invoke(VerifyEmailRequest $request): RedirectResponse
+    public function __invoke(User $id, Request $request)
     {
-        if ($request->user()->hasVerifiedEmail()) {
-            return redirect()->intended(config('fortify.home').'?verified=1');
+      
+        if ($id->hasVerifiedEmail()) {
+            return redirect()->route('home');
         }
 
-        if ($request->user()->markEmailAsVerified()) {
+        if ($id->markEmailAsVerified()) {
             event(new Verified($request->user()));
         }
 
-        return redirect()->intended(config('fortify.home').'?verified=1');
+        return redirect()->route('home');
     }
 }
