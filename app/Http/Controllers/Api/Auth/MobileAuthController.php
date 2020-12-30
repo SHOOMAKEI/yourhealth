@@ -28,7 +28,11 @@ class MobileAuthController extends Controller
         $user = User::where($data['field'], $args['input']['username'])->first();
 
         if(! $user || ($user->is_active ==false)) {
-            
+
+            $user->forceFill([
+                'login_trial_count' => ($user->login_trial_count-1),
+            ])->save();
+
             return (object)([
                 'user' => null,
                 'token' => null, 
@@ -38,12 +42,17 @@ class MobileAuthController extends Controller
                     'message' => 'User account does not exist or has been disabled contact support team for more information.'
                     ]
                 ],
-                'success' => false
+                'success' => false,
+                'settings' => $this->settings($user)
                 ]);
         }
     
         if (! $user || ! Hash::check($args['input']['password'], $user->password)) {
-           
+
+            $user->forceFill([
+                'login_trial_count' => ($user->login_trial_count-1),
+            ])->save();
+
             return (object)([
                 'user' => null,
                 'token' => null, 
@@ -53,52 +62,77 @@ class MobileAuthController extends Controller
                     'message' => 'Incorrect Cridentials Provided'
                     ]
                 ],
-                'success' => false
+                'success' => false,
+                'settings' => $this->settings($user)
                 ]);
         }
 
         if($user->mobile_number_verified_at == null) {
 
             $user->sendMobileNumberVerificationNotification();
+            
+            $user->forceFill([
+                'text_resend_count' => ($user->text_resend_count-1),
+            ])->save();
+
             return (object)([
                 'user' => new UserResource($user),
                 'token' => null, 
                 'token_type'=> null,
                 'errors'=> null,
-                'success' => true
+                'success' => true,
+                'settings' => $this->settings($user)
             ]);
         }
 
         if($user->email_verified_at == null) {
 
             $user->sendEmailVerificationNotification();
+
             return (object)([
                 'user' => new UserResource($user),
                 'token' => null, 
                 'token_type'=> null,
                 'errors'=> null,
-                'success' => true
+                'success' => true,
+                'settings' => $this->settings($user)
             ]);
         }
 
         if($user->enabled_otp == true) {
 
             $user->sendOtpCodeNotification();
+
+            $user->forceFill([
+                'text_resend_count' => ($user->text_resend_count-1),
+            ])->save();
+
             return (object)([
                 'user' => new UserResource($user),
                 'token' => null, 
                 'token_type'=> null,
                 'errors'=> null,
-                'success' => true
+                'success' => true,
+                'settings' => $this->settings($user)
             ]);
         }
+
+        $user->forceFill([
+            'text_resend_count' => 5,
+        ])->save();
+
+           
+        $user->forceFill([
+            'login_trial_count' => 5,
+        ])->save();
         
         return (object)([
             'user' => new UserResource($user),
             'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
             'token_type'=> 'bearer',
             'errors'=> null,
-            'success' => true
+            'success' => true,
+            'settings' => $this->settings($user)
             ]);
     }
 
@@ -113,7 +147,8 @@ class MobileAuthController extends Controller
             'token' => null, 
             'token_type'=> null,
             'errors'=> null,
-            'success' => true
+            'success' => true,
+            'settings' => $this->settings($user)
             ]);
     }
 
@@ -128,7 +163,8 @@ class MobileAuthController extends Controller
             'token' => null, 
             'token_type'=> null,
             'errors'=> null,
-            'success' => true
+            'success' => true,
+            'settings' => $this->settings($user)
             ]);
     }
 
@@ -148,7 +184,8 @@ class MobileAuthController extends Controller
                     ]
                     
                 ],
-                'success' => false
+                'success' => false,
+                'settings' => $this->settings($user)
                 ]);
         }
         
@@ -161,7 +198,8 @@ class MobileAuthController extends Controller
             'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
             'token_type'=> 'bearer',
             'errors'=> null,
-            'success' => true
+            'success' => true,
+            'settings' => $this->settings($user)
             ]);
     }
 
@@ -176,7 +214,8 @@ class MobileAuthController extends Controller
             'token' => null, 
             'token_type'=> null,
             'errors'=> null,
-            'success' => true
+            'success' => true,
+            'settings' => $this->settings($user)
             ]);
     }
 
@@ -196,18 +235,32 @@ class MobileAuthController extends Controller
                     ]
                     
                 ],
-                'success' => false
+                'success' => false,
+                'settings' => $this->settings($user)
                 ]);
         }
         
         $user->markMobileNumberAsVerified();
+
+        if($user->email_verified_at == null) {
+
+            return (object)([
+                'user' => new UserResource($user),
+                'token' => null, 
+                'token_type'=> null,
+                'errors'=> null,
+                'success' => true,
+                'settings' => $this->settings($user)
+                ]);
+        }
 
         return (object)([
             'user' => new UserResource($user),
             'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
             'token_type'=> 'bearer',
             'errors'=> null,
-            'success' => true
+            'success' => true,
+            'settings' => $this->settings($user)
             ]);
     }
 
@@ -217,12 +270,25 @@ class MobileAuthController extends Controller
 
         $user->sendEmailVerificationNotification();
         
+        if($user->mobile_number_verified_at == null) {
+
+            return (object)([
+                'user' => new UserResource($user),
+                'token' => null, 
+                'token_type'=> null,
+                'errors'=> null,
+                'success' => true,
+                'settings' => $this->settings($user)
+                ]);
+        }
+
         return (object)([
             'user' => null,
             'token' => null, 
             'token_type'=> null,
             'errors'=> null,
-            'success' => true
+            'success' => true,
+            'settings' => $this->settings($user)
             ]);
     }
 
@@ -239,6 +305,19 @@ class MobileAuthController extends Controller
        $args =  array_merge([$field => $login], $args);
 
         return ['field' => $field, 'args' => $args];
+    }
+
+    public function settings(User $user)
+    {
+
+        return  [
+            'hasOtpEnabled' => ($user->enabled_otp == true)?true:false,
+            'hasVerifiedEmail' => ($user->email_verified_at != null)?true:false,
+            'hasVerifiedMobileNumber' => ($user->mobile_number_verified_at != null)?true:false,
+            'hasTwoFactoryEnabled'=> ($user->two_factor_recovery_codes != null)?true:false,
+            'textResendCounter' => $user->text_resend_count,
+            'loginTrialsCounter' => $user->login_trial_count,
+        ];
     }
 
 }
