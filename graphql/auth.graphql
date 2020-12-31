@@ -22,6 +22,8 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@resendEmailVerification")
     updateUserPassword(input: updateUserPassword): Response @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@update")
+    # enableOtp(input: enable): Response @guard
+    #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@update")
 }
 
 type User {
@@ -68,8 +70,8 @@ input resendMobileNumberVerificationCodeInput {
 input updateUserPassword {
     email: String!
     current_password: String!
-    password: String!
-    password_confirmed: String!
+    password: String! @rules(apply: ["required", "string", "confirmed","regex:/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/"])
+    password_confirmation: String! 
     
 }
 
