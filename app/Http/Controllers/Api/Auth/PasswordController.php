@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 
 class PasswordController extends Controller
@@ -17,9 +18,26 @@ class PasswordController extends Controller
      * @param  \Laravel\Fortify\Contracts\UpdatesUserPasswords  $updater
      * @return \Illuminate\Http\Response
      */
-    public function update($rootVaule, $args, UpdatesUserPasswords $updater)
+    public function update($rootVaule, $args)
     {
-        $updater->update(User::where('email', $args['input']['email']), $args);
+        $user = auth()->user();
+        
+        if (! Hash::check($args['input']['current_password'], $user->password)) {
+            
+            return (object) [
+                'errors' => [
+                    [
+                        'message' => 'The provided password does not match your current password.'
+                    ]
+                ],
+                'success' => false
+                ];
+            }
+      
+
+        $user->forceFill([
+            'password' => Hash::make($args['input']['password']),
+        ])->save();
 
         return (object)[
             'errors' => null,
