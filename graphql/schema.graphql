@@ -5,3 +5,4 @@ type Query {
 
 #import auth.graphql
 #import services.graphql
+#import services_provider_registration.graphql
