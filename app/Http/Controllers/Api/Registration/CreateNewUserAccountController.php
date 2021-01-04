@@ -21,17 +21,10 @@ class CreateNewUserAccountController
      */
     public function create($rootVaule, array $args)
     {
+        
+       
+
         dd($args);
-        if(in_array($args['input']['account_category'], ['patient', 'service-provider'])) {
-            return (object) [
-                'errors' => [
-                    'message' => 'Validation',
-                    "extensions"=> [
-                        "validation " => ["The email field must be a valid email."]
-                    ]
-                ]
-            ]
-        }
         $user =  User::create([
             'name' => $args['input']['first_name']." ".$args['input']['middle_name']." ".$args['input']['last_name'],
             'email' => $args['input']['email'],

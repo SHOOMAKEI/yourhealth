@@ -8,7 +8,7 @@ input AccountInput {
     email: String! @rules(apply: ["required", "string", "email", "max:255", "unique:users,email"])
     password: String! @rules(apply: ["required", "string", "confirmed","regex:/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/"])
     password_confirmation: String!
-    account_category: String! @rules(apply: ["required"])
+    account_category: String! @rules(apply: ["required", "App\\Rules\\AccountCategory"])
 }
 
 # input ProviderProfileInput {
