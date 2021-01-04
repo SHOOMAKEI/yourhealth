@@ -43,7 +43,6 @@ class MobileAuthController extends Controller
                     ]
                 ],
                 'success' => false,
-                'settings' => $this->settings($user)
                 ]);
         }
     
@@ -63,7 +62,6 @@ class MobileAuthController extends Controller
                     ]
                 ],
                 'success' => false,
-                'settings' => $this->settings($user)
                 ]);
         }
 
@@ -81,7 +79,6 @@ class MobileAuthController extends Controller
                 'token_type'=> null,
                 'errors'=> null,
                 'success' => true,
-                'settings' => $this->settings($user)
             ]);
         }
 
@@ -95,7 +92,6 @@ class MobileAuthController extends Controller
                 'token_type'=> null,
                 'errors'=> null,
                 'success' => true,
-                'settings' => $this->settings($user)
             ]);
         }
 
@@ -113,7 +109,6 @@ class MobileAuthController extends Controller
                 'token_type'=> null,
                 'errors'=> null,
                 'success' => true,
-                'settings' => $this->settings($user)
             ]);
         }
 
@@ -131,8 +126,7 @@ class MobileAuthController extends Controller
             'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
             'token_type'=> 'bearer',
             'errors'=> null,
-            'success' => true,
-            'settings' => $this->settings($user)
+            'success' => true
             ]);
     }
 
@@ -147,8 +141,7 @@ class MobileAuthController extends Controller
             'token' => null, 
             'token_type'=> null,
             'errors'=> null,
-            'success' => true,
-            'settings' => $this->settings($user)
+            'success' => true
             ]);
     }
 
@@ -163,8 +156,7 @@ class MobileAuthController extends Controller
             'token' => null, 
             'token_type'=> null,
             'errors'=> null,
-            'success' => true,
-            'settings' => $this->settings($user)
+            'success' => true
             ]);
     }
 
@@ -185,7 +177,6 @@ class MobileAuthController extends Controller
                     
                 ],
                 'success' => false,
-                'settings' => $this->settings($user)
                 ]);
         }
         
@@ -198,8 +189,7 @@ class MobileAuthController extends Controller
             'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
             'token_type'=> 'bearer',
             'errors'=> null,
-            'success' => true,
-            'settings' => $this->settings($user)
+            'success' => true
             ]);
     }
 
@@ -214,8 +204,7 @@ class MobileAuthController extends Controller
             'token' => null, 
             'token_type'=> null,
             'errors'=> null,
-            'success' => true,
-            'settings' => $this->settings($user)
+            'success' => true
             ]);
     }
 
@@ -236,7 +225,6 @@ class MobileAuthController extends Controller
                     
                 ],
                 'success' => false,
-                'settings' => $this->settings($user)
                 ]);
         }
         
@@ -250,7 +238,6 @@ class MobileAuthController extends Controller
                 'token_type'=> null,
                 'errors'=> null,
                 'success' => true,
-                'settings' => $this->settings($user)
                 ]);
         }
 
@@ -259,8 +246,7 @@ class MobileAuthController extends Controller
             'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
             'token_type'=> 'bearer',
             'errors'=> null,
-            'success' => true,
-            'settings' => $this->settings($user)
+            'success' => true
             ]);
     }
 
@@ -278,7 +264,6 @@ class MobileAuthController extends Controller
                 'token_type'=> null,
                 'errors'=> null,
                 'success' => true,
-                'settings' => $this->settings($user)
                 ]);
         }
 
@@ -287,8 +272,7 @@ class MobileAuthController extends Controller
             'token' => null, 
             'token_type'=> null,
             'errors'=> null,
-            'success' => true,
-            'settings' => $this->settings($user)
+            'success' => true
             ]);
     }
 
@@ -305,19 +289,6 @@ class MobileAuthController extends Controller
        $args =  array_merge([$field => $login], $args);
 
         return ['field' => $field, 'args' => $args];
-    }
-
-    public function settings(User $user)
-    {
-
-        return  [
-            'hasOtpEnabled' => ($user->enabled_otp == true)?true:false,
-            'hasVerifiedEmail' => ($user->email_verified_at != null)?true:false,
-            'hasVerifiedMobileNumber' => ($user->mobile_number_verified_at != null)?true:false,
-            'hasTwoFactoryEnabled'=> ($user->two_factor_recovery_codes != null)?true:false,
-            'textResendCounter' => $user->text_resend_count,
-            'loginTrialsCounter' => $user->login_trial_count,
-        ];
     }
 
 }

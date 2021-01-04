@@ -2,7 +2,43 @@ type Query {
     users: [User!]!  @paginate(defaultCount: 10) 
     user(id: ID @eq): User @find
 }
+type Mutation {
+    #account creation 
+    createAccount(input: AccountInput): User 
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@create")
+    updateProviderProfile(input: ProviderProfileInput): ProviderProfile @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfile")
+    
+    #authentication
+    login(input: loginInput!): loginResponse
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@login")
+    logout(input: logoutInput): loginResponse
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@logout")
+    verifyOtpCode(input: verifyOtpCodeInput!): loginResponse
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@verifyOtpCode")
+    resendOtpCode(input: resendOtpCodeInput!): loginResponse
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@resendOtpCode")
+    resendMobileNumberVerificationCode(input: resendMobileNumberVerificationCodeInput!): loginResponse
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@resendMobileNumberVerificationCode")
+    resendEmailVerification(input: resendEmailVerificationInput!): loginResponse
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@resendEmailVerification")
+    updateUserPassword(input: updateUserPassword): Response @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@update")
+    # enableOtp(input: enable): Response @guard
+    #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@update")
+   
+   #service registration
+   createServiceCategory(name: String! @rules(apply: [ "string", "max:255"]), description: String! @rules(apply: [ "string", "max:255"])): ServiceCategory @guard @create
+    updateServiceCategory(id: ID!, name: String! @rules(apply: [ "string", "max:255"]), description: String! @rules(apply: [ "string", "max:255"])): ServiceCategory @guard @update
+    deleteServiceCategory(id: ID!): ServiceCategory @guard @delete
+    createServiceSubCategory(service_category_id: Int! @rules(apply: ["required", "exists:service_categories,id"]), name: String! @rules(apply: [ "string", "max:255"]), description: String! @rules(apply: [ "string", "max:255"])): ServiceSubCategory @guard @create
+    updateServiceSubCategory(service_category_id: Int! @rules(apply: ["required", "exists:service_categories,id"]), id: ID!, name: String!, description: String! @rules(apply: [ "string", "max:255"])): ServiceSubCategory @guard @update
+    deleteServiceSubCategory(id: ID!): ServiceSubCategory @delete
+    createService(service_sub_category_id: Int! @rules(apply: ["required", "exists:service_sub_categories,id"]), name: String! @rules(apply: [ "string", "max:255"]), description: String! @rules(apply: [ "string", "max:255"])): Service @guard @create
+    updateService(service_sub_category_id: Int! @rules(apply: ["required", "exists:service_sub_categories,id"]), id: ID!, name: String! @rules(apply: [ "string", "max:255"]), description: String! @rules(apply: [ "string", "max:255"])): Service @guard @update
+    deleteService(id: ID!): Service @guard @delete
 
-#import auth.graphql
+}
 #import services.graphql
 #import services_provider_registration.graphql
+#import auth.graphql

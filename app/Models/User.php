@@ -84,10 +84,13 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
     public function getSettingsAttribute() 
     { 
         return  [
-                'hasOtpEnabled' => !($this->enabled_otp ==false)?true:false,
-                'textResendCounter' => 5,
-                'loginTrialsCounter'=> 5
-                ];
+            'hasOtpEnabled' => ($this->enabled_otp == true)?true:false,
+            'hasVerifiedEmail' => ($this->email_verified_at != null)?true:false,
+            'hasVerifiedMobileNumber' => ($this->mobile_number_verified_at != null)?true:false,
+            'hasTwoFactoryEnabled'=> ($this->two_factor_recovery_codes != null)?true:false,
+            'textResendCounter' => $this->text_resend_count,
+            'loginTrialsCounter' => $this->login_trial_count,
+        ];
     }
 
 

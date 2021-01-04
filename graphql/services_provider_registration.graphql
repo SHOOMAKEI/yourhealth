@@ -1,58 +1,158 @@
-type Query @guard {
-    serviceCategories(trashed: Trashed @trashed): [ServiceCategory!]!  @all 
-    serviceCategory(id: ID @eq): ServiceCategory @find
-    serviceSubCategories(trashed: Trashed @trashed): [ServiceSubCategory!]!  @paginate(defaultCount: 10) 
-    serviceSubCategory(id: ID @eq): ServiceSubCategory @find
-    services(trashed: Trashed @trashed): [Service!]!  @paginate(defaultCount: 10) 
-    service(id: ID @eq): Service @find
+
+
+input AccountInput {
+    first_name: String!
+    middle_name: String
+    last_name: String!
+    mobile_number: String! @rules(apply: ["required", "string", "max:255", "unique:users"])
+    email: String! @rules(apply: ["required", "string", "email", "max:255", "unique:users"])
+    password: String! @rules(apply: ["required", "string", "confirmed","regex:/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/"])
+    password_confirmation: String!
+    account_category: String!
 }
 
-type Mutation @guard {
-    createServiceCategory(name: String!, description: String!): ServiceCategory @create
-    updateServiceCategory(id: ID!, name: String!, description: String!): ServiceCategory @update
-    deleteServiceCategory(id: ID!): ServiceCategory @delete
-    createServiceSubCategory(service_category_id: ID!, name: String!, description: String!): ServiceSubCategory @create
-    updateServiceSubCategory(service_category_id: ID!, id: ID!, name: String!, description: String!): ServiceSubCategory @update
-    deleteServiceSubCategory(id: ID!): ServiceSubCategory @delete
-    createService(service_sub_category_id: ID!, name: String!, description: String!): Service @create
-    updateService(service_sub_category_id: ID!, id: ID!, name: String!, description: String!): Service @update
-    deleteService(id: ID!): Service @delete
+input ProviderProfileInput {
+    username: String
+    mobile_number: String! @rules(apply: ["required", "string", "max:255", "unique:users"])
+    email: String! @rules(apply: ["required", "string", "email", "max:255", "unique:users"])
+    password: String! @rules(apply: ["required", "string", "confirmed","regex:/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/"])
+    password_confirmation: String!
 }
 
-type ServiceCategory {
+type ProviderProfile {
     id: ID!
-    name: String!
-    description: String!
-    status: Boolean!
-    services_sub_categories: [ServiceSubCategory!] @hasMany
-    services:[Service!] @hasMany
+    first_name: String!
+    middle_name: String!
+    last_name: String!
+    username: String
+    mobile_number: String!
+    alternative_mobile_number: String!
+    email: String!
+    address:String!
+    physical_address: String
+    dob: DateTime
+    gender: String
+    bio: String
+    status:Boolean
+    provider_sub_level: ProviderSubLevel!
+    provider_category: ProviderCategory!
+    company_pivot: ProviderProfileCompanyPivot
+    facility_pivot: ProviderProfileFacilityPivot
+    service_pivot: ProviderProfileServicePivot
     created_at: DateTime!
     updated_at: DateTime!
 }
 
-type ServiceSubCategory {
+type ProviderProfileCompanyPivot {
+    id: ID!
+    role: String!
+}
+
+type ProviderProfileServicePivot {
+    id: ID!
+    price: Int!
+    compare_price: Int
+}
+
+type ProviderProfileFacilityPivot {
+    id: ID!
+    role: String!
+}
+
+type ProviderCompany {
     id: ID!
     name: String!
-    description: String!
-    status: Boolean!
-    services_category: ServiceCategory! @belongsTo
-    services:[Serviece!] @hasMany
+    trading_name: String!
+    tin: String!
+    vrn: String
+    mobile_number: String!
+    alternative_mobile_number: String!
+    email: String!
+    address:String!
+    physical_address: String
+    website: String
+    registration_number: String!
+    registration_date: String
+    gender: String
+    description: String
+    status:Boolean
+    user_profile: ProviderProfile!
+    provider_facilities: ProviderCategory!
     created_at: DateTime!
     updated_at: DateTime!
 }
 
-type Service {
+type ProviderFacility {
     id: ID!
     name: String!
-    description: String!
-    status: Boolean!
-    services_sub_category: ServiceSubCategory! @belongsTo
+    trading_name: String!
+    tin: String!
+    vrn: String
+    mobile_number: String!
+    alternative_mobile_number: String!
+    email: String!
+    address:String!
+    physical_address: String
+    website: String
+    registration_number: String!
+    registration_date: String
+    description: String
+    status:Boolean
+    provider_company: ProviderCompany!
+    provider_facilities: ProviderCategory!
+    provider_sub_level: ProviderSubLevel!
     created_at: DateTime!
     updated_at: DateTime!
 }
 
-enum Trashed {
-  ONLY @enum(value: "only")
-  WITH @enum(value: "with")
-  WITHOUT @enum(value: "without")
+type ProviderMedicalRegistration {
+    id: ID!
+    certificate_name: String!
+    certificate_number: String!
+    registration_number: String!
+    provider_profile: ProviderProfile!
+    year: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type ProviderQualification {
+    id: ID!
+    award_title: String!
+    institution_name: String!
+    description: String!
+    attachment: String!
+    provider_profile: ProviderProfile!
+    year: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type ProviderCategory {
+    id: ID!
+    name: String!
+    description: String!
+    status: Boolean!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type ProviderLevel {
+    id: ID!
+    name: String!
+    description: String!
+    status: Boolean!
+    provider_sub_level: [ProviderSubLevel!]
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type ProviderSubLevel {
+    id: ID!
+    name: String!
+    description: String!
+    status: Boolean!
+    provider_level: ProviderLevel
+    created_at: DateTime!
+    updated_at: DateTime!
 }

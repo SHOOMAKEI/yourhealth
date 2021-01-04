@@ -7,17 +7,7 @@ type Query @guard {
     service(id: ID @eq): Service @find
 }
 
-type Mutation @guard {
-    createServiceCategory(name: String!, description: String!): ServiceCategory @create
-    updateServiceCategory(id: ID!, name: String!, description: String!): ServiceCategory @update
-    deleteServiceCategory(id: ID!): ServiceCategory @delete
-    createServiceSubCategory(service_category_id: ID!, name: String!, description: String!): ServiceSubCategory @create
-    updateServiceSubCategory(service_category_id: ID!, id: ID!, name: String!, description: String!): ServiceSubCategory @update
-    deleteServiceSubCategory(id: ID!): ServiceSubCategory @delete
-    createService(service_sub_category_id: ID!, name: String!, description: String!): Service @create
-    updateService(service_sub_category_id: ID!, id: ID!, name: String!, description: String!): Service @update
-    deleteService(id: ID!): Service @delete
-}
+
 
 type ServiceCategory {
     id: ID!
@@ -36,7 +26,7 @@ type ServiceSubCategory {
     description: String!
     status: Boolean!
     services_category: ServiceCategory! @belongsTo
-    services:[Serviece!] @hasMany
+    services:[Service!] @hasMany
     created_at: DateTime!
     updated_at: DateTime!
 }
