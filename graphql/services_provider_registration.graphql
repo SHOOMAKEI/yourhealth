@@ -1,23 +1,23 @@
 
 
 input AccountInput {
-    first_name: String!
-    middle_name: String
-    last_name: String!
-    mobile_number: String! @rules(apply: ["required", "string", "max:255", "unique:users"])
-    email: String! @rules(apply: ["required", "string", "email", "max:255", "unique:users"])
+    first_name: String! @rules(apply: ["required", "string", "max:255"])
+    middle_name: String @rules(apply: ["string", "max:255"])
+    last_name: String! @rules(apply: ["required", "string", "max:255"])
+    mobile_number: String! @rules(apply: ["required", "string", "max:255", "unique:users,mobile_number"])
+    email: String! @rules(apply: ["required", "string", "email", "max:255", "unique:users,email"])
     password: String! @rules(apply: ["required", "string", "confirmed","regex:/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/"])
     password_confirmation: String!
-    account_category: String!
+    account_category: String! @rules(apply: ["required"])
 }
 
-input ProviderProfileInput {
-    username: String
-    mobile_number: String! @rules(apply: ["required", "string", "max:255", "unique:users"])
-    email: String! @rules(apply: ["required", "string", "email", "max:255", "unique:users"])
-    password: String! @rules(apply: ["required", "string", "confirmed","regex:/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/"])
-    password_confirmation: String!
-}
+# input ProviderProfileInput {
+#     username: String
+#     mobile_number: String! @rules(apply: ["required", "string", "max:255", "unique:users"])
+#     email: String! @rules(apply: ["required", "string", "email", "max:255", "unique:users"])
+#     password: String! @rules(apply: ["required", "string", "confirmed","regex:/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/"])
+#     password_confirmation: String!
+# }
 
 type ProviderProfile {
     id: ID!
