@@ -19,6 +19,7 @@ class CreateServiceProviderProfileTable extends Migration
             $table->foreignId('service_id')->constrained()->onDelete('cascade');
             $table->double('price');
             $table->double('compare_price')->nullable();
+            $table->string('currency');
             $table->timestamps();
             $table->softDeletes();
         });

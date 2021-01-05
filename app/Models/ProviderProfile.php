@@ -14,24 +14,24 @@ class ProviderProfile extends Model implements HasMedia
 
     protected $guarded = [];
 
-    public function medical_registrations()
+    public function provider_medical_registrations()
     {
-        return $this->belongsToMany(MedicalRegistrationCouncil::class, 'medical_registration_provider_profile', 'provider_id','medical_registration_council_id')->withPivot('registration_number');
+        return $this->hasMany(ProviderMedicalRegistration::class);
     }
 
-    public function establishments()
+    public function provider_companies()
     {
-        return $this->belongsToMany(ProviderEstablishment::class, 'establishment_provider_profile', 'provider_profile_id','provider_establishment_id');
+        return $this->belongsToMany(ProviderCompany::class, 'company_provider_profile', 'provider_profile_id','provider_company_id');
     }
 
-    public function medical_procedures()
+    public function provider_facilities()
     {
-        return $this->belongsToMany(MedicalProcedure::class, 'medical_procedure_provider', 'provider_id','medical_procedure_id')->withPivot('price', 'currency');
+        return $this->belongsToMany(ProviderFacility::class, 'facility_provider_profile', 'provider_profile_id','provider_facility_id');
     }
 
-    public function medical_specializations()
+    public function provider_profile_services()
     {
-        return $this->belongsToMany(Specialization::class, 'provider_profile_specialization', 'provider_profile_id','specialization_id');
+        return $this->belongsToMany(Service::class, 'service_provider_profile', 'provider_profile_id','service_id');
     }
 
     public function country()
@@ -49,9 +49,9 @@ class ProviderProfile extends Model implements HasMedia
         return $this->hasOne(ConsultationFee::class, 'provider_id');
     }
 
-    public function education_qualifications()
+    public function provider_qualifications()
     {
-        return $this->hasMany(EducationQualification::class, 'provider_profile_id');
+        return $this->hasMany(ProviderQualification::class, 'provider_profile_id');
     }
 
     public function verifications()

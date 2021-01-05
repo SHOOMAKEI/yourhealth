@@ -73,7 +73,6 @@ type ProviderCompany {
     website: String
     registration_number: String!
     registration_date: String
-    gender: String
     description: String
     status:Boolean
     user_profile: ProviderProfile!

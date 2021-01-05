@@ -94,8 +94,12 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
     }
 
 
-    public function provider_profile()
+    public function getProfileAttribute()
     {
-        return $this->hasOne(ProviderProfile::class, 'user_id');
+        if($this->hasRole('service-provider')) {
+
+            $this->hasOne(ProviderProfile::class, 'user_id');
+        }
+        return 'client';
     }
 }

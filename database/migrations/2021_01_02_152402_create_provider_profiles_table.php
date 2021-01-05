@@ -16,7 +16,7 @@ class CreateProviderProfilesTable extends Migration
         Schema::create('provider_profiles', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('firt_name');
+            $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->string('username')->nullable();
@@ -27,8 +27,8 @@ class CreateProviderProfilesTable extends Migration
             $table->string('physical_address')->nullable();
             $table->string('dob')->nullable();
             $table->string('gender')->nullable();
-            $table->string('bio')->nullable();
-            $table->boolean('is_active');
+            $table->text('bio')->nullable();
+            $table->boolean('is_active')->default(1);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('provider_sub_level_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
