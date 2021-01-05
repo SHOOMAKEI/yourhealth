@@ -6,8 +6,8 @@ type Mutation {
     #account creation 
     createAccount(input: AccountInput): User 
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@create")
-    updateProviderProfile(input: ProviderProfileInput): ProviderProfile @guard
-        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfile")
+    # updateProviderProfile(input: ProviderProfileInput): ProviderProfile @guard
+    #     @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfile")
     
     #authentication
     login(input: loginInput!): loginResponse

@@ -24,7 +24,10 @@ class CreateNewUserAccountController
      */
     public function create($rootVaule, array $args)
     {
-    
+        
+       
+
+        dd($args);
         $user =  User::create([
             'name' => $args['input']['first_name']." ".$args['input']['middle_name']." ".$args['input']['last_name'],
             'email' => $args['input']['email'],
