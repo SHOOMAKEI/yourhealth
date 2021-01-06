@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Fortify\Http\Controllers;
+namespace App\Http\Controllers\Api\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,7 +20,7 @@ use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 
-class AuthenticatedSessionController extends Controller
+class AuthenticatedSessionSPAController extends Controller
 {
     /**
      * The guard implementation.
@@ -47,7 +47,7 @@ class AuthenticatedSessionController extends Controller
         $data =  $this->username($rootVaule, $args);
        
         $user = User::where($data['field'], $args['input']['username'])->first();
-
+        
         if(! $user || ($user->is_active ==false)) {
 
             $user->forceFill([
@@ -91,7 +91,7 @@ class AuthenticatedSessionController extends Controller
             $user->forceFill([
                 'text_resend_count' => ($user->text_resend_count-1),
             ])->save();
-
+            
             return (object)([
                 'user' => new UserResource($user),
                 'is_authenticated' => false,
@@ -142,6 +142,7 @@ class AuthenticatedSessionController extends Controller
             'errors'=> null,
             'success' => true
             ]);
+        
     }
 
     public function resendOtpCode($rootVaule, array $args)
@@ -288,7 +289,7 @@ class AuthenticatedSessionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Laravel\Fortify\Contracts\LogoutResponse
      */
-    public function destroy($rootVaule, $args, Request $request)
+    public function logout($rootVaule, $args, Request $request)
     {
         
         $this->guard->logout();

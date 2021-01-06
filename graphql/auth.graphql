@@ -15,8 +15,20 @@ type User {
     created_at: DateTime!
     updated_at: DateTime!
     settings: Settings!
+    provider_profile: ProviderProfile
+    # client_profile: ClientProfile
+    roles: [Role]
+    permissions: [Permission]
 }
 
+
+type Role {
+    name: String
+}
+
+type Permission {
+    name: String
+}
 
 input loginInput {
     username: String!

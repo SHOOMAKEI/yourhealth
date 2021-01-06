@@ -7,7 +7,7 @@ type Mutation {
     createAccount(input: AccountInput): User 
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@create")
     updateProviderProfile(input: ProviderProfileInput): ProviderProfile @guard
-        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfile")
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@updateProviderProfile")
     
     #authentication mobile
     login(input: loginInput!): loginResponse
@@ -30,9 +30,9 @@ type Mutation {
 
     #authentication session
     loginSession(input: loginSessionInput!): loginSessionResponse
-        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@login")
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@login")
     logoutSession(input: logoutSessionInput): loginSessionResponse
-        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@logout")
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@logout")
     # verifyOtpCodeSession(input: verifyOtpCodeInput!): loginResponse
     #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@verifyOtpCode")
     # resendOtpCodeSession(input: resendOtpCodeInput!): loginResponse

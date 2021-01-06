@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Api\Registration;
 
 use App\Models\User;
 use App\Services\SMSService;
+use App\Models\ProviderCompany;
 use App\Models\ProviderProfile;
+use App\Models\ProviderFacility;
+use Illuminate\Support\Facades\DB;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
-use App\Actions\Fortify\PasswordValidationRules;
-use App\Models\ProviderCompany;
-use App\Models\ProviderFacility;
 use App\Models\ProviderQualification;
+use App\Actions\Fortify\PasswordValidationRules;
 
 class CreateNewUserAccountController
 {
@@ -27,42 +28,47 @@ class CreateNewUserAccountController
         
        
 
-        dd($args);
-        $user =  User::create([
-            'name' => $args['input']['first_name']." ".$args['input']['middle_name']." ".$args['input']['last_name'],
-            'email' => $args['input']['email'],
-            'mobile_number' => $args['input']['mobile_number'],
-            'verification_code' => $this->getVerificationCode(),
-            'password' => Hash::make($args['input']['password']),
-        ]);
-
-        
-        if($args['input']['account_category'] == 'service-provider') {
-            $user->assignRole('service-provider');
-            $user->assignRole('unverified-service-provider');
-
-            ProviderProfile::create([
-                'first_name' => $args['input']['first_name'],
-                'middle_name' => $args['input']['middle_name'],
-                'last_name' => $args['input']['last_name'],
-                'mobile_number' => $args['input']['mobile_number'],
-                'user_id' => $user->id,
+        // dd($args);
+        DB::transaction(function($args){
+            $user =  User::create([
+                'name' => $args['input']['first_name']." ".$args['input']['middle_name']." ".$args['input']['last_name'],
                 'email' => $args['input']['email'],
+                'mobile_number' => $args['input']['mobile_number'],
+                'verification_code' => $this->getVerificationCode(),
+                'password' => Hash::make($args['input']['password']),
             ]);
-        } else {
-            $user->assignRole('patient');
-            // ClientProfile::create([
-            //     'first_name' => $args['input']['first_name'],
-            //     'middle_name' => $args['input']['middle_name'],
-            //     'last_name' => $args['input']['last_name'],
-            //     'mobile' => $args['input']['mobile'],
-            //     'user_id' => $user->id,
-            //     'first_name' => $args['input']['first_name'],
-            // ]);
-        }
+    
+            
+            if($args['input']['account_category'] == 'service-provider') {
+                $user->assignRole('service-provider');
+                $user->assignRole('unverified-service-provider');
+    
+                ProviderProfile::create([
+                    'first_name' => $args['input']['first_name'],
+                    'middle_name' => $args['input']['middle_name'],
+                    'last_name' => $args['input']['last_name'],
+                    'mobile_number' => $args['input']['mobile_number'],
+                    'user_id' => $user->id,
+                    'email' => $args['input']['email'],
+                ]);
+            } else {
+                $user->assignRole('patient');
+                // ClientProfile::create([
+                //     'first_name' => $args['input']['first_name'],
+                //     'middle_name' => $args['input']['middle_name'],
+                //     'last_name' => $args['input']['last_name'],
+                //     'mobile' => $args['input']['mobile'],
+                //     'user_id' => $user->id,
+                //     'first_name' => $args['input']['first_name'],
+                // ]);
+            }
+            
+            return new UserResource($user);
+        });
+        
 
-        $this->sendVerificationCode($user->mobile_number, $user->verification_code);
-        return new UserResource($user);
+        // $this->sendVerificationCode($user->mobile_number, $user->verification_code);
+        
     }
 
     public function getVerificationCode() {
@@ -113,8 +119,9 @@ class CreateNewUserAccountController
 
     public function createProviderCompany($rootVaule, array $args)
     {
-        $provider_company = ProviderCompany::create([
-            'name' => $args['input']['name'],  
+        $provider_company = ProviderCompany::updateOrCreate([
+            ['provider_profile_id' => auth()->user()->profile->id],
+            ['name' => $args['input']['name'],  
             'trading_name' => $args['input']['trading_name'],
             'tin' => $args['input']['tin'],  
             'vrn' => $args['input']['vrn'],  
@@ -127,7 +134,7 @@ class CreateNewUserAccountController
             'registration_number' => $args['input']['registration_number'],
             'registration_date' => $args['input']['registration_date'],  
             'description' => $args['input']['description'],  
-            'provider_profile_id' => auth()->user()->profile->id,
+            ]
 
         ]);
 

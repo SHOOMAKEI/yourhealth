@@ -68,7 +68,7 @@ input ProviderQualificationInput {
     institution_name: String! @rules(apply: ["required", "string", "max:255"])
     description: String! @rules(apply: ["required", "string", "max:255"])
     attachment: String! @rules(apply: ["required", "string", "max:255"])
-    provider_profile_id: @rules(apply: ["required", "exists:provider_profiles,id"])
+    provider_profile_id: Int @rules(apply: ["required", "exists:provider_profiles,id"])
     year: String!
 }
 
@@ -77,7 +77,7 @@ input ProviderMedicalRegistrationInput {
     certificate_number: String! @rules(apply: ["required", "string", "max:255"])
     registration_number: String! @rules(apply: ["required", "string", "max:255"])
     attachment: String! @rules(apply: ["required", "string", "max:255"])
-    provider_profile_id: @rules(apply: ["required", "exists:provider_profiles,id"])
+    provider_profile_id: Int @rules(apply: ["required", "exists:provider_profiles,id"])
     year: String!
 }
 
@@ -216,4 +216,10 @@ type ProviderSubLevel {
     provider_level: ProviderLevel
     created_at: DateTime!
     updated_at: DateTime!
+}
+
+type AccountCreationResponse {
+    errors: [Error]
+    success: Boolean
+    data: User
 }
