@@ -11,13 +11,75 @@ input AccountInput {
     account_category: String! @rules(apply: ["required", "App\\Rules\\AccountCategory"])
 }
 
-# input ProviderProfileInput {
-#     username: String
-#     mobile_number: String! @rules(apply: ["required", "string", "max:255", "unique:users"])
-#     email: String! @rules(apply: ["required", "string", "email", "max:255", "unique:users"])
-#     password: String! @rules(apply: ["required", "string", "confirmed","regex:/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/"])
-#     password_confirmation: String!
-# }
+input ProviderProfileInput {
+    first_name: String! @rules(apply: ["required", "string", "max:255"])
+    middle_name: String! @rules(apply: ["required", "string", "max:255"])
+    last_name: String! @rules(apply: ["required", "string", "max:255"])
+    username: String 
+    mobile_number: String! @rules(apply: ["required", "string", "max:255"])
+    alternative_mobile_number: String
+    email: String! @rules(apply: ["required", "string", "email", "max:255"])
+    address:String
+    physical_address: String
+    dob: DateTime
+    gender: String
+    bio: String
+    provider_sub_level_id: Int! @rules(apply: ["required", "exists:provider_sub_levels,id"])
+    provider_category_id: Int! @rules(apply: ["required", "exists:provider_categories,id"])
+}
+
+input ProviderCompanyInput {
+    name: String! @rules(apply: ["required", "string", "max:255"])
+    trading_name: String! @rules(apply: ["required", "string", "max:255"])
+    tin: String! @rules(apply: ["required", "string", "max:255"])
+    vrn: String @rules(apply: ["required", "string", "max:255"])
+    mobile_number: String! @rules(apply: ["required", "string", "max:255"])
+    alternative_mobile_number: String @rules(apply: ["required", "string", "max:255"])
+    email: String! @rules(apply: ["required", "string", "email", "max:255"])
+    address:String! @rules(apply: ["string", "max:255"])
+    physical_address: String @rules(apply: ["string", "max:255"])
+    website: String @rules(apply: [ "string", "max:255"])
+    registration_number: String @rules(apply: [ "string", "max:255"])
+    registration_date: String @rules(apply: ["string", "max:255"])
+    description: String
+    provider_profile_id: Int! @rules(apply: ["required", "exists:provider_profiles,id"])
+}
+
+input ProviderFacilityInput {
+    name: String! @rules(apply: ["required", "string", "max:255"])
+    trading_name: String! @rules(apply: ["required", "string", "max:255"])
+    tin: String! @rules(apply: ["required", "string", "max:255"])
+    vrn: String @rules(apply: ["required", "string", "max:255"])
+    mobile_number: String! @rules(apply: ["required", "string", "max:255"])
+    alternative_mobile_number: String @rules(apply: ["required", "string", "max:255"])
+    email: String! @rules(apply: ["required", "string", "email", "max:255"])
+    address:String! @rules(apply: ["string", "max:255"])
+    physical_address: String @rules(apply: ["string", "max:255"])
+    website: String @rules(apply: [ "string", "max:255"])
+    registration_number: String @rules(apply: [ "string", "max:255"])
+    registration_date: String @rules(apply: ["string", "max:255"])
+    description: String
+    provider_sub_level_id: Int! @rules(apply: ["required", "exists:provider_sub_levels,id"])
+    provider_company_id: Int! @rules(apply: ["required", "exists:provider_companies,id"])
+}
+
+input ProviderQualificationInput {
+    award_title: String! @rules(apply: ["required", "string", "max:255"])
+    institution_name: String! @rules(apply: ["required", "string", "max:255"])
+    description: String! @rules(apply: ["required", "string", "max:255"])
+    attachment: String! @rules(apply: ["required", "string", "max:255"])
+    provider_profile_id: @rules(apply: ["required", "exists:provider_profiles,id"])
+    year: String!
+}
+
+input ProviderMedicalRegistrationInput {
+    certificate_name: String! @rules(apply: ["required", "string", "max:255"])
+    certificate_number: String! @rules(apply: ["required", "string", "max:255"])
+    registration_number: String! @rules(apply: ["required", "string", "max:255"])
+    attachment: String! @rules(apply: ["required", "string", "max:255"])
+    provider_profile_id: @rules(apply: ["required", "exists:provider_profiles,id"])
+    year: String!
+}
 
 type ProviderProfile {
     id: ID!

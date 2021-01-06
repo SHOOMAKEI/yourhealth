@@ -6,13 +6,13 @@ type Mutation {
     #account creation 
     createAccount(input: AccountInput): User 
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@create")
-    # updateProviderProfile(input: ProviderProfileInput): ProviderProfile @guard
-    #     @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfile")
+    updateProviderProfile(input: ProviderProfileInput): ProviderProfile @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfile")
     
-    #authentication
+    #authentication mobile
     login(input: loginInput!): loginResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@login")
-    logout(input: logoutInput): loginResponse
+    logout(input: logoutInput): loginResponse @guard 
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@logout")
     verifyOtpCode(input: verifyOtpCodeInput!): loginResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@verifyOtpCode")
@@ -25,6 +25,25 @@ type Mutation {
     updateUserPassword(input: updateUserPassword): Response @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@update")
     # enableOtp(input: enable): Response @guard
+    #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@update")
+
+
+    #authentication session
+    loginSession(input: loginSessionInput!): loginSessionResponse
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@login")
+    logoutSession(input: logoutSessionInput): loginSessionResponse
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@logout")
+    # verifyOtpCodeSession(input: verifyOtpCodeInput!): loginResponse
+    #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@verifyOtpCode")
+    # resendOtpCodeSession(input: resendOtpCodeInput!): loginResponse
+    #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@resendOtpCode")
+    # resendMobileNumberVerificationCodeSession(input: resendMobileNumberVerificationCodeInput!): loginResponse
+    #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@resendMobileNumberVerificationCode")
+    # resendEmailVerificationSession(input: resendEmailVerificationInput!): loginResponse
+    #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@resendEmailVerification")
+    # updateUserPassword(input: updateUserPassword): Response @guard
+    #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@update")
+    # enableOtpSession(input: enable): Response @guard
     #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@update")
    
    #service registration

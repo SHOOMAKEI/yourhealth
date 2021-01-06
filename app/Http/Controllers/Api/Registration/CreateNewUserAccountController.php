@@ -103,6 +103,12 @@ class CreateNewUserAccountController
             'bio' => $args['input']['bio'],
             'provider_sub_level_id' => $args['input']['provider_sub_level_id']
         ]);
+
+        return (object) [
+            'errors' => null,
+            'success' => true,
+            'data' => $provider_profile
+        ];
     }
 
     public function createProviderCompany($rootVaule, array $args)
@@ -126,9 +132,9 @@ class CreateNewUserAccountController
         ]);
 
         return (object) [
-            'erros' => null,
+            'errors' => null,
             'success' => true,
-            'provider_facility' => $provider_company
+            'data' => $provider_company
         ];
     }
 
@@ -153,9 +159,9 @@ class CreateNewUserAccountController
         ]);
 
         return (object) [
-            'erros' => null,
+            'errors' => null,
             'success' => true,
-            'provider_facility' => $provider_facility
+            'data' => $provider_facility
         ];
     }
 
@@ -169,9 +175,9 @@ class CreateNewUserAccountController
         ]);
 
         return (object) [
-            'erros' => null,
+            'errors' => null,
             'success' => true,
-            'provider_facility' => $provider_qualification
+            'data' => $provider_qualification
         ];
     }
 
@@ -186,9 +192,9 @@ class CreateNewUserAccountController
         ]);
 
         return (object) [
-            'erros' => null,
+            'errors' => null,
             'success' => true,
-            'provider_facility' => $provider_medical_registration
+            'data' => $provider_medical_registration
         ];
     }
 
@@ -203,9 +209,9 @@ class CreateNewUserAccountController
         ]);
 
         return (object) [
-            'erros' => null,
+            'errors' => null,
             'success' => true,
-            'provider_facility' => $provider_facility_services
+            'data' => $provider_facility_services
         ];
     }
 
@@ -222,7 +228,7 @@ class CreateNewUserAccountController
         return (object) [
             'erros' => null,
             'success' => true,
-            'provider_facility' => $provider_profile_services
+            'data' => $provider_profile_services
         ];
     }
 }

@@ -56,6 +56,7 @@ class AuthenticatedSessionController extends Controller
 
             return (object)([
                 'user' => null,
+                'is_authenticated' => false,
                 'errors'=> [
                     [
                     'message' => 'User account does not exist or has been disabled contact support team for more information.'
@@ -73,7 +74,7 @@ class AuthenticatedSessionController extends Controller
 
             return (object)([
                 'user' => null,
-                
+                'is_authenticated' => false,
                 'errors'=> [
                     [
                     'message' => 'Incorrect Cridentials Provided'
@@ -93,7 +94,7 @@ class AuthenticatedSessionController extends Controller
 
             return (object)([
                 'user' => new UserResource($user),
-                
+                'is_authenticated' => false,
                 'errors'=> null,
                 'success' => true,
             ]);
@@ -105,7 +106,7 @@ class AuthenticatedSessionController extends Controller
 
             return (object)([
                 'user' => new UserResource($user),
-                
+                'is_authenticated' => false,
                 'errors'=> null,
                 'success' => true,
             ]);
@@ -121,7 +122,7 @@ class AuthenticatedSessionController extends Controller
 
             return (object)([
                 'user' => new UserResource($user),
-                
+                'is_authenticated' => false,
                 'errors'=> null,
                 'success' => true,
             ]);
@@ -129,17 +130,15 @@ class AuthenticatedSessionController extends Controller
 
         $user->forceFill([
             'text_resend_count' => 5,
+            'login_trial_count' => 5
         ])->save();
 
-           
-        $user->forceFill([
-            'login_trial_count' => 5,
-        ])->save();
         
+        $this->guard->attempt($this->userCredentials($user, $args['input']['password']));
+
         return (object)([
             'user' => new UserResource($user),
-            'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
-            'token_type'=> 'bearer',
+            'is_authenticated' => true,
             'errors'=> null,
             'success' => true
             ]);
@@ -153,23 +152,7 @@ class AuthenticatedSessionController extends Controller
         
         return (object)([
             'user' => null,
-            'token' => null, 
-            'token_type'=> null,
-            'errors'=> null,
-            'success' => true
-            ]);
-    }
-
-    public function logout($rootVaule, array $args)
-    {
-        $user = User::where('email', $args['input']['email'])->first();
-
-        $user->tokens()->where('name', $args['input']['device_name'])->delete();
-
-        return (object)([
-            'user' => null,
-            'token' => null, 
-            'token_type'=> null,
+            'is_authenticated' => false,
             'errors'=> null,
             'success' => true
             ]);
@@ -196,12 +179,13 @@ class AuthenticatedSessionController extends Controller
         
         $user->forceFill([
             'otp_code' => null,
+            'text_resend_count' => 5,
+            'login_trial_count' => 5
         ])->save();
 
         return (object)([
-            'user' => new UserResource($user),
-            'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
-            'token_type'=> 'bearer',
+            'user' => new UserResource($this->guard->login($user)),
+            'is_authenticated' => true,
             'errors'=> null,
             'success' => true
             ]);
@@ -215,8 +199,7 @@ class AuthenticatedSessionController extends Controller
         
         return (object)([
             'user' => null,
-            'token' => null, 
-            'token_type'=> null,
+            'is_authenticated' => false,
             'errors'=> null,
             'success' => true
             ]);
@@ -230,7 +213,7 @@ class AuthenticatedSessionController extends Controller
         {
             return (object)([
                 'user' => new UserResource($user),
-                
+                'is_authenticated' => false,
                 'errors'=> [
                     [
                         'message' => 'Incorrect Verification Code Provided'
@@ -247,45 +230,42 @@ class AuthenticatedSessionController extends Controller
 
             return (object)([
                 'user' => new UserResource($user),
-                
-                'errors'=> null,
-                'success' => true,
+                'is_authenticated' => false,
+                'errors'=> [
+                    [
+                        'message' => 'Email is not verified.'
+                    ]
+                    
+                ],
+                'success' => false,
                 ]);
         }
 
         return (object)([
-            'user' => new UserResource($user),
-            'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
-            'token_type'=> 'bearer',
+            'user' => new UserResource($this->guard->login($user)),
+            'is_authenticated' => false,
             'errors'=> null,
             'success' => true
             ]);
     }
+
+
 
     public function resendEmailVerification($rootVaule, array $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
 
         $user->sendEmailVerificationNotification();
-        
-        if($user->mobile_number_verified_at == null) {
-
-            return (object)([
-                'user' => new UserResource($user),
-                
-                'errors'=> null,
-                'success' => true,
-                ]);
-        }
 
         return (object)([
             'user' => null,
-            'token' => null, 
-            'token_type'=> null,
+            'is_authenticated' => false,
             'errors'=> null,
             'success' => true
             ]);
     }
+
+
 
     public function username($rootVaule, array $args)
     {
@@ -303,47 +283,26 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
-     * Get the authentication pipeline instance.
-     *
-     * @param  \Laravel\Fortify\Http\Requests\LoginRequest  $request
-     * @return \Illuminate\Pipeline\Pipeline
-     */
-    protected function loginPipeline(LoginRequest $request)
-    {
-        if (Fortify::$authenticateThroughCallback) {
-            return (new Pipeline(app()))->send($request)->through(array_filter(
-                call_user_func(Fortify::$authenticateThroughCallback, $request)
-            ));
-        }
-
-        if (is_array(config('fortify.pipelines.login'))) {
-            return (new Pipeline(app()))->send($request)->through(array_filter(
-                config('fortify.pipelines.login')
-            ));
-        }
-
-        return (new Pipeline(app()))->send($request)->through(array_filter([
-            config('fortify.limiters.login') ? null : EnsureLoginIsNotThrottled::class,
-            Features::enabled(Features::twoFactorAuthentication()) ? RedirectIfTwoFactorAuthenticatable::class : null,
-            AttemptToAuthenticate::class,
-            PrepareAuthenticatedSession::class,
-        ]));
-    }
-
-    /**
      * Destroy an authenticated session.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Laravel\Fortify\Contracts\LogoutResponse
      */
-    public function destroy(Request $request): LogoutResponse
+    public function destroy($rootVaule, $args, Request $request)
     {
+        
         $this->guard->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return app(LogoutResponse::class);
+        return  (object)([
+            'user' => null,
+            'is_authenticated' => false,
+            'errors'=> null,
+            'success' => true
+            ]);
+    
     }
 }

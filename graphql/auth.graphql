@@ -29,6 +29,15 @@ input logoutInput {
     device_name: String!
 }
 
+input loginSessionInput {
+    username: String!
+    password: String!
+}
+
+input logoutSessionInput {
+    email: String!
+}
+
 input verifyOtpCodeInput {
     email: String!
     otp_code: Int!
@@ -70,7 +79,13 @@ type loginResponse {
     user: User
     token: String
     token_type: String
-    settings: Settings
+}
+
+type loginSessionResponse {
+    success: Boolean
+    errors: [Errors]
+    is_authenticated: Boolean
+    user: User
 }
 
 type Errors {
