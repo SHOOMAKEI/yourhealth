@@ -15,11 +15,24 @@ class CreateProviderProfilesTable extends Migration
     {
         Schema::create('provider_profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->char('gender',1);
-            $table->foreignId('country_id')->nullable()->constrained()->onDelete('cascade');
-            $table->foreignId('city_id')->nullable()->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->string('first_name');
+            $table->string('middle_name')->nullable();
+            $table->string('last_name');
+            $table->string('username')->nullable();
+            $table->string('mobile_number');
+            $table->string('alternative_mobile_number')->nullable();
+            $table->string('email');
+            $table->string('address')->nullable();
+            $table->string('physical_address')->nullable();
+            $table->string('dob')->nullable();
+            $table->string('gender')->nullable();
+            $table->text('bio')->nullable();
+            $table->boolean('is_active')->default(1);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('provider_sub_level_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
