@@ -29,7 +29,7 @@ class CreateNewUserAccountController
        
 
         // dd($args);
-        DB::transaction(function($args){
+        // DB::transaction(function($args){
             $user =  User::create([
                 'name' => $args['input']['first_name']." ".$args['input']['middle_name']." ".$args['input']['last_name'],
                 'email' => $args['input']['email'],
@@ -64,7 +64,7 @@ class CreateNewUserAccountController
             }
             
             return new UserResource($user);
-        });
+        // });
         
 
         // $this->sendVerificationCode($user->mobile_number, $user->verification_code);
@@ -91,30 +91,26 @@ class CreateNewUserAccountController
 
     public function updateProviderProfile($rootVaule, array $args)
     {
-        $provider_profile = ProviderProfile::where('user_id', auth()->user()->id)->first();
-
-        $provider_profile->update([
-            'title' => $args['input']['title'],
+        
+        $provider_profile = ProviderProfile::updateOrCreate([
+            'user_id' => auth()->user()->id],
+            ['title' => $args['input']['title'],
             'first_name' => $args['input']['first_name'],
             'middle_name' => $args['input']['middle_name'],
             'last_name' => $args['input']['last_name'],
             'username' => $args['input']['username'],
             'mobile_number' => $args['input']['mobile_number'],
-            'alternative_mobile_number' => $args['input']['amobile_number'],
+            'alternative_mobile_number' => $args['input']['alternative_mobile_number'],
             'email' => $args['input']['email'],
             'address' => $args['input']['address'],
             'physical_address' => $args['input']['physical_address'],
             'dob' => $args['input']['dob'],
             'gender' => $args['input']['gender'],
             'bio' => $args['input']['bio'],
-            'provider_sub_level_id' => $args['input']['provider_sub_level_id']
+            'provider_sub_level_id' => $args['input']['provider_sub_level_id']??null
         ]);
 
-        return (object) [
-            'errors' => null,
-            'success' => true,
-            'data' => $provider_profile
-        ];
+        return $provider_profile;
     }
 
     public function createProviderCompany($rootVaule, array $args)
@@ -138,11 +134,7 @@ class CreateNewUserAccountController
 
         ]);
 
-        return (object) [
-            'errors' => null,
-            'success' => true,
-            'data' => $provider_company
-        ];
+        return $provider_company;
     }
 
     public function createProviderFacility($rootVaule, array $args)
@@ -165,11 +157,7 @@ class CreateNewUserAccountController
             'provider_company_id' => $args['input']['provider_company_id'],
         ]);
 
-        return (object) [
-            'errors' => null,
-            'success' => true,
-            'data' => $provider_facility
-        ];
+        return $provider_facility;
     }
 
     public function createProviderQualification($rootVaule, array $args)
@@ -181,11 +169,7 @@ class CreateNewUserAccountController
             'year' => $args['input']['year'],
         ]);
 
-        return (object) [
-            'errors' => null,
-            'success' => true,
-            'data' => $provider_qualification
-        ];
+        return  $provider_qualification;
     }
 
     public function createProviderMedicalRegistration($rootVaule, array $args)
@@ -198,11 +182,7 @@ class CreateNewUserAccountController
             'year' => $args['input']['year'],
         ]);
 
-        return (object) [
-            'errors' => null,
-            'success' => true,
-            'data' => $provider_medical_registration
-        ];
+        return $provider_medical_registration;
     }
 
     public function createProviderFacilityService($rootVaule, array $args)
@@ -215,11 +195,7 @@ class CreateNewUserAccountController
             'year' => $args['input']['year'],
         ]);
 
-        return (object) [
-            'errors' => null,
-            'success' => true,
-            'data' => $provider_facility_services
-        ];
+        return $provider_facility_services;
     }
 
     public function createProviderProfileService($rootVaule, array $args)
@@ -232,10 +208,6 @@ class CreateNewUserAccountController
             'year' => $args['input']['year'],
         ]);
 
-        return (object) [
-            'erros' => null,
-            'success' => true,
-            'data' => $provider_profile_services
-        ];
+        return $provider_profile_services;
     }
 }

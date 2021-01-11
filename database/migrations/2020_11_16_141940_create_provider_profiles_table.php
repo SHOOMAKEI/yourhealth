@@ -15,7 +15,7 @@ class CreateProviderProfilesTable extends Migration
     {
         Schema::create('provider_profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');

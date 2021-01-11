@@ -12,20 +12,21 @@ input AccountInput {
 }
 
 input ProviderProfileInput {
-    first_name: String! @rules(apply: ["required", "string", "max:255"])
-    middle_name: String! @rules(apply: ["required", "string", "max:255"])
-    last_name: String! @rules(apply: ["required", "string", "max:255"])
-    username: String 
-    mobile_number: String! @rules(apply: ["required", "string", "max:255"])
+    title: String @rules(apply: ["string", "max:255"])
+    first_name: String @rules(apply: ["string", "max:255"])
+    middle_name: String @rules(apply: [ "string", "max:255"])
+    last_name: String @rules(apply: ["string", "max:255"])
+    username: String @rules(apply: [ "string", "max:255"])
+    mobile_number: String @rules(apply: ["string", "max:255"])
     alternative_mobile_number: String
-    email: String! @rules(apply: ["required", "string", "email", "max:255"])
-    address:String
-    physical_address: String
+    email: String @rules(apply: ["string", "email", "max:255"])
+    address:String @rules(apply: [ "string", "max:255"])
+    physical_address: String @rules(apply: [ "string", "max:255"])
     dob: DateTime
-    gender: String
+    gender: String @rules(apply: [ "string", "max:255"])
     bio: String
-    provider_sub_level_id: Int! @rules(apply: ["required", "exists:provider_sub_levels,id"])
-    provider_category_id: Int! @rules(apply: ["required", "exists:provider_categories,id"])
+    provider_sub_level_id: Int @rules(apply: ["exists:provider_sub_levels,id"])
+    provider_category_id: Int @rules(apply: ["exists:provider_categories,id"])
 }
 
 input ProviderCompanyInput {
@@ -83,9 +84,10 @@ input ProviderMedicalRegistrationInput {
 
 type ProviderProfile {
     id: ID!
-    first_name: String!
-    middle_name: String!
-    last_name: String!
+    title: String
+    first_name: String
+    middle_name: String
+    last_name: String
     username: String
     mobile_number: String!
     alternative_mobile_number: String!
@@ -219,7 +221,7 @@ type ProviderSubLevel {
 }
 
 type AccountCreationResponse {
-    errors: [Error]
+    errors: [Errors]
     success: Boolean
     data: User
 }

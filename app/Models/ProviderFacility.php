@@ -10,4 +10,9 @@ class ProviderFacility extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    public function services()
+    {
+        return $this->belongsToMany(Service::class, 'service_provider_profile', 'provider_profile_id','service_id')->withPivot('price', 'compare_price');
+    }
 }

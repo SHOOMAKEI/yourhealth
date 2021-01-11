@@ -29,9 +29,9 @@ class ProviderProfile extends Model implements HasMedia
         return $this->belongsToMany(ProviderFacility::class, 'facility_provider_profile', 'provider_profile_id','provider_facility_id');
     }
 
-    public function provider_profile_services()
+    public function services()
     {
-        return $this->belongsToMany(Service::class, 'service_provider_profile', 'provider_profile_id','service_id');
+        return $this->belongsToMany(Service::class, 'service_provider_profile', 'provider_profile_id','service_id')->withPivot('price', 'compare_price');
     }
 
     public function country()

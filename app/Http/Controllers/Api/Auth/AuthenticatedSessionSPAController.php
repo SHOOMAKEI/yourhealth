@@ -133,8 +133,9 @@ class AuthenticatedSessionSPAController extends Controller
             'login_trial_count' => 5
         ])->save();
 
-        
-        $this->guard->attempt($this->userCredentials($user, $args['input']['password']));
+            $this->guard->login($user);
+            
+            
 
         return (object)([
             'user' => new UserResource($user),
