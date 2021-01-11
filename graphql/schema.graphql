@@ -16,6 +16,10 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderQualification")
     createProviderMedicalRegistration(input: ProviderMedicalRegistrationInput): ProviderFacility @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderfacility")
+    createProviderProfileServices(input: [ProviderProfileServicesInput]): ProviderProfileServices @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfileServices")
+    createProviderfacilityServices(input: [ProviderFacilityServicesInput]): ProviderFacilityServices @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderFacilityServices")
     
     #authentication mobile
     login(input: loginInput!): loginResponse

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -29,7 +30,7 @@ class ProviderProfile extends Model implements HasMedia
         return $this->belongsToMany(ProviderFacility::class, 'facility_provider_profile', 'provider_profile_id','provider_facility_id');
     }
 
-    public function services()
+    public function services(): BelongsToMany
     {
         return $this->belongsToMany(Service::class, 'service_provider_profile', 'provider_profile_id','service_id')->withPivot('price', 'compare_price');
     }

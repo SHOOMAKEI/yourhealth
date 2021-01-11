@@ -185,29 +185,37 @@ class CreateNewUserAccountController
         return $provider_medical_registration;
     }
 
-    public function createProviderFacilityService($rootVaule, array $args)
-    {
-        $provider_facility_services = ProviderQualification::create([
-            'certificate_name' => $args['input']['certificate_name'],
-            'certificate_number' => $args['input']['certificate_number'],
-            'registration_number' => $args['input']['registration_number'],
-            'provider_profile_id' => auth()->user->profile->id,
-            'year' => $args['input']['year'],
-        ]);
+    public function createProviderFacilityServices($rootVaule, array $args)
+    { 
+        dd($args);
+        $provider_facility = ProviderFacility::where('id', $args['input']['provider_facility_id'])->first();
 
-        return $provider_facility_services;
+        foreach($args['input'] as $service)
+        {
+            $data[$service['id']]['price'] = $service['price'];
+            $data[$service['id']]['compare_price'] = $service['compare_price'];
+            $data[$service['id']]['currency'] = $service['currency'];
+        }
+        
+        $provider_facility->services()->sync($data);
+
+        return $provider_facility->services();
     }
 
-    public function createProviderProfileService($rootVaule, array $args)
+    public function createProviderProfileServices($rootVaule, array $args)
     {
-        $provider_profile_services = ProviderQualification::create([
-            'certificate_name' => $args['input']['certificate_name'],
-            'certificate_number' => $args['input']['certificate_number'],
-            'registration_number' => $args['input']['registration_number'],
-            'provider_profile_id' => auth()->user->profile->id,
-            'year' => $args['input']['year'],
-        ]);
+        $provider_profile = ProviderProfile::findOrfial(auth()->user()->profile->id);
 
-        return $provider_profile_services;
+        foreach($args['input'] as $service)
+        {
+            $data[$service['id']]['price'] = $service['price'];
+            $data[$service['id']]['compare_price'] = $service['compare_price'];
+            $data[$service['id']]['currency'] = $service['currency'];
+
+        }
+        
+        $provider_profile->services()->sync($data);
+
+        return $provider_profile->services();
     }
 }

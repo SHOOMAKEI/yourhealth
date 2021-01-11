@@ -43,7 +43,6 @@ input ProviderCompanyInput {
     registration_number: String @rules(apply: [ "string", "max:255"])
     registration_date: String @rules(apply: ["string", "max:255"])
     description: String
-    provider_profile_id: Int! @rules(apply: ["required", "exists:provider_profiles,id"])
 }
 
 input ProviderFacilityInput {
@@ -80,6 +79,21 @@ input ProviderMedicalRegistrationInput {
     attachment: String! @rules(apply: ["required", "string", "max:255"])
     provider_profile_id: Int @rules(apply: ["required", "exists:provider_profiles,id"])
     year: String!
+}
+
+input createProviderProfileServices  {
+    price: Int!
+    compare_price: Int
+    currency: String
+    service_id: Int @rules(apply: ["required", "exists:services,id"])
+}
+
+input createProviderFacilityServices  {
+    price: Int!
+    compare_price: Int
+    currency: String
+    provider_facility_id: Int @rules(apply: ["required", "exists:provider_facilities,id"])
+    service_id: Int @rules(apply: ["required", "exists:services,id"])
 }
 
 type ProviderProfile {
