@@ -15,8 +15,10 @@ class CreateDaySessionsTable extends Migration
     {
         Schema::create('day_sessions', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
             $table->time('from');
             $table->time('to');
+            $table->integer('interval')->default(15);
             $table->foreignId('day_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

@@ -13,7 +13,7 @@ class ServiceSubCategory extends Model
 
     protected $guarded = [];
 
-    public function service()
+    public function services()
     {
         return $this->hasMany(Service::class);
     }

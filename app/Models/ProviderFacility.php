@@ -12,8 +12,20 @@ class ProviderFacility extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function services(): BelongsToMany
+    protected $guarded = [];
+
+    public function services()
     {
-        return $this->belongsToMany(Service::class, 'service_provider_profile', 'provider_profile_id','service_id')->withPivot('price', 'compare_price');
+        return $this->belongsToMany(Service::class, 'facility_service', 'provider_facility_id','service_id')->withPivot('price', 'compare_price', 'currency');
+    }
+
+    public function provider_company()
+    {
+        return $this->belongsTo(ProviderCompany::class);
+    }
+
+    public function provider_sub_level()
+    {
+        return $this->belongsTo(ProviderSubLevel::class);
     }
 }

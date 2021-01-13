@@ -125,4 +125,9 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
         return $this->getAllPermissions();
 
     }
+
+    public function service_provider()
+    {
+        return $this->hasOne(ProviderProfile::class);
+    }
 }

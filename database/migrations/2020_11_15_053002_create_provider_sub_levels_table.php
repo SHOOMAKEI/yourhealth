@@ -18,6 +18,7 @@ class CreateProviderSubLevelsTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->boolean('is_active')->default(1);
+            $table->foreignId('provider_level_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

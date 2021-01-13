@@ -24,6 +24,7 @@
         "mll-lab/laravel-graphql-playground": "^2.4",
         "nuwave/lighthouse": "^4.18",
         "spatie/array-to-xml": "^2.15",
+        "spatie/icalendar-generator": "^2.0",
         "spatie/laravel-activitylog": "^3.16",
         "spatie/laravel-medialibrary": "^9.0.0",
         "spatie/laravel-permission": "^3.17"

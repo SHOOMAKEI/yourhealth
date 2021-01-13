@@ -15,7 +15,6 @@ class CreateProviderFacilitiesTable extends Migration
     {
         Schema::create('provider_facilities', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
             $table->string('name');
             $table->string('trading_name')->nullable();
             $table->string('mobile_number');

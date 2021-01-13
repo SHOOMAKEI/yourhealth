@@ -10,4 +10,9 @@ class ProviderLevel extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    public function provider_sub_levels()
+    {
+       return $this->hasMany(ProviderSubLevel::class);
+    }
 }

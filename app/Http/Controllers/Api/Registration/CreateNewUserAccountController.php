@@ -12,6 +12,8 @@ use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
 use App\Models\ProviderQualification;
 use App\Actions\Fortify\PasswordValidationRules;
+use App\Models\DaySession;
+use App\Models\ProviderMedicalRegistration;
 
 class CreateNewUserAccountController
 {
@@ -107,7 +109,7 @@ class CreateNewUserAccountController
             'dob' => $args['input']['dob'],
             'gender' => $args['input']['gender'],
             'bio' => $args['input']['bio'],
-            'provider_sub_level_id' => $args['input']['provider_sub_level_id']??null
+            'provider_sub_level_id' => $args['input']['provider_sub_level_id']
         ]);
 
         return $provider_profile;
@@ -115,11 +117,11 @@ class CreateNewUserAccountController
 
     public function createProviderCompany($rootVaule, array $args)
     {
-        $provider_company = ProviderCompany::updateOrCreate([
-            ['provider_profile_id' => auth()->user()->profile->id],
-            ['name' => $args['input']['name'],  
-            'trading_name' => $args['input']['trading_name'],
-            'tin' => $args['input']['tin'],  
+        // dd(auth()->user()->provider_profile->id);
+        $provider_company = ProviderCompany::updateOrCreate(
+            ['tin' => $args['input']['tin'], 'name' => $args['input']['name']],
+            [ 
+            'trading_name' => $args['input']['trading_name'], 
             'vrn' => $args['input']['vrn'],  
             'mobile_number' => $args['input']['mobile_number'],  
             'alternative_mobile_number' => $args['input']['alternative_mobile_number'],
@@ -132,7 +134,10 @@ class CreateNewUserAccountController
             'description' => $args['input']['description'],  
             ]
 
-        ]);
+        );
+
+        $provider_company->provider_profile()->detach(auth()->user()->service_provider->id);
+        $provider_company->provider_profile()->attach(auth()->user()->service_provider->id, ['role'=> 'Owner']);
 
         return $provider_company;
     }
@@ -151,7 +156,6 @@ class CreateNewUserAccountController
             'physical_address' => $args['input']['physical_address'],  
             'website' => $args['input']['website'],  
             'registration_number' => $args['input']['registration_number'],
-            'registration_date' => $args['input']['registration_date'],  
             'description' => $args['input']['description'],  
             'provider_sub_level_id' => $args['input']['provider_sub_level_id'],
             'provider_company_id' => $args['input']['provider_company_id'],
@@ -162,60 +166,144 @@ class CreateNewUserAccountController
 
     public function createProviderQualification($rootVaule, array $args)
     {
-        $provider_qualification = ProviderQualification::create([
-            'award_title' => $args['input']['award_title'],
-            'institution_name' => $args['input']['institution_name'],
-            'provider_profile_id' => auth()->user->profile->id,
-            'year' => $args['input']['year'],
-        ]);
+        
+        $index = 0;
+        $data = [];
+        foreach($args['input'] as $qualification){
 
-        return  $provider_qualification;
+            $provider_qualification = ProviderQualification::create([
+                'award_title' => $qualification['award_title'],
+                'institution_name' => $qualification['institution_name'],
+                'description' => $qualification['description'],
+                'provider_profile_id' => auth()->user()->service_provider->id,
+                'year' => $qualification['year'],
+            ]);
+
+            $provider_qualification->addMediaFromBase64($qualification['attachment'], 'application/pdf')
+            ->usingFileName(str_replace(' ','-',rand(1111,9999).'-'.rand(1111,9999).'-'.auth()->user()->name.'-'.$qualification['award_title'].'.pdf'))
+            ->toMediaCollection('provider-qualification-files');
+            $data[$index] = $provider_qualification;
+
+            $index++;
+        }
+
+        return  $data;
     }
 
     public function createProviderMedicalRegistration($rootVaule, array $args)
     {
-        $provider_medical_registration = ProviderQualification::create([
-            'certificate_name' => $args['input']['certificate_name'],
-            'certificate_number' => $args['input']['certificate_number'],
-            'registration_number' => $args['input']['registration_number'],
-            'provider_profile_id' => auth()->user->profile->id,
-            'year' => $args['input']['year'],
-        ]);
 
-        return $provider_medical_registration;
+        $index = 0;
+        $data = [];
+        foreach($args['input'] as $medical_registration){
+
+            $provider_medical_registration = ProviderMedicalRegistration::create([
+                'certificate_name' => $medical_registration['certificate_name'],
+                'certificate_number' => $medical_registration['certificate_number'],
+                'registration_number' => $medical_registration['registration_number'],
+                'provider_profile_id' => auth()->user()->service_provider->id,
+                'year' => $medical_registration['year'],
+            ]);
+
+            $provider_medical_registration->addMediaFromBase64($medical_registration['attachment'], 'application/pdf')
+            ->usingFileName(str_replace(' ','-',rand(1111,9999).'-'.rand(1111,9999).'-'.auth()->user()->name.'-'.$medical_registration['certificate_name'].'.pdf'))
+            ->toMediaCollection('provider-medical-registration-files');
+            $data[$index] = $provider_medical_registration;
+
+            $index++;
+        }
+
+        return  $data;
+
     }
 
     public function createProviderFacilityServices($rootVaule, array $args)
     { 
-        dd($args);
-        $provider_facility = ProviderFacility::where('id', $args['input']['provider_facility_id'])->first();
+        
+        $provider_facility = ProviderFacility::find( $args['input']['provider_facility_id']);
 
-        foreach($args['input'] as $service)
+        foreach($args['input']['service'] as $service)
         {
-            $data[$service['id']]['price'] = $service['price'];
-            $data[$service['id']]['compare_price'] = $service['compare_price'];
-            $data[$service['id']]['currency'] = $service['currency'];
+            $data[$service['service_id']]['price'] = $service['price'];
+            $data[$service['service_id']]['compare_price'] = $service['compare_price'];
+            $data[$service['service_id']]['currency'] = $service['currency'];
         }
         
         $provider_facility->services()->sync($data);
 
-        return $provider_facility->services();
+        return $provider_facility->services->map(function($query){
+            $services['service']['id'] = $query->id;
+            $services['service']['name'] = $query->name;
+            $services['service']['description'] = $query->description;
+            $services['service']['is_active'] = $query->is_active;
+            $services['service']['created_at'] = $query->created_at;
+            $services['service']['updated_at'] = $query->updated_at;
+            $services['price'] = $query->pivot->price;
+            $services['compare_price'] = $query->pivot->compare_price;
+            $services['currency'] = $query->pivot->currency;
+
+            return $services;
+
+        })->all();
     }
 
     public function createProviderProfileServices($rootVaule, array $args)
     {
-        $provider_profile = ProviderProfile::findOrfial(auth()->user()->profile->id);
+        $provider_profile = ProviderProfile::find(auth()->user()->service_provider->id);
 
         foreach($args['input'] as $service)
         {
-            $data[$service['id']]['price'] = $service['price'];
-            $data[$service['id']]['compare_price'] = $service['compare_price'];
-            $data[$service['id']]['currency'] = $service['currency'];
+            $data[$service['service_id']]['price'] = $service['price'];
+            $data[$service['service_id']]['compare_price'] = $service['compare_price'];
+            $data[$service['service_id']]['currency'] = $service['currency'];
 
         }
         
         $provider_profile->services()->sync($data);
 
-        return $provider_profile->services();
+        return $provider_profile->services->map(function($query){
+            $services['service']['id'] = $query->id;
+            $services['service']['name'] = $query->name;
+            $services['service']['description'] = $query->description;
+            $services['service']['is_active'] = $query->is_active;
+            $services['service']['created_at'] = $query->created_at;
+            $services['service']['updated_at'] = $query->updated_at;
+            $services['price'] = $query->pivot->price;
+            $services['compare_price'] = $query->pivot->compare_price;
+            $services['currency'] = $query->pivot->currency;
+            
+            return $services;
+
+        })->all();
+    }
+
+    public function createProviderProfileCalendar($rootVaule, array $args)
+    {
+        $provider_profile = ProviderProfile::find(auth()->user()->service_provider->id);
+
+        foreach($args['input'] as $service)
+        {
+            $data[$service['service_id']]['price'] = $service['price'];
+            $data[$service['service_id']]['compare_price'] = $service['compare_price'];
+            $data[$service['service_id']]['currency'] = $service['currency'];
+
+        }
+        
+        $provider_profile->services()->sync($data);
+
+        return $provider_profile->services->map(function($query){
+            $services['service']['id'] = $query->id;
+            $services['service']['name'] = $query->name;
+            $services['service']['description'] = $query->description;
+            $services['service']['is_active'] = $query->is_active;
+            $services['service']['created_at'] = $query->created_at;
+            $services['service']['updated_at'] = $query->updated_at;
+            $services['price'] = $query->pivot->price;
+            $services['compare_price'] = $query->pivot->compare_price;
+            $services['currency'] = $query->pivot->currency;
+            
+            return $services;
+
+        })->all();
     }
 }

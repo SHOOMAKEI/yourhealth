@@ -23,10 +23,10 @@ input ProviderProfileInput {
     address:String @rules(apply: [ "string", "max:255"])
     physical_address: String @rules(apply: [ "string", "max:255"])
     dob: DateTime
-    gender: String @rules(apply: [ "string", "max:255"])
+    gender: String @rules(apply: ["required", "string", "max:255"])
     bio: String
-    provider_sub_level_id: Int @rules(apply: ["exists:provider_sub_levels,id"])
-    provider_category_id: Int @rules(apply: ["exists:provider_categories,id"])
+    provider_sub_level_id: Int! @rules(apply: ["required", "exists:provider_sub_levels,id"])
+    provider_category_id: Int! @rules(apply: ["required", "exists:provider_categories,id"])
 }
 
 input ProviderCompanyInput {
@@ -35,7 +35,7 @@ input ProviderCompanyInput {
     tin: String! @rules(apply: ["required", "string", "max:255"])
     vrn: String @rules(apply: ["required", "string", "max:255"])
     mobile_number: String! @rules(apply: ["required", "string", "max:255"])
-    alternative_mobile_number: String @rules(apply: ["required", "string", "max:255"])
+    alternative_mobile_number: String @rules(apply: ["string", "max:255"])
     email: String! @rules(apply: ["required", "string", "email", "max:255"])
     address:String! @rules(apply: ["string", "max:255"])
     physical_address: String @rules(apply: ["string", "max:255"])
@@ -51,7 +51,7 @@ input ProviderFacilityInput {
     tin: String! @rules(apply: ["required", "string", "max:255"])
     vrn: String @rules(apply: ["required", "string", "max:255"])
     mobile_number: String! @rules(apply: ["required", "string", "max:255"])
-    alternative_mobile_number: String @rules(apply: ["required", "string", "max:255"])
+    alternative_mobile_number: String @rules(apply: [ "string", "max:255"])
     email: String! @rules(apply: ["required", "string", "email", "max:255"])
     address:String! @rules(apply: ["string", "max:255"])
     physical_address: String @rules(apply: ["string", "max:255"])
@@ -67,8 +67,7 @@ input ProviderQualificationInput {
     award_title: String! @rules(apply: ["required", "string", "max:255"])
     institution_name: String! @rules(apply: ["required", "string", "max:255"])
     description: String! @rules(apply: ["required", "string", "max:255"])
-    attachment: String! @rules(apply: ["required", "string", "max:255"])
-    provider_profile_id: Int @rules(apply: ["required", "exists:provider_profiles,id"])
+    attachment: String! @rules(apply: ["required", "string", "base64pdf"])
     year: String!
 }
 
@@ -76,24 +75,42 @@ input ProviderMedicalRegistrationInput {
     certificate_name: String! @rules(apply: ["required", "string", "max:255"])
     certificate_number: String! @rules(apply: ["required", "string", "max:255"])
     registration_number: String! @rules(apply: ["required", "string", "max:255"])
-    attachment: String! @rules(apply: ["required", "string", "max:255"])
-    provider_profile_id: Int @rules(apply: ["required", "exists:provider_profiles,id"])
+    attachment: String! @rules(apply: ["required", "string","base64pdf"])
     year: String!
 }
 
-input createProviderProfileServices  {
+input DaySessionInput {
+    name: String
+    from: String!
+    to: String!
+    interval: Int
+    day_id: Int! @rules(apply: ["required", "exists:services,id"])
+}
+
+input ProviderProfileServicesInput  {
     price: Int!
     compare_price: Int
-    currency: String
+    currency: String!
     service_id: Int @rules(apply: ["required", "exists:services,id"])
 }
 
-input createProviderFacilityServices  {
-    price: Int!
-    compare_price: Int
-    currency: String
+input ProviderFacilityServicesInput  {
     provider_facility_id: Int @rules(apply: ["required", "exists:provider_facilities,id"])
-    service_id: Int @rules(apply: ["required", "exists:services,id"])
+    service:[ProviderProfileServicesInput]
+}
+
+type ProviderProfileServices  {
+    price: Int
+    compare_price: Int
+    service: Service
+    currency: String
+}
+
+type ProviderFacilityServices  {
+    price: Int
+    compare_price: Int
+    service: Service
+    currency: String
 }
 
 type ProviderProfile {
@@ -117,6 +134,7 @@ type ProviderProfile {
     company_pivot: ProviderProfileCompanyPivot
     facility_pivot: ProviderProfileFacilityPivot
     service_pivot: ProviderProfileServicePivot
+    day_session: DaySession @hasMany
     created_at: DateTime!
     updated_at: DateTime!
 }
@@ -130,6 +148,14 @@ type ProviderProfileServicePivot {
     id: ID!
     price: Int!
     compare_price: Int
+    currency: String!
+}
+
+type ProviderFacilityServicePivot {
+    id: ID!
+    price: Int!
+    compare_price: Int
+    currency: String!
 }
 
 type ProviderProfileFacilityPivot {
@@ -188,6 +214,7 @@ type ProviderMedicalRegistration {
     certificate_number: String!
     registration_number: String!
     provider_profile: ProviderProfile!
+    attachment: String!
     year: String!
     created_at: DateTime!
     updated_at: DateTime!
@@ -238,4 +265,22 @@ type AccountCreationResponse {
     errors: [Errors]
     success: Boolean
     data: User
+}
+
+type Day {
+    id: ID!
+    name: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type DaySession {
+    id: ID!
+    name: String
+    from: String!
+    to: String!
+    interval: Int
+    provider_profile: ProviderProfile @belongsTo
+    created_at: DateTime!
+    updated_at: DateTime!
 }

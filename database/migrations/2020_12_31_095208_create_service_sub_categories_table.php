@@ -18,7 +18,7 @@ class CreateServiceSubCategoriesTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->boolean('is_active')->default(1);
-            $table->foreignId('service_category')->constrained()->onDelete('cascade');
+            $table->foreignId('service_category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
