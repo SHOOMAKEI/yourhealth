@@ -1,7 +1,9 @@
 type Query {
     users: [User!]!  @paginate(defaultCount: 10) 
     user(id: ID @eq): User @find
+    me: User @auth
 }
+
 type Mutation {
     #account creation 
     createAccount(input: AccountInput): User 
@@ -20,8 +22,10 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfileServices")
     createProviderFacilityServices(input: ProviderFacilityServicesInput): [ProviderFacilityServices] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderFacilityServices")
-    createProviderProfileCalendar(input: DaySessionInput): DaySession @guard
+    createProviderProfileCalendar(input: [DaySessionInput]): [DaySession] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfileCalendar")
+    createRequestedService(input: RequestedServiceInput): RequestedService @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createRequestedService")
     
     #authentication mobile
     login(input: loginInput!): loginResponse

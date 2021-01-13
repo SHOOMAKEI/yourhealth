@@ -84,7 +84,7 @@ input DaySessionInput {
     from: String!
     to: String!
     interval: Int
-    day_id: Int! @rules(apply: ["required", "exists:services,id"])
+    day_id: Int! @rules(apply: ["required", "exists:days,id"])
 }
 
 input ProviderProfileServicesInput  {
@@ -280,6 +280,7 @@ type DaySession {
     from: String!
     to: String!
     interval: Int
+    day: Day
     provider_profile: ProviderProfile @belongsTo
     created_at: DateTime!
     updated_at: DateTime!

@@ -10,4 +10,11 @@ class DaySession extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function day()
+    {
+        return $this->belongsTo(Day::class);
+    }
+
+    
 }

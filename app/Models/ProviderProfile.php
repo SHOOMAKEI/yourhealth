@@ -2,18 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class ProviderProfile extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
+    use LogsActivity;
 
     protected $guarded = [];
+
+    protected static $logAttribute = ['*'];
 
     public function provider_medical_registrations()
     {
@@ -63,5 +67,10 @@ class ProviderProfile extends Model implements HasMedia
     {
         return $this->belongsTo(User::class, 'user_id');
     }    
+
+    public function day_sessions()
+    {
+        return $this->belongsToMany(DaySession::class, 'day_session_provider');
+    }
    
 }

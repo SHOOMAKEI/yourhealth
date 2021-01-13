@@ -41,6 +41,20 @@ type Service {
     updated_at: DateTime!
 }
 
+type RequestedService {
+    id: ID!
+    name: String!
+    description: String
+    provider_profile: ProviderProfile
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+input RequestedServiceInput {
+    name: String!
+    description: String
+}
+
 enum Trashed {
   ONLY @enum(value: "only")
   WITH @enum(value: "with")

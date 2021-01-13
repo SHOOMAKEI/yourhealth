@@ -14,6 +14,7 @@ use App\Models\ProviderQualification;
 use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\DaySession;
 use App\Models\ProviderMedicalRegistration;
+use App\Models\RequestedServices;
 
 class CreateNewUserAccountController
 {
@@ -281,29 +282,55 @@ class CreateNewUserAccountController
     {
         $provider_profile = ProviderProfile::find(auth()->user()->service_provider->id);
 
-        foreach($args['input'] as $service)
-        {
-            $data[$service['service_id']]['price'] = $service['price'];
-            $data[$service['service_id']]['compare_price'] = $service['compare_price'];
-            $data[$service['service_id']]['currency'] = $service['currency'];
+        
+        $index=0;
 
+        foreach($args['input'] as $session)
+        {
+
+            $session_data = DaySession::create([
+                    'name' => $session['name'],
+                    'from' => $session['from'],
+                    'to' => $session['to'],
+                    'interval' => $session['interval'],
+                    'day_id' => $session['day_id'],
+
+                ]);
+            
+            $data[$index] = $session_data->id;
+
+            $index++;
         }
         
-        $provider_profile->services()->sync($data);
+        $provider_profile->day_sessions()->sync($data);
 
-        return $provider_profile->services->map(function($query){
-            $services['service']['id'] = $query->id;
-            $services['service']['name'] = $query->name;
-            $services['service']['description'] = $query->description;
-            $services['service']['is_active'] = $query->is_active;
-            $services['service']['created_at'] = $query->created_at;
-            $services['service']['updated_at'] = $query->updated_at;
-            $services['price'] = $query->pivot->price;
-            $services['compare_price'] = $query->pivot->compare_price;
-            $services['currency'] = $query->pivot->currency;
+        return $provider_profile->day_sessions->map(function($query){
+            $sessions['id'] = $query->id;
+            $sessions['name'] = $query->name;
+            $sessions['from'] = $query->from;
+            $sessions['to'] = $query->to;
+            $sessions['interval'] = $query->interval;
+            $sessions['day']['id'] = $query->day->id;
+            $sessions['day']['name'] = $query->day->name;
+            $sessions['day']['created_at'] = $query->day->id;
+            $sessions['day']['updated_at'] = $query->day->id;
+            $sessions['created_at'] = $query->created_at;
+            $sessions['updated_at'] = $query->updated_at;
             
-            return $services;
+            return $sessions;
 
         })->all();
+    }
+
+    public function createRequestedService($rootVaule, array $args)
+    {
+       
+        $requested_serveces_data = RequestedServices::create([
+                'name' => $args['input']['name'],
+                'description' => $args['input']['description']??null,
+                'provider_profile_id' => auth()->user()->service_provider->id,
+            ]);
+
+        return $requested_serveces_data;
     }
 }
