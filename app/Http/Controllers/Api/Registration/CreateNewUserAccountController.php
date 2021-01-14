@@ -165,6 +165,32 @@ class CreateNewUserAccountController
         return $provider_facility;
     }
 
+    public function updateProviderFacility($rootVaule, array $args)
+    {
+
+       $provider_facility = ProviderFacility::find($args['input']['id']);
+       
+       $provider_facility->update([
+            'name' => $args['input']['name'],  
+            'trading_name' => $args['input']['trading_name'],
+            'tin' => $args['input']['tin'],  
+            'vrn' => $args['input']['vrn'],  
+            'mobile_number' => $args['input']['mobile_number'],  
+            'alternative_mobile_number' => $args['input']['alternative_mobile_number'],
+            'email' => $args['input']['email'],
+            'address' => $args['input']['address'],  
+            'physical_address' => $args['input']['physical_address'],  
+            'website' => $args['input']['website'],  
+            'registration_number' => $args['input']['registration_number'],
+            'description' => $args['input']['description'],  
+            'provider_sub_level_id' => $args['input']['provider_sub_level_id'],
+            'provider_company_id' => $args['input']['provider_company_id'],
+        ]);
+
+        return $provider_facility;
+    }
+
+
     public function createProviderQualification($rootVaule, array $args)
     {
         
@@ -191,6 +217,27 @@ class CreateNewUserAccountController
         return  $data;
     }
 
+    public function updateProviderQualification($rootVaule, array $args)
+    {
+
+        $provider_qualification = ProviderQualification::find($args['input']['id']);
+
+            $provider_qualification->update([
+                        'award_title' => $args['input']['award_title'],
+                        'institution_name' => $args['input']['institution_name'],
+                        'description' => $args['input']['description'],
+                        'provider_profile_id' => auth()->user()->service_provider->id,
+                        'year' => $args['input']['year'],
+                    ]);
+
+        $provider_qualification->clearMediaCollection('provider-qualification-files');
+        $provider_qualification->addMediaFromBase64($args['input']['attachment'], 'application/pdf')
+        ->usingFileName(str_replace(' ','-',rand(1111,9999).'-'.rand(1111,9999).'-'.auth()->user()->name.'-'.$args['input']['award_title'].'.pdf'))
+        ->toMediaCollection('provider-qualification-files');
+
+        return  $provider_qualification;
+    }
+
     public function createProviderMedicalRegistration($rootVaule, array $args)
     {
 
@@ -215,6 +262,27 @@ class CreateNewUserAccountController
         }
 
         return  $data;
+
+    }
+
+    public function updateProviderMedicalRegistration($rootVaule, array $args)
+    {
+
+        $provider_medical_registration = ProviderMedicalRegistration::find($args['input']['id']);
+        $provider_medical_registration->update([
+            'certificate_name' => $args['input']['certificate_name'],
+            'certificate_number' => $args['input']['certificate_number'],
+            'registration_number' => $args['input']['registration_number'],
+            'provider_profile_id' => auth()->user()->service_provider->id,
+            'year' => $args['input']['year'],
+        ]);
+
+        $provider_medical_registration->clearMediaCollection('provider-medical-registration-files');
+        $provider_medical_registration->addMediaFromBase64($args['input']['attachment'], 'application/pdf')
+        ->usingFileName(str_replace(' ','-',rand(1111,9999).'-'.rand(1111,9999).'-'.auth()->user()->name.'-'.$args['input']['certificate_name'].'.pdf'))
+        ->toMediaCollection('provider-medical-registration-files');
+            
+        return  $provider_medical_registration;
 
     }
 

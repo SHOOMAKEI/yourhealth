@@ -1,13 +1,3 @@
-type Query @guard {
-    serviceCategories(trashed: Trashed @trashed): [ServiceCategory!]!  @paginate
-    serviceCategory(id: ID @eq): ServiceCategory @find
-    serviceSubCategories(trashed: Trashed @trashed): [ServiceSubCategory!]! @all
-    serviceSubCategory(id: ID @eq): ServiceSubCategory @find
-    services(trashed: Trashed @trashed): [Service!]!  @all
-    service(id: ID @eq): Service @find
-}
-
-
 
 type ServiceCategory {
     id: ID!

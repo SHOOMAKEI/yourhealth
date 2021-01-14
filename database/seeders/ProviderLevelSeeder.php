@@ -29,7 +29,7 @@ class ProviderLevelSeeder extends Seeder
         Day::firstOrCreate(['name' => 'Friday']);
         Day::firstOrCreate(['name' => 'Saturday']);
         Day::firstOrCreate(['name' => 'Sunday']);
-        
+
         ProviderLevel::firstOrCreate(['name' => 'Health Post']);
         ProviderLevel::firstOrCreate(['name' => 'Dispensary']);
         ProviderLevel::firstOrCreate(['name' => 'Specialized Clinic']);

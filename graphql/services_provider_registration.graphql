@@ -131,6 +131,8 @@ type ProviderProfile {
     status:Boolean
     provider_sub_level: ProviderSubLevel!
     provider_category: ProviderCategory!
+    provider_companies: ProviderCompany
+    provider_facilities: ProviderFacility
     company_pivot: ProviderProfileCompanyPivot
     facility_pivot: ProviderProfileFacilityPivot
     service_pivot: ProviderProfileServicePivot
