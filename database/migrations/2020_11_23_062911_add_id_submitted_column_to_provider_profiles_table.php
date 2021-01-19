@@ -15,6 +15,7 @@ class AddIdSubmittedColumnToProviderProfilesTable extends Migration
     {
         Schema::table('provider_profiles', function (Blueprint $table) {
             $table->boolean('is_submitted')->default(0);
+            $table->dateTime('submitted_at')->nullable();
         });
     }
 
@@ -27,6 +28,7 @@ class AddIdSubmittedColumnToProviderProfilesTable extends Migration
     {
         Schema::table('provider_profiles', function (Blueprint $table) {
             $table->dropColumn('is_submitted');
+            $table->dropColumn('submitted_at');
         });
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class ProviderProfileAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.provider_profile.index', ['profiles'=> ProviderProfile::where('is_submitted',1)->get()]);
+        return ProviderProfile::where('is_submitted',1)->where('is_verifed',0)->orderBy('submitted_at', 'DESC')->get();
     }
 
     /**
@@ -86,9 +86,10 @@ class ProviderProfileAdminController extends Controller
         //
     }
 
-    public function verify(ProviderProfile $provider)
+    public function verify($rootValue, array $args)
     {
-        $user = User::find($provider->user_id);
+        $user = User::find(auth()->user()->id);
+        $provider = ProviderProfile::find(auth()->user()->service_provider->id);
 
         $provider->forceFill([
             'is_verified' => 1,
@@ -101,14 +102,17 @@ class ProviderProfileAdminController extends Controller
         $user->assignRole('verified_sp');
         $user->removeRole('unverified_sp');
 
-        return redirect()->back()->with(['success' =>'Information Save Successful']);
+        return $provider;
     }
 
-    public function unverify(ProviderProfile $provider){
-        $user = User::find($provider->user_id);
+    public function unverify($rootValue, array $args)
+    {
+        $user = User::find(auth()->user()->id);
+        $provider = ProviderProfile::find(auth()->user()->service_provider->id);
 
         $provider->forceFill([
             'is_verified' => 0,
+            'submitted_at' => null
         ])->save();
 
         $user->forceFill([
@@ -118,6 +122,8 @@ class ProviderProfileAdminController extends Controller
         $user->removeRole('verified_sp');
         $user->assignRole('unverified_sp');
 
-        return redirect()->back()->with(['success' =>'Information Save Successful']);
+        return $provider;
     }
+
+    
 }

@@ -99,6 +99,17 @@ input ProviderFacilityServicesInput  {
     service:[ProviderProfileServicesInput]
 }
 
+type RejectionReason {
+    provider_profile: ProviderProfile
+    reasons: String
+}
+
+input RejectionReasonInput {
+    provider_profile_id: Int @rules(apply: ["required", "exists:provider_profiles,id"])
+    reasons: String @rules(apply: ["required", "string"])
+}
+
+
 type ProviderProfileServices  {
     price: Int
     compare_price: Int

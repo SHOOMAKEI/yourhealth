@@ -10,8 +10,9 @@ type Query @guard {
     serviceSubCategory(id: ID @eq): ServiceSubCategory @find
     services(trashed: Trashed @trashed): [Service!]!  @all
     service(id: ID @eq): Service @find
-    RequestedService(filter: { orderBy: [{ column: "created_at", order: ASC }] }): RequestedService @all
-    unverifiedServiceProviderRequests(filter: { orderBy: [{ column: "created_at", order: ASC }] })
+    RequestedService(orderBy: _ @orderBy(columns: ["created_at"])): RequestedService @all
+    unverifiedServiceProviderRequests: [ProviderProfile]
+        @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@index")
 }
 
 type Mutation {
@@ -36,6 +37,12 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfileCalendar")
     createRequestedService(input: RequestedServiceInput): RequestedService @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createRequestedService")
+    SubmittProfileForVerification: ProviderProfile @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@submitted")
+    verifyServiceProviderRequests: ProviderProfile @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@verify")
+    unVerifyServiceProviderRequest(input: RejectionReasonInput): RejectionReason @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@unverify")
     
     #authentication mobile
     login(input: loginInput!): loginResponse
