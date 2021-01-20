@@ -56,6 +56,7 @@ class CreateNewUserAccountController
             ]);
 
             if ($args['input']['account_category_type'] == 'company') {
+
                 $provider_company = ProviderCompany::create([
                     'name' => $args['input']['name'],
                     'tin' => $args['input']['tin'],
@@ -66,24 +67,34 @@ class CreateNewUserAccountController
             }
 
             if ($args['input']['account_category_type'] == 'facility') {
-                ProviderFacility::create([
+
+                $provider_company = ProviderCompany::create([
                     'name' => $args['input']['name'],
                     'tin' => $args['input']['tin'],
                     'vrn' => $args['input']['vrn']
+                ]);
 
+                $provider_company->provider_profile()->attach(auth()->user()->service_provider->id, ['role' => 'Owner']);
+
+                ProviderFacility::create([
+                    'name' => $args['input']['name'],
+                    'tin' => $args['input']['tin'],
+                    'vrn' => $args['input']['vrn'],
+                    'provider_company_id' => $provider_company->id
                 ]);
             }
 
 
         } else {
             $user->assignRole('patient');
+
             $client = ClientProfile::create([
                 'first_name' => $args['input']['first_name'],
                 'middle_name' => $args['input']['middle_name'],
                 'last_name' => $args['input']['last_name'],
                 'mobile' => $args['input']['mobile'],
                 'user_id' => $user->id,
-                'first_name' => $args['input']['first_name'],
+                'email' => $args['input']['email'],
             ]);
 
             if ($args['input']['account_category_type'] == 'family') {

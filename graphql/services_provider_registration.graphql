@@ -9,6 +9,10 @@ input AccountInput {
     password: String! @rules(apply: ["required", "string", "confirmed","regex:/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/"])
     password_confirmation: String!
     account_category: String! @rules(apply: ["required", "App\\Rules\\AccountCategory"])
+    account_category_type: String! @rules(apply: ["required", "App\\Rules\\AccountCategoryType"])
+    name: String @rules(apply:["string", "exclude_unless:account_category_type,company", "exclude_unless:account_category_type,facility", "exclude_unless:account_category_type,cooperate", "exclude_unless:account_category_type,family"])
+    vrn: String @rules(apply:["string", "exclude_unless:account_category_type,company", "exclude_unless:account_category_type,facility", "exclude_unless:account_category_type,cooperate"])
+    tin: String @rules(apply:["string", "exclude_unless:account_category_type,company", "exclude_unless:account_category_type,facility", "exclude_unless:account_category_type,cooperate"])
 }
 
 input ProviderProfileInput {

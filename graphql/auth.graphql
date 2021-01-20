@@ -11,7 +11,7 @@ type User {
     name: String!
     email: String!
     mobile_number: String!
-    profile_photo_path:String!
+    profile_photo_path:String
     created_at: DateTime!
     updated_at: DateTime!
     settings: Settings!

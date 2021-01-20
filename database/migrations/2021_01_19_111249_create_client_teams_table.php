@@ -15,6 +15,7 @@ class CreateClientTeamsTable extends Migration
     {
         Schema::create('client_teams', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('owner_id');
             $table->string('name');
             $table->string('trading_name')->nullable();
             $table->string('mobile_number');
@@ -26,9 +27,10 @@ class CreateClientTeamsTable extends Migration
             $table->string('registration_number')->nullable();
             $table->string('registration_date')->nullable();
             $table->text('description')->nullable();
-            $table->string('tin');
-            $table->string('vrn');
+            $table->string('tin')->nullable();
+            $table->string('vrn')->nullable();
             $table->boolean('is_active')->default(1);
+            $table->enum('team_type', ['family', 'cooperate']);
             $table->timestamps();
             $table->softDeletes();
         });
