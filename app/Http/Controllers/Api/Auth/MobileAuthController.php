@@ -65,6 +65,19 @@ class MobileAuthController extends Controller
                 ]);
         }
 
+        if($user->email_verified_at == null) {
+
+            $user->sendEmailVerificationNotification();
+
+            return (object)([
+                'user' => new UserResource($user),
+                'token' => null, 
+                'token_type'=> null,
+                'errors'=> null,
+                'success' => true,
+            ]);
+        }
+
         if($user->mobile_number_verified_at == null) {
 
             $user->sendMobileNumberVerificationNotification();
@@ -82,18 +95,6 @@ class MobileAuthController extends Controller
             ]);
         }
 
-        if($user->email_verified_at == null) {
-
-            $user->sendEmailVerificationNotification();
-
-            return (object)([
-                'user' => new UserResource($user),
-                'token' => null, 
-                'token_type'=> null,
-                'errors'=> null,
-                'success' => true,
-            ]);
-        }
 
         if($user->enabled_otp == true) {
 
