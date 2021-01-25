@@ -80,14 +80,10 @@ class AuthenticatedSessionSPAController extends Controller
                 ]);
         }
 
-        if($user->mobile_number_verified_at == null) {
+        if($user->email_verified_at == null) {
 
-            $user->sendMobileNumberVerificationNotification();
-            
-            $user->forceFill([
-                'text_resend_count' => ($user->text_resend_count-1),
-            ])->save();
-            
+            $user->sendEmailVerificationNotification();
+
             return (object)([
                 'user' => new UserResource($user),
                 'is_authenticated' => false,
@@ -96,10 +92,14 @@ class AuthenticatedSessionSPAController extends Controller
             ]);
         }
 
-        if($user->email_verified_at == null) {
+        if($user->mobile_number_verified_at == null) {
 
-            $user->sendEmailVerificationNotification();
-
+            $user->sendMobileNumberVerificationNotification();
+            
+            $user->forceFill([
+                'text_resend_count' => ($user->text_resend_count-1),
+            ])->save();
+            
             return (object)([
                 'user' => new UserResource($user),
                 'is_authenticated' => false,

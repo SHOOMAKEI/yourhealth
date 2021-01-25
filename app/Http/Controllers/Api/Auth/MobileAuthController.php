@@ -65,6 +65,19 @@ class MobileAuthController extends Controller
                 ]);
         }
 
+        if($user->email_verified_at == null) {
+
+            $user->sendEmailVerificationNotification();
+
+            return (object)([
+                'user' => new UserResource($user),
+                'token' => null, 
+                'token_type'=> null,
+                'errors'=> null,
+                'success' => true,
+            ]);
+        }
+
         if($user->mobile_number_verified_at == null) {
 
             $user->sendMobileNumberVerificationNotification();
@@ -82,18 +95,6 @@ class MobileAuthController extends Controller
             ]);
         }
 
-        if($user->email_verified_at == null) {
-
-            $user->sendEmailVerificationNotification();
-
-            return (object)([
-                'user' => new UserResource($user),
-                'token' => null, 
-                'token_type'=> null,
-                'errors'=> null,
-                'success' => true,
-            ]);
-        }
 
         if($user->enabled_otp == true) {
 
@@ -252,7 +253,7 @@ class MobileAuthController extends Controller
 
     public function resendEmailVerification($rootVaule, array $args)
     {
-        $user = User::where('email', $args['input']['email'])->first();
+        $user = User::where('id', $args['input']['id'])->first();
 
         $user->sendEmailVerificationNotification();
         
@@ -274,6 +275,21 @@ class MobileAuthController extends Controller
             'errors'=> null,
             'success' => true
             ]);
+    }
+
+    public function checkEmailVerification($rootVaule, array $args)
+    {
+        $user = User::where('id', $args['input']['id'])->first();
+
+        return (object)([
+            'user' => new UserResource($user),
+            'token' => null, 
+            'token_type'=> null,
+            'errors'=> null,
+            'success' => true,
+            ]);
+        
+
     }
 
     public function username($rootVaule, array $args)

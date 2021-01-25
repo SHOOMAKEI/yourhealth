@@ -2,11 +2,13 @@
 
 namespace App\Traits;
 
+use Carbon\Carbon;
 use App\Services\SMSService;
+use Illuminate\Support\Facades\DB;
 
 
 
-trait MustVerifyMobileNumber
+trait MustCompliteProfileStage
 {
     /**
      * Determine if the user has verified their MobileNumber address.

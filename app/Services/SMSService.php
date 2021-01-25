@@ -25,9 +25,10 @@ class SMSService
              ]);
              
             Log::info($respose);
+            activity()->log($respose);
 
         }catch(\Exception $e){
-
+            activity()->log($e);
             Log::error($e);
         }
       

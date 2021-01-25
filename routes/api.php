@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController;
+// use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +23,6 @@ Route::get('/test', function(){
     return 'we can fetch data';
 });
 
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/verify/otp', [AuthController::class, 'verifiyOtpCode']);
-Route::post('/resend/otp', [AuthController::class, 'sendOtpCode']);
+// Route::post('/login', [AuthController::class, 'login']);
+// Route::post('/verify/otp', [AuthController::class, 'verifiyOtpCode']);
+// Route::post('/resend/otp', [AuthController::class, 'sendOtpCode']);
