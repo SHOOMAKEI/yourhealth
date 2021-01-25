@@ -2,17 +2,21 @@
 
 namespace App\Models;
 
+use Illuminate\Console\Concerns\InteractsWithIO;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class ProviderFacility extends Model
+class ProviderFacility extends Model implements HasMedia
 {
     use HasFactory;
     use SoftDeletes;
     use LogsActivity;
+    use InteractsWithMedia;
 
     protected $guarded = [];
 

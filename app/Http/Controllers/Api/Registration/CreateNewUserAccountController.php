@@ -99,9 +99,25 @@ class CreateNewUserAccountController
 
             if ($args['input']['account_category_type'] == 'family') {
                 ClientTeam::create([
-
+                    'name' => $args['input']['name'],
+                    'team_type' => 'family',
+                    'mobile' => $args['input']['mobile'],
+                    'owner_id' => $user->id,
+                    'email' => $args['input']['email'],
                 ]);
-                }
+            }
+
+            if ($args['input']['account_category_type'] == 'cooperate') {
+                ClientTeam::create([
+                    'name' => $args['input']['name'],
+                    'team_type' => 'family',
+                    'mobile' => $args['input']['mobile'],
+                    'owner_id' => $user->id,
+                    'email' => $args['input']['email'],
+                    'tin' => $args['input']['tin'],
+                    'vrn' => $args['input']['vrn'],
+                ]);
+            }
 
         }
 
@@ -180,6 +196,14 @@ class CreateNewUserAccountController
         $provider_company->provider_profile()->detach(auth()->user()->service_provider->id);
         $provider_company->provider_profile()->attach(auth()->user()->service_provider->id, ['role' => 'Owner']);
 
+        $provider_company->addMediaFromBase64($args['input']['tin_attachment'], 'application/pdf')
+        ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['tin'] . '.pdf'))
+        ->toMediaCollection('provider-tin-files');
+
+        $provider_company->addMediaFromBase64($args['input']['vrn_attachment'], 'application/pdf')
+        ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['vrn'] . '.pdf'))
+        ->toMediaCollection('provider-vrn-files');
+
         return $provider_company;
     }
 
@@ -201,6 +225,14 @@ class CreateNewUserAccountController
             'provider_sub_level_id' => $args['input']['provider_sub_level_id'],
             'provider_company_id' => $args['input']['provider_company_id'],
         ]);
+
+        $provider_facility->addMediaFromBase64($args['input']['tin_attachment'], 'application/pdf')
+                ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['tin'] . '.pdf'))
+                ->toMediaCollection('provider-tin-files');
+
+        $provider_facility->addMediaFromBase64($args['input']['vrn_attachment'], 'application/pdf')
+                ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['vrn'] . '.pdf'))
+                ->toMediaCollection('provider-vrn-files');
 
         return $provider_facility;
     }
@@ -226,6 +258,14 @@ class CreateNewUserAccountController
             'provider_sub_level_id' => $args['input']['provider_sub_level_id'],
             'provider_company_id' => $args['input']['provider_company_id'],
         ]);
+
+        $provider_facility->addMediaFromBase64($args['input']['tin_attachment'], 'application/pdf')
+        ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['tin'] . '.pdf'))
+        ->toMediaCollection('provider-tin-files');
+
+        $provider_facility->addMediaFromBase64($args['input']['vrn_attachment'], 'application/pdf')
+        ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['vrn'] . '.pdf'))
+        ->toMediaCollection('provider-vrn-files');
 
         return $provider_facility;
     }

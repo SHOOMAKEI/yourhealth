@@ -252,7 +252,7 @@ class MobileAuthController extends Controller
 
     public function resendEmailVerification($rootVaule, array $args)
     {
-        $user = User::where('email', $args['input']['email'])->first();
+        $user = User::where('id', $args['input']['id'])->first();
 
         $user->sendEmailVerificationNotification();
         
@@ -274,6 +274,21 @@ class MobileAuthController extends Controller
             'errors'=> null,
             'success' => true
             ]);
+    }
+
+    public function checkEmailVerification($rootVaule, array $args)
+    {
+        $user = User::where('id', $args['input']['id'])->first();
+
+        return (object)([
+            'user' => new UserResource($user),
+            'token' => null, 
+            'token_type'=> null,
+            'errors'=> null,
+            'success' => true,
+            ]);
+        
+
     }
 
     public function username($rootVaule, array $args)

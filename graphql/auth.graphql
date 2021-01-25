@@ -36,8 +36,30 @@ input loginInput {
     device_name: String!
 }
 
+input resetUserPasswordViaOtpInput {
+    mobile_number: String @rules(apply: ["required", "exists:users,mobile_number"])
+}
+
+input resetUserPasswordViaEmailInput {
+    email: String @rules(apply: ["required", "exists:users,email"])
+}
+
+input verifyUserPasswordViaOtpInput {
+    mobile_number: String @rules(apply: ["required", "exists:users,mobile_number"])
+    otp_code: Int! 
+    password: String! @rules(apply: ["required", "string", "confirmed","regex:/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/"])
+    password_confirmation: String!
+}
+
+input verifyUserPasswordViaEmailInput {
+    email: String @rules(apply: ["required", "exists:users,email"])
+    token: String!
+    password: String! @rules(apply: ["required", "string", "confirmed","regex:/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/"])
+    password_confirmation: String!
+}
+
 input logoutInput {
-    email: String!
+    email: String! @rules(apply: ["required", "exists:users,email"])
     device_name: String!
 }
 
@@ -47,29 +69,33 @@ input loginSessionInput {
 }
 
 input logoutSessionInput {
-    email: String!
+    email: String! @rules(apply: ["required", "exists:users,email"])
 }
 
 input verifyOtpCodeInput {
-    email: String!
+    email: String! @rules(apply: ["required", "exists:users,email"])
     otp_code: Int!
     device_name: String!
 }
 
 input resendOtpCodeInput {
-    email: String!
+    email: String! @rules(apply: ["required", "exists:users,email"])
 }
 
 input resendEmailVerificationInput {
-    email: String!
+    id: Int! @rules(apply: ["required", "exists:users,id"])
+}
+
+input checkEmailVerificationInput {
+    id: int! @rules(apply: ["required", "exists:users,id"])
 }
 
 input resendMobileNumberVerificationCodeInput {
-    email: String!
+    email: String! @rules(apply: ["required", "exists:users,email"])
 }
 
 input updateUserPassword {
-    email: String!
+    email: String! @rules(apply: ["required", "exists:users,email"])
     current_password: String!
     password: String! @rules(apply: ["required", "string", "confirmed","regex:/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/"])
     password_confirmation: String! 

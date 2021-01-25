@@ -2,7 +2,9 @@
 
 namespace App\Traits;
 
+use Carbon\Carbon;
 use App\Services\SMSService;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -81,5 +83,24 @@ trait MustVerifyMobileNumber
     {
         return $this->otp_code;
     }
+
+        /**
+     * Send the MobileNumber reset Password notification.
+     *
+     * @return void
+     */
+    public function sendMobileNumberResetPasswordNotification()
+    {
+        $token = rand(111111,999999);
+        
+        DB::table('password_resets')->where('email', $this->mobile_number)->delete();
+
+        DB::table('password_resets')->insert(['email' => $this->mobile_number, 'token' => $token, 'created_at' => new Carbon]);
+
+        $sms = 'Use this otp code to reset your password '. $token;
+        
+        SMSService::sendSMSToSingeUser($this->mobile_number, $sms);
+    }
+
 
 }
