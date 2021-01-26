@@ -78,6 +78,11 @@ input verifyOtpCodeInput {
     device_name: String!
 }
 
+input verifyMobileNumberSessionInput {
+    email: String! @rules(apply: ["required", "exists:users,email"])
+    verification_code: Int!
+}
+
 input resendOtpCodeInput {
     email: String! @rules(apply: ["required", "exists:users,email"])
 }
