@@ -87,7 +87,7 @@ input resendEmailVerificationInput {
 }
 
 input checkEmailVerificationInput {
-    id: int! @rules(apply: ["required", "exists:users,id"])
+    id: Int! @rules(apply: ["required", "exists:users,id"])
 }
 
 input resendMobileNumberVerificationCodeInput {
