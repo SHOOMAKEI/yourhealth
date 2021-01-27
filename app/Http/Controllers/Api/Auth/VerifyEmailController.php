@@ -21,13 +21,13 @@ class VerifyEmailController extends Controller
     {
       
         if ($id->hasVerifiedEmail()) {
-            return redirect('http://192.168.1.12:3000/auth/emailVerificationStatus/'.$id->id);
+            return redirect('http://127.0.0.1:3000/auth/emailVerificationStatus/'.$id->id);
         }
 
         if ($id->markEmailAsVerified()) {
             event(new Verified($request->user()));
         }
 
-        return redirect('http://192.168.1.12:3000/auth/emailVerificationStatus/'.$id->id);
+        return redirect('http://127.0.0.1:3000/auth/emailVerificationStatus/'.$id->id);
     }
 }

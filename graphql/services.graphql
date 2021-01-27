@@ -4,7 +4,7 @@ type ServiceCategory {
     name: String!
     description: String
     is_active: Boolean!
-    services_sub_categories: [ServiceSubCategory!] @hasMany
+    service_sub_categories: [ServiceSubCategory!] @hasMany
     services:[Service!] @hasMany
     created_at: DateTime!
     updated_at: DateTime!

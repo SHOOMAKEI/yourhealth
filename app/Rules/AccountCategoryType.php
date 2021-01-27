@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 
 class AccountCategoryType implements Rule
 {
+    public $account_category;
     /**
      * Create a new rule instance.
      *
@@ -14,7 +15,7 @@ class AccountCategoryType implements Rule
      */
     public function __construct()
     {
-        //
+        // $this->account_category = $arg['input']['account_category'];
     }
 
     /**
@@ -26,17 +27,18 @@ class AccountCategoryType implements Rule
      */
     public function passes($attribute, $value)
     {
-        $account_category = Input::get('account_category'); 
+        
+        // $account_category = request()->account_category; 
 
-        if($account_category=='service-provider' && !in_array($value, ['company', 'facility', 'individual'])) {
+        // if($account_category=='service-provider' && !in_array($value, ['company', 'facility', 'individual'])) {
 
-            return false; 
-        }
+        //     return false; 
+        // }
 
-        if($account_category=='patient' && !in_array($value, ['cooperate', 'family', 'individual'])) {
+        // if($account_category=='patient' && !in_array($value, ['cooperate', 'family', 'individual'])) {
 
-            return false; 
-        }
+        //     return false; 
+        // }
 
 
         return true;

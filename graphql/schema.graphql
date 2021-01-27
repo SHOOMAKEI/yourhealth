@@ -1,16 +1,16 @@
 
-type Query @guard {
-    users: [User!]!  @paginate(defaultCount: 10) 
-    user(id: ID @eq): User @find
+type Query {
+    users: [User!]! @guard  @paginate(defaultCount: 10) 
+    user(id: ID @eq): User  @guard @find
     me: User @auth
-
-    serviceCategories(trashed: Trashed @trashed): [ServiceCategory!]!  @paginate
-    serviceCategory(id: ID @eq): ServiceCategory @find
-    serviceSubCategories(trashed: Trashed @trashed): [ServiceSubCategory!]! @all
-    serviceSubCategory(id: ID @eq): ServiceSubCategory @find
-    services(trashed: Trashed @trashed): [Service!]!  @all
-    service(id: ID @eq): Service @find
-    RequestedService(orderBy: _ @orderBy(columns: ["created_at"])): RequestedService @all
+    provider_sub_levels: [ProviderSubLevel!]! @all 
+    serviceCategories(trashed: Trashed @trashed): [ServiceCategory!]! @guard  @all 
+    serviceCategory(id: ID @eq): ServiceCategory  @guard @find
+    serviceSubCategories(trashed: Trashed @trashed): [ServiceSubCategory!]! @guard @all 
+    serviceSubCategory(id: ID @eq): ServiceSubCategory  @guard @find
+    services(trashed: Trashed @trashed): [Service!]! @guard  @all 
+    service(id: ID @eq): Service  @guard @find
+    RequestedService(orderBy: _ @orderBy(columns: ["created_at"])): RequestedService @all 
     unverifiedServiceProviderRequests: [ProviderProfile]
         @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@index")
 }

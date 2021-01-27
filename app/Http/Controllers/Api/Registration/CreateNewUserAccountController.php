@@ -60,10 +60,12 @@ class CreateNewUserAccountController
                 $provider_company = ProviderCompany::create([
                     'name' => $args['input']['name'],
                     'tin' => $args['input']['tin'],
-                    'vrn' => $args['input']['vrn']
+                    'vrn' => $args['input']['vrn'],
+                    'mobile_number' => $args['input']['mobile_number'],
+                    'email' => $args['input']['email'],
                 ]);
 
-                $provider_company->provider_profile()->attach(auth()->user()->service_provider->id, ['role' => 'Owner']);
+                $provider_company->provider_profile()->attach($user->service_provider->id, ['role' => 'Owner']);
             }
 
             if ($args['input']['account_category_type'] == 'facility') {
@@ -71,16 +73,21 @@ class CreateNewUserAccountController
                 $provider_company = ProviderCompany::create([
                     'name' => $args['input']['name'],
                     'tin' => $args['input']['tin'],
-                    'vrn' => $args['input']['vrn']
+                    'vrn' => $args['input']['vrn'],
+                    'mobile_number' => $args['input']['mobile_number'],
+                    'email' => $args['input']['email'],
                 ]);
 
-                $provider_company->provider_profile()->attach(auth()->user()->service_provider->id, ['role' => 'Owner']);
+                $provider_company->provider_profile()->attach($user->service_provider->id, ['role' => 'Owner']);
 
                 ProviderFacility::create([
                     'name' => $args['input']['name'],
                     'tin' => $args['input']['tin'],
                     'vrn' => $args['input']['vrn'],
-                    'provider_company_id' => $provider_company->id
+                    'mobile_number' => $args['input']['mobile_number'],
+                    'provider_company_id' => $provider_company->id,
+                    'email' => $args['input']['email'],
+                    'provider_sub_level_id' => $args['input']['provider_sub_level_id'],
                 ]);
             }
 
@@ -92,7 +99,7 @@ class CreateNewUserAccountController
                 'first_name' => $args['input']['first_name'],
                 'middle_name' => $args['input']['middle_name'],
                 'last_name' => $args['input']['last_name'],
-                'mobile' => $args['input']['mobile'],
+                'mobile_number' => $args['input']['mobile_number'],
                 'user_id' => $user->id,
                 'email' => $args['input']['email'],
             ]);
@@ -101,7 +108,7 @@ class CreateNewUserAccountController
                 ClientTeam::create([
                     'name' => $args['input']['name'],
                     'team_type' => 'family',
-                    'mobile' => $args['input']['mobile'],
+                    'mobile_number' => $args['input']['mobile_number'],
                     'owner_id' => $user->id,
                     'email' => $args['input']['email'],
                 ]);
@@ -111,7 +118,7 @@ class CreateNewUserAccountController
                 ClientTeam::create([
                     'name' => $args['input']['name'],
                     'team_type' => 'family',
-                    'mobile' => $args['input']['mobile'],
+                    'mobile_number' => $args['input']['mobile_number'],
                     'owner_id' => $user->id,
                     'email' => $args['input']['email'],
                     'tin' => $args['input']['tin'],

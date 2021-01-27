@@ -19,6 +19,7 @@ use Laravel\Fortify\Actions\AttemptToAuthenticate;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionSPAController extends Controller
 {
@@ -286,14 +287,14 @@ class AuthenticatedSessionSPAController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Laravel\Fortify\Contracts\LogoutResponse
      */
-    public function logout($rootVaule, $args, Request $request)
+    public function logout($rootVaule, $args)
     {
         
         $this->guard->logout();
 
-        $request->session()->invalidate();
+        // $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+        // $request->session()->regenerateToken();
 
         return  (object)([
             'user' => null,
