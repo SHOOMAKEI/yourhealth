@@ -91,6 +91,10 @@ input resendEmailVerificationInput {
     id: Int! @rules(apply: ["required", "exists:users,id"])
 }
 
+input resendEmailVerificationSessionInput {
+    email: String! @rules(apply: ["required", "exists:users,email"])
+}
+
 input checkEmailVerificationInput {
     id: int! @rules(apply: ["required", "exists:users,id"])
 }
