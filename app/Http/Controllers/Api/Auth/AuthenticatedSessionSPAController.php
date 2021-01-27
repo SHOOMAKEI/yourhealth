@@ -9,6 +9,7 @@ use Laravel\Fortify\Features;
 use Illuminate\Routing\Pipeline;
 use Illuminate\Routing\Controller;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Laravel\Fortify\Contracts\LoginResponse;
@@ -37,7 +38,7 @@ class AuthenticatedSessionSPAController extends Controller
      */
     public function __construct(StatefulGuard $guard)
     {
-        $this->guard = $guard;
+        $this->guard = Auth::guard(config('sanctum.guard'));
     }
 
 
@@ -261,6 +262,32 @@ class AuthenticatedSessionSPAController extends Controller
             'errors'=> null,
             'success' => true
             ]);
+    }
+
+    public function checkEmailVerification($rootVaule, array $args)
+    {
+        $user = User::where('id', $args['input']['id'])->first();
+
+        if($user->email_verified_at == null){
+            
+            return (object)([
+                'user' => null,
+                'errors'=> [
+                    [
+                        'message' => 'user email not verified.'
+                    ]
+                ],
+                'success' => true,
+                ]);
+        }
+
+        return (object)([
+            'user' => null,
+            'errors'=> null,
+            'success' => true,
+            ]);
+        
+
     }
 
 

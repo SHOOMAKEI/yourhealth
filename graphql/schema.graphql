@@ -82,6 +82,8 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@verifyOtpCode")
     verifyMobileNumberSession(input: verifyMobileNumberSessionInput!): loginResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@VerifyMobileVerificationCode")
+    checkEmailVerificationSession(input: checkEmailVerificationInput!): loginResponse
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@checkEmailVerification")
     # resendOtpCodeSession(input: resendOtpCodeInput!): loginResponse
     #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@resendOtpCode")
     # resendMobileNumberVerificationCodeSession(input: resendMobileNumberVerificationCodeInput!): loginResponse
