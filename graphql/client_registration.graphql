@@ -1,0 +1,80 @@
+type ClientProfile {
+  id: ID!
+  title: String
+  first_name: String
+  middle_name: String
+  last_name: String
+  username: String
+  mobile_number: String!
+  alternative_mobile_number: String!
+  email: String!
+  address:String!
+  physical_address: String
+  dob: DateTime
+  gender: String
+  bio: String
+  is_active: Boolean
+  user: User
+}
+
+type ClientTeam {
+  id: ID!
+  name: String!
+  trading_name: String!
+  tin: String!
+  vrn: String
+  mobile_number: String!
+  alternative_mobile_number: String!
+  email: String!
+  address:String!
+  physical_address: String
+  website: String
+  registration_number: String!
+  registration_date: String
+  description: String
+  is_active:Boolean
+  team_type: String!
+  owner: User
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type PackageSubscription {
+  id: ID!
+  package_plan: PackagePlan!
+  user: User!
+  trial_ends_at: DateTime
+  starts_at: DateTime
+  ends_at: DateTime
+  cancels_at: DateTime
+  canceled_at: DateTime
+  timezone: String
+  payer: String
+}
+
+type TeamPackageSubscription {
+  id: ID!
+  package_plan: PackagePlan!
+  user: User!
+  trial_ends_at: DateTime
+  starts_at: DateTime
+  ends_at: DateTime
+  cancels_at: DateTime
+  canceled_at: DateTime
+  timezone: String
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type TeamInvitation {
+  id: ID!
+  client_team: PackagePlan!
+  user: User!
+  trial_ends_at: DateTime
+  role: Role
+  email: String
+  token: String
+  has_account: Boolean
+  created_at: DateTime!
+  updated_at: DateTime!
+}
