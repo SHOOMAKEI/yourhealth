@@ -16,7 +16,7 @@ class CreateTeamPackageSubscriptionsTable extends Migration
         Schema::create('team_package_subscriptions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('package_plan_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('client_team_id')->constrained()->onDelete('cascade');
             $table->integer('quantity');
             $table->dateTime('trial_ends_at')->nullable();
             $table->dateTime('starts_at')->nullable();

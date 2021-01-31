@@ -96,7 +96,7 @@ type Mutation {
     #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@update")
    
    #service registration
-   createServiceCategory(name: String! @rules(apply: [ "string", "max:255"]), description: String! @rules(apply: [ "string", "max:255"]), is_active: Boolean): ServiceCategory @guard @create
+    createServiceCategory(name: String! @rules(apply: [ "string", "max:255"]), description: String! @rules(apply: [ "string", "max:255"]), is_active: Boolean): ServiceCategory @guard @create
     updateServiceCategory(id: ID!, name: String! @rules(apply: [ "string", "max:255"]), description: String! @rules(apply: [ "string", "max:255"])): ServiceCategory @guard @update
     deleteServiceCategory(id: ID!): ServiceCategory @guard @delete
     createServiceSubCategory(service_category_id: Int! @rules(apply: ["required", "exists:service_categories,id"]), name: String! @rules(apply: [ "string", "max:255"]), description: String! @rules(apply: [ "string", "max:255"]), is_active: Boolean): ServiceSubCategory @guard @create
@@ -106,7 +106,23 @@ type Mutation {
     updateService(service_sub_category_id: Int! @rules(apply: ["required", "exists:service_sub_categories,id"]), id: ID!, name: String! @rules(apply: [ "string", "max:255"]), description: String! @rules(apply: [ "string", "max:255"]), is_active: Boolean): Service @guard @update
     deleteService(id: ID!): Service @guard @delete
 
+    #package registration
+    createPackageMemberShip(input: CreateMembershipCategoryInput): MembershipCategory @guard @create
+    updatePackageMemberShip(input: UpdateMembershipCategoryInput): MembershipCategory @guard @update
+    deletePackageMemberShip(id: ID!): MembershipCategory @guard @delete
+    createPackageClass(input: CreateMembershipClassInput): MembershipClass @guard @create
+    updatePackageClass(input: UpdateMembershipClassInput): MembershipClass @guard @update
+    deletePackageClass(id: ID!): MembershipClass @delete
+    createPackagePlan(input: CreatePackagePlanInput): PackagePlan @guard @create
+    updatePackagePlan(input: UpdatePackagePlanInput): PackagePlan @guard @update
+    deletePackagePlan(id: ID!): PackagePlan @guard @delete
+    createPackageFeature(input: CreatePackageFeatureInput): PackageFeature @guard @create
+    updatePackageFeature(input: UpdatePackageFeatureInput): PackageFeature @guard @update
+    deletePackageFeature(id: ID!): PackageFeature @guard @delete
+
 }
 #import services.graphql
 #import services_provider_registration.graphql
 #import auth.graphql
+#import package_registration.graphql
+#import client_registration.graphql

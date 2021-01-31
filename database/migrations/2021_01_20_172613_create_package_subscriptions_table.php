@@ -22,6 +22,7 @@ class CreatePackageSubscriptionsTable extends Migration
             $table->dateTime('ends_at')->nullable();
             $table->dateTime('cancels_at')->nullable();
             $table->dateTime('canceled_at')->nullable();
+            $table->enum('payer', ['self', 'team']);
             $table->string('timezone')->nullable();
             $table->timestamps();
             $table->softDeletes();
