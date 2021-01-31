@@ -124,5 +124,5 @@ type Mutation {
 #import services.graphql
 #import services_provider_registration.graphql
 #import auth.graphql
-#import package_registration.graphql
+#import packages_registration.graphql
 #import client_registration.graphql
