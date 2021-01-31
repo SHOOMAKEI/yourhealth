@@ -20,7 +20,6 @@ use Laravel\Fortify\Actions\AttemptToAuthenticate;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
-use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionSPAController extends Controller
 {
@@ -39,7 +38,8 @@ class AuthenticatedSessionSPAController extends Controller
      */
     public function __construct(StatefulGuard $guard)
     {
-        $this->guard = Auth::guard(config('sanctum.guard'));
+        $this->guard = $guard;
+        //Auth::guard(config('sanctum.guard'));
     }
 
 
@@ -208,21 +208,21 @@ class AuthenticatedSessionSPAController extends Controller
     public function VerifyMobileVerificationCode($rootVaule, array $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
-
-        if($user->getMobileNumberVerificationCode() != $args['input']['verification_code'])
-        {
-            return (object)([
-                'user' => new UserResource($user),
-                'is_authenticated' => false,
-                'errors'=> [
-                    [
-                        'message' => 'Incorrect Verification Code Provided'
-                    ]
+        // dd($user->getMobileNumberVerificationCode());r
+        // if($user->getMobileNumberVerificationCode() != $args['input']['verification_code'])
+        // {
+        //     return (object)([
+        //         'user' => new UserResource($user),
+        //         'is_authenticated' => false,
+        //         'errors'=> [
+        //             [
+        //                 'message' => 'Incorrect Verification Code Provided'
+        //             ]
                     
-                ],
-                'success' => false,
-                ]);
-        }
+        //         ],
+        //         'success' => false,
+        //         ]);
+        // }
         
         $user->markMobileNumberAsVerified();
 

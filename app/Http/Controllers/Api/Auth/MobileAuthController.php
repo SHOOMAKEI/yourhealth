@@ -212,7 +212,7 @@ class MobileAuthController extends Controller
     public function VerifyMobileVerificationCode($rootVaule, array $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
-
+        dd($user->getMobileNumberVerificationCode());
         if($user->getMobileNumberVerificationCode() != $args['input']['verification_code'])
         {
             return (object)([
