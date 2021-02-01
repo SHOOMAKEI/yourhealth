@@ -16,6 +16,8 @@ class ServiceSeeder extends Seeder
      */
     public function run()
     {
+        ServiceSubCategory::truncate();
+        Service::truncate();
         ServiceCategory::firstOrCreate(['name' => 'Laboratory']);
         ServiceCategory::firstOrCreate(['name' => 'Consultations']);
         ServiceCategory::firstOrCreate(['name' => 'Admissions']);
