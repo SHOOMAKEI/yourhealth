@@ -10,10 +10,16 @@ input AccountInput {
     password_confirmation: String!
     account_category: String! @rules(apply: ["required", "App\\Rules\\AccountCategory"])
     account_category_type: String! @rules(apply: ["required", "App\\Rules\\AccountCategoryType"])
-    name: String @rules(apply:["string", "exclude_unless:account_category_type,company", "exclude_unless:account_category_type,facility", "exclude_unless:account_category_type,cooperate", "exclude_unless:account_category_type,family"])
-    vrn: String @rules(apply:["string", "exclude_unless:account_category_type,company", "exclude_unless:account_category_type,facility", "exclude_unless:account_category_type,cooperate"])
-    tin: String @rules(apply:["string", "exclude_unless:account_category_type,company", "exclude_unless:account_category_type,facility", "exclude_unless:account_category_type,cooperate"])
-    provider_sub_level_id: Int @rules(apply:["exclude_unless:account_category_type,facility"])
+    name: String @rules(apply:["max:255","App\\Rules\\NameFieldValidator"])
+    vrn: String @rules(apply:["max:255", "App\\Rules\\VrnFieldValidator"])
+    tin: String @rules(apply:["max:255", "App\\Rules\\TinFieldValidator"])
+    provider_sub_level_id: Int @rules(apply:["App\\Rules\\ProviderSubLevelFieldValidator"])
+    ownership_type: String @rules(apply:["max:255", "App\\Rules\\FacilityOwner"])
+    owner_first_name: String @rules(apply: [ "max:255", "App\\Rules\\OwnerInfoFieldValidator"])
+    owner_middle_name: String @rules(apply: ["max:255", "App\\Rules\\OwnerInfoFieldValidator"])
+    owner_last_name: String @rules(apply: [ "max:255", "App\\Rules\\OwnerInfoFieldValidator"])
+    owner_mobile_number: String @rules(apply: [ "max:255", "App\\Rules\\OwnerInfoFieldValidator"])
+    owner_email: String @rules(apply: [ "max:255", "App\\Rules\\OwnerInfoFieldValidator"])
 }
 
 input ProviderProfileInput {
@@ -27,11 +33,10 @@ input ProviderProfileInput {
     email: String @rules(apply: ["string", "email", "max:255"])
     address:String @rules(apply: [ "string", "max:255"])
     physical_address: String @rules(apply: [ "string", "max:255"])
-    dob: DateTime
+    dob: String
     gender: String @rules(apply: ["required", "string", "max:255"])
     bio: String
     provider_sub_level_id: Int! @rules(apply: ["required", "exists:provider_sub_levels,id"])
-    provider_category_id: Int! @rules(apply: ["required", "exists:provider_categories,id"])
 }
 
 input ProviderCompanyInput {
@@ -141,7 +146,7 @@ type ProviderProfile {
     last_name: String
     username: String
     mobile_number: String!
-    alternative_mobile_number: String!
+    alternative_mobile_number: String
     email: String!
     address:String!
     physical_address: String
@@ -150,7 +155,7 @@ type ProviderProfile {
     bio: String
     status:Boolean
     provider_sub_level: ProviderSubLevel!
-    provider_category: ProviderCategory!
+    account_category_type: String!
     provider_companies: ProviderCompany
     provider_facilities: ProviderFacility
     company_pivot: ProviderProfileCompanyPivot
@@ -192,7 +197,7 @@ type ProviderCompany {
     tin: String!
     vrn: String
     mobile_number: String!
-    alternative_mobile_number: String!
+    alternative_mobile_number: String
     email: String!
     address:String!
     physical_address: String
@@ -214,7 +219,7 @@ type ProviderFacility {
     tin: String!
     vrn: String
     mobile_number: String!
-    alternative_mobile_number: String!
+    alternative_mobile_number: String
     email: String!
     address:String!
     physical_address: String
@@ -306,4 +311,9 @@ type DaySession {
     provider_profile: ProviderProfile @belongsTo
     created_at: DateTime!
     updated_at: DateTime!
+}
+
+enum FacilityOwner {
+  SELF @enum(value: "self")
+  OTHER @enum(value: "other")
 }

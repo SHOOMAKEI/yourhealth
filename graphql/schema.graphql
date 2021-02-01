@@ -13,6 +13,7 @@ type Query {
     RequestedService(orderBy: _ @orderBy(columns: ["created_at"])): RequestedService @all 
     unverifiedServiceProviderRequests: [ProviderProfile]
         @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@index")
+    
 }
 
 type Mutation {
