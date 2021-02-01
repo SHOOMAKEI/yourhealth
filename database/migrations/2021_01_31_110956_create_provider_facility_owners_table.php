@@ -15,6 +15,12 @@ class CreateProviderFacilityOwnersTable extends Migration
     {
         Schema::create('provider_facility_owners', function (Blueprint $table) {
             $table->id();
+            $table->string('first_name');
+            $table->string('middle_name')->nullable();
+            $table->string('last_name');
+            $table->string('email')->nullable();
+            $table->string('mobile_number');
+            $table->foreignId('provider_facility_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

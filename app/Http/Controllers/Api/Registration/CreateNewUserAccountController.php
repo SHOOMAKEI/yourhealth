@@ -17,6 +17,8 @@ use App\Models\ProviderQualification;
 use App\Models\ProviderMedicalRegistration;
 use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\ClientTeam;
+use App\Models\ProviderFacilityOwner;
+use Illuminate\Support\Facades\Validator;
 
 class CreateNewUserAccountController
 {
@@ -32,6 +34,7 @@ class CreateNewUserAccountController
     {
 
         // dd($args);
+        
         // DB::transaction(function($args){
         $user = User::create([
             'name' => $args['input']['first_name'] . " " . $args['input']['middle_name'] . " " . $args['input']['last_name'],
@@ -53,6 +56,7 @@ class CreateNewUserAccountController
                 'mobile_number' => $args['input']['mobile_number'],
                 'user_id' => $user->id,
                 'email' => $args['input']['email'],
+                'account_category_type' => $args['input']['account_category_type'],
             ]);
 
             if ($args['input']['account_category_type'] == 'company') {
@@ -80,15 +84,27 @@ class CreateNewUserAccountController
 
                 $provider_company->provider_profile()->attach($user->service_provider->id, ['role' => 'Owner']);
 
-                ProviderFacility::create([
+                $provider_facility = ProviderFacility::create([
                     'name' => $args['input']['name'],
                     'tin' => $args['input']['tin'],
                     'vrn' => $args['input']['vrn'],
                     'mobile_number' => $args['input']['mobile_number'],
                     'provider_company_id' => $provider_company->id,
                     'email' => $args['input']['email'],
+                    'ownership_type' => $args['input']['ownership_type'],
                     'provider_sub_level_id' => $args['input']['provider_sub_level_id'],
                 ]);
+
+                if($args['input']['ownership_type'] == 'other') {
+                    ProviderFacilityOwner::create([
+                        'first_name' => $args['input']['owner_first_name'],
+                        'middle_name' => $args['input']['owner_middle_name'],
+                        'last_name' => $args['input']['owner_last_name'],
+                        'mobile_number' => $args['input']['owner_mobile_number'],
+                        'provider_facility_id' => $provider_facility->id,
+                        'email' => $args['input']['owner_email'],
+                    ]);
+                }
             }
 
 
@@ -102,6 +118,7 @@ class CreateNewUserAccountController
                 'mobile_number' => $args['input']['mobile_number'],
                 'user_id' => $user->id,
                 'email' => $args['input']['email'],
+                'account_category_type'=> $args['input']['account_category_type'],
             ]);
 
             if ($args['input']['account_category_type'] == 'family') {
@@ -224,6 +241,7 @@ class CreateNewUserAccountController
             'mobile_number' => $args['input']['mobile_number'],
             'alternative_mobile_number' => $args['input']['alternative_mobile_number'],
             'email' => $args['input']['email'],
+            'ownership_type' => $args['input']['ownership_type'],
             'address' => $args['input']['address'],
             'physical_address' => $args['input']['physical_address'],
             'website' => $args['input']['website'],
@@ -257,6 +275,7 @@ class CreateNewUserAccountController
             'mobile_number' => $args['input']['mobile_number'],
             'alternative_mobile_number' => $args['input']['alternative_mobile_number'],
             'email' => $args['input']['email'],
+            'ownership_type' => $args['input']['ownership_type'],
             'address' => $args['input']['address'],
             'physical_address' => $args['input']['physical_address'],
             'website' => $args['input']['website'],

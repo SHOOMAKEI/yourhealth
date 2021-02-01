@@ -105,7 +105,7 @@ class ProviderLevelSeeder extends Seeder
         ProviderLevel::firstOrCreate(['name' => 'Family Medicine']);
         ProviderLevel::firstOrCreate(['name' => 'Intensivist']);
         ProviderLevel::firstOrCreate(['name' => 'Dentist']);
-
+        ProviderSubLevel::truncate();
         $sample = ProviderLevel::where('name','Diagnostic Center')->first();
         $sample->provider_sub_levels()->saveMany([
             new ProviderSubLevel(['name' => 'Pathology']),
