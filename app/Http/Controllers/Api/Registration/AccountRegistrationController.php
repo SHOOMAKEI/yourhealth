@@ -73,9 +73,17 @@ class AccountRegistrationController
             return null;
         }
 
-        ProviderFacility::where('provider_company_id', auth()->user()->service_provider->provider_company->id)
-        ->get();
-        return ProviderProfile::where('user_id', auth()->user()->id)->first();
+        if( auth()->user()->service_provider->account_category_type=='facility') {
+
+           $facility = ProviderFacility::where('provider_company_id', auth()->user()->service_provider->provider_company->id)
+            ->first();
+
+            return $facility->services;
+        }
+
+       $facility = ProviderFacility::where('id',$args['id'])->first();
+
+         return $facility->services;
     }
 
 

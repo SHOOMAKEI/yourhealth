@@ -90,8 +90,14 @@ class ProviderProfileAdminController extends Controller
     public function verify($rootValue, array $args)
     {
         
-        $provider = ProviderProfile::find('id',$args['input']['id']);
-        $user = User::find('id', $provider->user_id);
+        $provider = ProviderProfile::find($args['id']);
+        $user = User::find($provider->user_id);
+
+        if($provider->is_verified == 1) {
+
+            return $provider;
+
+        }
 
         $provider->forceFill([
             'is_verified' => 1,
@@ -109,13 +115,13 @@ class ProviderProfileAdminController extends Controller
 
     public function unverify($rootValue, array $args)
     {
-        dd($args);
-        $provider = ProviderProfile::find('id',$args['input']['id']);
-        $user = User::find('id', $provider->user_id);
+        
+        $provider = ProviderProfile::find($args['input']['id']);
+        $user = User::find($provider->user_id);
 
         $provider_last_rejection = ProviderRejectionReason::where('provider_profile_id', $provider->id)->orderBy('created_at','DESC')->first();
 
-        if($provider->is_verified == 1) {
+        if($provider->is_verified == 0) {
 
             return $provider;
 
@@ -138,16 +144,16 @@ class ProviderProfileAdminController extends Controller
             ProviderRejectionReason::create([
                 'provider_profile_id'=> $provider->id,
                 'reasons' => $args['input']['reasons'],
-                'rejection_round' => 1
+                'rejected_round' => 1
             ]);
-
+            
             return $provider;
         }
         
         ProviderRejectionReason::create([
             'provider_profile_id'=> $provider->id,
             'reasons' => $args['input']['reasons'],
-            'rejection_round' => $provider_last_rejection->rejection_round+1
+            'rejected_round' => $provider_last_rejection->rejection_round+1
         ]);
 
         return $provider;

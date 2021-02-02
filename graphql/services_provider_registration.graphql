@@ -192,7 +192,7 @@ type ProviderProfile {
     status:Boolean
     is_submitted:Boolean
     is_verified: Boolean
-    rejection_reasons: RejectionReason
+    rejection_reasons: [RejectionReason]
     submitted_at: DateTime
     provider_sub_level: ProviderSubLevel!
     account_category_type: String!
@@ -236,6 +236,8 @@ type ProviderCompany {
     trading_name: String!
     tin: String!
     vrn: String
+    tin_attachment: String!
+    vrn_attachment: String 
     mobile_number: String!
     alternative_mobile_number: String
     email: String!
@@ -258,6 +260,8 @@ type ProviderFacility {
     trading_name: String!
     tin: String!
     vrn: String
+    tin_attachment: String!
+    vrn_attachment: String 
     mobile_number: String!
     alternative_mobile_number: String
     email: String!
@@ -355,8 +359,8 @@ type DaySession {
 type RejectionReason {
     id: ID!
     provider_profile: ProviderProfile
-    rejection_round: Int!
-    reasons: String!
+    rejected_round: Int
+    reasons: String
 }
 
 enum FacilityOwner {

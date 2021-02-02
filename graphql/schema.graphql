@@ -25,7 +25,7 @@ type Query {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getMedicalRegistrationInfo")
     providerProfileServicesInfo:[ProviderProfileServices] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderProfileServicesInfo")
-    providerFacilityServicesInfo:[ProviderFacilityServices] @guard
+    providerFacilityServicesInfo(id: ID @rules(apply: ["required","exists:provider_facilities,id"])):[ProviderFacilityServices] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderFacilityServicesInfo")
 }
 
@@ -61,7 +61,7 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@submitted")
     verifyServiceProviderRequest(id:ID @rules(apply:["required", "exists:provider_profiles,id"])): ProviderProfile @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@verify")
-    unVerifyServiceProviderRequest(input: RejectionReasonInput): RejectionReason @guard
+    unVerifyServiceProviderRequest(input: RejectionReasonInput): ProviderProfile @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@unverify")
     
     #authentication mobile

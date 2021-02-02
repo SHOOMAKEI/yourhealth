@@ -96,9 +96,10 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
 
     public function getProviderProfileAttribute()
     {
-        
-        return ProviderProfile::where('user_id', $this->id)
-                                ->first()->toArray();
+        $provider_profile = ProviderProfile::where('user_id', $this->id)
+                                                    ->first()->toArray();
+
+        return isset($provider_profile)?$provider_profile:null;
         
     }
 
