@@ -106,7 +106,25 @@ input ProviderQualificationInput {
     year: String!
 }
 
+input UpdateProviderQualificationInput {
+    id:ID!
+    award_title: String! @rules(apply: ["required", "string", "max:255"])
+    institution_name: String! @rules(apply: ["required", "string", "max:255"])
+    description: String! @rules(apply: ["required", "string", "max:255"])
+    attachment: String! @rules(apply: ["required", "string", "base64pdf"])
+    year: String!
+}
+
 input ProviderMedicalRegistrationInput {
+    certificate_name: String! @rules(apply: ["required", "string", "max:255"])
+    certificate_number: String! @rules(apply: ["required", "string", "max:255"])
+    registration_number: String! @rules(apply: ["required", "string", "max:255"])
+    attachment: String! @rules(apply: ["required", "string","base64pdf"])
+    year: String!
+}
+
+input UpdateProviderMedicalRegistrationInput {
+    id:ID!
     certificate_name: String! @rules(apply: ["required", "string", "max:255"])
     certificate_number: String! @rules(apply: ["required", "string", "max:255"])
     registration_number: String! @rules(apply: ["required", "string", "max:255"])
@@ -134,10 +152,7 @@ input ProviderFacilityServicesInput  {
     service:[ProviderProfileServicesInput]
 }
 
-type RejectionReason {
-    provider_profile: ProviderProfile
-    reasons: String
-}
+
 
 input RejectionReasonInput {
     id: ID! @rules(apply: ["required", "exists:provider_profiles,id"])
@@ -176,6 +191,8 @@ type ProviderProfile {
     bio: String
     status:Boolean
     is_submitted:Boolean
+    is_verified: Boolean
+    rejection_reasons: RejectionReason
     submitted_at: DateTime
     provider_sub_level: ProviderSubLevel!
     account_category_type: String!
@@ -334,6 +351,12 @@ type DaySession {
     provider_profile: ProviderProfile @belongsTo
     created_at: DateTime!
     updated_at: DateTime!
+}
+type RejectionReason {
+    id: ID!
+    provider_profile: ProviderProfile
+    rejection_round: Int!
+    reasons: String!
 }
 
 enum FacilityOwner {

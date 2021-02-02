@@ -43,8 +43,12 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@updateProviderfacility")
     createProviderQualification(input: ProviderQualificationInput): ProviderQualification @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderQualification")
+    updateProviderQualification(input: UpdateProviderQualificationInput): ProviderQualification @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@updateProviderQualification")
     createProviderMedicalRegistration(input: ProviderMedicalRegistrationInput): ProviderMedicalRegistration @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderMedicalRegistration")
+    updateProviderMedicalRegistration(input: UpdateProviderMedicalRegistrationInput): ProviderMedicalRegistration @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@updateProviderMedicalRegistration")
     createProviderProfileServices(input: [ProviderProfileServicesInput]): [ProviderProfileServices] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfileServices")
     createProviderFacilityServices(input: ProviderFacilityServicesInput): [ProviderFacilityServices] @guard
@@ -55,7 +59,7 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createRequestedService")
     submittProfileForVerification: ProviderProfile @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@submitted")
-    verifyServiceProviderRequest(id:ID @rules(apply:["required", "exists:provider_profiles:id"])): ProviderProfile @guard
+    verifyServiceProviderRequest(id:ID @rules(apply:["required", "exists:provider_profiles,id"])): ProviderProfile @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@verify")
     unVerifyServiceProviderRequest(input: RejectionReasonInput): RejectionReason @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@unverify")

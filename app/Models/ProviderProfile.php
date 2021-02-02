@@ -72,5 +72,10 @@ class ProviderProfile extends Model implements HasMedia
     {
         return $this->belongsToMany(DaySession::class, 'day_session_provider');
     }
+
+    public function rejection_reasons()
+    {
+        return $this->hasMany(ProviderRejectionReason::class, 'provider_profile_id');
+    }
    
 }

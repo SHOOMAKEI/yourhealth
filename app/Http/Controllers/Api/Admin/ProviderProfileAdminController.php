@@ -109,6 +109,7 @@ class ProviderProfileAdminController extends Controller
 
     public function unverify($rootValue, array $args)
     {
+        dd($args);
         $provider = ProviderProfile::find('id',$args['input']['id']);
         $user = User::find('id', $provider->user_id);
 
