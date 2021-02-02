@@ -146,17 +146,17 @@ input RejectionReasonInput {
 
 
 type ProviderProfileServices  {
-    price: Int
-    compare_price: Int
-    service: Service
-    currency: String
+    id: ID
+    name: String
+    description: String
+    pivot: ProviderProfileServicePivot
 }
 
 type ProviderFacilityServices  {
-    price: Int
-    compare_price: Int
-    service: Service
-    currency: String
+    id: ID
+    name: String
+    description: String
+    pivot: ProviderFacilityServicePiv
 }
 
 type ProviderProfile {
@@ -171,7 +171,7 @@ type ProviderProfile {
     email: String!
     address:String
     physical_address: String
-    dob: String!
+    dob: String
     gender: String
     bio: String
     status:Boolean
