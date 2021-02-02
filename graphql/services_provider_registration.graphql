@@ -28,9 +28,9 @@ input ProviderProfileInput {
     middle_name: String @rules(apply: [ "string", "max:255"])
     last_name: String @rules(apply: ["string", "max:255"])
     username: String @rules(apply: [ "string", "max:255"])
-    mobile_number: String @rules(apply: ["string", "max:255"])
+    mobile_number: String @rules(apply: ["required","string", "max:255"])
     alternative_mobile_number: String
-    email: String @rules(apply: ["string", "email", "max:255"])
+    email: String @rules(apply: ["required","string", "email", "max:255"])
     address:String @rules(apply: [ "string", "max:255"])
     physical_address: String @rules(apply: [ "string", "max:255"])
     dob: String
@@ -47,13 +47,13 @@ input ProviderCompanyInput {
     tin_attachment: String @rules(apply: ["required", "string", "base64pdf"])
     vrn_attachment: String @rules(apply: ["required", "string", "base64pdf"])
     mobile_number: String! @rules(apply: ["required", "string", "max:255"])
-    alternative_mobile_number: String @rules(apply: ["string", "max:255"])
+    alternative_mobile_number: String @rules(apply: ["max:255"])
     email: String! @rules(apply: ["required", "string", "email", "max:255"])
-    address:String! @rules(apply: ["string", "max:255"])
-    physical_address: String @rules(apply: ["string", "max:255"])
-    website: String @rules(apply: [ "string", "max:255"])
-    registration_number: String @rules(apply: [ "string", "max:255"])
-    registration_date: String @rules(apply: ["string", "max:255"])
+    address:String! @rules(apply: [ "max:255"])
+    physical_address: String @rules(apply: [ "max:255"])
+    website: String @rules(apply: [ "max:255"])
+    registration_number: String @rules(apply: [ "max:255"])
+    registration_date: String @rules(apply: ["max:255"])
     description: String
 }
 
@@ -65,13 +65,34 @@ input ProviderFacilityInput {
     tin_attachment: String! @rules(apply: ["required", "string", "base64pdf"])
     vrn_attachment: String @rules(apply: ["required", "string", "base64pdf"])
     mobile_number: String! @rules(apply: ["required", "string", "max:255"])
-    alternative_mobile_number: String @rules(apply: [ "string", "max:255"])
+    alternative_mobile_number: String @rules(apply: ["max:255"])
     email: String! @rules(apply: ["required", "string", "email", "max:255"])
-    address:String! @rules(apply: ["string", "max:255"])
-    physical_address: String @rules(apply: ["string", "max:255"])
-    website: String @rules(apply: [ "string", "max:255"])
-    registration_number: String @rules(apply: [ "string", "max:255"])
-    registration_date: String @rules(apply: ["string", "max:255"])
+    address:String! @rules(apply: ["max:255"])
+    physical_address: String @rules(apply: ["max:255"])
+    website: String @rules(apply: ["max:255"])
+    registration_number: String @rules(apply: [ "max:255"])
+    registration_date: String @rules(apply: ["max:255"])
+    description: String
+    provider_sub_level_id: Int! @rules(apply: ["required", "exists:provider_sub_levels,id"])
+    provider_company_id: Int! @rules(apply: ["required", "exists:provider_companies,id"])
+}
+
+input UpdateProviderFacilityInput {
+    id: ID! @rules(apply: ["required", "exists:provider_facilities,id"])
+    name: String! @rules(apply: ["required", "string", "max:255"])
+    trading_name: String! @rules(apply: ["required", "string", "max:255"])
+    tin: String! @rules(apply: ["required", "string", "max:255"])
+    vrn: String @rules(apply: ["required", "string", "max:255"])
+    tin_attachment: String! @rules(apply: ["required", "string", "base64pdf"])
+    vrn_attachment: String @rules(apply: ["required", "string", "base64pdf"])
+    mobile_number: String! @rules(apply: ["required", "string", "max:255"])
+    alternative_mobile_number: String @rules(apply: ["max:255"])
+    email: String! @rules(apply: ["required", "string", "email", "max:255"])
+    address:String! @rules(apply: ["max:255"])
+    physical_address: String @rules(apply: ["max:255"])
+    website: String @rules(apply: ["max:255"])
+    registration_number: String @rules(apply: [ "max:255"])
+    registration_date: String @rules(apply: ["max:255"])
     description: String
     provider_sub_level_id: Int! @rules(apply: ["required", "exists:provider_sub_levels,id"])
     provider_company_id: Int! @rules(apply: ["required", "exists:provider_companies,id"])
@@ -154,8 +175,10 @@ type ProviderProfile {
     gender: String
     bio: String
     status:Boolean
-    provider_sub_level: ProviderSubLevel
-    account_category_type: String
+    is_submitted:Boolean
+    submitted_at: DateTime
+    provider_sub_level: ProviderSubLevel!
+    account_category_type: String!
     provider_companies: ProviderCompany
     provider_facilities: ProviderFacility
     company_pivot: ProviderProfileCompanyPivot

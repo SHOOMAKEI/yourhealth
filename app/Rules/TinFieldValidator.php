@@ -46,6 +46,6 @@ class TinFieldValidator implements Rule
      */
     public function message()
     {
-        return 'The '.$this->account_category_type. ' vrn is required.';
+        return 'The '.$this->account_category_type. ' tin is required.';
     }
 }
