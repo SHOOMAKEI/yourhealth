@@ -87,6 +87,94 @@ class AccountRegistrationController
          return $facility->services;
     }
 
+    public function getProviderProfileInfoWithId($rootValue, array $args)
+    {
+        return ProviderProfile::where('id', auth()->user()->id)->first();
+    }
+
+    public function getProviderCompanyInfoWithId($rootValue, array $args)
+    {
+        $provider_profile = ProviderProfile::where('id', $args['id'])->first();
+
+        if( $provider_profile->account_category_type=='individual') {
+
+            return null;
+        }
+
+        return ProviderCompany::where('id', $provider_profile->provider_companies[0]->id)->first();
+    }
+
+    public function getProviderFacilityInfoWithId($rootValue, array $args)
+    {
+        $provider_profile = ProviderProfile::where('id', $args['id'])->first();
+
+        if( $provider_profile->account_category_type=='individual') {
+
+            return null;
+        }
+
+        return ProviderFacility::where('provider_company_id', $provider_profile->provider_companies[0]->id)->get();
+    }
+
+    public function getEducationQualificationInfoWithId($rootValue, array $args)
+    {
+        $provider_profile = ProviderProfile::where('id', $args['id'])->first();
+
+        if( $provider_profile->account_category_type=='facility'||$provider_profile->account_category_type=='company' ) {
+
+            return null;
+        }
+
+        return  $provider_profile->provider_qualifications;
+    }
+
+    public function getMedicalRegistrationInfoWithId($rootValue, array $args)
+    {
+        $provider_profile = ProviderProfile::where('id', $args['id'])->first();
+
+        if( $provider_profile->account_category_type=='facility'||$provider_profile->account_category_type=='company' ) {
+
+            return null;
+        }
+
+        return $provider_profile->provider_medical_registrations;
+    }
+
+    public function getProviderProfileServicesInfoWithId($rootValue, array $args)
+    {
+        $provider_profile = ProviderProfile::where('id', $args['id'])->first();
+
+        if( $provider_profile->account_category_type=='facility'||$provider_profile->account_category_type=='company' ) {
+            // dd(auth()->user()->service_provider->services);
+            return null;
+        }
+
+        
+        return isset($provider_profile->services)?$provider_profile->services->toArray():null;
+    }
+
+    public function getProviderFacilityServicesInfoWithId($rootValue, array $args)
+    {
+        $provider_profile = ProviderProfile::where('id', $args['id'])->first();
+
+        if( $provider_profile->account_category_type=='individual') {
+
+            return null;
+        }
+
+        if( $provider_profile->account_category_type=='facility') {
+
+           $facility = ProviderFacility::where('provider_company_id', $provider_profile->provider_company->id)
+            ->first();
+
+            return $facility->services;
+        }
+
+       $facility = ProviderFacility::where('id',$args['facility_id'])->first();
+
+         return $facility->services;
+    }
+
 
     public function getUnselectedService($rootValue, array $args)
     {

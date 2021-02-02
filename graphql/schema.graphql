@@ -27,6 +27,20 @@ type Query {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderProfileServicesInfo")
     providerFacilityServicesInfo(id: ID @rules(apply: ["required","exists:provider_facilities,id"])):[ProviderFacilityServices] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderFacilityServicesInfo")
+    providerProfileInfoWithId(id:ID @rules(apply:["required", "exists:provider_profiles,id"])):ProviderProfile @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderProfileInfoWithId")
+    providerCompanyInfoWithId(id:ID @rules(apply:["required", "exists:provider_profiles,id"])):ProviderCompany @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderCompanyInfoWithId")
+    providerFacilityInfoWithId(id:ID @rules(apply:["required", "exists:provider_profiles,id"])):[ProviderFacility] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderFacilityInfoWithId")
+    educationQualificationInfoWithId(id:ID @rules(apply:["required", "exists:provider_profiles,id"])):[ProviderQualification] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getEducationQualificationInfo")
+    medicalRegistrationInfoWithId(id:ID @rules(apply:["required", "exists:provider_profiles,id"])):[ProviderMedicalRegistration] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getMedicalRegistrationInfo")
+    providerProfileServicesInfo:[ProviderProfileServices] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderProfileServicesInfo")
+    providerFacilityServicesInfo(id: ID @rules(apply: ["required","exists:provider_facilities,id"])):[ProviderFacilityServices] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderFacilityServicesInfo")
 }
 
 type Mutation {
