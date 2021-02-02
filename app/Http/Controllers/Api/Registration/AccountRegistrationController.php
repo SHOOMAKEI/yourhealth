@@ -59,11 +59,12 @@ class AccountRegistrationController
     public function getProviderProfileServicesInfo($rootValue, array $args)
     {
         if( auth()->user()->service_provider->account_category_type=='facility'||auth()->user()->service_provider->account_category_type=='company' ) {
-
+            // dd(auth()->user()->service_provider->services);
             return null;
         }
 
-        return auth()->user()->service_provider->services;
+        
+        return isset(auth()->user()->service_provider->services)?auth()->user()->service_provider->services->toArray():null;
     }
 
     public function getProviderFacilityServicesInfo($rootValue, array $args)
