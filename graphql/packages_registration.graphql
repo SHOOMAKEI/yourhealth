@@ -103,7 +103,7 @@ input UpdatePackagePlanInput {
   price: Int
   signup_fee: Int
   trial_period: Int
-  invoice_period: Intu
+  invoice_period: Int
   invoice_interval: String
   grace_period: Int
   grace_interval: String
