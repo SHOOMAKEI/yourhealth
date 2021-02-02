@@ -36,4 +36,18 @@ class ProviderFacility extends Model implements HasMedia
     {
         return $this->belongsTo(ProviderSubLevel::class);
     }
+
+    public function getTinAttachmentAttribute()
+    {
+        
+        return $this->getFirstMediaUrl('provider-facility-tin-files');
+
+    }
+
+    public function getVrnAttachmentAttribute()
+    {
+        
+        return $this->getFirstMediaUrl('provider-facility-vrn-files');
+
+    }
 }

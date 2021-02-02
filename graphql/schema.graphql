@@ -10,10 +10,23 @@ type Query {
     serviceSubCategory(id: ID @eq): ServiceSubCategory  @guard @find
     services(trashed: Trashed @trashed): [Service!]! @guard  @all 
     service(id: ID @eq): Service  @guard @find
-    RequestedService(orderBy: _ @orderBy(columns: ["created_at"])): RequestedService @all 
+    requestedService(orderBy: _ @orderBy(columns: ["created_at"])): RequestedService @all 
     unverifiedServiceProviderRequests: [ProviderProfile]
         @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@index")
-    
+    providerProfileInfo:ProviderProfile @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderProfileInfo")
+    providerCompanyInfo:ProviderCompany @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderCompanyInfo")
+    providerFacilityInfo:[ProviderFacility] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderFacilityInfo")
+    educationQualificationInfo:[ProviderQualification] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getEducationQualificationInfo")
+    medicalRegistrationInfo:[ProviderMedicalRegistration] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getMedicalRegistrationInfo")
+    providerProfileServicesInfo:[ProviderProfileServices] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderProfileServicesInfo")
+    providerFacilityServicesInfo:[ProviderFacilityServices] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderFacilityServicesInfo")
 }
 
 type Mutation {
@@ -26,9 +39,9 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderCompany")
     createProviderFacility(input: ProviderFacilityInput): ProviderFacility @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderfacility")
-    createProviderQualification(input: [ProviderQualificationInput]): [ProviderQualification] @guard
+    createProviderQualification(input: ProviderQualificationInput): ProviderQualification @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderQualification")
-    createProviderMedicalRegistration(input: [ProviderMedicalRegistrationInput]): [ProviderMedicalRegistration] @guard
+    createProviderMedicalRegistration(input: ProviderMedicalRegistrationInput): ProviderMedicalRegistration @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderMedicalRegistration")
     createProviderProfileServices(input: [ProviderProfileServicesInput]): [ProviderProfileServices] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfileServices")
@@ -38,7 +51,7 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfileCalendar")
     createRequestedService(input: RequestedServiceInput): RequestedService @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createRequestedService")
-    SubmittProfileForVerification: ProviderProfile @guard
+    submittProfileForVerification: ProviderProfile @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@submitted")
     verifyServiceProviderRequests: ProviderProfile @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@verify")

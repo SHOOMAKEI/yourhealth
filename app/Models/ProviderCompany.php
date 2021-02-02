@@ -21,4 +21,18 @@ class ProviderCompany extends Model
     {
         return $this->belongsToMany(ProviderProfile::class, 'company_provider_profile')->withPivot('role');
     }
+
+    public function getTinAttachmentAttribute()
+    {
+        
+        return $this->getFirstMediaUrl('provider-company-tin-files');
+
+    }
+
+    public function getVrnAttachmentAttribute()
+    {
+        
+        return $this->getFirstMediaUrl('provider-company-vrn-files');
+
+    }
 }

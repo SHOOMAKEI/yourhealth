@@ -222,11 +222,11 @@ class CreateNewUserAccountController
 
         $provider_company->addMediaFromBase64($args['input']['tin_attachment'], 'application/pdf')
         ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['tin'] . '.pdf'))
-        ->toMediaCollection('provider-tin-files');
+        ->toMediaCollection('provider-company-tin-files');
 
         $provider_company->addMediaFromBase64($args['input']['vrn_attachment'], 'application/pdf')
         ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['vrn'] . '.pdf'))
-        ->toMediaCollection('provider-vrn-files');
+        ->toMediaCollection('provider-company-vrn-files');
 
         return $provider_company;
     }
@@ -253,11 +253,11 @@ class CreateNewUserAccountController
 
         $provider_facility->addMediaFromBase64($args['input']['tin_attachment'], 'application/pdf')
                 ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['tin'] . '.pdf'))
-                ->toMediaCollection('provider-tin-files');
+                ->toMediaCollection('provider-facility-tin-files');
 
         $provider_facility->addMediaFromBase64($args['input']['vrn_attachment'], 'application/pdf')
                 ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['vrn'] . '.pdf'))
-                ->toMediaCollection('provider-vrn-files');
+                ->toMediaCollection('provider-facility-vrn-files');
 
         return $provider_facility;
     }
@@ -287,11 +287,11 @@ class CreateNewUserAccountController
 
         $provider_facility->addMediaFromBase64($args['input']['tin_attachment'], 'application/pdf')
         ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['tin'] . '.pdf'))
-        ->toMediaCollection('provider-tin-files');
+        ->toMediaCollection('provider-facility-tin-files');
 
         $provider_facility->addMediaFromBase64($args['input']['vrn_attachment'], 'application/pdf')
         ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['vrn'] . '.pdf'))
-        ->toMediaCollection('provider-vrn-files');
+        ->toMediaCollection('provider-facility-vrn-files');
 
         return $provider_facility;
     }
@@ -300,27 +300,21 @@ class CreateNewUserAccountController
     public function createProviderQualification($rootVaule, array $args)
     {
 
-        $index = 0;
-        $data = [];
-        foreach ($args['input'] as $qualification) {
+        $qualification = $args['input'];
 
-            $provider_qualification = ProviderQualification::create([
-                'award_title' => $qualification['award_title'],
-                'institution_name' => $qualification['institution_name'],
-                'description' => $qualification['description'],
-                'provider_profile_id' => auth()->user()->service_provider->id,
-                'year' => $qualification['year'],
-            ]);
+        $provider_qualification = ProviderQualification::create([
+            'award_title' => $qualification['award_title'],
+            'institution_name' => $qualification['institution_name'],
+            'description' => $qualification['description'],
+            'provider_profile_id' => auth()->user()->service_provider->id,
+            'year' => $qualification['year'],
+        ]);
 
-            $provider_qualification->addMediaFromBase64($qualification['attachment'], 'application/pdf')
-                ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . auth()->user()->name . '-' . $qualification['award_title'] . '.pdf'))
-                ->toMediaCollection('provider-qualification-files');
-            $data[$index] = $provider_qualification;
+        $provider_qualification->addMediaFromBase64($qualification['attachment'], 'application/pdf')
+            ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . auth()->user()->name . '-' . $qualification['award_title'] . '.pdf'))
+            ->toMediaCollection('provider-qualification-files');
 
-            $index++;
-        }
-
-        return $data;
+        return $provider_qualification;
     }
 
     public function updateProviderQualification($rootVaule, array $args)
@@ -347,9 +341,7 @@ class CreateNewUserAccountController
     public function createProviderMedicalRegistration($rootVaule, array $args)
     {
 
-        $index = 0;
-        $data = [];
-        foreach ($args['input'] as $medical_registration) {
+       $medical_registration = $args['input'];
 
             $provider_medical_registration = ProviderMedicalRegistration::create([
                 'certificate_name' => $medical_registration['certificate_name'],
@@ -362,12 +354,9 @@ class CreateNewUserAccountController
             $provider_medical_registration->addMediaFromBase64($medical_registration['attachment'], 'application/pdf')
                 ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . auth()->user()->name . '-' . $medical_registration['certificate_name'] . '.pdf'))
                 ->toMediaCollection('provider-medical-registration-files');
-            $data[$index] = $provider_medical_registration;
+           
 
-            $index++;
-        }
-
-        return $data;
+        return $provider_medical_registration;
 
     }
 
