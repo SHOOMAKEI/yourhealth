@@ -148,14 +148,14 @@ type ProviderProfile {
     mobile_number: String!
     alternative_mobile_number: String
     email: String!
-    address:String!
+    address:String
     physical_address: String
-    dob: DateTime
+    dob: String!
     gender: String
     bio: String
     status:Boolean
-    provider_sub_level: ProviderSubLevel!
-    account_category_type: String!
+    provider_sub_level: ProviderSubLevel
+    account_category_type: String
     provider_companies: ProviderCompany
     provider_facilities: ProviderFacility
     company_pivot: ProviderProfileCompanyPivot
