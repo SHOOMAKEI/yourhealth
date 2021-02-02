@@ -166,7 +166,7 @@ type ProviderProfile {
     middle_name: String
     last_name: String
     username: String
-    mobile_number: String!
+    mobile_number: String
     alternative_mobile_number: String
     email: String!
     address:String
@@ -177,8 +177,8 @@ type ProviderProfile {
     status:Boolean
     is_submitted:Boolean
     submitted_at: DateTime
-    provider_sub_level: ProviderSubLevel!
-    account_category_type: String!
+    provider_sub_level: ProviderSubLevel
+    account_category_type: String
     provider_companies: ProviderCompany
     provider_facilities: ProviderFacility
     company_pivot: ProviderProfileCompanyPivot
@@ -215,22 +215,22 @@ type ProviderProfileFacilityPivot {
 
 type ProviderCompany {
     id: ID!
-    name: String!
-    trading_name: String!
-    tin: String!
+    name: String
+    trading_name: String
+    tin: String
     vrn: String
-    mobile_number: String!
+    mobile_number: String
     alternative_mobile_number: String
-    email: String!
-    address:String!
+    email: String
+    address:String
     physical_address: String
     website: String
-    registration_number: String!
+    registration_number: String
     registration_date: String
     description: String
     status:Boolean
-    user_profile: ProviderProfile!
-    provider_facilities: ProviderCategory!
+    user_profile: ProviderProfile
+    provider_facilities: ProviderCategory
     created_at: DateTime!
     updated_at: DateTime!
 }
