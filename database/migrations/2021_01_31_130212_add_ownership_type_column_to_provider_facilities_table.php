@@ -14,7 +14,7 @@ class AddOwnershipTypeColumnToProviderFacilitiesTable extends Migration
     public function up()
     {
         Schema::table('provider_facilities', function (Blueprint $table) {
-            $table->enum('ownership_type', ['self', 'other']);
+            $table->enum('ownership_type', ['self', 'other'])->default('self');
         });
     }
 
