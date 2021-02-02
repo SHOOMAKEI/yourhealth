@@ -43,7 +43,7 @@ class AccountRegistrationController
             return null;
         }
 
-        return  auth()->user()->service_provider->education_qualifications;
+        return  auth()->user()->service_provider->provider_qualifications;
     }
 
     public function getMedicalRegistrationInfo($rootValue, array $args)
@@ -53,7 +53,7 @@ class AccountRegistrationController
             return null;
         }
 
-        return auth()->user()->service_provider->medical_registrations;
+        return auth()->user()->service_provider->provider_medical_registrations;
     }
 
     public function getProviderProfileServicesInfo($rootValue, array $args)

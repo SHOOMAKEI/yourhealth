@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\ProviderProfile;
 use App\Http\Controllers\Controller;
+use App\Models\ProviderRejectionReason;
 use Illuminate\Support\Facades\Auth;
 
 class ProviderProfileAdminController extends Controller
@@ -17,7 +18,7 @@ class ProviderProfileAdminController extends Controller
      */
     public function index()
     {
-        return ProviderProfile::where('is_submitted',1)->where('is_verifed',0)->orderBy('submitted_at', 'DESC')->get();
+        return ProviderProfile::where('is_submitted',1)->where('is_verified',0)->orderBy('submitted_at', 'DESC')->get();
     }
 
     /**
@@ -88,8 +89,9 @@ class ProviderProfileAdminController extends Controller
 
     public function verify($rootValue, array $args)
     {
-        $user = User::find(auth()->user()->id);
-        $provider = ProviderProfile::find(auth()->user()->service_provider->id);
+        
+        $provider = ProviderProfile::find('id',$args['input']['id']);
+        $user = User::find('id', $provider->user_id);
 
         $provider->forceFill([
             'is_verified' => 1,
@@ -98,18 +100,26 @@ class ProviderProfileAdminController extends Controller
         $user->forceFill([
             'profile_stage' => 11,
         ])->save();
-
-        $user->assignRole('verified_sp');
-        $user->removeRole('unverified_sp');
+        
+        $user->assignRole('verified-service-provider');
+        $user->removeRole('unverified-service-provider');
 
         return $provider;
     }
 
     public function unverify($rootValue, array $args)
     {
-        $user = User::find(auth()->user()->id);
-        $provider = ProviderProfile::find(auth()->user()->service_provider->id);
+        $provider = ProviderProfile::find('id',$args['input']['id']);
+        $user = User::find('id', $provider->user_id);
 
+        $provider_last_rejection = ProviderRejectionReason::where('provider_profile_id', $provider->id)->orderBy('created_at','DESC')->first();
+
+        if($provider->is_verified == 1) {
+
+            return $provider;
+
+        }
+      
         $provider->forceFill([
             'is_verified' => 0,
             'submitted_at' => null
@@ -119,8 +129,25 @@ class ProviderProfileAdminController extends Controller
             'profile_stage' => 0,
         ])->save();
 
-        $user->removeRole('verified_sp');
-        $user->assignRole('unverified_sp');
+        $user->removeRole('verified-service-provider');
+        $user->assignRole('unverified-service-provider');
+
+        if(!isset($provider_last_rejection->rejection_round)){
+
+            ProviderRejectionReason::create([
+                'provider_profile_id'=> $provider->id,
+                'reasons' => $args['input']['reasons'],
+                'rejection_round' => 1
+            ]);
+
+            return $provider;
+        }
+        
+        ProviderRejectionReason::create([
+            'provider_profile_id'=> $provider->id,
+            'reasons' => $args['input']['reasons'],
+            'rejection_round' => $provider_last_rejection->rejection_round+1
+        ]);
 
         return $provider;
     }
