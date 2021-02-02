@@ -33,7 +33,7 @@ class AccountRegistrationController
             return null;
         }
 
-        return ProviderFacility::where('id', auth()->user()->service_provider->provider_companies[0]->id)->get();
+        return ProviderFacility::where('provider_company_id', auth()->user()->service_provider->provider_companies[0]->id)->get();
     }
 
     public function getEducationQualificationInfo($rootValue, array $args)

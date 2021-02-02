@@ -182,9 +182,9 @@ class CreateNewUserAccountController
                 'middle_name' => $args['input']['middle_name'],
                 'last_name' => $args['input']['last_name'],
                 'username' => $args['input']['username'],
-                'mobile_number' => $args['input']['mobile_number'],
+                'mobile_number' => auth()->user()->mobile_number,
                 'alternative_mobile_number' => $args['input']['alternative_mobile_number'],
-                'email' => $args['input']['email'],
+                'email' => auth()->user()->email,
                 'address' => $args['input']['address'],
                 'physical_address' => $args['input']['physical_address'],
                 'dob' => $args['input']['dob'],
@@ -198,9 +198,11 @@ class CreateNewUserAccountController
 
     public function createProviderCompany($rootVaule, array $args)
     {
-        // dd(auth()->user()->provider_profile->id);
+        // dd(auth()->user()->service_provider->provider_companies[0]->id);
         $provider_company = ProviderCompany::updateOrCreate(
-            ['tin' => $args['input']['tin'], 'vrn' => $args['input']['vrn']],
+            [
+            'id' => auth()->user()->service_provider->provider_companies[0]->id
+            ],
             [
                 'trading_name' => $args['input']['trading_name'],
                 'name' => $args['input']['name'],
@@ -241,7 +243,7 @@ class CreateNewUserAccountController
             'mobile_number' => $args['input']['mobile_number'],
             'alternative_mobile_number' => $args['input']['alternative_mobile_number'],
             'email' => $args['input']['email'],
-            'ownership_type' => $args['input']['ownership_type'],
+            'ownership_type' => 'self',
             'address' => $args['input']['address'],
             'physical_address' => $args['input']['physical_address'],
             'website' => $args['input']['website'],
@@ -275,7 +277,7 @@ class CreateNewUserAccountController
             'mobile_number' => $args['input']['mobile_number'],
             'alternative_mobile_number' => $args['input']['alternative_mobile_number'],
             'email' => $args['input']['email'],
-            'ownership_type' => $args['input']['ownership_type'],
+            'ownership_type' => 'self',
             'address' => $args['input']['address'],
             'physical_address' => $args['input']['physical_address'],
             'website' => $args['input']['website'],
