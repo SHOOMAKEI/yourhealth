@@ -46,6 +46,6 @@ class VrnFieldValidator implements Rule
      */
     public function message()
     {
-        return 'The '.$this->account_category_type. ' name is required.';
+        return 'The '.$this->account_category_type. ' vrn is required.';
     }
 }
