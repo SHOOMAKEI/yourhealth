@@ -55,7 +55,7 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createRequestedService")
     submittProfileForVerification: ProviderProfile @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@submitted")
-    verifyServiceProviderRequests: ProviderProfile @guard
+    verifyServiceProviderRequest(id:ID @rules(apply:["required", "exists:provider_profiles:id"])): ProviderProfile @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@verify")
     unVerifyServiceProviderRequest(input: RejectionReasonInput): RejectionReason @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@unverify")

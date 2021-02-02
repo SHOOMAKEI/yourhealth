@@ -140,7 +140,7 @@ type RejectionReason {
 }
 
 input RejectionReasonInput {
-    provider_profile_id: Int @rules(apply: ["required", "exists:provider_profiles,id"])
+    id: ID! @rules(apply: ["required", "exists:provider_profiles,id"])
     reasons: String @rules(apply: ["required", "string"])
 }
 
