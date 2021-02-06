@@ -82,7 +82,7 @@ class AccountRegistrationController
             return $facility->services;
         }
 
-       $facility = ProviderFacility::where('id',$args['id'])->first();
+       $facility = ProviderFacility::where('id',$args['facility_id'])->first();
 
          return $facility->services;
     }

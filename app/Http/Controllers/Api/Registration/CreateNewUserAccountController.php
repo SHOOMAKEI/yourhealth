@@ -33,9 +33,6 @@ class CreateNewUserAccountController
     public function create($rootVaule, array $args)
     {
 
-        // dd($args);
-        
-        // DB::transaction(function($args){
         $user = User::create([
             'name' => $args['input']['first_name'] . " " . $args['input']['middle_name'] . " " . $args['input']['last_name'],
             'email' => $args['input']['email'],
@@ -69,7 +66,7 @@ class CreateNewUserAccountController
                     'email' => $args['input']['email'],
                 ]);
 
-                $provider_company->provider_profile()->attach($user->service_provider->id, ['role' => 'Owner']);
+                $provider_company->provider_profile()->attach($user->service_provider->id, ['role' => 'owner']);
             }
 
             if ($args['input']['account_category_type'] == 'facility') {
@@ -82,7 +79,7 @@ class CreateNewUserAccountController
                     'email' => $args['input']['email'],
                 ]);
 
-                $provider_company->provider_profile()->attach($user->service_provider->id, ['role' => 'Owner']);
+                $provider_company->provider_profile()->attach($user->service_provider->id, ['role' => 'owner']);
 
                 $provider_facility = ProviderFacility::create([
                     'name' => $args['input']['name'],
@@ -146,11 +143,7 @@ class CreateNewUserAccountController
         }
 
         return new UserResource($user);
-        // });
-
-
-        // $this->sendVerificationCode($user->mobile_number, $user->verification_code);
-
+        
     }
 
     public function getVerificationCode()
@@ -286,7 +279,9 @@ class CreateNewUserAccountController
             'provider_sub_level_id' => $args['input']['provider_sub_level_id'],
             'provider_company_id' => $args['input']['provider_company_id'],
         ]);
-
+        
+        $provider_facility->clearMediaCollection('provider-facility-tin-files');
+        $provider_facility->clearMediaCollection('provider-facility-vrn-files');
         $provider_facility->addMediaFromBase64($args['input']['tin_attachment'], 'application/pdf')
         ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['tin'] . '.pdf'))
         ->toMediaCollection('provider-facility-tin-files');
@@ -294,6 +289,19 @@ class CreateNewUserAccountController
         $provider_facility->addMediaFromBase64($args['input']['vrn_attachment'], 'application/pdf')
         ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['vrn'] . '.pdf'))
         ->toMediaCollection('provider-facility-vrn-files');
+
+        return $provider_facility;
+    }
+
+    public function deleteProviderFacility($rootVaule, array $args)
+    {
+
+        $provider_facility = ProviderFacility::find($args['facility_id']);
+
+        $provider_facility->clearMediaCollection('provider-facility-tin-files');
+        $provider_facility->clearMediaCollection('provider-facility-vrn-files');
+
+        $provider_facility->delete();
 
         return $provider_facility;
     }
@@ -340,6 +348,18 @@ class CreateNewUserAccountController
         return $provider_qualification;
     }
 
+    public function deleteProviderQualification($rootVaule, array $args)
+    {
+
+        $provider_qualification = ProviderQualification::find($args['qualification_id']);
+
+        $provider_qualification->clearMediaCollection('provider-qualification-files');
+
+        $provider_qualification->delete();
+    
+        return $provider_qualification;
+    }
+
     public function createProviderMedicalRegistration($rootVaule, array $args)
     {
 
@@ -383,6 +403,21 @@ class CreateNewUserAccountController
 
     }
 
+    public function deleteProviderMedicalRegistration($rootVaule, array $args)
+    {
+
+        $provider_medical_registration = ProviderMedicalRegistration::find($args['medical_reg_id']);
+        
+
+        $provider_medical_registration->clearMediaCollection('provider-medical-registration-files');
+        
+
+        $provider_medical_registration->delete();
+
+        return $provider_medical_registration;
+
+    }
+
     public function createProviderFacilityServices($rootVaule, array $args)
     {
 
@@ -394,7 +429,31 @@ class CreateNewUserAccountController
             $data[$service['service_id']]['currency'] = $service['currency'];
         }
 
-        $provider_facility->services()->sync($data);
+        $provider_facility->services()->syncWithoutDetaching($data);
+
+        return $provider_facility->services->map(function ($query) {
+            $services['service']['id'] = $query->id;
+            $services['service']['name'] = $query->name;
+            $services['service']['description'] = $query->description;
+            $services['service']['is_active'] = $query->is_active;
+            $services['service']['created_at'] = $query->created_at;
+            $services['service']['updated_at'] = $query->updated_at;
+            $services['price'] = $query->pivot->price;
+            $services['compare_price'] = $query->pivot->compare_price;
+            $services['currency'] = $query->pivot->currency;
+
+            return $services;
+
+        })->all();
+    }
+
+    public function deleteProviderFacilityServices($rootVaule, array $args)
+    {
+
+        $provider_facility = ProviderFacility::find($args['facility_id']);
+
+
+        $provider_facility->services()->detach($args['service_id']);
 
         return $provider_facility->services->map(function ($query) {
             $services['service']['id'] = $query->id;
@@ -423,7 +482,31 @@ class CreateNewUserAccountController
 
         }
 
-        $provider_profile->services()->sync($data);
+        $provider_profile->services()->syncWithoutDetaching($data);
+
+        return $provider_profile->services->map(function ($query) {
+            $services['service']['id'] = $query->id;
+            $services['service']['name'] = $query->name;
+            $services['service']['description'] = $query->description;
+            $services['service']['is_active'] = $query->is_active;
+            $services['service']['created_at'] = $query->created_at;
+            $services['service']['updated_at'] = $query->updated_at;
+            $services['price'] = $query->pivot->price;
+            $services['compare_price'] = $query->pivot->compare_price;
+            $services['currency'] = $query->pivot->currency;
+
+            return $services;
+
+        })->all();
+    }
+
+
+    public function deleteProviderProfileServices($rootVaule, array $args)
+    {
+        $provider_profile = ProviderProfile::find(auth()->user()->service_provider->id);
+
+
+        $provider_profile->services()->detach($args['service_id']);
 
         return $provider_profile->services->map(function ($query) {
             $services['service']['id'] = $query->id;
