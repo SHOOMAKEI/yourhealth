@@ -141,17 +141,17 @@ type Mutation {
     deleteService(id: ID!): Service @guard @delete
 
     #package registration
-    createPackageMemberShip(input: CreateMembershipCategoryInput): MembershipCategory @guard @create
-    updatePackageMemberShip(input: UpdateMembershipCategoryInput): MembershipCategory @guard @update
+    createPackageMemberShip(input: CreateMembershipCategoryInput! @spread): MembershipCategory @guard @create
+    updatePackageMemberShip(input: UpdateMembershipCategoryInput! @spread): MembershipCategory @guard @update
     deletePackageMemberShip(id: ID!): MembershipCategory @guard @delete
-    createPackageClass(input: CreateMembershipClassInput): MembershipClass @guard @create
-    updatePackageClass(input: UpdateMembershipClassInput): MembershipClass @guard @update
+    createPackageClass(input: CreateMembershipClassInput! @spread): MembershipClass @guard @create
+    updatePackageClass(input: UpdateMembershipClassInput! @spread): MembershipClass @guard @update
     deletePackageClass(id: ID!): MembershipClass @delete
-    createPackagePlan(input: CreatePackagePlanInput): PackagePlan @guard @create
-    updatePackagePlan(input: UpdatePackagePlanInput): PackagePlan @guard @update
+    createPackagePlan(input: CreatePackagePlanInput! @spread): PackagePlan @guard @create
+    updatePackagePlan(input: UpdatePackagePlanInput! @spread): PackagePlan @guard @update
     deletePackagePlan(id: ID!): PackagePlan @guard @delete
-    createPackageFeature(input: CreatePackageFeatureInput): PackageFeature @guard @create
-    updatePackageFeature(input: UpdatePackageFeatureInput): PackageFeature @guard @update
+    createPackageFeature(input: CreatePackageFeatureInput! @spread): PackageFeature @guard @create
+    updatePackageFeature(input: UpdatePackageFeatureInput! @spread): PackageFeature @guard @update
     deletePackageFeature(id: ID!): PackageFeature @guard @delete
 
 }

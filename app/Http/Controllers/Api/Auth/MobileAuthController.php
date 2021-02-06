@@ -29,10 +29,6 @@ class MobileAuthController extends Controller
 
         if(! $user || ($user->is_active ==false)) {
 
-            $user->forceFill([
-                'login_trial_count' => ($user->login_trial_count-1),
-            ])->save();
-
             return (object)([
                 'user' => null,
                 'token' => null, 

@@ -52,27 +52,27 @@ type PackageFeature {
 
 input CreateMembershipCategoryInput {
   name: String! @rules(apply: ["required", "string", "max:255"])
-  description: String @rules(apply: ["required", "string", "max:255"])
+  description: String @rules(apply: [ "string", "max:255"])
   is_active: Boolean 
-}
-
-input CreateMembershipClassInput {
-  name: String! @rules(apply: ["required", "string", "max:255"])
-  description: String @rules(apply: ["required", "string", "max:255"])
-  is_active: Boolean
 }
 
 input UpdateMembershipCategoryInput {
   id: ID @rules(apply: ["required", "exists:membership_categories,id"])
   name: String! @rules(apply: ["required", "string", "max:255"])
-  description: String @rules(apply: ["required", "string", "max:255"])
+  description: String @rules(apply: [ "max:255"])
+  is_active: Boolean
+}
+
+input CreateMembershipClassInput {
+  name: String! @rules(apply: ["required", "string", "max:255"])
+  description: String @rules(apply: [ "max:255"])
   is_active: Boolean
 }
 
 input UpdateMembershipClassInput {
   id: ID @rules(apply: ["required", "exists:membership_classes,id"])
-  name: String! @rules(apply: ["required", "string", "max:255"])
-  description: String @rules(apply: ["required", "string", "max:255"])
+  name: String! @rules(apply: [ "max:255"])
+  description: String @rules(apply: ["max:255"])
   is_active: Boolean
 }
 
