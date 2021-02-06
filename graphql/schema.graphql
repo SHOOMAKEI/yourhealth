@@ -25,7 +25,7 @@ type Query {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getMedicalRegistrationInfo")
     providerProfileServicesInfo:[ProviderProfileServices] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderProfileServicesInfo")
-    providerFacilityServicesInfo(id: ID @rules(apply: ["required","exists:provider_facilities,id"])):[ProviderFacilityServices] @guard
+    providerFacilityServicesInfo(facility_id: ID @rules(apply: ["required","exists:provider_facilities,id"])):[ProviderFacilityServices] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderFacilityServicesInfo")
     providerProfileInfoWithId(id:ID @rules(apply:["required", "exists:provider_profiles,id"])):ProviderProfile @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderProfileInfoWithId")
@@ -34,13 +34,13 @@ type Query {
     providerFacilityInfoWithId(id:ID @rules(apply:["required", "exists:provider_profiles,id"])):[ProviderFacility] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderFacilityInfoWithId")
     educationQualificationInfoWithId(id:ID @rules(apply:["required", "exists:provider_profiles,id"])):[ProviderQualification] @guard
-        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getEducationQualificationInfo")
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getEducationQualificationInfoWithId")
     medicalRegistrationInfoWithId(id:ID @rules(apply:["required", "exists:provider_profiles,id"])):[ProviderMedicalRegistration] @guard
-        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getMedicalRegistrationInfo")
-    providerProfileServicesInfo:[ProviderProfileServices] @guard
-        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderProfileServicesInfo")
-    providerFacilityServicesInfo(id: ID @rules(apply: ["required","exists:provider_facilities,id"])):[ProviderFacilityServices] @guard
-        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderFacilityServicesInfo")
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getMedicalRegistrationInfoWithId")
+    providerProfileServicesInfoWithId(id:ID @rules(apply:["required", "exists:provider_profiles,id"])):[ProviderProfileServices] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderProfileServicesInfoWithId")
+    providerFacilityServicesInfoWithId(id:ID @rules(apply:["required", "exists:provider_profiles,id"]),facility_id: ID @rules(apply: ["required","exists:provider_facilities,id"])):[ProviderFacilityServices] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderFacilityServicesInfoWithId")
 }
 
 type Mutation {
@@ -53,20 +53,30 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderCompany")
     createProviderFacility(input: ProviderFacilityInput): ProviderFacility @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderfacility")
+    deleteProviderFacility(facility_id: ID @rules(apply:["required", "exists:provider_facilities,id"])): ProviderFacility @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@deleteProviderfacility")
     updateProviderFacility(input: UpdateProviderFacilityInput): ProviderFacility @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@updateProviderfacility")
     createProviderQualification(input: ProviderQualificationInput): ProviderQualification @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderQualification")
     updateProviderQualification(input: UpdateProviderQualificationInput): ProviderQualification @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@updateProviderQualification")
+    deleteProviderQualification(qualification_id: ID @rules(apply:["required", "exists:provider_qualifications,id"])): ProviderQualification @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@deleteProviderQualification")
     createProviderMedicalRegistration(input: ProviderMedicalRegistrationInput): ProviderMedicalRegistration @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderMedicalRegistration")
     updateProviderMedicalRegistration(input: UpdateProviderMedicalRegistrationInput): ProviderMedicalRegistration @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@updateProviderMedicalRegistration")
+    deleteProviderMedicalRegistration(medical_reg_id: ID @rules(apply:["required", "exists:provider_medical_registrations,id"])): ProviderMedicalRegistration @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@deleteProviderMedicalRegistration")
     createProviderProfileServices(input: [ProviderProfileServicesInput]): [ProviderProfileServices] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfileServices")
+    deleteProviderProfileServices(provider_id: ID @rules(apply:["required", "exists:provider_profiles,id"]), service_id: ID @rules(apply:["required", "exists:services,id"])): [ProviderProfileServices] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@deleteProviderProfileServices")
     createProviderFacilityServices(input: ProviderFacilityServicesInput): [ProviderFacilityServices] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderFacilityServices")
+    deleteProviderFacilityServices(facility_id: ID @rules(apply:["required", "exists:provider_facilities,id"]), service_id: ID @rules(apply:["required", "exists:services,id"])): [ProviderFacilityServices] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@deleteProviderFacilityServices")
     createProviderProfileCalendar(input: [DaySessionInput]): [DaySession] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfileCalendar")
     createRequestedService(input: RequestedServiceInput): RequestedService @guard
