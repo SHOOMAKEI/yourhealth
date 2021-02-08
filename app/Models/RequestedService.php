@@ -7,7 +7,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class RequestedServices extends Model
+class RequestedService extends Model
 {
     use HasFactory;
     use SoftDeletes;

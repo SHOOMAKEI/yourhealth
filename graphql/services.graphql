@@ -35,6 +35,7 @@ type RequestedService {
     id: ID!
     name: String!
     description: String
+    is_processed: Boolean
     provider_profile: ProviderProfile
     created_at: DateTime!
     updated_at: DateTime!
