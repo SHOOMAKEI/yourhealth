@@ -41,6 +41,17 @@ type Query {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderProfileServicesInfoWithId")
     providerFacilityServicesInfoWithId(id:ID @rules(apply:["required", "exists:provider_profiles,id"]),facility_id: ID @rules(apply: ["required","exists:provider_facilities,id"])):[ProviderFacilityServices] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderFacilityServicesInfoWithId")
+    
+    #package queries
+    packageMembershipsCategories: [MembershipCategory!]! @guard  @all 
+    packageMembershipsCategory(id: ID @eq): MembershipCategory  @guard @find
+    packageMembershipsClasses: [MembershipClass!]! @guard @all 
+    PackageMembershipClass(id: ID @eq): MembershipClass  @guard @find
+    PackagePlans: [PackagePlan!]! @guard  @all 
+    PackagePlan(id: ID @eq): PackagePlan  @guard @find
+    PackageFeatures: [PackagePlan!]! @guard  @all 
+    PackageFeature(id: ID @eq): PackagePlan  @guard @find
+    
 }
 
 type Mutation {

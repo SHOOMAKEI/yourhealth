@@ -34,6 +34,7 @@ type PackagePlan {
   active_subscribers_limit: Int 
   membership_categories: MembershipCategory
   membership_classes: MembershipClass
+  package_features: [PackageFeature]
   created_at: DateTime!
   updated_at: DateTime!
 }
