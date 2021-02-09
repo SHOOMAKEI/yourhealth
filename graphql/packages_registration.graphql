@@ -32,7 +32,7 @@ type PackagePlan {
   prorate_period: Int 
   prorate_extend_due: Int 
   active_subscribers_limit: Int 
-  membership_categories: MembershipCategory
+  membership_categories: MembershipCategory @hasOne
   package_features: [PackageFeature] @hasMany
   created_at: DateTime!
   updated_at: DateTime!
