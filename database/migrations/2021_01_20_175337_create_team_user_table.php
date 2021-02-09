@@ -19,6 +19,7 @@ class CreateTeamUserTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('role');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

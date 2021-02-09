@@ -3,22 +3,23 @@
 namespace App\Http\Controllers\Api\Registration;
 
 use App\Models\User;
+use App\Models\ClientTeam;
 use App\Models\DaySession;
 use App\Services\SMSService;
 use App\Models\ClientProfile;
 use App\Models\ProviderCompany;
 use App\Models\ProviderProfile;
 use App\Models\ProviderFacility;
-use App\Models\RequestedServices;
+use App\Models\RequestedService;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
+use App\Models\ProviderFacilityOwner;
 use App\Models\ProviderQualification;
+use Illuminate\Support\Facades\Validator;
 use App\Models\ProviderMedicalRegistration;
 use App\Actions\Fortify\PasswordValidationRules;
-use App\Models\ClientTeam;
-use App\Models\ProviderFacilityOwner;
-use Illuminate\Support\Facades\Validator;
+use App\Notifications\ServiceProviderRequestsNotification;
 
 class CreateNewUserAccountController
 {
@@ -570,7 +571,7 @@ class CreateNewUserAccountController
     public function createRequestedService($rootVaule, array $args)
     {
 
-        $requested_serveces_data = RequestedServices::create([
+        $requested_serveces_data = RequestedService::create([
             'name' => $args['input']['name'],
             'description' => $args['input']['description'] ?? null,
             'provider_profile_id' => auth()->user()->service_provider->id,
@@ -583,6 +584,7 @@ class CreateNewUserAccountController
     {
         $user = User::find(auth()->user()->id);
         $profile = ProviderProfile::find(auth()->user()->service_provider->id);
+        $admins = User::role('super-admin')->get();
 
         $user->forceFill([
             'profile_stage' => 10,
@@ -592,7 +594,12 @@ class CreateNewUserAccountController
             'is_submitted' => 1,
             'submitted_at' => now()
         ])->save();
+        
+        foreach($admins as $admin){
 
+            $admin->notify(new ServiceProviderRequestsNotification());
+        }
+        
         return $profile;
     }
 }

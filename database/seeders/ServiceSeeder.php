@@ -24,118 +24,108 @@ class ServiceSeeder extends Seeder
         ServiceCategory::firstOrCreate(['name' => 'Procedures']);
         ServiceCategory::firstOrCreate(['name' => 'Radiology']);
         $radiology = ServiceCategory::where('name', 'Radiology')->first();
-        $radiology->service_sub_categories()->delete();
-        $radiology->service_sub_categories()->saveMany([
-            new ServiceSubCategory(['name' => 'MRI']),
-            new ServiceSubCategory(['name' => 'X-ray']),
-            new ServiceSubCategory(['name' => 'Ultrasound']),
-            new ServiceSubCategory(['name' => 'ECHO']),
-            new ServiceSubCategory(['name' => 'EEG']),
-            new ServiceSubCategory(['name' => 'ECG']),
-            new ServiceSubCategory(['name' => 'CT- Scan'])
-            
-        ]);
+            ServiceSubCategory::fristOrCreate(['service_category_id' => $radiology->id,'name' => 'MRI']);
+            ServiceSubCategory::fristOrCreate(['service_category_id' => $radiology->id,'name' => 'X-ray']);
+            ServiceSubCategory::fristOrCreate(['service_category_id' => $radiology->id,'name' => 'Ultrasound']);
+            ServiceSubCategory::fristOrCreate(['service_category_id' => $radiology->id,'name' => 'ECHO']);
+            ServiceSubCategory::fristOrCreate(['service_category_id' => $radiology->id,'name' => 'EEG']);
+            ServiceSubCategory::fristOrCreate(['service_category_id' => $radiology->id,'name' => 'ECG']);
+            ServiceSubCategory::fristOrCreate(['service_category_id' => $radiology->id,'name' => 'CT- Scan']);
+
         $xray = ServiceSubCategory::where('name', 'X-ray')->first();
-        $xray->services()->delete();
-        $xray->services()->saveMany([
-            new Service(['name' => 'Chest X-Ray']),
-            new Service(['name' => 'Skull X-Ray']),
-            new Service(['name' => 'Supine Abdominal X-ray ']),
-        ]);
+            Service::firstOrCreate(['service_sub_category_id'=> $xray->id,'name' => 'Chest X-Ray']);
+            Service::firstOrCreate(['service_sub_category_id'=> $xray->id,'name' => 'Skull X-Ray']);
+            Service::firstOrCreate(['service_sub_category_id'=> $xray->id,'name' => 'Supine Abdominal X-ray ']);
+        
         ServiceCategory::firstOrCreate(['name' => 'Evacuations']);
         ServiceCategory::firstOrCreate(['name' => 'Health Education']);
         $consultation = ServiceCategory::firstOrCreate(['name' => 'Consultation']);
-        $consultation->service_sub_categories()->delete();
-        $consultation->service_sub_categories()->save(
-            new ServiceSubCategory(['name' => 'Specialized Consaltation'])
-        );
+            ServiceSubCategory::firstOrCreate(['service_category_id' => $consultation->id,'name' => 'Specialized Consaltation']);
+        
 
         $specialized_consultation = ServiceSubCategory::where('name', 'Specialized Consaltation')->first();
-        $specialized_consultation->services()->delete();
-        $specialized_consultation->services()->saveMany([
-            new Service(['name' => 'Allergist']),
-            new Service(['name' => 'Immunologist']),
-            new Service(['name' => 'Anesthisiologist']),
-            new Service(['name' => 'Dermatologist']),
-            new Service(['name' => 'Emergency Physician']),
-            new Service(['name' => 'Internist']),
-            new Service(['name' => 'Obstetrician and Gynecologist']),
-            new Service(['name' => 'Gynecologist']),
-            new Service(['name' => 'Obstetrician']),
-            new Service(['name' => 'Nephrologist']),
-            new Service(['name' => 'Oncologist']),
-            new Service(['name' => 'Pediatrician']),
-            new Service(['name' => 'Psychiatrist']),
-            new Service(['name' => 'Surgeon']),
-            new Service(['name' => 'Physical medicine and rehabilitation']),
-            new Service(['name' => 'Urologist']),
-            new Service(['name' => 'Family Physician']),
-            new Service(['name' => 'Ophthalmologist']),
-            new Service(['name' => 'Otorhinolaryngologist (ENT)']),
-            new Service(['name' => 'Doctor of Dental Surgery']),
-            new Service(['name' => 'Medical doctor']),
-            new Service(['name' => 'traumatologist']),
-            new Service(['name' => 'Cardiologist']),
-            new Service(['name' => 'Pathologist']),
-            new Service(['name' => 'General Consultations']),
-            new Service(['name' => 'Aviation Medicine']),
-            new Service(['name' => 'Orthopedics']),
-            new Service(['name' => 'Endocrinologist']),
-            new Service(['name' => 'Gastroenterologist']),
-            new Service(['name' => 'Geriatric physician']),
-            new Service(['name' => 'infectious diseases physician']),
-            new Service(['name' => 'Pulmonologist']),
-            new Service(['name' => 'Critical care physician']),
-            new Service(['name' => 'Gynaecological Oncologist']),
-            new Service(['name' => 'infertility specialist']),
-            new Service(['name' => 'Plastic surgeon']),
-            new Service(['name' => 'Pediatric surgeon']),
-            new Service(['name' => 'Orthopedic surgeon']),
-            new Service(['name' => 'Neurosurgeon']),
-            new Service(['name' => 'Thoracic surgeon']),
-            new Service(['name' => 'Vascular surgeon']),
-            new Service(['name' => 'urologic oncologist']),
-            new Service(['name' => 'Pediatric dermatologist']),
-            new Service(['name' => 'General surgeon']),
-            new Service(['name' => 'Chest and Pulmonology']),
-            new Service(['name' => 'Counselling']),
-            new Service(['name' => 'Dietician']),
-            new Service(['name' => 'Wellness Centre']),
-            new Service(['name' => 'Audiologist']),
-            new Service(['name' => 'Speech Therapist']),
-            new Service(['name' => 'Rheumatology']),
-            new Service(['name' => 'Psychologist']),
-            new Service(['name' => 'Neonatology']),
-            new Service(['name' => 'Medical Officer']),
-            new Service(['name' => 'Radiologist']),
-            new Service(['name' => 'Internal Medicine']),
-            new Service(['name' => 'Paediatrist']),
-            new Service(['name' => 'Anaesthesist']),
-            new Service(['name' => 'Neurologist']),
-            new Service(['name' => 'Orthodontist']),
-            new Service(['name' => 'Family Medicine']),
-            new Service(['name' => 'Intensivist']),
-            new Service(['name' => 'Dentist']),
-        ]);
+        
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Allergist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Immunologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Anesthisiologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Dermatologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Emergency Physician']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Internist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Obstetrician and Gynecologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Gynecologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Obstetrician']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Nephrologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Oncologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Pediatrician']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Psychiatrist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Surgeon']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Physical medicine and rehabilitation']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Urologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Family Physician']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Ophthalmologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Otorhinolaryngologist (ENT)']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Doctor of Dental Surgery']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Medical doctor']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'traumatologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Cardiologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Pathologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'General Consultations']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Aviation Medicine']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Orthopedics']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Endocrinologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Gastroenterologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Geriatric physician']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'infectious diseases physician']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Pulmonologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Critical care physician']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Gynaecological Oncologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'infertility specialist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Plastic surgeon']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Pediatric surgeon']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Orthopedic surgeon']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Neurosurgeon']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Thoracic surgeon']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Vascular surgeon']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'urologic oncologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Pediatric dermatologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'General surgeon']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Chest and Pulmonology']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Counselling']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Dietician']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Wellness Centre']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Audiologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Speech Therapist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Rheumatology']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Psychologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Neonatology']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Medical Officer']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Radiologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Internal Medicine']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Paediatrist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Anaesthesist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Neurologist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Orthodontist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Family Medicine']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Intensivist']);
+            Service::fristOrCreate(['service_sub_category_id' => $specialized_consultation->id,'name' => 'Dentist']);
 
         $medicine = ServiceCategory::firstOrCreate(['name' => 'Medicines']);
         $equipment = ServiceCategory::firstOrCreate(['name' => 'Medical Equipment’s']);
-        $medicine->service_sub_categories()->delete();
-        $medicine->service_sub_categories()->saveMany([
-	        new ServiceSubCategory(['name' => 'Analgesics']),
-	        new ServiceSubCategory(['name' => 'Anesthetics']),
-	        new ServiceSubCategory(['name' => 'Antibiotics']),
-	        new ServiceSubCategory(['name' => 'Anticonvulsants']),
-	        new ServiceSubCategory(['name' => 'Antidotes and antitoxins']),
-	        new ServiceSubCategory(['name' => 'Antiemetic']),
-	        new ServiceSubCategory(['name' => 'Antifungals']),
-	        new ServiceSubCategory(['name' => 'Anti-inflammatory agents, including corticosteroids and nonsteroidal anti-inflammatory drugs (NSAIDs)']),
-	        new ServiceSubCategory(['name' => 'Antihypertensive']),
-	        new ServiceSubCategory(['name' => 'Antipsychotics']),
-	        new ServiceSubCategory(['name' => 'Antivirals, including HIV Antiretrovirals and direct-acting hepatitis C drugs']),
-	        new ServiceSubCategory(['name' => 'Anticoagulants']),
+        
+	        ServiceSubCategory::firstOrCreate(['service_category_id'=> $medicine->id,'name' => 'Analgesics']);
+	        ServiceSubCategory::firstOrCreate(['service_category_id'=> $medicine->id,'name' => 'Anesthetics']);
+	        ServiceSubCategory::firstOrCreate(['service_category_id'=> $medicine->id,'name' => 'Antibiotics']);
+	        ServiceSubCategory::firstOrCreate(['service_category_id'=> $medicine->id,'name' => 'Anticonvulsants']);
+	        ServiceSubCategory::firstOrCreate(['service_category_id'=> $medicine->id,'name' => 'Antidotes and antitoxins']);
+	        ServiceSubCategory::firstOrCreate(['service_category_id'=> $medicine->id,'name' => 'Antiemetic']);
+	        ServiceSubCategory::firstOrCreate(['service_category_id'=> $medicine->id,'name' => 'Antifungals']);
+	        ServiceSubCategory::firstOrCreate(['service_category_id'=> $medicine->id,'name' => 'Anti-inflammatory agents, including corticosteroids and nonsteroidal anti-inflammatory drugs (NSAIDs)']);
+	        ServiceSubCategory::firstOrCreate(['service_category_id'=> $medicine->id,'name' => 'Antihypertensive']);
+	        ServiceSubCategory::firstOrCreate(['service_category_id'=> $medicine->id,'name' => 'Antipsychotics']);
+	        ServiceSubCategory::firstOrCreate(['service_category_id'=> $medicine->id,'name' => 'Antivirals, including HIV Antiretrovirals and direct-acting hepatitis C drugs']);
+	        ServiceSubCategory::firstOrCreate(['service_category_id'=> $medicine->id,'name' => 'Anticoagulants']);
 
-        ]);
+       
 
         $analgesics = ServiceSubCategory::where('name', 'Analgesics')->first();
         $analgesics->services()->delete();

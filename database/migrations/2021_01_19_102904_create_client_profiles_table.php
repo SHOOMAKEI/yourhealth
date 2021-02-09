@@ -31,6 +31,7 @@ class CreateClientProfilesTable extends Migration
             $table->boolean('is_active')->default(1);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -22,6 +22,7 @@ class CreatePackageFeaturesTable extends Migration
             $table->string('currency', 3);
             $table->json('other_price_factor')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

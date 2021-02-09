@@ -22,6 +22,7 @@ class CreateTeamInvitationsTable extends Migration
             $table->string('token');
             $table->boolean('has_account');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

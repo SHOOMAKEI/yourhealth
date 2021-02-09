@@ -196,8 +196,8 @@ type ProviderProfile {
     submitted_at: DateTime
     provider_sub_level: ProviderSubLevel
     account_category_type: String
-    provider_companies: ProviderCompany
-    provider_facilities: ProviderFacility
+    provider_companies: ProviderCompany @belongsToMany
+    provider_facilities: ProviderFacility @belongsToMany
     company_pivot: ProviderProfileCompanyPivot
     facility_pivot: ProviderProfileFacilityPivot
     service_pivot: ProviderProfileServicePivot

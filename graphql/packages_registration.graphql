@@ -33,8 +33,7 @@ type PackagePlan {
   prorate_extend_due: Int 
   active_subscribers_limit: Int 
   membership_categories: MembershipCategory
-  membership_classes: MembershipClass
-  package_features: [PackageFeature]
+  package_features: [PackageFeature] @hasMany
   created_at: DateTime!
   updated_at: DateTime!
 }
@@ -91,9 +90,7 @@ input CreatePackagePlanInput {
   prorate_day: Int 
   prorate_period: Int 
   prorate_extend_due: Int 
-  active_subscribers_limit: Int 
-  membership_category_id: Int!
-  membership_class_id: Int!
+  active_subscribers_limit: Int
 }
 
 input UpdatePackagePlanInput {
@@ -113,7 +110,6 @@ input UpdatePackagePlanInput {
   prorate_extend_due: Int 
   active_subscribers_limit: Int 
   membership_category_id: Int!
-  membership_class_id: Int!
 }
 
 input CreatePackageFeatureInput {

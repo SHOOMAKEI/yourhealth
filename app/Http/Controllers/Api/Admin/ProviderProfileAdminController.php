@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\ProviderProfile;
 use App\Http\Controllers\Controller;
 use App\Models\ProviderRejectionReason;
+use App\Notifications\ServiceProviderDisqualificationNotification;
+use App\Notifications\ServiceProviderVerificationNotification;
 use Illuminate\Support\Facades\Auth;
 
 class ProviderProfileAdminController extends Controller
@@ -92,6 +94,7 @@ class ProviderProfileAdminController extends Controller
         
         $provider = ProviderProfile::find($args['id']);
         $user = User::find($provider->user_id);
+        $admin = User::find(auth()->user()->id);
 
         if($provider->is_verified == 1) {
 
@@ -109,6 +112,8 @@ class ProviderProfileAdminController extends Controller
         
         $user->assignRole('verified-service-provider');
         $user->removeRole('unverified-service-provider');
+
+        $admin->notify(new ServiceProviderVerificationNotification());
 
         return $provider;
     }
@@ -141,7 +146,7 @@ class ProviderProfileAdminController extends Controller
 
         if(!isset($provider_last_rejection->rejection_round)){
 
-            ProviderRejectionReason::create([
+           $reasons = ProviderRejectionReason::create([
                 'provider_profile_id'=> $provider->id,
                 'reasons' => $args['input']['reasons'],
                 'rejected_round' => 1
@@ -150,11 +155,13 @@ class ProviderProfileAdminController extends Controller
             return $provider;
         }
         
-        ProviderRejectionReason::create([
+       $reasons = ProviderRejectionReason::create([
             'provider_profile_id'=> $provider->id,
             'reasons' => $args['input']['reasons'],
             'rejected_round' => $provider_last_rejection->rejection_round+1
         ]);
+
+        $user->notify(new ServiceProviderDisqualificationNotification($reasons));
 
         return $provider;
     }
