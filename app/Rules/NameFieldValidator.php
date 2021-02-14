@@ -31,9 +31,10 @@ class NameFieldValidator implements Rule
         
         if(
             ($this->account_category_type=="company"||
-            $this->account_category_type=="facility"||
-            $this->account_category_type=="cooperate"||
-            $this->account_category_type=="family" ) && $attribute== 'name'
+            $this->account_category_type=="facility"
+            // $this->account_category_type=="cooperate"||
+            // $this->account_category_type=="family" 
+            ) && $attribute== 'name'
         ){
            
           return  isset($value)?true:false;

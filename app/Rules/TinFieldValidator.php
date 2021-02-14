@@ -30,8 +30,8 @@ class TinFieldValidator implements Rule
         
         if(
             $this->account_category_type=="company"||
-            $this->account_category_type=="facility"||
-            $this->account_category_type=="cooperate"
+            $this->account_category_type=="facility"
+            // $this->account_category_type=="cooperate"
         ){
           return  isset($value)?true:false;
         }
