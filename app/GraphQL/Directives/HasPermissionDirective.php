@@ -12,7 +12,7 @@ use Nuwave\Lighthouse\Exceptions\AuthorizationException;
 use Nuwave\Lighthouse\Support\Contracts\FieldMiddleware;
 
 
-class HasRoleDirective extends BaseDirective implements FieldMiddleware
+class HasPermissionDirective extends BaseDirective implements FieldMiddleware
 {
     public function handleField(FieldValue $fieldValue, Closure $next)
     {
@@ -34,13 +34,12 @@ class HasRoleDirective extends BaseDirective implements FieldMiddleware
                     }
                 )
             );
-
     }
 
     protected function authorize(User $user, $role): void
     {
-
-        if (! $user->hasRole($role)) {
+        
+        if (! $user->hasPermissionTo($role)) {
             throw new AuthorizationException(
                 "You are not authorized to access {$this->nodeName()}"
             );
