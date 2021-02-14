@@ -43,10 +43,10 @@ class AuthenticatedSessionSPAController extends Controller
     }
 
 
-    public function login($rootVaule, array $args)
+    public function login($rootValue, array $args)
     {
     
-        $data =  $this->username($rootVaule, $args);
+        $data =  $this->username($rootValue, $args);
        
         $user = User::where($data['field'], $args['input']['username'])->first();
         
@@ -75,7 +75,7 @@ class AuthenticatedSessionSPAController extends Controller
                 'is_authenticated' => false,
                 'errors'=> [
                     [
-                    'message' => 'Incorrect Cridentials Provided'
+                    'message' => 'Incorrect Credentials Provided'
                     ]
                 ],
                 'success' => false,
@@ -126,12 +126,22 @@ class AuthenticatedSessionSPAController extends Controller
             ]);
         }
 
+        if($user->two_factor_secret || $user->two_factor_recovery_codes) {
+
+            return (object)([
+                'user' => new UserResource($user),
+                'is_authenticated' => false,
+                'errors'=> null,
+                'success' => true,
+            ]);
+        }
+
         $user->forceFill([
             'text_resend_count' => 5,
             'login_trial_count' => 5
         ])->save();
 
-            $this->guard->login($user);
+        $this->guard->login($user);
             
             
 
@@ -144,7 +154,7 @@ class AuthenticatedSessionSPAController extends Controller
         
     }
 
-    public function resendOtpCode($rootVaule, array $args)
+    public function resendOtpCode($rootValue, array $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
 
@@ -158,7 +168,7 @@ class AuthenticatedSessionSPAController extends Controller
             ]);
     }
 
-    public function verifyOtpCode($rootVaule, array $args)
+    public function verifyOtpCode($rootValue, array $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
 
@@ -191,7 +201,53 @@ class AuthenticatedSessionSPAController extends Controller
             ]);
     }
 
-    public function resendMobileNumberVerificationCode($rootVaule, array $args)
+    public function hasValid2FACode(User $user, array $args)
+    {
+        return $args['input']['code'] && app(TwoFactorAuthenticationProvider::class)->verify(
+            decrypt($user->two_factor_secret), $args['input']['code']
+        );
+    }
+
+    public function valid2FARecoveryCode(User $user, array $args)
+    {
+        if (! $args['input']['recovery_code']) {
+            return;
+        }
+
+        return collect($user->recoveryCodes())->first(function ($code) use ($args) {
+            return hash_equals($args['input']['recovery_code'], $code) ? $code : null;
+        });
+    }
+
+
+    public function verify2FACode($rootValue, array $args)
+    {
+        $user = User::where('email', $args['input']['email'])->first();
+      
+        if ($code = $this->valid2FARecoveryCode($user,$args)) {
+            $user->replaceRecoveryCode($code);
+        } elseif (! $this->hasValid2FACode($user, $args)) {
+            return (object)([
+                'user' => new UserResource($user),
+                'errors'=> [
+                    [
+                        'message' => 'Incorrect 2FA code Provided'
+                    ]
+                    
+                ],
+                'success' => false,
+                ]);
+        }
+
+        return (object)([
+            'user' => new UserResource($this->guard->login($user)),
+            'is_authenticated' => true,
+            'errors'=> null,
+            'success' => true
+            ]);
+    }
+
+    public function resendMobileNumberVerificationCode($rootValue, array $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
 
@@ -205,7 +261,7 @@ class AuthenticatedSessionSPAController extends Controller
             ]);
     }
 
-    public function VerifyMobileVerificationCode($rootVaule, array $args)
+    public function VerifyMobileVerificationCode($rootValue, array $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
         // dd($user->getMobileNumberVerificationCode());r
@@ -251,7 +307,7 @@ class AuthenticatedSessionSPAController extends Controller
 
 
 
-    public function resendEmailVerification($rootVaule, array $args)
+    public function resendEmailVerification($rootValue, array $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
 
@@ -265,7 +321,7 @@ class AuthenticatedSessionSPAController extends Controller
             ]);
     }
 
-    public function checkEmailVerification($rootVaule, array $args)
+    public function checkEmailVerification($rootValue, array $args)
     {
         $user = User::where('id', $args['input']['id'])->first();
 
@@ -293,7 +349,7 @@ class AuthenticatedSessionSPAController extends Controller
 
 
 
-    public function username($rootVaule, array $args)
+    public function username($rootValue, array $args)
     {
         $login = $args['input']['username'];
 
@@ -314,7 +370,7 @@ class AuthenticatedSessionSPAController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Laravel\Fortify\Contracts\LogoutResponse
      */
-    public function logout($rootVaule, $args)
+    public function logout($rootValue, $args)
     {
         
         $this->guard->logout();

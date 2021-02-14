@@ -10,6 +10,7 @@ use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
+use Laravel\Fortify\Contracts\TwoFactorAuthenticationProvider;
 
 class MobileAuthController extends Controller
 {
@@ -109,6 +110,17 @@ class MobileAuthController extends Controller
             ]);
         }
 
+        if($user->two_factor_secret || $user->two_factor_recovery_codes) {
+
+            return (object)([
+                'user' => new UserResource($user),
+                'token' => null, 
+                'token_type'=> null,
+                'errors'=> null,
+                'success' => true,
+            ]);
+        }
+
         $user->forceFill([
             'text_resend_count' => 5,
         ])->save();
@@ -180,6 +192,55 @@ class MobileAuthController extends Controller
         $user->forceFill([
             'otp_code' => null,
         ])->save();
+
+        return (object)([
+            'user' => new UserResource($user),
+            'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
+            'token_type'=> 'bearer',
+            'errors'=> null,
+            'success' => true
+            ]);
+    }
+
+    public function hasValid2FACode(User $user, array $args)
+    {
+        return $args['input']['code'] && app(TwoFactorAuthenticationProvider::class)->verify(
+            decrypt($user->two_factor_secret), $args['input']['code']
+        );
+    }
+
+    public function valid2FARecoveryCode(User $user, array $args)
+    {
+        if (! $args['input']['recovery_code']) {
+            return;
+        }
+
+        return collect($user->recoveryCodes())->first(function ($code) use ($args) {
+            return hash_equals($args['input']['recovery_code'], $code) ? $code : null;
+        });
+    }
+
+
+    public function verify2FACode($rootValue, array $args)
+    {
+         $user = User::where('email', $args['input']['email'])->first();
+        
+        if ($code = $this->valid2FARecoveryCode($user,$args)) {
+            $user->replaceRecoveryCode($code);
+        } elseif (! $this->hasValid2FACode($user, $args)) {
+            return (object)([
+                'user' => new UserResource($user),
+                'token' => null, 
+                'token_type'=> null,
+                'errors'=> [
+                    [
+                        'message' => 'Incorrect 2FA code Provided'
+                    ]
+                    
+                ],
+                'success' => false,
+                ]);
+        }
 
         return (object)([
             'user' => new UserResource($user),

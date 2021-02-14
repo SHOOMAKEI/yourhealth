@@ -35,10 +35,10 @@ class AccountCategoryType implements Rule
             return true; 
         }
 
-        if($account_category=='patient' && in_array($value, ['cooperate', 'family', 'individual'])) {
+        // if($account_category=='patient' && in_array($value, ['cooperate', 'family', 'individual'])) {
             
-            return true; 
-        }
+        //     return true; 
+        // }
 
 
         return false;

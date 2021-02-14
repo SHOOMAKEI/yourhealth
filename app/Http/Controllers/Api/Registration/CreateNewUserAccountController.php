@@ -116,30 +116,29 @@ class CreateNewUserAccountController
                 'mobile_number' => $args['input']['mobile_number'],
                 'user_id' => $user->id,
                 'email' => $args['input']['email'],
-                'account_category_type'=> $args['input']['account_category_type'],
             ]);
 
-            if ($args['input']['account_category_type'] == 'family') {
-                ClientTeam::create([
-                    'name' => $args['input']['name'],
-                    'team_type' => 'family',
-                    'mobile_number' => $args['input']['mobile_number'],
-                    'owner_id' => $user->id,
-                    'email' => $args['input']['email'],
-                ]);
-            }
+            // if ($args['input']['account_category_type'] == 'family') {
+            //     ClientTeam::create([
+            //         'name' => $args['input']['name'],
+            //         'team_type' => 'family',
+            //         'mobile_number' => $args['input']['mobile_number'],
+            //         'owner_id' => $user->id,
+            //         'email' => $args['input']['email'],
+            //     ]);
+            // }
 
-            if ($args['input']['account_category_type'] == 'cooperate') {
-                ClientTeam::create([
-                    'name' => $args['input']['name'],
-                    'team_type' => 'family',
-                    'mobile_number' => $args['input']['mobile_number'],
-                    'owner_id' => $user->id,
-                    'email' => $args['input']['email'],
-                    'tin' => $args['input']['tin'],
-                    'vrn' => $args['input']['vrn'],
-                ]);
-            }
+            // if ($args['input']['account_category_type'] == 'cooperate') {
+            //     ClientTeam::create([
+            //         'name' => $args['input']['name'],
+            //         'team_type' => 'family',
+            //         'mobile_number' => $args['input']['mobile_number'],
+            //         'owner_id' => $user->id,
+            //         'email' => $args['input']['email'],
+            //         'tin' => $args['input']['tin'],
+            //         'vrn' => $args['input']['vrn'],
+            //     ]);
+            // }
 
         }
 

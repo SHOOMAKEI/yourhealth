@@ -171,7 +171,7 @@ type ProviderFacilityServices  {
     id: ID
     name: String
     description: String
-    pivot: ProviderFacilityServicePiv
+    pivot: ProviderFacilityServicePivot
 }
 
 type ProviderProfile {

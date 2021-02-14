@@ -81,6 +81,24 @@ input verifyOtpCodeInput {
     device_name: String!
 }
 
+input verifyOtpCodeSessionInput {
+    email: String! @rules(apply: ["required", "exists:users,email"])
+    otp_code: Int!
+}
+
+input verify2FACodeInput {
+    email: String! @rules(apply: ["required", "exists:users,email"])
+    code: String
+    recovery_code: String
+    device_name: String!
+}
+
+input verify2FACodeSessionInput {
+    email: String! @rules(apply: ["required", "exists:users,email"])
+    code: String
+    recovery_code: String
+}
+
 input verifyMobileNumberSessionInput {
     email: String! @rules(apply: ["required", "exists:users,email"])
     verification_code: Int!
@@ -112,6 +130,15 @@ input updateUserPassword {
     password: String! @rules(apply: ["required", "string", "confirmed","regex:/^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/"])
     password_confirmation: String! 
     
+}
+
+type TwoFactorResponse {
+    two_factor_recovery_codes: [RecoveryCode]
+    qrcode_svg:String
+}
+
+type RecoveryCode {
+    code:String
 }
 
 type Settings {
@@ -160,7 +187,7 @@ type Response {
 
 
 enum UserStatus {
-    DIACTIVE @enum(value: 0)
+    INACTIVE @enum(value: 0)
     ACTIVE @enum(value: 1)
     DELETED @enum(value: 2)
 }

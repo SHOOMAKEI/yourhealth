@@ -4,7 +4,7 @@ type Query {
     user(id: ID @eq): User  @guard @find
     me: User @auth
     provider_sub_levels: [ProviderSubLevel!]! @all 
-    serviceCategories(trashed: Trashed @trashed): [ServiceCategory!]! @guard  @all 
+    serviceCategories(trashed: Trashed @trashed): [ServiceCategory!]! @guard @hasRole(role:"super-admin") @all 
     serviceCategory(id: ID @eq): ServiceCategory  @guard @find
     serviceSubCategories(trashed: Trashed @trashed): [ServiceSubCategory!]! @guard @all 
     serviceSubCategory(id: ID @eq): ServiceSubCategory  @guard @find
@@ -106,6 +106,8 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@logout")
     verifyOtpCode(input: verifyOtpCodeInput!): loginResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@verifyOtpCode")
+    verify2FACode(input: verify2FACodeInput!): loginResponse
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@verify2FACode")
     resendOtpCode(input: resendOtpCodeInput!): loginResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@resendOtpCode")
     resendMobileNumberVerificationCode(input: resendMobileNumberVerificationCodeInput!): loginResponse
@@ -124,8 +126,16 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@verifyUserPasswordViaOtp")
     verifyUserPasswordViaEmail(input: verifyUserPasswordViaEmailInput): Response 
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@resetUserPasswordViaEmail")
-    # enableOtp(input: enable): Response @guard
-    #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@update")
+    toggleOtp: User @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AccountSettingsController@toggleOTP")
+    enableTwoFactorAuthentication: TwoFactorResponse @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AccountSettingsController@enableTwoFactorAuthentication")
+    disableTwoFactorAuthentication: TwoFactorResponse @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AccountSettingsController@disableTwoFactorAuthentication")
+    getRecoveryCodes: TwoFactorResponse @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AccountSettingsController@getRecoveryCodes")
+    regenerate2FARecoveryCodes: TwoFactorResponse @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AccountSettingsController@regenerate2FARecoveryCodes")
 
 
     #authentication session
@@ -133,22 +143,17 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@login")
     logoutSession(input: logoutSessionInput): loginSessionResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@logout")
-    verifyOtpCodeSession(input: verifyOtpCodeInput!): loginResponse
+    verifyOtpCodeSession(input: verifyOtpCodeSessionInput!): loginSessionResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@verifyOtpCode")
-    verifyMobileNumberSession(input: verifyMobileNumberSessionInput!): loginResponse
+    verify2FACodeSession(input: verify2FACodeSessionInput!): loginSessionResponse
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@verify2FACode")
+    verifyMobileNumberSession(input: verifyMobileNumberSessionInput!): loginSessionResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@VerifyMobileVerificationCode")
-    checkEmailVerificationSession(input: checkEmailVerificationInput!): loginResponse
+    checkEmailVerificationSession(input: checkEmailVerificationInput!): loginSessionResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@checkEmailVerification")
-    # resendOtpCodeSession(input: resendOtpCodeInput!): loginResponse
-    #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@resendOtpCode")
-    # resendMobileNumberVerificationCodeSession(input: resendMobileNumberVerificationCodeInput!): loginResponse
-    #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@resendMobileNumberVerificationCode")
-    resendEmailVerificationSession(input: resendEmailVerificationSessionInput!): loginResponse
+    resendEmailVerificationSession(input: resendEmailVerificationSessionInput!): loginSessionResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@resendEmailVerification")
-    # updateUserPassword(input: updateUserPassword): Response @guard
-    #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@update")
-    # enableOtpSession(input: enable): Response @guard
-    #     @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@update")
+
    
    #service registration
     createServiceCategory(name: String! @rules(apply: [ "string", "max:255"]), description: String! @rules(apply: [ "string", "max:255"]), is_active: Boolean): ServiceCategory @guard @create
