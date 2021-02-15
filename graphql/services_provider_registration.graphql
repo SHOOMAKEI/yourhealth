@@ -44,8 +44,8 @@ input ProviderCompanyInput {
     trading_name: String! @rules(apply: ["required", "string", "max:255"])
     tin: String! @rules(apply: ["required", "string", "max:255"])
     vrn: String @rules(apply: ["required", "string", "max:255"])
-    tin_attachment: String @rules(apply: ["required", "string", "base64pdf"])
-    vrn_attachment: String @rules(apply: ["required", "string", "base64pdf"])
+    tin_attachment: String @rules(apply: ["nullable", "string", "base64pdf"])
+    vrn_attachment: String @rules(apply: ["nullable", "string", "base64pdf"])
     mobile_number: String! @rules(apply: ["required", "string", "max:255"])
     alternative_mobile_number: String @rules(apply: ["max:255"])
     email: String! @rules(apply: ["required", "string", "email", "max:255"])
@@ -83,8 +83,8 @@ input UpdateProviderFacilityInput {
     trading_name: String! @rules(apply: ["required", "string", "max:255"])
     tin: String! @rules(apply: ["required", "string", "max:255"])
     vrn: String @rules(apply: ["required", "string", "max:255"])
-    tin_attachment: String! @rules(apply: ["required", "string", "base64pdf"])
-    vrn_attachment: String @rules(apply: ["required", "string", "base64pdf"])
+    tin_attachment: String @rules(apply: ["string", "base64pdf", "nullable"])
+    vrn_attachment: String @rules(apply: ["string", "base64pdf", "nullable"])
     mobile_number: String! @rules(apply: ["required", "string", "max:255"])
     alternative_mobile_number: String @rules(apply: ["max:255"])
     email: String! @rules(apply: ["required", "string", "email", "max:255"])
@@ -111,7 +111,7 @@ input UpdateProviderQualificationInput {
     award_title: String! @rules(apply: ["required", "string", "max:255"])
     institution_name: String! @rules(apply: ["required", "string", "max:255"])
     description: String! @rules(apply: ["required", "string", "max:255"])
-    attachment: String! @rules(apply: ["required", "string", "base64pdf"])
+    attachment: String @rules(apply: ["nullable", "string", "base64pdf"])
     year: String!
 }
 
@@ -128,16 +128,25 @@ input UpdateProviderMedicalRegistrationInput {
     certificate_name: String! @rules(apply: ["required", "string", "max:255"])
     certificate_number: String! @rules(apply: ["required", "string", "max:255"])
     registration_number: String! @rules(apply: ["required", "string", "max:255"])
-    attachment: String! @rules(apply: ["required", "string","base64pdf"])
+    attachment: String @rules(apply: ["nullable", "string","base64pdf"])
     year: String!
 }
 
-input DaySessionInput {
+input ProviderProfileDaySessionInput {
     name: String
-    from: String!
-    to: String!
+    from: String! @rules(apply: ["required", "date_format:H:i"])
+    to: String! @rules(apply: ["required", "date_format:H:i", "App\\Rules\\AfterTimeValidator"])
     interval: Int
     day_id: Int! @rules(apply: ["required", "exists:days,id"])
+}
+
+input ProviderFacilityDaySessionInput {
+    name: String
+    from: String! @rules(apply: ["required", "date_format:H:i"])
+    to: String! @rules(apply: ["required", "date_format:H:i", "App\\Rules\\AfterTimeValidator"])
+    interval: Int
+    day_id: Int! @rules(apply: ["required", "exists:days,id"])
+    facility_id: Int! @rules(apply: ["required", "exists:provider_facility,id"])
 }
 
 input ProviderProfileServicesInput  {
