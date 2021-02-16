@@ -450,20 +450,22 @@ class CreateNewUserAccountController
 
         $provider_facility->services()->syncWithoutDetaching($data);
 
-        return $provider_facility->services->map(function ($query) {
-            $services['service']['id'] = $query->id;
-            $services['service']['name'] = $query->name;
-            $services['service']['description'] = $query->description;
-            $services['service']['is_active'] = $query->is_active;
-            $services['service']['created_at'] = $query->created_at;
-            $services['service']['updated_at'] = $query->updated_at;
-            $services['price'] = $query->pivot->price;
-            $services['compare_price'] = $query->pivot->compare_price;
-            $services['currency'] = $query->pivot->currency;
+        return $provider_facility->services;
 
-            return $services;
+        // return $provider_facility->services->map(function ($query) {
+        //     $services['service']['id'] = $query->id;
+        //     $services['service']['name'] = $query->name;
+        //     $services['service']['description'] = $query->description;
+        //     $services['service']['is_active'] = $query->is_active;
+        //     $services['service']['created_at'] = $query->created_at;
+        //     $services['service']['updated_at'] = $query->updated_at;
+        //     $services['price'] = $query->pivot->price;
+        //     $services['compare_price'] = $query->pivot->compare_price;
+        //     $services['currency'] = $query->pivot->currency;
 
-        })->all();
+        //     return $services;
+
+        // })->all();
     }
 
     public function deleteProviderFacilityServices($rootValue, array $args)
@@ -474,20 +476,22 @@ class CreateNewUserAccountController
 
         $provider_facility->services()->detach($args['service_id']);
 
-        return $provider_facility->services->map(function ($query) {
-            $services['service']['id'] = $query->id;
-            $services['service']['name'] = $query->name;
-            $services['service']['description'] = $query->description;
-            $services['service']['is_active'] = $query->is_active;
-            $services['service']['created_at'] = $query->created_at;
-            $services['service']['updated_at'] = $query->updated_at;
-            $services['price'] = $query->pivot->price;
-            $services['compare_price'] = $query->pivot->compare_price;
-            $services['currency'] = $query->pivot->currency;
+        return $provider_facility->services;
 
-            return $services;
+        // return $provider_facility->services->map(function ($query) {
+        //     $services['service']['id'] = $query->id;
+        //     $services['service']['name'] = $query->name;
+        //     $services['service']['description'] = $query->description;
+        //     $services['service']['is_active'] = $query->is_active;
+        //     $services['service']['created_at'] = $query->created_at;
+        //     $services['service']['updated_at'] = $query->updated_at;
+        //     $services['price'] = $query->pivot->price;
+        //     $services['compare_price'] = $query->pivot->compare_price;
+        //     $services['currency'] = $query->pivot->currency;
 
-        })->all();
+        //     return $services;
+
+        // })->all();
     }
 
     public function createProviderProfileServices($rootValue, array $args)
