@@ -122,4 +122,27 @@ class AccountSettingsController {
       ];
   }
 
+  public function updateProfilePhoto($rootValue, array $args)
+  {
+      $user = User::find(auth()->user()->id);
+      $explode = explode(',', $args['photo']);
+      $format = str_replace(
+          [
+              'data:image/',
+              ';',
+              'base64',
+          ],
+          [
+              '', '', '',
+          ],
+          $explode[0]
+      );
+      $user->clearMediaCollection('profile-photo');
+      $user->addMediaFromBase64($args['photo'], 'image/'.$format)
+      ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . strtolower($user->name) . '-photo'  . '.'.$format))
+      ->toMediaCollection('profile-photo');
+      
+      return $user;
+  }
+  
 }

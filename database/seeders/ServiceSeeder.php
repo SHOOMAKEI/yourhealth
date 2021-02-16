@@ -128,7 +128,7 @@ class ServiceSeeder extends Seeder
        
 
         $analgesics = ServiceSubCategory::where('name', 'Analgesics')->first();
-        $analgesics->services()->delete();
+        // $analgesics->services()->delete();
         // $analgesics->services()->saveMany([
 
         // ]);

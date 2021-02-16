@@ -20,20 +20,20 @@ type ClientProfile {
 type ClientTeam {
   id: ID!
   name: String!
-  trading_name: String!
-  tin: String!
+  trading_name: String
+  tin: String
   vrn: String
-  mobile_number: String!
-  alternative_mobile_number: String!
+  mobile_number: String
+  alternative_mobile_number: String
   email: String!
-  address:String!
+  address:String
   physical_address: String
   website: String
-  registration_number: String!
+  registration_number: String
   registration_date: String
   description: String
   is_active:Boolean
-  team_type: String!
+  team_type: String
   owner: User
   created_at: DateTime!
   updated_at: DateTime!
