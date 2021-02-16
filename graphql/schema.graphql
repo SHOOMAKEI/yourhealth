@@ -10,7 +10,7 @@ type Query {
     serviceSubCategory(id: ID @eq): ServiceSubCategory  @guard @find
     services(trashed: Trashed @trashed): [Service!]! @guard  @all 
     service(id: ID @eq): Service  @guard @find
-    requestedService(orderBy: _ @orderBy(columns: ["created_at"])): RequestedService @all 
+    requestedService(orderBy: _ @orderBy(columns: ["created_at"])): [RequestedService] @all 
     unverifiedServiceProviderRequests: [ProviderProfile]
         @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@index")
     providerProfileInfo:ProviderProfile @guard

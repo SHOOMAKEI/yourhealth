@@ -32,13 +32,13 @@ type Service {
 }
 
 type RequestedService {
-    id: ID!
-    name: String!
+    id: ID
+    name: String
     description: String
     is_processed: Boolean
     provider_profile: ProviderProfile
-    created_at: DateTime!
-    updated_at: DateTime!
+    created_at: DateTime
+    updated_at: DateTime
 }
 
 input RequestedServiceInput {
