@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Registration;
 
+use App\Models\User;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Models\ProviderCompany;
@@ -76,7 +77,7 @@ class AccountRegistrationController
 
         if( auth()->user()->service_provider->account_category_type=='facility') {
 
-           $facility = ProviderFacility::where('provider_company_id', auth()->user()->service_provider->provider_company->id)
+           $facility = ProviderFacility::where('provider_company_id', auth()->user()->service_provider->provider_companies[0]->id)
             ->first();
 
             return $facility->services;
@@ -164,7 +165,7 @@ class AccountRegistrationController
 
         if( $provider_profile->account_category_type=='facility') {
 
-           $facility = ProviderFacility::where('provider_company_id', $provider_profile->provider_company->id)
+           $facility = ProviderFacility::where('provider_company_id', $provider_profile->provider_companies[0]->id)
             ->first();
 
             return $facility->services;
@@ -176,21 +177,51 @@ class AccountRegistrationController
     }
 
 
-    public function getUnselectedService($rootValue, array $args)
+    public function getProviderProfileUnselectedService($rootValue, array $args)
     {
-        if( auth()->user()->service_provider->account_category_type=='individual') {
+        
+        $services = auth()->user()->service_provider->services;
+        $available_service = Service::all();
 
-           $services = auth()->user()->service_provider->services;
-           $available_service = Service::all();
+        $difference = $available_service->diffAssoc($services);
+        return $difference;
+        
 
-           $available_service->each(function($service) use ($services, $available_service) {
-            if(empty($services->where('id', $service->id))){
-                return;
-            }
+        if( auth()->user()->service_provider->account_category_type=='facility') {
 
-           });
-            return null;
-        }
+            $services = auth()->user()->service_provider->services;
+            $available_service = Service::all();
+ 
+           $difference = $available_service->diffAssoc($services);
+             return $difference;
+         }
+
+
+    }
+
+    public function getProviderFacilityUnselectedService($rootValue, array $args)
+    {
+        
+        $facility = ProviderFacility::find($args['id']);
+        
+
+        $services = $facility->services;
+        $available_service = Service::all();
+
+        $difference = $available_service->diffAssoc($services);
+        // dd($difference);
+            return $difference;
+
+    }
+
+    public function createProviderProfileDailySchedule($rootValue, array $args)
+    {
+        dd($args);
+    }
+
+    public function createProviderFacilityDailySchedule($rootValue, array $args)
+    {
+        # code...
     }
 
 
