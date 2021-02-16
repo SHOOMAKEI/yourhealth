@@ -41,6 +41,8 @@ type Query {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderProfileServicesInfoWithId")
     providerFacilityServicesInfoWithId(id:ID @rules(apply:["required", "exists:provider_profiles,id"]),facility_id: ID @rules(apply: ["required","exists:provider_facilities,id"])):[ProviderFacilityServices] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderFacilityServicesInfoWithId")
+    providerFacilityUnelectedServices(id: ID @rules(apply: ["required","exists:provider_facilities,id"])):[ProviderFacilityServices] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderFacilityUnselectedService")
     
     #package queries
     packageMembershipsCategories: [MembershipCategory!]! @guard  @all 
@@ -88,8 +90,8 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderFacilityServices")
     deleteProviderFacilityServices(facility_id: ID @rules(apply:["required", "exists:provider_facilities,id"]), service_id: ID @rules(apply:["required", "exists:services,id"])): [ProviderFacilityServices] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@deleteProviderFacilityServices")
-    createProviderProfileCalendar(input: [DaySessionInput]): [DaySession] @guard
-        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfileCalendar")
+    # createProviderProfileCalendar(input: [DaySessionInput]): [DaySession] @guard
+    #     @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfileCalendar")
     createRequestedService(input: RequestedServiceInput): RequestedService @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createRequestedService")
     submittProfileForVerification: ProviderProfile @guard
@@ -98,6 +100,12 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@verify")
     unVerifyServiceProviderRequest(input: RejectionReasonInput): ProviderProfile @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@unverify")
+    updateProfilePhoto(photo:String! @rules(apply:["required", "base64image"])):User @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AccountSettingsController@updateProfilePhoto")
+    createProviderProfileDailySchedule(input:[ProviderProfileDaySessionInput]!):[DaySession] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@createProviderProfileDailySchedule")
+    createProviderFacilityDailySchedule(input:[ProviderFacilityDaySessionInput]!):[DaySession] @guard
+        @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@createProviderProfileDailySchedule")
     
     #authentication mobile
     login(input: loginInput!): loginResponse
