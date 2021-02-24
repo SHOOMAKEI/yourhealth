@@ -16,7 +16,7 @@ class CreateProviderRejectionReasonsTable extends Migration
         Schema::create('provider_rejection_reasons', function (Blueprint $table) {
             $table->id();
             $table->text('reasons');
-            $table->foreignId('provider_profile_id')->constrained()->onDelete('cascade');
+            $table->foreignId('provider_profile_id')->constrained();
             $table->integer('rejected_round');
             $table->timestamps();
             $table->softDeletes();

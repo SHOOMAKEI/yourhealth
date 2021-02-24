@@ -20,7 +20,7 @@ class CreateCitiesTable extends Migration
             $table->string('lat');
             $table->string('lng');
             $table->timestamps();
-        }); 
+        });
     }
 
     /**

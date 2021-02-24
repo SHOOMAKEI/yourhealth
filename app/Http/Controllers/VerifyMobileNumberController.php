@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Auth\Events\Verified;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class VerifyMobileNumberController extends Controller
 {
@@ -24,12 +24,10 @@ class VerifyMobileNumberController extends Controller
         }
 
         if ($request->user()->getMobileNumberVerificationCode() != $request['verification_code']) {
-
             return redirect()->back()->with(['status'=> 'wrong-verification-code']);
         }
         
         if ($request->user()->markMobileNumberAsVerified()) {
-
             event(new Verified($request->user()));
         }
         
@@ -51,5 +49,4 @@ class VerifyMobileNumberController extends Controller
                     ? new JsonResponse('', 202)
                     : back()->with('status', 'verification-code-sent');
     }
-    
 }

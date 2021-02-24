@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Console\Concerns\InteractsWithIO;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -28,15 +27,11 @@ class ProviderCompany extends Model implements HasMedia
 
     public function getTinAttachmentAttribute()
     {
-        
         return $this->getFirstMediaUrl('provider-company-tin-files');
-
     }
 
     public function getVrnAttachmentAttribute()
     {
-        
         return $this->getFirstMediaUrl('provider-company-vrn-files');
-
     }
 }

@@ -27,17 +27,15 @@ class AccountCategoryType implements Rule
      */
     public function passes($attribute, $value)
     {
-        
-        $account_category = request()->variables['input']['account_category']; 
+        $account_category = request()->variables['input']['account_category'];
 
-        if($account_category=='service-provider' && in_array($value, ['company', 'facility', 'individual'])) {
-            
-            return true; 
+        if ($account_category=='service-provider' && in_array($value, ['company', 'facility', 'individual'])) {
+            return true;
         }
 
         // if($account_category=='patient' && in_array($value, ['cooperate', 'family', 'individual'])) {
             
-        //     return true; 
+        //     return true;
         // }
 
 

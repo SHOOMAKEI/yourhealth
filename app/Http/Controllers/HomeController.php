@@ -15,11 +15,9 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        
         $client_packages = Plan::where('category', 'client')->orderBy('sort_order', 'ASC')->get();
         $service_provider_packages = Plan::where('category', 'service-provider')->orderBy('sort_order', 'ASC')->get();
         
         return view('welcome', ['client_packages' =>  $client_packages, 'service_provider_packages' => $service_provider_packages ]);
-         
     }
 }

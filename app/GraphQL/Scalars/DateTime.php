@@ -19,7 +19,7 @@ class DateTime extends ScalarType
     public function serialize($value)
     {
         // Assuming the internal representation of the value is always correct
-        return Carbon::createFromFormat('Y-m-d H:i:s',$value)->format('M j, Y G:ia');
+        return Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('M j, Y G:ia');
 
         // TODO validate if it might be incorrect
     }
@@ -32,9 +32,7 @@ class DateTime extends ScalarType
      */
     public function parseValue($value)
     {
-       
-
-        return  Carbon::createFromFormat('Y-m-d H:i:s',$value)->format('F j, Y G:ia');
+        return  Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('F j, Y G:ia');
     }
 
     /**
@@ -56,4 +54,3 @@ class DateTime extends ScalarType
         return $valueNode->value;
     }
 }
-

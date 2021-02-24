@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
-use Illuminate\Http\Request;
 use App\Models\MedicalInstitute;
+use Illuminate\Http\Request;
 
 class MedicalInstituteController extends Controller
 {

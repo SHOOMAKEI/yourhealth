@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Auth\Events\Verified;
-use Illuminate\Http\RedirectResponse;
-use Laravel\Fortify\Http\Requests\VerifyEmailRequest;
 
 class VerifyEmailController extends Controller
 {
@@ -19,7 +17,6 @@ class VerifyEmailController extends Controller
      */
     public function __invoke(User $id, Request $request)
     {
-      
         if ($id->hasVerifiedEmail()) {
             return redirect('http://127.0.0.1:3000/auth/emailVerificationStatus/'.$id->id);
         }

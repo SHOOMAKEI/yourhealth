@@ -13,6 +13,6 @@ class MedicalCourse extends Model
 
     public function institute()
     {
-        return $this->belongsTo(MedicalInstitute::class,'medical_institute_id');
+        return $this->belongsTo(MedicalInstitute::class, 'medical_institute_id');
     }
 }

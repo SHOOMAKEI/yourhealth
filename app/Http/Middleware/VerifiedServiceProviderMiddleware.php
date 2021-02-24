@@ -17,12 +17,11 @@ class VerifiedServiceProviderMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-
         if (!$request->user()->hasRole('verified_sp') && !$request->user()->hasRole('super-admin')) {
             return $request->expectsJson()
                     ? abort(200, 'Your Profile is verified')
                     : Redirect::route('profile_info.index');
-            }
+        }
 
         return $next($request);
     }

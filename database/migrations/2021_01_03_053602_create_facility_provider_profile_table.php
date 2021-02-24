@@ -15,8 +15,8 @@ class CreateFacilityProviderProfileTable extends Migration
     {
         Schema::create('facility_provider_profile', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('provider_profile_id')->constrained()->onDelete('cascade');
-            $table->foreignId('provider_facility_id')->constrained()->onDelete('cascade');
+            $table->foreignId('provider_profile_id')->constrained();
+            $table->foreignId('provider_facility_id')->constrained();
             $table->string('role');
             $table->timestamps();
             $table->softDeletes();

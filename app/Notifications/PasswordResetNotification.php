@@ -3,10 +3,9 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Support\Facades\Lang;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Lang;
 
 class PasswordResetNotification extends Notification
 {
@@ -43,11 +42,10 @@ class PasswordResetNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = url('http://192.168.1.12:3000/auth/emailVerificationStatus/'.$this->token.'/'.$notifiable->getEmailForPasswordReset()
-        , false);
+        $url = url('http://192.168.1.12:3000/auth/emailVerificationStatus/'.$this->token.'/'.$notifiable->getEmailForPasswordReset(), false);
     
 
-    return (new MailMessage)
+        return (new MailMessage)
         ->subject(Lang::get('Reset Password Notification'))
         ->line(Lang::get('You are receiving this email because we received a password reset request for your account.'))
         ->action(Lang::get('Reset Password'), $url)

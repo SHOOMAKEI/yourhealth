@@ -2,37 +2,30 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use GraphQL\Type\Definition\ResolveInfo;
-use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 use Laravel\Fortify\Contracts\TwoFactorAuthenticationProvider;
 
 class MobileAuthController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth:sanctum', ['except' => ['login', 'username', 'resendOtpCode', 'verifyOtpCode']]);
     }
     
 
-    public function login($rootVaule, array $args)
+    public function login($rootValue, array $args)
     {
-    
-        $data =  $this->username($rootVaule, $args);
+        $data =  $this->username($rootValue, $args);
        
         $user = User::where($data['field'], $args['input']['username'])->first();
 
-        if(! $user || ($user->is_active ==false)) {
-
+        if (! $user || ($user->is_active ==false)) {
             return (object)([
                 'user' => null,
-                'token' => null, 
+                'token' => null,
                 'token_type'=> null,
                 'errors'=> [
                     [
@@ -44,14 +37,13 @@ class MobileAuthController extends Controller
         }
     
         if (! $user || ! Hash::check($args['input']['password'], $user->password)) {
-
             $user->forceFill([
                 'login_trial_count' => ($user->login_trial_count-1),
             ])->save();
 
             return (object)([
                 'user' => null,
-                'token' => null, 
+                'token' => null,
                 'token_type'=> null,
                 'errors'=> [
                     [
@@ -62,21 +54,19 @@ class MobileAuthController extends Controller
                 ]);
         }
 
-        if($user->email_verified_at == null) {
-
+        if ($user->email_verified_at == null) {
             $user->sendEmailVerificationNotification();
 
             return (object)([
                 'user' => new UserResource($user),
-                'token' => null, 
+                'token' => null,
                 'token_type'=> null,
                 'errors'=> null,
                 'success' => true,
             ]);
         }
 
-        if($user->mobile_number_verified_at == null) {
-
+        if ($user->mobile_number_verified_at == null) {
             $user->sendMobileNumberVerificationNotification();
             
             $user->forceFill([
@@ -85,7 +75,7 @@ class MobileAuthController extends Controller
 
             return (object)([
                 'user' => new UserResource($user),
-                'token' => null, 
+                'token' => null,
                 'token_type'=> null,
                 'errors'=> null,
                 'success' => true,
@@ -93,8 +83,7 @@ class MobileAuthController extends Controller
         }
 
 
-        if($user->enabled_otp == true) {
-
+        if ($user->enabled_otp == true) {
             $user->sendOtpCodeNotification();
 
             $user->forceFill([
@@ -103,18 +92,17 @@ class MobileAuthController extends Controller
 
             return (object)([
                 'user' => new UserResource($user),
-                'token' => null, 
+                'token' => null,
                 'token_type'=> null,
                 'errors'=> null,
                 'success' => true,
             ]);
         }
 
-        if($user->two_factor_secret || $user->two_factor_recovery_codes) {
-
+        if ($user->two_factor_secret || $user->two_factor_recovery_codes) {
             return (object)([
                 'user' => new UserResource($user),
-                'token' => null, 
+                'token' => null,
                 'token_type'=> null,
                 'errors'=> null,
                 'success' => true,
@@ -132,14 +120,14 @@ class MobileAuthController extends Controller
         
         return (object)([
             'user' => new UserResource($user),
-            'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
+            'token' => $user->createToken($args['input']['device_name'])->plainTextToken,
             'token_type'=> 'bearer',
             'errors'=> null,
             'success' => true
             ]);
     }
 
-    public function resendOtpCode($rootVaule, array $args)
+    public function resendOtpCode($rootValue, array $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
 
@@ -147,14 +135,14 @@ class MobileAuthController extends Controller
         
         return (object)([
             'user' => null,
-            'token' => null, 
+            'token' => null,
             'token_type'=> null,
             'errors'=> null,
             'success' => true
             ]);
     }
 
-    public function logout($rootVaule, array $args)
+    public function logout($rootValue, array $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
 
@@ -162,22 +150,21 @@ class MobileAuthController extends Controller
 
         return (object)([
             'user' => null,
-            'token' => null, 
+            'token' => null,
             'token_type'=> null,
             'errors'=> null,
             'success' => true
             ]);
     }
 
-    public function verifyOtpCode($rootVaule, array $args)
+    public function verifyOtpCode($rootValue, array $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
 
-        if($user->getOtpCodeForVerification() != $args['input']['otp_code'])
-        {
+        if ($user->getOtpCodeForVerification() != $args['input']['otp_code']) {
             return (object)([
                 'user' => new UserResource($user),
-                'token' => null, 
+                'token' => null,
                 'token_type'=> null,
                 'errors'=> [
                     [
@@ -195,7 +182,7 @@ class MobileAuthController extends Controller
 
         return (object)([
             'user' => new UserResource($user),
-            'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
+            'token' => $user->createToken($args['input']['device_name'])->plainTextToken,
             'token_type'=> 'bearer',
             'errors'=> null,
             'success' => true
@@ -205,7 +192,8 @@ class MobileAuthController extends Controller
     public function hasValid2FACode(User $user, array $args)
     {
         return $args['input']['code'] && app(TwoFactorAuthenticationProvider::class)->verify(
-            decrypt($user->two_factor_secret), $args['input']['code']
+            decrypt($user->two_factor_secret),
+            $args['input']['code']
         );
     }
 
@@ -223,14 +211,14 @@ class MobileAuthController extends Controller
 
     public function verify2FACode($rootValue, array $args)
     {
-         $user = User::where('email', $args['input']['email'])->first();
+        $user = User::where('email', $args['input']['email'])->first();
         
-        if ($code = $this->valid2FARecoveryCode($user,$args)) {
+        if ($code = $this->valid2FARecoveryCode($user, $args)) {
             $user->replaceRecoveryCode($code);
         } elseif (! $this->hasValid2FACode($user, $args)) {
             return (object)([
                 'user' => new UserResource($user),
-                'token' => null, 
+                'token' => null,
                 'token_type'=> null,
                 'errors'=> [
                     [
@@ -244,14 +232,14 @@ class MobileAuthController extends Controller
 
         return (object)([
             'user' => new UserResource($user),
-            'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
+            'token' => $user->createToken($args['input']['device_name'])->plainTextToken,
             'token_type'=> 'bearer',
             'errors'=> null,
             'success' => true
             ]);
     }
 
-    public function resendMobileNumberVerificationCode($rootVaule, array $args)
+    public function resendMobileNumberVerificationCode($rootValue, array $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
 
@@ -259,22 +247,21 @@ class MobileAuthController extends Controller
         
         return (object)([
             'user' => null,
-            'token' => null, 
+            'token' => null,
             'token_type'=> null,
             'errors'=> null,
             'success' => true
             ]);
     }
 
-    public function VerifyMobileVerificationCode($rootVaule, array $args)
+    public function VerifyMobileVerificationCode($rootValue, array $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
-        dd($user->getMobileNumberVerificationCode());
-        if($user->getMobileNumberVerificationCode() != $args['input']['verification_code'])
-        {
+        
+        if ($user->getMobileNumberVerificationCode() != $args['input']['verification_code']) {
             return (object)([
                 'user' => new UserResource($user),
-                'token' => null, 
+                'token' => null,
                 'token_type'=> null,
                 'errors'=> [
                     [
@@ -288,11 +275,10 @@ class MobileAuthController extends Controller
         
         $user->markMobileNumberAsVerified();
 
-        if($user->email_verified_at == null) {
-
+        if ($user->email_verified_at == null) {
             return (object)([
                 'user' => new UserResource($user),
-                'token' => null, 
+                'token' => null,
                 'token_type'=> null,
                 'errors'=> null,
                 'success' => true,
@@ -301,24 +287,23 @@ class MobileAuthController extends Controller
 
         return (object)([
             'user' => new UserResource($user),
-            'token' => $user->createToken($args['input']['device_name'])->plainTextToken, 
+            'token' => $user->createToken($args['input']['device_name'])->plainTextToken,
             'token_type'=> 'bearer',
             'errors'=> null,
             'success' => true
             ]);
     }
 
-    public function resendEmailVerification($rootVaule, array $args)
+    public function resendEmailVerification($rootValue, array $args)
     {
         $user = User::where('id', $args['input']['id'])->first();
 
         $user->sendEmailVerificationNotification();
         
-        if($user->mobile_number_verified_at == null) {
-
+        if ($user->mobile_number_verified_at == null) {
             return (object)([
                 'user' => new UserResource($user),
-                'token' => null, 
+                'token' => null,
                 'token_type'=> null,
                 'errors'=> null,
                 'success' => true,
@@ -327,29 +312,27 @@ class MobileAuthController extends Controller
 
         return (object)([
             'user' => null,
-            'token' => null, 
+            'token' => null,
             'token_type'=> null,
             'errors'=> null,
             'success' => true
             ]);
     }
 
-    public function checkEmailVerification($rootVaule, array $args)
+    public function checkEmailVerification($rootValue, array $args)
     {
         $user = User::where('id', $args['input']['id'])->first();
 
         return (object)([
             'user' => new UserResource($user),
-            'token' => null, 
+            'token' => null,
             'token_type'=> null,
             'errors'=> null,
             'success' => true,
             ]);
-        
-
     }
 
-    public function username($rootVaule, array $args)
+    public function username($rootValue, array $args)
     {
         $login = $args['input']['username'];
 
@@ -359,9 +342,8 @@ class MobileAuthController extends Controller
             $field = 'mobile_number';
         }
        
-       $args =  array_merge([$field => $login], $args);
+        $args =  array_merge([$field => $login], $args);
 
         return ['field' => $field, 'args' => $args];
     }
-
 }

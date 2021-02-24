@@ -29,7 +29,7 @@ class CreateClientProfilesTable extends Migration
             $table->string('gender')->nullable();
             $table->text('bio')->nullable();
             $table->boolean('is_active')->default(1);
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

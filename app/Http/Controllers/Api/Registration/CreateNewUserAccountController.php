@@ -2,24 +2,22 @@
 
 namespace App\Http\Controllers\Api\Registration;
 
-use App\Models\User;
+use App\Actions\Fortify\PasswordValidationRules;
+use App\Http\Resources\UserResource;
+use App\Models\ClientProfile;
 use App\Models\ClientTeam;
 use App\Models\DaySession;
-use App\Services\SMSService;
-use App\Models\ClientProfile;
 use App\Models\ProviderCompany;
-use App\Models\ProviderProfile;
 use App\Models\ProviderFacility;
-use App\Models\RequestedService;
-use Illuminate\Support\Facades\DB;
-use App\Http\Resources\UserResource;
-use Illuminate\Support\Facades\Hash;
 use App\Models\ProviderFacilityOwner;
-use App\Models\ProviderQualification;
-use Illuminate\Support\Facades\Validator;
 use App\Models\ProviderMedicalRegistration;
-use App\Actions\Fortify\PasswordValidationRules;
+use App\Models\ProviderProfile;
+use App\Models\ProviderQualification;
+use App\Models\RequestedService;
+use App\Models\User;
 use App\Notifications\ServiceProviderRequestsNotification;
+use App\Services\SMSService;
+use Illuminate\Support\Facades\Hash;
 
 class CreateNewUserAccountController
 {
@@ -33,7 +31,6 @@ class CreateNewUserAccountController
      */
     public function create($rootValue, array $args)
     {
-
         $user = User::create([
             'name' => $args['input']['first_name'] . " " . $args['input']['middle_name'] . " " . $args['input']['last_name'],
             'email' => $args['input']['email'],
@@ -93,7 +90,7 @@ class CreateNewUserAccountController
                     'provider_sub_level_id' => $args['input']['provider_sub_level_id'],
                 ]);
 
-                if($args['input']['ownership_type'] == 'other') {
+                if ($args['input']['ownership_type'] == 'other') {
                     ProviderFacilityOwner::create([
                         'first_name' => $args['input']['owner_first_name'],
                         'middle_name' => $args['input']['owner_middle_name'],
@@ -104,8 +101,6 @@ class CreateNewUserAccountController
                     ]);
                 }
             }
-
-
         } else {
             $user->assignRole('patient');
 
@@ -139,11 +134,9 @@ class CreateNewUserAccountController
             //         'vrn' => $args['input']['vrn'],
             //     ]);
             // }
-
         }
 
         return new UserResource($user);
-        
     }
 
     public function getVerificationCode()
@@ -167,8 +160,8 @@ class CreateNewUserAccountController
 
     public function updateProviderProfile($rootValue, array $args)
     {
-
-        $provider_profile = ProviderProfile::updateOrCreate([
+        $provider_profile = ProviderProfile::updateOrCreate(
+            [
             'user_id' => auth()->user()->id],
             ['title' => $args['input']['title'],
                 'first_name' => $args['input']['first_name'],
@@ -184,7 +177,8 @@ class CreateNewUserAccountController
                 'gender' => $args['input']['gender'],
                 'bio' => $args['input']['bio'],
                 'provider_sub_level_id' => $args['input']['provider_sub_level_id']
-            ]);
+            ]
+        );
 
         return $provider_profile;
     }
@@ -209,20 +203,19 @@ class CreateNewUserAccountController
                 'registration_date' => $args['input']['registration_date'],
                 'description' => $args['input']['description'],
             ]
-
         );
 
         $provider_company->provider_profile()->detach(auth()->user()->service_provider->id);
         $provider_company->provider_profile()->attach(auth()->user()->service_provider->id, ['role' => 'Owner']);
 
-        if(!empty($args['input']['tin_attachment'])){
+        if (!empty($args['input']['tin_attachment'])) {
             $provider_company->clearMediaCollection('provider-company-tin-files');
             $provider_company->addMediaFromBase64($args['input']['tin_attachment'], 'application/pdf')
             ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['tin'] . '.pdf'))
             ->toMediaCollection('provider-company-tin-files');
         }
         
-        if(!empty($args['input']['vrn_attachment'])){
+        if (!empty($args['input']['vrn_attachment'])) {
             $provider_company->clearMediaCollection('provider-company-vrn-files');
             $provider_company->addMediaFromBase64($args['input']['vrn_attachment'], 'application/pdf')
                 ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['vrn'] . '.pdf'))
@@ -266,7 +259,6 @@ class CreateNewUserAccountController
 
     public function updateProviderFacility($rootValue, array $args)
     {
-
         $provider_facility = ProviderFacility::find($args['input']['id']);
 
         $provider_facility->update([
@@ -287,16 +279,14 @@ class CreateNewUserAccountController
             'provider_company_id' => $args['input']['provider_company_id'],
         ]);
         
-        if(!empty($args['input']['tin_attachment'])){
-
+        if (!empty($args['input']['tin_attachment'])) {
             $provider_facility->clearMediaCollection('provider-facility-tin-files');
             $provider_facility->addMediaFromBase64($args['input']['tin_attachment'], 'application/pdf')
             ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['tin'] . '.pdf'))
             ->toMediaCollection('provider-facility-tin-files');
         }
        
-        if(!empty($args['input']['tin_attachment'])){
-
+        if (!empty($args['input']['tin_attachment'])) {
             $provider_facility->clearMediaCollection('provider-facility-vrn-files');
             $provider_facility->addMediaFromBase64($args['input']['vrn_attachment'], 'application/pdf')
             ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['vrn'] . '.pdf'))
@@ -309,7 +299,6 @@ class CreateNewUserAccountController
 
     public function deleteProviderFacility($rootValue, array $args)
     {
-
         $provider_facility = ProviderFacility::find($args['facility_id']);
 
         $provider_facility->clearMediaCollection('provider-facility-tin-files');
@@ -323,7 +312,6 @@ class CreateNewUserAccountController
 
     public function createProviderQualification($rootValue, array $args)
     {
-
         $qualification = $args['input'];
 
         $provider_qualification = ProviderQualification::create([
@@ -343,7 +331,6 @@ class CreateNewUserAccountController
 
     public function updateProviderQualification($rootValue, array $args)
     {
-
         $provider_qualification = ProviderQualification::find($args['input']['id']);
 
         $provider_qualification->update([
@@ -353,12 +340,11 @@ class CreateNewUserAccountController
             'provider_profile_id' => auth()->user()->service_provider->id,
             'year' => $args['input']['year'],
         ]);
-        if(!empty($args['input']['attachment'])){
+        if (!empty($args['input']['attachment'])) {
             $provider_qualification->clearMediaCollection('provider-qualification-files');
             $provider_qualification->addMediaFromBase64($args['input']['attachment'], 'application/pdf')
                 ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . auth()->user()->name . '-' . $args['input']['award_title'] . '.pdf'))
                 ->toMediaCollection('provider-qualification-files');
-    
         }
        
         return $provider_qualification;
@@ -366,7 +352,6 @@ class CreateNewUserAccountController
 
     public function deleteProviderQualification($rootValue, array $args)
     {
-
         $provider_qualification = ProviderQualification::find($args['qualification_id']);
 
         $provider_qualification->clearMediaCollection('provider-qualification-files');
@@ -378,10 +363,9 @@ class CreateNewUserAccountController
 
     public function createProviderMedicalRegistration($rootValue, array $args)
     {
+        $medical_registration = $args['input'];
 
-       $medical_registration = $args['input'];
-
-            $provider_medical_registration = ProviderMedicalRegistration::create([
+        $provider_medical_registration = ProviderMedicalRegistration::create([
                 'certificate_name' => $medical_registration['certificate_name'],
                 'certificate_number' => $medical_registration['certificate_number'],
                 'registration_number' => $medical_registration['registration_number'],
@@ -389,18 +373,16 @@ class CreateNewUserAccountController
                 'year' => $medical_registration['year'],
             ]);
 
-            $provider_medical_registration->addMediaFromBase64($medical_registration['attachment'], 'application/pdf')
+        $provider_medical_registration->addMediaFromBase64($medical_registration['attachment'], 'application/pdf')
                 ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . auth()->user()->name . '-' . $medical_registration['certificate_name'] . '.pdf'))
                 ->toMediaCollection('provider-medical-registration-files');
            
 
         return $provider_medical_registration;
-
     }
 
     public function updateProviderMedicalRegistration($rootValue, array $args)
     {
-
         $provider_medical_registration = ProviderMedicalRegistration::find($args['input']['id']);
         $provider_medical_registration->update([
             'certificate_name' => $args['input']['certificate_name'],
@@ -410,7 +392,7 @@ class CreateNewUserAccountController
             'year' => $args['input']['year'],
         ]);
 
-        if(!empty($args['input']['attachment'])){
+        if (!empty($args['input']['attachment'])) {
             $provider_medical_registration->clearMediaCollection('provider-medical-registration-files');
             $provider_medical_registration->addMediaFromBase64($args['input']['attachment'], 'application/pdf')
                 ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . auth()->user()->name . '-' . $args['input']['certificate_name'] . '.pdf'))
@@ -419,12 +401,10 @@ class CreateNewUserAccountController
        
 
         return $provider_medical_registration;
-
     }
 
     public function deleteProviderMedicalRegistration($rootValue, array $args)
     {
-
         $provider_medical_registration = ProviderMedicalRegistration::find($args['medical_reg_id']);
         
 
@@ -434,12 +414,10 @@ class CreateNewUserAccountController
         $provider_medical_registration->delete();
 
         return $provider_medical_registration;
-
     }
 
     public function createProviderFacilityServices($rootValue, array $args)
     {
-
         $provider_facility = ProviderFacility::find($args['input']['provider_facility_id']);
 
         foreach ($args['input']['service'] as $service) {
@@ -470,7 +448,6 @@ class CreateNewUserAccountController
 
     public function deleteProviderFacilityServices($rootValue, array $args)
     {
-
         $provider_facility = ProviderFacility::find($args['facility_id']);
 
 
@@ -502,7 +479,6 @@ class CreateNewUserAccountController
             $data[$service['service_id']]['price'] = $service['price'];
             $data[$service['service_id']]['compare_price'] = $service['compare_price'];
             $data[$service['service_id']]['currency'] = $service['currency'];
-
         }
 
         $provider_profile->services()->syncWithoutDetaching($data);
@@ -519,7 +495,6 @@ class CreateNewUserAccountController
             $services['currency'] = $query->pivot->currency;
 
             return $services;
-
         })->all();
     }
 
@@ -543,7 +518,6 @@ class CreateNewUserAccountController
             $services['currency'] = $query->pivot->currency;
 
             return $services;
-
         })->all();
     }
 
@@ -555,7 +529,6 @@ class CreateNewUserAccountController
         $index = 0;
 
         foreach ($args['input'] as $session) {
-
             $session_data = DaySession::create([
                 'name' => $session['name'],
                 'from' => $session['from'],
@@ -586,13 +559,11 @@ class CreateNewUserAccountController
             $sessions['updated_at'] = $query->updated_at;
 
             return $sessions;
-
         })->all();
     }
 
     public function createRequestedService($rootValue, array $args)
     {
-
         $requested_serveces_data = RequestedService::create([
             'name' => $args['input']['name'],
             'description' => $args['input']['description'] ?? null,
@@ -617,8 +588,7 @@ class CreateNewUserAccountController
             'submitted_at' => now()
         ])->save();
         
-        foreach($admins as $admin){
-
+        foreach ($admins as $admin) {
             $admin->notify(new ServiceProviderRequestsNotification());
         }
         

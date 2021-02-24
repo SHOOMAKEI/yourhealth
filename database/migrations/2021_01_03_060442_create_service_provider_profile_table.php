@@ -15,8 +15,8 @@ class CreateServiceProviderProfileTable extends Migration
     {
         Schema::create('service_provider_profile', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('provider_profile_id')->constrained()->onDelete('cascade');
-            $table->foreignId('service_id')->constrained()->onDelete('cascade');
+            $table->foreignId('provider_profile_id')->constrained();
+            $table->foreignId('service_id')->constrained();
             $table->double('price');
             $table->double('compare_price')->nullable();
             $table->string('currency');

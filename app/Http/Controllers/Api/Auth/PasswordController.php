@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use Carbon\Carbon;
 use App\Models\User;
 use App\Notifications\PasswordResetNotification;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
+use Carbon\Carbon;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Fortify\Contracts\UpdatesUserPasswords;
+use Illuminate\Support\Str;
 
 class PasswordController extends Controller
 {
@@ -27,7 +24,6 @@ class PasswordController extends Controller
         $user = auth()->user();
         
         if (! Hash::check($args['input']['current_password'], $user->password)) {
-            
             return (object) [
                 'errors' => [
                     [
@@ -36,7 +32,7 @@ class PasswordController extends Controller
                 ],
                 'success' => false
                 ];
-            }
+        }
       
 
         $user->forceFill([
@@ -99,8 +95,7 @@ class PasswordController extends Controller
     
         $result = DB::table('password_resets')->where('email', $args['input']['mobile_number'])->where('token', $args['input']['otp_code'])->first();
 
-        if(!isset($result->email)){
-
+        if (!isset($result->email)) {
             return (object) [
                 'errors' => [
                     [

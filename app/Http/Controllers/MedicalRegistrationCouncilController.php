@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
-use Illuminate\Http\Request;
 use App\Models\MedicalRegistrationCouncil;
+use Illuminate\Http\Request;
 
 class MedicalRegistrationCouncilController extends Controller
 {
@@ -65,7 +65,7 @@ class MedicalRegistrationCouncilController extends Controller
      */
     public function edit(MedicalRegistrationCouncil $medical_council)
     {
-        return view('medical_councils.edit',['medical_council' => $medical_council, 'countries' => Country::all()]);
+        return view('medical_councils.edit', ['medical_council' => $medical_council, 'countries' => Country::all()]);
     }
 
     /**

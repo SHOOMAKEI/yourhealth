@@ -15,8 +15,8 @@ class CreateDaySessionProvider extends Migration
     {
         Schema::create('day_session_provider', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('provider_profile_id')->constrained()->onDelete('cascade');
-            $table->foreignId('day_session_id')->constrained()->onDelete('cascade');
+            $table->foreignId('provider_profile_id')->constrained();
+            $table->foreignId('day_session_id')->constrained();
             $table->timestamps();
         });
     }

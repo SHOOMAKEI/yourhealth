@@ -27,11 +27,8 @@ class ProviderSubLevelFieldValidator implements Rule
      */
     public function passes($attribute, $value)
     {
-        
-        
-        if($this->account_category_type=="facility"){
-
-          return  isset($value)&& !empty(ProviderSubLevel::where('id',$value)->first())?true:false;
+        if ($this->account_category_type=="facility") {
+            return  isset($value)&& !empty(ProviderSubLevel::where('id', $value)->first())?true:false;
         }
 
         return true;

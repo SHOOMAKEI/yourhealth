@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Api\Registration;
 
-use App\Models\User;
-use App\Models\Service;
-use Illuminate\Http\Request;
 use App\Models\ProviderCompany;
-use App\Models\ProviderProfile;
 use App\Models\ProviderFacility;
-use App\Models\EducationQualification;
+use App\Models\ProviderProfile;
+use App\Models\Service;
+use App\Models\User;
 
-class AccountRegistrationController 
+class AccountRegistrationController
 {
     public function getProviderProfileInfo($rootValue, array $args)
     {
@@ -19,8 +17,7 @@ class AccountRegistrationController
 
     public function getProviderCompanyInfo($rootValue, array $args)
     {
-        if( auth()->user()->service_provider->account_category_type=='individual') {
-
+        if (auth()->user()->service_provider->account_category_type=='individual') {
             return null;
         }
 
@@ -29,8 +26,7 @@ class AccountRegistrationController
 
     public function getProviderFacilityInfo($rootValue, array $args)
     {
-        if( auth()->user()->service_provider->account_category_type=='individual') {
-
+        if (auth()->user()->service_provider->account_category_type=='individual') {
             return null;
         }
 
@@ -39,8 +35,7 @@ class AccountRegistrationController
 
     public function getEducationQualificationInfo($rootValue, array $args)
     {
-        if( auth()->user()->service_provider->account_category_type=='facility'||auth()->user()->service_provider->account_category_type=='company' ) {
-
+        if (auth()->user()->service_provider->account_category_type=='facility'||auth()->user()->service_provider->account_category_type=='company') {
             return null;
         }
 
@@ -49,8 +44,7 @@ class AccountRegistrationController
 
     public function getMedicalRegistrationInfo($rootValue, array $args)
     {
-        if( auth()->user()->service_provider->account_category_type=='facility'||auth()->user()->service_provider->account_category_type=='company' ) {
-
+        if (auth()->user()->service_provider->account_category_type=='facility'||auth()->user()->service_provider->account_category_type=='company') {
             return null;
         }
 
@@ -59,7 +53,7 @@ class AccountRegistrationController
 
     public function getProviderProfileServicesInfo($rootValue, array $args)
     {
-        if( auth()->user()->service_provider->account_category_type=='facility'||auth()->user()->service_provider->account_category_type=='company' ) {
+        if (auth()->user()->service_provider->account_category_type=='facility'||auth()->user()->service_provider->account_category_type=='company') {
             // dd(auth()->user()->service_provider->services);
             return null;
         }
@@ -70,22 +64,20 @@ class AccountRegistrationController
 
     public function getProviderFacilityServicesInfo($rootValue, array $args)
     {
-        if( auth()->user()->service_provider->account_category_type=='individual') {
-
+        if (auth()->user()->service_provider->account_category_type=='individual') {
             return null;
         }
 
-        if( auth()->user()->service_provider->account_category_type=='facility') {
-
-           $facility = ProviderFacility::where('provider_company_id', auth()->user()->service_provider->provider_companies[0]->id)
+        if (auth()->user()->service_provider->account_category_type=='facility') {
+            $facility = ProviderFacility::where('provider_company_id', auth()->user()->service_provider->provider_companies[0]->id)
             ->first();
 
             return $facility->services;
         }
 
-       $facility = ProviderFacility::where('id',$args['facility_id'])->first();
+        $facility = ProviderFacility::where('id', $args['facility_id'])->first();
 
-         return $facility->services;
+        return $facility->services;
     }
 
     public function getProviderProfileInfoWithId($rootValue, array $args)
@@ -97,8 +89,7 @@ class AccountRegistrationController
     {
         $provider_profile = ProviderProfile::where('id', $args['id'])->first();
 
-        if( $provider_profile->account_category_type=='individual') {
-
+        if ($provider_profile->account_category_type=='individual') {
             return null;
         }
 
@@ -109,8 +100,7 @@ class AccountRegistrationController
     {
         $provider_profile = ProviderProfile::where('id', $args['id'])->first();
 
-        if( $provider_profile->account_category_type=='individual') {
-
+        if ($provider_profile->account_category_type=='individual') {
             return null;
         }
 
@@ -121,8 +111,7 @@ class AccountRegistrationController
     {
         $provider_profile = ProviderProfile::where('id', $args['id'])->first();
 
-        if( $provider_profile->account_category_type=='facility'||$provider_profile->account_category_type=='company' ) {
-
+        if ($provider_profile->account_category_type=='facility'||$provider_profile->account_category_type=='company') {
             return null;
         }
 
@@ -133,8 +122,7 @@ class AccountRegistrationController
     {
         $provider_profile = ProviderProfile::where('id', $args['id'])->first();
 
-        if( $provider_profile->account_category_type=='facility'||$provider_profile->account_category_type=='company' ) {
-
+        if ($provider_profile->account_category_type=='facility'||$provider_profile->account_category_type=='company') {
             return null;
         }
 
@@ -145,7 +133,7 @@ class AccountRegistrationController
     {
         $provider_profile = ProviderProfile::where('id', $args['id'])->first();
 
-        if( $provider_profile->account_category_type=='facility'||$provider_profile->account_category_type=='company' ) {
+        if ($provider_profile->account_category_type=='facility'||$provider_profile->account_category_type=='company') {
             // dd(auth()->user()->service_provider->services);
             return null;
         }
@@ -158,28 +146,25 @@ class AccountRegistrationController
     {
         $provider_profile = ProviderProfile::where('id', $args['id'])->first();
 
-        if( $provider_profile->account_category_type=='individual') {
-
+        if ($provider_profile->account_category_type=='individual') {
             return null;
         }
 
-        if( $provider_profile->account_category_type=='facility') {
-
-           $facility = ProviderFacility::where('provider_company_id', $provider_profile->provider_companies[0]->id)
+        if ($provider_profile->account_category_type=='facility') {
+            $facility = ProviderFacility::where('provider_company_id', $provider_profile->provider_companies[0]->id)
             ->first();
 
             return $facility->services;
         }
 
-       $facility = ProviderFacility::where('id',$args['facility_id'])->first();
+        $facility = ProviderFacility::where('id', $args['facility_id'])->first();
 
-         return $facility->services;
+        return $facility->services;
     }
 
 
     public function getProviderProfileUnselectedService($rootValue, array $args)
     {
-        
         $services = auth()->user()->service_provider->services;
         $available_service = Service::all();
 
@@ -187,21 +172,17 @@ class AccountRegistrationController
         return $difference;
         
 
-        if( auth()->user()->service_provider->account_category_type=='facility') {
-
+        if (auth()->user()->service_provider->account_category_type=='facility') {
             $services = auth()->user()->service_provider->services;
             $available_service = Service::all();
  
-           $difference = $available_service->diffAssoc($services);
-             return $difference;
-         }
-
-
+            $difference = $available_service->diffAssoc($services);
+            return $difference;
+        }
     }
 
     public function getProviderFacilityUnselectedService($rootValue, array $args)
     {
-        
         $facility = ProviderFacility::find($args['id']);
         
 
@@ -210,8 +191,7 @@ class AccountRegistrationController
 
         $difference = $available_service->diffAssoc($services);
         // dd($difference);
-            return $difference;
-
+        return $difference;
     }
 
     public function createProviderProfileDailySchedule($rootValue, array $args)
@@ -223,6 +203,4 @@ class AccountRegistrationController
     {
         # code...
     }
-
-
 }

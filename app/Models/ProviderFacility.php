@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Console\Concerns\InteractsWithIO;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -24,7 +22,7 @@ class ProviderFacility extends Model implements HasMedia
 
     public function services()
     {
-        return $this->belongsToMany(Service::class, 'facility_service', 'provider_facility_id','service_id')->withPivot('price', 'compare_price', 'currency');
+        return $this->belongsToMany(Service::class, 'facility_service', 'provider_facility_id', 'service_id')->withPivot('price', 'compare_price', 'currency');
     }
 
     public function provider_company()
@@ -39,15 +37,11 @@ class ProviderFacility extends Model implements HasMedia
 
     public function getTinAttachmentAttribute()
     {
-        
         return $this->getFirstMediaUrl('provider-facility-tin-files');
-
     }
 
     public function getVrnAttachmentAttribute()
     {
-        
         return $this->getFirstMediaUrl('provider-facility-vrn-files');
-
     }
 }

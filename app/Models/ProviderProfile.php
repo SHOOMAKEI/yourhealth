@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class ProviderProfile extends Model implements HasMedia
 {
@@ -26,17 +25,17 @@ class ProviderProfile extends Model implements HasMedia
 
     public function provider_companies()
     {
-        return $this->belongsToMany(ProviderCompany::class, 'company_provider_profile', 'provider_profile_id','provider_company_id');
+        return $this->belongsToMany(ProviderCompany::class, 'company_provider_profile', 'provider_profile_id', 'provider_company_id');
     }
 
     public function provider_facilities()
     {
-        return $this->belongsToMany(ProviderFacility::class, 'facility_provider_profile', 'provider_profile_id','provider_facility_id');
+        return $this->belongsToMany(ProviderFacility::class, 'facility_provider_profile', 'provider_profile_id', 'provider_facility_id');
     }
 
     public function services()
     {
-        return $this->belongsToMany(Service::class, 'service_provider_profile', 'provider_profile_id','service_id')->withPivot('price', 'compare_price', 'currency');
+        return $this->belongsToMany(Service::class, 'service_provider_profile', 'provider_profile_id', 'service_id')->withPivot('price', 'compare_price', 'currency');
     }
 
     public function country()
@@ -61,12 +60,12 @@ class ProviderProfile extends Model implements HasMedia
 
     public function verifications()
     {
-        return $this->belongsToMany(RequiredVerification::class, 'provider_verifications','provider_id');
+        return $this->belongsToMany(RequiredVerification::class, 'provider_verifications', 'provider_id');
     }
     public function account()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }    
+    }
 
     public function day_sessions()
     {
@@ -77,5 +76,4 @@ class ProviderProfile extends Model implements HasMedia
     {
         return $this->hasMany(ProviderRejectionReason::class, 'provider_profile_id');
     }
-   
 }

@@ -4,9 +4,9 @@ namespace App\Actions\Fortify;
 
 use App\Models\User;
 use App\Services\SMSService;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
@@ -34,12 +34,12 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'mobile_number' => $input['mobile_number'],
-            'verification_code' => rand(100000,999999),
+            'verification_code' => rand(100000, 999999),
             'password' => Hash::make($input['password']),
         ]);
 
         
-        if($input['category'] == 'service-provider') {
+        if ($input['category'] == 'service-provider') {
             $user->assignRole('service-provider');
             $user->assignRole('unverified_sp');
         } else {
@@ -50,10 +50,11 @@ class CreateNewUser implements CreatesNewUsers
         return $user;
     }
 
-    public function getVerificationCode() {
+    public function getVerificationCode()
+    {
         $verification_code = '';
           
-        for ($i=0; $i < 6 ; $i++) { 
+        for ($i=0; $i < 6 ; $i++) {
             $number = rand(0, 9);
             $verification_code = $verification_code.$number;
         }
@@ -61,7 +62,7 @@ class CreateNewUser implements CreatesNewUsers
         return $verification_code;
     }
 
-    public function sendVerificationCode(string $number, string $verification_code) 
+    public function sendVerificationCode(string $number, string $verification_code)
     {
         $sms = 'Your Verification Code is '. $verification_code;
 

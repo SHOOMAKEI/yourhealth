@@ -14,7 +14,7 @@ class ProceduresSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
+    {
         
         // (json_decode(utf8_decode(File::get(public_path("data/procedures.json"))),true));
         // dd(json_last_error()); die();

@@ -16,8 +16,10 @@ class ProfileInformationController extends Controller
      * @param  \Laravel\Fortify\Contracts\UpdatesUserProfileInformation  $updater
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,
-                           UpdatesUserProfileInformation $updater)
+    public function update(
+        Request $request,
+        UpdatesUserProfileInformation $updater
+    )
     {
         $updater->update($request->user(), $request->all());
 

@@ -2,11 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Contracts\MustVerifyMobileNumber;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Redirect;
-use App\Contracts\MustVerifyMobileNumber;
+use Illuminate\Support\Facades\URL;
 
 class EnsureMobileNumberIsVerified
 {

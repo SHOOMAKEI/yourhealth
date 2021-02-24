@@ -15,8 +15,8 @@ class CreateFacilityServiceTable extends Migration
     {
         Schema::create('facility_service', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('provider_facility_id')->constrained()->onDelete('cascade');
-            $table->foreignId('service_id')->constrained()->onDelete('cascade');
+            $table->foreignId('provider_facility_id')->constrained();
+            $table->foreignId('service_id')->constrained();
             $table->double('price');
             $table->double('compare_price')->nullable();
             $table->string('currency');

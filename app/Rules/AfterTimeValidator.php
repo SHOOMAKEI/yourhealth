@@ -29,17 +29,13 @@ class AfterTimeValidator implements Rule
         $data = [];
         $index = 0;
         foreach (request()->variables['input'] as $session) {
-
             $time_from = Carbon::parse($session['from']);
             $time_to = Carbon::parse($session['to']);
             $time_from->addMinute(4);
 
             if (!$time_from->lessThan($time_to)) {
-
                 $data[$index] = false;
-
-            }else{
-                
+            } else {
                 $data[$index] = true;
             }
 
@@ -48,7 +44,7 @@ class AfterTimeValidator implements Rule
             $index++;
         }
         
-      dd($data);
+        dd($data);
     }
 
     /**

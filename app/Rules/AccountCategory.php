@@ -25,13 +25,11 @@ class AccountCategory implements Rule
      */
     public function passes($attribute, $value)
     {
-        if(!in_array($value, ['patient', 'service-provider'])) {
-
-            return false; 
+        if (!in_array($value, ['patient', 'service-provider'])) {
+            return false;
         }
 
         return true;
-     
     }
 
     /**

@@ -16,7 +16,7 @@ class CreateMedicalRegistrationCouncilsTable extends Migration
         Schema::create('medical_registration_councils', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('country_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('country_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
     }

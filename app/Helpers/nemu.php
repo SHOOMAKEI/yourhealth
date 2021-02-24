@@ -1,7 +1,6 @@
-<?php 
+<?php
 
 use Illuminate\Http\Request;
-
 
 // if (!function_exists('activeMenu')) {
 //     function activeMenu($uri = '') {

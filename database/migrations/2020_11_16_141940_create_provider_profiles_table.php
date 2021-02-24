@@ -29,8 +29,8 @@ class CreateProviderProfilesTable extends Migration
             $table->string('gender')->nullable();
             $table->text('bio')->nullable();
             $table->boolean('is_active')->default(1);
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('provider_sub_level_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('provider_sub_level_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
             $table->softDeletes();
         });

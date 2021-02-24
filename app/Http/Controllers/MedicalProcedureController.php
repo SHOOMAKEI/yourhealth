@@ -97,7 +97,7 @@ class MedicalProcedureController extends Controller
 
     private function validateRequrest(Request $request)
     {
-         return $request->validate([
+        return $request->validate([
             'name' => ['required']
          ]);
     }

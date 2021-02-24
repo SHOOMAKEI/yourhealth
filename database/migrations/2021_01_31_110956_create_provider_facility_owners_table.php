@@ -20,7 +20,7 @@ class CreateProviderFacilityOwnersTable extends Migration
             $table->string('last_name');
             $table->string('email')->nullable();
             $table->string('mobile_number');
-            $table->foreignId('provider_facility_id')->constrained()->onDelete('cascade');
+            $table->foreignId('provider_facility_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

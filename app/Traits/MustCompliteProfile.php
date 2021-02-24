@@ -2,11 +2,7 @@
 
 namespace App\Traits;
 
-use Carbon\Carbon;
 use App\Services\SMSService;
-use Illuminate\Support\Facades\DB;
-
-
 
 trait MustCompliteProfileStage
 {
@@ -40,7 +36,7 @@ trait MustCompliteProfileStage
     public function sendMobileNumberVerificationNotification()
     {
         $this->forceFill([
-            'verification_code' => rand(100000,999999),
+            'verification_code' => rand(100000, 999999),
         ])->save();
 
         $sms = 'Your Verification Code is '. $this->verification_code;
@@ -62,5 +58,4 @@ trait MustCompliteProfileStage
     {
         return $this->verification_code;
     }
-
 }

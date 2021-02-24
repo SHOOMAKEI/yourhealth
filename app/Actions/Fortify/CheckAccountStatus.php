@@ -21,7 +21,7 @@ class CheckAccountStatus
             'is_active' => 1
         ]);
 
-        if(!$validated) {
+        if (!$validated) {
             return redirect()->back()->with(['status'=> 'Your Account is disabled Contact Support team for more informaiton']);
         }
 

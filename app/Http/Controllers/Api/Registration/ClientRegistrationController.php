@@ -2,29 +2,27 @@
 
 namespace App\Http\Controllers\Api\Registration;
 
-use App\Models\ClientTeam;
 use App\Models\ClientProfile;
+use App\Models\ClientTeam;
 
-class ClientRegistrationController {
+class ClientRegistrationController
+{
+    public function updateClientAccountCategoryType($rootValue, array $args)
+    {
+        $client =  ClientProfile::where('user_id', auth()->user()->id);
 
-
-  public function updateClientAccountCategoryType($rootValue, array $args)
-  {
-    $client =  ClientProfile::where('user_id', auth()->user()->id);
-
-    $client->forceFill(
-      [
+        $client->forceFill(
+            [
         'account_category_type' => $args['input']['account_category_type']
-      ]);
+      ]
+        );
 
-    return $client;
+        return $client;
+    }
 
-  }
-
-  public function createClientFamily($rootValue, array $args)
-  {
-    
-     $clientTeam = ClientTeam::create([
+    public function createClientFamily($rootValue, array $args)
+    {
+        $clientTeam = ClientTeam::create([
           'name' => $args['input']['name'],
           'team_type' => 'family',
           'mobile_number' => $args['input']['mobile_number'],
@@ -38,13 +36,12 @@ class ClientRegistrationController {
           'description' => $args['input']['description'],
       ]);
       
-      return $clientTeam;
+        return $clientTeam;
+    }
 
-  }
-
-  public function createClientCooperate($rootValue, array $args)
-  {
-    $clientTeam = ClientTeam::create([
+    public function createClientCooperate($rootValue, array $args)
+    {
+        $clientTeam = ClientTeam::create([
             'name' => $args['input']['name'],
             'team_type' => 'family',
             'mobile_number' => $args['input']['mobile_number'],
@@ -63,15 +60,14 @@ class ClientRegistrationController {
         ]);
 
         return $clientTeam;
-  }
+    }
 
-  public function subscribeToPackagePlan($rootValue, array $args)
-  {
-      
-  }
+    public function subscribeToPackagePlan($rootValue, array $args)
+    {
+    }
 
-  public function inviteTeamMembers($rootValue , array $args)
-  {
-    # code...
-  }
+    public function inviteTeamMembers($rootValue, array $args)
+    {
+        # code...
+    }
 }

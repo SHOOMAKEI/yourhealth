@@ -24,7 +24,6 @@ class UpdateUserPassword implements UpdatesUserPasswords
             'password' => $this->passwordRules(),
         ])->after(function ($validator) use ($user, $input) {
             if (! Hash::check($input['input']['current_password'], $user->password)) {
-                
                 return (object) [
                     'errors' => [
                         [

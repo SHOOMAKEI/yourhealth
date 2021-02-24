@@ -13,13 +13,11 @@ class EducationQualification extends Model
 
     public function medical_course()
     {
-        return $this->belongsTo(MedicalCourse::class,'medical_course_id');
+        return $this->belongsTo(MedicalCourse::class, 'medical_course_id');
     }
 
     public function medical_institute()
     {
-        return $this->belongsTo(MedicalInstitute::class,'medical_institute_id');
+        return $this->belongsTo(MedicalInstitute::class, 'medical_institute_id');
     }
-
-    
 }

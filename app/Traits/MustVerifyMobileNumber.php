@@ -2,11 +2,9 @@
 
 namespace App\Traits;
 
-use Carbon\Carbon;
 use App\Services\SMSService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-
-
 
 trait MustVerifyMobileNumber
 {
@@ -40,7 +38,7 @@ trait MustVerifyMobileNumber
     public function sendMobileNumberVerificationNotification()
     {
         $this->forceFill([
-            'verification_code' => rand(100000,999999),
+            'verification_code' => rand(100000, 999999),
         ])->save();
 
         $sms = 'Your Verification Code is '. $this->verification_code;
@@ -63,15 +61,15 @@ trait MustVerifyMobileNumber
         return $this->verification_code;
     }
 
-     /**
-     * Send the MobileNumber verification notification.
-     *
-     * @return void
-     */
+    /**
+    * Send the MobileNumber verification notification.
+    *
+    * @return void
+    */
     public function sendOtpCodeNotification()
     {
         $this->forceFill([
-            'otp_code' => rand(100000,999999),
+            'otp_code' => rand(100000, 999999),
         ])->save();
 
         $sms = 'Your OTP Code is '. $this->otp_code;
@@ -84,14 +82,14 @@ trait MustVerifyMobileNumber
         return $this->otp_code;
     }
 
-        /**
+    /**
      * Send the MobileNumber reset Password notification.
      *
      * @return void
      */
     public function sendMobileNumberResetPasswordNotification()
     {
-        $token = rand(111111,999999);
+        $token = rand(111111, 999999);
         
         DB::table('password_resets')->where('email', $this->mobile_number)->delete();
 
@@ -101,6 +99,4 @@ trait MustVerifyMobileNumber
         
         SMSService::sendSMSToSingeUser($this->mobile_number, $sms);
     }
-
-
 }

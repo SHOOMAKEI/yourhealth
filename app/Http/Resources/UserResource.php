@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Models\ProviderProfile;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -15,7 +14,7 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-          return [
+        return [
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
@@ -31,5 +30,4 @@ class UserResource extends JsonResource
             
         ];
     }
-
 }

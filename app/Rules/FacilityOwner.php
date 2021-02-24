@@ -26,9 +26,8 @@ class FacilityOwner implements Rule
      */
     public function passes($attribute, $value)
     {
-        if($this->account_category_type=='facility' && !in_array($value, ['self', 'other'])) {
-
-            return false; 
+        if ($this->account_category_type=='facility' && !in_array($value, ['self', 'other'])) {
+            return false;
         }
 
         return true;

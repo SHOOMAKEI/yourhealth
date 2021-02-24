@@ -2,17 +2,17 @@
 
 namespace App\Providers;
 
+use App\Actions\Fortify\CheckAccountStatus;
+use App\Actions\Fortify\CheckSubscription;
+use App\Actions\Jetstream\DeleteUser;
+use Illuminate\Http\Request;
+use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Actions\AttemptToAuthenticate;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
-use App\Actions\Jetstream\DeleteUser;
-use Illuminate\Support\ServiceProvider;
-use Laravel\Jetstream\Jetstream;
 use Laravel\Fortify\Fortify;
-use Illuminate\Http\Request;
-use App\Actions\Fortify\CheckAccountStatus;
-use App\Actions\Fortify\CheckSubscription;
+use Laravel\Jetstream\Jetstream;
 
 class JetstreamServiceProvider extends ServiceProvider
 {

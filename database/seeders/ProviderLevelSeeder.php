@@ -3,11 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Day;
-use FontLib\Table\Type\name;
-use App\Models\ProviderLevel;
-use Illuminate\Database\Seeder;
 use App\Models\ProviderCategory;
+use App\Models\ProviderLevel;
 use App\Models\ProviderSubLevel;
+use Illuminate\Database\Seeder;
 
 class ProviderLevelSeeder extends Seeder
 {
@@ -106,12 +105,10 @@ class ProviderLevelSeeder extends Seeder
         ProviderLevel::firstOrCreate(['name' => 'Intensivist']);
         ProviderLevel::firstOrCreate(['name' => 'Dentist']);
         
-        $sample = ProviderLevel::where('name','Diagnostic Center')->first();
+        $sample = ProviderLevel::where('name', 'Diagnostic Center')->first();
         
         ProviderSubLevel::firstOrCreate(['provider_level_id' => $sample->id,'name' => 'Pathology']);
         ProviderSubLevel::firstOrCreate(['provider_level_id' => $sample->id,'name' => 'Radiology']);
         ProviderSubLevel::firstOrCreate(['provider_level_id' => $sample->id,'name' => 'Laboratory']);
-        
-
     }
 }

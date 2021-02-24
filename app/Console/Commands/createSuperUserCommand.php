@@ -2,12 +2,11 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\User;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
-use Carbon\Carbon;
+use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class CreateSuperUserCommand extends Command
 {
@@ -36,9 +35,9 @@ class CreateSuperUserCommand extends Command
     }
 
 
-    public function confirm_passwords($password, $confirm_password) {
-
-        if($password != $confirm_password){
+    public function confirm_passwords($password, $confirm_password)
+    {
+        if ($password != $confirm_password) {
             $error = $this->error('Passwords do not match!');
             $password = $this->secret('Insert password');
             $password = $this->validatePassword($password);
@@ -49,48 +48,46 @@ class CreateSuperUserCommand extends Command
     }
 
     // Validating if the emails does not repeat
-    public function validateEmails($email){
-
+    public function validateEmails($email)
+    {
         $email_validator = Validator::make(
             ['email' => $email],
             ['email' => ['required', 'string', 'email', 'max:255', 'unique:users']]
         );
 
-        if($email_validator->fails()){
+        if ($email_validator->fails()) {
             $this->error('Email is Invalid or already exist!');
             $email = $this->ask('Insert valid email:');
             return $this->validateEmails($email);
         }
 
         return $email;
-
     }
 
-    public function validateMobileNumber($mobile_number){
-
+    public function validateMobileNumber($mobile_number)
+    {
         $mobile_number_validator = Validator::make(
             ['mobile_number' => $mobile_number],
             ['mobile_number' => ['required', 'string','regex:/^([0-9\s\-\+\(\)]*)$/','max:255', 'unique:users']]
         );
 
-        if($mobile_number_validator->fails()){
+        if ($mobile_number_validator->fails()) {
             $this->error('Mobile Number is Invalid or already exist!');
             $mobile_number = $this->ask('Insert valid Mobile Number:');
             return $this->validateEmails($mobile_number);
         }
 
         return $mobile_number;
-
     }
 
-    public function validatePassword($password){
-
+    public function validatePassword($password)
+    {
         $password_validator = Validator::make(
             ['password' => $password],
             ['password' => ['required', 'min:8']]
         );
 
-        if($password_validator->fails()){
+        if ($password_validator->fails()) {
             $this->error('Password required and atleast 8 characters Needed');
             $password = $this->secret('Enter Password:');
             return $this->validatePassword($password);
@@ -99,14 +96,14 @@ class CreateSuperUserCommand extends Command
         return $password;
     }
 
-    public function validateName($name){
-
+    public function validateName($name)
+    {
         $name_validator = Validator::make(
             ['name' => $name],
             ['name' => ['required', 'string', 'max:255']]
         );
 
-        if($name_validator->fails()){
+        if ($name_validator->fails()) {
             $this->error('Name is required!');
             $name = $this->ask('Insert Name:');
             return $this->validateName($name);
@@ -139,7 +136,7 @@ class CreateSuperUserCommand extends Command
         $confirm_password = $this->secret('Confirm your password');
         $password = $this->confirm_passwords($password, $confirm_password);
 
-        DB::transaction(function() use ( $name, $mobile_number, $email, $password) {
+        DB::transaction(function () use ($name, $mobile_number, $email, $password) {
             $user =  User::create([
                     'name' => $name,
                     'email' => $email,
@@ -156,6 +153,5 @@ class CreateSuperUserCommand extends Command
        
 
         $this->info('Congratulations, Now you are the SUPER USER of this system.');
- 
     }
 }

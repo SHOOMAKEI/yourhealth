@@ -4,7 +4,7 @@ namespace App\Actions\Fortify;
 
 use Illuminate\Http\Request;
 
-class CheckSubscription 
+class CheckSubscription
 {
     /**
      * Handle the incoming request.
@@ -23,15 +23,14 @@ class CheckSubscription
 
         $plan = $user->subscribedPlans()[0];
 
-        if(empty($plan)) {
+        if (empty($plan)) {
             return  redirect()->url('/')->with(['status'=> 'Please Subscribe to one of our package that we offer']);
         }
 
-    //    if (!$user->subscribedTo($plan->id)) {
-    //     return  redirect()->url('/')->with(['status'=> 'Please Subscribe to one of our package that we offer']);
-    //    }
+        //    if (!$user->subscribedTo($plan->id)) {
+        //     return  redirect()->url('/')->with(['status'=> 'Please Subscribe to one of our package that we offer']);
+        //    }
 
-       return $next;
-
+        return $next;
     }
 }

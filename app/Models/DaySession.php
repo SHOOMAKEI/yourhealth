@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DaySession extends Model
 {
@@ -19,6 +19,4 @@ class DaySession extends Model
     {
         return $this->belongsTo(Day::class);
     }
-
-    
 }

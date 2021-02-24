@@ -2,10 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Contracts\MustVerifyMobileNumber;
 use Illuminate\Support\Facades\Validator;
-use App\Services\MustVerifyMobileNumber as verifyMobileNumber;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -89,6 +87,5 @@ class AppServiceProvider extends ServiceProvider
 
             return true;
         });
-
     }
 }

@@ -17,7 +17,7 @@ class CreateRequestedServicesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->foreignId('provider_profile_id')->constrained()->onDelete('cascade');
+            $table->foreignId('provider_profile_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

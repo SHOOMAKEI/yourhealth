@@ -2,25 +2,16 @@
 
 namespace App\Services;
 
-use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
-
-
-class DumaPaymentOnline 
+class DumaPaymentOnline
 {
-   
-
     public static function createTransactionToken(string $xmlBody)
     {
-
         $respose =  Http::withHeaders([
             'Content-Type' => 'application/xml'
         ])->post(env('DPO_PAYMENT_URL'), ['body'=> $xmlBody]);
 
-            return $respose;
-
+        return $respose;
     }
-    
-
 }

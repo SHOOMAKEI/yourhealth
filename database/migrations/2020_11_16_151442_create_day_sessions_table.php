@@ -19,7 +19,7 @@ class CreateDaySessionsTable extends Migration
             $table->time('from');
             $table->time('to');
             $table->integer('interval')->default(15);
-            $table->foreignId('day_id')->constrained()->onDelete('cascade');
+            $table->foreignId('day_id')->constrained();
             $table->timestamps();
         });
     }

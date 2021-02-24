@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Rule;
 
 class NameFieldValidator implements Rule
 {
-     public $account_category_type;
+    public $account_category_type;
     /**
      * Create a new rule instance.
      *
@@ -14,7 +14,6 @@ class NameFieldValidator implements Rule
      */
     public function __construct()
     {
-        
         $this->account_category_type = request()->variables['input']['account_category_type'];
     }
 
@@ -27,17 +26,15 @@ class NameFieldValidator implements Rule
      */
     public function passes($attribute, $value)
     {
-        
-        
-        if(
-            ($this->account_category_type=="company"||
+        if (
+            (
+                $this->account_category_type=="company"||
             $this->account_category_type=="facility"
             // $this->account_category_type=="cooperate"||
-            // $this->account_category_type=="family" 
+            // $this->account_category_type=="family"
             ) && $attribute== 'name'
-        ){
-           
-          return  isset($value)?true:false;
+        ) {
+            return  isset($value)?true:false;
         }
 
         return true;

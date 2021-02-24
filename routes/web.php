@@ -1,20 +1,19 @@
 <?php
 
-use App\Models\Plan;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PackagesController;
+use App\Http\Controllers\Admin\ProviderProfileAdminController;
+use App\Http\Controllers\Api\Auth\VerifyEmailController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MedicalCourseController;
-use App\Http\Controllers\SpecializationController;
 use App\Http\Controllers\MedicalInstituteController;
 use App\Http\Controllers\MedicalProcedureController;
-use App\Http\Controllers\VerifyMobileNumberController;
-use App\Http\Controllers\RequiredVerificationController;
 use App\Http\Controllers\MedicalRegistrationCouncilController;
+use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\ProviderProfileController;
-use App\Http\Controllers\Admin\ProviderProfileAdminController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RequiredVerificationController;
 use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\Api\Auth\VerifyEmailController;
+use App\Http\Controllers\SpecializationController;
+use App\Http\Controllers\VerifyMobileNumberController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

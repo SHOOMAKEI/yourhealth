@@ -25,6 +25,6 @@ class AddColumnCategoryToSubscriptionTable extends Migration
      */
     public function down()
     {
-        Schema::dropColumns(config('rinvex.subscriptions.tables.plans'),['category']);
+        Schema::dropColumns(config('rinvex.subscriptions.tables.plans'), ['category']);
     }
 }

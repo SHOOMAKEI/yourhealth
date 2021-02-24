@@ -29,12 +29,10 @@ class OwnerInfoFieldValidator implements Rule
      */
     public function passes($attribute, $value)
     {
-        
         $this->column = $attribute;
 
-        if($this->account_category_type=="facility" && $this->ownership_type=="other"){
-
-          return  isset($value)?true:false;
+        if ($this->account_category_type=="facility" && $this->ownership_type=="other") {
+            return  isset($value)?true:false;
         }
 
         return true;
@@ -47,6 +45,6 @@ class OwnerInfoFieldValidator implements Rule
      */
     public function message()
     {
-        return 'The '.$this->account_category_type.' '. str_replace('_', ' ',$this->column).' is required.';
+        return 'The '.$this->account_category_type.' '. str_replace('_', ' ', $this->column).' is required.';
     }
 }

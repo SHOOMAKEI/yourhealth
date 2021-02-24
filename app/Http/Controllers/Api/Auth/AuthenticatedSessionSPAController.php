@@ -2,24 +2,12 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Models\User;
-use Illuminate\Http\Request;
-use Laravel\Fortify\Fortify;
-use Laravel\Fortify\Features;
-use Illuminate\Routing\Pipeline;
-use Illuminate\Routing\Controller;
 use App\Http\Resources\UserResource;
+use App\Models\User;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Contracts\Auth\StatefulGuard;
-use Laravel\Fortify\Contracts\LoginResponse;
-use Laravel\Fortify\Contracts\LogoutResponse;
-use Laravel\Fortify\Http\Requests\LoginRequest;
-use Laravel\Fortify\Contracts\LoginViewResponse;
-use Laravel\Fortify\Actions\AttemptToAuthenticate;
-use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
-use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
-use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 
 class AuthenticatedSessionSPAController extends Controller
 {
@@ -45,13 +33,11 @@ class AuthenticatedSessionSPAController extends Controller
 
     public function login($rootValue, array $args)
     {
-    
         $data =  $this->username($rootValue, $args);
        
         $user = User::where($data['field'], $args['input']['username'])->first();
         
-        if(! $user || ($user->is_active ==false)) {
-
+        if (! $user || ($user->is_active ==false)) {
             return (object)([
                 'user' => null,
                 'is_authenticated' => false,
@@ -65,7 +51,6 @@ class AuthenticatedSessionSPAController extends Controller
         }
     
         if (! $user || ! Hash::check($args['input']['password'], $user->password)) {
-
             $user->forceFill([
                 'login_trial_count' => ($user->login_trial_count-1),
             ])->save();
@@ -82,8 +67,7 @@ class AuthenticatedSessionSPAController extends Controller
                 ]);
         }
 
-        if($user->email_verified_at == null) {
-
+        if ($user->email_verified_at == null) {
             $user->sendEmailVerificationNotification();
 
             return (object)([
@@ -94,8 +78,7 @@ class AuthenticatedSessionSPAController extends Controller
             ]);
         }
 
-        if($user->mobile_number_verified_at == null) {
-
+        if ($user->mobile_number_verified_at == null) {
             $user->sendMobileNumberVerificationNotification();
             
             $user->forceFill([
@@ -110,8 +93,7 @@ class AuthenticatedSessionSPAController extends Controller
             ]);
         }
 
-        if($user->enabled_otp == true) {
-
+        if ($user->enabled_otp == true) {
             $user->sendOtpCodeNotification();
 
             $user->forceFill([
@@ -126,8 +108,7 @@ class AuthenticatedSessionSPAController extends Controller
             ]);
         }
 
-        if($user->two_factor_secret || $user->two_factor_recovery_codes) {
-
+        if ($user->two_factor_secret || $user->two_factor_recovery_codes) {
             return (object)([
                 'user' => new UserResource($user),
                 'is_authenticated' => false,
@@ -151,7 +132,6 @@ class AuthenticatedSessionSPAController extends Controller
             'errors'=> null,
             'success' => true
             ]);
-        
     }
 
     public function resendOtpCode($rootValue, array $args)
@@ -172,8 +152,7 @@ class AuthenticatedSessionSPAController extends Controller
     {
         $user = User::where('email', $args['input']['email'])->first();
 
-        if($user->getOtpCodeForVerification() != $args['input']['otp_code'])
-        {
+        if ($user->getOtpCodeForVerification() != $args['input']['otp_code']) {
             return (object)([
                 'user' => new UserResource($user),
                 
@@ -204,7 +183,8 @@ class AuthenticatedSessionSPAController extends Controller
     public function hasValid2FACode(User $user, array $args)
     {
         return $args['input']['code'] && app(TwoFactorAuthenticationProvider::class)->verify(
-            decrypt($user->two_factor_secret), $args['input']['code']
+            decrypt($user->two_factor_secret),
+            $args['input']['code']
         );
     }
 
@@ -224,7 +204,7 @@ class AuthenticatedSessionSPAController extends Controller
     {
         $user = User::where('email', $args['input']['email'])->first();
       
-        if ($code = $this->valid2FARecoveryCode($user,$args)) {
+        if ($code = $this->valid2FARecoveryCode($user, $args)) {
             $user->replaceRecoveryCode($code);
         } elseif (! $this->hasValid2FACode($user, $args)) {
             return (object)([
@@ -282,8 +262,7 @@ class AuthenticatedSessionSPAController extends Controller
         
         $user->markMobileNumberAsVerified();
 
-        if($user->email_verified_at == null) {
-
+        if ($user->email_verified_at == null) {
             return (object)([
                 'user' => new UserResource($user),
                 'is_authenticated' => false,
@@ -325,8 +304,7 @@ class AuthenticatedSessionSPAController extends Controller
     {
         $user = User::where('id', $args['input']['id'])->first();
 
-        if($user->email_verified_at == null){
-            
+        if ($user->email_verified_at == null) {
             return (object)([
                 'user' => null,
                 'errors'=> [
@@ -343,8 +321,6 @@ class AuthenticatedSessionSPAController extends Controller
             'errors'=> null,
             'success' => true,
             ]);
-        
-
     }
 
 
@@ -359,7 +335,7 @@ class AuthenticatedSessionSPAController extends Controller
             $field = 'mobile_number';
         }
        
-       $args =  array_merge([$field => $login], $args);
+        $args =  array_merge([$field => $login], $args);
 
         return ['field' => $field, 'args' => $args];
     }
@@ -372,7 +348,6 @@ class AuthenticatedSessionSPAController extends Controller
      */
     public function logout($rootValue, $args)
     {
-        
         $this->guard->logout();
 
         // $request->session()->invalidate();
@@ -385,6 +360,5 @@ class AuthenticatedSessionSPAController extends Controller
             'errors'=> null,
             'success' => true
             ]);
-    
     }
 }

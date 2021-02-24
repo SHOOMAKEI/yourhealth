@@ -74,7 +74,7 @@ class PackagesController extends Controller
      */
     public function edit(Plan $package)
     {
-        return view('packages.edit',['package'=> $package]);
+        return view('packages.edit', ['package'=> $package]);
     }
 
     /**
@@ -117,9 +117,9 @@ class PackagesController extends Controller
     }
 
 
-    private function validateRequest(Request $request) {
-        
-       return $request->validate([
+    private function validateRequest(Request $request)
+    {
+        return $request->validate([
             'package_name' => ['required' ,'String'],
             'package_description' => ['required', 'String'],
             'package_price' => ['required', 'numeric'],

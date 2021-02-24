@@ -15,8 +15,8 @@ class CreatePackageFeaturesTable extends Migration
     {
         Schema::create('package_features', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id')->constrained()->onDelete('cascade');
-            $table->foreignId('package_plan_id')->constrained()->onDelete('cascade');
+            $table->foreignId('service_id')->constrained();
+            $table->foreignId('package_plan_id')->constrained();
             $table->decimal('price')->default('0.00');
             $table->decimal('compare_price')->nullable();
             $table->string('currency', 3);

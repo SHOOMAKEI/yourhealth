@@ -26,14 +26,12 @@ class TinFieldValidator implements Rule
      */
     public function passes($attribute, $value)
     {
-        
-        
-        if(
+        if (
             $this->account_category_type=="company"||
             $this->account_category_type=="facility"
             // $this->account_category_type=="cooperate"
-        ){
-          return  isset($value)?true:false;
+        ) {
+            return  isset($value)?true:false;
         }
 
         return true;

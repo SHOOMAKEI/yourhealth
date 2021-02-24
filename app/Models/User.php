@@ -4,18 +4,18 @@ namespace App\Models;
 
 use App\Contracts\MustVerifyMobileNumber;
 use App\Traits\MustVerifyMobileNumber as VerifyMobileNumber;
-use Laravel\Sanctum\HasApiTokens;
-use Laravel\Jetstream\HasProfilePhoto;
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasPermissions;
-use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Sanctum\HasApiTokens;
 use Rinvex\Subscriptions\Traits\HasSubscriptions;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Permission\Traits\HasPermissions;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileNumber, HasMedia
 {
@@ -81,8 +81,8 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
         'profile_photo_url',
     ];
 
-    public function getSettingsAttribute() 
-    { 
+    public function getSettingsAttribute()
+    {
         return  [
             'hasOtpEnabled' => ($this->enabled_otp == true)?true:false,
             'hasVerifiedEmail' => ($this->email_verified_at != null)?true:false,
@@ -100,7 +100,6 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
                                                     ->first();
 
         return isset($provider_profile)?$provider_profile->toArray():null;
-        
     }
 
     public function getClientProfileAttribute()
@@ -110,21 +109,16 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
 
         //     $this->hasOne(ProviderProfile::class, 'user_id');
         // }
-
     }
 
     public function getAcountRolesAttribute()
     {
-        
         return $this->getRoleNames();
-
     }
 
     public function getAccountPermissionsAttribute()
     {
-        
         return $this->getAllPermissions();
-
     }
 
     public function service_provider()
@@ -139,13 +133,13 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
 
     public function getProfilePhotoPathAttribute()
     {
-        if(($this->hasRole('service-provider') || $this->hasRole('service-provider'))&&
-            $this->getFirstMediaUrl('profile-photo')==null){
+        if (($this->hasRole('service-provider') || $this->hasRole('service-provider'))&&
+            $this->getFirstMediaUrl('profile-photo')==null) {
             return asset('avatar/service_provider_profile_avatar.jpg');
         }
 
-        if($this->hasRole('patient')&&
-            $this->getFirstMediaUrl('profile-photo')==null){
+        if ($this->hasRole('patient')&&
+            $this->getFirstMediaUrl('profile-photo')==null) {
             return asset('avatar/client_profile_avatar.jpg');
         }
         

@@ -3,31 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
-use App\Models\User;
-use App\Models\Country;
-use Illuminate\Http\Request;
-use App\Models\MedicalCourse;
-use App\Models\Specialization;
 use App\Models\ConsultationFee;
-use App\Models\ProviderProfile;
-use Illuminate\Validation\Rule;
+use App\Models\Country;
+use App\Models\EducationQualification;
+use App\Models\MedicalCourse;
 use App\Models\MedicalInstitute;
 use App\Models\MedicalProcedure;
+use App\Models\MedicalRegistrationCouncil;
+use App\Models\ProviderEstablishment;
+use App\Models\ProviderProfile;
 use App\Models\ProviderVerification;
 use App\Models\RequiredVerification;
+use App\Models\Specialization;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\ProviderEstablishment;
-use App\Models\EducationQualification;
-use App\Models\MedicalRegistrationCouncil;
+use Illuminate\Validation\Rule;
 
 class ProviderProfileController extends Controller
 {
     public function index()
     {
-        $profile = ProviderProfile::where('user_id',Auth::user()->id)->first();
+        $profile = ProviderProfile::where('user_id', Auth::user()->id)->first();
 
         return view('provider_profile.index', [
-            'countries' =>Country::all(), 
+            'countries' =>Country::all(),
             'cities' => City::all(),
             'medical_councils' => MedicalRegistrationCouncil::all(),
             'medical_courses' => MedicalCourse::all(),
@@ -35,25 +35,25 @@ class ProviderProfileController extends Controller
             'specializations' => Specialization::all(),
             'procedures' => MedicalProcedure::all(),
             'required_verifications' => RequiredVerification::all(),
-            'profile'=> ProviderProfile::where('user_id',Auth::user()->id)->first(),
-            'education_qualifications' => empty($profile)?'':EducationQualification::where('provider_profile_id',$profile->id)->get(),
+            'profile'=> ProviderProfile::where('user_id', Auth::user()->id)->first(),
+            'education_qualifications' => empty($profile)?'':EducationQualification::where('provider_profile_id', $profile->id)->get(),
             ]);
     }
 
     public function profileInfo()
     {
         return view('provider_profile.profile_info', [
-            'countries' =>Country::all(), 
+            'countries' =>Country::all(),
             'cities' => City::all(),
-            'profile'=> ProviderProfile::where('user_id',Auth::user()->id)->first()
+            'profile'=> ProviderProfile::where('user_id', Auth::user()->id)->first()
         ]);
     }
 
     public function establishments()
     {
-        $profile  = ProviderProfile::where('user_id',Auth::user()->id)->first();
+        $profile  = ProviderProfile::where('user_id', Auth::user()->id)->first();
         return view('provider_profile.establishments', [
-        'countries' =>Country::all(), 
+        'countries' =>Country::all(),
         'cities' => City::all(),
         'establishment'=> $profile->establishments->isNotEmpty()?
         $profile->establishments[0]:null
@@ -62,7 +62,7 @@ class ProviderProfileController extends Controller
 
     public function specializations()
     {
-        $profile  = ProviderProfile::where('user_id',Auth::user()->id)->first();
+        $profile  = ProviderProfile::where('user_id', Auth::user()->id)->first();
 
         return view('provider_profile.specializations', [
             'specializations' => Specialization::all(),
@@ -78,7 +78,7 @@ class ProviderProfileController extends Controller
 
     public function verifications()
     {
-        $profile = ProviderProfile::where('user_id',Auth::user()->id)->first();
+        $profile = ProviderProfile::where('user_id', Auth::user()->id)->first();
         return view('provider_profile.verifications', [
             'required_verifications' => RequiredVerification::all(),
             'submitted_verifications' =>  $profile->verifications->isNotEmpty()?
@@ -92,14 +92,14 @@ class ProviderProfileController extends Controller
 
     public function medicalQualification()
     {
-        $profile = ProviderProfile::where('user_id',Auth::user()->id)->first();
+        $profile = ProviderProfile::where('user_id', Auth::user()->id)->first();
         return view('provider_profile.medical_qualification', [
             'medical_councils' => MedicalRegistrationCouncil::all(),
             'medical_courses' => MedicalCourse::all(),
             'medical_institutes' => MedicalInstitute::all(),
-            'qualification'=> $profile->education_qualifications->isNotEmpty()? 
+            'qualification'=> $profile->education_qualifications->isNotEmpty()?
             $profile->education_qualifications[0]: null,
-            'registration'=> $profile->medical_registrations->isNotEmpty()? 
+            'registration'=> $profile->medical_registrations->isNotEmpty()?
             $profile->medical_registrations[0]: null
         ]);
     }
@@ -107,14 +107,14 @@ class ProviderProfileController extends Controller
     public function submittion()
     {
         return view('provider_profile.submittion', [
-            'profile'=> ProviderProfile::where('user_id',Auth::user()->id)->first()
+            'profile'=> ProviderProfile::where('user_id', Auth::user()->id)->first()
         ]);
     }
 
     public function submitted()
     {
         $user = User::find(auth()->user()->id);
-        $profile = ProviderProfile::where('user_id',$user->id)->first();
+        $profile = ProviderProfile::where('user_id', $user->id)->first();
 
         $user->forceFill([
             'profile_stage' => 10,
@@ -124,7 +124,7 @@ class ProviderProfileController extends Controller
             'is_submitted' => 1,
         ])->save();
         
-        return redirect()->back()->with(['status' => 'success','message' => 
+        return redirect()->back()->with(['status' => 'success','message' =>
         'Your Profile has been sent for further informations we will contact your after verification']);
     }
 
@@ -132,23 +132,22 @@ class ProviderProfileController extends Controller
 
     public function store(Request $request)
     {
+        $provider_profile = ProviderProfile::where('user_id', Auth::user()->id)->first();
 
-        $provider_profile = ProviderProfile::where('user_id',Auth::user()->id)->first();
-
-        if(!empty($provider_profile) && $provider_profile->is_submitted == 1 )
-        {
+        if (!empty($provider_profile) && $provider_profile->is_submitted == 1) {
             return redirect()->route('submittion.index')->with(['status' => 'error','message' =>'Your cant edit your profile after submittion']);
         }
 
 
         $request->validate([
             'profile_category' => ['required', Rule::in(
-                ['profile', 
-                'education-qualification', 
-                'establishment', 
-                'verification', 
+                ['profile',
+                'education-qualification',
+                'establishment',
+                'verification',
                 'specializations',
-                ])]
+                ]
+            )]
         ]);
 
         switch ($request['profile_category']) {
@@ -170,30 +169,30 @@ class ProviderProfileController extends Controller
     {
         $request->validate([
             'username' => ['required', 'string'],
-            'gender' => ['required', Rule::in('F', 'M','O')],
+            'gender' => ['required', Rule::in('F', 'M', 'O')],
             'country_id' => ['required', 'exists:countries,id'],
             'city_id' =>['required', 'exists:cities,id'],
-            'category' => ['required', Rule::in('both', 'owner','only')]
+            'category' => ['required', Rule::in('both', 'owner', 'only')]
         ]);
 
-        ProviderProfile::updateOrCreate([
+        ProviderProfile::updateOrCreate(
+            [
             'user_id' => Auth::user()->id],
             ['username' => $request['username'],
             'gender' => $request['gender'],
             'country_id' => $request['country_id'],
             'city_id' => $request['city_id'],
             
-        ]);
+        ]
+        );
 
-        if($request['category'] =='both') {
-            
+        if ($request['category'] =='both') {
             User::find(Auth::user()->id)->assignRole('doctor', 'owner');
 
             return redirect()->route('medical_qualification.index')->with(['status' => 'success','message' =>'Information Save Successful']);
         }
 
-        if($request['category'] =='only') {
-            
+        if ($request['category'] =='only') {
             User::find(Auth::user()->id)->assignRole('doctor');
             User::find(Auth::user()->id)->removeRole('owner');
             return redirect()->route('medical_qualification.index')->with(['status' => 'success','message' =>'Information Save Successful']);
@@ -217,20 +216,21 @@ class ProviderProfileController extends Controller
 
         ]);
         
-        $provider_profile = ProviderProfile::where('user_id',Auth::user()->id)->first();
+        $provider_profile = ProviderProfile::where('user_id', Auth::user()->id)->first();
         $provider_profile->medical_registrations()->sync([$request['medical_registration_id'] => ['registration_number'=> $request['registration_number']]]);
-        EducationQualification::updateOrCreate([
+        EducationQualification::updateOrCreate(
+            [
             'medical_course_id' => $request['medical_course_id'],
             'medical_institute_id' => $request['medical_institute_id'],
             'provider_profile_id' => $provider_profile->id
         ],
-           ['year_of_complition' => $request['year_of_complition'],
+            ['year_of_complition' => $request['year_of_complition'],
             'year_of_experience' => $request['year_of_experience'],
             
-        ]);
+        ]
+        );
 
-        if(User::find(Auth::user()->id)->hasRole('owner')) {
-
+        if (User::find(Auth::user()->id)->hasRole('owner')) {
             return redirect()->route('establishments.index')->with(['status' => 'success','message' =>'Information Save Successful']);
         }
         
@@ -249,7 +249,8 @@ class ProviderProfileController extends Controller
             'city_id' =>['required', 'exists:cities,id'],
         ]);
 
-        $establishment = ProviderEstablishment::UpdateOrcreate([
+        $establishment = ProviderEstablishment::UpdateOrcreate(
+            [
             'name' => $request['name'],
             'mobile_number' => $request['mobile_number'],
             'email' => $request['email']],
@@ -258,9 +259,10 @@ class ProviderProfileController extends Controller
             'category' => $request['category'],
             'address' => $request['address'],
             'map_location' => is_null($request['map_location'])?'--':$request['map_location'] ,
-        ]);
+        ]
+        );
 
-        $establishment->provider_profiles()->sync(ProviderProfile::where('user_id',Auth::user()->id)->first()->id);
+        $establishment->provider_profiles()->sync(ProviderProfile::where('user_id', Auth::user()->id)->first()->id);
 
         return redirect()->route('provider_specializations.index')->with(['status' => 'success','message' =>'Information Save Successful']);
     }
@@ -272,17 +274,18 @@ class ProviderProfileController extends Controller
             'file.*.file' => ['required', 'mimes:pdf,png,jpg,jepg']
         ]);
         
-        $provider_profile = ProviderProfile::where('user_id',Auth::user()->id)->first();
+        $provider_profile = ProviderProfile::where('user_id', Auth::user()->id)->first();
 
-        foreach($request['file'] as $file){
+        foreach ($request['file'] as $file) {
             $provider_profile->addMedia($file['file'])->toMediaCollection('provider_verificaiton_files');
 
-            ProviderVerification::updateOrCreate([
+            ProviderVerification::updateOrCreate(
+                [
                 'required_verification_id' => $file['verification_id'],
                 'provider_id' => $provider_profile->id],
                 ['is_submitted' => 1
-            ]);
-    
+            ]
+            );
         }
        
         return redirect()->route('submittion.index')->with(['status' => 'success','message' =>'Information Save Successful']);
@@ -302,22 +305,22 @@ class ProviderProfileController extends Controller
 
         $provider_profile = ProviderProfile::where('user_id', Auth::user()->id)->first();
         
-        $consaltation = ConsultationFee::UpdateOrCreate([
+        $consaltation = ConsultationFee::UpdateOrCreate(
+            [
             'provider_id' => $provider_profile->id],
-           ['price' => $request['consaltation_price'],
+            ['price' => $request['consaltation_price'],
             'currency' => $request['consaltation_currency'],
-        ]);
+        ]
+        );
 
-        foreach($request['procedure'] as $procedure)
-        {
+        foreach ($request['procedure'] as $procedure) {
             $data[$procedure['id']]['price'] = $procedure['price'];
             $data[$procedure['id']]['currency'] = $procedure['currency'];
         }
         
-        $provider_profile->medical_specializations()->sync(array_column($request['specialization'],'id'));
+        $provider_profile->medical_specializations()->sync(array_column($request['specialization'], 'id'));
         $provider_profile->medical_procedures()->sync($data);
 
         return redirect()->route('verifications.index')->with(['status' => 'success','message' =>'Information Save Successful']);
     }
-
 }

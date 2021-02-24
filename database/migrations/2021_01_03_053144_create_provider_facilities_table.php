@@ -28,8 +28,8 @@ class CreateProviderFacilitiesTable extends Migration
             $table->string('tin');
             $table->string('vrn');
             $table->boolean('is_active')->default(1);
-            $table->foreignId('provider_sub_level_id')->constrained()->onDelete('cascade');
-            $table->foreignId('provider_company_id')->constrained()->onDelete('cascade');
+            $table->foreignId('provider_sub_level_id')->constrained();
+            $table->foreignId('provider_company_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
