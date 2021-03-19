@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Registration;
 
+use App\Models\DaySession;
 use App\Models\ProviderCompany;
 use App\Models\ProviderFacility;
 use App\Models\ProviderProfile;
@@ -196,11 +197,41 @@ class AccountRegistrationController
 
     public function createProviderProfileDailySchedule($rootValue, array $args)
     {
-        dd($args);
+        $provider_profile = ProviderProfile::find(auth()->user()->service_provider->id);
+        $index = 0;
+        $sessions = [];
+        foreach ($args['input'] as $days_sessions) {
+           $sessions[$index] = DaySession::create([
+                'name'=> $days_sessions['name'], 
+                'from'=> $days_sessions['from'],
+                'to'=> $days_sessions['to'],
+                'interval' => $days_sessions['interval'],
+                'day_id' => $days_sessions['day_id']
+            ]);
+
+            $index++;
+        } 
+
+        $provider_profile->day_sessions()->attach($sessions);
     }
 
     public function createProviderFacilityDailySchedule($rootValue, array $args)
     {
-        # code...
+        $provider_profile = ProviderFacility::find($args['input']['facility_id']);
+        $index = 0;
+        $sessions = [];
+        foreach ($args['input'] as $days_sessions) {
+           $sessions[$index] = DaySession::create([
+                'name'=> $days_sessions['name'], 
+                'from'=> $days_sessions['from'],
+                'to'=> $days_sessions['to'],
+                'interval' => $days_sessions['interval'],
+                'day_id' => $days_sessions['day_id']
+            ]);
+
+            $index++;
+        } 
+
+        $provider_profile->day_sessions()->attach($sessions);
     }
 }

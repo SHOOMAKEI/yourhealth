@@ -19,4 +19,5 @@ class DaySession extends Model
     {
         return $this->belongsTo(Day::class);
     }
+    
 }
