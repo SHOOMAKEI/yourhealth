@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"3fc3d6230e1edc236722","1":"2a1b3783f0dd61d98249","2":"17d0b716727a37dc5b95","3":"0b4229377df76c32f0dc","4":"43d266b206e974bfe17e","5":"4ba726fe34c4845b4f47","6":"c03ddc4ed7177c7b5a8a","7":"17b70cc4356d10d9ed8b","8":"4d30e6295199f6755a39","9":"d06079ed5f09b2a30982","10":"8fab0ea26d81c44f91b6","11":"42f59d9975b81764aa00","12":"2eb70be9e8ce59bf1f26","13":"1edd608a27c65118a695","14":"d986a6203206c1c86f58"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"e0b68d115d1a7b5d9213","1":"1772edd0d0ed084c115e","2":"ca32ccb30efeb0c18550","3":"75c1694fd1333ed47f7f","4":"6f4fa003ad1147253ce3","5":"26d065a892271710dbfd","6":"dbcb5585ae7aef4d4744","7":"539e65b9bc8dcc4160bc","8":"97a0a7c735e89e304b92","9":"ff1358b1600771a20165","10":"c6f1b0b3dcc336a46144","11":"b393cf3df10a5222a20e","12":"3afd64c603d94b588184","13":"3467d1f8ab5a36635e8f","14":"0242e49651c3739f0012","15":"230b7cb884afbf60d01f","16":"9862062ff7d5f72061c4","17":"d20c03a27ef23a082d4e"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -70876,127 +70876,184 @@ var map = {
 	"./Auth/ForgotPassword": [
 		"./resources/js/Pages/Auth/ForgotPassword.js",
 		9,
-		2
+		5
 	],
 	"./Auth/ForgotPassword.js": [
 		"./resources/js/Pages/Auth/ForgotPassword.js",
 		9,
-		2
+		5
 	],
 	"./Auth/Login": [
 		"./resources/js/Pages/Auth/Login.js",
 		9,
-		1
+		2
 	],
 	"./Auth/Login.js": [
 		"./resources/js/Pages/Auth/Login.js",
 		9,
-		1
+		2
 	],
 	"./Auth/Register": [
 		"./resources/js/Pages/Auth/Register.js",
 		9,
-		5
+		0,
+		6
 	],
 	"./Auth/Register.js": [
 		"./resources/js/Pages/Auth/Register.js",
 		9,
-		5
+		0,
+		6
 	],
 	"./Auth/ResetPassword": [
 		"./resources/js/Pages/Auth/ResetPassword.js",
 		9,
-		3
+		7
 	],
 	"./Auth/ResetPassword.js": [
 		"./resources/js/Pages/Auth/ResetPassword.js",
 		9,
-		3
+		7
 	],
 	"./Auth/TwoFactorChallenge": [
 		"./resources/js/Pages/Auth/TwoFactorChallenge.js",
 		7,
-		6
+		13
 	],
 	"./Auth/TwoFactorChallenge.js": [
 		"./resources/js/Pages/Auth/TwoFactorChallenge.js",
 		7,
-		6
+		13
 	],
 	"./Auth/VerifyEmail": [
 		"./resources/js/Pages/Auth/VerifyEmail.js",
 		9,
-		7
+		14
 	],
 	"./Auth/VerifyEmail.js": [
 		"./resources/js/Pages/Auth/VerifyEmail.js",
 		9,
-		7
+		14
 	],
-	"./Auth/components/CompanyRegistration.tsx": [
-		"./resources/js/Pages/Auth/components/CompanyRegistration.tsx",
-		7,
+	"./Auth/components/CompanyRegistration": [
+		"./resources/js/Pages/Auth/components/CompanyRegistration.jsx",
+		9,
+		0
+	],
+	"./Auth/components/CompanyRegistration.jsx": [
+		"./resources/js/Pages/Auth/components/CompanyRegistration.jsx",
+		9,
+		0
+	],
+	"./Auth/components/FacilityRegistration": [
+		"./resources/js/Pages/Auth/components/FacilityRegistration.jsx",
+		9,
+		15
+	],
+	"./Auth/components/FacilityRegistration.jsx": [
+		"./resources/js/Pages/Auth/components/FacilityRegistration.jsx",
+		9,
+		15
+	],
+	"./Auth/components/IndividualRegistration": [
+		"./resources/js/Pages/Auth/components/IndividualRegistration.jsx",
+		9,
+		8
+	],
+	"./Auth/components/IndividualRegistration.jsx": [
+		"./resources/js/Pages/Auth/components/IndividualRegistration.jsx",
+		9,
+		8
+	],
+	"./Auth/components/PasswordResetByEmailForm": [
+		"./resources/js/Pages/Auth/components/PasswordResetByEmailForm.jsx",
+		9,
+		9
+	],
+	"./Auth/components/PasswordResetByEmailForm.jsx": [
+		"./resources/js/Pages/Auth/components/PasswordResetByEmailForm.jsx",
+		9,
+		9
+	],
+	"./Auth/components/PasswordResetByPhoneForm": [
+		"./resources/js/Pages/Auth/components/PasswordResetByPhoneForm.jsx",
+		9,
 		10
 	],
-	"./Auth/components/FacilityRegistration.tsx": [
-		"./resources/js/Pages/Auth/components/FacilityRegistration.tsx",
-		7,
+	"./Auth/components/PasswordResetByPhoneForm.jsx": [
+		"./resources/js/Pages/Auth/components/PasswordResetByPhoneForm.jsx",
+		9,
+		10
+	],
+	"./Auth/components/facilityForms/FirstForm": [
+		"./resources/js/Pages/Auth/components/facilityForms/FirstForm.jsx",
+		9,
+		3
+	],
+	"./Auth/components/facilityForms/FirstForm.jsx": [
+		"./resources/js/Pages/Auth/components/facilityForms/FirstForm.jsx",
+		9,
+		3
+	],
+	"./Auth/components/facilityForms/SecondForm": [
+		"./resources/js/Pages/Auth/components/facilityForms/SecondForm.jsx",
+		9,
+		4
+	],
+	"./Auth/components/facilityForms/SecondForm.jsx": [
+		"./resources/js/Pages/Auth/components/facilityForms/SecondForm.jsx",
+		9,
+		4
+	],
+	"./Auth/components/facilityForms/ThirdForm": [
+		"./resources/js/Pages/Auth/components/facilityForms/ThirdForm.jsx",
+		9,
 		11
 	],
-	"./Auth/components/IndividualRegistration.tsx": [
-		"./resources/js/Pages/Auth/components/IndividualRegistration.tsx",
-		7,
-		12
-	],
-	"./Auth/components/PasswordResetByEmailForm.tsx": [
-		"./resources/js/Pages/Auth/components/PasswordResetByEmailForm.tsx",
-		7,
-		13
-	],
-	"./Auth/components/PasswordResetByPhoneForm.tsx": [
-		"./resources/js/Pages/Auth/components/PasswordResetByPhoneForm.tsx",
-		7,
-		14
+	"./Auth/components/facilityForms/ThirdForm.jsx": [
+		"./resources/js/Pages/Auth/components/facilityForms/ThirdForm.jsx",
+		9,
+		11
 	],
 	"./Dashboard": [
 		"./resources/js/Pages/Dashboard.js",
 		9,
-		0
+		1
 	],
 	"./Dashboard.js": [
 		"./resources/js/Pages/Dashboard.js",
 		9,
-		0
+		1
 	],
 	"./Landing/Hero": [
 		"./resources/js/Pages/Landing/Hero.jsx",
 		9,
-		8
+		16
 	],
 	"./Landing/Hero.jsx": [
 		"./resources/js/Pages/Landing/Hero.jsx",
 		9,
-		8
+		16
 	],
 	"./Landing/Index": [
 		"./resources/js/Pages/Landing/Index.jsx",
 		9,
-		4
+		12
 	],
 	"./Landing/Index.jsx": [
 		"./resources/js/Pages/Landing/Index.jsx",
 		9,
-		4
+		12
 	],
 	"./Landing/Nav": [
 		"./resources/js/Pages/Landing/Nav.jsx",
 		9,
-		9
+		17
 	],
 	"./Landing/Nav.jsx": [
 		"./resources/js/Pages/Landing/Nav.jsx",
 		9,
-		9
+		17
 	]
 };
 function webpackAsyncContext(req) {
@@ -71009,7 +71066,7 @@ function webpackAsyncContext(req) {
 	}
 
 	var ids = map[req], id = ids[0];
-	return __webpack_require__.e(ids[2]).then(function() {
+	return Promise.all(ids.slice(2).map(__webpack_require__.e)).then(function() {
 		return __webpack_require__.t(id, ids[1])
 	});
 }

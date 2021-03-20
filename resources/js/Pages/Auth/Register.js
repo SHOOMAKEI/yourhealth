@@ -1,5 +1,5 @@
 import React from 'react';
-import CompanyRegister from ',/components/CompanyRegistration';
+import CompanyRegister from "./components/CompanyRegistration";
 import FacilityRegister from "./components/FacilityRegistration";
 import IndividualRegister from "./components/IndividualRegistration";
 

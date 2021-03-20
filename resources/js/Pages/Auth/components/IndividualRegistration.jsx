@@ -73,15 +73,6 @@ export default function IndividualRegister() {
                                 onChange={handleChange}
                             />
                             <TextInput
-                                name="ind_middle_name"
-                                type="text"
-                                label="Middle Name"
-                                placeholder="Middle Name"
-                                errors={errors.ind_middle_name}
-                                value={values.ind_middle_name}
-                                onChange={handleChange}
-                            />
-                            <TextInput
                                 name="ind_last_name"
                                 type="text"
                                 label="Last Name"
@@ -101,43 +92,51 @@ export default function IndividualRegister() {
                             />
                             </div>
                             <div className="col-6">
-                                <div className="form-group">
-                                    <label htmlFor="ind_middle_name">Middle name</label>
-                                    <Field id="ind_middle_name" name="ind_middle_name" placeholder="well" type="text" className="form-control"/>
-                                    {errors.ind_middle_name && touched.ind_middle_name ? <FormInputError title="Middle name error" message={errors.ind_middle_name} /> : null}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="ind_email">Email address</label>
-                                    <Field id="ind_email" name="ind_email" placeholder="email@example.com" type="text" className="form-control"/>
-                                    {errors.ind_email && touched.ind_email ? <FormInputError title="Email error" message={errors.ind_email} /> : null}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="ind_password">Password</label>
-                                    <div className="input-group input-group-merge">
-                                        <Field id="ind_password" name="ind_password" placeholder="password" type="password" className="form-control"/>
-                                        <div className="input-group-append" data-password="false">
-                                            <div className="input-group-text">
-                                                <span className="password-eye"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {errors.ind_password && touched.ind_password ? <FormInputError title="Password Error" message={errors.ind_password} /> : null}
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="ind_password_confirmation">Confirm password</label>
-                                    <div className="input-group input-group-merge">
-                                        <Field id="ind_password_confirmation" name="ind_password_confirmation" placeholder="confirm password" type="password" className="form-control"/>
-                                        <div className="input-group-append" Q1 data-password="false">
-                                            <div className="input-group-text">
-                                                <span className="password-eye"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {errors.ind_password_confirmation && touched.ind_password_confirmation ? <FormInputError title="Password Error" message={errors.ind_password_confirmation} /> : null}
-                                </div>
-                                <div className="form-group mb-0 text-right">
-                                    <button className="btn btn-primary" type="submit"> {loading ? 'Register...': 'Register'} </button>
-                                </div>
+                            <TextInput
+                                name="ind_middle_name"
+                                type="text"
+                                label="Middle Name"
+                                placeholder="Middle Name"
+                                errors={errors.ind_middle_name}
+                                value={values.ind_middle_name}
+                                onChange={handleChange}
+                            />
+                            <TextInput
+                                name="ind_email"
+                                type="text"
+                                label="Email"
+                                placeholder="Email"
+                                errors={errors.ind_email}
+                                value={values.ind_email}
+                                onChange={handleChange}
+                            />
+                            <TextInput
+                                name="ind_password"
+                                type="password"
+                                label="Password"
+                                placeholder="Password"
+                                errors={errors.ind_password}
+                                value={values.ind_password}
+                                onChange={handleChange}
+                            />
+                            <TextInput
+                                name="ind_password_confirmation"
+                                type="password"
+                                label="Password"
+                                placeholder="Password"
+                                errors={errors.ind_password_confirmation}
+                                value={values.ind_password_confirmation}
+                                onChange={handleChange}
+                            />
+                            <div className="form-group mb-0 text-right">
+                            <LoadingButton 
+                                type="submit" 
+                                className="btn btn-primary btn-block" 
+                                loading={sending}
+                                > 
+                                Register
+                            </LoadingButton>
+                            </div>
                             </div>
                         </div>
                     </form>
