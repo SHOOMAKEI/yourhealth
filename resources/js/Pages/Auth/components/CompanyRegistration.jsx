@@ -57,7 +57,7 @@ export default function CompanyRegister() {
                 </div>
             </div>
         
-            <form  onSubmit={onSubmit} >
+            <form  onSubmit={handleSubmit} >
                 <h4 className="text-dark-50 text-left mb-3 font-weight-bold">Personal information</h4>
                 <div className="row">
                     <div className="col-6">

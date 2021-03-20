@@ -1,14 +1,11 @@
-// import { useEffect, useState } from 'react';
-
-// import FirstForm from '@pages/auth/components/facilityForms/FirstForm'
-// import { GET_FACILITY_SUB_LEVEL } from '@pages/utils/Query';
-// import Link from 'next/link';
-// import { REGISTER_USER } from '@pages/utils/Mutations';
-// import SecondForm from './facilityForms/SecondForm';
-// import Spinner from './Spinner';
-// import ThirdForm from './facilityForms/ThirdForm';
-// import { useApi } from '@pages/utils/ApolloClient';
-// import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import { Inertia } from '@inertiajs/inertia';
+import { InertiaLink, usePage } from '@inertiajs/inertia-react';
+import TextInput from '@/Shared/TextInput'
+import LoadingButton from '@/Shared/LoadingButton'
+import FirstForm from './facilityForms/FirstForm'
+import SecondForm from './facilityForms/SecondForm'
+import ThirdForm from './facilityForms/ThirdForm'
 
 // interface FormOneValues {
 //     f_name: String;
@@ -119,36 +116,28 @@ export default function FacilityRegister() {
 
 
     return (
-        <h2>The Omakei</h2>
+        <div>
+            <div className="row mb-3">
+                <div className="col">
+                    <InertiaLink href="/auth/Register">
+                        <a className="btn btn-light">
+                            <i className=" uil-arrow-left mr-1"></i>
+                            Go to registration categories
+                        </a>
+                    </InertiaLink>
+                </div>
+            </div>
+
+            <div style={{display: ((stepNumber === 1) && !called && !loading) ? 'block': 'none'}}>
+                <FirstForm callback={createInputData} />
+            </div>
+            <div style={{display: ((stepNumber === 2) && !called && !loading) ? 'block': 'none'}}>
+                <SecondForm callback={createInputData} goBack={setStepNumber} />
+            </div>
+            <div style={{display: ((stepNumber === 3) && !called && !loading) ? 'block': 'none'}}>
+                <ThirdForm callback={createInputData} goBack={setStepNumber} />
+            </div>
+
+        </div>
     )
 }
-
- //     <div>
-    //         <div className="row mb-3">
-    //             <div className="col">
-    //                 <Link href="/auth/Register">
-    //                     <a className="btn btn-light">
-    //                         <i className=" uil-arrow-left mr-1"></i>
-    //                         Go to registration categories
-    //                     </a>
-    //                 </Link>
-    //             </div>
-    //         </div>
-
-    //         {
-    //             called && loading && <Spinner />
-    //         }
-
-    //         <div style={{display: ((stepNumber === 1) && !called && !loading) ? 'block': 'none'}}>
-    //             <FirstForm callback={createInputData} />
-    //         </div>
-
-    //         <div style={{display: ((stepNumber === 2) && !called && !loading) ? 'block': 'none'}}>
-    //             <SecondForm callback={createInputData} goBack={setStepNumber} />
-    //         </div>
-
-    //         <div style={{display: ((stepNumber === 3) && !called && !loading) ? 'block': 'none'}}>
-    //             <ThirdForm callback={createInputData} goBack={setStepNumber} />
-    //         </div>
-       
-    //     </div>

@@ -1,15 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
 
-/***/ "./resources/js/Pages/Auth/components/facilityForms/SecondForm.jsx":
-/*!*************************************************************************!*\
-  !*** ./resources/js/Pages/Auth/components/facilityForms/SecondForm.jsx ***!
-  \*************************************************************************/
+/***/ "./resources/js/Pages/Auth/components/facilityForms/FirstForm.jsx":
+/*!************************************************************************!*\
+  !*** ./resources/js/Pages/Auth/components/facilityForms/FirstForm.jsx ***!
+  \************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SecondForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FirstForm; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
@@ -42,14 +42,30 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
- // interface formProps {
+ // function FileUpload(props) {
+//     const {field, form} = props;
+//     const handleChange = async (e) => {
+//       const file  =  e.currentTarget.files[0];
+//       const reader = new FileReader();
+//       reader.readAsDataURL(file);
+//       let base64;
+//       reader.onload = await function(event) {
+//           base64 = event.target?.result
+//           form.setFieldValue(field.name, base64);
+//       }
+//     };
+//     return (
+//       <div>
+//         <input type={'file'} onChange={(o) => handleChange(o)} className={'form-control'}/>
+//       </div>
+//     );
+// }
+// interface formProps {
 //     callback: ({}: createInputDataValues) => void;
-//     goBack: (step: number) => void;
 // }
 
-function SecondForm(_ref) {
-  var callback = _ref.callback,
-      goBack = _ref.goBack;
+function FirstForm(_ref) {
+  var callback = _ref.callback;
   var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props,
       errors = _usePage$props.errors,
       emailSentSuccessfully = _usePage$props.emailSentSuccessfully;
@@ -60,18 +76,20 @@ function SecondForm(_ref) {
       setSending = _useState2[1];
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    f_first_name: "",
-    f_last_name: "",
-    f_middle_name: "",
-    f_mobile_number: "",
-    f_password_confirmation: "",
-    f_email: '',
-    f_password: '',
-    ownership_type: 'self'
+    f_name: '',
+    f_tin: "",
+    f_vrn: "",
+    provider_sub_level_id: '' // f_tin_attachment: '',
+    // f_vrn_attachment: ''
+
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       values = _useState4[0],
-      setValues = _useState4[1];
+      setValues = _useState4[1]; // const [getProviderSublevel, getProviderSublevelResponse] = useApi({query: GET_FACILITY_SUB_LEVEL})
+  // useEffect(() => {
+  //     getProviderSublevel({})
+  // }, [])
+
 
   function handleChange(e) {
     var key = e.target.name;
@@ -93,72 +111,32 @@ function SecondForm(_ref) {
     var errors = _ref2.errors,
         touched = _ref2.touched;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-      onSubmit: onSubmit
+      onSubmit: handleSubmit
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
       className: "text-dark-50 text-left mb-3 font-weight-bold"
-    }, "Personal information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, "Facility Information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "row"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-6"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      name: "ind_first_name",
+      name: "facility_name",
       type: "text",
-      label: "First Name",
-      placeholder: "First Name",
+      label: "Facility Name",
+      placeholder: "Facility Name",
       errors: errors.ind_first_name,
       value: values.ind_first_name,
       onChange: handleChange
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      name: "ind_last_name",
+      name: "tin",
       type: "text",
-      label: "Last Name",
-      placeholder: "Last Name",
-      errors: errors.ind_last_name,
-      value: values.ind_last_name,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      name: "ind_middle_name",
-      type: "text",
-      label: "Middle Name",
-      placeholder: "Middle Name",
-      errors: errors.ind_middle_name,
-      value: values.ind_middle_name,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      name: "ind_mobile_number",
-      type: "text",
-      label: "Mobile Number",
-      placeholder: "Mobile Number",
-      errors: errors.ind_mobile_number,
-      value: values.ind_mobile_number,
+      label: "TIN",
+      placeholder: "TIN",
+      errors: errors.ind_first_name,
+      value: values.ind_first_name,
       onChange: handleChange
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "col-6"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      name: "ind_email",
-      type: "text",
-      label: "Email",
-      placeholder: "Email",
-      errors: errors.ind_email,
-      value: values.ind_email,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      name: "ind_password",
-      type: "password",
-      label: "Password",
-      placeholder: "Password",
-      errors: errors.ind_password,
-      value: values.ind_password,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      name: "ind_password_confirmation",
-      type: "password",
-      label: "Password",
-      placeholder: "Password",
-      errors: errors.ind_password_confirmation,
-      value: values.ind_password_confirmation,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_SelectInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_SelectInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
       name: "ownership_type",
       label: "Facility type",
       errors: errors.ownership_type,
@@ -169,17 +147,21 @@ function SecondForm(_ref) {
       selected: true
     }, "Self ownership"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
       value: "other"
-    }, "Registration for someone")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, "Registration for someone")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      name: "vrn",
+      type: "text",
+      label: "VRN",
+      placeholder: "VRN",
+      errors: errors.vrn,
+      value: values.vrn,
+      onChange: handleChange
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group mb-0 text-right"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      className: "btn btn-light mr-2",
-      onClick: function onClick() {
-        return goBack(1);
-      }
-    }, " Previous "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "btn btn-primary",
-      type: "submit"
-    }, " Submit ")))));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      type: "submit",
+      className: "btn btn-primary btn-block",
+      loading: sending
+    }, "Save Changes")))));
   }));
 }
 

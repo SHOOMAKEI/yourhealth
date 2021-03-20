@@ -46,7 +46,7 @@ export default function Register() {
                                                 </div>
                                                 <div className="tab-pane fade" id="v-pills-facility" role="tabpanel"
                                                      aria-labelledby="v-pills-facility-tab">
-                                                   <FacilityRegister />
+                                                   {/* <FacilityRegister /> */}
                                                 </div>
                                                 <div className="tab-pane fade" id="v-pills-company" role="tabpanel"
                                                      aria-labelledby="v-pills-company-tab">

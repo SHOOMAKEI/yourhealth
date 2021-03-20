@@ -78,7 +78,7 @@ export default () => {
                           />
                           </div>
                           <div className="col-6 text-right">
-                            <InertiaLink href={route('password.update')} className="text-forgot">
+                            <InertiaLink href={route('login')} className="text-forgot">
                               <i className="icon-lock"></i>
                               Forgot password?</InertiaLink>
                           </div>

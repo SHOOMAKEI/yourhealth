@@ -1,15 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[8],{
 
-/***/ "./resources/js/Pages/Auth/components/IndividualRegistration.jsx":
-/*!***********************************************************************!*\
-  !*** ./resources/js/Pages/Auth/components/IndividualRegistration.jsx ***!
-  \***********************************************************************/
+/***/ "./resources/js/Pages/Auth/components/CompanyRegistration.jsx":
+/*!********************************************************************!*\
+  !*** ./resources/js/Pages/Auth/components/CompanyRegistration.jsx ***!
+  \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return IndividualRegister; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CompanyRegister; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
@@ -41,7 +41,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function IndividualRegister() {
+function CompanyRegister() {
   var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props,
       errors = _usePage$props.errors,
       emailSentSuccessfully = _usePage$props.emailSentSuccessfully;
@@ -52,16 +52,17 @@ function IndividualRegister() {
       setSending = _useState2[1];
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    ind_first_name: "",
-    ind_last_name: "",
-    ind_middle_name: "",
-    ind_mobile_number: "",
-    ind_password_confirmation: "",
-    ind_email: '',
-    ind_password: '',
-    account_category: "service-provider",
-    account_category_type: "individual",
-    ownership_type: ''
+    account_category: "",
+    first_name: "",
+    last_name: "",
+    middle_name: "",
+    mobile_number: "",
+    name: "",
+    password_confirmation: "",
+    tin: "",
+    vrn: "",
+    email: '',
+    password: ''
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       values = _useState4[0],
@@ -93,86 +94,103 @@ function IndividualRegister() {
     className: "btn btn-light"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: " uil-arrow-left mr-1"
-  }), "Go back")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, function (_ref) {
-    var errors = _ref.errors;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-      onSubmit: onSubmit
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "row"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-12"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-      className: "text-dark-50 text-left mb-3 font-weight-bold"
-    }, "Personal information"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "row"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-6"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      name: "ind_first_name",
-      type: "text",
-      label: "First Name",
-      placeholder: "First Name",
-      errors: errors.ind_first_name,
-      value: values.ind_first_name,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      name: "ind_last_name",
-      type: "text",
-      label: "Last Name",
-      placeholder: "Last Name",
-      errors: errors.ind_last_name,
-      value: values.ind_last_name,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      name: "ind_mobile_number",
-      type: "text",
-      label: "Mobile Number",
-      placeholder: "Mobile Number",
-      errors: errors.ind_mobile_number,
-      value: values.ind_mobile_number,
-      onChange: handleChange
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "col-6"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      name: "ind_middle_name",
-      type: "text",
-      label: "Middle Name",
-      placeholder: "Middle Name",
-      errors: errors.ind_middle_name,
-      value: values.ind_middle_name,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      name: "ind_email",
-      type: "text",
-      label: "Email",
-      placeholder: "Email",
-      errors: errors.ind_email,
-      value: values.ind_email,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      name: "ind_password",
-      type: "password",
-      label: "Password",
-      placeholder: "Password",
-      errors: errors.ind_password,
-      value: values.ind_password,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      name: "ind_password_confirmation",
-      type: "password",
-      label: "Password",
-      placeholder: "Password",
-      errors: errors.ind_password_confirmation,
-      value: values.ind_password_confirmation,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "form-group mb-0 text-right"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      type: "submit",
-      className: "btn btn-primary btn-block",
-      loading: sending
-    }, "Register")))));
-  }));
+  }), "Go back")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "text-dark-50 text-left mb-3 font-weight-bold"
+  }, "Personal information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "ind_first_name",
+    type: "text",
+    label: "First Name",
+    placeholder: "First Name",
+    errors: errors.ind_first_name,
+    value: values.ind_first_name,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "ind_last_name",
+    type: "text",
+    label: "Last Name",
+    placeholder: "Last Name",
+    errors: errors.ind_last_name,
+    value: values.ind_last_name,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "ind_middle_name",
+    type: "text",
+    label: "Middle Name",
+    placeholder: "Middle Name",
+    errors: errors.ind_middle_name,
+    value: values.ind_middle_name,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "ind_mobile_number",
+    type: "text",
+    label: "Mobile Number",
+    placeholder: "Mobile Number",
+    errors: errors.ind_mobile_number,
+    value: values.ind_mobile_number,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "ind_email",
+    type: "text",
+    label: "Email",
+    placeholder: "Email",
+    errors: errors.ind_email,
+    value: values.ind_email,
+    onChange: handleChange
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "ind_password",
+    type: "password",
+    label: "Password",
+    placeholder: "Password",
+    errors: errors.ind_password,
+    value: values.ind_password,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "ind_password_confirmation",
+    type: "password",
+    label: "Password",
+    placeholder: "Password",
+    errors: errors.ind_password_confirmation,
+    value: values.ind_password_confirmation,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "company_name",
+    type: "text",
+    label: "Company Name",
+    placeholder: "Company Name",
+    errors: errors.company_name,
+    value: values.company_name,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "tin",
+    type: "text",
+    label: "TIN",
+    placeholder: "TIN",
+    errors: errors.tin,
+    value: values.tin,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "vrn",
+    type: "text",
+    label: "VRN",
+    placeholder: "VRN",
+    errors: errors.vrn,
+    value: values.vrn,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group mb-0 text-right"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    type: "submit",
+    className: "btn btn-primary btn-block",
+    loading: sending
+  }, "Save Changes"))))));
 }
 
 /***/ }),
