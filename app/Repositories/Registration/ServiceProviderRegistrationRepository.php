@@ -38,7 +38,7 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
     {
         return ProviderProfile::updateOrCreate(
             [
-                'user_id' => auth()->user()->id
+                'user_id' => $request['user_id']
             ],
             [
                 'title' => $request['title'] ?? null,
@@ -46,9 +46,9 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
                 'middle_name' => $request['middle_name'],
                 'last_name' => $request['last_name'],
                 'username' => $request['username'] ?? null,
-                'mobile_number' => auth()->user()->mobile_number,
+                'mobile_number' => $request['mobile_number'],
                 'alternative_mobile_number' => $request['alternative_mobile_number'] ?? null,
-                'email' => auth()->user()->email,
+                'email' => $request['email'],
                 'address' => $request['address'] ?? null,
                 'physical_address' => $request['physical_address']?? null,
                 'dob' => $request['dob'] ?? null,

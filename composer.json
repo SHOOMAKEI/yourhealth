@@ -12,7 +12,6 @@
         "akaunting/language": "^1.0",
         "akaunting/money": "^1.2",
         "beyondcode/laravel-websockets": "^1.9",
-        "binarcode/rinvex-laravel-subscriptions": "^4.2",
         "consoletvs/invoices": "^1.7",
         "doctrine/dbal": "^3.0",
         "fideloper/proxy": "^4.4",
