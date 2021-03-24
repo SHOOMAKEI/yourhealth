@@ -52,13 +52,13 @@ function IndividualRegister() {
       setSending = _useState2[1];
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    ind_first_name: "",
-    ind_last_name: "",
-    ind_middle_name: "",
-    ind_mobile_number: "",
-    ind_password_confirmation: "",
-    ind_email: '',
-    ind_password: '',
+    first_name: "",
+    last_name: "",
+    middle_name: "",
+    mobile_number: "",
+    password_confirmation: "",
+    email: '',
+    password: '',
     account_category: "service-provider",
     account_category_type: "individual",
     ownership_type: ''
@@ -78,7 +78,7 @@ function IndividualRegister() {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('login'), values).then(function () {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('account.create'), values).then(function () {
       setSending(false);
     });
   }
@@ -96,15 +96,15 @@ function IndividualRegister() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "ind_first_name",
+    name: "first_name",
     type: "text",
     label: "First Name",
     placeholder: "First Name",
-    errors: errors.ind_first_name,
-    value: values.ind_first_name,
+    errors: errors.first_name,
+    value: values.first_name,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "ind_last_name",
+    name: "last_name",
     type: "text",
     label: "Last Name",
     placeholder: "Last Name",
@@ -112,7 +112,7 @@ function IndividualRegister() {
     value: values.ind_last_name,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "ind_mobile_number",
+    name: "mobile_number",
     type: "text",
     label: "Mobile Number",
     placeholder: "Mobile Number",
@@ -122,7 +122,7 @@ function IndividualRegister() {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "ind_middle_name",
+    name: "middle_name",
     type: "text",
     label: "Middle Name",
     placeholder: "Middle Name",
@@ -130,7 +130,7 @@ function IndividualRegister() {
     value: values.ind_middle_name,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "ind_email",
+    name: "email",
     type: "text",
     label: "Email",
     placeholder: "Email",
@@ -138,7 +138,7 @@ function IndividualRegister() {
     value: values.ind_email,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "ind_password",
+    name: "password",
     type: "password",
     label: "Password",
     placeholder: "Password",
@@ -146,7 +146,7 @@ function IndividualRegister() {
     value: values.ind_password,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "ind_password_confirmation",
+    name: "password_confirmation",
     type: "password",
     label: "Confirm Password",
     placeholder: "Confirm Password",

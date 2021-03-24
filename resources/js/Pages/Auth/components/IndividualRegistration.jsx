@@ -13,12 +13,12 @@ export default function IndividualRegister() {
         middle_name: "",
         mobile_number: "",
         password_confirmation: "",
-        email: '', 
+        email: '',
         password: '',
         account_category: "service-provider",
         account_category_type: "individual",
         ownership_type: ''
-    
+
     });
 
     function handleChange(e) {
@@ -35,7 +35,7 @@ export default function IndividualRegister() {
     function handleSubmit(e) {
         e.preventDefault();
         setSending(true);
-        Inertia.post(route('login'), values).then(() => {
+        Inertia.post(route('account.create'), values).then(() => {
             setSending(false);
         });
     }
@@ -117,18 +117,18 @@ export default function IndividualRegister() {
                         onChange={handleChange}
                     />
                     <div className="form-group mb-0 text-right">
-                    <LoadingButton 
-                        type="submit" 
-                        className="btn btn-primary btn-block" 
+                    <LoadingButton
+                        type="submit"
+                        className="btn btn-primary btn-block"
                         loading={sending}
-                        > 
+                        >
                         Register
                     </LoadingButton>
                     </div>
                     </div>
                 </div>
             </form>
-              
+
         </div>
     )
 }

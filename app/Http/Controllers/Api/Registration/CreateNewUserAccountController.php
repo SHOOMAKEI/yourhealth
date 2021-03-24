@@ -160,7 +160,7 @@ class CreateNewUserAccountController
 
     public function updateProviderProfile($rootValue, array $args)
     {
-        $provider_profile = ProviderProfile::updateOrCreate(
+        return ProviderProfile::updateOrCreate(
             [
             'user_id' => auth()->user()->id],
             ['title' => $args['input']['title'],
@@ -179,8 +179,6 @@ class CreateNewUserAccountController
                 'provider_sub_level_id' => $args['input']['provider_sub_level_id']
             ]
         );
-
-        return $provider_profile;
     }
 
     public function createProviderCompany($rootValue, array $args)
@@ -214,14 +212,14 @@ class CreateNewUserAccountController
             ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['tin'] . '.pdf'))
             ->toMediaCollection('provider-company-tin-files');
         }
-        
+
         if (!empty($args['input']['vrn_attachment'])) {
             $provider_company->clearMediaCollection('provider-company-vrn-files');
             $provider_company->addMediaFromBase64($args['input']['vrn_attachment'], 'application/pdf')
                 ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['vrn'] . '.pdf'))
                 ->toMediaCollection('provider-company-vrn-files');
         }
-        
+
 
         return $provider_company;
     }
@@ -278,21 +276,21 @@ class CreateNewUserAccountController
             'provider_sub_level_id' => $args['input']['provider_sub_level_id'],
             'provider_company_id' => $args['input']['provider_company_id'],
         ]);
-        
+
         if (!empty($args['input']['tin_attachment'])) {
             $provider_facility->clearMediaCollection('provider-facility-tin-files');
             $provider_facility->addMediaFromBase64($args['input']['tin_attachment'], 'application/pdf')
             ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['tin'] . '.pdf'))
             ->toMediaCollection('provider-facility-tin-files');
         }
-       
+
         if (!empty($args['input']['tin_attachment'])) {
             $provider_facility->clearMediaCollection('provider-facility-vrn-files');
             $provider_facility->addMediaFromBase64($args['input']['vrn_attachment'], 'application/pdf')
             ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . $args['input']['name'] . '-' . $args['input']['vrn'] . '.pdf'))
             ->toMediaCollection('provider-facility-vrn-files');
         }
-       
+
 
         return $provider_facility;
     }
@@ -346,7 +344,7 @@ class CreateNewUserAccountController
                 ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . auth()->user()->name . '-' . $args['input']['award_title'] . '.pdf'))
                 ->toMediaCollection('provider-qualification-files');
         }
-       
+
         return $provider_qualification;
     }
 
@@ -357,7 +355,7 @@ class CreateNewUserAccountController
         $provider_qualification->clearMediaCollection('provider-qualification-files');
 
         $provider_qualification->delete();
-    
+
         return $provider_qualification;
     }
 
@@ -376,7 +374,7 @@ class CreateNewUserAccountController
         $provider_medical_registration->addMediaFromBase64($medical_registration['attachment'], 'application/pdf')
                 ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . auth()->user()->name . '-' . $medical_registration['certificate_name'] . '.pdf'))
                 ->toMediaCollection('provider-medical-registration-files');
-           
+
 
         return $provider_medical_registration;
     }
@@ -398,7 +396,7 @@ class CreateNewUserAccountController
                 ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . auth()->user()->name . '-' . $args['input']['certificate_name'] . '.pdf'))
                 ->toMediaCollection('provider-medical-registration-files');
         }
-       
+
 
         return $provider_medical_registration;
     }
@@ -406,10 +404,10 @@ class CreateNewUserAccountController
     public function deleteProviderMedicalRegistration($rootValue, array $args)
     {
         $provider_medical_registration = ProviderMedicalRegistration::find($args['medical_reg_id']);
-        
+
 
         $provider_medical_registration->clearMediaCollection('provider-medical-registration-files');
-        
+
 
         $provider_medical_registration->delete();
 
@@ -587,11 +585,11 @@ class CreateNewUserAccountController
             'is_submitted' => 1,
             'submitted_at' => now()
         ])->save();
-        
+
         foreach ($admins as $admin) {
             $admin->notify(new ServiceProviderRequestsNotification());
         }
-        
+
         return $profile;
     }
 }

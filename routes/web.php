@@ -9,6 +9,7 @@ use App\Http\Controllers\MedicalProcedureController;
 use App\Http\Controllers\MedicalRegistrationCouncilController;
 use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\ProviderProfileController;
+use App\Http\Controllers\Registration\RegistrationController;
 use App\Http\Controllers\RequiredVerificationController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SpecializationController;
@@ -29,10 +30,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::get('/login', [HomeController::class, 'login'])->name('login');
-Route::get('/register', [HomeController::class, 'register'])->name('register');
+Route::post('/create_account', [RegistrationController::class, 'createUserAccount'])->name('account.create');
+
+
 
 // Route::middleware([ 'auth','auth:sanctum', 'verified', 'verified_sp','language', 'mobile_number_verified'])->group( function () {
-    
+
 //     Route::get('/dashboard', function(){return view('dashboard');})->name('dashboard');
 //     Route::get('/settings/enable_otp', [SettingsController::class, 'enableOtp'])->name('otp.enable');
 //     Route::get('/settings/disable_otp', [SettingsController::class, 'disableOtp'])->name('otp.disable');
