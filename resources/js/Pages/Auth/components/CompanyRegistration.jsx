@@ -19,9 +19,9 @@ export default function CompanyRegister() {
         tin: "",
         vrn: "",
         email: '', password: ''})
-    
 
-    
+
+
     function handleChange(e) {
         const key = e.target.name;
         const value =
@@ -36,19 +36,19 @@ export default function CompanyRegister() {
     function handleSubmit(e) {
         e.preventDefault();
         setSending(true);
-        Inertia.post(route('login'), values).then(() => {
+        Inertia.post(route('account.create'), values).then(() => {
             setSending(false);
         });
     }
-    
+
 
 
     return (
         <div>
-           
+
             <div className="row mb-2">
                 <div className="col">
-                    <InertiaLink href="/auth/Register">
+                    <InertiaLink href={route('register')}>
                         <a className="btn btn-light">
                             <i className=" uil-arrow-left mr-1"></i>
                             Go back
@@ -56,7 +56,7 @@ export default function CompanyRegister() {
                     </InertiaLink>
                 </div>
             </div>
-        
+
             <form  onSubmit={handleSubmit} >
                 <h4 className="text-dark-50 text-left mb-3 font-weight-bold">Personal information</h4>
                 <div className="row">
@@ -88,7 +88,7 @@ export default function CompanyRegister() {
                             value={values.ind_middle_name}
                             onChange={handleChange}
                         />
-                        
+
                         <TextInput
                             name="ind_mobile_number"
                             type="text"
@@ -155,16 +155,16 @@ export default function CompanyRegister() {
                             onChange={handleChange}
                         />
                         <div className="form-group mb-0 text-right">
-                            <LoadingButton 
-                                type="submit" 
-                                className="btn btn-primary btn-block" 
+                            <LoadingButton
+                                type="submit"
+                                className="btn btn-primary btn-block"
                                 loading={sending}
-                                > 
+                                >
                                 Save Changes
                             </LoadingButton>
                         </div>
                     </div>
-                    
+
                 </div>
             </form>
         </div>

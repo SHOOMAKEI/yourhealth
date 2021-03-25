@@ -28,8 +28,12 @@ class ProviderSubLevelFieldValidator implements Rule
      */
     public function passes($attribute, $value)
     {
+        if (!is_numeric($value)) {
+            return false;
+        }
+
         if ($this->account_category_type=="facility") {
-            return  isset($value)&& !empty(ProviderSubLevel::where('id', $value)->first())?true:false;
+            return (ProviderSubLevel::where('id', $value)->first())->notEmpty();
         }
 
         return true;

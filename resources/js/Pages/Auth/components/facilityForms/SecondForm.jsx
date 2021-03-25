@@ -16,12 +16,13 @@ export default function SecondForm({callback, goBack}) {
     const { errors, emailSentSuccessfully } = usePage().props;
 	const [sending, setSending] = useState(false);
 	const [values, setValues] = useState({
-        f_first_name: "",
-        f_last_name: "",
-        f_middle_name: "",
-        f_mobile_number: "",
-        f_password_confirmation: "",
-        f_email: '', f_password: '',
+        first_name: "",
+        last_name: "",
+        middle_name: "",
+        mobile_number: "",
+        password_confirmation: "",
+        email: '',
+        password: '',
         ownership_type: 'self'
     })
 
@@ -38,108 +39,102 @@ export default function SecondForm({callback, goBack}) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        setSending(true);
-        Inertia.post(route('login'), values).then(() => {
-            setSending(false);
-        });
+        callback({
+            form_number: 2,
+            form_two_data: values
+        })
     }
 
 
 
     return (
-        <div>
-        <>
-            {({ errors, touched }) => (
-                <form onSubmit={handleSubmit}>
-                    <h4 className="text-dark-50 text-left mb-3 font-weight-bold">Personal information</h4>
-                    <div className="row">
-                        <div className="col-6">
+            <form onSubmit={handleSubmit}>
+                <h4 className="text-dark-50 text-left mb-3 font-weight-bold">Personal information</h4>
+                <div className="row">
+                    <div className="col-6">
+                    <TextInput
+                        name="first_name"
+                        type="text"
+                        label="First Name"
+                        placeholder="First Name"
+                        errors={errors.first_name}
+                        value={values.first_name}
+                        onChange={handleChange}
+                    />
+                    <TextInput
+                        name="last_name"
+                        type="text"
+                        label="Last Name"
+                        placeholder="Last Name"
+                        errors={errors.last_name}
+                        value={values.last_name}
+                        onChange={handleChange}
+                    />
                         <TextInput
-                            name="ind_first_name"
-                            type="text"
-                            label="First Name"
-                            placeholder="First Name"
-                            errors={errors.ind_first_name}
-                            value={values.ind_first_name}
-                            onChange={handleChange}
-                        />
-                        <TextInput
-                            name="ind_last_name"
-                            type="text"
-                            label="Last Name"
-                            placeholder="Last Name"
-                            errors={errors.ind_last_name}
-                            value={values.ind_last_name}
-                            onChange={handleChange}
-                        />
-                            <TextInput
-                            name="ind_middle_name"
-                            type="text"
-                            label="Middle Name"
-                            placeholder="Middle Name"
-                            errors={errors.ind_middle_name}
-                            value={values.ind_middle_name}
-                            onChange={handleChange}
-                        />
-                        <TextInput
-                            name="ind_mobile_number"
-                            type="text"
-                            label="Mobile Number"
-                            placeholder="Mobile Number"
-                            errors={errors.ind_mobile_number}
-                            value={values.ind_mobile_number}
-                            onChange={handleChange}
-                        />
-                        </div>
-                        <div className="col-6">
-                        <TextInput
-                            name="ind_email"
-                            type="text"
-                            label="Email"
-                            placeholder="Email"
-                            errors={errors.ind_email}
-                            value={values.ind_email}
-                            onChange={handleChange}
-                        />
-                        <TextInput
-                            name="ind_password"
-                            type="password"
-                            label="Password"
-                            placeholder="Password"
-                            errors={errors.ind_password}
-                            value={values.ind_password}
-                            onChange={handleChange}
-                        />
-                        <TextInput
-                            name="ind_password_confirmation"
-                            type="password"
-                            label="Password"
-                            placeholder="Password"
-                            errors={errors.ind_password_confirmation}
-                            value={values.ind_password_confirmation}
-                            onChange={handleChange}
-                        />
-                        <SelectInput
-                            name="ownership_type"
-                            label="Facility type"
-                            errors={errors.ownership_type}
-                            value={values.ownership_type}
-                            onChange={handleChange}
-                        >
-                            <option value="self" selected>Self ownership</option>
-                            <option value="other">Registration for someone</option>
-                        </SelectInput>
-                           
-                            <div className="form-group mb-0 text-right">
-                                <a className="btn btn-light mr-2" onClick={() => goBack(1)}> Previous </a>
-                                <button className="btn btn-primary" type="submit"> Submit </button>
-                            </div>
+                        name="middle_name"
+                        type="text"
+                        label="Middle Name"
+                        placeholder="Middle Name"
+                        errors={errors.middle_name}
+                        value={values.middle_name}
+                        onChange={handleChange}
+                    />
+                    <TextInput
+                        name="mobile_number"
+                        type="text"
+                        label="Mobile Number"
+                        placeholder="Mobile Number"
+                        errors={errors.mobile_number}
+                        value={values.mobile_number}
+                        onChange={handleChange}
+                    />
+                    </div>
+                    <div className="col-6">
+                    <TextInput
+                        name="email"
+                        type="text"
+                        label="Email"
+                        placeholder="Email"
+                        errors={errors.email}
+                        value={values.email}
+                        onChange={handleChange}
+                    />
+                    <TextInput
+                        name="password"
+                        type="password"
+                        label="Password"
+                        placeholder="Password"
+                        errors={errors.password}
+                        value={values.password}
+                        onChange={handleChange}
+                    />
+                    <TextInput
+                        name="password_confirmation"
+                        type="password"
+                        label="Password"
+                        placeholder="Password"
+                        errors={errors.password_confirmation}
+                        value={values.password_confirmation}
+                        onChange={handleChange}
+                    />
+                    <SelectInput
+                        name="ownership_type"
+                        label="Facility Ownership type"
+                        errors={errors.ownership_type}
+                        value={values.ownership_type}
+                        onChange={handleChange}
+                    >
+                        <option value="self" > Self ownership</option>
+                        <option value="other">Registration for someone</option>
+                    </SelectInput>
+
+                        <div className="form-group mb-0 text-right">
+                            <a className="btn btn-light mr-2" onClick={() => goBack(1)}> Previous </a>
+                            <button className="btn btn-primary" type="submit"> Submit </button>
                         </div>
                     </div>
-                </form>
-            )}
-        </>
-        </div>
+                </div>
+            </form>
     )
 }
 

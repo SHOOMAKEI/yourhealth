@@ -43,7 +43,11 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"807c5959acd0d1862808","1":"e1ecd881c7c24613c5a1","2":"c5acb2c2ca0c6aa3c659","3":"39e0a718e2fc90ba56fb","4":"dc06e3f051586786f06b","5":"daf8b4d43c93f0469270","6":"6d2fe0169550f4c17502","7":"6e54a02ad9a2d5da0ea1","8":"db67c81c96836383061f","9":"f3df997aaeb837f07ff7","10":"f0173d1cccb21f835e36","11":"305ddfcdccbf29d92afa","12":"ff33ba933386cbb4006a","13":"6a4107a2179979f1d7a8","14":"e0f92f17864538edfd2b","15":"81c608c563ab86253e45","16":"4d3ae1a67852bd5202fa","17":"c3f09fadbd11a60d0040","18":"3f17a5077b4496e00408","19":"7a149ddd9b1138b1cc0c","20":"82db7ce7d43df7331938","21":"d7b8d115e4d86059e625"}[chunkId] + ""
+/******/ 	}
+/******/
 /******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
 /******/ 		if(installedModules[moduleId]) {
@@ -70251,12 +70255,12 @@ var map = {
 	"./Auth/ForgotPassword": [
 		"./resources/js/Pages/Auth/ForgotPassword.js",
 		9,
-		6
+		7
 	],
 	"./Auth/ForgotPassword.js": [
 		"./resources/js/Pages/Auth/ForgotPassword.js",
 		9,
-		6
+		7
 	],
 	"./Auth/Login": [
 		"./resources/js/Pages/Auth/Login.js",
@@ -70273,74 +70277,98 @@ var map = {
 		9,
 		0,
 		1,
-		7
+		8
 	],
 	"./Auth/Register.js": [
 		"./resources/js/Pages/Auth/Register.js",
 		9,
 		0,
 		1,
-		7
+		8
 	],
 	"./Auth/Registration/Register": [
 		"./resources/js/Pages/Auth/Registration/Register.jsx",
 		9,
-		15
+		16
 	],
 	"./Auth/Registration/Register.jsx": [
 		"./resources/js/Pages/Auth/Registration/Register.jsx",
 		9,
-		15
+		16
+	],
+	"./Auth/Registration/RegisterCompanyServiceProvider": [
+		"./resources/js/Pages/Auth/Registration/RegisterCompanyServiceProvider.jsx",
+		9,
+		4
+	],
+	"./Auth/Registration/RegisterCompanyServiceProvider.jsx": [
+		"./resources/js/Pages/Auth/Registration/RegisterCompanyServiceProvider.jsx",
+		9,
+		4
+	],
+	"./Auth/Registration/RegisterFacilityServiceProvider": [
+		"./resources/js/Pages/Auth/Registration/RegisterFacilityServiceProvider.jsx",
+		9,
+		0,
+		1,
+		17
+	],
+	"./Auth/Registration/RegisterFacilityServiceProvider.jsx": [
+		"./resources/js/Pages/Auth/Registration/RegisterFacilityServiceProvider.jsx",
+		9,
+		0,
+		1,
+		17
 	],
 	"./Auth/Registration/RegisterIndividualServiceProvider": [
 		"./resources/js/Pages/Auth/Registration/RegisterIndividualServiceProvider.jsx",
 		9,
-		4
+		5
 	],
 	"./Auth/Registration/RegisterIndividualServiceProvider.jsx": [
 		"./resources/js/Pages/Auth/Registration/RegisterIndividualServiceProvider.jsx",
 		9,
-		4
+		5
 	],
 	"./Auth/ResetPassword": [
 		"./resources/js/Pages/Auth/ResetPassword.js",
 		9,
-		8
+		9
 	],
 	"./Auth/ResetPassword.js": [
 		"./resources/js/Pages/Auth/ResetPassword.js",
 		9,
-		8
+		9
 	],
 	"./Auth/TwoFactorChallenge": [
 		"./resources/js/Pages/Auth/TwoFactorChallenge.js",
 		7,
-		16
+		18
 	],
 	"./Auth/TwoFactorChallenge.js": [
 		"./resources/js/Pages/Auth/TwoFactorChallenge.js",
 		7,
-		16
+		18
 	],
 	"./Auth/VerifyEmail": [
 		"./resources/js/Pages/Auth/VerifyEmail.js",
 		9,
-		17
+		19
 	],
 	"./Auth/VerifyEmail.js": [
 		"./resources/js/Pages/Auth/VerifyEmail.js",
 		9,
-		17
+		19
 	],
 	"./Auth/components/CompanyRegistration": [
 		"./resources/js/Pages/Auth/components/CompanyRegistration.jsx",
 		9,
-		9
+		10
 	],
 	"./Auth/components/CompanyRegistration.jsx": [
 		"./resources/js/Pages/Auth/components/CompanyRegistration.jsx",
 		9,
-		9
+		10
 	],
 	"./Auth/components/FacilityRegistration": [
 		"./resources/js/Pages/Auth/components/FacilityRegistration.jsx",
@@ -70357,42 +70385,42 @@ var map = {
 	"./Auth/components/IndividualRegistration": [
 		"./resources/js/Pages/Auth/components/IndividualRegistration.jsx",
 		9,
-		10
+		11
 	],
 	"./Auth/components/IndividualRegistration.jsx": [
 		"./resources/js/Pages/Auth/components/IndividualRegistration.jsx",
 		9,
-		10
+		11
 	],
 	"./Auth/components/PasswordResetByEmailForm": [
 		"./resources/js/Pages/Auth/components/PasswordResetByEmailForm.jsx",
 		9,
-		11
+		12
 	],
 	"./Auth/components/PasswordResetByEmailForm.jsx": [
 		"./resources/js/Pages/Auth/components/PasswordResetByEmailForm.jsx",
 		9,
-		11
+		12
 	],
 	"./Auth/components/PasswordResetByPhoneForm": [
 		"./resources/js/Pages/Auth/components/PasswordResetByPhoneForm.jsx",
 		9,
-		12
+		13
 	],
 	"./Auth/components/PasswordResetByPhoneForm.jsx": [
 		"./resources/js/Pages/Auth/components/PasswordResetByPhoneForm.jsx",
 		9,
-		12
+		13
 	],
 	"./Auth/components/facilityForms/FirstForm": [
 		"./resources/js/Pages/Auth/components/facilityForms/FirstForm.jsx",
 		9,
-		5
+		6
 	],
 	"./Auth/components/facilityForms/FirstForm.jsx": [
 		"./resources/js/Pages/Auth/components/facilityForms/FirstForm.jsx",
 		9,
-		5
+		6
 	],
 	"./Auth/components/facilityForms/SecondForm": [
 		"./resources/js/Pages/Auth/components/facilityForms/SecondForm.jsx",
@@ -70407,12 +70435,12 @@ var map = {
 	"./Auth/components/facilityForms/ThirdForm": [
 		"./resources/js/Pages/Auth/components/facilityForms/ThirdForm.jsx",
 		9,
-		13
+		14
 	],
 	"./Auth/components/facilityForms/ThirdForm.jsx": [
 		"./resources/js/Pages/Auth/components/facilityForms/ThirdForm.jsx",
 		9,
-		13
+		14
 	],
 	"./Dashboard": [
 		"./resources/js/Pages/Dashboard.js",
@@ -70427,32 +70455,32 @@ var map = {
 	"./Landing/Hero": [
 		"./resources/js/Pages/Landing/Hero.jsx",
 		9,
-		18
+		20
 	],
 	"./Landing/Hero.jsx": [
 		"./resources/js/Pages/Landing/Hero.jsx",
 		9,
-		18
+		20
 	],
 	"./Landing/Index": [
 		"./resources/js/Pages/Landing/Index.jsx",
 		9,
-		14
+		15
 	],
 	"./Landing/Index.jsx": [
 		"./resources/js/Pages/Landing/Index.jsx",
 		9,
-		14
+		15
 	],
 	"./Landing/Nav": [
 		"./resources/js/Pages/Landing/Nav.jsx",
 		9,
-		19
+		21
 	],
 	"./Landing/Nav.jsx": [
 		"./resources/js/Pages/Landing/Nav.jsx",
 		9,
-		19
+		21
 	]
 };
 function webpackAsyncContext(req) {

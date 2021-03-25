@@ -33,7 +33,7 @@ class RegistrationController extends Controller
             'name' => ['max:255', new NameFieldValidator],
             'vrn' => ['max:255',new VrnFieldValidator],
             'tin' => ['max:255',new TinFieldValidator],
-            'provider_sub_level_id' => [ new ProviderSubLevelFieldValidator],
+            'provider_sub_level_id' => ['numeric', new ProviderSubLevelFieldValidator],
             'ownership_type' => ['max:255', new FacilityOwner],
             'owner_first_name' =>  [ 'max:255', new OwnerInfoFieldValidator],
             'owner_middle_name' =>  ['max:255', new OwnerInfoFieldValidator],

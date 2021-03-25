@@ -1,27 +1,27 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
 
-/***/ "./resources/js/Pages/Auth/Registration/RegisterIndividualServiceProvider.jsx":
-/*!************************************************************************************!*\
-  !*** ./resources/js/Pages/Auth/Registration/RegisterIndividualServiceProvider.jsx ***!
-  \************************************************************************************/
+/***/ "./resources/js/Pages/Auth/Registration/RegisterCompanyServiceProvider.jsx":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/Pages/Auth/Registration/RegisterCompanyServiceProvider.jsx ***!
+  \*********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RegisterIndividualServiceProvider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RegisterCompany; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_IndividualRegistration__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/IndividualRegistration */ "./resources/js/Pages/Auth/components/IndividualRegistration.jsx");
+/* harmony import */ var _components_CompanyRegistration__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/CompanyRegistration */ "./resources/js/Pages/Auth/components/CompanyRegistration.jsx");
 
 
 
 
-function RegisterIndividualServiceProvider() {
+function RegisterCompany() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "account-pages mt-5 mb-5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -34,21 +34,21 @@ function RegisterIndividualServiceProvider() {
     className: "card"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body p-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_IndividualRegistration__WEBPACK_IMPORTED_MODULE_3__["default"], null))))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_CompanyRegistration__WEBPACK_IMPORTED_MODULE_3__["default"], null))))))));
 }
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Auth/components/IndividualRegistration.jsx":
-/*!***********************************************************************!*\
-  !*** ./resources/js/Pages/Auth/components/IndividualRegistration.jsx ***!
-  \***********************************************************************/
+/***/ "./resources/js/Pages/Auth/components/CompanyRegistration.jsx":
+/*!********************************************************************!*\
+  !*** ./resources/js/Pages/Auth/components/CompanyRegistration.jsx ***!
+  \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return IndividualRegister; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CompanyRegister; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
@@ -80,7 +80,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function IndividualRegister() {
+function CompanyRegister() {
   var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props,
       errors = _usePage$props.errors,
       emailSentSuccessfully = _usePage$props.emailSentSuccessfully;
@@ -91,16 +91,17 @@ function IndividualRegister() {
       setSending = _useState2[1];
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    account_category: "",
     first_name: "",
     last_name: "",
     middle_name: "",
     mobile_number: "",
+    name: "",
     password_confirmation: "",
+    tin: "",
+    vrn: "",
     email: '',
-    password: '',
-    account_category: "service-provider",
-    account_category_type: "individual",
-    ownership_type: ''
+    password: ''
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       values = _useState4[0],
@@ -122,28 +123,34 @@ function IndividualRegister() {
     });
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row mb-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
+    href: route('register')
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "btn btn-light"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: " uil-arrow-left mr-1"
+  }), "Go back")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: handleSubmit
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     className: "text-dark-50 text-left mb-3 font-weight-bold"
-  }, "Personal information"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Personal information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "first_name",
+    name: "ind_first_name",
     type: "text",
     label: "First Name",
     placeholder: "First Name",
-    errors: errors.first_name,
-    value: values.first_name,
+    errors: errors.ind_first_name,
+    value: values.ind_first_name,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "last_name",
+    name: "ind_last_name",
     type: "text",
     label: "Last Name",
     placeholder: "Last Name",
@@ -151,17 +158,7 @@ function IndividualRegister() {
     value: values.ind_last_name,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "mobile_number",
-    type: "text",
-    label: "Mobile Number",
-    placeholder: "Mobile Number",
-    errors: errors.ind_mobile_number,
-    value: values.ind_mobile_number,
-    onChange: handleChange
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "middle_name",
+    name: "ind_middle_name",
     type: "text",
     label: "Middle Name",
     placeholder: "Middle Name",
@@ -169,15 +166,25 @@ function IndividualRegister() {
     value: values.ind_middle_name,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "email",
+    name: "ind_mobile_number",
+    type: "text",
+    label: "Mobile Number",
+    placeholder: "Mobile Number",
+    errors: errors.ind_mobile_number,
+    value: values.ind_mobile_number,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "ind_email",
     type: "text",
     label: "Email",
     placeholder: "Email",
     errors: errors.ind_email,
     value: values.ind_email,
     onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "password",
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "ind_password",
     type: "password",
     label: "Password",
     placeholder: "Password",
@@ -185,12 +192,36 @@ function IndividualRegister() {
     value: values.ind_password,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "password_confirmation",
+    name: "ind_password_confirmation",
     type: "password",
-    label: "Confirm Password",
-    placeholder: "Confirm Password",
+    label: "Password",
+    placeholder: "Password",
     errors: errors.ind_password_confirmation,
     value: values.ind_password_confirmation,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "company_name",
+    type: "text",
+    label: "Company Name",
+    placeholder: "Company Name",
+    errors: errors.company_name,
+    value: values.company_name,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "tin",
+    type: "text",
+    label: "TIN",
+    placeholder: "TIN",
+    errors: errors.tin,
+    value: values.tin,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "vrn",
+    type: "text",
+    label: "VRN",
+    placeholder: "VRN",
+    errors: errors.vrn,
+    value: values.vrn,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group mb-0 text-right"
@@ -198,7 +229,7 @@ function IndividualRegister() {
     type: "submit",
     className: "btn btn-primary btn-block",
     loading: sending
-  }, "Register"))))));
+  }, "Save Changes"))))));
 }
 
 /***/ }),

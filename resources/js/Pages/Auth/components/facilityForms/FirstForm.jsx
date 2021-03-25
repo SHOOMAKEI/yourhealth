@@ -7,7 +7,7 @@ import LoadingButton from '@/Shared/LoadingButton'
 
 // function FileUpload(props) {
 //     const {field, form} = props;
-  
+
 //     const handleChange = async (e) => {
 //       const file  =  e.currentTarget.files[0];
 //       const reader = new FileReader();
@@ -18,7 +18,7 @@ import LoadingButton from '@/Shared/LoadingButton'
 //           form.setFieldValue(field.name, base64);
 //       }
 //     };
-  
+
 //     return (
 //       <div>
 //         <input type={'file'} onChange={(o) => handleChange(o)} className={'form-control'}/>
@@ -36,18 +36,14 @@ export default function FirstForm({callback}) {
     const { errors, emailSentSuccessfully } = usePage().props;
 	const [sending, setSending] = useState(false);
 	const [values, setValues] = useState({
-        f_name: '',
-        f_tin: "",
-        f_vrn: "",
+        facility_name: '',
+        facility_tin: "",
+        facility_vrn: "",
         provider_sub_level_id: '',
         // f_tin_attachment: '',
         // f_vrn_attachment: ''
     })
-        // const [getProviderSublevel, getProviderSublevelResponse] = useApi({query: GET_FACILITY_SUB_LEVEL})
 
-    // useEffect(() => {
-    //     getProviderSublevel({})
-    // }, [])
 
     function handleChange(e) {
         const key = e.target.name;
@@ -62,85 +58,78 @@ export default function FirstForm({callback}) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        setSending(true);
-        Inertia.post(route('login'), values).then(() => {
-            setSending(false);
-        });
+        callback({
+            form_number: 1,
+            form_one_data: values
+        })
     }
 
-
     return (
-        <div>
-            <>
-                {({ errors, touched }) => (
-                    <form  onSubmit={handleSubmit}>
-                        <h4 className="text-dark-50 text-left mb-3 font-weight-bold">Facility Information</h4>
-                        <div className="row">
-                            <div className="col-6">
-                                <TextInput
-                                    name="facility_name"
-                                    type="text"
-                                    label="Facility Name"
-                                    placeholder="Facility Name"
-                                    errors={errors.ind_first_name}
-                                    value={values.ind_first_name}
-                                    onChange={handleChange}
-                                />
-                                <TextInput
-                                    name="tin"
-                                    type="text"
-                                    label="TIN"
-                                    placeholder="TIN"
-                                    errors={errors.ind_first_name}
-                                    value={values.ind_first_name}
-                                    onChange={handleChange}
-                                />
-                                {/* <div className="form-group">
-                                    <label htmlFor="f_tin_attachment">TIN Attachment</label>
-                                    <Field id="f_tin_attachment" name="f_tin_attachment" component={FileUpload} />
-                                    {errors.f_tin_attachment && touched.f_tin_attachment ? <FormInputError title="Attachment error" message={errors.f_tin_attachment} /> : null}
-                                </div> */}
-                            </div>
-                            <div className="col-6">
-                            <SelectInput
-                                name="ownership_type"
-                                label="Facility type"
-                                errors={errors.ownership_type}
-                                value={values.ownership_type}
-                                onChange={handleChange}
+            <form  onSubmit={handleSubmit}>
+                <h4 className="text-dark-50 text-left mb-3 font-weight-bold">Facility Information</h4>
+                <div className="row">
+                    <div className="col-6">
+                        <TextInput
+                            name="facility_name"
+                            type="text"
+                            label="Facility Name"
+                            placeholder="Facility Name"
+                            errors={errors.ind_first_name}
+                            value={values.ind_first_name}
+                            onChange={handleChange}
+                        />
+                        <TextInput
+                            name="tin"
+                            type="text"
+                            label="TIN"
+                            placeholder="TIN"
+                            errors={errors.ind_first_name}
+                            value={values.ind_first_name}
+                            onChange={handleChange}
+                        />
+                        {/* <div className="form-group">
+                            <label htmlFor="f_tin_attachment">TIN Attachment</label>
+                            <Field id="f_tin_attachment" name="f_tin_attachment" component={FileUpload} />
+                            {errors.f_tin_attachment && touched.f_tin_attachment ? <FormInputError title="Attachment error" message={errors.f_tin_attachment} /> : null}
+                        </div> */}
+                    </div>
+                    <div className="col-6">
+                    <SelectInput
+                        name="provider_sub_level_id"
+                        label="Facility type"
+                        errors={errors.provider_sub_level_id}
+                        value={values.provider_sub_level_id}
+                        onChange={handleChange}
+                    >
+                        <option value="self" selected>Self ownership</option>
+                        <option value="other">Registration for someone</option>
+                    </SelectInput>
+                    <TextInput
+                        name="vrn"
+                        type="text"
+                        label="VRN"
+                        placeholder="VRN"
+                        errors={errors.vrn}
+                        value={values.vrn}
+                        onChange={handleChange}
+                    />
+                        {/* <div className="form-group">
+                            <label htmlFor="f_vrn_attachment">VRN Attachment</label>
+                            <Field id="f_vrn_attachment" name="f_vrn_attachment" component={FileUpload} />
+                            {errors.f_vrn_attachment && touched.f_vrn_attachment ? <FormInputError title="Attachment error" message={errors.f_vrn_attachment} /> : null}
+                        </div> */}
+                        <div className="form-group mb-0 text-right">
+                        <LoadingButton
+                            type="submit"
+                            className="btn btn-primary btn-block"
+                            loading={sending}
                             >
-                                <option value="self" selected>Self ownership</option>
-                                <option value="other">Registration for someone</option>
-                            </SelectInput>
-                            <TextInput
-                                name="vrn"
-                                type="text"
-                                label="VRN"
-                                placeholder="VRN"
-                                errors={errors.vrn}
-                                value={values.vrn}
-                                onChange={handleChange}
-                            />
-                                {/* <div className="form-group">
-                                    <label htmlFor="f_vrn_attachment">VRN Attachment</label>
-                                    <Field id="f_vrn_attachment" name="f_vrn_attachment" component={FileUpload} />
-                                    {errors.f_vrn_attachment && touched.f_vrn_attachment ? <FormInputError title="Attachment error" message={errors.f_vrn_attachment} /> : null}
-                                </div> */}
-                                <div className="form-group mb-0 text-right">
-                                <LoadingButton 
-                                    type="submit" 
-                                    className="btn btn-primary btn-block" 
-                                    loading={sending}
-                                    > 
-                                    Save Changes
-                                </LoadingButton>
-                                </div>
-                            </div>
+                            Next
+                        </LoadingButton>
                         </div>
-                    </form>
-                )}
-            </>
-        </div>
+                    </div>
+                </div>
+            </form>
     )
 }
 
