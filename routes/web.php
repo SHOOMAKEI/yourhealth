@@ -30,6 +30,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::get('/login', [HomeController::class, 'login'])->name('login');
+Route::get('/register_individual', [HomeController::class, 'registerIndividualServiceProvider'])->name('register.individual');
+Route::get('/register_facility', [HomeController::class, 'registerFacilityServiceProviderServiceProvider'])->name('register.facility');
+Route::get('/register_company', [HomeController::class, 'registerCompanyServiceProviderServiceProvider'])->name('register.company');
 Route::post('/create_account', [RegistrationController::class, 'createUserAccount'])->name('account.create');
 
 
