@@ -5,7 +5,7 @@ import TextInput from '@/Shared/TextInput'
 import LoadingButton from '@/Shared/LoadingButton'
 
 export default function IndividualRegister() {
-    const { errors, emailSentSuccessfully } = usePage().props;
+    const { errors, emailSentSuccessfully, csrf_token } = usePage().props;
 	const [sending, setSending] = useState(false);
 	const [values, setValues] = useState({
         first_name: "",
@@ -17,7 +17,8 @@ export default function IndividualRegister() {
         password: '',
         account_category: "service-provider",
         account_category_type: "individual",
-        ownership_type: ''
+        ownership_type: '',
+        _token: csrf_token,
 
     });
 

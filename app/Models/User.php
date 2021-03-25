@@ -11,7 +11,6 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use Rinvex\Subscriptions\Traits\HasSubscriptions;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasPermissions;
@@ -26,7 +25,6 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
     use TwoFactorAuthenticatable;
     use HasRoles;
     use HasPermissions;
-    use HasSubscriptions;
     use VerifyMobileNumber;
     use InteractsWithMedia;
 
@@ -104,7 +102,7 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
 
     public function getClientProfileAttribute()
     {
-        
+
         // if($this->hasRole('patient')) {
 
         //     $this->hasOne(ProviderProfile::class, 'user_id');
@@ -142,7 +140,7 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
             $this->getFirstMediaUrl('profile-photo')==null) {
             return asset('avatar/client_profile_avatar.jpg');
         }
-        
+
         return $this->getFirstMediaUrl('profile-photo');
     }
 }

@@ -44,7 +44,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function CompanyRegister() {
   var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props,
       errors = _usePage$props.errors,
-      emailSentSuccessfully = _usePage$props.emailSentSuccessfully;
+      emailSentSuccessfully = _usePage$props.emailSentSuccessfully,
+      csrf_token = _usePage$props.csrf_token;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -62,7 +63,11 @@ function CompanyRegister() {
     tin: "",
     vrn: "",
     email: '',
-    password: ''
+    password: '',
+    account_category: "service-provider",
+    account_category_type: "individual",
+    ownership_type: '',
+    _token: csrf_token
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       values = _useState4[0],

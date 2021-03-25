@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use App\Services\SMSService;
 
-trait MustCompliteProfileStage
+trait MustCompleteProfileStage
 {
     /**
      * Determine if the user has verified their MobileNumber address.
@@ -40,7 +40,7 @@ trait MustCompliteProfileStage
         ])->save();
 
         $sms = 'Your Verification Code is '. $this->verification_code;
-        
+
         SMSService::sendSMSToSingeUser($this->getMobileNumberForVerification(), $sms);
     }
 

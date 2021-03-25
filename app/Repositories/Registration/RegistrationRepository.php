@@ -16,7 +16,9 @@ class RegistrationRepository implements RegistrationRepositoryInterface
         if ($request['account_category'] == 'service-provider') {
             $user->assignRole('service-provider');
             $user->assignRole('unverified-service-provider');
-            array_merge($request, ['user_id' => $user->id]);
+            $request += ['user_id' => $user->id];
+            $request+= ['mobile_number' => $user->mobile_number];
+            $request+= ['email' => $user->email];
             $repository->createProviderProfile($request);
             if ($request['account_category_type'] == 'company') {
                 $user->assignRole('owner');
