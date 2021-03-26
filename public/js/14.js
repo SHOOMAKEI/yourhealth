@@ -144,7 +144,7 @@ function ThirdForm(_ref) {
   }, " Previous "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "btn btn-primary",
     type: "submit"
-  }, " Next ")))));
+  }, " Submit ")))));
 }
 
 /***/ }),

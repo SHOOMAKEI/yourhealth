@@ -96,7 +96,7 @@ export default function ThirdForm({callback, goBack}) {
                         />
                         <div className="form-group mb-0 text-right">
                             <a className="btn btn-light mr-2" onClick={() => goBack(2)}> Previous </a>
-                            <button className="btn btn-primary" type="submit"> Next </button>
+                            <button className="btn btn-primary" type="submit"> Submit </button>
                         </div>
                     </div>
                 </div>

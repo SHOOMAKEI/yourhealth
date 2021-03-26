@@ -3,7 +3,6 @@
 
 namespace App\Repositories\Registration;
 
-
 use App\Contracts\Repositories\Registration\RegistrationRepositoryInterface;
 use App\Contracts\Repositories\Registration\ServiceProviderRegistrationRepositoryInterface;
 use App\Models\ClientProfile;
@@ -22,7 +21,6 @@ use Illuminate\Support\Facades\Hash;
 
 class ServiceProviderRegistrationRepository implements ServiceProviderRegistrationRepositoryInterface
 {
-
     public function createAccount(array $request):User
     {
         return User::create([
@@ -73,27 +71,34 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
 
     public function createOrUpdateProviderCompany(array $request):ProviderCompany
     {
-        $provider_company = ProviderCompany::updateOrCreate(
-            [
-                'id' => auth()->user()->service_provider->provider_companies[0]->id
-            ],
-            [
-                'trading_name' => $request['trading_name'],
-                'name' => $request['name'],
-                'mobile_number' => $request['mobile_number'],
-                'alternative_mobile_number' => $request['alternative_mobile_number'] ?? null,
-                'email' => $request['email'],
-                'address' => $request['address'] ?? null,
-                'physical_address' => $request['physical_address'] ?? null,
-                'website' => $request['website'] ?? null,
-                'registration_number' => $request['registration_number'] ?? null,
-                'registration_date' => $request['registration_date'] ?? null,
-                'description' => $request['description'] ?? null,
-            ]
-        );
+        $data = [
+            'trading_name' => $request['trading_name']??null,
+            'name' => $request['name'],
+            'mobile_number' => $request['mobile_number'],
+            'alternative_mobile_number' => $request['alternative_mobile_number'] ?? null,
+            'email' => $request['email'],
+            'tin' => $request['tin'],
+            'vrn' => $request['vrn'],
+            'address' => $request['address'] ?? null,
+            'physical_address' => $request['physical_address'] ?? null,
+            'website' => $request['website'] ?? null,
+            'registration_number' => $request['registration_number'] ?? null,
+            'registration_date' => $request['registration_date'] ?? null,
+            'description' => $request['description'] ?? null,
+        ];
 
-        $provider_company->provider_profile()->detach(auth()->user()->service_provider->id);
-        $provider_company->provider_profile()->attach(auth()->user()->service_provider->id, ['role' => 'owner']);
+        $provider_company = isset((User::find($request['user_id']))->service_provider->provider_companies[0]->id) ?
+            ProviderCompany::updateOrCreate(
+                [
+                'id' => (User::find($request['user_id']))->service_provider->provider_companies[0]->id
+            ],
+                $data
+            ) : ProviderCompany::create($data);
+
+        $provider_company->provider_profile()
+            ->detach((User::find($request['user_id']))->service_provider->id);
+        $provider_company->provider_profile()
+            ->attach((User::find($request['user_id']))->service_provider->id, ['role' => 'owner']);
 
         if (!empty($request['tin_attachment'])) {
             $provider_company->clearMediaCollection('provider-company-tin-files');
@@ -122,25 +127,30 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
         return $provider_company;
     }
 
-    public function createProviderFacility(array $request):ProviderFacility
+    private function facilityData(array $request): array
     {
-        $provider_facility = ProviderFacility::create([
+        return [
             'name' => $request['name'],
-            'trading_name' => $request['trading_name'],
+            'trading_name' => $request['trading_name']??null,
             'tin' => $request['tin'],
             'vrn' => $request['vrn'],
-            'mobile_number' => $request['mobile_number'],
-            'alternative_mobile_number' => $request['alternative_mobile_number'],
+            'mobile_number' => $request['mobile_number'] ??null,
+            'alternative_mobile_number' => $request['alternative_mobile_number']??null,
             'email' => $request['email'],
             'ownership_type' => $request['ownership_type'] ?? 'self',
-            'address' => $request['address'],
-            'physical_address' => $request['physical_address'],
-            'website' => $request['website'],
-            'registration_number' => $request['registration_number'],
-            'description' => $request['description'],
+            'address' => $request['address']??null,
+            'physical_address' => $request['physical_address'] ??null,
+            'website' => $request['website'] ??null,
+            'registration_number' => $request['registration_number'] ?? null,
+            'description' => $request['description'] ?? null,
             'provider_sub_level_id' => $request['provider_sub_level_id'],
             'provider_company_id' => $request['provider_company_id'],
-        ]);
+        ];
+    }
+
+    public function createProviderFacility(array $request):ProviderFacility
+    {
+        $provider_facility = ProviderFacility::create($this->facilityData($request));
 
         if (!empty($request['tin_attachment'])) {
             $provider_facility->clearMediaCollection('provider-facility-tin-files');
@@ -186,23 +196,7 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
     {
         $provider_facility = ProviderFacility::find($request['id']);
 
-        $provider_facility->update([
-            'name' => $request['name'],
-            'trading_name' => $request['trading_name'],
-            'tin' => $request['tin'],
-            'vrn' => $request['vrn'],
-            'mobile_number' => $request['mobile_number'],
-            'alternative_mobile_number' => $request['alternative_mobile_number'],
-            'email' => $request['email'],
-            'ownership_type' => $request['ownership_type'] ?? 'self',
-            'address' => $request['address'],
-            'physical_address' => $request['physical_address'],
-            'website' => $request['website'],
-            'registration_number' => $request['registration_number'],
-            'description' => $request['description'],
-            'provider_sub_level_id' => $request['provider_sub_level_id'],
-            'provider_company_id' => $request['provider_company_id'],
-        ]);
+        $provider_facility->update($this->facilityData($request));
 
         if (!empty($request['tin_attachment'])) {
             $provider_facility->clearMediaCollection('provider-facility-tin-files');
@@ -230,7 +224,6 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
 
         return $provider_facility;
     }
-
 
     public function deleteProviderFacility(array $request):ProviderFacility
     {

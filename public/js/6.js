@@ -65,7 +65,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 // }
 
 function FirstForm(_ref) {
-  var callback = _ref.callback;
+  var callback = _ref.callback,
+      data = _ref.data;
   var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props,
       errors = _usePage$props.errors,
       emailSentSuccessfully = _usePage$props.emailSentSuccessfully;
@@ -116,16 +117,16 @@ function FirstForm(_ref) {
     type: "text",
     label: "Facility Name",
     placeholder: "Facility Name",
-    errors: errors.ind_first_name,
-    value: values.ind_first_name,
+    errors: errors.facility_name,
+    value: values.facility_name,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "tin",
+    name: "facility_tin",
     type: "text",
     label: "TIN",
     placeholder: "TIN",
-    errors: errors.ind_first_name,
-    value: values.ind_first_name,
+    errors: errors.facility_tin,
+    value: values.facility_tin,
     onChange: handleChange
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-6"
@@ -135,18 +136,18 @@ function FirstForm(_ref) {
     errors: errors.provider_sub_level_id,
     value: values.provider_sub_level_id,
     onChange: handleChange
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "self",
-    selected: true
-  }, "Self ownership"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "other"
-  }, "Registration for someone")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "vrn",
+  }, data.map(function (provider_sub_level) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      value: provider_sub_level.id,
+      key: provider_sub_level.id
+    }, provider_sub_level.name);
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "facility_vrn",
     type: "text",
     label: "VRN",
     placeholder: "VRN",
-    errors: errors.vrn,
-    value: values.vrn,
+    errors: errors.facility_vrn,
+    value: values.facility_vrn,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group mb-0 text-right"

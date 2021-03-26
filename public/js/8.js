@@ -154,7 +154,6 @@ function CompanyRegister() {
       setSending = _useState2[1];
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    account_category: "",
     first_name: "",
     last_name: "",
     middle_name: "",
@@ -164,7 +163,9 @@ function CompanyRegister() {
     tin: "",
     vrn: "",
     email: '',
-    password: ''
+    password: '',
+    account_category: "service-provider",
+    account_category_type: "company"
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       values = _useState4[0],
@@ -205,70 +206,70 @@ function CompanyRegister() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "ind_first_name",
+    name: "first_name",
     type: "text",
     label: "First Name",
     placeholder: "First Name",
-    errors: errors.ind_first_name,
-    value: values.ind_first_name,
+    errors: errors.first_name,
+    value: values.first_name,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "ind_last_name",
+    name: "last_name",
     type: "text",
     label: "Last Name",
     placeholder: "Last Name",
-    errors: errors.ind_last_name,
-    value: values.ind_last_name,
+    errors: errors.last_name,
+    value: values.last_name,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "ind_middle_name",
+    name: "middle_name",
     type: "text",
     label: "Middle Name",
     placeholder: "Middle Name",
-    errors: errors.ind_middle_name,
-    value: values.ind_middle_name,
+    errors: errors.middle_name,
+    value: values.middle_name,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "ind_mobile_number",
+    name: "mobile_number",
     type: "text",
     label: "Mobile Number",
     placeholder: "Mobile Number",
-    errors: errors.ind_mobile_number,
-    value: values.ind_mobile_number,
+    errors: errors.mobile_number,
+    value: values.mobile_number,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "ind_email",
+    name: "email",
     type: "text",
     label: "Email",
     placeholder: "Email",
-    errors: errors.ind_email,
-    value: values.ind_email,
+    errors: errors.email,
+    value: values.email,
     onChange: handleChange
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "ind_password",
+    name: "password",
     type: "password",
     label: "Password",
     placeholder: "Password",
-    errors: errors.ind_password,
-    value: values.ind_password,
+    errors: errors.password,
+    value: values.password,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "ind_password_confirmation",
+    name: "password_confirmation",
     type: "password",
     label: "Password",
     placeholder: "Password",
-    errors: errors.ind_password_confirmation,
-    value: values.ind_password_confirmation,
+    errors: errors.password_confirmation,
+    value: values.password_confirmation,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "company_name",
+    name: "name",
     type: "text",
     label: "Company Name",
     placeholder: "Company Name",
-    errors: errors.company_name,
-    value: values.company_name,
+    errors: errors.name,
+    value: values.name,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: "tin",

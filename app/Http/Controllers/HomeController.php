@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProviderSubLevel;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -24,7 +25,11 @@ class HomeController extends Controller
 
     public function registerFacilityServiceProvider(): Response
     {
-        return Inertia::render('Auth/Registration/RegisterFacilityServiceProvider');
+
+        return Inertia::render(
+            'Auth/Registration/RegisterFacilityServiceProvider',
+            ['provider_sub_levels' => ProviderSubLevel::all()]
+        );
     }
 
     public function registerCompanyServiceProvider(): Response

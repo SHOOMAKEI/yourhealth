@@ -9,6 +9,7 @@ import ThirdForm from './facilityForms/ThirdForm'
 
 
 export default function FacilityRegister() {
+        const  { provider_sub_levels } = usePage().props;
         const [stepNumber, setStepNumber] = useState(1);
         const [values, setValues] = useState({})
         const [sending, setSending] = useState(false);
@@ -93,7 +94,7 @@ export default function FacilityRegister() {
             </div>
 
             <div style={{display: ((stepNumber === 1)) ? 'block': 'none'}}>
-                <FirstForm callback={createInputData} />
+                <FirstForm callback={createInputData} data={provider_sub_levels} />
             </div>
             <div style={{display: ((stepNumber === 2)) ? 'block': 'none'}}>
                 <SecondForm callback={createInputData} goBack={setStepNumber} />

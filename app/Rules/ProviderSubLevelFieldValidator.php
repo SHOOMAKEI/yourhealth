@@ -33,7 +33,7 @@ class ProviderSubLevelFieldValidator implements Rule
         }
 
         if ($this->account_category_type=="facility") {
-            return (ProviderSubLevel::where('id', $value)->first())->notEmpty();
+            return !empty(ProviderSubLevel::where('id', $value)->first());
         }
 
         return true;

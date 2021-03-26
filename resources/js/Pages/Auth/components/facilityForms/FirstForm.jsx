@@ -32,7 +32,7 @@ import LoadingButton from '@/Shared/LoadingButton'
 //     callback: ({}: createInputDataValues) => void;
 // }
 
-export default function FirstForm({callback}) {
+export default function FirstForm({callback, data}) {
     const { errors, emailSentSuccessfully } = usePage().props;
 	const [sending, setSending] = useState(false);
 	const [values, setValues] = useState({
@@ -74,17 +74,17 @@ export default function FirstForm({callback}) {
                             type="text"
                             label="Facility Name"
                             placeholder="Facility Name"
-                            errors={errors.ind_first_name}
-                            value={values.ind_first_name}
+                            errors={errors.facility_name}
+                            value={values.facility_name}
                             onChange={handleChange}
                         />
                         <TextInput
-                            name="tin"
+                            name="facility_tin"
                             type="text"
                             label="TIN"
                             placeholder="TIN"
-                            errors={errors.ind_first_name}
-                            value={values.ind_first_name}
+                            errors={errors.facility_tin}
+                            value={values.facility_tin}
                             onChange={handleChange}
                         />
                         {/* <div className="form-group">
@@ -101,16 +101,19 @@ export default function FirstForm({callback}) {
                         value={values.provider_sub_level_id}
                         onChange={handleChange}
                     >
-                        <option value="self" selected>Self ownership</option>
-                        <option value="other">Registration for someone</option>
+                        {
+                            data.map((provider_sub_level) => (
+                                <option value={provider_sub_level.id}  key={provider_sub_level.id}>{provider_sub_level.name}</option>
+                            ))
+                        }
                     </SelectInput>
                     <TextInput
-                        name="vrn"
+                        name="facility_vrn"
                         type="text"
                         label="VRN"
                         placeholder="VRN"
-                        errors={errors.vrn}
-                        value={values.vrn}
+                        errors={errors.facility_vrn}
+                        value={values.facility_vrn}
                         onChange={handleChange}
                     />
                         {/* <div className="form-group">

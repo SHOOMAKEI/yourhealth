@@ -13,7 +13,7 @@ use App\Models\ProviderProfile;
 use App\Models\ProviderQualification;
 use App\Models\Service;
 use App\Models\User;
-use App\Rules\FacilityOwner;
+use App\Models\ProviderFacilityOwner;
 
 interface ServiceProviderRegistrationRepositoryInterface
 {
@@ -27,7 +27,7 @@ interface ServiceProviderRegistrationRepositoryInterface
 
     public function createProviderFacility(array $request):ProviderFacility;
 
-    public function createFacilityOwner(array $request):FacilityOwner;
+    public function createFacilityOwner(array $request):ProviderFacilityOwner;
 
     public function updateProviderFacility(array $request):ProviderFacility;
 

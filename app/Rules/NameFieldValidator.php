@@ -35,7 +35,7 @@ class NameFieldValidator implements Rule
             // $this->account_category_type=="family"
             ) && $attribute== 'name'
         ) {
-            return  isset($value)?true:false;
+            return isset($value);
         }
 
         return true;
