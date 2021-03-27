@@ -7,7 +7,7 @@ import CheckBoxInput from '@/Shared/CheckBoxInput'
 
 
 export default () => {
-    const { errors } = usePage().props;
+    const { errors, status } = usePage().props;
     const [sending, setSending] = useState(false);
     const [values, setValues] = useState({
         email: '',
@@ -49,7 +49,22 @@ export default () => {
               <div className="login-form">
                   <div className="card mb-0 mt-5 p-4">
                     <div className="card-body">
-                      <h6 className="text-center mb-3"><b>Welcome</b>. Please Login!</h6>
+                      <h6 className="text-center mb-3"><b>Welcome back!</b>. Please Login to continue!</h6>
+                        {
+                            status &&
+                            (
+                                <div
+                                    className="alert alert-success alert-dismissible bg-success
+                                    text-white border-0 fade show"
+                                    role="alert">
+                                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <strong>Success - </strong> {status}
+                                </div>
+
+                            )
+                        }
                       <form onSubmit={handleSubmit}>
                       <TextInput
                         name="email"
@@ -85,11 +100,11 @@ export default () => {
                         </div>
                         <div className="form-group my-3 row">
                           <div className="col-12 text-right">
-                          <LoadingButton 
-                              type="submit" 
-                              className="btn btn-primary btn-block" 
+                          <LoadingButton
+                              type="submit"
+                              className="btn btn-primary btn-block"
                               loading={sending}
-                            > 
+                            >
                             Login
                             </LoadingButton>
                           </div>

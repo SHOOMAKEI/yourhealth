@@ -3,7 +3,6 @@
 
 namespace App\Repositories\Registration;
 
-use App\Contracts\Repositories\Registration\RegistrationRepositoryInterface;
 use App\Contracts\Repositories\Registration\ServiceProviderRegistrationRepositoryInterface;
 use App\Models\ClientProfile;
 use App\Models\DaySession;
@@ -16,7 +15,6 @@ use App\Models\ProviderQualification;
 use App\Models\Service;
 use App\Models\User;
 use App\Notifications\ServiceProviderRequestsNotification;
-use App\Rules\FacilityOwner;
 use Illuminate\Support\Facades\Hash;
 
 class ServiceProviderRegistrationRepository implements ServiceProviderRegistrationRepositoryInterface
@@ -180,7 +178,7 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
         return $provider_facility;
     }
 
-    public function createFacilityOwner(array $request):FacilityOwner
+    public function createFacilityOwner(array $request):ProviderFacilityOwner
     {
         return ProviderFacilityOwner::create([
             'first_name' => $request['owner_first_name'],
