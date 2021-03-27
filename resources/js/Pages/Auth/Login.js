@@ -85,11 +85,11 @@ export default () => {
                         </div>
                         <div className="form-group my-3 row">
                           <div className="col-12 text-right">
-                          <LoadingButton 
-                              type="submit" 
-                              className="btn btn-primary btn-block" 
+                          <LoadingButton
+                              type="submit"
+                              className="btn btn-primary btn-block"
                               loading={sending}
-                            > 
+                            >
                             Login
                             </LoadingButton>
                           </div>
@@ -106,7 +106,6 @@ export default () => {
                 </div>
               </div>
               <div className="col-md-3"></div>
-
 
               </div>
 
