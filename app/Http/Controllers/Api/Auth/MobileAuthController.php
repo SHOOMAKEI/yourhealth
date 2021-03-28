@@ -14,12 +14,12 @@ class MobileAuthController extends Controller
     {
         $this->middleware('auth:sanctum', ['except' => ['login', 'username', 'resendOtpCode', 'verifyOtpCode']]);
     }
-    
+
 
     public function login($rootValue, array $args)
     {
         $data =  $this->username($rootValue, $args);
-       
+
         $user = User::where($data['field'], $args['input']['username'])->first();
 
         if (! $user || ($user->is_active ==false)) {
@@ -29,13 +29,14 @@ class MobileAuthController extends Controller
                 'token_type'=> null,
                 'errors'=> [
                     [
-                    'message' => 'User account does not exist or has been disabled contact support team for more information.'
+                    'message' => 'User account does not exist or
+                      has been disabled contact support team for more information.'
                     ]
                 ],
                 'success' => false,
                 ]);
         }
-    
+
         if (! $user || ! Hash::check($args['input']['password'], $user->password)) {
             $user->forceFill([
                 'login_trial_count' => ($user->login_trial_count-1),
@@ -68,7 +69,7 @@ class MobileAuthController extends Controller
 
         if ($user->mobile_number_verified_at == null) {
             $user->sendMobileNumberVerificationNotification();
-            
+
             $user->forceFill([
                 'text_resend_count' => ($user->text_resend_count-1),
             ])->save();
@@ -113,11 +114,11 @@ class MobileAuthController extends Controller
             'text_resend_count' => 5,
         ])->save();
 
-           
+
         $user->forceFill([
             'login_trial_count' => 5,
         ])->save();
-        
+
         return (object)([
             'user' => new UserResource($user),
             'token' => $user->createToken($args['input']['device_name'])->plainTextToken,
@@ -132,7 +133,7 @@ class MobileAuthController extends Controller
         $user = User::where('email', $args['input']['email'])->first();
 
         $user->sendOtpCodeNotification();
-        
+
         return (object)([
             'user' => null,
             'token' => null,
@@ -170,12 +171,12 @@ class MobileAuthController extends Controller
                     [
                         'message' => 'Incorrect OTP Provided'
                     ]
-                    
+
                 ],
                 'success' => false,
                 ]);
         }
-        
+
         $user->forceFill([
             'otp_code' => null,
         ])->save();
@@ -212,7 +213,7 @@ class MobileAuthController extends Controller
     public function verify2FACode($rootValue, array $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
-        
+
         if ($code = $this->valid2FARecoveryCode($user, $args)) {
             $user->replaceRecoveryCode($code);
         } elseif (! $this->hasValid2FACode($user, $args)) {
@@ -224,7 +225,7 @@ class MobileAuthController extends Controller
                     [
                         'message' => 'Incorrect 2FA code Provided'
                     ]
-                    
+
                 ],
                 'success' => false,
                 ]);
@@ -244,7 +245,7 @@ class MobileAuthController extends Controller
         $user = User::where('email', $args['input']['email'])->first();
 
         $user->sendMobileNumberVerificationNotification();
-        
+
         return (object)([
             'user' => null,
             'token' => null,
@@ -257,7 +258,7 @@ class MobileAuthController extends Controller
     public function VerifyMobileVerificationCode($rootValue, array $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
-        
+
         if ($user->getMobileNumberVerificationCode() != $args['input']['verification_code']) {
             return (object)([
                 'user' => new UserResource($user),
@@ -267,12 +268,12 @@ class MobileAuthController extends Controller
                     [
                         'message' => 'Incorrect Verification Code Provided'
                     ]
-                    
+
                 ],
                 'success' => false,
                 ]);
         }
-        
+
         $user->markMobileNumberAsVerified();
 
         if ($user->email_verified_at == null) {
@@ -299,7 +300,7 @@ class MobileAuthController extends Controller
         $user = User::where('id', $args['input']['id'])->first();
 
         $user->sendEmailVerificationNotification();
-        
+
         if ($user->mobile_number_verified_at == null) {
             return (object)([
                 'user' => new UserResource($user),
@@ -341,7 +342,7 @@ class MobileAuthController extends Controller
         } else {
             $field = 'mobile_number';
         }
-       
+
         $args =  array_merge([$field => $login], $args);
 
         return ['field' => $field, 'args' => $args];

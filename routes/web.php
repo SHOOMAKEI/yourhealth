@@ -30,12 +30,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::get('/login', [HomeController::class, 'login'])->name('login');
-Route::get('/register_individual', [HomeController::class, 'registerIndividualServiceProvider'])->name('register.individual');
-Route::get('/register_facility', [HomeController::class, 'registerFacilityServiceProvider'])->name('register.facility');
-Route::get('/register_company', [HomeController::class, 'registerCompanyServiceProvider'])->name('register.company');
-Route::post('/create_account', [RegistrationController::class, 'createUserAccount'])->name('account.create');
+Route::get('/register_individual', [HomeController::class, 'registerIndividualServiceProvider'])
+    ->name('register.individual');
+Route::get('/register_facility', [HomeController::class, 'registerFacilityServiceProvider'])
+    ->name('register.facility');
+Route::get('/register_company', [HomeController::class, 'registerCompanyServiceProvider'])
+    ->name('register.company');
+Route::post('/create_account', [RegistrationController::class, 'createUserAccount'])
+    ->name('account.create');
 
-
+Route::post('login', []);
 
 // Route::middleware([ 'auth','auth:sanctum', 'verified', 'verified_sp','language', 'mobile_number_verified'])->group( function () {
 
