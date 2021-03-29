@@ -1,77 +1,225 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[38],{
 
-/***/ "./resources/js/Pages/Auth/VerifyEmail.js":
-/*!************************************************!*\
-  !*** ./resources/js/Pages/Auth/VerifyEmail.js ***!
-  \************************************************/
+/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/Register.jsx":
+/*!**************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/Register.jsx ***!
+  \**************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/index.jsx");
+/* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_RegistrationNav__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/RegistrationNav */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/RegistrationNav.jsx");
+/* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_Topnav__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/Topnav */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/Topnav.jsx");
+
+
+
+
+function Register(_ref) {
+  var user = _ref.user;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "account-pages mt-5 mb-5"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "row justify-content-center"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-12"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "card"
+  }, /*#__PURE__*/React.createElement(_Pages_ServiceProviderProfileCompletion_components_Topnav__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    user: user
+  }), user.provider_profile.is_submitted && /*#__PURE__*/React.createElement("div", {
+    className: "alert alert-success alert-dismissible bg-success text-white border-0 fade show topnav-logo",
+    role: "alert"
+  }, /*#__PURE__*/React.createElement("strong", null, "Request submitted, please wait for verification. ")), /*#__PURE__*/React.createElement("div", {
+    className: "card-body p-4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/React.createElement(_Pages_ServiceProviderProfileCompletion_components_RegistrationNav__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    user: user
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "col-sm-9"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "tab-content",
+    id: "v-pills-tabContent"
+  }, /*#__PURE__*/React.createElement(_Pages_ServiceProviderProfileCompletion_components_profile__WEBPACK_IMPORTED_MODULE_0__["ProfileInfo"], {
+    user: user
+  }), user.provider_profile.account_category_type === 'individual' && /*#__PURE__*/React.createElement(_Pages_ServiceProviderProfileCompletion_components_profile__WEBPACK_IMPORTED_MODULE_0__["Qualifications"], null), user.provider_profile.account_category_type === 'company' && /*#__PURE__*/React.createElement(_Pages_ServiceProviderProfileCompletion_components_profile__WEBPACK_IMPORTED_MODULE_0__["Company"], null), user.provider_profile.account_category_type === 'individual' && /*#__PURE__*/React.createElement(_Pages_ServiceProviderProfileCompletion_components_profile__WEBPACK_IMPORTED_MODULE_0__["MedicalRegistrations"], null), /*#__PURE__*/React.createElement(_Pages_ServiceProviderProfileCompletion_components_profile__WEBPACK_IMPORTED_MODULE_0__["Services"], {
+    user: user
+  }), user.provider_profile.account_category_type === 'facility' && /*#__PURE__*/React.createElement(_Pages_ServiceProviderProfileCompletion_components_profile__WEBPACK_IMPORTED_MODULE_0__["Facility"], null))))))))));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Register);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/components/RegistrationNav.jsx":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/components/RegistrationNav.jsx ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RegistrationNav; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function RegistrationNav(_ref) {
+  var user = _ref.user;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "col-sm-3 mb-2 mb-sm-0"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "nav flex-column nav-pills",
+    id: "v-pills-tab",
+    role: "tablist",
+    "aria-orientation": "vertical"
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "nav-link active show mb-2",
+    id: "v-pills-home-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-profile",
+    role: "tab",
+    "aria-controls": "v-pills-profile",
+    "aria-selected": "true"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-home-variant d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Profile Information")), user.provider_profile.account_category_type === 'company' && /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-2",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-company",
+    role: "tab",
+    "aria-controls": "v-pills-company",
+    "aria-selected": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Company Information")), user.provider_profile.account_category_type === 'facility' && /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-2",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-facility",
+    role: "tab",
+    "aria-controls": "v-pills-facility",
+    "aria-selected": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Facility Information")), user.provider_profile.account_category_type === 'individual' && /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-2",
+    id: "v-pills-profile-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-qualifications",
+    role: "tab",
+    "aria-controls": "v-pills-qualifications",
+    "aria-selected": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-account-circle d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Education Qualifications")), user.provider_profile.account_category_type === 'individual' && /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-2",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-medical-registration",
+    role: "tab",
+    "aria-controls": "v-pills-medical-registration",
+    "aria-selected": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Medical Registration")), /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-2",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-services",
+    role: "tab",
+    "aria-controls": "v-pills-services",
+    "aria-selected": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Services"))));
+}
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+/***/ }),
 
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/components/Topnav.jsx":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/components/Topnav.jsx ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TopNav; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+// import Languages from '@/Pages/constants/components/languages'
 
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["usePage"])().props,
-      flash = _usePage$props.flash,
-      errors = _usePage$props.errors;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      sending = _useState2[0],
-      setSending = _useState2[1];
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "wrapper-login"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "app justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-3"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "login-form"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card mb-0 mt-5 p-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
-    className: "text-center mb-3"
-  }, "Resend Email Verification Link"), flash.status == 'verification-link-sent' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    "class": "alert alert-primary alert-borderless",
-    role: "alert"
-  }, flash.status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["InertiaLink"], {
-    href: route('verification.send'),
-    className: "btn btn-success",
-    method: "post"
-  }, "Resend Verification Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["InertiaLink"], {
-    href: route('logout'),
-    className: "btn btn-primary",
-    method: "post"
-  }, "Logout"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-3"
-  })))));
-});
+function TopNav(_ref) {
+  var user = _ref.user;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "navbar-custom topnav-navbar topnav-navbar-dark"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container-fluid"
+  }, /*#__PURE__*/React.createElement("ul", {
+    className: "list-unstyled topbar-right-menu float-right mb-0"
+  }, /*#__PURE__*/React.createElement("li", {
+    className: "dropdown notification-list"
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "nav-link dropdown-toggle nav-user arrow-none mr-0",
+    "data-toggle": "dropdown",
+    id: "topbar-userdrop",
+    href: "#",
+    role: "button",
+    "aria-haspopup": "true",
+    "aria-expanded": "false"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "account-user-avatar"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "/images/avatar.jpg",
+    alt: "user-image",
+    className: "rounded-circle"
+  })), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("span", {
+    className: "account-user-name"
+  }, user.name), /*#__PURE__*/React.createElement("span", {
+    className: "account-position"
+  }, user.roles[0].name))), /*#__PURE__*/React.createElement("div", {
+    className: "dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown",
+    "aria-labelledby": "topbar-userdrop"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: " dropdown-header noti-title"
+  }, /*#__PURE__*/React.createElement("h6", {
+    className: "text-overflow m-0"
+  }, "Welcome !")), /*#__PURE__*/React.createElement("a", {
+    href: "javascript:void(0);",
+    className: "dropdown-item notify-item"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-lifebuoy mr-1"
+  }), /*#__PURE__*/React.createElement("span", null, "Support")), /*#__PURE__*/React.createElement("a", {
+    href: "javascript:void(0);",
+    className: "dropdown-item notify-item",
+    onClick: logoutUser
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-logout mr-1"
+  }), /*#__PURE__*/React.createElement("span", null, "Logout"))))), /*#__PURE__*/React.createElement("a", {
+    className: "button-menu-mobile disable-btn"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "lines"
+  }, /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", null)))));
+}
 
 /***/ })
 
