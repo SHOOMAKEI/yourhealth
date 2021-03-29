@@ -43,6 +43,7 @@ class HandleInertiaRequests extends Middleware
                             ? $request->user()->only('id', 'name', 'email')
                             : null,
             'status' => Session::get('status'),
+            'alertType' => Session::get('alertType'),
         ]);
     }
 }
