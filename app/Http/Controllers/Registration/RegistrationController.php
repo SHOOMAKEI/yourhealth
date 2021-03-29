@@ -44,8 +44,11 @@ class RegistrationController extends Controller
 
         $repository->createUserAccount((new ServiceProviderRegistrationRepository()), $request->toArray());
 
-        return Redirect::route('login')->with('success', 'Branch created successful.');
+        return Redirect::route('login')
+            ->with(
+                'status',
+                'You have been register successful please login \n
+                to verify your mobile number and continue using the platform'
+            );
     }
-
-
 }

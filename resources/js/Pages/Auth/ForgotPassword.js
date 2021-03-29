@@ -5,7 +5,7 @@ import TextInput from '@/Shared/TextInput'
 import LoadingButton from '@/Shared/LoadingButton'
 
 export default () => {
-    const { flash, errors } = usePage().props;
+    const { status, errors } = usePage().props;
     const [sending, setSending] = useState(false);
     const [values, setValues] = useState({
         email: ''
@@ -46,9 +46,9 @@ export default () => {
                   <div className="card mb-0 mt-5 p-4">
                     <div className="card-body">
                       <h6 className="text-center mb-3">Forgot Password</h6>
-                      {flash.status && 
+                      {status &&
                         <div class="alert alert-primary alert-borderless" role="alert">
-                            {flash.status}
+                            {status}
                         </div>
                         }
                       <form onSubmit={handleSubmit}>
@@ -60,14 +60,14 @@ export default () => {
                         value={values.email}
                         onChange={handleChange}
                       />
-                       
+
                         <div className="form-group my-3 row">
                           <div className="col-12 text-right">
-                          <LoadingButton 
-                              type="submit" 
-                              className="btn btn-primary btn-block" 
+                          <LoadingButton
+                              type="submit"
+                              className="btn btn-primary btn-block"
                               loading={sending}
-                            > 
+                            >
                             Email Password Reset Link
                             </LoadingButton>
                           </div>
@@ -76,7 +76,7 @@ export default () => {
                       <div className="form-group mb-0 mt-2">
                         <div className="col-12 text-center text-muted text-signup">
                           Have an account.
-                          <InertiaLink href={route("login")} className="text-info"> Login</InertiaLink>
+                          <InertiaLink href={route("login")} className="text-primary"> Login</InertiaLink>
                         </div>
                       </div>
                     </div>

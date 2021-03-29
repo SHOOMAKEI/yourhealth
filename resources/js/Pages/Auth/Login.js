@@ -7,7 +7,7 @@ import CheckBoxInput from '@/Shared/CheckBoxInput'
 
 
 export default () => {
-    const { errors } = usePage().props;
+    const { errors, status, alertType } = usePage().props;
     const [sending, setSending] = useState(false);
     const [values, setValues] = useState({
         email: '',
@@ -49,7 +49,36 @@ export default () => {
               <div className="login-form">
                   <div className="card mb-0 mt-5 p-4">
                     <div className="card-body">
-                      <h6 className="text-center mb-3"><b>Welcome</b>. Please Login!</h6>
+                      <h6 className="text-center mb-3"><b>Welcome back!</b>. Please Login to continue!</h6>
+                        {
+                            status && alertType === 'success' &&
+                            (
+                                <div
+                                    className="alert alert-success alert-dismissible bg-success
+                                    text-white border-0 fade show"
+                                    role="alert">
+                                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <strong>Success - </strong> {status}
+                                </div>
+
+                            )
+                        }{
+                            status && alertType === 'error' &&
+                            (
+                            <div
+                            className="alert alert-danger alert-dismissible bg-danger
+                                    text-white border-0 fade show"
+                            role="alert">
+                            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>Error - </strong> {status}
+                            </div>
+
+                            )
+                        }
                       <form onSubmit={handleSubmit}>
                       <TextInput
                         name="email"
@@ -78,7 +107,7 @@ export default () => {
                           />
                           </div>
                           <div className="col-6 text-right">
-                            <InertiaLink href={route('login')} className="text-forgot">
+                            <InertiaLink href={route('password.forgot')} className="text-forgot">
                               <i className="icon-lock"></i>
                               Forgot password?</InertiaLink>
                           </div>
@@ -98,7 +127,7 @@ export default () => {
                       <div className="form-group mb-0 mt-2">
                         <div className="col-12 text-center text-muted text-signup">
                           Don't have an account?
-                          <InertiaLink href={route("register")} className="text-info"> Sign up</InertiaLink>
+                          <InertiaLink href={route("register")} className="text-primary"> Sign up</InertiaLink>
                         </div>
                       </div>
                     </div>

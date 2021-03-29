@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\ProviderProfileAdminController;
 use App\Http\Controllers\Api\Auth\VerifyEmailController;
+use App\Http\Controllers\Authentication\AuthenticationController;
+use App\Http\Controllers\Authentication\AuthenticationViewsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MedicalCourseController;
 use App\Http\Controllers\MedicalInstituteController;
@@ -15,6 +17,13 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SpecializationController;
 use App\Http\Controllers\VerifyMobileNumberController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+use Laravel\Fortify\Http\Controllers\EmailVerificationNotificationController;
+use Laravel\Fortify\Http\Controllers\EmailVerificationPromptController;
+use Laravel\Fortify\Http\Controllers\NewPasswordController;
+use Laravel\Fortify\Http\Controllers\PasswordController;
+use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
+use Laravel\Fortify\Http\Controllers\ProfileInformationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,28 +35,103 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => ['web']], function () {
+    //Registration Routes
+    Route::get('/', [HomeController::class, 'index'])
+        ->middleware('guest')->name('home');
+    Route::get('/register', [HomeController::class, 'register'])
+        ->middleware('guest')->name('register');
+    Route::get('/login', [HomeController::class, 'login'])
+        ->middleware('guest')->name('login');
+    Route::get('/register_individual', [HomeController::class, 'registerIndividualServiceProvider'])
+        ->middleware('guest')->name('register.individual');
+    Route::get('/register_facility', [HomeController::class, 'registerFacilityServiceProvider'])
+        ->middleware('guest')->name('register.facility');
+    Route::get('/register_company', [HomeController::class, 'registerCompanyServiceProvider'])
+        ->middleware('guest')->name('register.company');
+    Route::post('/create_account', [RegistrationController::class, 'createUserAccount'])
+        ->middleware('guest')->name('account.create');
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/register', [HomeController::class, 'register'])->name('register');
-Route::get('/login', [HomeController::class, 'login'])->name('login');
-Route::get('/register_individual', [HomeController::class, 'registerIndividualServiceProvider'])
-    ->name('register.individual');
-Route::get('/register_facility', [HomeController::class, 'registerFacilityServiceProvider'])
-    ->name('register.facility');
-Route::get('/register_company', [HomeController::class, 'registerCompanyServiceProvider'])
-    ->name('register.company');
-Route::post('/create_account', [RegistrationController::class, 'createUserAccount'])
-    ->name('account.create');
+    //Authentication Routes
+    Route::post('login', [AuthenticationController::class, 'login'])
+        ->middleware('guest')->name('login');
+    Route::get('/forgot-password-page', [AuthenticationViewsController::class, 'showForgetPasswordForm'])
+        ->middleware(['guest']) ->name('password.forgot');
+    Route::get('/reset-password/{token}', [AuthenticationViewsController::class, 'showResetPasswordForm'])
+        ->middleware(['guest'])->name('password.reset');
+    Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
+        ->middleware(['guest'])->name('password.email');
+    Route::post('/reset-password', [NewPasswordController::class, 'store'])
+        ->middleware(['guest'])->name('password.update');
 
-Route::post('login', []);
 
-// Route::middleware([ 'auth','auth:sanctum', 'verified', 'verified_sp','language', 'mobile_number_verified'])->group( function () {
+//    //Email Verification
+//    Route::get('/email/verify', [EmailVerificationPromptController::class, '__invoke'])
+//        ->middleware(['auth'])
+//        ->name('verification.notice');
+//
+//
+//    Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
+//        ->middleware(['auth', 'signed', 'throttle:6,1'])
+//        ->name('verification.verify');
+//
+//    Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+//        ->middleware(['auth', 'throttle:6,1'])
+//        ->name('verification.send');
+//
+//
+//    // Profile Information...
+//    Route::put('/user/profile-information', [ProfileInformationController::class, 'update'])
+//        ->middleware(['auth'])
+//        ->name('user-profile-information.update');
+//
+//
+//    // Passwords...
+//    Route::put('/user/password', [PasswordController::class, 'update'])
+//        ->middleware(['auth'])
+//        ->name('user-password.update');
+//
+//
+//    // Two Factor Authentication...
+//
+//    Route::get('/two-factor-challenge', [TwoFactorAuthenticatedSessionController::class, 'create'])
+//        ->middleware(['guest'])
+//        ->name('two-factor.login');
+//
+//    Route::post('/two-factor-challenge', [TwoFactorAuthenticatedSessionController::class, 'store'])
+//        ->middleware(array_filter([
+//            'guest',
+//            $twoFactorLimiter ? 'throttle:'.$twoFactorLimiter : null,
+//        ]));
+//
+//    $twoFactorMiddleware =  ['auth'];
+//
+//    Route::post('/user/two-factor-authentication', [TwoFactorAuthenticationController::class, 'store'])
+//        ->middleware($twoFactorMiddleware);
+//
+//    Route::delete('/user/two-factor-authentication', [TwoFactorAuthenticationController::class, 'destroy'])
+//        ->middleware($twoFactorMiddleware);
+//
+//    Route::get('/user/two-factor-qr-code', [TwoFactorQrCodeController::class, 'show'])
+//        ->middleware($twoFactorMiddleware);
+//
+//    Route::get('/user/two-factor-recovery-codes', [RecoveryCodeController::class, 'index'])
+//        ->middleware($twoFactorMiddleware);
+//
+//    Route::post('/user/two-factor-recovery-codes', [RecoveryCodeController::class, 'store'])
+//        ->middleware($twoFactorMiddleware);
 
-//     Route::get('/dashboard', function(){return view('dashboard');})->name('dashboard');
-//     Route::get('/settings/enable_otp', [SettingsController::class, 'enableOtp'])->name('otp.enable');
-//     Route::get('/settings/disable_otp', [SettingsController::class, 'disableOtp'])->name('otp.disable');
+});
 
-// });
+ Route::middleware([ 'auth','auth:sanctum', 'verified', 'verified_sp','language', 'mobile_number_verified'])
+     ->group( function () {
+
+     Route::get('/dashboard', function(){
+         return Inertia::render('Dashboard');})->name('dashboard');
+     Route::get('/settings/enable_otp', [SettingsController::class, 'enableOtp'])->name('otp.enable');
+     Route::get('/settings/disable_otp', [SettingsController::class, 'disableOtp'])->name('otp.disable');
+
+ });
 
 // Route::middleware(['auth'])->get('/mobile_number/verify', [VerifyMobileNumberController::class, 'show'])
 //     ->name('verify.mobile-number');
@@ -74,17 +158,16 @@ Route::post('login', []);
 
 // });
 
-// Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_verified', 'role:service-provider'])->group(function(){
-// //   Route::resource('provider_profiles',ProviderProfileController::class);
-//   Route::get('service_provider/profile_info', [ProviderProfileController::class ,'profileInfo'])->name('profile_info.index');
-//   Route::get('service_provider/establishments', [ProviderProfileController::class ,'establishments'])->name('establishments.index');
-//   Route::get('service_provider/specializations', [ProviderProfileController::class ,'specializations'])->name('provider_specializations.index');
-//   Route::get('service_provider/verifications', [ProviderProfileController::class ,'verifications'])->name('verifications.index');
-//   Route::get('service_provider/submittion', [ProviderProfileController::class ,'submittion'])->name('submittion.index');
-//   Route::get('service_provider/medical_qualification', [ProviderProfileController::class , 'medicalQualification'])->name('medical_qualification.index');
-//   Route::post('service_provider/save', [ProviderProfileController::class ,'store'])->name('provider_profiles.store');
-//   Route::get('service_provider/submittion/submit', [ProviderProfileController::class ,'submitted'])->name('submittion.store');
-// });
+ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_verified', 'role:service-provider'])->group(function(){Route::resource('provider_profiles',ProviderProfileController::class);
+   Route::get('service_provider/profile_info', [ProviderProfileController::class ,'profileInfo'])->name('profile-completion.index');
+   Route::get('service_provider/establishments', [ProviderProfileController::class ,'establishments'])->name('establishments.index');
+   Route::get('service_provider/specializations', [ProviderProfileController::class ,'specializations'])->name('provider_specializations.index');
+   Route::get('service_provider/verifications', [ProviderProfileController::class ,'verifications'])->name('verifications.index');
+   Route::get('service_provider/submittion', [ProviderProfileController::class ,'submittion'])->name('submittion.index');
+   Route::get('service_provider/medical_qualification', [ProviderProfileController::class , 'medicalQualification'])->name('medical_qualification.index');
+   Route::post('service_provider/save', [ProviderProfileController::class ,'store'])->name('provider_profiles.store');
+   Route::get('service_provider/submittion/submit', [ProviderProfileController::class ,'submitted'])->name('submittion.store');
+ });
 
 
 
