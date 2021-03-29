@@ -15,7 +15,8 @@ class ProviderSubLevelFieldValidator implements Rule
      */
     public function __construct()
     {
-        $this->account_category_type = request()->variables['input']['account_category_type'];
+        $this->account_category_type =
+            request()->variables['input']['account_category_type']??request()->account_category_type;
     }
 
     /**
@@ -27,8 +28,12 @@ class ProviderSubLevelFieldValidator implements Rule
      */
     public function passes($attribute, $value)
     {
+        if (!is_numeric($value)) {
+            return false;
+        }
+
         if ($this->account_category_type=="facility") {
-            return  isset($value)&& !empty(ProviderSubLevel::where('id', $value)->first())?true:false;
+            return !empty(ProviderSubLevel::where('id', $value)->first());
         }
 
         return true;

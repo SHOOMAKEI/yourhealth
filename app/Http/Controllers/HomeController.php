@@ -2,22 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Plan;
-use Illuminate\Http\Request;
+use App\Models\ProviderSubLevel;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class HomeController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function __invoke(Request $request)
+    public function index(): Response
     {
-        $client_packages = Plan::where('category', 'client')->orderBy('sort_order', 'ASC')->get();
-        $service_provider_packages = Plan::where('category', 'service-provider')->orderBy('sort_order', 'ASC')->get();
-        
-        return view('welcome', ['client_packages' =>  $client_packages, 'service_provider_packages' => $service_provider_packages ]);
+        return  Inertia::render('Landing/Index');
+    }
+
+    public function register(): Response
+    {
+        return Inertia::render('Auth/Registration/Register');
+    }
+
+    public function registerIndividualServiceProvider(): Response
+    {
+        return Inertia::render('Auth/Registration/RegisterIndividualServiceProvider');
+    }
+
+    public function registerFacilityServiceProvider(): Response
+    {
+
+        return Inertia::render(
+            'Auth/Registration/RegisterFacilityServiceProvider',
+            ['provider_sub_levels' => ProviderSubLevel::all()]
+        );
+    }
+
+    public function registerCompanyServiceProvider(): Response
+    {
+        return Inertia::render('Auth/Registration/RegisterCompanyServiceProvider');
+    }
+
+    public function login(): Response
+    {
+        return Inertia::render('Auth/Login');
     }
 }

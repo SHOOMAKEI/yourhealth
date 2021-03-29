@@ -16,8 +16,9 @@ class OwnerInfoFieldValidator implements Rule
      */
     public function __construct()
     {
-        $this->account_category_type = request()->variables['input']['account_category_type'];
-        $this->ownership_type = request()->variables['input']['ownership_type'];
+        $this->account_category_type =
+            request()->variables['input']['account_category_type']??request()->account_category_type;
+        $this->ownership_type = request()->variables['input']['ownership_type']??request()->ownership_type;
     }
 
     /**

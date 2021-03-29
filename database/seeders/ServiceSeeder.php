@@ -128,9 +128,56 @@ class ServiceSeeder extends Seeder
        
 
         $analgesics = ServiceSubCategory::where('name', 'Analgesics')->first();
-        // $analgesics->services()->delete();
-        // $analgesics->services()->saveMany([
+        // Service::firstOrCreate([
+        //     'service_sub_category_id' => $analgesics->id, 
+        //     'name' => 'Acetaminophen (Paracetamol)',
+        //     'description' => 'Oral liquid: 125 mg/5 ml.'
+        //     ]);
+        // Service::firstOrCreate([
+        //     'service_sub_category_id' => $analgesics->id, 
+        //     'name' => 'Acetaminophen (Paracetamol)',
+        //     'description' => 'Suppository: 100 mg.'
+        //     ]);
+        // Service::firstOrCreate([
+        //     'service_sub_category_id' => $analgesics->id, 
+        //     'name' => 'Acetaminophen (Paracetamol)',
+        //     'description' => 'Tablet: 100 mg to 500 mg.'
+        //     ]);
+        // Service::firstOrCreate([
+        //     'service_sub_category_id' => $analgesics->id, 
+        //     'name' => 'ibuprofen',
+        //     'description' => 'Tablet: 200 mg to 400 mg.'
+        //     ]);
+        // Service::firstOrCreate([
+        //     'service_sub_category_id' => $analgesics->id, 
+        //     'name' => 'ibuprofen',
+        //     'description' => 'Oral liquid:125mg/5ml.'
+        //     ]);
+        // Service::firstOrCreate([
+        //     'service_sub_category_id' => $analgesics->id, 
+        //     'name' => 'Diclofenac',
+        //     'description' => 'Tablet:50mg to 100mg.'
+        //     ]);
+        // Service::firstOrCreate([
+        //     'service_sub_category_id' => $analgesics->id, 
+        //     'name' => 'Diclofenac',
+        //     'description' => 'Injection: 25mg/1ml.'
+        //     ]);
+        // Service::firstOrCreate([
+        //     'service_sub_category_id' => $analgesics->id, 
+        //     'name' => 'Meloxicam',
+        //     'description' => 'Tablet :7.5mg to 15mg.'
+        //     ]);
 
-        // ]);
+        // Service::firstOrCreate([
+        //     'service_sub_category_id' => $analgesics->id, 
+        //     'name' => 'Piroxicam',
+        //     'description' => 'Tablet :20mg.'
+        //     ]);
+        // Service::firstOrCreate([
+        //     'service_sub_category_id' => $analgesics->id, 
+        //     'name' => 'Tramadol',
+        //     'description' => 'Tablet :100mg.'
+        //     ]);
     }
 }

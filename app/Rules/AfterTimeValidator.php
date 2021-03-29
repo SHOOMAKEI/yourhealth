@@ -7,6 +7,10 @@ use Illuminate\Contracts\Validation\Rule;
 
 class AfterTimeValidator implements Rule
 {
+    public $data;
+    public $message;
+    public $time_from;
+    public $time_to;
     /**
      * Create a new rule instance.
      *
@@ -14,7 +18,8 @@ class AfterTimeValidator implements Rule
      */
     public function __construct()
     {
-        //
+        $this->data = [];
+        $this->message = [];
     }
 
     /**
@@ -26,25 +31,29 @@ class AfterTimeValidator implements Rule
      */
     public function passes($attribute, $value)
     {
-        $data = [];
+        
         $index = 0;
         foreach (request()->variables['input'] as $session) {
-            $time_from = Carbon::parse($session['from']);
-            $time_to = Carbon::parse($session['to']);
-            $time_from->addMinute(4);
+            try{
+                $this->time_from = Carbon::parse($session['from']);
+                $this->time_to = Carbon::parse($session['to']);
+                $this->time_from->addMinute(4);
 
-            if (!$time_from->lessThan($time_to)) {
-                $data[$index] = false;
-            } else {
-                $data[$index] = true;
+                if (!$this->time_from->lessThan($this->time_to)) {
+                    $this->data[$index] = false;
+                } else {
+                    $this->data[$index] = true;
+                }
+    
+                $index++;
+            }catch(\Exception $e){
+                $this->data[$index] = true;
             }
-
             
-
-            $index++;
+           
         }
         
-        dd($data);
+        return $this->data[array_search(false,$this->data)] ;
     }
 
     /**
@@ -54,6 +63,8 @@ class AfterTimeValidator implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        
+        return 'Invalid time format or the end time is less than start time.';
+        
     }
 }

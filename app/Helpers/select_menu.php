@@ -1,7 +1,7 @@
 <?php
 
 if (!function_exists('getInvoiceInterval')) {
-    function getInvoiceInterval()
+    function getInvoiceInterval(): array
     {
         return [
             ['option'=> 'Day', 'value'=> 'day'],
@@ -11,8 +11,8 @@ if (!function_exists('getInvoiceInterval')) {
     }
 }
 
-if (!function_exists('getCurreny')) {
-    function getCurrency()
+if (!function_exists('getCurrency')) {
+    function getCurrency(): array
     {
         return [
             ['option'=> 'USD', 'value'=> 'USD'],
@@ -24,7 +24,7 @@ if (!function_exists('getCurreny')) {
 }
 
 if (!function_exists('getPackageCategories')) {
-    function getPackageCategories()
+    function getPackageCategories(): array
     {
         return [
             ['option'=> 'Service Provider', 'value'=> 'service-provider'],
@@ -34,7 +34,7 @@ if (!function_exists('getPackageCategories')) {
 }
 
 if (!function_exists('getEstablishmentCategories')) {
-    function getEstablishmentCategories()
+    function getEstablishmentCategories(): array
     {
         return [
             ['option'=> 'Hospital', 'value'=> 'hospital'],

@@ -14,7 +14,8 @@ class NameFieldValidator implements Rule
      */
     public function __construct()
     {
-        $this->account_category_type = request()->variables['input']['account_category_type'];
+        $this->account_category_type =
+            request()->variables['input']['account_category_type']??request()->account_category_type;
     }
 
     /**
@@ -34,7 +35,7 @@ class NameFieldValidator implements Rule
             // $this->account_category_type=="family"
             ) && $attribute== 'name'
         ) {
-            return  isset($value)?true:false;
+            return isset($value);
         }
 
         return true;
