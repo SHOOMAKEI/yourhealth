@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { serviceValues } from "@pages/data/reducers/service";
-
-interface Props {
-    services: Array<serviceValues>,
-    callback: () => void;
-}
-
-export default function RegisteredServices({services, callback}: Props) {
+export default function RegisteredServices({services, callback}) {
     const [shownServices, setShownServices] = useState([...services]);
 
     useEffect(() => {
@@ -17,13 +10,13 @@ export default function RegisteredServices({services, callback}: Props) {
     function onSearch() {
         $('#search-input-registered').on('input',function(e){
             let input = $(this);
-            let val: any = input.val();
+            let val = input.val();
 
             if (input.data("lastval") != val) {
                 input.data("lastval", val);
 
                 console.log(val)
-                
+
                 let newShownServices = services.filter(service => {
                     if (service.name.toLocaleLowerCase().includes(val)) {
                         return service
@@ -56,7 +49,7 @@ export default function RegisteredServices({services, callback}: Props) {
                 </thead>
                 <tbody>
                     {
-                        shownServices.slice(0, 4).map((service : {name: string; id: string;}) => (
+                        shownServices.slice(0, 4).map((service) => (
                             <tr key={service.id}>
                                 <td>{service.name}</td>
                                 <td>{`${service.pivot.price} ${service.pivot.currency}`}</td>

@@ -1,53 +1,19 @@
-import * as Yup from "yup";
-
-import { Field, Form, Formik, FormikHelpers } from "formik";
-import { REQUEST_SERVICE, UPDATE_SERVICE } from "@pages/utils/Mutations";
-import {
-  addService,
-  updateService,
-} from "@pages/data/actions/service";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-
-import FormInputError from "@pages/components/FormInputError";
-import ModalForm from "@pages/components/ModalForm";
-import {ServicesState} from "@pages/data/reducers/service";
-import Spinner from "@pages/auth/components/Spinner";
-import { useApi } from "@pages/utils/ApolloClient";
-import { useRouter } from "next/router";
-
-interface serviceValues {
-  name: String;
-  description: String;
-}
-
-const ServiceSchema = Yup.object().shape({
-  name: Yup.string().required(),
-  description: Yup.string().required().max(255),
-});
-
-interface Props {
-  modalID: string;
-  initialData?: serviceValues;
-  operation?: "add" | "update";
-  title?: string;
-}
+import React, { useEffect, useState } from "react";
+import ModalForm from "@/Pages/Utilities/ModalForm";
+import TextInput from "@/Shared/TextInput";
+import LoadingButton from "@/Shared/LoadingButton";
 
 export default function RequestServiceModal({
   modalID,
   operation,
   title,
-}: Props) {
-  const initialValues: serviceValues = {
+}) {
+  const initialValues= {
     name: "",
     description: "No description",
   };
-  const { selectedService } = useSelector<ServicesState, ServicesState>(state => state.servicesStore);
-  const dispatch = useDispatch();
-  const [addServiceCB, addServiceCBResponse] = useApi({query: REQUEST_SERVICE})
-  const [updateServiceCB, updateServiceResponse] = useApi({query: UPDATE_SERVICE})
+  const { selectedService } = useSelector(state => state.servicesStore);
   const [success, setSuccess] = useState(false)
-  const router = useRouter();
 
   useEffect(() => {
     if (addServiceCBResponse.data) {
@@ -61,20 +27,20 @@ export default function RequestServiceModal({
 
 
   function onSubmit(
-    values: serviceValues,
-    { setSubmitting }: FormikHelpers<serviceValues>
+    values,
+    { setSubmitting }
   ) {
     setTimeout(() => {
       _addService(
-        values.name as string,
-        values.description as string,
+        values.name,
+        values.description,
       );
 
       setSubmitting(false);
     }, 500);
   }
 
-  function _addService(name: string, description: string) {
+  function _addService(name, description) {
     let service = {
       name: name,
       description: description,
@@ -101,7 +67,7 @@ export default function RequestServiceModal({
           }, [selectedService]);
 
           return (
-            <Form>
+            <form>
               {
                   success && (
                     <div className={`alert alert-success alert-dismissible bg-success text-white border-0 fade show`} role="alert">
@@ -122,23 +88,36 @@ export default function RequestServiceModal({
                     </div>
                   ))
                 }
-                <div className="form-group">
-                    <label htmlFor="name">Service name</label>
-                    <Field id="name" name="name" placeholder="service name" type="text" className="form-control"/>
-                    {errors.name && touched.name ? <FormInputError title="Service name error" message={errors.name} /> : null}
-                </div>
-                <div className="form-group">
-                    <label htmlFor="description">Service description</label>
-                    <Field id="description" name="description" placeholder="description" as="textarea" className="form-control" rows={3}/>
-                    {errors.description && touched.description ? <FormInputError title="Description error" message={errors.description} /> : null}
-                </div>
+                <TextInput
+                    name="name"
+                    type="text"
+                    placeholder="Service Name"
+                    label="Service Name"
+                    errors={errors.name}
+                    value={values.name}
+                    onChange={handleChange}
+                />
+                <TextInput
+                    name="description"
+                    type="text"
+                    placeholder="Service Description"
+                    label="Service Description"
+                    errors={errors.description}
+                    value={values.description}
+                    onChange={handleChange}
+                />
+
                 <div className="modal-footer">
                     <button type="button" className="btn btn-light" data-dismiss="modal">Close</button>
-                    <button type="submit" className="btn btn-primary" disabled={updateServiceResponse.loading || addServiceCBResponse.loading}>
-                       Request service
-                    </button>
+                    <LoadingButton
+                        type="submit"
+                        className="btn btn-primary btn-block"
+                        loading={sending}
+                    >
+                        Save Changes
+                    </LoadingButton>
                 </div>
-            </Form>
+            </form>
           );
         }}
       </Formik>

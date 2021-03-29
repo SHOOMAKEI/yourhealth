@@ -1,35 +1,15 @@
-import { LOGOUT } from '@pages/utils/Mutations'
-import Languages from '@pages/constants/components/languages'
-import { useApi } from '@pages/utils/ApolloClient'
+// import Languages from '@/Pages/constants/components/languages'
 import { useEffect } from 'react'
-import { useRouter } from 'next/router'
 
-interface TopNavProps {
-    user: {name: string; email: string; profile_photo_path: string; roles: Array<any>; },
-}
 
-export default function TopNav({user}: TopNavProps) {
-    const [logout, logoutResponse] = useApi({query: LOGOUT})
-    const router = useRouter()
+export default function TopNav({user}) {
 
-    useEffect(() => {
-        if(logoutResponse.data && logoutResponse.data.logoutSession.success) {
-            router.push('/auth/login')
-        }
-    }, [logoutResponse.data])
-
-    function logoutUser() {
-        logout({variables: {input: {email: user.email}}})
-    }
 
     return (
         <div className="navbar-custom topnav-navbar topnav-navbar-dark">
             <div className="container-fluid">
-                
-                
-
                 <ul className="list-unstyled topbar-right-menu float-right mb-0">
-                    <Languages />
+                    {/*<Languages />*/}
                     <li className="dropdown notification-list">
                         <a className="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" id="topbar-userdrop" href="#" role="button" aria-haspopup="true"
                            aria-expanded="false">

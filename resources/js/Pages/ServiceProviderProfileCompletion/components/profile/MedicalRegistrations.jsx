@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { ADD_MEDICAL_REGISTRATION_MODAL_ID } from '@/Pages/Utilities'
+import { ADD_MEDICAL_REGISTRATION_MODAL_ID } from '@/Pages/Utilities/Constants'
 import AddMedicalRegistrationModal from '@/Pages/ServiceProviderProfileCompletion/components/profile/AddMedicalRegistrationModal'
 import Heading from '@/Pages/ServiceProviderProfileCompletion/components/profile/Heading'
 

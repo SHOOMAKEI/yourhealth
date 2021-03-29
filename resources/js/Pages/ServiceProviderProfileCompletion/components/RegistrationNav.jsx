@@ -1,14 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { QUERY_USER_INFO_FOR_REGISTRATION_NAV } from "@pages/utils/Query";
-import Spinner from "@pages/auth/components/Spinner";
-import { useApi } from "@pages/utils/ApolloClient";
-
-interface Props {
-    user: any
-}
-
-export default function RegistrationNav({user}: Props) {
+export default function RegistrationNav({user}) {
 
     return (
         <div className="col-sm-3 mb-2 mb-sm-0">
@@ -66,9 +58,9 @@ export default function RegistrationNav({user}: Props) {
                     <i className="mdi mdi-settings-outline d-md-none d-block"/>
                     <span className="d-none d-md-block">Services</span>
                 </a>
-                
 
-                
+
+
 
                 {/* <a className="nav-link mb-2" id="v-pills-settings-tab" data-toggle="pill"
                 href="#v-pills-facility-services" role="tab" aria-controls="v-pills-facility-services"
