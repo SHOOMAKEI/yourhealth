@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Contracts\Repositories\Auth\AuthenticationRepositoryInterface;
 use App\Contracts\Repositories\Registration\RegistrationRepositoryInterface;
 use App\Contracts\Repositories\Registration\ServiceProviderRegistrationRepositoryInterface;
+use App\Repositories\Auth\AuthenticationRepository;
 use App\Repositories\Registration\RegistrationRepository;
 use App\Repositories\Registration\ServiceProviderRegistrationRepository;
 use Illuminate\Support\ServiceProvider;
@@ -31,6 +33,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             ServiceProviderRegistrationRepositoryInterface::class,
             ServiceProviderRegistrationRepository::class
+        );
+        $this->app->bind(
+            AuthenticationRepositoryInterface::class,
+            AuthenticationRepository::class
         );
     }
 }
