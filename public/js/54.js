@@ -1,71 +1,163 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[54],{
 
-/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/components/Topnav.jsx":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/components/Topnav.jsx ***!
-  \***********************************************************************************/
+/***/ "./resources/js/Pages/ServiceProviders/requests/components/ProfileNav.jsx":
+/*!********************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviders/requests/components/ProfileNav.jsx ***!
+  \********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TopNav; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-// import Languages from '@/Pages/constants/components/languages'
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProfileNav; });
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ "./resources/js/Pages/ServiceProviders/requests/components/index.jsx");
 
-function TopNav(_ref) {
-  var user = _ref.user;
+function ProfileNav(_ref) {
+  var provider = _ref.provider;
   return /*#__PURE__*/React.createElement("div", {
-    className: "navbar-custom topnav-navbar topnav-navbar-dark"
+    className: "col-sm-2 mb-2 mb-sm-0"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "container-fluid"
-  }, /*#__PURE__*/React.createElement("ul", {
-    className: "list-unstyled topbar-right-menu float-right mb-0"
-  }, /*#__PURE__*/React.createElement("li", {
-    className: "dropdown notification-list"
+    className: "nav flex-column nav-pills",
+    id: "v-pills-tab",
+    role: "tablist",
+    "aria-orientation": "vertical"
   }, /*#__PURE__*/React.createElement("a", {
-    className: "nav-link dropdown-toggle nav-user arrow-none mr-0",
-    "data-toggle": "dropdown",
-    id: "topbar-userdrop",
-    href: "#",
-    role: "button",
-    "aria-haspopup": "true",
-    "aria-expanded": "false"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "account-user-avatar"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: "/images/avatar.jpg",
-    alt: "user-image",
-    className: "rounded-circle"
-  })), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("span", {
-    className: "account-user-name"
-  }, user.name), /*#__PURE__*/React.createElement("span", {
-    className: "account-position"
-  }, user.roles[0].name))), /*#__PURE__*/React.createElement("div", {
-    className: "dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown",
-    "aria-labelledby": "topbar-userdrop"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: " dropdown-header noti-title"
-  }, /*#__PURE__*/React.createElement("h6", {
-    className: "text-overflow m-0"
-  }, "Welcome !")), /*#__PURE__*/React.createElement("a", {
-    href: "javascript:void(0);",
-    className: "dropdown-item notify-item"
+    className: "nav-link active show mb-1",
+    id: "v-pills-home-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-profile",
+    role: "tab",
+    "aria-controls": "v-pills-profile",
+    "aria-selected": "true"
   }, /*#__PURE__*/React.createElement("i", {
-    className: "mdi mdi-lifebuoy mr-1"
-  }), /*#__PURE__*/React.createElement("span", null, "Support")), /*#__PURE__*/React.createElement("a", {
-    href: "javascript:void(0);",
-    className: "dropdown-item notify-item",
-    onClick: logoutUser
+    className: "mdi mdi-home-variant d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Profile Information")), provider.account_category_type === 'individual' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-1",
+    id: "v-pills-profile-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-qualifications",
+    role: "tab",
+    "aria-controls": "v-pills-qualifications",
+    "aria-selected": "false"
   }, /*#__PURE__*/React.createElement("i", {
-    className: "mdi mdi-logout mr-1"
-  }), /*#__PURE__*/React.createElement("span", null, "Logout"))))), /*#__PURE__*/React.createElement("a", {
-    className: "button-menu-mobile disable-btn"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "lines"
-  }, /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", null), /*#__PURE__*/React.createElement("span", null)))));
+    className: "mdi mdi-account-circle d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Education Qualifications")), /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-1",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-medical-registration",
+    role: "tab",
+    "aria-controls": "v-pills-medical-registration",
+    "aria-selected": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Medical Registration")), /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-1",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-services",
+    role: "tab",
+    "aria-controls": "v-pills-services",
+    "aria-selected": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Services"))), provider.account_category_type === 'company' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-1",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-company",
+    role: "tab",
+    "aria-controls": "v-pills-company",
+    "aria-selected": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Company Information")), /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-1",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-facility",
+    role: "tab",
+    "aria-controls": "v-pills-facility",
+    "aria-selected": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Facility Information")), /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-1",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-facility-services",
+    role: "tab",
+    "aria-controls": "v-pills-facility-services",
+    "aria-selected": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Facility Services"))), provider.account_category_type === 'company' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-1",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-facility",
+    role: "tab",
+    "aria-controls": "v-pills-facility",
+    "aria-selected": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Facility Information")), /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-1",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-facility-services",
+    role: "tab",
+    "aria-controls": "v-pills-facility-services",
+    "aria-selected": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Facility Services")))));
 }
+
+/***/ }),
+
+/***/ "./resources/js/Pages/ServiceProviders/requests/components/index.jsx":
+/*!***************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviders/requests/components/index.jsx ***!
+  \***************************************************************************/
+/*! exports provided: Heading, ServiceProvidersTable, ServiceProvider, ProfileNav, ServiceProviderValues */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/service-providers/requests/components/Heading'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+throw new Error("Cannot find module '@pages/service-providers/requests/components/Heading'");
+!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/service-providers/requests/components/ServiceProvidersTable'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+throw new Error("Cannot find module '@pages/service-providers/requests/components/ServiceProvidersTable'");
+!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/service-providers/requests/components/ServiceProvider'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+throw new Error("Cannot find module '@pages/service-providers/requests/components/ServiceProvider'");
+throw new Error("Cannot find module '@pages/service-providers/requests/components/ServiceProvider'");
+!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/service-providers/requests/components/ProfileNav'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+throw new Error("Cannot find module '@pages/service-providers/requests/components/ProfileNav'");
+
+
+
+
+
+
 
 /***/ })
 
