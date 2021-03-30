@@ -1,6 +1,6 @@
 import { QualificationsValues } from "./Qualifications";
 
-export default function QualificationAttachment(award: QualificationsValues) {
+export default function QualificationAttachment(award) {
     return (
         <div className="card mb-2 shadow-none border">
             <div className="p-1">

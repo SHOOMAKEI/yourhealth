@@ -1,31 +1,8 @@
-import * as Yup from 'yup';
-
-import { Field, Form, Formik, FormikHelpers } from 'formik';
 import { useEffect, useState } from "react";
 
-import FormInputError from '@pages/components/FormInputError'
-import { REGISTER_SERVICE } from '@pages/utils/Mutations';
-import Spinner from '@pages/auth/components/Spinner';
-import { serviceValues } from "@pages/data/reducers/service";
-import { useApi } from '@pages/utils/ApolloClient';
 
-interface Props {
-    services: Array<serviceValues>,
-    callback: () => void;
-}
-
-export interface ServiceRegistrationValues {
-    price: number;
-    currency: string;
-}
-
-const ServiceRegistrationSchema = Yup.object().shape({
-    price: Yup.string().required('Price is required'),
-    currency: Yup.string().max(3).required('Currency is required'),
-});
-
-export default function UnregisteredServices({services, callback}: Props) {
-    const initialValues: ServiceRegistrationValues = {
+export default function UnregisteredServices({services, callback}) {
+    const initialValues = {
         price: 0,
         currency: "TZS",
     }
@@ -33,9 +10,8 @@ export default function UnregisteredServices({services, callback}: Props) {
     const [shownServices, setShownServices] = useState([...services]);
     const [selectedService, setSelectedService] = useState({})
     const [success, setSuccess] = useState(false);
-    const [registerService, registerServiceResponse] = useApi({query: REGISTER_SERVICE});
 
-    function onSubmit(values: ServiceRegistrationValues, { setSubmitting } : FormikHelpers<ServiceRegistrationValues>) {
+    function onSubmit(values, { setSubmitting } ) {
         let _registeredService = [{
             service_id: selectedService.id,
             price: values.price,
@@ -67,11 +43,11 @@ export default function UnregisteredServices({services, callback}: Props) {
     function onSearch() {
         $('#search-input-unregistered').on('input',function(e){
             let input = $(this);
-            let val: any = input.val();
+            let val = input.val();
 
             if (input.data("lastval") != val) {
                 input.data("lastval", val);
-                
+
                 let newShownServices = services.filter(service => {
                     if (service.name.toLocaleLowerCase().includes(val)) {
                         return service
@@ -89,7 +65,7 @@ export default function UnregisteredServices({services, callback}: Props) {
                 <div className="app-search">
                     <form>
                         <div className="input-group">
-                            <input type="text" className="form-control" placeholder="Search..." 
+                            <input type="text" className="form-control" placeholder="Search..."
                             id="search-input-unregistered" onInput={onSearch}/>
                         </div>
                     </form>
@@ -104,11 +80,11 @@ export default function UnregisteredServices({services, callback}: Props) {
                 </thead>
                 <tbody>
                     {
-                        shownServices.slice(0, 4).map((service : {name: string; id: string;}) => (
+                        shownServices.slice(0, 4).map((service) => (
                             <tr key={service.id}>
                                 <td>{service.name}</td>
                                 <td>
-                                    <button  type="button" className="btn btn-light btn-sm" data-toggle="modal" 
+                                    <button  type="button" className="btn btn-light btn-sm" data-toggle="modal"
                                      data-target="#bs-example-modal-sm" onClick={() => setSelectedService(service)}>
                                         Add
                                     </button>
@@ -178,7 +154,7 @@ export default function UnregisteredServices({services, callback}: Props) {
                                             </Formik>
                                         )
                                 }
-                                
+
                             </div>
                         </div>
                     </div>

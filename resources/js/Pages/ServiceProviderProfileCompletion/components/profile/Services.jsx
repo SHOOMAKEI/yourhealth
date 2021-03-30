@@ -1,37 +1,16 @@
-import { QUERY_REGISTERED_SERVICES, QUERY_SERVICES } from '@pages/utils/Query';
 import {useEffect, useState} from "react";
 
-import Heading from '@pages/service-providers-registration/components/profile/Heading'
-import { REQUEST_SERVICE_MODAL_ID } from '@pages/constants'
-import RegisteredServices from "@pages/service-providers-registration/components/profile/RegisteredServices";
-import RequestServiceModal from '@pages/service-providers-registration/components/profile/RequestServiceModal'
-import { SUBMIT_FOR_VERIFICATION } from '@pages/utils/Mutations';
-import Spinner from "@pages/auth/components/Spinner";
-import UnregisteredServices from "@pages/service-providers-registration/components/profile/UnregisteredServices";
-import { useApi } from '@pages/utils/ApolloClient';
+import Heading from '@/Pages/ServiceProviderProfileCompletion/components/profile/Heading'
+import { REQUEST_SERVICE_MODAL_ID } from '@/pages/Utilities/Constants'
+import RegisteredServices from "@/Pages/ServiceProviderProfileCompletion/components/profile/RegisteredServices";
+import RequestServiceModal from '@/Pages/ServiceProviderProfileCompletion/components/profile/RequestServiceModal'
+import UnregisteredServices from "@/Pages/ServiceProviderProfileCompletion/components/profile/UnregisteredServices";
 
-const facilities = [
-    {id: 1, name: 'Facility one'}, 
-    {id: 2, name: 'Facility Two'},
-    {id: 3, name: 'Facility Three'}
-]
-
-interface Props {
-    user: any
-}
-
-export default function Services({user}: Props) {
-    const [queryServices, queryServicesResponse] = useApi({query: QUERY_SERVICES});
-    const [queryRegisteredServices, queryRegisteredServicesResponse] = useApi({query: QUERY_REGISTERED_SERVICES});
-    const [submitRequest, submitRequestResponse] = useApi({query: SUBMIT_FOR_VERIFICATION});
+export default function Services({user}) {
     const [services, setServices] = useState([])
     const [registeredServices, setRegisteredServices] = useState([])
     const [selectedFacility, setSelectedFacility] = useState(facilities[0])
 
-    useEffect(() => {
-        queryServices({})
-        queryRegisteredServices({})
-    }, [])
 
     useEffect(() => {
         let data = queryServicesResponse.data
@@ -39,7 +18,7 @@ export default function Services({user}: Props) {
         if (data && data.services) {
             setServices(data.services)
         }
-        
+
     }, [queryServicesResponse.data])
 
     useEffect(() => {
@@ -48,7 +27,7 @@ export default function Services({user}: Props) {
         if (data && data.providerProfileServicesInfo) {
             setRegisteredServices(data.providerProfileServicesInfo)
         }
-        
+
     }, [queryRegisteredServicesResponse.data])
 
     function submitForVerification() {
@@ -70,28 +49,28 @@ export default function Services({user}: Props) {
     return (
         <div className="tab-pane fade" id="v-pills-services" role="tabpanel"
              aria-labelledby="v-pills-services-tab">
-            
+
             {
                 user.provider_profile.account_category_type === 'company' && (
                     <>
                         <h4>Select Facility</h4>
                         <select className="custom-select mb-1">
                             {
-                                facilities.map(facility => 
+                                facilities.map(facility =>
                                 <option value={facility.id} onSelect={() => setSelectedFacility(facility)}>
                                     {facility.name}</option>
                                 )
                             }
-                        </select>  
+                        </select>
                     </>
                 )
             }
-            
-            <Heading 
-                title={`Request Service for ${selectedFacility.name}`} 
-                modalID={REQUEST_SERVICE_MODAL_ID} 
-                buttonText="Request" 
-                search={searchQualifications} 
+
+            <Heading
+                title={`Request Service for ${selectedFacility.name}`}
+                modalID={REQUEST_SERVICE_MODAL_ID}
+                buttonText="Request"
+                search={searchQualifications}
                 renderModal={renderAddSubcategoryModal}
                 showSearch={false}
             />
@@ -117,7 +96,7 @@ export default function Services({user}: Props) {
                     {
                         submitRequestResponse.called && submitRequestResponse.loading ?
                             <Spinner /> :
-                            registeredServices.length > 0 && 
+                            registeredServices.length > 0 &&
                             <button type="submit" className="btn btn-primary" onClick={submitForVerification}>
                                 Submit for verification
                             </button>

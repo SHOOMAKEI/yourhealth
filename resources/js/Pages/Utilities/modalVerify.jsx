@@ -1,13 +1,7 @@
-import { ReactNode } from "react";
+import { React } from "react";
 
-interface Props {
-    modalID: string;
-    title: string;
-    renderContent: () => ReactNode;
-    onSubmit: () => any;
-}
 
-export default function Modal({modalID, title, renderContent, onSubmit}: Props) {
+export default function Modal({modalID, title, renderContent, onSubmit}) {
     return (
         <div id={modalID} className="modal fade" tabIndex={-1} role="dialog" aria-labelledby={`${modalID}Label`} aria-hidden="true">
             <div className="modal-dialog">

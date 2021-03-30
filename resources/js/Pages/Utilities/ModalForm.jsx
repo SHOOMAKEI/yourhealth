@@ -1,13 +1,7 @@
-import { ReactNode } from "react";
+import { React } from "react";
 
-interface Props {
-    modalID: string;
-    title: string;
-    renderForm: () => ReactNode;
-    size?: 'large' | 'small' | 'extra';
-}
 
-export default function Modal({modalID, title, size, renderForm}: Props) {
+export default function Modal({modalID, title, size, renderForm}) {
     return (
         <div id={modalID} className="modal fade" tabIndex={-1} role="dialog" data-backdrop="static" aria-labelledby={`${modalID}Label`} aria-hidden="true">
             <div className={`modal-dialog ${size === 'large' ? 'modal-lg modal-dialog-scrollable': null}`}>

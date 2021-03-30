@@ -6,13 +6,12 @@ import {
     ProfileInfo,
     Qualifications,
     Services
-} from "@pages/service-providers-registration/components/profile";
+} from "@/Pages/ServiceProviderProfileCompletion/components/profile";
 
-import RegistrationNav from "@pages/service-providers-registration/components/RegistrationNav";
-import TopNav from "@pages/service-providers-registration/components/Topnav";
-import { withAuth } from "@pages/auth/withAuth";
+import RegistrationNav from "@/Pages/ServiceProviderProfileCompletion/components/RegistrationNav";
+import TopNav from "@/Pages/ServiceProviderProfileCompletion/components/Topnav";
 
-function Register({user}: any) {
+function Register({user}) {
     return (
         <div className="account-pages mt-5 mb-5">
             <div className="container">
@@ -51,4 +50,4 @@ function Register({user}: any) {
     )
 }
 
-export default withAuth(Register);
+export default Register;

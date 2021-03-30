@@ -1,17 +1,13 @@
-import AddQualificationModal, { QualificationsValues } from '@pages/service-providers-registration/components/profile/AddQualificationModal'
+import AddQualificationModal, { QualificationsValues } from '@/Pages/ServiceProviderProfileCompletion/components/profile/AddQualificationModal'
 import { useEffect, useState } from 'react'
 
-import { ADD_QUALIFICATION_MODAL_ID } from '@pages/constants'
-import { DELETE_QUALIFICATION } from '@pages/utils/Mutations'
-import Heading from '@pages/service-providers-registration/components/profile/Heading'
-import { QUERY_EDUCATION_QUALIFICATION } from '@pages/utils/Query'
-import Spinner from '@pages/auth/components/Spinner'
-import { useApi } from '@pages/utils/ApolloClient'
+import { ADD_QUALIFICATION_MODAL_ID } from '@/Pages/Utilities/Constants'
+import Heading from '@/Pages/ServiceProviderProfileCompletion/components/profile/Heading'
 
-export default function Qualifications({user}: any) {
+export default function Qualifications({user}) {
     const [queryQualifications, queryQualificationsResponse] = useApi({query: QUERY_EDUCATION_QUALIFICATION});
     const [deleteQualification, deleteQualificationResponse] = useApi({query: DELETE_QUALIFICATION});
-    const [qualifications, setQualifications] = useState<QualificationsValues[]>([]);
+    const [qualifications, setQualifications] = useState([]);
 
     useEffect(() => {
         let data = queryQualificationsResponse.data
@@ -32,7 +28,7 @@ export default function Qualifications({user}: any) {
                     return qualification
                 }
             })
-            
+
             setQualifications(newQualifications);
         }
     }, [deleteQualificationResponse.data])
@@ -41,11 +37,11 @@ export default function Qualifications({user}: any) {
 
     }
 
-    function _deleteQualification(id: string) {
+    function _deleteQualification(id) {
         deleteQualification({variables: {qualification_id: id}})
     }
 
-    function addAttachment(attachment: any) {
+    function addAttachment(attachment) {
         let newQualifications = [...qualifications];
         newQualifications.push(attachment);
         setQualifications(newQualifications)
@@ -59,11 +55,11 @@ export default function Qualifications({user}: any) {
         <div className="tab-pane fade" id="v-pills-qualifications" role="tabpanel"
              aria-labelledby="v-pills-qualifications-tab">
 
-            <Heading 
-                title="Qualifications" 
-                modalID={ADD_QUALIFICATION_MODAL_ID} 
-                buttonText="Add Qualification" 
-                search={searchQualifications} 
+            <Heading
+                title="Qualifications"
+                modalID={ADD_QUALIFICATION_MODAL_ID}
+                buttonText="Add Qualification"
+                search={searchQualifications}
                 renderModal={renderAddSubcategoryModal}
             />
 
