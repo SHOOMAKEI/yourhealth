@@ -1,5 +1,6 @@
-// import Languages from '@/Pages/constants/components/languages'
-import { useEffect } from 'react'
+import Languages from '@/Pages/Utilities/components/languages'
+import React, { useEffect } from 'react'
+import {InertiaLink} from "@inertiajs/inertia-react";
 
 
 export default function TopNav({user}) {
@@ -9,7 +10,7 @@ export default function TopNav({user}) {
         <div className="navbar-custom topnav-navbar topnav-navbar-dark">
             <div className="container-fluid">
                 <ul className="list-unstyled topbar-right-menu float-right mb-0">
-                    {/*<Languages />*/}
+                    <Languages />
                     <li className="dropdown notification-list">
                         <a className="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" id="topbar-userdrop" href="#" role="button" aria-haspopup="true"
                            aria-expanded="false">
@@ -33,10 +34,10 @@ export default function TopNav({user}) {
                                 <span>Support</span>
                             </a>
 
-                            <a href="javascript:void(0);" className="dropdown-item notify-item" onClick={logoutUser}>
+                            <InertiaLink href={route('logout')} className="dropdown-item notify-item" >
                                 <i className="mdi mdi-logout mr-1"></i>
                                 <span>Logout</span>
-                            </a>
+                            </InertiaLink>
 
                         </div>
                     </li>

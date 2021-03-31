@@ -22,6 +22,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Shared_TextAreaInput__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Shared/TextAreaInput */ "./resources/js/Shared/TextAreaInput.js");
 /* harmony import */ var _Shared_FileInput__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Shared/FileInput */ "./resources/js/Shared/FileInput.js");
 /* harmony import */ var _Shared_SelectInput__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Shared/SelectInput */ "./resources/js/Shared/SelectInput.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -44,91 +50,53 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function ProfileInfo(_ref) {
-  var user = _ref.user;
+  var _user$provider_profil, _user$provider_profil2, _user$provider_profil3, _user$provider_profil4, _user$provider_profil5, _user$provider_profil6, _user$provider_profil7, _user$provider_profil8, _user$provider_profil9, _user$provider_profil10, _user$provider_profil11, _user$provider_profil12, _user$provider_profil13, _user$provider_profil14;
 
-  var _useApi = useApi({
-    query: QUERY_PROVIDER_PROFILE_INFO
-  }),
-      _useApi2 = _slicedToArray(_useApi, 2),
-      queryProfileInfo = _useApi2[0],
-      queryProfileInfoResponse = _useApi2[1];
+  var user = _ref.user,
+      provider_sub_levels = _ref.provider_sub_levels;
+  var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__["usePage"])().props,
+      errors = _usePage$props.errors,
+      status = _usePage$props.status,
+      alertType = _usePage$props.alertType;
 
-  var _useApi3 = useApi({
-    query: QUERY_PROVIDER_SUB_LEVEL
-  }),
-      _useApi4 = _slicedToArray(_useApi3, 2),
-      querySubLevels = _useApi4[0],
-      querySubLevelsResponse = _useApi4[1];
-
-  var _useApi5 = useApi({
-    query: UPDATE_PROVIDER_PROFILE
-  }),
-      _useApi6 = _slicedToArray(_useApi5, 2),
-      updateProviderProfile = _useApi6[0],
-      updateProviderProfileResponse = _useApi6[1];
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
-      profileInfo = _useState2[0],
-      setProfileInfo = _useState2[1];
+      sending = _useState2[0],
+      setSending = _useState2[1];
 
-  useEffect(function () {
-    var data = queryProfileInfoResponse.data;
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
+    'title': ((_user$provider_profil = user.provider_profile) === null || _user$provider_profil === void 0 ? void 0 : _user$provider_profil.title) || '',
+    'first_name': ((_user$provider_profil2 = user.provider_profile) === null || _user$provider_profil2 === void 0 ? void 0 : _user$provider_profil2.first_name) || '',
+    'middle_name': ((_user$provider_profil3 = user.provider_profile) === null || _user$provider_profil3 === void 0 ? void 0 : _user$provider_profil3.middle_name) || '',
+    'last_name': ((_user$provider_profil4 = user.provider_profile) === null || _user$provider_profil4 === void 0 ? void 0 : _user$provider_profil4.last_name) || '',
+    'username': ((_user$provider_profil5 = user.provider_profile) === null || _user$provider_profil5 === void 0 ? void 0 : _user$provider_profil5.username) || '',
+    'mobile_number': ((_user$provider_profil6 = user.provider_profile) === null || _user$provider_profil6 === void 0 ? void 0 : _user$provider_profil6.mobile_number) || '',
+    'alternative_mobile_number': ((_user$provider_profil7 = user.provider_profile) === null || _user$provider_profil7 === void 0 ? void 0 : _user$provider_profil7.alternative_mobile_number) || '',
+    'email': ((_user$provider_profil8 = user.provider_profile) === null || _user$provider_profil8 === void 0 ? void 0 : _user$provider_profil8.email) || '',
+    'address': ((_user$provider_profil9 = user.provider_profile) === null || _user$provider_profil9 === void 0 ? void 0 : _user$provider_profil9.address) || '',
+    'physical_address': ((_user$provider_profil10 = user.provider_profile) === null || _user$provider_profil10 === void 0 ? void 0 : _user$provider_profil10.physical_address) || '',
+    'dob': ((_user$provider_profil11 = user.provider_profile) === null || _user$provider_profil11 === void 0 ? void 0 : _user$provider_profil11.dob) && ((_user$provider_profil12 = user.provider_profile) === null || _user$provider_profil12 === void 0 ? void 0 : _user$provider_profil12.dob.split(' ')[0]) || '',
+    'gender': ((_user$provider_profil13 = user.provider_profile) === null || _user$provider_profil13 === void 0 ? void 0 : _user$provider_profil13.gender) || 'Male',
+    'bio': ((_user$provider_profil14 = user.provider_profile) === null || _user$provider_profil14 === void 0 ? void 0 : _user$provider_profil14.bio) || 'No Bio',
+    'provider_sub_level_id': provider_sub_levels[0].id
+  }),
+      _useState4 = _slicedToArray(_useState3, 2),
+      values = _useState4[0],
+      setValues = _useState4[1];
 
-    if (data && data.providerProfileInfo) {
-      setProfileInfo(data.providerProfileInfo);
-    }
-  }, [queryProfileInfoResponse.data]);
-  useEffect(function () {
-    var data = updateProviderProfileResponse.data;
+  function handleChange(e) {
+    var key = e.target.name;
+    var value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    setValues(function (values) {
+      return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, key, value));
+    });
+  }
 
-    if (data && data.updateProviderProfile) {
-      setProfileInfo(data.updateProviderProfile);
-    }
-  }, [updateProviderProfileResponse.data]);
-  useEffect(function () {
-    queryProfileInfo({});
-    querySubLevels({});
-  }, []);
-  var initialValues = {
-    address: "",
-    bio: "",
-    dob: "",
-    gender: "",
-    alternative_mobile_number: "",
-    email: "",
-    first_name: "",
-    last_name: "",
-    middle_name: "",
-    mobile_number: "",
-    physical_address: "",
-    title: "",
-    username: "",
-    provider_sub_level_id: ""
-  };
-
-  function onSubmit(values, _ref2) {
-    var setSubmitting = _ref2.setSubmitting;
-    var updatedProfileInfo = {
-      'title': (profileInfo === null || profileInfo === void 0 ? void 0 : profileInfo.title) || '',
-      'first_name': (profileInfo === null || profileInfo === void 0 ? void 0 : profileInfo.first_name) || '',
-      'middle_name': (profileInfo === null || profileInfo === void 0 ? void 0 : profileInfo.middle_name) || '',
-      'last_name': (profileInfo === null || profileInfo === void 0 ? void 0 : profileInfo.last_name) || '',
-      'username': (profileInfo === null || profileInfo === void 0 ? void 0 : profileInfo.username) || '',
-      'mobile_number': (profileInfo === null || profileInfo === void 0 ? void 0 : profileInfo.mobile_number) || '',
-      'alternative_mobile_number': (profileInfo === null || profileInfo === void 0 ? void 0 : profileInfo.alternative_mobile_number) || '',
-      'email': (profileInfo === null || profileInfo === void 0 ? void 0 : profileInfo.email) || '',
-      'address': (profileInfo === null || profileInfo === void 0 ? void 0 : profileInfo.address) || '',
-      'physical_address': (profileInfo === null || profileInfo === void 0 ? void 0 : profileInfo.physical_address) || '',
-      'dob': (profileInfo === null || profileInfo === void 0 ? void 0 : profileInfo.dob) && (profileInfo === null || profileInfo === void 0 ? void 0 : profileInfo.dob.split(' ')[0]) || '',
-      'gender': (profileInfo === null || profileInfo === void 0 ? void 0 : profileInfo.gender) || 'Male',
-      'bio': (profileInfo === null || profileInfo === void 0 ? void 0 : profileInfo.bio) || 'No Bio',
-      'provider_sub_level_id': querySubLevelsResponse.data.provider_sub_levels[0].id
-    };
-    updateProviderProfile({
-      variables: {
-        input: updatedProfileInfo
-      }
+  function handleSubmit(e) {
+    e.preventDefault();
+    setSending(true);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('login'), values).then(function () {
+      setSending(false);
     });
   }
 

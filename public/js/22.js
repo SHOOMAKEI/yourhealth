@@ -578,11 +578,11 @@ __webpack_require__.r(__webpack_exports__);
     icon: "icon-grid"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_MainMenuItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
     text: "Store Configuration",
-    link: "stores.index",
+    link: "dashboard",
     icon: "con-equalizer"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_MainMenuItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
     text: "Product",
-    link: "product.index",
+    link: "dashboard",
     icon: "icon-bag"
   }));
 });
