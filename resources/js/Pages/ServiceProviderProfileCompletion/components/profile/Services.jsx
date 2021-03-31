@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import Heading from '@/Pages/ServiceProviderProfileCompletion/components/profile/Heading'
 import { REQUEST_SERVICE_MODAL_ID } from '@/pages/Utilities/Constants'

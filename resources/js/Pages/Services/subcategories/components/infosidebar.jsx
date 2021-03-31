@@ -1,7 +1,7 @@
-import {selectSubcategory, updateSubcategory} from '@/pages/data/actions/serviceSubcategories';
+// import {selectSubcategory, updateSubcategory} from '@/pages/data/actions/serviceSubcategories';
 import React, { useEffect, useState } from 'react';
 
-import {AddSubcategoryModal} from '@/pages/services/subcategories/components/'
+import AddSubcategoryModal from '@/pages/services/subcategories/components/AddSubcategoryModal'
 import { UPDATE_CATEGORY_MODAL_ID } from '@/pages/Utilities/Constants'
 import {InertiaLink} from "@inertiajs/inertia-react";
 
@@ -14,13 +14,13 @@ export default function InfoSideBar() {
 
     useEffect(() => {
         if(subcategories.length > 0) {
-            dispatch(selectSubcategory(subcategories[0]))
+            // dispatch(selectSubcategory(subcategories[0]))
         }
     }, [])
 
 
     function toggleSubcategoryVisibility() {
-        dispatch(updateSubcategory({...selectedSubcategory, is_active: !selectedSubcategory.is_active}))
+        // dispatch(updateSubcategory({...selectedSubcategory, is_active: !selectedSubcategory.is_active}))
     }
 
     return (

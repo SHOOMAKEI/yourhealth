@@ -1,14 +1,14 @@
-import {Heading, InfoSideBar, Paginator, ServicesTable} from '@pages/services/requested/components'
-import {useDispatch, useSelector} from 'react-redux';
-import { useEffect, useState } from 'react';
+import {Heading, InfoSideBar, Paginator, ServicesTable} from '@/Pages/services/requested/components'
+// import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react';
 
-import Framework from '@pages/framework';
-import {NextPage} from 'next';
-import { QUERY_REQUESTED_SERVICES } from '@pages/utils/Query';
-import {RequestedServicesState} from "@pages/data/reducers/requestedService";
-import Spinner from '@pages/auth/components/Spinner';
-import { storeRequestedServices } from '@pages/data/actions/requestedService';
-import { useApi } from '@pages/utils/ApolloClient';
+import Framework from '@/Pages/framework';
+// import {NextPage} from 'next';
+// import { QUERY_REQUESTED_SERVICES } from '@pages/utils/Query';
+// import {RequestedServicesState} from "@pages/data/reducers/requestedService";
+// import Spinner from '@pages/auth/components/Spinner';
+// import { storeRequestedServices } from '@pages/data/actions/requestedService';
+// import { useApi } from '@pages/utils/ApolloClient';
 
 const SERVICES_BATCH_COUNT = 10;
 
@@ -18,11 +18,11 @@ const ManageServices = () => {
     const [servicesBatchCount, setServicesBatchCount] = useState(SERVICES_BATCH_COUNT)
     const [shownServices, setShownServices] = useState(services.slice(0, servicesBatchCount))
     const [paginatorSP, setPaginatorSP] = useState(0)
-    const [queryServices, {data, called, loading, errors}] = useApi({query: QUERY_REQUESTED_SERVICES})
-    const dispatch = useDispatch();
+    // const [queryServices, {data, called, loading, errors}] = useApi({query: QUERY_REQUESTED_SERVICES})
+    // const dispatch = useDispatch();
 
     useEffect(() => {
-        queryServices({})
+        // queryServices({})
     }, [])
 
     useEffect(() => {

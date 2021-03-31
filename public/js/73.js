@@ -1,32 +1,70 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[73],{
 
-/***/ "./resources/js/Pages/ServiceProviders/requests/components/profile/Company.jsx":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/Pages/ServiceProviders/requests/components/profile/Company.jsx ***!
-  \*************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./resources/js/Pages/Auth/TwoFactorChallenge.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/Pages/Auth/TwoFactorChallenge.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Company; });
-function Company() {
-  return /*#__PURE__*/React.createElement("div", {
-    className: "tab-pane fade",
-    id: "v-pills-company",
-    role: "tabpanel",
-    "aria-labelledby": "v-pills-company-tab"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/React.createElement("table", {
-    className: "table table-centered mb-0"
-  }, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Name")), /*#__PURE__*/React.createElement("td", null, "336-508-2157")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Trading name")), /*#__PURE__*/React.createElement("td", null, "606-253-1207")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "TIN")), /*#__PURE__*/React.createElement("td", null, "646-473-2057")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "VRN")), /*#__PURE__*/React.createElement("td", null, "281-308-0793")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Website")), /*#__PURE__*/React.createElement("td", null, "606-253-1207")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Registration number")), /*#__PURE__*/React.createElement("td", null, "606-253-1207")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Registration date")), /*#__PURE__*/React.createElement("td", null, "606-253-1207")))), /*#__PURE__*/React.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/React.createElement("table", {
-    className: "table table-centered mb-0"
-  }, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Phone number")), /*#__PURE__*/React.createElement("td", null, "336-508-2157")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Alternate phone number")), /*#__PURE__*/React.createElement("td", null, "646-473-2057")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Email")), /*#__PURE__*/React.createElement("td", null, "281-308-0793")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Address")), /*#__PURE__*/React.createElement("td", null, "606-253-1207")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Physical Address")), /*#__PURE__*/React.createElement("td", null, "606-253-1207")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Description")), /*#__PURE__*/React.createElement("td", null, "606-253-1207"))))));
+{
+  /* <x-guest-layout>
+     <x-jet-authentication-card>
+         <x-slot name="logo">
+             <img class="img-avatar img-avatar96 img-avatar-thumb" src="{{asset('storage/dit-logo.jpg')}}" alt="organization logo"/>
+         </x-slot>
+  
+         <div x-data="{ recovery: false }">
+             <div class="mb-4 text-sm text-gray-600" x-show="! recovery">
+                 {{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.') }}
+             </div>
+  
+             <div class="mb-4 text-sm text-gray-600" x-show="recovery">
+                 {{ __('Please confirm access to your account by entering one of your emergency recovery codes.') }}
+             </div>
+  
+             <x-jet-validation-errors class="mb-4" />
+  
+             <form method="POST" action="/two-factor-challenge">
+                 @csrf
+  
+                 <div class="mt-4" x-show="! recovery">
+                     <x-jet-label value="{{ __('Code') }}" />
+                     <x-jet-input class="block mt-1 w-full" type="text" name="code" autofocus x-ref="code" autocomplete="one-time-code" />
+                 </div>
+  
+                 <div class="mt-4" x-show="recovery">
+                     <x-jet-label value="{{ __('Recovery Code') }}" />
+                     <x-jet-input class="block mt-1 w-full" type="text" name="recovery_code" x-ref="recovery_code" autocomplete="one-time-code" />
+                 </div>
+  
+                 <div class="flex items-center justify-end mt-4">
+                     <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
+                                     x-show="! recovery"
+                                     x-on:click="
+                                         recovery = true;
+                                         $nextTick(() => { $refs.recovery_code.focus() })
+                                     ">
+                         {{ __('Use a recovery code') }}
+                     </button>
+  
+                     <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
+                                     x-show="recovery"
+                                     x-on:click="
+                                         recovery = false;
+                                         $nextTick(() => { $refs.code.focus() })
+                                     ">
+                         {{ __('Use an authentication code') }}
+                     </button>
+  
+                     <x-jet-button class="ml-4">
+                         {{ __('Login') }}
+                     </x-jet-button>
+                 </div>
+             </form>
+         </div>
+     </x-jet-authentication-card>
+  </x-guest-layout> */
 }
 
 /***/ })

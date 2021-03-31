@@ -1,5 +1,5 @@
-import AddQualificationModal, { QualificationsValues } from '@pages/service-providers-registration/components/profile/AddQualificationModal'
-import { useEffect, useState } from 'react'
+// import AddQualificationModal, { QualificationsValues } from '@pages/service-providers-registration/components/profile/AddQualificationModal'
+import React, { useEffect, useState } from 'react'
 
 // import { QUERY_EDUCATION_QUALIFICATION } from '@pages/utils/Query'
 // import { useApi } from '@pages/utils/ApolloClient'

@@ -1,20 +1,20 @@
-import * as Yup from "yup";
+// import * as Yup from "yup";
+//
+// import { ADD_SERVICE, UPDATE_SERVICE } from "@pages/utils/Mutations";
+// import { Field, Form, Formik, FormikHelpers } from "formik";
+// import {
+//   addService,
+//   updateService,
+// } from "@pages/data/actions/service";
+// import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 
-import { ADD_SERVICE, UPDATE_SERVICE } from "@pages/utils/Mutations";
-import { Field, Form, Formik, FormikHelpers } from "formik";
-import {
-  addService,
-  updateService,
-} from "@pages/data/actions/service";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-
-import FormInputError from "@pages/components/FormInputError";
-import ModalForm from "@pages/components/ModalForm";
-import {ServicesState} from "@pages/data/reducers/service";
-import {membershipsStateValues} from "@pages/data/reducers/memberships";
-import { useApi } from "@pages/utils/ApolloClient";
-import { useRouter } from "next/router";
+import FormInputError from "@/pages/Utilities/FormInputError";
+import ModalForm from "@/pages/Utilities/ModalForm";
+// import {ServicesState} from "@pages/data/reducers/service";
+// import {membershipsStateValues} from "@pages/data/reducers/memberships";
+// import { useApi } from "@pages/utils/ApolloClient";
+// import { useRouter } from "next/router";
 
 
 
@@ -29,24 +29,24 @@ export default function AddServiceModal({
     status: false,
   };
   const { selectedService } = useSelector(state => state.servicesStore);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [addServiceCB, addServiceCBResponse] = useApi({query: ADD_SERVICE})
   const [updateServiceCB, updateServiceResponse] = useApi({query: UPDATE_SERVICE})
   const [success, setSuccess] = useState(false)
-  const router = useRouter();
+  // const router = useRouter();
   const {subcategory_id} = router.query
 
   useEffect(() => {
     if (addServiceCBResponse.data) {
        setSuccess(true)
-       dispatch(addService(addServiceCBResponse.data.createService));
+       // dispatch(addService(addServiceCBResponse.data.createService));
     }
  }, [addServiceCBResponse.data])
 
  useEffect(() => {
    if (updateServiceResponse.data) {
       setSuccess(true)
-      dispatch(updateService(updateServiceResponse.data.updateService));
+      // dispatch(updateService(updateServiceResponse.data.updateService));
    }
 }, [updateServiceResponse.data])
 

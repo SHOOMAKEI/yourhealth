@@ -1,7 +1,7 @@
-import Heading from '@pages/service-providers/requests/components/Heading'
-import ServiceProvidersTable from "@pages/service-providers/requests/components/ServiceProvidersTable";
-import ServiceProvider, {ServiceProviderValues} from "@pages/service-providers/requests/components/ServiceProvider";
-import ProfileNav from "@pages/service-providers/requests/components/ProfileNav";
+import Heading from '@/pages/serviceProviders/requests/components/Heading'
+import ServiceProvidersTable from "@/pages/serviceProviders/requests/components/ServiceProvidersTable";
+import ServiceProvider from "@/pages/serviceProviders/requests/components/ServiceProvider";
+import ProfileNav from "@/Pages/serviceProviders/requests/components/ProfileNav";
 
 export {Heading, ServiceProvidersTable, ServiceProvider, ProfileNav}
-export {ServiceProviderValues}
+// export {ServiceProviderValues}

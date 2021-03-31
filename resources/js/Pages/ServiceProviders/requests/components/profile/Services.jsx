@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {initializeDataTable} from "@/pages/components/services";
+import {initializeDataTable} from "@/Pages/Utilities/Services";
 
 const SERVICES_DATA_TABLE = 'provider-services-datatable'
 

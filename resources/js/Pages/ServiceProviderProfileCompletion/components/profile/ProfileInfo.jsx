@@ -9,72 +9,44 @@ import FileInput from "@/Shared/FileInput";
 import SelectInput from "@/Shared/SelectInput";
 
 
-export default function ProfileInfo({user}) {
+export default function ProfileInfo({user, provider_sub_levels}) {
 
-    const [queryProfileInfo, queryProfileInfoResponse] = useApi({query: QUERY_PROVIDER_PROFILE_INFO});
-    const [querySubLevels, querySubLevelsResponse] = useApi({query: QUERY_PROVIDER_SUB_LEVEL});
-    const [updateProviderProfile, updateProviderProfileResponse] = useApi({query: UPDATE_PROVIDER_PROFILE});
-    const [profileInfo, setProfileInfo] = useState();
+    const { errors, status, alertType } = usePage().props;
+    const [sending, setSending] = useState(false);
+    const [values, setValues] = useState({
+        'title': user.provider_profile?.title || '',
+        'first_name': user.provider_profile?.first_name || '',
+        'middle_name': user.provider_profile?.middle_name || '',
+        'last_name': user.provider_profile?.last_name || '',
+        'username': user.provider_profile?.username || '',
+        'mobile_number': user.provider_profile?.mobile_number || '',
+        'alternative_mobile_number': user.provider_profile?.alternative_mobile_number || '',
+        'email': user.provider_profile?.email || '',
+        'address': user.provider_profile?.address || '',
+        'physical_address': user.provider_profile?.physical_address || '',
+        'dob': user.provider_profile?.dob && user.provider_profile?.dob.split(' ')[0] || '',
+        'gender': user.provider_profile?.gender || 'Male',
+        'bio': user.provider_profile?.bio || 'No Bio',
+        'provider_sub_level_id': provider_sub_levels[0].id,
+    });
 
-    useEffect(() => {
-        let data = queryProfileInfoResponse.data;
+    function handleChange(e) {
+        const key = e.target.name;
+        const value =
+            e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 
-        if (data && data.providerProfileInfo) {
-            setProfileInfo(data.providerProfileInfo)
-        }
-
-    }, [queryProfileInfoResponse.data])
-
-    useEffect(() => {
-        let data = updateProviderProfileResponse.data;
-
-        if (data && data.updateProviderProfile) {
-            setProfileInfo(data.updateProviderProfile)
-        }
-
-    }, [updateProviderProfileResponse.data])
-
-    useEffect(() => {
-        queryProfileInfo({})
-        querySubLevels({})
-    }, [])
-
-    const initialValues = {
-        address: "",
-        bio: "",
-        dob: "",
-        gender: "",
-        alternative_mobile_number: "",
-        email: "",
-        first_name: "",
-        last_name: "",
-        middle_name: "",
-        mobile_number: "",
-        physical_address: "",
-        title: "",
-        username: "",
-        provider_sub_level_id: ""
+        setValues(values => ({
+            ...values,
+            [key]: value
+        }));
     }
 
-    function onSubmit(values, { setSubmitting } ) {
-        let updatedProfileInfo = {
-            'title': profileInfo?.title || '',
-            'first_name': profileInfo?.first_name || '',
-            'middle_name': profileInfo?.middle_name || '',
-            'last_name': profileInfo?.last_name || '',
-            'username': profileInfo?.username || '',
-            'mobile_number': profileInfo?.mobile_number || '',
-            'alternative_mobile_number': profileInfo?.alternative_mobile_number || '',
-            'email': profileInfo?.email || '',
-            'address': profileInfo?.address || '',
-            'physical_address': profileInfo?.physical_address || '',
-            'dob': profileInfo?.dob && profileInfo?.dob.split(' ')[0] || '',
-            'gender': profileInfo?.gender || 'Male',
-            'bio': profileInfo?.bio || 'No Bio',
-            'provider_sub_level_id': querySubLevelsResponse.data.provider_sub_levels[0].id,
-    }
-
-        updateProviderProfile({variables: {input: updatedProfileInfo}})
+    function handleSubmit(e) {
+        e.preventDefault();
+        setSending(true);
+        Inertia.post(route('login'), values).then(() => {
+            setSending(false);
+        });
     }
 
     return (

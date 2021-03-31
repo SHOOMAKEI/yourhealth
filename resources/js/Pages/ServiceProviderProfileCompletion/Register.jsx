@@ -1,3 +1,4 @@
+import React from "react";
 import {
     Company,
     Facility,
@@ -10,8 +11,12 @@ import {
 
 import RegistrationNav from "@/Pages/ServiceProviderProfileCompletion/components/RegistrationNav";
 import TopNav from "@/Pages/ServiceProviderProfileCompletion/components/Topnav";
+import {usePage} from "@inertiajs/inertia-react";
 
-function Register({user}) {
+
+
+function Register() {
+    const {user, provider_sub_levels} = usePage().props
     return (
         <div className="account-pages mt-5 mb-5">
             <div className="container">
@@ -32,7 +37,7 @@ function Register({user}) {
 
                                     <div className="col-sm-9">
                                         <div className="tab-content" id="v-pills-tabContent">
-                                            <ProfileInfo user={user}/>
+                                            <ProfileInfo user={user } provider_sub_levels={provider_sub_levels}/>
                                             {user.provider_profile.account_category_type === 'individual' && <Qualifications /> }
                                             {user.provider_profile.account_category_type === 'company' && <Company /> }
                                             {user.provider_profile.account_category_type === 'individual' && <MedicalRegistrations /> }

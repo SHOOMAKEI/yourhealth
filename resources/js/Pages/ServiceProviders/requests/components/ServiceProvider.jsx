@@ -1,4 +1,4 @@
-import {PROVIDER_PROFILE_MODAL_ID} from "@pages/constants";
+import {PROVIDER_PROFILE_MODAL_ID} from "@/Pages/Utilities/Constants";
 import ProviderProfile from "@/pages/serviceProviders/requests/components/ProviderProfile";
 
 

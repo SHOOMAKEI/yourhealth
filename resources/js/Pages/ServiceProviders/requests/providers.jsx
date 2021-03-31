@@ -1,17 +1,14 @@
-import {Heading, ServiceProviderValues, ServiceProvidersTable} from '@pages/service-providers/requests/components'
+import {Heading, ServiceProviderValues, ServiceProvidersTable} from '@/pages/serviceProviders/requests/components'
 import {useEffect, useState} from "react";
 
-import Framework from "@pages/framework";
-import { QUERY_PROVIDERS } from "@pages/utils/Query";
-import Spinner from '@pages/auth/components/Spinner';
-import { useApi } from "@pages/utils/ApolloClient";
+import Framework from "@/Pages/framework";
 
 export default function Provider() {
     const [providers, setProviders] = useState([]);
-    const [getProvidersRequests, getProvidersRequestsResponse] = useApi({query: QUERY_PROVIDERS})
+    // const [getProvidersRequests, getProvidersRequestsResponse] = useApi({query: QUERY_PROVIDERS})
 
     useEffect(() => {
-        getProvidersRequests({})
+        // getProvidersRequests({})
     }, [])
 
     useEffect(() => {

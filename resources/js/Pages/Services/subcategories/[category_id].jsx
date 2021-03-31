@@ -9,7 +9,7 @@ import {
 import React, { useEffect, useState } from 'react';
 
 import { ADD_CATEGORY_MODAL_ID } from '@/pages/Utilities/Constants'
-import Framework from '@/pages/framework';
+import Framework from '@/Pages/framework';
 
 const CATEGORIES_BATCH_COUNT = 10;
 

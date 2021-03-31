@@ -1,5 +1,5 @@
-import Framework from '@pages/framework';
-import {NextPage} from 'next';
+import Framework from '@/Pages/framework';
+import React from 'react';
 import Memberships from "@/pages/services/packages/Memberships";
 import Packages from "@/pages/services/packages/Packages";
 

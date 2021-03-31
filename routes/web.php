@@ -13,6 +13,7 @@ use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\ProviderProfileController;
 use App\Http\Controllers\Registration\RegistrationController;
 use App\Http\Controllers\RequiredVerificationController;
+use App\Http\Controllers\ServiceProviderProfileCompletion\PersonalInfoController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SpecializationController;
 use App\Http\Controllers\VerifyMobileNumberController;
@@ -63,6 +64,9 @@ Route::group(['middleware' => ['web']], function () {
         ->middleware(['guest'])->name('password.email');
     Route::post('/reset-password', [NewPasswordController::class, 'store'])
         ->middleware(['guest'])->name('password.update');
+    Route::post('/logout', [EmailVerificationNotificationController::class, 'store'])
+        ->middleware(['auth', 'throttle:6,1'])
+        ->name('logout');
 
 
 //    //Email Verification
@@ -126,8 +130,8 @@ Route::group(['middleware' => ['web']], function () {
  Route::middleware([ 'auth','auth:sanctum', 'verified', 'verified_sp','language', 'mobile_number_verified'])
      ->group( function () {
 
-     Route::get('/dashboard', function(){
-         return Inertia::render('Dashboard');})->name('dashboard');
+     Route::get('/dashboard',[PersonalInfoController::class, 'index'])->name('dashboard');
+
      Route::get('/settings/enable_otp', [SettingsController::class, 'enableOtp'])->name('otp.enable');
      Route::get('/settings/disable_otp', [SettingsController::class, 'disableOtp'])->name('otp.disable');
 

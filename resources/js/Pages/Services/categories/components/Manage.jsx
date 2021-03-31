@@ -4,13 +4,13 @@ import {
     InfoSideBar,
     Paginator,
     ServiceCategoriesTable
-} from '@/pages/services/categories/components'
-
+} from '@/Pages/services/categories/components'
+import React, {useEffect} from 'react'
 import { ADD_CATEGORY_MODAL_ID } from '@/Pages/Utilities/Constants'
-import Framework from '@/pages/framework';
+import Framework from '@/Pages/framework';
 
-import { storeServiceCategories } from '@pages/data/actions/serviceCategories';
-import { useApi } from '@pages/utils/ApolloClient';
+// import { storeServiceCategories } from '@pages/data/actions/serviceCategories';
+// import { useApi } from '@pages/utils/ApolloClient';
 
 const CATEGORIES_BATCH_COUNT = 10;
 
@@ -20,8 +20,8 @@ const ManageServices = () => {
     const [categoriesBatchCount, setCategoriesBatchCount] = useState(CATEGORIES_BATCH_COUNT)
     const [shownCategories, setShownCategories] = useState(categories.slice(0, categoriesBatchCount))
     const [paginatorSP, setPaginatorSP] = useState(0)
-    const [queryCategories, {loading, errors, data, called}] = useApi({query: QUERY_CATEGORIES})
-    const dispatch = useDispatch()
+    // const [queryCategories, {loading, errors, data, called}] = useApi({query: QUERY_CATEGORIES})
+    // const dispatch = useDispatch()
 
     useEffect(() => {
         if(categories.length > 0) {
@@ -30,12 +30,12 @@ const ManageServices = () => {
     }, [categories])
 
     useEffect(() => {
-        queryCategories({});
+        // queryCategories({});
     }, []);
 
     useEffect(() => {
         if(data) {
-            dispatch(storeServiceCategories(data.serviceCategories));
+            // dispatch(storeServiceCategories(data.serviceCategories));
         }
     }, [data])
 
