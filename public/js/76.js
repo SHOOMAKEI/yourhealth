@@ -1,92 +1,100 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[76],{
 
-/***/ "./resources/js/Pages/ServiceProviders/requests/components/profile/MedicalRegistrations.jsx":
-/*!**************************************************************************************************!*\
-  !*** ./resources/js/Pages/ServiceProviders/requests/components/profile/MedicalRegistrations.jsx ***!
-  \**************************************************************************************************/
+/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/components/RegistrationNav.jsx":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/components/RegistrationNav.jsx ***!
+  \********************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MedicalRegistrations; });
-function MedicalRegistrations() {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RegistrationNav; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function RegistrationNav(_ref) {
+  var user = _ref.user;
   return /*#__PURE__*/React.createElement("div", {
-    className: "tab-pane fade",
-    id: "v-pills-medical-registration",
-    role: "tabpanel",
-    "aria-labelledby": "v-pills-medical-registration-tab"
+    className: "col-sm-3 mb-2 mb-sm-0"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/React.createElement("table", {
-    className: "table table-centered mb-0"
-  }, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Certificate Name")), /*#__PURE__*/React.createElement("td", null, "336-508-2157")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Certificate Number")), /*#__PURE__*/React.createElement("td", null, "606-253-1207")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Registration Number")), /*#__PURE__*/React.createElement("td", null, "646-473-2057")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Year")), /*#__PURE__*/React.createElement("td", null, "281-308-0793"))), /*#__PURE__*/React.createElement("div", {
-    className: "row mt-2"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "col-8"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "card mb-1 shadow-none border"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "p-2"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "row align-items-center"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "col-auto"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "avatar-sm"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "avatar-title rounded"
-  }, ".PDF"))), /*#__PURE__*/React.createElement("div", {
-    className: "col pl-0"
+    className: "nav flex-column nav-pills",
+    id: "v-pills-tab",
+    role: "tablist",
+    "aria-orientation": "vertical"
   }, /*#__PURE__*/React.createElement("a", {
-    href: "javascript:void(0);",
-    className: "text-muted font-weight-bold"
-  }, "Hyper-admin-design.zip"), /*#__PURE__*/React.createElement("p", {
-    className: "mb-0"
-  }, "2.3 MB")), /*#__PURE__*/React.createElement("div", {
-    className: "col-auto"
-  }, /*#__PURE__*/React.createElement("a", {
-    href: "javascript:void(0);",
-    className: "btn btn-link btn-lg text-muted"
+    className: "nav-link active show mb-2",
+    id: "v-pills-home-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-profile",
+    role: "tab",
+    "aria-controls": "v-pills-profile",
+    "aria-selected": "true"
   }, /*#__PURE__*/React.createElement("i", {
-    className: "dripicons-download"
-  }))))))))), /*#__PURE__*/React.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/React.createElement("table", {
-    className: "table table-centered mb-0"
-  }, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Certificate Name")), /*#__PURE__*/React.createElement("td", null, "336-508-2157")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Certificate Number")), /*#__PURE__*/React.createElement("td", null, "606-253-1207")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Registration Number")), /*#__PURE__*/React.createElement("td", null, "646-473-2057")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Year")), /*#__PURE__*/React.createElement("td", null, "281-308-0793"))), /*#__PURE__*/React.createElement("div", {
-    className: "row mt-2"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "col-8"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "card mb-1 shadow-none border"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "p-2"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "row align-items-center"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "col-auto"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "avatar-sm"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "avatar-title rounded"
-  }, ".PDF"))), /*#__PURE__*/React.createElement("div", {
-    className: "col pl-0"
-  }, /*#__PURE__*/React.createElement("a", {
-    href: "javascript:void(0);",
-    className: "text-muted font-weight-bold"
-  }, "Hyper-admin-design.zip"), /*#__PURE__*/React.createElement("p", {
-    className: "mb-0"
-  }, "2.3 MB")), /*#__PURE__*/React.createElement("div", {
-    className: "col-auto"
-  }, /*#__PURE__*/React.createElement("a", {
-    href: "javascript:void(0);",
-    className: "btn btn-link btn-lg text-muted"
+    className: "mdi mdi-home-variant d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Profile Information")), user.provider_profile.account_category_type === 'company' && /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-2",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-company",
+    role: "tab",
+    "aria-controls": "v-pills-company",
+    "aria-selected": "false"
   }, /*#__PURE__*/React.createElement("i", {
-    className: "dripicons-download"
-  })))))))))));
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Company Information")), user.provider_profile.account_category_type === 'facility' && /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-2",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-facility",
+    role: "tab",
+    "aria-controls": "v-pills-facility",
+    "aria-selected": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Facility Information")), user.provider_profile.account_category_type === 'individual' && /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-2",
+    id: "v-pills-profile-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-qualifications",
+    role: "tab",
+    "aria-controls": "v-pills-qualifications",
+    "aria-selected": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-account-circle d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Education Qualifications")), user.provider_profile.account_category_type === 'individual' && /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-2",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-medical-registration",
+    role: "tab",
+    "aria-controls": "v-pills-medical-registration",
+    "aria-selected": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Medical Registration")), /*#__PURE__*/React.createElement("a", {
+    className: "nav-link mb-2",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-services",
+    role: "tab",
+    "aria-controls": "v-pills-services",
+    "aria-selected": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Services"))));
 }
 
 /***/ })

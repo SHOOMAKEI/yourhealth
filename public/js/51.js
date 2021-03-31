@@ -1,22 +1,29 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[51],{
 
-/***/ "./resources/js/Pages/Services/subcategories/components/AddSubcategoryModal.jsx":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/Pages/Services/subcategories/components/AddSubcategoryModal.jsx ***!
-  \**************************************************************************************/
+/***/ "./resources/js/Pages/Auth/components/PasswordResetByPhoneForm.jsx":
+/*!*************************************************************************!*\
+  !*** ./resources/js/Pages/Auth/components/PasswordResetByPhoneForm.jsx ***!
+  \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddSubcategoryModal; });
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@/pages/data/actions/serviceSubcategories'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _pages_Utilities_FormInputError__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/pages/Utilities/FormInputError */ "./resources/js/pages/Utilities/FormInputError.jsx");
-/* harmony import */ var _pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/pages/Utilities/ModalForm */ "./resources/js/pages/Utilities/ModalForm.jsx");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/utils/ApolloClient'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'next/router'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PasswordResetByPhoneForm; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Shared/TextInput */ "./resources/js/Shared/TextInput.js");
+/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -34,236 +41,171 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+function PasswordResetByPhoneForm() {
+  var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props,
+      errors = _usePage$props.errors,
+      codeSentSuccessfully = _usePage$props.codeSentSuccessfully;
 
-function AddSubcategoryModal(_ref) {
-  var modalID = _ref.modalID,
-      initialData = _ref.initialData,
-      operation = _ref.operation,
-      title = _ref.title;
-  var initialValues = {
-    name: "",
-    description: "No description",
-    status: false
-  };
-
-  var _useSelector = useSelector(function (state) {
-    return state.subcategoriesStore;
-  }),
-      selectedSubcategory = _useSelector.selectedSubcategory;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
-      success = _useState2[0],
-      setSuccess = _useState2[1];
+      sending = _useState2[0],
+      setSending = _useState2[1];
 
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    if (updateServiceSubcategoryResponse.data) {
-      setSuccess(true);
-      var timer = setTimeout(function () {
-        setSuccess(false);
-        clearTimeout(timer);
-      }, 5000);
-      dispatch(!(function webpackMissingModule() { var e = new Error("Cannot find module '@/pages/data/actions/serviceSubcategories'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(updateServiceSubcategoryResponse.data.updateServiceSubCategory));
-    }
-  }, [updateServiceSubcategoryResponse.data]);
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    if (addServiceSubcategoryResponse.data) {
-      setSuccess(true);
-      var timer = setTimeout(function () {
-        setSuccess(false);
-        clearTimeout(timer);
-      }, 5000);
-      dispatch(!(function webpackMissingModule() { var e = new Error("Cannot find module '@/pages/data/actions/serviceSubcategories'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(addServiceSubcategoryResponse.data.createServiceSubCategory));
-    }
-  }, [addServiceSubcategoryResponse.data]);
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    mobile_number: '',
+    verification_code: ''
+  }),
+      _useState4 = _slicedToArray(_useState3, 2),
+      values = _useState4[0],
+      setValues = _useState4[1];
 
-  function onSubmit(values, _ref2) {
-    var setSubmitting = _ref2.setSubmitting;
-    setTimeout(function () {
-      switch (operation) {
-        case "add":
-          addSubcategory(values.name, values.description, values.status);
-          break;
-
-        case "update":
-          _updateSubcategory(values.name, values.description, selectedSubcategory.is_active);
-
-          break;
-
-        default:
-          addSubcategory(values.name, values.description, values.status);
-          break;
-      }
-
-      setSubmitting(false);
-    }, 500);
-  }
-
-  function addSubcategory(name, description, status) {
-    var subcategory = {
-      name: name,
-      description: description,
-      is_active: status,
-      service_category_id: parseInt(category_id)
-    };
-    addServiceSubcategoryCB({
-      variables: subcategory
+  function handleChange(e) {
+    var key = e.target.name;
+    var value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    setValues(function (values) {
+      return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, key, value));
     });
   }
 
-  function _updateSubcategory(name, description, status) {
-    var subcategory = {
-      id: selectedSubcategory.id,
-      name: name,
-      description: description,
-      service_category_id: parseInt(category_id)
-    };
-    updateServiceSubcategory({
-      variables: subcategory
+  function handleSubmit(e) {
+    e.preventDefault();
+    setSending(true);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('login'), values).then(function () {
+      setSending(false);
     });
   }
 
-  function renderForm() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", null, status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "alert alert-success alert-dismissible bg-success text-white border-0 fade show",
+  function handleSubmitVerificationCode(e) {
+    e.preventDefault();
+    setSending(true);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('login'), values).then(function () {
+      setSending(false);
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, codeSentSuccessfully ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, function (_ref) {
+    var errors = _ref.errors,
+        touched = _ref.touched;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      onSubmit: handleSubmit
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "alert alert-success bg-success text-white border-0 fade show",
       role: "alert"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-      type: "button",
-      className: "close",
-      onClick: function onClick() {
-        return setSuccess(false);
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-      "aria-hidden": "true"
-    }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Success - "), " Operation was completed successfully!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "form-group"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
-      htmlFor: "name"
-    }, "Subcategory name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Field, {
-      id: "name",
-      name: "name",
-      placeholder: "category name",
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Success - "), " Code sent successfully, please provide the code sent to your phone number"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      name: "verification_code",
       type: "text",
-      className: "form-control"
-    }), errors.name && touched.name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_pages_Utilities_FormInputError__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      title: "Category name error",
-      message: errors.name
-    }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "form-group"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
-      htmlFor: "description"
-    }, "Subcategory description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Field, {
-      id: "description",
-      name: "description",
-      placeholder: "description",
-      as: "textarea",
-      className: "form-control",
-      rows: 3
-    }), errors.description && touched.description ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_pages_Utilities_FormInputError__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      title: "Description error",
-      message: errors.description
-    }) : null), operation === "add" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "custom-control custom-switch form-group"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Field, {
-      type: "checkbox",
-      className: "custom-control-input",
-      id: "status",
-      name: "status"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
-      className: "custom-control-label",
-      htmlFor: "status"
-    }, "Show subcategory to public")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-      className: "text-muted"
-    }, "If the above option is selected the public will see the category, otherwise the public will not see the category. You can edit it later on from category settings.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "modal-footer"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-      type: "button",
-      className: "btn btn-light",
-      "data-dismiss": "modal"
-    }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      label: "OTP Code",
+      placeholder: "OTP Code",
+      errors: errors.mobile_number,
+      value: values.mobile_number,
+      onChange: handleChange
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-group mb-0 text-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
       type: "submit",
-      className: "btn btn-primary",
-      disabled: updateServiceSubcategoryResponse.loading || addServiceSubcategoryResponse.loading
-    }, operation === "add" ? addServiceSubcategoryResponse.loading && addServiceSubcategoryResponse.called ? "Adding..." : "Add subcategory" : updateServiceSubcategoryResponse.loading && updateServiceSubcategoryResponse.called ? "Updating..." : "Update subcategory")));
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    modalID: modalID,
-    title: title ? title : "Add new service subcategory",
-    renderForm: renderForm
-  });
+      className: "btn btn-primary btn-block",
+      loading: sending
+    }, "Verify Code")));
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, function (_ref2) {
+    var errors = _ref2.errors;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      onSubmit: handleSubmitVerificationCode
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      name: "verification_code",
+      type: "text",
+      label: "OTP Code",
+      placeholder: "OTP Code",
+      errors: errors.verification_code,
+      value: values.verification_code,
+      onChange: handleChange
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-group mb-0 text-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      type: "submit",
+      className: "btn btn-primary btn-block",
+      loading: sending
+    }, "Reset password")));
+  }));
 }
 
 /***/ }),
 
-/***/ "./resources/js/pages/Utilities/FormInputError.jsx":
-/*!*********************************************************!*\
-  !*** ./resources/js/pages/Utilities/FormInputError.jsx ***!
-  \*********************************************************/
+/***/ "./resources/js/Shared/LoadingButton.js":
+/*!**********************************************!*\
+  !*** ./resources/js/Shared/LoadingButton.js ***!
+  \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FormInputError; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function FormInputError(_ref) {
-  var title = _ref.title,
-      message = _ref.message;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("div", {
-    className: "alert alert-danger bg-danger text-white border-0 fade show mt-1",
-    role: "alert"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("strong", null, title, " - "), " ", message);
-}
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
+  var loading = _ref.loading,
+      className = _ref.className,
+      children = _ref.children,
+      props = _objectWithoutProperties(_ref, ["loading", "className", "children"]);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _extends({
+    disabled: loading,
+    className: "focus:outline-none flex items-center ".concat(className)
+  }, props), loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "btn-spinner mr-2"
+  }), children);
+});
 
 /***/ }),
 
-/***/ "./resources/js/pages/Utilities/ModalForm.jsx":
-/*!****************************************************!*\
-  !*** ./resources/js/pages/Utilities/ModalForm.jsx ***!
-  \****************************************************/
+/***/ "./resources/js/Shared/TextInput.js":
+/*!******************************************!*\
+  !*** ./resources/js/Shared/TextInput.js ***!
+  \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Modal; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function Modal(_ref) {
-  var modalID = _ref.modalID,
-      title = _ref.title,
-      size = _ref.size,
-      renderForm = _ref.renderForm;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("div", {
-    id: modalID,
-    className: "modal fade",
-    tabIndex: -1,
-    role: "dialog",
-    "data-backdrop": "static",
-    "aria-labelledby": "".concat(modalID, "Label"),
-    "aria-hidden": "true"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("div", {
-    className: "modal-dialog ".concat(size === 'large' ? 'modal-lg modal-dialog-scrollable' : null)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("div", {
-    className: "modal-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("div", {
-    className: "modal-header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("h4", {
-    className: "modal-title",
-    id: "".concat(modalID, "Label")
-  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("button", {
-    type: "button",
-    className: "close",
-    "data-dismiss": "modal",
-    "aria-hidden": "true"
-  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("div", {
-    className: "modal-body"
-  }, renderForm()))));
-}
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
+  var label = _ref.label,
+      name = _ref.name,
+      className = _ref.className,
+      _ref$errors = _ref.errors,
+      errors = _ref$errors === void 0 ? [] : _ref$errors,
+      props = _objectWithoutProperties(_ref, ["label", "name", "className", "errors"]);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group ".concat(className)
+  }, label && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: name
+  }, label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({
+    id: name,
+    name: name
+  }, props, {
+    className: "form-control"
+  })), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback",
+    style: {
+      display: 'block'
+    }
+  }, errors));
+});
 
 /***/ })
 

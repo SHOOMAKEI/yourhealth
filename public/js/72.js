@@ -1,62 +1,70 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[72],{
 
-/***/ "./resources/js/Pages/ServiceProviders/requests/components/ProviderProfile.jsx":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/Pages/ServiceProviders/requests/components/ProviderProfile.jsx ***!
-  \*************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./resources/js/Pages/Auth/TwoFactorChallenge.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/Pages/Auth/TwoFactorChallenge.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProviderProfile; });
-/* harmony import */ var _Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/ServiceProviders/requests/components/profile */ "./resources/js/Pages/ServiceProviders/requests/components/profile/index.jsx");
-/* harmony import */ var _Pages_serviceProviders_requests_components_ProfileNav__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/serviceProviders/requests/components/ProfileNav */ "./resources/js/Pages/serviceProviders/requests/components/ProfileNav.jsx");
-
- //import {ServiceProviderValues} from "@/pages/serviceProviders/requests/components/ServiceProvider";
-
-function ProviderProfile(_ref) {
-  var modalId = _ref.modalId,
-      provider = _ref.provider;
-  return /*#__PURE__*/React.createElement("div", {
-    className: "modal fade",
-    id: modalId,
-    "data-backdrop": "static",
-    tabIndex: -1,
-    role: "dialog",
-    "aria-labelledby": "scrollableModalTitle",
-    "aria-hidden": "true"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "modal-dialog modal-full-width",
-    role: "document"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "modal-content"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "modal-header"
-  }, /*#__PURE__*/React.createElement("h5", {
-    className: "modal-title",
-    id: "scrollableModalTitle"
-  }, "".concat(provider === null || provider === void 0 ? void 0 : provider.username, "'s profile")), /*#__PURE__*/React.createElement("button", {
-    type: "button",
-    className: "close",
-    "data-dismiss": "modal",
-    "aria-label": "Close"
-  }, /*#__PURE__*/React.createElement("span", {
-    "aria-hidden": "true"
-  }, "\xD7"))), /*#__PURE__*/React.createElement("div", {
-    className: "modal-body"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/React.createElement(_Pages_serviceProviders_requests_components_ProfileNav__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    provider: provider
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "col-sm-10"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "tab-content",
-    id: "v-pills-tabContent"
-  }, /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["ProfileInfo"], {
-    provider: provider
-  }), provider.account_category_type === 'individual' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["Qualifications"], null), /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["MedicalRegistrations"], null), /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["Services"], null)), provider.account_category_type === 'company' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["Company"], null), /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["Facility"], null), /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["FacilityServices"], null)), provider.account_category_type === 'facility' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["Facility"], null), /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["FacilityServices"], null)))))))));
+{
+  /* <x-guest-layout>
+     <x-jet-authentication-card>
+         <x-slot name="logo">
+             <img class="img-avatar img-avatar96 img-avatar-thumb" src="{{asset('storage/dit-logo.jpg')}}" alt="organization logo"/>
+         </x-slot>
+  
+         <div x-data="{ recovery: false }">
+             <div class="mb-4 text-sm text-gray-600" x-show="! recovery">
+                 {{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.') }}
+             </div>
+  
+             <div class="mb-4 text-sm text-gray-600" x-show="recovery">
+                 {{ __('Please confirm access to your account by entering one of your emergency recovery codes.') }}
+             </div>
+  
+             <x-jet-validation-errors class="mb-4" />
+  
+             <form method="POST" action="/two-factor-challenge">
+                 @csrf
+  
+                 <div class="mt-4" x-show="! recovery">
+                     <x-jet-label value="{{ __('Code') }}" />
+                     <x-jet-input class="block mt-1 w-full" type="text" name="code" autofocus x-ref="code" autocomplete="one-time-code" />
+                 </div>
+  
+                 <div class="mt-4" x-show="recovery">
+                     <x-jet-label value="{{ __('Recovery Code') }}" />
+                     <x-jet-input class="block mt-1 w-full" type="text" name="recovery_code" x-ref="recovery_code" autocomplete="one-time-code" />
+                 </div>
+  
+                 <div class="flex items-center justify-end mt-4">
+                     <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
+                                     x-show="! recovery"
+                                     x-on:click="
+                                         recovery = true;
+                                         $nextTick(() => { $refs.recovery_code.focus() })
+                                     ">
+                         {{ __('Use a recovery code') }}
+                     </button>
+  
+                     <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
+                                     x-show="recovery"
+                                     x-on:click="
+                                         recovery = false;
+                                         $nextTick(() => { $refs.code.focus() })
+                                     ">
+                         {{ __('Use an authentication code') }}
+                     </button>
+  
+                     <x-jet-button class="ml-4">
+                         {{ __('Login') }}
+                     </x-jet-button>
+                 </div>
+             </form>
+         </div>
+     </x-jet-authentication-card>
+  </x-guest-layout> */
 }
 
 /***/ })

@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[96],{
 
-/***/ "./resources/js/Pages/Services/services/components/paginator.jsx":
-/*!***********************************************************************!*\
-  !*** ./resources/js/Pages/Services/services/components/paginator.jsx ***!
-  \***********************************************************************/
+/***/ "./resources/js/Pages/Services/requested/components/paginator.jsx":
+/*!************************************************************************!*\
+  !*** ./resources/js/Pages/Services/requested/components/paginator.jsx ***!
+  \************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -53,58 +53,58 @@ function Paginator(_ref) {
     activePageCallBack(id);
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "row px-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "col-sm-12 col-md-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "dataTables_info",
     id: "service-categories-table_info",
     role: "status",
     "aria-live": "polite"
-  }, "Showing 1 to ", batchCount, " of ", totalItems, " entries")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Showing 1 to ", batchCount, " of ", totalItems, " entries")), /*#__PURE__*/React.createElement("div", {
     className: "col-sm-12 col-md-7"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "dataTables_paginate paging_simple_numbers float-right",
     id: "service-categories-table_paginate"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+  }, /*#__PURE__*/React.createElement("ul", {
     className: "pagination pagination-rounded"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+  }, /*#__PURE__*/React.createElement("li", {
     className: "paginate_button page-item previous disabled",
     id: "service-categories-table_previous"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, /*#__PURE__*/React.createElement("a", {
     href: "#",
     "aria-controls": "service-categories-table",
     "data-dt-idx": "0",
     tabIndex: 0,
     className: "page-link"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+  }, /*#__PURE__*/React.createElement("i", {
     className: "uil uil-angle-left"
   }))), pages.map(function (page) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    return /*#__PURE__*/React.createElement("li", {
       className: "paginate_button page-item ".concat(page === 0 && 'active'),
       key: page,
       id: "page-".concat(page),
       onClick: function onClick() {
         return setActive(page);
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    }, /*#__PURE__*/React.createElement("a", {
       href: "#",
       "aria-controls": "service-categories-table",
       "data-dt-idx": "".concat(page),
       tabIndex: 0,
       className: "page-link"
     }, page));
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+  }), /*#__PURE__*/React.createElement("li", {
     className: "paginate_button page-item next",
     id: "service-categories-table_next"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, /*#__PURE__*/React.createElement("a", {
     href: "#",
     "aria-controls": "service-categories-table",
     "data-dt-idx": "3",
     tabIndex: 0,
     className: "page-link"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+  }, /*#__PURE__*/React.createElement("i", {
     className: "uil uil-angle-right"
   })))))));
 }

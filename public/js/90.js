@@ -1,25 +1,17 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[90],{
 
-/***/ "./resources/js/Pages/Services/requested/manage.jsx":
-/*!**********************************************************!*\
-  !*** ./resources/js/Pages/Services/requested/manage.jsx ***!
-  \**********************************************************/
+/***/ "./resources/js/Pages/Services/categories/components/paginator.jsx":
+/*!*************************************************************************!*\
+  !*** ./resources/js/Pages/Services/categories/components/paginator.jsx ***!
+  \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/services/requested/components'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'react-redux'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/framework'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'next'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/utils/Query'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/data/reducers/requestedService'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/auth/components/Spinner'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/data/actions/requestedService'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/utils/ApolloClient'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Paginator; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -33,119 +25,89 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
+function Paginator(_ref) {
+  var batchCount = _ref.batchCount,
+      totalItems = _ref.totalItems,
+      activePageCallBack = _ref.activePageCallBack;
 
-
-
-
-
-
-
-
-
-var SERVICES_BATCH_COUNT = 10;
-
-var ManageServices = function ManageServices() {
-  var _useSelector = !(function webpackMissingModule() { var e = new Error("Cannot find module 'react-redux'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(function (state) {
-    return state.requestedServiceStore;
-  }),
-      services = _useSelector.services;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(SERVICES_BATCH_COUNT),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([1]),
       _useState2 = _slicedToArray(_useState, 2),
-      servicesBatchCount = _useState2[0],
-      setServicesBatchCount = _useState2[1];
+      pages = _useState2[0],
+      setPages = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(services.slice(0, servicesBatchCount)),
-      _useState4 = _slicedToArray(_useState3, 2),
-      shownServices = _useState4[0],
-      setShownServices = _useState4[1];
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    calculatePagination();
+  }, [batchCount, totalItems]);
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
-      _useState6 = _slicedToArray(_useState5, 2),
-      paginatorSP = _useState6[0],
-      setPaginatorSP = _useState6[1];
+  function calculatePagination() {
+    var _pages = Math.ceil(totalItems / batchCount);
 
-  var _useApi = !(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/utils/ApolloClient'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())({
-    query: !(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/utils/Query'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())
-  }),
-      _useApi2 = _slicedToArray(_useApi, 2),
-      queryServices = _useApi2[0],
-      _useApi2$ = _useApi2[1],
-      data = _useApi2$.data,
-      called = _useApi2$.called,
-      loading = _useApi2$.loading,
-      errors = _useApi2$.errors;
-
-  var dispatch = !(function webpackMissingModule() { var e = new Error("Cannot find module 'react-redux'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())();
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    queryServices({});
-  }, []);
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    if (services.length > 0) {
-      setShownServices(services.slice(paginatorSP, paginatorSP + servicesBatchCount));
-    }
-  }, [services]);
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    if (data && data.requestedService) {
-      dispatch(!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/data/actions/requestedService'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(data.requestedService));
-    }
-  }, [data]);
-
-  function selectPage(page) {
-    var startingPoint = page === 0 ? 0 : page * servicesBatchCount;
-    var endingPoint = startingPoint + servicesBatchCount;
-    setShownServices(services.slice(startingPoint, endingPoint));
-    setPaginatorSP(startingPoint);
-    return 0;
+    setPages(Array.from(Array(_pages).keys()));
   }
 
-  function searchCategories(content) {
-    if (content.length === 0) {
-      setShownServices(services.slice(0, servicesBatchCount));
-    } else {
-      setShownServices(services.filter(function (category) {
-        if (category.name.toLowerCase().includes(content.toLowerCase())) {
-          return category;
-        }
-      }));
-    }
+  function setActive(id) {
+    pages.map(function (page) {
+      $("#page-".concat(page)).removeClass('active');
+    });
+    $("#page-".concat(id)).addClass('active');
+    activePageCallBack(id);
   }
 
-  function renderContent() {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "row",
-      style: {
-        paddingTop: 30 + 'px'
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row px-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-12 col-md-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "dataTables_info",
+    id: "service-categories-table_info",
+    role: "status",
+    "aria-live": "polite"
+  }, "Showing 1 to ", batchCount, " of ", totalItems, " entries")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-12 col-md-7"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "dataTables_paginate paging_simple_numbers float-right",
+    id: "service-categories-table_paginate"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "pagination pagination-rounded"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "paginate_button page-item previous disabled",
+    id: "service-categories-table_previous"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#",
+    "aria-controls": "service-categories-table",
+    "data-dt-idx": "0",
+    tabIndex: 0,
+    className: "page-link"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "uil uil-angle-left"
+  }))), pages.map(function (page) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "paginate_button page-item ".concat(page === 0 && 'active'),
+      key: page,
+      id: "page-".concat(page),
+      onClick: function onClick() {
+        return setActive(page);
       }
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "col-xl-8"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "card px-2"
-    }, /*#__PURE__*/React.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/services/requested/components'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
-      title: "Service categories",
-      search: searchCategories
-    }), errors && errors.map(function (error) {
-      return /*#__PURE__*/React.createElement("div", {
-        className: "alert alert-danger bg-danger text-white border-0 mb-0 show mb-4",
-        role: "alert"
-      }, /*#__PURE__*/React.createElement("strong", null, "Error "), " ", error.message);
-    }), loading ? /*#__PURE__*/React.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/auth/components/Spinner'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), null) : /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/services/requested/components'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
-      services: shownServices
-    }), /*#__PURE__*/React.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/services/requested/components'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
-      batchCount: servicesBatchCount,
-      totalItems: services.length,
-      activePageCallBack: selectPage
-    })))), /*#__PURE__*/React.createElement("div", {
-      className: "col-xl-4"
-    }, /*#__PURE__*/React.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/services/requested/components'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), null)));
-  }
-
-  return /*#__PURE__*/React.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/framework'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
-    renderContent: renderContent
-  });
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (ManageServices);
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "#",
+      "aria-controls": "service-categories-table",
+      "data-dt-idx": "".concat(page),
+      tabIndex: 0,
+      className: "page-link"
+    }, page));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "paginate_button page-item next",
+    id: "service-categories-table_next"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#",
+    "aria-controls": "service-categories-table",
+    "data-dt-idx": "3",
+    tabIndex: 0,
+    className: "page-link"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "uil uil-angle-right"
+  })))))));
+}
 
 /***/ })
 

@@ -1,8 +1,8 @@
 import {ServiceProvider, ServiceProviderValues} from "@/pages/serviceProviders/requests/components";
 
-import {PROVIDER_PROFILE_MODAL_ID} from "@pages/constants";
-import ProviderProfile from "@pages/service-providers/requests/components/ProviderProfile";
-import {useState} from "react";
+import {PROVIDER_PROFILE_MODAL_ID} from "@/Pages/Utilities/Constants";
+import ProviderProfile from "@/pages/serviceProviders/requests/components/ProviderProfile";
+import React, {useState} from "react";
 
 
 export default function ServiceProvidersTable({serviceProviders}) {
@@ -29,7 +29,8 @@ export default function ServiceProvidersTable({serviceProviders}) {
             <tbody>
             {
                 serviceProviders.map(
-                    serviceProvider => <ServiceProvider serviceProvider={serviceProvider} selectServiceProvider={selectProvider} />
+                    serviceProvider =>
+                        <ServiceProvider serviceProvider={serviceProvider} selectServiceProvider={selectProvider} />
                 )
             }
             {/* <ProviderProfile modalId={PROVIDER_PROFILE_MODAL_ID} provider={selectedProvider} /> */}

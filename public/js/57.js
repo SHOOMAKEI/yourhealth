@@ -1,239 +1,190 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[57],{
 
-/***/ "./resources/js/Pages/Services/packages/membership/AddMembership.jsx":
-/*!***************************************************************************!*\
-  !*** ./resources/js/Pages/Services/packages/membership/AddMembership.jsx ***!
-  \***************************************************************************/
+/***/ "./resources/js/Pages/Services/categories/components/deleteDialog.jsx":
+/*!****************************************************************************!*\
+  !*** ./resources/js/Pages/Services/categories/components/deleteDialog.jsx ***!
+  \****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddMembershipModal; });
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'yup'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/utils/Mutations'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'formik'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/data/actions/memberships'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module 'react-redux'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/components/FormInputError'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var _pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/pages/Utilities/ModalForm */ "./resources/js/pages/Utilities/ModalForm.jsx");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DeleteCategoryDialog; });
+/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
-
- // import Spinner from "@/pages/auth/components/Spinner";
-// import {membershipsStateValues} from "@pages/data/reducers/memberships";
-// import {membershipsValues} from "@pages/data/constants/memberships";
-// import { useApi } from "@pages/utils/ApolloClient";
-// import {useEffect} from "react";
-
-function AddMembershipModal(_ref) {
-  var modalID = _ref.modalID,
-      operation = _ref.operation,
-      title = _ref.title;
-  var initialValues = {
-    name: "",
-    description: "No description",
-    is_active: false
-  };
-  var dispatch = !(function webpackMissingModule() { var e = new Error("Cannot find module 'react-redux'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())();
-
-  var _useSelector = !(function webpackMissingModule() { var e = new Error("Cannot find module 'react-redux'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(function (state) {
-    return state.membershipsStore;
+function DeleteCategoryDialog() {
+  var _useSelector = useSelector(function (state) {
+    return state.categoriesStore;
   }),
-      selectedMembership = _useSelector.selectedMembership; // const [createPackageMembership, createPackageMembershipResponse] = useApi({query: CREATE_PACKAGE_MEMBERSHIP});
-  // const [updatePackageMembership, updatePackageMembershipResponse] = useApi({query: UPDATE_PACKAGE_MEMBERSHIP});
+      selectedCategory = _useSelector.selectedCategory;
+
+  var _useState = useState(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      success = _useState2[0],
+      setSuccess = _useState2[1]; // useEffect(() => {
+  //     if (deleteServiceCategoryResponse.data) {
+  //        setSuccess(true)
+  //        dispatch(deleteCategory(selectedCategory));
+  //     }
+  //  }, [deleteServiceCategoryResponse.data])
+  //
+  // function _deleteCategory() {
+  //     deleteServiceCategory({variables: {id: selectedCategory.id}})
+  // }
 
 
-  useEffect(function () {
-    var data = createPackageMembershipResponse.data;
-
-    if (data && data.createPackageMemberShip) {
-      dispatch(!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/data/actions/memberships'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(data.createPackageMemberShip));
-    }
-  }, [createPackageMembershipResponse.data]);
-  useEffect(function () {
-    var data = updatePackageMembershipResponse.data;
-
-    if (data && data.updatePackageMemberShip) {
-      dispatch(!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/data/actions/memberships'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(data.updatePackageMemberShip));
-    }
-  }, [updatePackageMembershipResponse.data]);
-
-  function onSubmit(values, _ref2) {
-    var setSubmitting = _ref2.setSubmitting;
-    setTimeout(function () {
-      switch (operation) {
-        case "add":
-          _addMembership(values.name, values.description, values.is_active);
-
-          break;
-
-        case "update":
-          _updateMembership(values.name, values.description, selectedMembership.is_active);
-
-          break;
-
-        default:
-          _addMembership(values.name, values.description, values.is_active);
-
-          break;
-      }
-
-      setSubmitting(false);
-    }, 500);
-  }
-
-  function _addMembership(name, description, status) {
-    var membership = {
-      name: name,
-      description: description,
-      is_active: status
-    };
-    createPackageMembership({
-      variables: {
-        input: membership
-      }
-    });
-  }
-
-  function _updateMembership(name, description, status) {
-    var membership = {
-      id: selectedMembership.id,
-      name: name,
-      description: description,
-      is_active: status
-    };
-    updatePackageMembership({
-      variables: {
-        input: membership
-      }
-    });
-  }
-
-  function renderForm() {
-    return createPackageMembershipResponse.loading || updatePackageMembershipResponse.loading ? /*#__PURE__*/React.createElement(Spinner, null) : /*#__PURE__*/React.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module 'formik'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
-      initialValues: initialValues,
-      onSubmit: onSubmit,
-      validationSchema: MembershipSchema,
-      enableReinitialize: true
-    }, function (_ref3) {
-      var errors = _ref3.errors,
-          touched = _ref3.touched,
-          setFieldValue = _ref3.setFieldValue;
-      useEffect(function () {
-        if (operation === "update") {
-          setFieldValue("name", selectedMembership.name);
-          setFieldValue("description", selectedMembership.description);
-        }
-      }, [selectedMembership]);
-      return /*#__PURE__*/React.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module 'formik'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), null, /*#__PURE__*/React.createElement("div", {
-        className: "form-group"
-      }, /*#__PURE__*/React.createElement("label", {
-        htmlFor: "name"
-      }, "Membership name"), /*#__PURE__*/React.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module 'formik'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
-        id: "name",
-        name: "name",
-        placeholder: "membership name",
-        type: "text",
-        className: "form-control"
-      }), errors.name && touched.name ? /*#__PURE__*/React.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/components/FormInputError'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
-        title: "Membership name error",
-        message: errors.name
-      }) : null), /*#__PURE__*/React.createElement("div", {
-        className: "form-group"
-      }, /*#__PURE__*/React.createElement("label", {
-        htmlFor: "description"
-      }, "Membership description"), /*#__PURE__*/React.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module 'formik'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
-        id: "description",
-        name: "description",
-        placeholder: "description",
-        as: "textarea",
-        className: "form-control",
-        rows: 3
-      }), errors.description && touched.description ? /*#__PURE__*/React.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/components/FormInputError'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
-        title: "Description error",
-        message: errors.description
-      }) : null), operation === "add" && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-        className: "custom-control custom-switch form-group"
-      }, /*#__PURE__*/React.createElement(!(function webpackMissingModule() { var e = new Error("Cannot find module 'formik'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), {
-        type: "checkbox",
-        className: "custom-control-input",
-        id: "is_active",
-        name: "is_active"
-      }), /*#__PURE__*/React.createElement("label", {
-        className: "custom-control-label",
-        htmlFor: "is_active"
-      }, "Show membership to public")), /*#__PURE__*/React.createElement("p", {
-        className: "text-muted"
-      }, "If the above option is selected the public will see the membership, otherwise the public will not see the membership. You can edit it later on from category settings.")), /*#__PURE__*/React.createElement("div", {
-        className: "modal-footer"
-      }, /*#__PURE__*/React.createElement("button", {
-        type: "button",
-        className: "btn btn-light",
-        "data-dismiss": "modal"
-      }, "Close"), /*#__PURE__*/React.createElement("button", {
-        type: "submit",
-        className: "btn btn-primary"
-      }, operation === "add" ? "Add membership" : "Update")));
-    });
-  }
-
-  return /*#__PURE__*/React.createElement(_pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    modalID: modalID,
-    title: title ? title : "Add new membership",
-    renderForm: renderForm
-  });
-}
-
-/***/ }),
-
-/***/ "./resources/js/pages/Utilities/ModalForm.jsx":
-/*!****************************************************!*\
-  !*** ./resources/js/pages/Utilities/ModalForm.jsx ***!
-  \****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Modal; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-function Modal(_ref) {
-  var modalID = _ref.modalID,
-      title = _ref.title,
-      size = _ref.size,
-      renderForm = _ref.renderForm;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("div", {
-    id: modalID,
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    id: "delete-category",
     className: "modal fade",
     tabIndex: -1,
     role: "dialog",
-    "data-backdrop": "static",
-    "aria-labelledby": "".concat(modalID, "Label"),
+    "aria-labelledby": "delete-categoryLabel",
     "aria-hidden": "true"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("div", {
-    className: "modal-dialog ".concat(size === 'large' ? 'modal-lg modal-dialog-scrollable' : null)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("div", {
-    className: "modal-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-dialog"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-content modal-filled bg-danger"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal-header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("h4", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
     className: "modal-title",
-    id: "".concat(modalID, "Label")
-  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("button", {
+    id: "delete-categoryLabel"
+  }, "delete ", selectedCategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "button",
     className: "close",
     "data-dismiss": "modal",
     "aria-hidden": "true"
-  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("div", {
+  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal-body"
-  }, renderForm()))));
+  }, "Are you sure you want to delete ", selectedCategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-footer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    type: "button",
+    className: "btn btn-light",
+    "data-dismiss": "modal"
+  }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_0__["default"], {
+    type: "submit",
+    className: "btn btn-primary btn-block",
+    loading: sending
+  }, "Save Changes")))));
 }
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Services/categories/components/serviceCategory.jsx":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/Pages/Services/categories/components/serviceCategory.jsx ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Category; });
+/* harmony import */ var _deleteDialog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteDialog */ "./resources/js/Pages/Services/categories/components/deleteDialog.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+function Category(category) {
+  // function chooseCategory() {
+  //     dispatch(selectCategory(category))
+  // }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
+    key: category.id
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
+    onClick: chooseCategory
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+    href: '#',
+    className: "text-dark"
+  }, category.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, category.is_active ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "uil uil-eye font-16 mr-1 text-success"
+  }), " Visible") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "uil uil-eye font-16 mr-1 text-danger"
+  }), " Not Visible")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
+    className: "table-action"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    type: "button",
+    className: "btn btn-link dropdown-toggle",
+    "data-toggle": "dropdown",
+    "aria-haspopup": "true",
+    "aria-expanded": "false",
+    style: {
+      lineHeight: 0.5,
+      paddingTop: 0,
+      paddingBottom: 0
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "uil uil-bright font-16 mr-1 text-primary"
+  }), "More"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "dropdown-menu"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+    href: "javascript:void(0);",
+    className: "dropdown-item",
+    onClick: chooseCategory
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "uil uil-eye mr-1"
+  }), "Show info"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
+    href: "/services/subcategories/".concat(category.id)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+    className: "dropdown-item",
+    onClick: chooseCategory
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "uil uil-sitemap mr-1"
+  }), "Subcategories"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_deleteDialog__WEBPACK_IMPORTED_MODULE_0__["default"], null)));
+}
+
+/***/ }),
+
+/***/ "./resources/js/Shared/LoadingButton.js":
+/*!**********************************************!*\
+  !*** ./resources/js/Shared/LoadingButton.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
+  var loading = _ref.loading,
+      className = _ref.className,
+      children = _ref.children,
+      props = _objectWithoutProperties(_ref, ["loading", "className", "children"]);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _extends({
+    disabled: loading,
+    className: "focus:outline-none flex items-center ".concat(className)
+  }, props), loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "btn-spinner mr-2"
+  }), children);
+});
 
 /***/ })
 

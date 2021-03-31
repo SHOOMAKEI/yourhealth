@@ -1,17 +1,17 @@
-import * as Yup from "yup";
+// import * as Yup from "yup";
+//
+// import { CREATE_PACKAGE_MEMBERSHIP, UPDATE_PACKAGE_MEMBERSHIP } from "@pages/utils/Mutations";
+// import {Field, Form, Formik, FormikErrors, FormikHelpers} from "formik";
+// import {addMembership, updateMembership} from "@pages/data/actions/memberships";
+// import {useDispatch, useSelector} from "react-redux";
 
-import { CREATE_PACKAGE_MEMBERSHIP, UPDATE_PACKAGE_MEMBERSHIP } from "@pages/utils/Mutations";
-import {Field, Form, Formik, FormikErrors, FormikHelpers} from "formik";
-import {addMembership, updateMembership} from "@pages/data/actions/memberships";
-import {useDispatch, useSelector} from "react-redux";
-
-import FormInputError from "@pages/components/FormInputError";
+import FormInputError from "@/Pages/Utilities/FormInputError";
 import ModalForm from "@/pages/Utilities/ModalForm";
 // import Spinner from "@/pages/auth/components/Spinner";
 // import {membershipsStateValues} from "@pages/data/reducers/memberships";
 // import {membershipsValues} from "@pages/data/constants/memberships";
 // import { useApi } from "@pages/utils/ApolloClient";
-// import {useEffect} from "react";
+import React, {useEffect} from "react";
 
 
 export default function AddMembershipModal({modalID, operation, title,}) {
@@ -20,8 +20,8 @@ export default function AddMembershipModal({modalID, operation, title,}) {
         description: "No description",
         is_active: false,
     };
-    const dispatch = useDispatch();
-    const {selectedMembership} = useSelector(state => state.membershipsStore)
+    // const dispatch = useDispatch();
+    // const {selectedMembership} = useSelector(state => state.membershipsStore)
     // const [createPackageMembership, createPackageMembershipResponse] = useApi({query: CREATE_PACKAGE_MEMBERSHIP});
     // const [updatePackageMembership, updatePackageMembershipResponse] = useApi({query: UPDATE_PACKAGE_MEMBERSHIP});
 
@@ -29,7 +29,7 @@ export default function AddMembershipModal({modalID, operation, title,}) {
         let data = createPackageMembershipResponse.data;
 
         if (data && data.createPackageMemberShip) {
-            dispatch(addMembership(data.createPackageMemberShip));
+            // dispatch(addMembership(data.createPackageMemberShip));
         }
     }, [createPackageMembershipResponse.data])
 
@@ -37,7 +37,7 @@ export default function AddMembershipModal({modalID, operation, title,}) {
         let data = updatePackageMembershipResponse.data;
 
         if (data && data.updatePackageMemberShip) {
-            dispatch(updateMembership(data.updatePackageMemberShip));
+            // dispatch(updateMembership(data.updatePackageMemberShip));
         }
     }, [updatePackageMembershipResponse.data])
 

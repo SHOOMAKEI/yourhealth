@@ -1,25 +1,24 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[9],{
 
-/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/AddFacilityModal.jsx":
-/*!*****************************************************************************************************!*\
-  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/AddFacilityModal.jsx ***!
-  \*****************************************************************************************************/
+/***/ "./resources/js/Pages/Auth/components/facilityForms/SecondForm.jsx":
+/*!*************************************************************************!*\
+  !*** ./resources/js/Pages/Auth/components/facilityForms/SecondForm.jsx ***!
+  \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FacilityModal; });
-/* harmony import */ var _Pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/Utilities/ModalForm */ "./resources/js/Pages/Utilities/ModalForm.jsx");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/TextInput */ "./resources/js/Shared/TextInput.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SecondForm; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Shared/TextInput */ "./resources/js/Shared/TextInput.js");
+/* harmony import */ var _Shared_SelectInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/SelectInput */ "./resources/js/Shared/SelectInput.js");
 /* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.js");
-/* harmony import */ var _Shared_TextAreaInput__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Shared/TextAreaInput */ "./resources/js/Shared/TextAreaInput.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -43,37 +42,32 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+ // interface formProps {
+//     callback: ({}: createInputDataValues) => void;
+//     goBack: (step: number) => void;
+// }
 
-
-function FacilityModal(_ref) {
-  var modalID = _ref.modalID,
-      initialData = _ref.initialData,
-      operation = _ref.operation,
-      title = _ref.title;
-  var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__["usePage"])().props,
+function SecondForm(_ref) {
+  var callback = _ref.callback,
+      goBack = _ref.goBack;
+  var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props,
       errors = _usePage$props.errors,
-      status = _usePage$props.status,
-      alertType = _usePage$props.alertType;
+      emailSentSuccessfully = _usePage$props.emailSentSuccessfully;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       sending = _useState2[0],
       setSending = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
-    address: "",
-    description: "",
-    alternate_mobile_number: "",
-    email: "",
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    first_name: "",
+    last_name: "",
+    middle_name: "",
     mobile_number: "",
-    name: "",
-    physical_address: "",
-    registration_date: "",
-    registration_number: "",
-    tin: "",
-    trading_name: "",
-    vrn: "",
-    website: ""
+    password_confirmation: "",
+    email: '',
+    password: '',
+    ownership_type: 'self'
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       values = _useState4[0],
@@ -89,204 +83,225 @@ function FacilityModal(_ref) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('login'), values).then(function () {
-      setSending(false);
+    callback({
+      form_number: 2,
+      form_two_data: values
     });
   }
 
-  function renderForm() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "row"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-6"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      name: "name",
-      type: "text",
-      placeholder: "Facility Name",
-      label: "Facility Name",
-      errors: errors.name,
-      value: values.name,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      name: "website",
-      type: "text",
-      placeholder: "Website",
-      label: "Website",
-      errors: errors.website,
-      value: values.website,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      name: "tin",
-      type: "text",
-      placeholder: "TIN Number",
-      label: "TIN Number",
-      errors: errors.tin,
-      value: values.tin,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      name: "mobile_number",
-      type: "text",
-      placeholder: "Mobile Number",
-      label: "Mobile Number",
-      errors: errors.mobile_number,
-      value: values.mobile_number,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      name: "address",
-      type: "text",
-      placeholder: "Address",
-      label: "Address",
-      errors: errors.address,
-      value: values.address,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      name: "registration_date",
-      type: "text",
-      placeholder: "Registration Date",
-      label: "Registration Date",
-      errors: errors.registration_date,
-      value: values.registration_date,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextAreaInput__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      name: "description",
-      type: "text",
-      placeholder: "Description",
-      label: "Description",
-      rows: 4,
-      errors: errors.description,
-      value: values.description,
-      onChange: handleChange
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-6"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      name: "trading_name",
-      type: "text",
-      placeholder: "Trading Name",
-      label: "Trading Name",
-      errors: errors.trading_name,
-      value: values.trading_name,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      name: "vrn",
-      type: "text",
-      placeholder: "VRN",
-      label: "VRN",
-      errors: errors.vrn,
-      value: values.vrn,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      name: "email",
-      type: "text",
-      placeholder: "Email Address",
-      label: "Email Address",
-      errors: errors.email,
-      value: values.email,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      name: "alternate_mobile_number",
-      type: "text",
-      placeholder: "Alternate Mobile Number",
-      label: "Website",
-      errors: errors.alternate_mobile_number,
-      value: values.alternate_mobile_number,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      name: "physical_address",
-      type: "text",
-      placeholder: "Physical Address",
-      label: "Physical Address",
-      errors: errors.physical_address,
-      value: values.physical_address,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      name: "registration_number",
-      type: "text",
-      placeholder: "Registration Number",
-      label: "Registration Number",
-      errors: errors.registration_number,
-      value: values.registration_number,
-      onChange: handleChange
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "form-group mb-0 text-right"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      type: "submit",
-      className: "btn btn-primary btn-block",
-      loading: sending
-    }, "Save Changes")))));
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_0__["default"], {
-    modalID: modalID,
-    title: title ? title : "Add new facility",
-    renderForm: renderForm,
-    size: 'large'
-  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "text-dark-50 text-left mb-3 font-weight-bold"
+  }, "Personal information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "first_name",
+    type: "text",
+    label: "First Name",
+    placeholder: "First Name",
+    errors: errors.first_name,
+    value: values.first_name,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "last_name",
+    type: "text",
+    label: "Last Name",
+    placeholder: "Last Name",
+    errors: errors.last_name,
+    value: values.last_name,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "middle_name",
+    type: "text",
+    label: "Middle Name",
+    placeholder: "Middle Name",
+    errors: errors.middle_name,
+    value: values.middle_name,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "mobile_number",
+    type: "text",
+    label: "Mobile Number",
+    placeholder: "Mobile Number",
+    errors: errors.mobile_number,
+    value: values.mobile_number,
+    onChange: handleChange
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "email",
+    type: "text",
+    label: "Email",
+    placeholder: "Email",
+    errors: errors.email,
+    value: values.email,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "password",
+    type: "password",
+    label: "Password",
+    placeholder: "Password",
+    errors: errors.password,
+    value: values.password,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "password_confirmation",
+    type: "password",
+    label: "Password",
+    placeholder: "Password",
+    errors: errors.password_confirmation,
+    value: values.password_confirmation,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_SelectInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "ownership_type",
+    label: "Facility Ownership type",
+    errors: errors.ownership_type,
+    value: values.ownership_type,
+    onChange: handleChange
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "self"
+  }, " Self ownership"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "other"
+  }, "Registration for someone")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group mb-0 text-right"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "btn btn-light mr-2",
+    onClick: function onClick() {
+      return goBack(1);
+    }
+  }, " Previous "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn btn-primary",
+    type: "submit"
+  }, " Submit ")))));
 }
 
 /***/ }),
 
-/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Facility.jsx":
-/*!*********************************************************************************************!*\
-  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Facility.jsx ***!
-  \*********************************************************************************************/
+/***/ "./resources/js/Shared/LoadingButton.js":
+/*!**********************************************!*\
+  !*** ./resources/js/Shared/LoadingButton.js ***!
+  \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Facility; });
-/* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
-/* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_AddFacilityModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/AddFacilityModal */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/AddFacilityModal.jsx");
-/* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_Heading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/Heading */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Heading.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 
+/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
+  var loading = _ref.loading,
+      className = _ref.className,
+      children = _ref.children,
+      props = _objectWithoutProperties(_ref, ["loading", "className", "children"]);
 
-function Facility() {
-  function searchFacilities() {}
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _extends({
+    disabled: loading,
+    className: "focus:outline-none flex items-center ".concat(className)
+  }, props), loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "btn-spinner mr-2"
+  }), children);
+});
 
-  function renderAddSubcategoryModal() {
-    return /*#__PURE__*/React.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_AddFacilityModal__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_0__["ADD_FACILITY_MODAL_ID"],
-      operation: "add"
-    });
-  }
+/***/ }),
 
-  return /*#__PURE__*/React.createElement("div", {
-    className: "tab-pane fade",
-    id: "v-pills-facility",
-    role: "tabpanel",
-    "aria-labelledby": "v-pills-facility-tab"
-  }, /*#__PURE__*/React.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_Heading__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    title: "Facilities",
-    modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_0__["ADD_FACILITY_MODAL_ID"],
-    buttonText: "Add Facility",
-    search: searchFacilities,
-    renderModal: renderAddSubcategoryModal
-  }), /*#__PURE__*/React.createElement("table", {
-    className: "table table-centered table-borderless mb-0"
-  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Name"), /*#__PURE__*/React.createElement("th", null, "TIN Attachment"), /*#__PURE__*/React.createElement("th", null, "VRN Attachment"), /*#__PURE__*/React.createElement("th", null, "Actions"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Linda G. Smith Linda G. Smith Linda G. Smith"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
-    href: "",
-    className: "btn btn-light"
-  }, "281-308-0793 ", /*#__PURE__*/React.createElement("i", {
-    className: "uil-cloud-download ml-1"
-  }))), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
-    href: "",
-    className: "btn btn-light"
-  }, "281-308-0793 ", /*#__PURE__*/React.createElement("i", {
-    className: "uil-cloud-download ml-1"
-  }))), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
-    href: "javascript: void(0);",
-    className: "action-icon"
-  }, " ", /*#__PURE__*/React.createElement("i", {
-    className: "mdi mdi-pencil"
-  })), /*#__PURE__*/React.createElement("a", {
-    href: "javascript: void(0);",
-    className: "action-icon"
-  }, " ", /*#__PURE__*/React.createElement("i", {
-    className: "dripicons-trash"
-  })))))));
-}
+/***/ "./resources/js/Shared/SelectInput.js":
+/*!********************************************!*\
+  !*** ./resources/js/Shared/SelectInput.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
+  var label = _ref.label,
+      name = _ref.name,
+      className = _ref.className,
+      children = _ref.children,
+      _ref$errors = _ref.errors,
+      errors = _ref$errors === void 0 ? [] : _ref$errors,
+      props = _objectWithoutProperties(_ref, ["label", "name", "className", "children", "errors"]);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group ".concat(className)
+  }, label && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: name
+  }, label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", _extends({
+    id: name,
+    name: name
+  }, props, {
+    className: "custom-select ".concat(errors.length ? 'error' : '')
+  }), children), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback ",
+    style: {
+      display: 'block'
+    }
+  }, errors));
+});
+
+/***/ }),
+
+/***/ "./resources/js/Shared/TextInput.js":
+/*!******************************************!*\
+  !*** ./resources/js/Shared/TextInput.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
+  var label = _ref.label,
+      name = _ref.name,
+      className = _ref.className,
+      _ref$errors = _ref.errors,
+      errors = _ref$errors === void 0 ? [] : _ref$errors,
+      props = _objectWithoutProperties(_ref, ["label", "name", "className", "errors"]);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group ".concat(className)
+  }, label && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: name
+  }, label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({
+    id: name,
+    name: name
+  }, props, {
+    className: "form-control"
+  })), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback",
+    style: {
+      display: 'block'
+    }
+  }, errors));
+});
 
 /***/ })
 
