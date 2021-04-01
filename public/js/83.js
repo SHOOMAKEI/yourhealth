@@ -1,37 +1,33 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[83],{
 
-/***/ "./resources/js/Pages/ServiceProviders/requests/components/profile/index.tsx":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/Pages/ServiceProviders/requests/components/profile/index.tsx ***!
-  \***********************************************************************************/
-/*! exports provided: Company, FacilityServices, Facility, MedicalRegistrations, ProfileInfo, Qualifications, Services */
+/***/ "./resources/js/Pages/ServiceProviders/requests/components/profile/Company.jsx":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviders/requests/components/profile/Company.jsx ***!
+  \*************************************************************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/service-providers/requests/components/profile/Company'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-throw new Error("Cannot find module '@pages/service-providers/requests/components/profile/Company'");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/service-providers/requests/components/profile/Facility'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-throw new Error("Cannot find module '@pages/service-providers/requests/components/profile/Facility'");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/service-providers/requests/components/profile/FacilityServices'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-throw new Error("Cannot find module '@pages/service-providers/requests/components/profile/FacilityServices'");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/service-providers/requests/components/profile/MedicalRegistrations'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-throw new Error("Cannot find module '@pages/service-providers/requests/components/profile/MedicalRegistrations'");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/service-providers/requests/components/profile/ProfileInfo'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-throw new Error("Cannot find module '@pages/service-providers/requests/components/profile/ProfileInfo'");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/service-providers/requests/components/profile/Qualifications'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-throw new Error("Cannot find module '@pages/service-providers/requests/components/profile/Qualifications'");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '@pages/service-providers/requests/components/profile/Services'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-throw new Error("Cannot find module '@pages/service-providers/requests/components/profile/Services'");
-
-
-
-
-
-
-
-
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Company; });
+function Company() {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "tab-pane fade",
+    id: "v-pills-company",
+    role: "tabpanel",
+    "aria-labelledby": "v-pills-company-tab"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/React.createElement("table", {
+    className: "table table-centered mb-0"
+  }, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Name")), /*#__PURE__*/React.createElement("td", null, "336-508-2157")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Trading name")), /*#__PURE__*/React.createElement("td", null, "606-253-1207")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "TIN")), /*#__PURE__*/React.createElement("td", null, "646-473-2057")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "VRN")), /*#__PURE__*/React.createElement("td", null, "281-308-0793")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Website")), /*#__PURE__*/React.createElement("td", null, "606-253-1207")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Registration number")), /*#__PURE__*/React.createElement("td", null, "606-253-1207")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Registration date")), /*#__PURE__*/React.createElement("td", null, "606-253-1207")))), /*#__PURE__*/React.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/React.createElement("table", {
+    className: "table table-centered mb-0"
+  }, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Phone number")), /*#__PURE__*/React.createElement("td", null, "336-508-2157")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Alternate phone number")), /*#__PURE__*/React.createElement("td", null, "646-473-2057")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Email")), /*#__PURE__*/React.createElement("td", null, "281-308-0793")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Address")), /*#__PURE__*/React.createElement("td", null, "606-253-1207")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Physical Address")), /*#__PURE__*/React.createElement("td", null, "606-253-1207")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Description")), /*#__PURE__*/React.createElement("td", null, "606-253-1207"))))));
+}
 
 /***/ })
 

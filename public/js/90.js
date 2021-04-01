@@ -1,13 +1,18 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[90],{
 
-/***/ "./resources/js/Pages/Services/packages/membership/List.tsx":
-/*!******************************************************************!*\
-  !*** ./resources/js/Pages/Services/packages/membership/List.tsx ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./resources/js/Pages/Services/packages/Packages.jsx":
+/*!***********************************************************!*\
+  !*** ./resources/js/Pages/Services/packages/Packages.jsx ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: The keyword 'interface' is reserved (7:0)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n| import {selectMembership} from \"@pages/data/actions/memberships\";\n| \n> interface ListProps {\n|     memberships: Array<membershipsValues>\n| }");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Packages; });
+function Packages() {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", null, "Packages from components"));
+}
 
 /***/ })
 
