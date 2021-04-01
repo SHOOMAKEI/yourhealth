@@ -1,3 +1,5 @@
+import React from 'react'
+
 export default function Company() {
     return (
         <div className="tab-pane fade" id="v-pills-company" role="tabpanel"

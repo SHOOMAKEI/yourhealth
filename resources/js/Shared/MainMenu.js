@@ -6,8 +6,8 @@ export default () => {
   return (
     <ul className="nav aside-nav">
       <MainMenuItem text="Dashboard" link="dashboard" icon="icon-grid" />
-      <MainMenuItem text="Store Configuration" link="stores.index" icon="con-equalizer" />
-      <MainMenuItem text="Product" link="product.index" icon="icon-bag" />
+      <MainMenuItem text="Store Configuration" link="dashboard" icon="con-equalizer" />
+      <MainMenuItem text="Product" link="dashboard" icon="icon-bag" />
       {/*   */}
     </ul>
   );

@@ -1,19 +1,17 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[101],{
 
-/***/ "./resources/js/Pages/Services/subcategories/[category_id].jsx":
-/*!*********************************************************************!*\
-  !*** ./resources/js/Pages/Services/subcategories/[category_id].jsx ***!
-  \*********************************************************************/
+/***/ "./resources/js/Pages/Services/services/components/paginator.jsx":
+/*!***********************************************************************!*\
+  !*** ./resources/js/Pages/Services/services/components/paginator.jsx ***!
+  \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _pages_services_subcategories_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/pages/services/subcategories/components */ "./resources/js/pages/services/subcategories/components/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/pages/Utilities/Constants */ "./resources/js/pages/Utilities/Constants.js");
-/* harmony import */ var _pages_framework__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/pages/framework */ "./resources/js/pages/framework.jsx");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Paginator; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -27,117 +25,89 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
+function Paginator(_ref) {
+  var batchCount = _ref.batchCount,
+      totalItems = _ref.totalItems,
+      activePageCallBack = _ref.activePageCallBack;
 
-
-
-var CATEGORIES_BATCH_COUNT = 10;
-
-var ManageSubcategories = function ManageSubcategories() {
-  var _useSelector = useSelector(function (state) {
-    return state.subcategoriesStore;
-  }),
-      subcategories = _useSelector.subcategories;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(CATEGORIES_BATCH_COUNT),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([1]),
       _useState2 = _slicedToArray(_useState, 2),
-      subcategoriesBatchCount = _useState2[0],
-      setSubcategoriesBatchCount = _useState2[1];
+      pages = _useState2[0],
+      setPages = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(subcategories.slice(0, subcategoriesBatchCount)),
-      _useState4 = _slicedToArray(_useState3, 2),
-      shownSubcategories = _useState4[0],
-      setShownSubcategories = _useState4[1];
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    calculatePagination();
+  }, [batchCount, totalItems]);
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
-      _useState6 = _slicedToArray(_useState5, 2),
-      paginatorSP = _useState6[0],
-      setPaginatorSP = _useState6[1];
+  function calculatePagination() {
+    var _pages = Math.ceil(totalItems / batchCount);
 
-  var category_id = router.query.category_id;
+    setPages(Array.from(Array(_pages).keys()));
+  }
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('Service'),
-      _useState8 = _slicedToArray(_useState7, 2),
-      heading = _useState8[0],
-      setHeading = _useState8[1];
-
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    if (subcategories.length > 0) {
-      setShownSubcategories(subcategories.slice(paginatorSP, paginatorSP + subcategoriesBatchCount));
-    }
-  }, [subcategories]);
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    queryCategory({
-      variables: {
-        id: category_id
-      }
+  function setActive(id) {
+    pages.map(function (page) {
+      $("#page-".concat(page)).removeClass('active');
     });
-  }, []);
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    if (data) {
-      dispatch(storeServiceSubcategories(data.serviceCategory.service_sub_categories));
-      setHeading(data.serviceCategory.name);
-    }
-  }, [data]);
-
-  function renderAddSubcategoryModal() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_pages_services_subcategories_components__WEBPACK_IMPORTED_MODULE_0__["AddSubcategoryModal"], {
-      modalID: _pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__["ADD_CATEGORY_MODAL_ID"],
-      operation: "add"
-    });
+    $("#page-".concat(id)).addClass('active');
+    activePageCallBack(id);
   }
 
-  function selectPage(page) {
-    var startingPoint = page === 0 ? 0 : page * subcategoriesBatchCount;
-    var endingPoint = startingPoint + subcategoriesBatchCount;
-    setShownSubcategories(subcategories.slice(startingPoint, endingPoint));
-    setPaginatorSP(startingPoint);
-    return 0;
-  }
-
-  function searchSubcategories(content) {
-    if (content.length === 0) {
-      setShownSubcategories(subcategories.slice(0, subcategoriesBatchCount));
-    } else {
-      setShownSubcategories(subcategories.filter(function (subcategory) {
-        if (subcategory.name.toLowerCase().includes(content.toLowerCase())) {
-          return subcategory;
-        }
-      }));
-    }
-  }
-
-  function renderContent() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "row",
-      style: {
-        paddingTop: 30 + 'px'
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row px-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-12 col-md-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "dataTables_info",
+    id: "service-categories-table_info",
+    role: "status",
+    "aria-live": "polite"
+  }, "Showing 1 to ", batchCount, " of ", totalItems, " entries")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-12 col-md-7"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "dataTables_paginate paging_simple_numbers float-right",
+    id: "service-categories-table_paginate"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "pagination pagination-rounded"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "paginate_button page-item previous disabled",
+    id: "service-categories-table_previous"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#",
+    "aria-controls": "service-categories-table",
+    "data-dt-idx": "0",
+    tabIndex: 0,
+    className: "page-link"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "uil uil-angle-left"
+  }))), pages.map(function (page) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      className: "paginate_button page-item ".concat(page === 0 && 'active'),
+      key: page,
+      id: "page-".concat(page),
+      onClick: function onClick() {
+        return setActive(page);
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-xl-7"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "card px-2"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_pages_services_subcategories_components__WEBPACK_IMPORTED_MODULE_0__["Heading"], {
-      title: "".concat(heading, " subcategories"),
-      renderModal: renderAddSubcategoryModal,
-      modalID: _pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__["ADD_CATEGORY_MODAL_ID"],
-      search: searchSubcategories
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_pages_services_subcategories_components__WEBPACK_IMPORTED_MODULE_0__["ServiceCategoriesTable"], {
-      categories: shownSubcategories
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_pages_services_subcategories_components__WEBPACK_IMPORTED_MODULE_0__["Paginator"], {
-      batchCount: subcategoriesBatchCount,
-      totalItems: subcategories.length,
-      activePageCallBack: selectPage
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-xl-5"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_pages_services_subcategories_components__WEBPACK_IMPORTED_MODULE_0__["InfoSideBar"], null)));
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_pages_framework__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    renderContent: renderContent
-  });
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (ManageSubcategories);
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "#",
+      "aria-controls": "service-categories-table",
+      "data-dt-idx": "".concat(page),
+      tabIndex: 0,
+      className: "page-link"
+    }, page));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "paginate_button page-item next",
+    id: "service-categories-table_next"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#",
+    "aria-controls": "service-categories-table",
+    "data-dt-idx": "3",
+    tabIndex: 0,
+    className: "page-link"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "uil uil-angle-right"
+  })))))));
+}
 
 /***/ })
 

@@ -43,7 +43,11 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
+<<<<<<< HEAD
 /******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"4c0be60f3937a3ab3f13","1":"e4b987653b22c40871c8","2":"1a72e86874d8f217f6ea","3":"a34f3dd10f6efd93ed3d","4":"8d9f94f6edd53011be05","5":"6c31ef573fa147690424","6":"d6bbf1bbd528aa40c92f","7":"8811bdc272d58aa828c1","8":"1d986b418ffba1d791be","9":"11c5af2b822516d0e7f5","10":"c44741cee60f9e50d339","11":"b2c0e19e8555a730c5e7","12":"bd67fa9316aad8293072","13":"5d807cfd2047f258e8fa","14":"44e551ddacbc70271137","15":"37f2869afd43771b2e46","16":"b432deea380709bfb895","17":"5777d545bf815306f2e6","18":"3790008c2c5942647227","19":"6648455a1be6262b3ab9","20":"91639c54558bc11b7b5d","21":"046f31b7c18bba32a901","22":"587f6386454024807886","23":"5260112200cb43b19840","24":"2f54ba9ac37933807a36","25":"dbdc9c9e56c317391299","26":"11ff4a34faf8cd55d795","27":"d3f454a74b3bdb4f9565","28":"4b9ff64e4a5cab4f8b88","29":"63beb7bd783ef098da22","30":"7ebf0f070817acb40760","31":"577fb087c22eaa6640a8","32":"944e950c916de81d0659","33":"5dbff89a9de11a9704a4","34":"2cf900a055a642e19f25","35":"a0747c473be661ef4e81","36":"3a9d8705da17f4676718","37":"2ce9e27cf0a98f9457af","38":"9db6cb49e8ff4bf07d88","39":"942ebf6ff45ca0d9723d","40":"aed1a88e14376324edaf","41":"dc4e9f326b7bbae35d19","42":"3438455e9038be11059a","43":"a2966447db8bd8d19211","44":"91ee5bf83a06e74b4e2d","45":"f0eb19fa03d278c6d1e6","46":"7b01649900d8618e9415","47":"d2b2db80c1d3718b994d","48":"fcab10723bed7e851e43","49":"16958f9be83c9d829fe7","50":"4094ef01cac1ffd9dc7d","51":"58c498428ad9d3f3e747","52":"82f07cdddc5e9e3878f4","53":"bbdeadb5fc9248a914de","54":"c38d7f5234614cdfed56","55":"c887088066a5343bfb34","56":"7db62ba13d5052b271c6","57":"547bdc713611ca9c553d","58":"85e972ff1fb184a66d4f","59":"ced1fc9a56187a496210","60":"53f2a0c02dad1170391f","61":"621599e0b89304e7a14b","62":"10bbbdaa8a9c1aa0da29","63":"985f7ed10af67f83605f","64":"e41994b54e5b967e2893","65":"041c500b5d33158e3327","66":"86cd5fbce44f1e8e3d56","67":"97d02ab726cb5c6eb6c8","68":"9a676e5bfc4c3a0e6e4e","69":"2d032949c93bbd3ea503","70":"a7caf86bdf03673165a5","71":"2a132040399faf47e97b","72":"931617dfb69e2694ecc2","73":"7c0c1233bfc54f2424d1","74":"97e31fc8e7b2f7ab5b2a","75":"6c52223cc95a4af4551b","76":"9b689b3f71a0f577422e","77":"76828e65a499aad4e9fc","78":"e83851c0e78dfbde75c0","79":"33a8cc67a1c91c1cd12a","80":"01c6787866a8beff2548","81":"fc64e8c5cff8dd9fce30","82":"281b62a9575389c7d618","83":"ee8aae7ee9e2a55412d6","84":"38adf0d6a53ecdbf79cb","85":"becf5ab7e06bc2c65cd6","86":"f6deaff3358a9d629d98","87":"0dbc42637641730e9f08","88":"b28c8ca1bb619a417ff1","89":"fed15719d0c5b392d6b6","90":"5ca2b225cb2c344da5d1","91":"0baaf44452902d381994","92":"603fc27675be50e4a3dd","93":"1e164d410a1f0bb40c41","94":"6b98eab7d272dc462c49","95":"bfdca7c8299c5f165441","96":"1220cb379e022bee70c4","97":"55e82cf281947bc31056","98":"891feedfdc8cfd7eb101","99":"19680dd6e744533c507e","100":"ab70d4fd6ea0a60f2164","101":"9d918d6b2a27f13605ee","102":"5e61670d9a473d1e3f1f","103":"59cab95b4f9986250814","104":"a967ef3f6aee00f52fee","105":"fa14dae26d4b3b622822","106":"55d6004c145dd6ecf497","107":"bebd011df4fa8d452270","108":"d57b42536a0147412887","109":"37a97af89038d9b0ff6d","110":"6c2b2b9ad80c64b907ec","111":"e91cd24ac4a991083d6f","112":"ed14228279e440db7376","113":"f6596052a0952bb404ad","114":"95138c829d37d964e089","115":"58d74bd8c3e172bf73a5","116":"3868421e0539ff0a5ad2","117":"0a2836aacaa73e36e354","118":"1073621eb34a907e18bb","119":"4fcd32bbf3b8d0d1be8b","120":"75e41605236b792e2628","121":"a7a8eae2bc4dd1b1c9d4","122":"a7295fd7b8cf53467061","123":"bbe87ee1d8e6cc8eba5e","124":"31d1dd0597b90657781e","125":"f44ca5ac483e08f0934e","126":"7e393d44c21e4a87d7cd","127":"c5dd59cfb22e504f4a3c","128":"4fb577e7db169f4fa2eb","129":"0035cf72abacc09bb2dc","130":"edbda6f1d68c997e714f","131":"7323eb6cc0fca7d94ff6","132":"7569289c10ef3ee52216","133":"6349e4c376e5e7eddcfe","134":"8766cd1d6d732a0cf4f9","135":"d38dd3b30fdad013d9f8","136":"634e257368bcbc81ceb1","137":"bf730364ae0cdf6d8c9f","138":"97482edc9b34e399df17","139":"ff037eed48b726164bbc","140":"ca6e3dcc4b2fbb5740ac","141":"5d71335787b4fd360443","142":"6060b7d388ebabe810d1","143":"af8044516616c18404ca","144":"5d0464d5fbda2b196970","145":"36797b35b7867610a5a4","146":"9672a533c73664ba5d8e","147":"d64d2be2555a2dda1a1a","148":"43edf77515d8f80bea1e","149":"bd38f0aa0aaf0167e4ba","150":"79ea801cb50ec493c016","151":"291788f39d73ed0941c3","152":"6bedfca3727d3324991a","153":"49c6050188a4fc4a73fb"}[chunkId] + ""
+=======
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"c71a34adf2969bf8c31b","1":"4544c93f3e965e959764","2":"fd6ff076ee317522ff52","3":"8c5ec9be553da26d5c12","4":"8d9f94f6edd53011be05","5":"6c31ef573fa147690424","6":"141a62016a60d77a8cad","7":"cc029e9291f40527ae9d","8":"cfaff03b8f6bc7c0a916","9":"11c5af2b822516d0e7f5","10":"d3bdd4a60f0c52b4c1ba","11":"b2c0e19e8555a730c5e7","12":"aacd162caa356aae61cb","13":"5d807cfd2047f258e8fa","14":"46f00f8bf47ecfac59d7","15":"057109b23fdc6e545176","16":"c581857257372007abe9","17":"3a0f2623165cda8e5b81","18":"3790008c2c5942647227","19":"6648455a1be6262b3ab9","20":"10a8e147ce829440f379","21":"046f31b7c18bba32a901","22":"2a5742df88b9026d6362","23":"5260112200cb43b19840","24":"2f54ba9ac37933807a36","25":"dbdc9c9e56c317391299","26":"11ff4a34faf8cd55d795","27":"d3f454a74b3bdb4f9565","28":"4b9ff64e4a5cab4f8b88","29":"63beb7bd783ef098da22","30":"7ebf0f070817acb40760","31":"577fb087c22eaa6640a8","32":"944e950c916de81d0659","33":"5dbff89a9de11a9704a4","34":"72036994393f1d3a6a94","35":"a0747c473be661ef4e81","36":"3a9d8705da17f4676718","37":"2ce9e27cf0a98f9457af","38":"29a0cab628407708146e","39":"63798bd5e7c3e01b96b2","40":"45b48622547ed9d701f0","41":"4bd5dee495e49dd15633","42":"208f0c6fd864d730653d","43":"d1785b078c256ce9d637","44":"3fe50e54e89b25592556","45":"071e59aa33284c298e47","46":"e575cc55bf00205f52d3","47":"d0f4075e195929742d8d","48":"aff687d392544c87605a","49":"e057c70d913a7430b4a9","50":"d135691eda604e08117f","51":"3a0460914d740ef72b8f","52":"36dc56ef846710be8352","53":"0474e089f5c7d4c7e6ee","54":"be19451c7aae5e2394d8","55":"1584307926fe9c8c4c7e","56":"cc7e605a5c5a3b7ce995","57":"ad97e69b898d7917244c","58":"d813c74df5328da2cd05","59":"a10f6efb034f53601a93","60":"3ea881d67f966b73a774","61":"5865eec2e8a8df75bff0","62":"5367caaab2c65e5c24f7","63":"3eba60edffff30f6ed42","64":"67c4d75ececcc3b8ac81","65":"55382f0c3ca8ad19cd9d","66":"f9d2d8b68606d4fa2b5f","67":"2afd990bd8430027235f","68":"7d7af75ebcc84317e4fe","69":"6e1d5a95da67b1b01ac3","70":"9ed0c5b36895cf569ab4","71":"6d72aded5478bec327d5","72":"3c0a802e13ad5418ed57","73":"9c0f22f99a15d012f4fc","74":"7dc59d9015a1ce6939e6","75":"c9c834ad2f685662093b","76":"71eeaa28f0ec8938e880","77":"24228c659298d4307cde","78":"7d830033f0d5149c0cd7","79":"6887f856797a3484daa5","80":"3e14a8820fbf48bfc467","81":"a6797427a7e9f4007b33","82":"07e475de65d7e7817d20","83":"6b70e53d390a945e1a10","84":"17dad7290fd8785c53e9","85":"8712aae479b3ddcf93f3","86":"2bc17cedc762b35ed5df","87":"289a7df8862d9618ea5d","88":"84a7c0c8966aecbb2778","89":"f8bed6bde0a47a4b8514","90":"8b0e320e604eb6221056","91":"8f3502127111f35702c6","92":"87243ec4a29a523df3c1","93":"d332028e3ae6a07d55f8","94":"4600720301d4121db11e","95":"27f5d29c6d241d3c5faf","96":"df2ac25ce8dec88ec129","97":"0dcec6de48675dbc2950","98":"70a2587298f22b0e80b1","99":"5ed390989f43aa21d946","100":"f11713d5361b54038e83","101":"7009e725db4809ef9412","102":"5e61670d9a473d1e3f1f","103":"59cab95b4f9986250814","104":"a967ef3f6aee00f52fee","105":"fa14dae26d4b3b622822","106":"55d6004c145dd6ecf497","107":"bebd011df4fa8d452270","108":"d57b42536a0147412887","109":"37a97af89038d9b0ff6d","110":"6c2b2b9ad80c64b907ec","111":"e91cd24ac4a991083d6f","112":"ed14228279e440db7376","113":"f6596052a0952bb404ad","114":"95138c829d37d964e089","115":"58d74bd8c3e172bf73a5"}[chunkId] + ""
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -70255,12 +70259,20 @@ var map = {
 	"./Auth/ForgotPassword": [
 		"./resources/js/Pages/Auth/ForgotPassword.js",
 		9,
+<<<<<<< HEAD
 		44
+=======
+		46
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/ForgotPassword.js": [
 		"./resources/js/Pages/Auth/ForgotPassword.js",
 		9,
+<<<<<<< HEAD
 		44
+=======
+		46
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/Login": [
 		"./resources/js/Pages/Auth/Login.js",
@@ -70276,25 +70288,43 @@ var map = {
 		"./resources/js/Pages/Auth/Register.js",
 		9,
 		9,
+<<<<<<< HEAD
 		16,
 		45
+=======
+		17,
+		47
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/Register.js": [
 		"./resources/js/Pages/Auth/Register.js",
 		9,
 		9,
+<<<<<<< HEAD
 		16,
 		45
+=======
+		17,
+		47
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/Registration/Register": [
 		"./resources/js/Pages/Auth/Registration/Register.jsx",
 		9,
+<<<<<<< HEAD
 		69
+=======
+		71
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/Registration/Register.jsx": [
 		"./resources/js/Pages/Auth/Registration/Register.jsx",
 		9,
+<<<<<<< HEAD
 		69
+=======
+		71
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/Registration/RegisterCompanyServiceProvider": [
 		"./resources/js/Pages/Auth/Registration/RegisterCompanyServiceProvider.jsx",
@@ -70310,15 +70340,25 @@ var map = {
 		"./resources/js/Pages/Auth/Registration/RegisterFacilityServiceProvider.jsx",
 		9,
 		9,
+<<<<<<< HEAD
 		16,
 		70
+=======
+		17,
+		72
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/Registration/RegisterFacilityServiceProvider.jsx": [
 		"./resources/js/Pages/Auth/Registration/RegisterFacilityServiceProvider.jsx",
 		9,
 		9,
+<<<<<<< HEAD
 		16,
 		70
+=======
+		17,
+		72
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/Registration/RegisterIndividualServiceProvider": [
 		"./resources/js/Pages/Auth/Registration/RegisterIndividualServiceProvider.jsx",
@@ -70333,84 +70373,148 @@ var map = {
 	"./Auth/ResetPassword": [
 		"./resources/js/Pages/Auth/ResetPassword.js",
 		9,
+<<<<<<< HEAD
 		46
+=======
+		48
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/ResetPassword.js": [
 		"./resources/js/Pages/Auth/ResetPassword.js",
 		9,
+<<<<<<< HEAD
 		46
+=======
+		48
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/TwoFactorChallenge": [
 		"./resources/js/Pages/Auth/TwoFactorChallenge.js",
 		7,
+<<<<<<< HEAD
 		71
+=======
+		73
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/TwoFactorChallenge.js": [
 		"./resources/js/Pages/Auth/TwoFactorChallenge.js",
 		7,
+<<<<<<< HEAD
 		71
+=======
+		73
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/VerifyEmail": [
 		"./resources/js/Pages/Auth/VerifyEmail.js",
 		9,
+<<<<<<< HEAD
 		72
+=======
+		74
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/VerifyEmail.js": [
 		"./resources/js/Pages/Auth/VerifyEmail.js",
 		9,
+<<<<<<< HEAD
 		72
+=======
+		74
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/components/CompanyRegistration": [
 		"./resources/js/Pages/Auth/components/CompanyRegistration.jsx",
 		9,
+<<<<<<< HEAD
 		47
+=======
+		49
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/components/CompanyRegistration.jsx": [
 		"./resources/js/Pages/Auth/components/CompanyRegistration.jsx",
 		9,
+<<<<<<< HEAD
 		47
+=======
+		49
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/components/FacilityRegistration": [
 		"./resources/js/Pages/Auth/components/FacilityRegistration.jsx",
 		9,
 		9,
+<<<<<<< HEAD
 		16
+=======
+		17
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/components/FacilityRegistration.jsx": [
 		"./resources/js/Pages/Auth/components/FacilityRegistration.jsx",
 		9,
 		9,
+<<<<<<< HEAD
 		16
+=======
+		17
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/components/IndividualRegistration": [
 		"./resources/js/Pages/Auth/components/IndividualRegistration.jsx",
 		9,
+<<<<<<< HEAD
 		48
+=======
+		50
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/components/IndividualRegistration.jsx": [
 		"./resources/js/Pages/Auth/components/IndividualRegistration.jsx",
 		9,
+<<<<<<< HEAD
 		48
+=======
+		50
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/components/PasswordResetByEmailForm": [
 		"./resources/js/Pages/Auth/components/PasswordResetByEmailForm.jsx",
 		9,
+<<<<<<< HEAD
 		49
+=======
+		51
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/components/PasswordResetByEmailForm.jsx": [
 		"./resources/js/Pages/Auth/components/PasswordResetByEmailForm.jsx",
 		9,
+<<<<<<< HEAD
 		49
+=======
+		51
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/components/PasswordResetByPhoneForm": [
 		"./resources/js/Pages/Auth/components/PasswordResetByPhoneForm.jsx",
 		9,
+<<<<<<< HEAD
 		50
+=======
+		52
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/components/PasswordResetByPhoneForm.jsx": [
 		"./resources/js/Pages/Auth/components/PasswordResetByPhoneForm.jsx",
 		9,
+<<<<<<< HEAD
 		50
+=======
+		52
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/components/facilityForms/FirstForm": [
 		"./resources/js/Pages/Auth/components/facilityForms/FirstForm.jsx",
@@ -70435,12 +70539,20 @@ var map = {
 	"./Auth/components/facilityForms/ThirdForm": [
 		"./resources/js/Pages/Auth/components/facilityForms/ThirdForm.jsx",
 		9,
+<<<<<<< HEAD
 		51
+=======
+		53
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Auth/components/facilityForms/ThirdForm.jsx": [
 		"./resources/js/Pages/Auth/components/facilityForms/ThirdForm.jsx",
 		9,
+<<<<<<< HEAD
 		51
+=======
+		53
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Dashboard": [
 		"./resources/js/Pages/Dashboard.js",
@@ -70455,36 +70567,61 @@ var map = {
 	"./Landing/Hero": [
 		"./resources/js/Pages/Landing/Hero.jsx",
 		9,
+<<<<<<< HEAD
 		73
+=======
+		75
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Landing/Hero.jsx": [
 		"./resources/js/Pages/Landing/Hero.jsx",
 		9,
+<<<<<<< HEAD
 		73
+=======
+		75
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Landing/Index": [
 		"./resources/js/Pages/Landing/Index.jsx",
 		9,
+<<<<<<< HEAD
 		52
+=======
+		54
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Landing/Index.jsx": [
 		"./resources/js/Pages/Landing/Index.jsx",
 		9,
+<<<<<<< HEAD
 		52
+=======
+		54
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Landing/Nav": [
 		"./resources/js/Pages/Landing/Nav.jsx",
 		9,
+<<<<<<< HEAD
 		74
+=======
+		76
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Landing/Nav.jsx": [
 		"./resources/js/Pages/Landing/Nav.jsx",
 		9,
+<<<<<<< HEAD
 		74
+=======
+		76
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/Register": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/Register.jsx",
 		9,
+<<<<<<< HEAD
 		1,
 		2,
 		8,
@@ -70493,10 +70630,21 @@ var map = {
 		11,
 		14,
 		53
+=======
+		2,
+		3,
+		7,
+		10,
+		12,
+		11,
+		15,
+		38
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/Register.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/Register.jsx",
 		9,
+<<<<<<< HEAD
 		1,
 		2,
 		8,
@@ -70505,30 +70653,57 @@ var map = {
 		11,
 		14,
 		53
+=======
+		2,
+		3,
+		7,
+		10,
+		12,
+		11,
+		15,
+		38
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/RegistrationNav": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/RegistrationNav.jsx",
 		9,
+<<<<<<< HEAD
 		75
+=======
+		77
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/RegistrationNav.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/RegistrationNav.jsx",
 		9,
+<<<<<<< HEAD
 		75
+=======
+		77
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/Topnav": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/Topnav.jsx",
 		9,
+<<<<<<< HEAD
 		76
+=======
+		63
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/Topnav.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/Topnav.jsx",
 		9,
+<<<<<<< HEAD
 		76
+=======
+		63
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/index.jsx",
 		9,
+<<<<<<< HEAD
 		1,
 		2,
 		8,
@@ -70536,10 +70711,20 @@ var map = {
 		12,
 		11,
 		14
+=======
+		2,
+		3,
+		7,
+		10,
+		12,
+		11,
+		15
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/index.jsx",
 		9,
+<<<<<<< HEAD
 		1,
 		2,
 		8,
@@ -70547,6 +70732,15 @@ var map = {
 		12,
 		11,
 		14
+=======
+		2,
+		3,
+		7,
+		10,
+		12,
+		11,
+		15
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/AddFacilityModal": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/AddFacilityModal.jsx",
@@ -70561,26 +70755,44 @@ var map = {
 	"./ServiceProviderProfileCompletion/components/profile/AddMedicalRegistrationModal": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/AddMedicalRegistrationModal.jsx",
 		9,
+<<<<<<< HEAD
 		1,
+=======
+		2,
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 		25
 	],
 	"./ServiceProviderProfileCompletion/components/profile/AddMedicalRegistrationModal.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/AddMedicalRegistrationModal.jsx",
 		9,
+<<<<<<< HEAD
 		1,
+=======
+		2,
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 		25
 	],
 	"./ServiceProviderProfileCompletion/components/profile/AddQualificationModal": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/AddQualificationModal.jsx",
 		9,
+<<<<<<< HEAD
 		1,
 		2
+=======
+		2,
+		3
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/AddQualificationModal.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/AddQualificationModal.jsx",
 		9,
+<<<<<<< HEAD
 		1,
 		2
+=======
+		2,
+		3
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/Company": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Company.jsx",
@@ -70607,34 +70819,58 @@ var map = {
 	"./ServiceProviderProfileCompletion/components/profile/FacilityServices": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/FacilityServices.jsx",
 		9,
+<<<<<<< HEAD
 		62
+=======
+		64
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/FacilityServices.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/FacilityServices.jsx",
 		9,
+<<<<<<< HEAD
 		62
+=======
+		64
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/Heading": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Heading.jsx",
 		9,
+<<<<<<< HEAD
 		77
+=======
+		78
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/Heading.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Heading.jsx",
 		9,
+<<<<<<< HEAD
 		77
+=======
+		78
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/MedicalRegistrations": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/MedicalRegistrations.jsx",
 		9,
+<<<<<<< HEAD
 		1,
+=======
+		2,
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 		10,
 		29
 	],
 	"./ServiceProviderProfileCompletion/components/profile/MedicalRegistrations.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/MedicalRegistrations.jsx",
 		9,
+<<<<<<< HEAD
 		1,
+=======
+		2,
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 		10,
 		29
 	],
@@ -70653,76 +70889,135 @@ var map = {
 	"./ServiceProviderProfileCompletion/components/profile/QualificationAttachment": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/QualificationAttachment.jsx",
 		9,
+<<<<<<< HEAD
 		1,
 		2,
 		38
+=======
+		2,
+		3,
+		39
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/QualificationAttachment.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/QualificationAttachment.jsx",
 		9,
+<<<<<<< HEAD
 		1,
 		2,
 		38
+=======
+		2,
+		3,
+		39
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/Qualifications": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Qualifications.jsx",
 		9,
+<<<<<<< HEAD
 		1,
 		2,
 		54
+=======
+		2,
+		3,
+		55
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/Qualifications.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Qualifications.jsx",
 		9,
+<<<<<<< HEAD
 		1,
 		2,
 		54
+=======
+		2,
+		3,
+		55
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/RegisteredServices": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/RegisteredServices.jsx",
 		9,
+<<<<<<< HEAD
 		78
+=======
+		79
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/RegisteredServices.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/RegisteredServices.jsx",
 		9,
+<<<<<<< HEAD
 		78
+=======
+		79
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/RequestServiceModal": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/RequestServiceModal.jsx",
 		9,
+<<<<<<< HEAD
 		39
+=======
+		40
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/RequestServiceModal.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/RequestServiceModal.jsx",
 		9,
+<<<<<<< HEAD
 		39
+=======
+		40
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/Services": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Services.jsx",
 		9,
+<<<<<<< HEAD
 		8,
 		61
+=======
+		7,
+		62
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/Services.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Services.jsx",
 		9,
+<<<<<<< HEAD
 		8,
 		61
+=======
+		7,
+		62
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/UnregisteredServices": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/UnregisteredServices.jsx",
 		9,
+<<<<<<< HEAD
 		79
+=======
+		80
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/UnregisteredServices.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/UnregisteredServices.jsx",
 		9,
+<<<<<<< HEAD
 		79
+=======
+		80
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/index": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/index.jsx",
 		9,
+<<<<<<< HEAD
 		1,
 		2,
 		8,
@@ -70730,10 +71025,20 @@ var map = {
 		12,
 		11,
 		14
+=======
+		2,
+		3,
+		7,
+		10,
+		12,
+		11,
+		15
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./ServiceProviderProfileCompletion/components/profile/index.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/index.jsx",
 		9,
+<<<<<<< HEAD
 		1,
 		2,
 		8,
@@ -70974,10 +71279,92 @@ var map = {
 		"./resources/js/Pages/ServiceProviders/requests/components/profile/index.jsx",
 		9,
 		0
+=======
+		2,
+		3,
+		7,
+		10,
+		12,
+		11,
+		15
 	],
-	"./ServiceProviders/requests/components/profile/index.tsx": [
-		"./resources/js/Pages/ServiceProviders/requests/components/profile/index.tsx",
+	"./ServiceProviders/requests/components": [
+		"./resources/js/Pages/ServiceProviders/requests/components/index.jsx",
 		9,
+		0,
+		18
+	],
+	"./ServiceProviders/requests/components/": [
+		"./resources/js/Pages/ServiceProviders/requests/components/index.jsx",
+		9,
+		0,
+		18
+	],
+	"./ServiceProviders/requests/components/Heading": [
+		"./resources/js/Pages/ServiceProviders/requests/components/Heading.jsx",
+		9,
+		81
+	],
+	"./ServiceProviders/requests/components/Heading.jsx": [
+		"./resources/js/Pages/ServiceProviders/requests/components/Heading.jsx",
+		9,
+		81
+	],
+	"./ServiceProviders/requests/components/ProfileNav": [
+		"./resources/js/Pages/ServiceProviders/requests/components/ProfileNav.jsx",
+		9,
+		82
+	],
+	"./ServiceProviders/requests/components/ProfileNav.jsx": [
+		"./resources/js/Pages/ServiceProviders/requests/components/ProfileNav.jsx",
+		9,
+		82
+	],
+	"./ServiceProviders/requests/components/ProviderProfile": [
+		"./resources/js/Pages/ServiceProviders/requests/components/ProviderProfile.jsx",
+		9,
+		0,
+		83
+	],
+	"./ServiceProviders/requests/components/ProviderProfile.jsx": [
+		"./resources/js/Pages/ServiceProviders/requests/components/ProviderProfile.jsx",
+		9,
+		0,
+		83
+	],
+	"./ServiceProviders/requests/components/ServiceProvider": [
+		"./resources/js/Pages/ServiceProviders/requests/components/ServiceProvider.jsx",
+		9,
+		0
+	],
+	"./ServiceProviders/requests/components/ServiceProvider.jsx": [
+		"./resources/js/Pages/ServiceProviders/requests/components/ServiceProvider.jsx",
+		9,
+		0
+	],
+	"./ServiceProviders/requests/components/ServiceProvidersTable": [
+		"./resources/js/Pages/ServiceProviders/requests/components/ServiceProvidersTable.jsx",
+		9,
+		0,
+		30
+	],
+	"./ServiceProviders/requests/components/ServiceProvidersTable.jsx": [
+		"./resources/js/Pages/ServiceProviders/requests/components/ServiceProvidersTable.jsx",
+		9,
+		0,
+		30
+	],
+	"./ServiceProviders/requests/components/index": [
+		"./resources/js/Pages/ServiceProviders/requests/components/index.jsx",
+		9,
+		0,
+		18
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
+	],
+	"./ServiceProviders/requests/components/index.jsx": [
+		"./resources/js/Pages/ServiceProviders/requests/components/index.jsx",
+		9,
+<<<<<<< HEAD
 		129
 	],
 	"./ServiceProviders/requests/providers": [
@@ -70998,6 +71385,114 @@ var map = {
 		"./resources/js/Pages/ServiceProviders/requests/providers.page.tsx",
 		7,
 		130
+=======
+		0,
+		18
+	],
+	"./ServiceProviders/requests/components/profile": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/index.jsx",
+		9,
+		0
+	],
+	"./ServiceProviders/requests/components/profile/": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/index.jsx",
+		9,
+		0
+	],
+	"./ServiceProviders/requests/components/profile/Company": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/Company.jsx",
+		9,
+		84
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
+	],
+	"./ServiceProviders/requests/components/profile/Company.jsx": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/Company.jsx",
+		9,
+		84
+	],
+	"./ServiceProviders/requests/components/profile/Facility": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/Facility.jsx",
+		9,
+		85
+	],
+	"./ServiceProviders/requests/components/profile/Facility.jsx": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/Facility.jsx",
+		9,
+		85
+	],
+	"./ServiceProviders/requests/components/profile/FacilityServices": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/FacilityServices.jsx",
+		9,
+		65
+	],
+	"./ServiceProviders/requests/components/profile/FacilityServices.jsx": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/FacilityServices.jsx",
+		9,
+		65
+	],
+	"./ServiceProviders/requests/components/profile/MedicalRegistrations": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/MedicalRegistrations.jsx",
+		9,
+		86
+	],
+	"./ServiceProviders/requests/components/profile/MedicalRegistrations.jsx": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/MedicalRegistrations.jsx",
+		9,
+		86
+	],
+	"./ServiceProviders/requests/components/profile/ProfileInfo": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/ProfileInfo.jsx",
+		9,
+		0
+	],
+	"./ServiceProviders/requests/components/profile/ProfileInfo.jsx": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/ProfileInfo.jsx",
+		9,
+		0
+	],
+	"./ServiceProviders/requests/components/profile/Qualifications": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/Qualifications.jsx",
+		9,
+		87
+	],
+	"./ServiceProviders/requests/components/profile/Qualifications.jsx": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/Qualifications.jsx",
+		9,
+		87
+	],
+	"./ServiceProviders/requests/components/profile/Services": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/Services.jsx",
+		9,
+		66
+	],
+	"./ServiceProviders/requests/components/profile/Services.jsx": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/Services.jsx",
+		9,
+		66
+	],
+	"./ServiceProviders/requests/components/profile/index": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/index.jsx",
+		9,
+		0
+	],
+	"./ServiceProviders/requests/components/profile/index.jsx": [
+		"./resources/js/Pages/ServiceProviders/requests/components/profile/index.jsx",
+		9,
+		0
+	],
+	"./ServiceProviders/requests/providers": [
+		"./resources/js/Pages/ServiceProviders/requests/providers.jsx",
+		9,
+		1,
+		0,
+		24
+	],
+	"./ServiceProviders/requests/providers.jsx": [
+		"./resources/js/Pages/ServiceProviders/requests/providers.jsx",
+		9,
+		1,
+		0,
+		24
 	],
 	"./Services/categories/components": [
 		"./resources/js/Pages/Services/categories/components/index.js",
@@ -71024,36 +71519,64 @@ var map = {
 	"./Services/categories/components/Heading": [
 		"./resources/js/Pages/Services/categories/components/Heading.jsx",
 		9,
+<<<<<<< HEAD
 		87
+=======
+		88
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/categories/components/Heading.jsx": [
 		"./resources/js/Pages/Services/categories/components/Heading.jsx",
 		9,
+<<<<<<< HEAD
 		87
+=======
+		88
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/categories/components/Manage": [
 		"./resources/js/Pages/Services/categories/components/Manage.jsx",
 		9,
+<<<<<<< HEAD
 		5,
 		17,
 		55
+=======
+		1,
+		5,
+		56
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/categories/components/Manage.jsx": [
 		"./resources/js/Pages/Services/categories/components/Manage.jsx",
 		9,
+<<<<<<< HEAD
 		5,
 		17,
 		55
+=======
+		1,
+		5,
+		56
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/categories/components/deleteDialog": [
 		"./resources/js/Pages/Services/categories/components/deleteDialog.jsx",
 		9,
+<<<<<<< HEAD
 		65
+=======
+		67
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/categories/components/deleteDialog.jsx": [
 		"./resources/js/Pages/Services/categories/components/deleteDialog.jsx",
 		9,
+<<<<<<< HEAD
 		65
+=======
+		67
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/categories/components/index": [
 		"./resources/js/Pages/Services/categories/components/index.js",
@@ -71071,33 +71594,57 @@ var map = {
 		"./resources/js/Pages/Services/categories/components/infosidebar.jsx",
 		9,
 		5,
+<<<<<<< HEAD
 		88
+=======
+		89
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/categories/components/infosidebar.jsx": [
 		"./resources/js/Pages/Services/categories/components/infosidebar.jsx",
 		9,
 		5,
+<<<<<<< HEAD
 		88
+=======
+		89
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/categories/components/paginator": [
 		"./resources/js/Pages/Services/categories/components/paginator.jsx",
 		9,
+<<<<<<< HEAD
 		89
+=======
+		90
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/categories/components/paginator.jsx": [
 		"./resources/js/Pages/Services/categories/components/paginator.jsx",
 		9,
+<<<<<<< HEAD
 		89
+=======
+		90
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/categories/components/serviceCategory": [
 		"./resources/js/Pages/Services/categories/components/serviceCategory.jsx",
 		9,
+<<<<<<< HEAD
 		56
+=======
+		57
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/categories/components/serviceCategory.jsx": [
 		"./resources/js/Pages/Services/categories/components/serviceCategory.jsx",
 		9,
+<<<<<<< HEAD
 		56
+=======
+		57
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/categories/components/serviceCategoryTable": [
 		"./resources/js/Pages/Services/categories/components/serviceCategoryTable.jsx",
@@ -71108,6 +71655,7 @@ var map = {
 		"./resources/js/Pages/Services/categories/components/serviceCategoryTable.jsx",
 		9,
 		32
+<<<<<<< HEAD
 	],
 	"./Services/packages/Memberships": [
 		"./resources/js/Pages/Services/packages/Memberships.jsx",
@@ -71258,9 +71806,67 @@ var map = {
 		9,
 		13,
 		21
+=======
 	],
-	"./Services/requested/components/index.ts": [
-		"./resources/js/Pages/Services/requested/components/index.ts",
+	"./Services/packages/Memberships": [
+		"./resources/js/Pages/Services/packages/Memberships.jsx",
+		9,
+		16,
+		41
+	],
+	"./Services/packages/Memberships.jsx": [
+		"./resources/js/Pages/Services/packages/Memberships.jsx",
+		9,
+		16,
+		41
+	],
+	"./Services/packages/Packages": [
+		"./resources/js/Pages/Services/packages/Packages.jsx",
+		9,
+		91
+	],
+	"./Services/packages/Packages.jsx": [
+		"./resources/js/Pages/Services/packages/Packages.jsx",
+		9,
+		91
+	],
+	"./Services/packages/manage": [
+		"./resources/js/Pages/Services/packages/manage.jsx",
+		9,
+		1,
+		16,
+		23
+	],
+	"./Services/packages/manage.jsx": [
+		"./resources/js/Pages/Services/packages/manage.jsx",
+		9,
+		1,
+		16,
+		23
+	],
+	"./Services/packages/membership/AddMembership": [
+		"./resources/js/Pages/Services/packages/membership/AddMembership.jsx",
+		9,
+		58
+	],
+	"./Services/packages/membership/AddMembership.jsx": [
+		"./resources/js/Pages/Services/packages/membership/AddMembership.jsx",
+		9,
+		58
+	],
+	"./Services/packages/membership/Heading": [
+		"./resources/js/Pages/Services/packages/membership/Heading.jsx",
+		9,
+		92
+	],
+	"./Services/packages/membership/Heading.jsx": [
+		"./resources/js/Pages/Services/packages/membership/Heading.jsx",
+		9,
+		92
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
+	],
+	"./Services/packages/membership/List": [
+		"./resources/js/Pages/Services/packages/membership/List.jsx",
 		9,
 		139
 	],
@@ -71274,6 +71880,7 @@ var map = {
 		9,
 		94
 	],
+<<<<<<< HEAD
 	"./Services/requested/components/infosidebar.tsx": [
 		"./resources/js/Pages/Services/requested/components/infosidebar.tsx",
 		7,
@@ -71342,18 +71949,130 @@ var map = {
 		"./resources/js/Pages/Services/requested/manage.page.tsx",
 		7,
 		144
+=======
+	"./Services/packages/membership/List.jsx": [
+		"./resources/js/Pages/Services/packages/membership/List.jsx",
+		9,
+		93
+	],
+	"./Services/packages/membership/SelectedInfo": [
+		"./resources/js/Pages/Services/packages/membership/SelectedInfo.jsx",
+		9,
+		16
+	],
+	"./Services/packages/membership/SelectedInfo.jsx": [
+		"./resources/js/Pages/Services/packages/membership/SelectedInfo.jsx",
+		9,
+		16
+	],
+	"./Services/requested/components": [
+		"./resources/js/Pages/Services/requested/components/index.js",
+		9,
+		13,
+		21
+	],
+	"./Services/requested/components/": [
+		"./resources/js/Pages/Services/requested/components/index.js",
+		9,
+		13,
+		21
+	],
+	"./Services/requested/components/Heading": [
+		"./resources/js/Pages/Services/requested/components/Heading.jsx",
+		9,
+		94
+	],
+	"./Services/requested/components/Heading.jsx": [
+		"./resources/js/Pages/Services/requested/components/Heading.jsx",
+		9,
+		94
+	],
+	"./Services/requested/components/index": [
+		"./resources/js/Pages/Services/requested/components/index.js",
+		9,
+		13,
+		21
+	],
+	"./Services/requested/components/index.js": [
+		"./resources/js/Pages/Services/requested/components/index.js",
+		9,
+		13,
+		21
+	],
+	"./Services/requested/components/infosidebar": [
+		"./resources/js/Pages/Services/requested/components/infosidebar.jsx",
+		9,
+		95
+	],
+	"./Services/requested/components/infosidebar.jsx": [
+		"./resources/js/Pages/Services/requested/components/infosidebar.jsx",
+		9,
+		95
+	],
+	"./Services/requested/components/paginator": [
+		"./resources/js/Pages/Services/requested/components/paginator.jsx",
+		9,
+		96
+	],
+	"./Services/requested/components/paginator.jsx": [
+		"./resources/js/Pages/Services/requested/components/paginator.jsx",
+		9,
+		96
+	],
+	"./Services/requested/components/service": [
+		"./resources/js/Pages/Services/requested/components/service.jsx",
+		9,
+		97
+	],
+	"./Services/requested/components/service.jsx": [
+		"./resources/js/Pages/Services/requested/components/service.jsx",
+		9,
+		97
+	],
+	"./Services/requested/components/servicesTable": [
+		"./resources/js/Pages/Services/requested/components/servicesTable.jsx",
+		9,
+		59
+	],
+	"./Services/requested/components/servicesTable.jsx": [
+		"./resources/js/Pages/Services/requested/components/servicesTable.jsx",
+		9,
+		59
+	],
+	"./Services/requested/manage": [
+		"./resources/js/Pages/Services/requested/manage.jsx",
+		9,
+		1,
+		13,
+		42
+	],
+	"./Services/requested/manage.jsx": [
+		"./resources/js/Pages/Services/requested/manage.jsx",
+		9,
+		1,
+		13,
+		42
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/services/[subcategory_id]": [
 		"./resources/js/Pages/Services/services/[subcategory_id].jsx",
 		9,
+<<<<<<< HEAD
 		3,
 		4,
 		7,
 		59
+=======
+		1,
+		4,
+		6,
+		60
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/services/[subcategory_id].jsx": [
 		"./resources/js/Pages/Services/services/[subcategory_id].jsx",
 		9,
+<<<<<<< HEAD
 		3,
 		4,
 		7,
@@ -71432,10 +72151,90 @@ var map = {
 		9,
 		4,
 		7
+=======
+		1,
+		4,
+		6,
+		60
 	],
-	"./Services/services/components/index.ts": [
-		"./resources/js/Pages/Services/services/components/index.ts",
+	"./Services/services/components": [
+		"./resources/js/Pages/Services/services/components/index.js",
 		9,
+		4,
+		6
+	],
+	"./Services/services/components/": [
+		"./resources/js/Pages/Services/services/components/index.js",
+		9,
+		4,
+		6
+	],
+	"./Services/services/components/AddServiceModal": [
+		"./resources/js/Pages/Services/services/components/AddServiceModal.jsx",
+		9,
+		4
+	],
+	"./Services/services/components/AddServiceModal.jsx": [
+		"./resources/js/Pages/Services/services/components/AddServiceModal.jsx",
+		9,
+		4
+	],
+	"./Services/services/components/Heading": [
+		"./resources/js/Pages/Services/services/components/Heading.jsx",
+		9,
+		98
+	],
+	"./Services/services/components/Heading.jsx": [
+		"./resources/js/Pages/Services/services/components/Heading.jsx",
+		9,
+		98
+	],
+	"./Services/services/components/deleteDialog": [
+		"./resources/js/Pages/Services/services/components/deleteDialog.jsx",
+		9,
+		99
+	],
+	"./Services/services/components/deleteDialog.jsx": [
+		"./resources/js/Pages/Services/services/components/deleteDialog.jsx",
+		9,
+		99
+	],
+	"./Services/services/components/index": [
+		"./resources/js/Pages/Services/services/components/index.js",
+		9,
+		4,
+		6
+	],
+	"./Services/services/components/index.js": [
+		"./resources/js/Pages/Services/services/components/index.js",
+		9,
+		4,
+		6
+	],
+	"./Services/services/components/infosidebar": [
+		"./resources/js/Pages/Services/services/components/infosidebar.jsx",
+		9,
+		4,
+		6,
+		100
+	],
+	"./Services/services/components/infosidebar.jsx": [
+		"./resources/js/Pages/Services/services/components/infosidebar.jsx",
+		9,
+		4,
+		6,
+		100
+	],
+	"./Services/services/components/paginator": [
+		"./resources/js/Pages/Services/services/components/paginator.jsx",
+		9,
+		101
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
+	],
+	"./Services/services/components/paginator.jsx": [
+		"./resources/js/Pages/Services/services/components/paginator.jsx",
+		9,
+<<<<<<< HEAD
 		4,
 		149
 	],
@@ -71502,42 +72301,97 @@ var map = {
 		"./resources/js/Pages/Services/services/components/servicesTable.tsx",
 		7,
 		153
+=======
+		101
+	],
+	"./Services/services/components/service": [
+		"./resources/js/Pages/Services/services/components/service.jsx",
+		9,
+		68
+	],
+	"./Services/services/components/service.jsx": [
+		"./resources/js/Pages/Services/services/components/service.jsx",
+		9,
+		68
+	],
+	"./Services/services/components/servicesTable": [
+		"./resources/js/Pages/Services/services/components/servicesTable.jsx",
+		9,
+		43
+	],
+	"./Services/services/components/servicesTable.jsx": [
+		"./resources/js/Pages/Services/services/components/servicesTable.jsx",
+		9,
+		43
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/subcategories/[category_id]": [
 		"./resources/js/Pages/Services/subcategories/[category_id].jsx",
 		9,
+<<<<<<< HEAD
 		6,
 		17,
 		101
+=======
+		1,
+		8,
+		14,
+		44
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/subcategories/[category_id].jsx": [
 		"./resources/js/Pages/Services/subcategories/[category_id].jsx",
 		9,
+<<<<<<< HEAD
 		6,
 		17,
 		101
+=======
+		1,
+		8,
+		14,
+		44
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/subcategories/components": [
 		"./resources/js/Pages/Services/subcategories/components/index.js",
 		9,
+<<<<<<< HEAD
 		6,
+=======
+		8,
+		14,
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 		20
 	],
 	"./Services/subcategories/components/": [
 		"./resources/js/Pages/Services/subcategories/components/index.js",
 		9,
+<<<<<<< HEAD
 		6,
+=======
+		8,
+		14,
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 		20
 	],
 	"./Services/subcategories/components/AddSubcategoryModal": [
 		"./resources/js/Pages/Services/subcategories/components/AddSubcategoryModal.jsx",
 		9,
+<<<<<<< HEAD
 		60
+=======
+		61
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/subcategories/components/AddSubcategoryModal.jsx": [
 		"./resources/js/Pages/Services/subcategories/components/AddSubcategoryModal.jsx",
 		9,
+<<<<<<< HEAD
 		60
+=======
+		61
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/subcategories/components/Heading": [
 		"./resources/js/Pages/Services/subcategories/components/Heading.jsx",
@@ -71562,24 +72416,42 @@ var map = {
 	"./Services/subcategories/components/index": [
 		"./resources/js/Pages/Services/subcategories/components/index.js",
 		9,
+<<<<<<< HEAD
 		6,
+=======
+		8,
+		14,
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 		20
 	],
 	"./Services/subcategories/components/index.js": [
 		"./resources/js/Pages/Services/subcategories/components/index.js",
 		9,
+<<<<<<< HEAD
 		6,
+=======
+		8,
+		14,
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 		20
 	],
 	"./Services/subcategories/components/infosidebar": [
 		"./resources/js/Pages/Services/subcategories/components/infosidebar.jsx",
 		9,
+<<<<<<< HEAD
 		6
+=======
+		8
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/subcategories/components/infosidebar.jsx": [
 		"./resources/js/Pages/Services/subcategories/components/infosidebar.jsx",
 		9,
+<<<<<<< HEAD
 		6
+=======
+		8
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/subcategories/components/paginator": [
 		"./resources/js/Pages/Services/subcategories/components/paginator.jsx",
@@ -71594,22 +72466,38 @@ var map = {
 	"./Services/subcategories/components/serviceCategoryTable": [
 		"./resources/js/Pages/Services/subcategories/components/serviceCategoryTable.jsx",
 		9,
+<<<<<<< HEAD
 		43
+=======
+		45
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/subcategories/components/serviceCategoryTable.jsx": [
 		"./resources/js/Pages/Services/subcategories/components/serviceCategoryTable.jsx",
 		9,
+<<<<<<< HEAD
 		43
+=======
+		45
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/subcategories/components/serviceSubategory": [
 		"./resources/js/Pages/Services/subcategories/components/serviceSubategory.jsx",
 		9,
+<<<<<<< HEAD
 		67
+=======
+		69
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Services/subcategories/components/serviceSubategory.jsx": [
 		"./resources/js/Pages/Services/subcategories/components/serviceSubategory.jsx",
 		9,
+<<<<<<< HEAD
 		67
+=======
+		69
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Utilities/Constants": [
 		"./resources/js/Pages/Utilities/Constants.js",
@@ -71724,24 +72612,42 @@ var map = {
 	"./Utilities/topnav": [
 		"./resources/js/Pages/Utilities/topnav.jsx",
 		9,
+<<<<<<< HEAD
 		3
+=======
+		1
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./Utilities/topnav.jsx": [
 		"./resources/js/Pages/Utilities/topnav.jsx",
 		9,
+<<<<<<< HEAD
 		3
+=======
+		1
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./framework": [
 		"./resources/js/Pages/framework.jsx",
 		9,
+<<<<<<< HEAD
 		3,
 		68
+=======
+		1,
+		70
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	],
 	"./framework.jsx": [
 		"./resources/js/Pages/framework.jsx",
 		9,
+<<<<<<< HEAD
 		3,
 		68
+=======
+		1,
+		70
+>>>>>>> df8a6d8ff01e9dbc7924c991210d8ca8a014886d
 	]
 };
 function webpackAsyncContext(req) {
@@ -71864,7 +72770,7 @@ window.axios.defaults.withCredentials = true;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Projects\yourhealth\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\omake\Desktop\Projects\yourhealth\resources\js\app.js */"./resources/js/app.js");
 
 
 /***/ }),

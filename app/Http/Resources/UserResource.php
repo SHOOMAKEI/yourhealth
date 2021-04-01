@@ -25,9 +25,9 @@ class UserResource extends JsonResource
             'settings' => $this->settings,
             'roles' => $this->roles,
             'permissions' => $this->permissions,
-            'prvider_profile' => $this->provider_profile,
+            'provider_profile' => $this->provider_profile,
 
-            
+
         ];
     }
 }

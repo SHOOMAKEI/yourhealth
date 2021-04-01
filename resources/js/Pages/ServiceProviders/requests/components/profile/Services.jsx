@@ -1,9 +1,11 @@
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {initializeDataTable} from "@/Pages/Utilities/Services";
+import {usePage} from "@inertiajs/inertia-react";
 
 const SERVICES_DATA_TABLE = 'provider-services-datatable'
 
 export default function Services() {
+    const { services } = usePage().props
     useEffect(() => {
         initializeDataTable(true, true, SERVICES_DATA_TABLE)
     }, [])
