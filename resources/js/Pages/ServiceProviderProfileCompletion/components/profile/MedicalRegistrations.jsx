@@ -6,15 +6,17 @@ import Heading from '@/Pages/ServiceProviderProfileCompletion/components/profile
 import {usePage} from "@inertiajs/inertia-react";
 
 export default function MedicalRegistrations() {
-   const {medicalRegistrations} = usePage().props
+    // const {medicalRegistrations} = usePage().props
+    const [medicalRegistrations,setMedicalRegistration] = useState({})
 
-    // useEffect(() => {
-    //     let data = queryMedRegResponse.data
-    //
-    //     if (data && data.medicalRegistrationInfo) {
-    //         setMedicalRegistrations(data.medicalRegistrationInfo)
-    //     }
-    // }, [queryMedRegResponse.data])
+
+
+    useEffect(() => {
+
+
+
+
+    }, [])
     //
     // useEffect(() => {
     //     let data = deleteMedRegResponse.data

@@ -44,6 +44,22 @@ class HandleInertiaRequests extends Middleware
                             : null,
             'status' => Session::get('status'),
             'alertType' => Session::get('alertType'),
+            'locale' => app()->getLocale(),
+            'selectable_locale' => function() {
+                $index=0;
+                $data = [];
+                foreach (language()->allowed() as $key => $value) {
+                    $data[$index]['url'] = language()->back($key);
+                    $data[$index]['name'] = $value;
+                    $data[$index]['flag'] = asset('assets/images/flags/'. language()->country($key) .'.png');
+                    $data[$index]['flag_width'] = config('language.flags.width');
+                }
+                return $data;
+            },
+            'language' => function(){
+                return translations(
+                    resource_path('lang/'. app()->getLocale() .'.json'));
+            }
         ]);
     }
 }

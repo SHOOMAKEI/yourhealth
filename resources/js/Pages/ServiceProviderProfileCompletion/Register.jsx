@@ -38,11 +38,11 @@ function Register() {
                                     <div className="col-sm-9">
                                         <div className="tab-content" id="v-pills-tabContent">
                                             <ProfileInfo user={user } provider_sub_levels={provider_sub_levels}/>
-                                            {user.provider_profile.account_category_type === 'individual' && <Qualifications /> }
-                                            {user.provider_profile.account_category_type === 'company' && <Company /> }
-                                            {user.provider_profile.account_category_type === 'individual' && <MedicalRegistrations /> }
-                                            <Services user={user} />
-                                            {user.provider_profile.account_category_type === 'facility' && <Facility /> }
+                                            {/*{user.provider_profile.account_category_type === 'individual' && <Qualifications /> }*/}
+                                            {/*{user.provider_profile.account_category_type === 'company' && <Company /> }*/}
+                                            {/*{user.provider_profile.account_category_type === 'individual' && <MedicalRegistrations /> }*/}
+                                            {/*<Services user={user} />*/}
+                                            {/*{user.provider_profile.account_category_type === 'facility' && <Facility /> }*/}
                                         </div>
                                     </div>
                                 </div>

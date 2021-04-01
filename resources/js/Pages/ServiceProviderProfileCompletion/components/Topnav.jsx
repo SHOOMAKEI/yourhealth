@@ -15,7 +15,7 @@ export default function TopNav({user}) {
                         <a className="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" id="topbar-userdrop" href="#" role="button" aria-haspopup="true"
                            aria-expanded="false">
                 <span className="account-user-avatar">
-                    <img src="/images/avatar.jpg" alt="user-image" className="rounded-circle" />
+                    <img src={user.profile_photo_path} alt="user-image" className="rounded-circle" />
                 </span>
                             <span>
                     <span className="account-user-name">{user.name}</span>

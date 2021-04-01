@@ -56,12 +56,12 @@ export default function ProfileInfo({user, provider_sub_levels}) {
                 <div className="row">
                     <div className="col-6">
                         <SelectInput
-                            name="name"
+                            name="title"
                             type="text"
-                            placeholder="Facility Name"
-                            label="Facility Name"
-                            errors={errors.name}
-                            value={values.name}
+                            placeholder="Title"
+                            label="Title"
+                            errors={errors.title}
+                            value={values.title}
                             onChange={handleChange}
                         >
                             <option value="Mr">Mr</option>
@@ -115,16 +115,16 @@ export default function ProfileInfo({user, provider_sub_levels}) {
                             value={values.gender}
                             onChange={handleChange}
                         >
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
                         </SelectInput>
                         <TextInput
-                            name="date"
+                            name="dob"
                             type="date"
                             placeholder="Date of Birth"
                             label="Date of Birth"
-                            errors={errors.date}
-                            value={values.date}
+                            errors={errors.dob}
+                            value={values.dob}
                             onChange={handleChange}
                         />
                     </div>
@@ -189,7 +189,7 @@ export default function ProfileInfo({user, provider_sub_levels}) {
                             <option value="Dr">Nurse</option>
                             <option value="Dr">Prof</option>
                         </SelectInput>
-                        <TextInput
+                        <TextAreaInput
                             name="bio"
                             type="text"
                             placeholder="Bio"
