@@ -1,22 +1,8 @@
-// import AddQualificationModal, { QualificationsValues } from '@pages/service-providers-registration/components/profile/AddQualificationModal'
 import React, { useEffect, useState } from 'react'
-
-// import { QUERY_EDUCATION_QUALIFICATION } from '@pages/utils/Query'
-// import { useApi } from '@pages/utils/ApolloClient'
+import {InertiaLink, usePage} from "@inertiajs/inertia-react";
 
 export default function Qualifications() {
-    const [queryQualifications, queryQualificationsResponse] = useApi({query: QUERY_EDUCATION_QUALIFICATION});
-    const [qualifications, setQualifications] = useState([]);
-
-    useEffect(() => {
-        let data = queryQualificationsResponse.data
-
-        if (data && data.educationQualificationInfo) {
-            setQualifications(data.educationQualificationInfo)
-        }
-    }, [queryQualificationsResponse.data])
-
-    useEffect(() => {queryQualifications({})}, [])
+    const { qualifications } = usePage().props
 
     return (
         <div className="tab-pane fade" id="v-pills-qualifications" role="tabpanel"
@@ -38,10 +24,10 @@ export default function Qualifications() {
                                     <td>{qualification.award_title}</td>
                                     <td>{qualification.institution_name}</td>
                                     <td>
-                                        <a href={`${qualification.attachment}`} className="btn btn-light">File <i className="uil-cloud-download ml-1"></i></a>
+                                        <InertiaLink href={`${qualification.attachment}`} className="btn btn-light">File <i className="uil-cloud-download ml-1"></i></InertiaLink>
                                     </td>
                                     <td>
-                                        <a href="javascript: void(0);" className="action-icon"> <i className="dripicons-trash"></i></a>
+                                        <InertiaLink href="#" className="action-icon"> <i className="dripicons-trash"></i></InertiaLink>
                                     </td>
                                 </tr>
                             ))

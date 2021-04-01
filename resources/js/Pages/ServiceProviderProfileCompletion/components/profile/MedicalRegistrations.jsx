@@ -1,40 +1,39 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { ADD_MEDICAL_REGISTRATION_MODAL_ID } from '@/Pages/Utilities/Constants'
 import AddMedicalRegistrationModal from '@/Pages/ServiceProviderProfileCompletion/components/profile/AddMedicalRegistrationModal'
 import Heading from '@/Pages/ServiceProviderProfileCompletion/components/profile/Heading'
+import {usePage} from "@inertiajs/inertia-react";
 
 export default function MedicalRegistrations() {
-    const [queryMedReg, queryMedRegResponse] = useApi({query: QUERY_MEDICAL_REGISTRATION});
-    const [deleteMedReg, deleteMedRegResponse] = useApi({query: DELETE_MEDICAL_REGISTRATION});
-    const [medicalRegistrations, setMedicalRegistrations] = useState([{}]);
+   const {medicalRegistrations} = usePage().props
 
-    useEffect(() => {
-        let data = queryMedRegResponse.data
-
-        if (data && data.medicalRegistrationInfo) {
-            setMedicalRegistrations(data.medicalRegistrationInfo)
-        }
-    }, [queryMedRegResponse.data])
-
-    useEffect(() => {
-        let data = deleteMedRegResponse.data
-
-        if (data && data.deleteProviderMedicalRegistration) {
-            let newMedicalRegistrations = medicalRegistrations.filter(md => {
-                if (md.id !== data.deleteProviderMedicalRegistration.id) {
-                    return md
-                }
-            })
-
-            setMedicalRegistrations(newMedicalRegistrations);
-        }
-    }, [deleteMedRegResponse.data])
+    // useEffect(() => {
+    //     let data = queryMedRegResponse.data
+    //
+    //     if (data && data.medicalRegistrationInfo) {
+    //         setMedicalRegistrations(data.medicalRegistrationInfo)
+    //     }
+    // }, [queryMedRegResponse.data])
+    //
+    // useEffect(() => {
+    //     let data = deleteMedRegResponse.data
+    //
+    //     if (data && data.deleteProviderMedicalRegistration) {
+    //         let newMedicalRegistrations = medicalRegistrations.filter(md => {
+    //             if (md.id !== data.deleteProviderMedicalRegistration.id) {
+    //                 return md
+    //             }
+    //         })
+    //
+    //         setMedicalRegistrations(newMedicalRegistrations);
+    //     }
+    // }, [deleteMedRegResponse.data])
 
 
 
     function deleteMedicalRegistration(id) {
-        deleteMedReg({variables: {attachment_id: id}})
+        // deleteMedReg({variables: {attachment_id: id}})
     }
 
     function searchMedicalRegistrations() {
@@ -46,9 +45,9 @@ export default function MedicalRegistrations() {
     }
 
     function addAttachment(attachment) {
-        let newMedicalRegistrations = [...medicalRegistrations];
-        newMedicalRegistrations.push(attachment);
-        setMedicalRegistrations(newMedicalRegistrations)
+        // let newMedicalRegistrations = [...medicalRegistrations];
+        // newMedicalRegistrations.push(attachment);
+        // setMedicalRegistrations(newMedicalRegistrations)
     }
 
     return (

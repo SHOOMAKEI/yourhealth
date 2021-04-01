@@ -1,3 +1,5 @@
+import React from 'react'
+
 export default function Facility() {
     return (
         <div className="tab-pane fade" id="v-pills-facility" role="tabpanel"

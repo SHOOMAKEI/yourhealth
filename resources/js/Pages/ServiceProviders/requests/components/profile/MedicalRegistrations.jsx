@@ -1,4 +1,9 @@
+import React from 'react'
+import {usePage} from "@inertiajs/inertia-react";
+
 export default function MedicalRegistrations() {
+    const { medical_registrations } = usePage().props
+
     return (
         <div className="tab-pane fade" id="v-pills-medical-registration" role="tabpanel"
              aria-labelledby="v-pills-medical-registration-tab">

@@ -242,121 +242,80 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
 /* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_AddMedicalRegistrationModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/AddMedicalRegistrationModal */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/AddMedicalRegistrationModal.jsx");
 /* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_Heading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/Heading */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Heading.jsx");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
 
 function MedicalRegistrations() {
-  var _useApi = useApi({
-    query: QUERY_MEDICAL_REGISTRATION
-  }),
-      _useApi2 = _slicedToArray(_useApi, 2),
-      queryMedReg = _useApi2[0],
-      queryMedRegResponse = _useApi2[1];
+  var medicalRegistrations = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__["usePage"])().props.medicalRegistrations; // useEffect(() => {
+  //     let data = queryMedRegResponse.data
+  //
+  //     if (data && data.medicalRegistrationInfo) {
+  //         setMedicalRegistrations(data.medicalRegistrationInfo)
+  //     }
+  // }, [queryMedRegResponse.data])
+  //
+  // useEffect(() => {
+  //     let data = deleteMedRegResponse.data
+  //
+  //     if (data && data.deleteProviderMedicalRegistration) {
+  //         let newMedicalRegistrations = medicalRegistrations.filter(md => {
+  //             if (md.id !== data.deleteProviderMedicalRegistration.id) {
+  //                 return md
+  //             }
+  //         })
+  //
+  //         setMedicalRegistrations(newMedicalRegistrations);
+  //     }
+  // }, [deleteMedRegResponse.data])
 
-  var _useApi3 = useApi({
-    query: DELETE_MEDICAL_REGISTRATION
-  }),
-      _useApi4 = _slicedToArray(_useApi3, 2),
-      deleteMedReg = _useApi4[0],
-      deleteMedRegResponse = _useApi4[1];
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([{}]),
-      _useState2 = _slicedToArray(_useState, 2),
-      medicalRegistrations = _useState2[0],
-      setMedicalRegistrations = _useState2[1];
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    var data = queryMedRegResponse.data;
-
-    if (data && data.medicalRegistrationInfo) {
-      setMedicalRegistrations(data.medicalRegistrationInfo);
-    }
-  }, [queryMedRegResponse.data]);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    var data = deleteMedRegResponse.data;
-
-    if (data && data.deleteProviderMedicalRegistration) {
-      var newMedicalRegistrations = medicalRegistrations.filter(function (md) {
-        if (md.id !== data.deleteProviderMedicalRegistration.id) {
-          return md;
-        }
-      });
-      setMedicalRegistrations(newMedicalRegistrations);
-    }
-  }, [deleteMedRegResponse.data]);
-
-  function deleteMedicalRegistration(id) {
-    deleteMedReg({
-      variables: {
-        attachment_id: id
-      }
-    });
+  function deleteMedicalRegistration(id) {// deleteMedReg({variables: {attachment_id: id}})
   }
 
   function searchMedicalRegistrations() {}
 
   function renderAddSubcategoryModal() {
-    return /*#__PURE__*/React.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_AddMedicalRegistrationModal__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_AddMedicalRegistrationModal__WEBPACK_IMPORTED_MODULE_2__["default"], {
       modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__["ADD_MEDICAL_REGISTRATION_MODAL_ID"],
       operation: "add",
       callback: addAttachment
     });
   }
 
-  function addAttachment(attachment) {
-    var newMedicalRegistrations = _toConsumableArray(medicalRegistrations);
-
-    newMedicalRegistrations.push(attachment);
-    setMedicalRegistrations(newMedicalRegistrations);
+  function addAttachment(attachment) {// let newMedicalRegistrations = [...medicalRegistrations];
+    // newMedicalRegistrations.push(attachment);
+    // setMedicalRegistrations(newMedicalRegistrations)
   }
 
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "tab-pane fade",
     id: "v-pills-medical-registration",
     role: "tabpanel",
     "aria-labelledby": "v-pills-medical-registration-tab"
-  }, /*#__PURE__*/React.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_Heading__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_Heading__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: "Medical Registration",
     modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__["ADD_MEDICAL_REGISTRATION_MODAL_ID"],
     buttonText: "Add",
     search: searchMedicalRegistrations,
     renderModal: renderAddSubcategoryModal
-  }), /*#__PURE__*/React.createElement("table", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "table table-centered table-borderless mb-0"
-  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Certificate Name"), /*#__PURE__*/React.createElement("th", null, "Certificate Number"), /*#__PURE__*/React.createElement("th", null, "Registration Number"), /*#__PURE__*/React.createElement("th", null, "Attachment"), /*#__PURE__*/React.createElement("th", null, "Actions"))), /*#__PURE__*/React.createElement("tbody", null, medicalRegistrations.map(function (medReg) {
-    return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, medReg.certificate_name), /*#__PURE__*/React.createElement("td", null, medReg.certificate_number), /*#__PURE__*/React.createElement("td", null, medReg.registration_number), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Certificate Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Certificate Number"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Registration Number"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Attachment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Actions"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, medicalRegistrations.map(function (medReg) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, medReg.certificate_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, medReg.certificate_number), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, medReg.registration_number), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "".concat(medReg.attachment),
       className: "btn btn-light"
-    }, "File ", /*#__PURE__*/React.createElement("i", {
+    }, "File ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "uil-cloud-download ml-1"
-    }))), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "javascript: void(0);",
       className: "action-icon",
       onClick: function onClick() {
         return deleteMedicalRegistration(medReg.id);
       }
-    }, /*#__PURE__*/React.createElement("i", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "dripicons-trash"
     }))));
   }))));

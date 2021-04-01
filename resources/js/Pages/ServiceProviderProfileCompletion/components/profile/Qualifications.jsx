@@ -1,50 +1,25 @@
 import AddQualificationModal, { QualificationsValues } from '@/Pages/ServiceProviderProfileCompletion/components/profile/AddQualificationModal'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { ADD_QUALIFICATION_MODAL_ID } from '@/Pages/Utilities/Constants'
 import Heading from '@/Pages/ServiceProviderProfileCompletion/components/profile/Heading'
+import {usePage} from "@inertiajs/inertia-react";
 
 export default function Qualifications({user}) {
-    const [queryQualifications, queryQualificationsResponse] = useApi({query: QUERY_EDUCATION_QUALIFICATION});
-    const [deleteQualification, deleteQualificationResponse] = useApi({query: DELETE_QUALIFICATION});
-    const [qualifications, setQualifications] = useState([]);
-
-    useEffect(() => {
-        let data = queryQualificationsResponse.data
-
-        if (data && data.educationQualificationInfo) {
-            setQualifications(data.educationQualificationInfo)
-        }
-    }, [queryQualificationsResponse.data])
-
-    useEffect(() => {queryQualifications({})}, [])
-
-    useEffect(() => {
-        let data = deleteQualificationResponse.data
-
-        if (data && data.deleteProviderQualification) {
-            let newQualifications = qualifications.filter(qualification => {
-                if (qualification.id !== data.deleteProviderQualification.id) {
-                    return qualification
-                }
-            })
-
-            setQualifications(newQualifications);
-        }
-    }, [deleteQualificationResponse.data])
+    const {qualifications } = usePage().props
 
     function searchQualifications() {
 
     }
 
     function _deleteQualification(id) {
-        deleteQualification({variables: {qualification_id: id}})
+        // deleteQualification({variables: {qualification_id: id}})
     }
 
     function addAttachment(attachment) {
-        let newQualifications = [...qualifications];
-        newQualifications.push(attachment);
-        setQualifications(newQualifications)
+        // let newQualifications = [...qualifications];
+        // newQualifications.push(attachment);
+        // setQualifications(newQualifications)
     }
 
     function renderAddSubcategoryModal() {
@@ -74,8 +49,6 @@ export default function Qualifications({user}) {
                 </thead>
                 <tbody>
                     {
-                        queryQualificationsResponse.loading || deleteQualificationResponse.loading ?
-                            <Spinner /> :
                             qualifications.map(qualification => (
                                 <tr key={qualification.id}>
                                     <td>{qualification.award_title}</td>
