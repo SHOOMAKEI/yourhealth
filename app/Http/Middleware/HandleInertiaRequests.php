@@ -53,6 +53,7 @@ class HandleInertiaRequests extends Middleware
                     $data[$index]['name'] = $value;
                     $data[$index]['flag'] = asset('assets/images/flags/'. language()->country($key) .'.png');
                     $data[$index]['flag_width'] = config('language.flags.width');
+                    $data[$index]['code'] = $key;
                 }
                 return $data;
             },

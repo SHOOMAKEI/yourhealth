@@ -16,7 +16,7 @@ import {usePage} from "@inertiajs/inertia-react";
 
 
 function Register() {
-    const {user, provider_sub_levels} = usePage().props
+    const {user, provider_sub_levels, qualifications, company, facilities, medical_registrations, all_services} = usePage().props
     return (
         <div className="account-pages mt-5 mb-5">
             <div className="container">
@@ -38,11 +38,14 @@ function Register() {
                                     <div className="col-sm-9">
                                         <div className="tab-content" id="v-pills-tabContent">
                                             <ProfileInfo user={user } provider_sub_levels={provider_sub_levels}/>
-                                            {/*{user.provider_profile.account_category_type === 'individual' && <Qualifications /> }*/}
-                                            {/*{user.provider_profile.account_category_type === 'company' && <Company /> }*/}
-                                            {/*{user.provider_profile.account_category_type === 'individual' && <MedicalRegistrations /> }*/}
+                                            {user.provider_profile.account_category_type === 'individual'
+                                                && <Qualifications qualifications={qualifications} /> }
+                                            {user.provider_profile.account_category_type === 'company'
+                                                && <Company company={company} /> }
+                                            {user.provider_profile.account_category_type === 'individual'
+                                                && <MedicalRegistrations medical_registrations={medical_registrations} services={all_services} /> }
                                             {/*<Services user={user} />*/}
-                                            {/*{user.provider_profile.account_category_type === 'facility' && <Facility /> }*/}
+                                            {/*{user.provider_profile.account_category_type === 'facility' && <Facility facilities={facilities} /> }*/}
                                         </div>
                                     </div>
                                 </div>

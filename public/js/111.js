@@ -28,7 +28,8 @@ function Languages() {
   }, selectable_locale.map(function (lang) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["InertiaLink"], {
       href: lang.url,
-      className: "dropdown-item notify-item"
+      className: "dropdown-item notify-item",
+      key: lang.code
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: lang.flag,
       alt: "user-image",

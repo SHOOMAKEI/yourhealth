@@ -237,7 +237,7 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
 
     public function createProviderQualification(array $request):ProviderQualification
     {
-        $qualification = $request['input'];
+        $qualification = $request;
 
         $provider_qualification = ProviderQualification::create([
             'award_title' => $qualification['award_title'],

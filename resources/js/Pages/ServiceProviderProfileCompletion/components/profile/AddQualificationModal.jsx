@@ -8,36 +8,17 @@ import TextAreaInput from "@/Shared/TextAreaInput";
 import FileInput from "@/Shared/FileInput";
 
 
-function FileUpload(props) {
-  const {field, form} = props;
 
-  const handleChange = async (e) => {
-    const file  =  e.currentTarget.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    let base64;
-    reader.onload = await function(event) {
-        base64 = event.target?.result
-        form.setFieldValue(field.name, base64);
-    }
-  };
-
-  return (
-    <div>
-      <input type={'file'} onChange={(o) => handleChange(o)} className={'form-control'}/>
-    </div>
-  );
-}
 
 export default function AddQualificationsModal({modalID, initialData, operation, title, callback}) {
     const { errors, status, alertType } = usePage().props;
     const [sending, setSending] = useState(false);
     const [values, setValues] = useState({
-        award_description: "No description",
+        description: "No description",
         award_title: "",
-        award_year: "",
-        award_institution: "",
-        award_attachment: ""
+        year: "",
+        institution_name: "",
+        attachment: ""
     });
 
     function handleChange(e) {
@@ -51,15 +32,27 @@ export default function AddQualificationsModal({modalID, initialData, operation,
         }));
     }
 
+
+
+
     function handleSubmit(e) {
         e.preventDefault();
         setSending(true);
-        Inertia.post(route('login'), values).then(() => {
+        Inertia.post(route('educationQualification.store'), values).then(() => {
             setSending(false);
         });
     }
 
-    function renderForm() {
+
+function handleFileUpload(field, file) {
+    setValues(values => ({
+        ...values,
+        [field]: file
+    }));
+}
+
+
+function renderForm() {
         return (
         <div>
             {
@@ -72,35 +65,35 @@ export default function AddQualificationsModal({modalID, initialData, operation,
                     </div>
                 )
             }
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-6">
                         <TextInput
-                            name="award_institution"
+                            name="institution_name"
                             type="text"
                             placeholder="Institution"
                             label="Institution"
-                            errors={errors.award_institution}
-                            value={values.award_institution}
+                            errors={errors.institution_name}
+                            value={values.institution_name}
                             onChange={handleChange}
                         />
                         <TextInput
-                            name="award_year"
+                            name="year"
                             type="text"
                             placeholder="Year"
                             label="year"
-                            errors={errors.award_year}
-                            value={values.award_year}
+                            errors={errors.year}
+                            value={values.year}
                             onChange={handleChange}
                         />
                         <TextAreaInput
-                            name="award_description"
+                            name="description"
                             type="text"
                             placeholder="Description"
                             label="Description"
                             rows={4}
-                            errors={errors.award_description}
-                            value={values.award_description}
+                            errors={errors.description}
+                            value={values.description}
                             onChange={handleChange}
                         />
                     </div>
@@ -119,17 +112,17 @@ export default function AddQualificationsModal({modalID, initialData, operation,
                             type="text"
                             placeholder="Attachment"
                             label="Attachment"
-                            errors={errors.award_attachment}
-                            value={values.award_attachment}
-                            onChange={handleChange}
+                            errors={errors.attachment}
+                            value={values.attachment}
+                            callback={handleFileUpload}
                         />
                     </div>
                 </div>
                 <div className="form-group mb-0 text-right">
-                    <button type="button" className="btn btn-light mr-3" data-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-light btn-sm mr-3" data-dismiss="modal">Close</button>
                     <LoadingButton
                         type="submit"
-                        className="btn btn-primary btn-block"
+                        className="btn btn-primary btn-sm"
                         loading={sending}
                     >
                         Save Changes

@@ -13,6 +13,7 @@ use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\ProviderProfileController;
 use App\Http\Controllers\Registration\RegistrationController;
 use App\Http\Controllers\RequiredVerificationController;
+use App\Http\Controllers\ServiceProviderProfileCompletion\EducationQualificationController;
 use App\Http\Controllers\ServiceProviderProfileCompletion\PersonalInfoController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SpecializationController;
@@ -143,7 +144,10 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
             ->name('personalInfo.index');
         Route::post('/personal-information/update', [PersonalInfoController::class, 'update'])
             ->name('personalInfo.update');
-        Route::resource('provider_profiles',ProviderProfileController::class);
+        Route::post('/education-qualification/store', [EducationQualificationController::class, 'store'])
+            ->name('educationQualification.store');
+        Route::get('/education-qualification/{qualification}/delete', [EducationQualificationController::class, 'destroy'])
+            ->name('educationQualification.destroy');
 
         Route::get('service_provider/profile_info', [ProviderProfileController::class ,'profileInfo'])
             ->name('profile-completion.index');

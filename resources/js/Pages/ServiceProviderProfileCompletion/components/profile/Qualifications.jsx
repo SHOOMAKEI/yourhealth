@@ -3,17 +3,24 @@ import React, { useEffect, useState } from 'react'
 
 import { ADD_QUALIFICATION_MODAL_ID } from '@/Pages/Utilities/Constants'
 import Heading from '@/Pages/ServiceProviderProfileCompletion/components/profile/Heading'
-import {usePage} from "@inertiajs/inertia-react";
+import {InertiaLink, usePage} from "@inertiajs/inertia-react";
+import {Inertia} from "@inertiajs/inertia";
 
-export default function Qualifications({user}) {
-    const {qualifications } = usePage().props
+export default function Qualifications({qualifications}) {
+    const { errors, status, alertType } = usePage().props;
+    const [sending, setSending] = useState(false);
 
     function searchQualifications() {
 
     }
 
-    function _deleteQualification(id) {
-        // deleteQualification({variables: {qualification_id: id}})
+    function _deleteQualification(e,id) {
+            e.preventDefault();
+            setSending(true);
+            Inertia.get(route('educationQualification.destroy',id)).then(() => {
+                setSending(false);
+            });
+
     }
 
     function addAttachment(attachment) {
@@ -57,9 +64,9 @@ export default function Qualifications({user}) {
                                         <a href={`${qualification.attachment}`} className="btn btn-light">File <i className="uil-cloud-download ml-1"></i></a>
                                     </td>
                                     <td>
-                                        <a href="javascript: void(0);" className="action-icon" onClick={() => _deleteQualification(qualification.id)}>
+                                        <InertiaLink href={route('educationQualification.destroy',qualification.id)} method="get"  className="action-icon">
                                             <i className="dripicons-trash"></i>
-                                        </a>
+                                        </InertiaLink>
                                     </td>
                                 </tr>
                             ))

@@ -2,7 +2,7 @@ import { ADD_FACILITY_MODAL_ID } from '@/Pages/Utilities/Constants'
 import AddFacilityModal from '@/Pages/ServiceProviderProfileCompletion/components/profile/AddFacilityModal'
 import Heading from '@/Pages/ServiceProviderProfileCompletion/components/profile/Heading'
 
-export default function Facility() {
+export default function Facility([facilities]) {
     function searchFacilities() {
 
     }

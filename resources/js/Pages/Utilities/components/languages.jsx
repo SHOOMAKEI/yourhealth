@@ -9,7 +9,7 @@ export default function Languages() {
 
             <div className="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu" aria-labelledby="topbar-languagedrop">
                 {selectable_locale.map((lang)=>(
-                    <InertiaLink href={lang.url} className="dropdown-item notify-item">
+                    <InertiaLink href={lang.url} className="dropdown-item notify-item" key={lang.code}>
                         <img src={lang.flag} alt="user-image" className="mr-1"  width={lang.flag_width} /> <span className="align-middle">{lang.name}</span>
                     </InertiaLink>
                 ))}

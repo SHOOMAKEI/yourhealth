@@ -6,6 +6,7 @@ import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import TextInput from '@/Shared/TextInput'
 import LoadingButton from '@/Shared/LoadingButton'
 import FileInput from "@/Shared/FileInput";
+import SelectInput from "@/Shared/SelectInput";
 
 
 
@@ -31,7 +32,7 @@ function FileUpload(props) {
     );
   }
 
-export default function AddQualificationsModal({modalID, initialData, operation, title, callback}) {
+export default function AddMedicalRegistrationModal({modalID, initialData, operation, title, callback, services}) {
     const { errors, status, alertType } = usePage().props;
     const [sending, setSending] = useState(false);
     const [values, setValues] = useState({
@@ -127,14 +128,27 @@ export default function AddQualificationsModal({modalID, initialData, operation,
                             value={values.attachment}
                             onChange={handleChange}
                         />
+                        <SelectInput
+                            name="service_id"
+                            type="text"
+                            placeholder="Authorize Service"
+                            label="Authorize Service"
+                            errors={errors.service_id}
+                            value={values.service_id}
+                            onChange={handleChange}
+                        >
+                            {services.map((service)=>(
+                                <option value={service.id} key={service.id}>{service.name}</option>
+                            ))}
+                        </SelectInput>
 
                     </div>
                 </div>
                 <div className="form-group mb-0 text-right">
-                    <button type="button" className="btn btn-light mr-3" data-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-light btn-sm mr-3" data-dismiss="modal">Close</button>
                     <LoadingButton
                         type="submit"
-                        className="btn btn-primary btn-block"
+                        className="btn btn-primary btn-sm"
                         loading={sending}
                     >
                         Save Changes

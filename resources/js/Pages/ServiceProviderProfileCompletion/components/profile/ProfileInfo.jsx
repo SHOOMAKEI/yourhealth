@@ -44,7 +44,7 @@ export default function ProfileInfo({user, provider_sub_levels}) {
     function handleSubmit(e) {
         e.preventDefault();
         setSending(true);
-        Inertia.post(route('login'), values).then(() => {
+        Inertia.post(route('personalInfo.update'), values).then(() => {
             setSending(false);
         });
     }
@@ -52,7 +52,7 @@ export default function ProfileInfo({user, provider_sub_levels}) {
     return (
         <div className="tab-pane fade active show" id="v-pills-profile" role="tabpanel"
              aria-labelledby="v-pills-profile-tab">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-6">
                         <SelectInput
@@ -184,10 +184,9 @@ export default function ProfileInfo({user, provider_sub_levels}) {
                             value={values.provider_sub_level_id}
                             onChange={handleChange}
                         >
-                            <option value="Mrs">Mrs</option>
-                            <option value="Dr">Dr</option>
-                            <option value="Dr">Nurse</option>
-                            <option value="Dr">Prof</option>
+                            {provider_sub_levels.map((level)=>(
+                                <option value={level.id} key={level.id}>{level.name}</option>
+                            ))}
                         </SelectInput>
                         <TextAreaInput
                             name="bio"
@@ -203,7 +202,7 @@ export default function ProfileInfo({user, provider_sub_levels}) {
                 <div className="form-group mb-0 text-right">
                     <LoadingButton
                         type="submit"
-                        className="btn btn-primary btn-block"
+                        className="btn btn-primary btn-sm"
                         loading={sending}
                     >
                     Save Changes

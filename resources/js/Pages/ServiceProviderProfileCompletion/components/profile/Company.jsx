@@ -6,7 +6,7 @@ import TextInput from '@/Shared/TextInput'
 import LoadingButton from '@/Shared/LoadingButton'
 import TextAreaInput from "@/Shared/TextAreaInput";
 
-export default function FacilityModal( {modalID, initialData, operation, title}) {
+export default function Company( {company}) {
     const { errors, status, alertType } = usePage().props;
     const [sending, setSending] = useState(false);
     const [values, setValues] = useState({

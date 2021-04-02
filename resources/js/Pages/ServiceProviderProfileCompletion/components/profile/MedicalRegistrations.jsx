@@ -5,33 +5,9 @@ import AddMedicalRegistrationModal from '@/Pages/ServiceProviderProfileCompletio
 import Heading from '@/Pages/ServiceProviderProfileCompletion/components/profile/Heading'
 import {usePage} from "@inertiajs/inertia-react";
 
-export default function MedicalRegistrations() {
+export default function MedicalRegistrations({medical_registrations, services}) {
     // const {medicalRegistrations} = usePage().props
     const [medicalRegistrations,setMedicalRegistration] = useState({})
-
-
-
-    useEffect(() => {
-
-
-
-
-    }, [])
-    //
-    // useEffect(() => {
-    //     let data = deleteMedRegResponse.data
-    //
-    //     if (data && data.deleteProviderMedicalRegistration) {
-    //         let newMedicalRegistrations = medicalRegistrations.filter(md => {
-    //             if (md.id !== data.deleteProviderMedicalRegistration.id) {
-    //                 return md
-    //             }
-    //         })
-    //
-    //         setMedicalRegistrations(newMedicalRegistrations);
-    //     }
-    // }, [deleteMedRegResponse.data])
-
 
 
     function deleteMedicalRegistration(id) {
@@ -43,13 +19,16 @@ export default function MedicalRegistrations() {
     }
 
     function renderAddSubcategoryModal() {
-        return <AddMedicalRegistrationModal modalID={ADD_MEDICAL_REGISTRATION_MODAL_ID} operation="add" callback={addAttachment} />
+        return <AddMedicalRegistrationModal
+            modalID={ADD_MEDICAL_REGISTRATION_MODAL_ID}
+            operation="add"
+            callback={addAttachment}
+            services={services}
+        />
     }
 
-    function addAttachment(attachment) {
-        // let newMedicalRegistrations = [...medicalRegistrations];
-        // newMedicalRegistrations.push(attachment);
-        // setMedicalRegistrations(newMedicalRegistrations)
+    function addAttachment() {
+        //
     }
 
     return (
@@ -59,7 +38,7 @@ export default function MedicalRegistrations() {
             <Heading
                 title="Medical Registration"
                 modalID={ADD_MEDICAL_REGISTRATION_MODAL_ID}
-                buttonText="Add"
+                buttonText="Add Medical Registration"
                 search={searchMedicalRegistrations}
                 renderModal={renderAddSubcategoryModal}
             />
@@ -77,7 +56,7 @@ export default function MedicalRegistrations() {
                 <tbody>
 
                     {
-                        medicalRegistrations.map(medReg => (
+                        medical_registrations.map(medReg => (
                             <tr>
                                 <td>{medReg.certificate_name}</td>
                                 <td>{medReg.certificate_number}</td>

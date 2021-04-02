@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"c71a34adf2969bf8c31b","1":"be9986201936e858fa7f","2":"fd6ff076ee317522ff52","3":"03fa8263edc917330a07","4":"88e11220d987f6f397ff","5":"21f3b00e5e445c5baeff","6":"141a62016a60d77a8cad","7":"1b7d8916dbb5a5202541","8":"cf6754114149c26e460b","9":"11c5af2b822516d0e7f5","10":"77e0bf3d005bd12d6eac","11":"b2c0e19e8555a730c5e7","12":"b2707cf2f8953aa8a718","13":"5d807cfd2047f258e8fa","14":"46f00f8bf47ecfac59d7","15":"057109b23fdc6e545176","16":"1705352e9f4994d99f20","17":"3a0f2623165cda8e5b81","18":"3790008c2c5942647227","19":"6648455a1be6262b3ab9","20":"10a8e147ce829440f379","21":"046f31b7c18bba32a901","22":"2a5742df88b9026d6362","23":"5260112200cb43b19840","24":"2f54ba9ac37933807a36","25":"0c2d1b141d54ff276cfa","26":"f4451f0c7e2093485f21","27":"366f3cba27fdb4dc09ff","28":"31e153137e3ec8f0eb98","29":"56a7fc37e63fa7977379","30":"7ebf0f070817acb40760","31":"419a50cd547dd409f7c3","32":"944e950c916de81d0659","33":"bdf9d9d9b9f94f5675d9","34":"2cf900a055a642e19f25","35":"a0747c473be661ef4e81","36":"3a9d8705da17f4676718","37":"2ce9e27cf0a98f9457af","38":"20866df73566641a268f","39":"c09980caffae5fa37473","40":"fdbc375bfa8e8ebc0a09","41":"4bd5dee495e49dd15633","42":"208f0c6fd864d730653d","43":"d1785b078c256ce9d637","44":"3fe50e54e89b25592556","45":"071e59aa33284c298e47","46":"e575cc55bf00205f52d3","47":"d0f4075e195929742d8d","48":"aff687d392544c87605a","49":"e057c70d913a7430b4a9","50":"d135691eda604e08117f","51":"3a0460914d740ef72b8f","52":"36dc56ef846710be8352","53":"0474e089f5c7d4c7e6ee","54":"be19451c7aae5e2394d8","55":"eb33db17d4af43b69022","56":"cc7e605a5c5a3b7ce995","57":"ad97e69b898d7917244c","58":"c65b9b33b3fc020173e6","59":"a10f6efb034f53601a93","60":"3ea881d67f966b73a774","61":"e0dd7d76a20c64d36ff6","62":"5ab04323c27c1d8d9cba","63":"3d7a14f0d6aa15282a64","64":"67c4d75ececcc3b8ac81","65":"55382f0c3ca8ad19cd9d","66":"f9d2d8b68606d4fa2b5f","67":"2afd990bd8430027235f","68":"7d7af75ebcc84317e4fe","69":"6e1d5a95da67b1b01ac3","70":"9ed0c5b36895cf569ab4","71":"6d72aded5478bec327d5","72":"3c0a802e13ad5418ed57","73":"9c0f22f99a15d012f4fc","74":"7dc59d9015a1ce6939e6","75":"c9c834ad2f685662093b","76":"71eeaa28f0ec8938e880","77":"24228c659298d4307cde","78":"bcf786ac526f4ec76673","79":"6887f856797a3484daa5","80":"3e14a8820fbf48bfc467","81":"a6797427a7e9f4007b33","82":"07e475de65d7e7817d20","83":"6b70e53d390a945e1a10","84":"17dad7290fd8785c53e9","85":"8712aae479b3ddcf93f3","86":"2bc17cedc762b35ed5df","87":"289a7df8862d9618ea5d","88":"84a7c0c8966aecbb2778","89":"f8bed6bde0a47a4b8514","90":"8b0e320e604eb6221056","91":"8f3502127111f35702c6","92":"87243ec4a29a523df3c1","93":"d332028e3ae6a07d55f8","94":"4600720301d4121db11e","95":"27f5d29c6d241d3c5faf","96":"df2ac25ce8dec88ec129","97":"0dcec6de48675dbc2950","98":"70a2587298f22b0e80b1","99":"5ed390989f43aa21d946","100":"f11713d5361b54038e83","101":"7009e725db4809ef9412","102":"5e61670d9a473d1e3f1f","103":"59cab95b4f9986250814","104":"a967ef3f6aee00f52fee","105":"fa14dae26d4b3b622822","106":"55d6004c145dd6ecf497","107":"5cece79bb1d2e761376e","108":"d57b42536a0147412887","109":"37a97af89038d9b0ff6d","110":"6c2b2b9ad80c64b907ec","111":"f82d3706057cc0d5772b","112":"ed14228279e440db7376","113":"f6596052a0952bb404ad","114":"95138c829d37d964e089","115":"58d74bd8c3e172bf73a5"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"c71a34adf2969bf8c31b","1":"ec6d65008b4aad9aa1e6","2":"f6d68919f41f0861241c","3":"032eea052b6cb2660bba","4":"88e11220d987f6f397ff","5":"4ce7d7771bd743ccbadd","6":"4a2319367ac2299ec653","7":"8811bdc272d58aa828c1","8":"9d856cc14e187d20e16d","9":"4ad205c8f9ecfd0c8d68","10":"8d36a79e5eba386bade1","11":"a847394cea7d030c6d07","12":"1f74220a19e7e3cdf2e2","13":"a682b4ec28976499fa3b","14":"cf340e55404282be1e03","15":"e22dcb7c94f065a91288","16":"1705352e9f4994d99f20","17":"3a0f2623165cda8e5b81","18":"3790008c2c5942647227","19":"6648455a1be6262b3ab9","20":"10a8e147ce829440f379","21":"046f31b7c18bba32a901","22":"2a5742df88b9026d6362","23":"5260112200cb43b19840","24":"8117f59f9b3a109ee505","25":"a006d5c7fb94bb681948","26":"981a6a4be87cdb26a635","27":"17825e4f1264da71d5fc","28":"81eaf6a6498afa9a9176","29":"bb6eb9d1b3eb3cdf98a8","30":"7ebf0f070817acb40760","31":"ed2a79debf637017185d","32":"53b8795ccbdecd6a76f5","33":"a6297897a2cd8adaecef","34":"0186b7c43a2409130e02","35":"b21692789aed2ea58a4c","36":"d9c60a8d617939fdef57","37":"4ce8626fa3afad4c6fa4","38":"0725cbbc58e2981dac0c","39":"9757f48bcdec68939a5c","40":"aed1a88e14376324edaf","41":"dc4e9f326b7bbae35d19","42":"3438455e9038be11059a","43":"6096e60f008cb8862a64","44":"95bc433c1e030cc5bd01","45":"31b0cb213ac8856f4608","46":"76c34778c46f5da39fdb","47":"d0f4075e195929742d8d","48":"afe1977130da6bb7de27","49":"7b1c724b1c3b622e96e0","50":"cbe5977d9a7d6a054ac3","51":"0dd81e486e1785b22859","52":"3e8c3e19e1ae373aecf0","53":"f614948fda05f073a87c","54":"be19451c7aae5e2394d8","55":"5e2f23941726ad4cdf60","56":"cc7e605a5c5a3b7ce995","57":"6850c22155d921667a1c","58":"c65b9b33b3fc020173e6","59":"a10f6efb034f53601a93","60":"3ea881d67f966b73a774","61":"e0dd7d76a20c64d36ff6","62":"c4ea1f428e8aad6aa504","63":"57f0712c6267e7efb951","64":"67c4d75ececcc3b8ac81","65":"55382f0c3ca8ad19cd9d","66":"f9d2d8b68606d4fa2b5f","67":"0bc39860aa8eddab287f","68":"7d7af75ebcc84317e4fe","69":"6e1d5a95da67b1b01ac3","70":"9ed0c5b36895cf569ab4","71":"6d72aded5478bec327d5","72":"3c0a802e13ad5418ed57","73":"9c0f22f99a15d012f4fc","74":"7dc59d9015a1ce6939e6","75":"c9c834ad2f685662093b","76":"71eeaa28f0ec8938e880","77":"24228c659298d4307cde","78":"bcf786ac526f4ec76673","79":"6887f856797a3484daa5","80":"3e14a8820fbf48bfc467","81":"a6797427a7e9f4007b33","82":"07e475de65d7e7817d20","83":"6b70e53d390a945e1a10","84":"17dad7290fd8785c53e9","85":"8712aae479b3ddcf93f3","86":"2bc17cedc762b35ed5df","87":"289a7df8862d9618ea5d","88":"84a7c0c8966aecbb2778","89":"f8bed6bde0a47a4b8514","90":"8b0e320e604eb6221056","91":"8f3502127111f35702c6","92":"87243ec4a29a523df3c1","93":"d332028e3ae6a07d55f8","94":"4600720301d4121db11e","95":"27f5d29c6d241d3c5faf","96":"df2ac25ce8dec88ec129","97":"0dcec6de48675dbc2950","98":"70a2587298f22b0e80b1","99":"5ed390989f43aa21d946","100":"f11713d5361b54038e83","101":"7009e725db4809ef9412","102":"5e61670d9a473d1e3f1f","103":"59cab95b4f9986250814","104":"a967ef3f6aee00f52fee","105":"fa14dae26d4b3b622822","106":"55d6004c145dd6ecf497","107":"5cece79bb1d2e761376e","108":"d57b42536a0147412887","109":"37a97af89038d9b0ff6d","110":"6c2b2b9ad80c64b907ec","111":"98f6d77b12a61cda9c33","112":"ed14228279e440db7376","113":"f6596052a0952bb404ad","114":"95138c829d37d964e089","115":"58d74bd8c3e172bf73a5"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -70265,24 +70265,24 @@ var map = {
 	"./Auth/Login": [
 		"./resources/js/Pages/Auth/Login.js",
 		9,
-		34
+		33
 	],
 	"./Auth/Login.js": [
 		"./resources/js/Pages/Auth/Login.js",
 		9,
-		34
+		33
 	],
 	"./Auth/Register": [
 		"./resources/js/Pages/Auth/Register.js",
 		9,
-		9,
+		10,
 		17,
 		47
 	],
 	"./Auth/Register.js": [
 		"./resources/js/Pages/Auth/Register.js",
 		9,
-		9,
+		10,
 		17,
 		47
 	],
@@ -70299,36 +70299,36 @@ var map = {
 	"./Auth/Registration/RegisterCompanyServiceProvider": [
 		"./resources/js/Pages/Auth/Registration/RegisterCompanyServiceProvider.jsx",
 		9,
-		35
+		34
 	],
 	"./Auth/Registration/RegisterCompanyServiceProvider.jsx": [
 		"./resources/js/Pages/Auth/Registration/RegisterCompanyServiceProvider.jsx",
 		9,
-		35
+		34
 	],
 	"./Auth/Registration/RegisterFacilityServiceProvider": [
 		"./resources/js/Pages/Auth/Registration/RegisterFacilityServiceProvider.jsx",
 		9,
-		9,
+		10,
 		17,
 		72
 	],
 	"./Auth/Registration/RegisterFacilityServiceProvider.jsx": [
 		"./resources/js/Pages/Auth/Registration/RegisterFacilityServiceProvider.jsx",
 		9,
-		9,
+		10,
 		17,
 		72
 	],
 	"./Auth/Registration/RegisterIndividualServiceProvider": [
 		"./resources/js/Pages/Auth/Registration/RegisterIndividualServiceProvider.jsx",
 		9,
-		36
+		35
 	],
 	"./Auth/Registration/RegisterIndividualServiceProvider.jsx": [
 		"./resources/js/Pages/Auth/Registration/RegisterIndividualServiceProvider.jsx",
 		9,
-		36
+		35
 	],
 	"./Auth/ResetPassword": [
 		"./resources/js/Pages/Auth/ResetPassword.js",
@@ -70373,13 +70373,13 @@ var map = {
 	"./Auth/components/FacilityRegistration": [
 		"./resources/js/Pages/Auth/components/FacilityRegistration.jsx",
 		9,
-		9,
+		10,
 		17
 	],
 	"./Auth/components/FacilityRegistration.jsx": [
 		"./resources/js/Pages/Auth/components/FacilityRegistration.jsx",
 		9,
-		9,
+		10,
 		17
 	],
 	"./Auth/components/IndividualRegistration": [
@@ -70415,22 +70415,22 @@ var map = {
 	"./Auth/components/facilityForms/FirstForm": [
 		"./resources/js/Pages/Auth/components/facilityForms/FirstForm.jsx",
 		9,
-		37
+		36
 	],
 	"./Auth/components/facilityForms/FirstForm.jsx": [
 		"./resources/js/Pages/Auth/components/facilityForms/FirstForm.jsx",
 		9,
-		37
+		36
 	],
 	"./Auth/components/facilityForms/SecondForm": [
 		"./resources/js/Pages/Auth/components/facilityForms/SecondForm.jsx",
 		9,
-		9
+		10
 	],
 	"./Auth/components/facilityForms/SecondForm.jsx": [
 		"./resources/js/Pages/Auth/components/facilityForms/SecondForm.jsx",
 		9,
-		9
+		10
 	],
 	"./Auth/components/facilityForms/ThirdForm": [
 		"./resources/js/Pages/Auth/components/facilityForms/ThirdForm.jsx",
@@ -70485,26 +70485,26 @@ var map = {
 	"./ServiceProviderProfileCompletion/Register": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/Register.jsx",
 		9,
+		5,
 		2,
 		3,
-		7,
-		10,
-		12,
+		8,
 		11,
-		15,
-		38
+		12,
+		13,
+		37
 	],
 	"./ServiceProviderProfileCompletion/Register.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/Register.jsx",
 		9,
+		5,
 		2,
 		3,
-		7,
-		10,
-		12,
+		8,
 		11,
-		15,
-		38
+		12,
+		13,
+		37
 	],
 	"./ServiceProviderProfileCompletion/components/RegistrationNav": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/RegistrationNav.jsx",
@@ -70529,24 +70529,24 @@ var map = {
 	"./ServiceProviderProfileCompletion/components/profile": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/index.jsx",
 		9,
+		5,
 		2,
 		3,
-		7,
-		10,
-		12,
+		8,
 		11,
-		15
+		12,
+		13
 	],
 	"./ServiceProviderProfileCompletion/components/profile/": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/index.jsx",
 		9,
+		5,
 		2,
 		3,
-		7,
-		10,
-		12,
+		8,
 		11,
-		15
+		12,
+		13
 	],
 	"./ServiceProviderProfileCompletion/components/profile/AddFacilityModal": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/AddFacilityModal.jsx",
@@ -70561,26 +70561,26 @@ var map = {
 	"./ServiceProviderProfileCompletion/components/profile/AddMedicalRegistrationModal": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/AddMedicalRegistrationModal.jsx",
 		9,
-		2,
-		25
+		5,
+		3,
+		45
 	],
 	"./ServiceProviderProfileCompletion/components/profile/AddMedicalRegistrationModal.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/AddMedicalRegistrationModal.jsx",
 		9,
-		2,
-		25
+		5,
+		3,
+		45
 	],
 	"./ServiceProviderProfileCompletion/components/profile/AddQualificationModal": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/AddQualificationModal.jsx",
 		9,
-		2,
-		3
+		2
 	],
 	"./ServiceProviderProfileCompletion/components/profile/AddQualificationModal.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/AddQualificationModal.jsx",
 		9,
-		2,
-		3
+		2
 	],
 	"./ServiceProviderProfileCompletion/components/profile/Company": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Company.jsx",
@@ -70596,13 +70596,13 @@ var map = {
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Facility.jsx",
 		9,
 		11,
-		26
+		29
 	],
 	"./ServiceProviderProfileCompletion/components/profile/Facility.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Facility.jsx",
 		9,
 		11,
-		26
+		29
 	],
 	"./ServiceProviderProfileCompletion/components/profile/FacilityServices": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/FacilityServices.jsx",
@@ -70627,55 +70627,51 @@ var map = {
 	"./ServiceProviderProfileCompletion/components/profile/MedicalRegistrations": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/MedicalRegistrations.jsx",
 		9,
-		2,
-		10,
-		29
+		5,
+		3,
+		24
 	],
 	"./ServiceProviderProfileCompletion/components/profile/MedicalRegistrations.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/MedicalRegistrations.jsx",
 		9,
-		2,
-		10,
-		29
+		5,
+		3,
+		24
 	],
 	"./ServiceProviderProfileCompletion/components/profile/ProfileInfo": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/ProfileInfo.jsx",
 		9,
 		12,
-		33
+		26
 	],
 	"./ServiceProviderProfileCompletion/components/profile/ProfileInfo.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/ProfileInfo.jsx",
 		9,
 		12,
-		33
+		26
 	],
 	"./ServiceProviderProfileCompletion/components/profile/QualificationAttachment": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/QualificationAttachment.jsx",
 		9,
 		2,
-		3,
-		39
+		38
 	],
 	"./ServiceProviderProfileCompletion/components/profile/QualificationAttachment.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/QualificationAttachment.jsx",
 		9,
 		2,
-		3,
-		39
+		38
 	],
 	"./ServiceProviderProfileCompletion/components/profile/Qualifications": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Qualifications.jsx",
 		9,
 		2,
-		3,
 		55
 	],
 	"./ServiceProviderProfileCompletion/components/profile/Qualifications.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Qualifications.jsx",
 		9,
 		2,
-		3,
 		55
 	],
 	"./ServiceProviderProfileCompletion/components/profile/RegisteredServices": [
@@ -70691,23 +70687,23 @@ var map = {
 	"./ServiceProviderProfileCompletion/components/profile/RequestServiceModal": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/RequestServiceModal.jsx",
 		9,
-		40
+		39
 	],
 	"./ServiceProviderProfileCompletion/components/profile/RequestServiceModal.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/RequestServiceModal.jsx",
 		9,
-		40
+		39
 	],
 	"./ServiceProviderProfileCompletion/components/profile/Services": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Services.jsx",
 		9,
-		7,
+		8,
 		62
 	],
 	"./ServiceProviderProfileCompletion/components/profile/Services.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Services.jsx",
 		9,
-		7,
+		8,
 		62
 	],
 	"./ServiceProviderProfileCompletion/components/profile/UnregisteredServices": [
@@ -70723,24 +70719,24 @@ var map = {
 	"./ServiceProviderProfileCompletion/components/profile/index": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/index.jsx",
 		9,
+		5,
 		2,
 		3,
-		7,
-		10,
-		12,
+		8,
 		11,
-		15
+		12,
+		13
 	],
 	"./ServiceProviderProfileCompletion/components/profile/index.jsx": [
 		"./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/index.jsx",
 		9,
+		5,
 		2,
 		3,
-		7,
-		10,
-		12,
+		8,
 		11,
-		15
+		12,
+		13
 	],
 	"./ServiceProviders/requests/components": [
 		"./resources/js/Pages/ServiceProviders/requests/components/index.jsx",
@@ -70915,25 +70911,25 @@ var map = {
 		9,
 		1,
 		0,
-		24
+		25
 	],
 	"./ServiceProviders/requests/providers.jsx": [
 		"./resources/js/Pages/ServiceProviders/requests/providers.jsx",
 		9,
 		1,
 		0,
-		24
+		25
 	],
 	"./Services/categories/components": [
 		"./resources/js/Pages/Services/categories/components/index.js",
 		9,
-		5,
+		6,
 		19
 	],
 	"./Services/categories/components/": [
 		"./resources/js/Pages/Services/categories/components/index.js",
 		9,
-		5,
+		6,
 		19
 	],
 	"./Services/categories/components/AddCategoryModal": [
@@ -70960,14 +70956,14 @@ var map = {
 		"./resources/js/Pages/Services/categories/components/Manage.jsx",
 		9,
 		1,
-		5,
+		6,
 		56
 	],
 	"./Services/categories/components/Manage.jsx": [
 		"./resources/js/Pages/Services/categories/components/Manage.jsx",
 		9,
 		1,
-		5,
+		6,
 		56
 	],
 	"./Services/categories/components/deleteDialog": [
@@ -70983,25 +70979,25 @@ var map = {
 	"./Services/categories/components/index": [
 		"./resources/js/Pages/Services/categories/components/index.js",
 		9,
-		5,
+		6,
 		19
 	],
 	"./Services/categories/components/index.js": [
 		"./resources/js/Pages/Services/categories/components/index.js",
 		9,
-		5,
+		6,
 		19
 	],
 	"./Services/categories/components/infosidebar": [
 		"./resources/js/Pages/Services/categories/components/infosidebar.jsx",
 		9,
-		5,
+		6,
 		89
 	],
 	"./Services/categories/components/infosidebar.jsx": [
 		"./resources/js/Pages/Services/categories/components/infosidebar.jsx",
 		9,
-		5,
+		6,
 		89
 	],
 	"./Services/categories/components/paginator": [
@@ -71038,13 +71034,13 @@ var map = {
 		"./resources/js/Pages/Services/packages/Memberships.jsx",
 		9,
 		16,
-		41
+		40
 	],
 	"./Services/packages/Memberships.jsx": [
 		"./resources/js/Pages/Services/packages/Memberships.jsx",
 		9,
 		16,
-		41
+		40
 	],
 	"./Services/packages/Packages": [
 		"./resources/js/Pages/Services/packages/Packages.jsx",
@@ -71113,13 +71109,13 @@ var map = {
 	"./Services/requested/components": [
 		"./resources/js/Pages/Services/requested/components/index.js",
 		9,
-		13,
+		14,
 		21
 	],
 	"./Services/requested/components/": [
 		"./resources/js/Pages/Services/requested/components/index.js",
 		9,
-		13,
+		14,
 		21
 	],
 	"./Services/requested/components/Heading": [
@@ -71135,13 +71131,13 @@ var map = {
 	"./Services/requested/components/index": [
 		"./resources/js/Pages/Services/requested/components/index.js",
 		9,
-		13,
+		14,
 		21
 	],
 	"./Services/requested/components/index.js": [
 		"./resources/js/Pages/Services/requested/components/index.js",
 		9,
-		13,
+		14,
 		21
 	],
 	"./Services/requested/components/infosidebar": [
@@ -71188,22 +71184,22 @@ var map = {
 		"./resources/js/Pages/Services/requested/manage.jsx",
 		9,
 		1,
-		13,
-		42
+		14,
+		41
 	],
 	"./Services/requested/manage.jsx": [
 		"./resources/js/Pages/Services/requested/manage.jsx",
 		9,
 		1,
-		13,
-		42
+		14,
+		41
 	],
 	"./Services/services/[subcategory_id]": [
 		"./resources/js/Pages/Services/services/[subcategory_id].jsx",
 		9,
 		1,
 		4,
-		6,
+		7,
 		60
 	],
 	"./Services/services/[subcategory_id].jsx": [
@@ -71211,20 +71207,20 @@ var map = {
 		9,
 		1,
 		4,
-		6,
+		7,
 		60
 	],
 	"./Services/services/components": [
 		"./resources/js/Pages/Services/services/components/index.js",
 		9,
 		4,
-		6
+		7
 	],
 	"./Services/services/components/": [
 		"./resources/js/Pages/Services/services/components/index.js",
 		9,
 		4,
-		6
+		7
 	],
 	"./Services/services/components/AddServiceModal": [
 		"./resources/js/Pages/Services/services/components/AddServiceModal.jsx",
@@ -71260,26 +71256,26 @@ var map = {
 		"./resources/js/Pages/Services/services/components/index.js",
 		9,
 		4,
-		6
+		7
 	],
 	"./Services/services/components/index.js": [
 		"./resources/js/Pages/Services/services/components/index.js",
 		9,
 		4,
-		6
+		7
 	],
 	"./Services/services/components/infosidebar": [
 		"./resources/js/Pages/Services/services/components/infosidebar.jsx",
 		9,
 		4,
-		6,
+		7,
 		100
 	],
 	"./Services/services/components/infosidebar.jsx": [
 		"./resources/js/Pages/Services/services/components/infosidebar.jsx",
 		9,
 		4,
-		6,
+		7,
 		100
 	],
 	"./Services/services/components/paginator": [
@@ -71305,41 +71301,41 @@ var map = {
 	"./Services/services/components/servicesTable": [
 		"./resources/js/Pages/Services/services/components/servicesTable.jsx",
 		9,
-		43
+		42
 	],
 	"./Services/services/components/servicesTable.jsx": [
 		"./resources/js/Pages/Services/services/components/servicesTable.jsx",
 		9,
-		43
+		42
 	],
 	"./Services/subcategories/[category_id]": [
 		"./resources/js/Pages/Services/subcategories/[category_id].jsx",
 		9,
 		1,
-		8,
-		14,
-		44
+		9,
+		15,
+		43
 	],
 	"./Services/subcategories/[category_id].jsx": [
 		"./resources/js/Pages/Services/subcategories/[category_id].jsx",
 		9,
 		1,
-		8,
-		14,
-		44
+		9,
+		15,
+		43
 	],
 	"./Services/subcategories/components": [
 		"./resources/js/Pages/Services/subcategories/components/index.js",
 		9,
-		8,
-		14,
+		9,
+		15,
 		20
 	],
 	"./Services/subcategories/components/": [
 		"./resources/js/Pages/Services/subcategories/components/index.js",
 		9,
-		8,
-		14,
+		9,
+		15,
 		20
 	],
 	"./Services/subcategories/components/AddSubcategoryModal": [
@@ -71375,26 +71371,26 @@ var map = {
 	"./Services/subcategories/components/index": [
 		"./resources/js/Pages/Services/subcategories/components/index.js",
 		9,
-		8,
-		14,
+		9,
+		15,
 		20
 	],
 	"./Services/subcategories/components/index.js": [
 		"./resources/js/Pages/Services/subcategories/components/index.js",
 		9,
-		8,
-		14,
+		9,
+		15,
 		20
 	],
 	"./Services/subcategories/components/infosidebar": [
 		"./resources/js/Pages/Services/subcategories/components/infosidebar.jsx",
 		9,
-		8
+		9
 	],
 	"./Services/subcategories/components/infosidebar.jsx": [
 		"./resources/js/Pages/Services/subcategories/components/infosidebar.jsx",
 		9,
-		8
+		9
 	],
 	"./Services/subcategories/components/paginator": [
 		"./resources/js/Pages/Services/subcategories/components/paginator.jsx",
@@ -71409,12 +71405,12 @@ var map = {
 	"./Services/subcategories/components/serviceCategoryTable": [
 		"./resources/js/Pages/Services/subcategories/components/serviceCategoryTable.jsx",
 		9,
-		45
+		44
 	],
 	"./Services/subcategories/components/serviceCategoryTable.jsx": [
 		"./resources/js/Pages/Services/subcategories/components/serviceCategoryTable.jsx",
 		9,
-		45
+		44
 	],
 	"./Services/subcategories/components/serviceSubategory": [
 		"./resources/js/Pages/Services/subcategories/components/serviceSubategory.jsx",
