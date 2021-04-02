@@ -124,8 +124,45 @@ Route::group(['middleware' => ['web']], function () {
 //
 //    Route::post('/user/two-factor-recovery-codes', [RecoveryCodeController::class, 'store'])
 //        ->middleware($twoFactorMiddleware);
+    // Route::middleware(['auth'])->get('/mobile_number/verify', [VerifyMobileNumberController::class, 'show'])
+//     ->name('verify.mobile-number');
+
+// Route::post('/mobile_number/verification_code/verify', [VerifyMobileNumberController::class, 'verify'])
+//     ->middleware(['auth', 'throttle:6,1'])
+//     ->name('verification_code.verify');
+
+// Route::post('/mobile_number/verification-code/resend', [VerifyMobileNumberController::class, 'resend'])
+//     ->middleware(['auth', 'throttle:6,1'])
+//     ->name('verification_code.send');
 
 });
+
+Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_verified', 'role:service-provider'])
+    ->group(function(){
+        Route::get('service_provider/personal-info', [PersonalInfoController::class, 'index'])
+            ->name('personalInfo.index');
+        Route::post('/personal-information/update', [PersonalInfoController::class, 'update'])
+            ->name('personalInfo.update');
+        Route::resource('provider_profiles',ProviderProfileController::class);
+
+        Route::get('service_provider/profile_info', [ProviderProfileController::class ,'profileInfo'])
+            ->name('profile-completion.index');
+        Route::get('service_provider/establishments', [ProviderProfileController::class ,'establishments'])
+            ->name('establishments.index');
+        Route::get('service_provider/specializations', [ProviderProfileController::class ,'specializations'])
+            ->name('provider_specializations.index');
+        Route::get('service_provider/verifications', [ProviderProfileController::class ,'verifications'])
+            ->name('verifications.index');
+        Route::get('service_provider/submittion', [ProviderProfileController::class ,'submittion'])
+            ->name('submittion.index');
+        Route::get('service_provider/medical_qualification', [ProviderProfileController::class , 'medicalQualification'])
+            ->name('medical_qualification.index');
+        Route::post('service_provider/save', [ProviderProfileController::class ,'store'])
+            ->name('provider_profiles.store');
+        Route::get('service_provider/submittion/submit', [ProviderProfileController::class ,'submitted'])
+            ->name('submittion.store');
+    });
+
 
  Route::middleware([ 'auth','auth:sanctum', 'verified', 'verified_sp','language', 'mobile_number_verified'])
      ->group( function () {
@@ -137,16 +174,7 @@ Route::group(['middleware' => ['web']], function () {
 
  });
 
-// Route::middleware(['auth'])->get('/mobile_number/verify', [VerifyMobileNumberController::class, 'show'])
-//     ->name('verify.mobile-number');
 
-// Route::post('/mobile_number/verification_code/verify', [VerifyMobileNumberController::class, 'verify'])
-//     ->middleware(['auth', 'throttle:6,1'])
-//     ->name('verification_code.verify');
-
-// Route::post('/mobile_number/verification-code/resend', [VerifyMobileNumberController::class, 'resend'])
-//     ->middleware(['auth', 'throttle:6,1'])
-//     ->name('verification_code.send');
 
 // Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:super-admin'])->group(function(){
 //     Route::resource('packages', PackagesController::class);
@@ -162,33 +190,5 @@ Route::group(['middleware' => ['web']], function () {
 
 // });
 
- Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_verified', 'role:service-provider'])
-     ->group(function(){
-       Route::get('/dashboard', [PersonalInfoController::class, 'index'])->name('dashboard');
-         Route::post('/dashboard', [PersonalInfoController::class, 'index'])->name('dashboard');
-       Route::resource('provider_profiles',ProviderProfileController::class);
-
-       Route::get('service_provider/profile_info', [ProviderProfileController::class ,'profileInfo'])
-           ->name('profile-completion.index');
-       Route::get('service_provider/establishments', [ProviderProfileController::class ,'establishments'])
-           ->name('establishments.index');
-       Route::get('service_provider/specializations', [ProviderProfileController::class ,'specializations'])
-           ->name('provider_specializations.index');
-       Route::get('service_provider/verifications', [ProviderProfileController::class ,'verifications'])
-           ->name('verifications.index');
-       Route::get('service_provider/submittion', [ProviderProfileController::class ,'submittion'])
-           ->name('submittion.index');
-       Route::get('service_provider/medical_qualification', [ProviderProfileController::class , 'medicalQualification'])
-           ->name('medical_qualification.index');
-       Route::post('service_provider/save', [ProviderProfileController::class ,'store'])
-           ->name('provider_profiles.store');
-       Route::get('service_provider/submittion/submit', [ProviderProfileController::class ,'submitted'])
-           ->name('submittion.store');
- });
 
 
-
-
-Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-    ->middleware(['signed', 'throttle:6,1'])
-    ->name('verification.verify');

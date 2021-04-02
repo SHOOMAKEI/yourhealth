@@ -49,10 +49,16 @@ class PersonalInfoController extends Controller
             'physical_address' =>  ['required', 'string', 'max:255'],
             'gender' =>  ['required', 'string', Rule::in(['F', 'M'])],
             'provider_sub_level_id' => ['numeric', new ProviderSubLevelFieldValidator],
-            'dob' => ['required', ''],
+            'dob' => ['required'],
             'bio' => ['string'],
-
         ]);
+
+        $data = $request->toArray();
+        $data+=['user_id' => auth()->user()->id];
+
+        $repository->createProviderProfile($request->toArray());
+
+        return redirect()->back();
 
     }
 
