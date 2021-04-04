@@ -48,7 +48,7 @@ export default function RegistrationNav({user}) {
                             href="#v-pills-medical-registration" role="tab" aria-controls="v-pills-medical-registration"
                             aria-selected="false">
                             <i className="mdi mdi-settings-outline d-md-none d-block"/>
-                            <span className="d-none d-md-block">Medical Registration</span>
+                            <span className="d-none d-md-block">Practice Licenses</span>
                         </a>
                     )
                 }
@@ -57,6 +57,12 @@ export default function RegistrationNav({user}) {
                     aria-selected="false">
                     <i className="mdi mdi-settings-outline d-md-none d-block"/>
                     <span className="d-none d-md-block">Services</span>
+                </a>
+                <a className="nav-link mb-2" id="v-pills-settings-tab" data-toggle="pill"
+                   href="#v-pills-submission" role="tab" aria-controls="v-pills-submission"
+                   aria-selected="false">
+                    <i className="mdi mdi-settings-outline d-md-none d-block"/>
+                    <span className="d-none d-md-block">Registration Submission</span>
                 </a>
 
 

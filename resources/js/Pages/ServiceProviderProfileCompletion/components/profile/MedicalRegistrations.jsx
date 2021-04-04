@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { ADD_MEDICAL_REGISTRATION_MODAL_ID } from '@/Pages/Utilities/Constants'
 import AddMedicalRegistrationModal from '@/Pages/ServiceProviderProfileCompletion/components/profile/AddMedicalRegistrationModal'
 import Heading from '@/Pages/ServiceProviderProfileCompletion/components/profile/Heading'
-import {usePage} from "@inertiajs/inertia-react";
+import {InertiaLink, usePage} from "@inertiajs/inertia-react";
 
 export default function MedicalRegistrations({medical_registrations, services}) {
     // const {medicalRegistrations} = usePage().props
@@ -36,9 +36,9 @@ export default function MedicalRegistrations({medical_registrations, services}) 
              aria-labelledby="v-pills-medical-registration-tab">
 
             <Heading
-                title="Medical Registration"
+                title="Practice License"
                 modalID={ADD_MEDICAL_REGISTRATION_MODAL_ID}
-                buttonText="Add Medical Registration"
+                buttonText="Add Practice License"
                 search={searchMedicalRegistrations}
                 renderModal={renderAddSubcategoryModal}
             />
@@ -48,7 +48,8 @@ export default function MedicalRegistrations({medical_registrations, services}) 
                     <tr>
                         <th>Certificate Name</th>
                         <th>Certificate Number</th>
-                        <th>Registration Number</th>
+                        <th>Authorized Service</th>
+                        <th>Expired At</th>
                         <th>Attachment</th>
                         <th>Actions</th>
                     </tr>
@@ -57,17 +58,18 @@ export default function MedicalRegistrations({medical_registrations, services}) 
 
                     {
                         medical_registrations.map(medReg => (
-                            <tr>
+                            <tr key={medReg.id}>
                                 <td>{medReg.certificate_name}</td>
                                 <td>{medReg.certificate_number}</td>
-                                <td>{medReg.registration_number}</td>
+                                <td>{medReg.authorized_service}</td>
+                                <td>{medReg.expired_at}</td>
                                 <td>
                                     <a href={`${medReg.attachment}`} className="btn btn-light">File <i className="uil-cloud-download ml-1"></i></a>
                                 </td>
                                 <td>
-                                    <a href="javascript: void(0);" className="action-icon" onClick={() => deleteMedicalRegistration(medReg.id)}>
+                                    <InertiaLink href={route('practiceLicense.destroy', medReg.id)} className="action-icon " >
                                         <i className="dripicons-trash"></i>
-                                    </a>
+                                    </InertiaLink>
                                 </td>
                             </tr>
                         ))

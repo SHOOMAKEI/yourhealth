@@ -12,9 +12,11 @@ use App\Models\ProviderFacilityOwner;
 use App\Models\ProviderMedicalRegistration;
 use App\Models\ProviderProfile;
 use App\Models\ProviderQualification;
+use App\Models\RequestedService;
 use App\Models\Service;
 use App\Models\User;
 use App\Notifications\ServiceProviderRequestsNotification;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Hash;
 
 class ServiceProviderRegistrationRepository implements ServiceProviderRegistrationRepositoryInterface
@@ -50,6 +52,7 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
                 'dob' => $request['dob'] ?? null,
                 'gender' => $request['gender'] ?? null,
                 'bio' => $request['bio'] ?? null,
+                'account_category_type' => $request['account_category_type']??null,
                 'provider_sub_level_id' => $request['provider_sub_level_id'] ?? null
             ]
         );
@@ -305,6 +308,8 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
             'registration_number' => $medical_registration['registration_number'],
             'provider_profile_id' => auth()->user()->service_provider->id,
             'year' => $medical_registration['year'],
+            'expired_at' => $medical_registration['expired_at'],
+            'service_id' => $medical_registration['service_id'],
         ]);
 
         $provider_medical_registration->addMediaFromBase64($medical_registration['attachment'], 'application/pdf')
@@ -356,7 +361,7 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
         return $provider_medical_registration;
     }
 
-    public function createProviderProfileServices(array $request):Service
+    public function createProviderFacilityServices(array $request):Collection
     {
         $provider_facility = ProviderFacility::find($request['provider_facility_id']);
 
@@ -371,7 +376,12 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
         return $provider_facility->services;
     }
 
-    public function deleteProviderProfileServices(array $request):Service
+    public function createRequestedService(array $request): RequestedService
+    {
+        return RequestedService::create($request);
+    }
+
+    public function deleteProviderFacilityServices(array $request):Collection
     {
         $provider_facility = ProviderFacility::find($request['facility_id']);
 
@@ -380,7 +390,7 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
         return $provider_facility->services;
     }
 
-    public function createProviderFacilityServices(array $request):Service
+    public function createProviderProfileServices(array $request):Collection
     {
         $provider_profile = ProviderProfile::find(auth()->user()->service_provider->id);
 
@@ -391,40 +401,16 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
         }
         $provider_profile->services()->syncWithoutDetaching($data);
 
-        return $provider_profile->services->map(function ($query) {
-            $services['service']['id'] = $query->id;
-            $services['service']['name'] = $query->name;
-            $services['service']['description'] = $query->description;
-            $services['service']['is_active'] = $query->is_active;
-            $services['service']['created_at'] = $query->created_at;
-            $services['service']['updated_at'] = $query->updated_at;
-            $services['price'] = $query->pivot->price;
-            $services['compare_price'] = $query->pivot->compare_price;
-            $services['currency'] = $query->pivot->currency;
-
-            return $services;
-        })->all();
+        return $provider_profile->services;
     }
 
-    public function deleteProviderFacilityServices(array $request):Service
+    public function deleteProviderProfileServices(array $request):Collection
     {
         $provider_profile = ProviderProfile::find(auth()->user()->service_provider->id);
 
         $provider_profile->services()->detach($request['service_id']);
 
-        return $provider_profile->services->map(function ($query) {
-            $services['service']['id'] = $query->id;
-            $services['service']['name'] = $query->name;
-            $services['service']['description'] = $query->description;
-            $services['service']['is_active'] = $query->is_active;
-            $services['service']['created_at'] = $query->created_at;
-            $services['service']['updated_at'] = $query->updated_at;
-            $services['price'] = $query->pivot->price;
-            $services['compare_price'] = $query->pivot->compare_price;
-            $services['currency'] = $query->pivot->currency;
-
-            return $services;
-        })->all();
+        return $provider_profile->services;
     }
 
     public function createProviderProfileCalendar(array $request):DaySession

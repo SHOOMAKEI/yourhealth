@@ -12,11 +12,21 @@ import {
 import RegistrationNav from "@/Pages/ServiceProviderProfileCompletion/components/RegistrationNav";
 import TopNav from "@/Pages/ServiceProviderProfileCompletion/components/Topnav";
 import {usePage} from "@inertiajs/inertia-react";
+import ProfileStatuses from "@/Pages/ServiceProviderProfileCompletion/components/profile/ProfileStatuses";
 
 
 
 function Register() {
-    const {user, provider_sub_levels, qualifications, company, facilities, medical_registrations, all_services} = usePage().props
+    const {user,
+        provider_sub_levels,
+        qualifications,
+        company,
+        facilities,
+        medical_registrations,
+        all_services,
+        provider_services,
+        facility_services,
+    } = usePage().props
     return (
         <div className="account-pages mt-5 mb-5">
             <div className="container">
@@ -44,8 +54,9 @@ function Register() {
                                                 && <Company company={company} /> }
                                             {user.provider_profile.account_category_type === 'individual'
                                                 && <MedicalRegistrations medical_registrations={medical_registrations} services={all_services} /> }
-                                            {/*<Services user={user} />*/}
-                                            {/*{user.provider_profile.account_category_type === 'facility' && <Facility facilities={facilities} /> }*/}
+                                            <Services user={user} all_services={all_services} registeredServices={provider_services?provider_services:facility_services}/>
+                                            <ProfileStatuses/>
+                                            {user.provider_profile.account_category_type === 'facility' && <Facility facilities={facilities} /> }
                                         </div>
                                     </div>
                                 </div>

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import {InertiaLink} from "@inertiajs/inertia-react";
 
 export default function RegisteredServices({services, callback}) {
     const [shownServices, setShownServices] = useState([...services]);
@@ -54,9 +55,9 @@ export default function RegisteredServices({services, callback}) {
                                 <td>{service.name}</td>
                                 <td>{`${service.pivot.price} ${service.pivot.currency}`}</td>
                                 <td>
-                                    <a href="#" className="btn btn-danger btn-sm">
+                                    <InertiaLink href={route('providerService.destroy', service.id)} className="btn btn-danger btn-sm">
                                         <i className="dripicons-trash"></i>
-                                    </a>
+                                    </InertiaLink>
                                 </td>
                             </tr>
                         ))

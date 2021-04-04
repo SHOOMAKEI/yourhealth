@@ -297,9 +297,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     className: "custom-file-label",
     htmlFor: name
   }, label), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: name + '-error',
-    className: " invalid-feedback animated fadeInDown"
-  }, errors[0])));
+    className: "invalid-feedback",
+    style: {
+      display: 'block'
+    }
+  }, errors)));
 });
 
 /***/ }),

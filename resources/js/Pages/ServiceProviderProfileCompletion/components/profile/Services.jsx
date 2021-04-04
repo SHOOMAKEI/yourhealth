@@ -6,37 +6,11 @@ import RegisteredServices from "@/Pages/ServiceProviderProfileCompletion/compone
 import RequestServiceModal from '@/Pages/ServiceProviderProfileCompletion/components/profile/RequestServiceModal'
 import UnregisteredServices from "@/Pages/ServiceProviderProfileCompletion/components/profile/UnregisteredServices";
 
-export default function Services({user}) {
+export default function Services({user, facilities, all_services, registeredServices}) {
     const [services, setServices] = useState([])
-    const [registeredServices, setRegisteredServices] = useState([])
-    const [selectedFacility, setSelectedFacility] = useState(facilities[0])
+    // const [registeredServices, setRegisteredServices] = useState([])
+    // const [selectedFacility, setSelectedFacility] = useState( )
 
-
-    useEffect(() => {
-        let data = queryServicesResponse.data
-
-        if (data && data.services) {
-            setServices(data.services)
-        }
-
-    }, [queryServicesResponse.data])
-
-    useEffect(() => {
-        let data = queryRegisteredServicesResponse.data
-
-        if (data && data.providerProfileServicesInfo) {
-            setRegisteredServices(data.providerProfileServicesInfo)
-        }
-
-    }, [queryRegisteredServicesResponse.data])
-
-    function submitForVerification() {
-        submitRequest({})
-    }
-
-    function synchronize() {
-        queryRegisteredServices({})
-    }
 
     function searchQualifications() {
 
@@ -56,8 +30,10 @@ export default function Services({user}) {
                         <h4>Select Facility</h4>
                         <select className="custom-select mb-1">
                             {
-                                facilities.map(facility =>
-                                <option value={facility.id} onSelect={() => setSelectedFacility(facility)}>
+                              facilities &&  facilities.map(facility =>
+                                <option value={facility.id}
+                                        // onSelect={() => setSelectedFacility(facility)}
+                                >
                                     {facility.name}</option>
                                 )
                             }
@@ -67,9 +43,9 @@ export default function Services({user}) {
             }
 
             <Heading
-                title={`Request Service for ${selectedFacility.name}`}
+                // title={`Request Service for ${selectedFacility.name}`}
                 modalID={REQUEST_SERVICE_MODAL_ID}
-                buttonText="Request"
+                buttonText="Request New Service To Registered"
                 search={searchQualifications}
                 renderModal={renderAddSubcategoryModal}
                 showSearch={false}
@@ -78,28 +54,14 @@ export default function Services({user}) {
             <div className="row">
                 <div className="col-6">
                     {
-                        queryServicesResponse.called && queryServicesResponse.loading ?
-                            <Spinner /> :
-                            <UnregisteredServices services={services} callback={synchronize} />
+
+                            <UnregisteredServices services={all_services}  />
                     }
                 </div>
                 <div className="col-6">
                     {
-                        queryRegisteredServicesResponse.called && queryRegisteredServicesResponse.loading ?
-                            <Spinner /> :
-                            <RegisteredServices services={registeredServices} callback={synchronize} />
-                    }
-                </div>
-            </div>
-            <div className="row mt-3">
-                <div className="col-12 text-right">
-                    {
-                        submitRequestResponse.called && submitRequestResponse.loading ?
-                            <Spinner /> :
-                            registeredServices.length > 0 &&
-                            <button type="submit" className="btn btn-primary" onClick={submitForVerification}>
-                                Submit for verification
-                            </button>
+
+                            <RegisteredServices services={registeredServices} />
                     }
                 </div>
             </div>

@@ -1,119 +1,63 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[113],{
 
-/***/ "./resources/js/Pages/Utilities/components/userMenu.jsx":
-/*!**************************************************************!*\
-  !*** ./resources/js/Pages/Utilities/components/userMenu.jsx ***!
-  \**************************************************************/
+/***/ "./resources/js/Pages/Utilities/components/languages.jsx":
+/*!***************************************************************!*\
+  !*** ./resources/js/Pages/Utilities/components/languages.jsx ***!
+  \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Languages; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-function UserMenu() {
-  // const [queryAthUser, {loading, errors, data, called}] = useApi({query: QUERY_AUTH_USER})
-  // const [logout, logoutResponse] = useApi({query: LOGOUT})
-  // const router = useRouter();
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {// queryAthUser({})
-  }, []);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {// if(logoutResponse.data && logoutResponse.data.logoutSession.success) {
-    //     router.push('/auth/login')
-    // }
-  }, [logoutResponse.data]);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    if (data && data.me === null) {// router.push('/auth/login')
-    }
-
-    if (data.me) {
-      data.me.roles.map(function (role) {
-        if (role.name.toLowerCase().includes('unverified')) {// router.push('/service-providers-registration/Register');
-        }
-      });
-    }
-  }, [data]);
-
-  function logoutUser() {// logout({variables: {input: {email: data.me.email}}})
-  }
-
+function Languages() {
+  var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["usePage"])().props,
+      selectable_locale = _usePage$props.selectable_locale,
+      locale = _usePage$props.locale;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "dropdown notification-list"
+    className: "dropdown notification-list topbar-dropdown d-none d-lg-block"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "nav-link dropdown-toggle nav-user arrow-none mr-0",
+    className: "nav-link dropdown-toggle arrow-none",
     "data-toggle": "dropdown",
-    id: "topbar-userdrop",
+    id: "topbar-languagedrop",
     href: "#",
     role: "button",
     "aria-haspopup": "true",
     "aria-expanded": "false"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "account-user-avatar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "/images/user.png",
+    src: "assets/images/flags/us.jpg",
     alt: "user-image",
-    className: "rounded-circle"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "account-user-name"
-  }, data && data.me ? data.me.name : 'Loading...'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "account-position"
-  }, data && data.me ? data.me.roles.map(function (role) {
-    return role.name;
-  }) : 'Loading...'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown",
-    "aria-labelledby": "topbar-userdrop"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " dropdown-header noti-title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
-    className: "text-overflow m-0"
-  }, "Welcome !")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "javascript:void(0);",
-    className: "dropdown-item notify-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "mdi mdi-account-circle mr-1"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "My Account")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "javascript:void(0);",
-    className: "dropdown-item notify-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "mdi mdi-account-edit mr-1"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Settings")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "javascript:void(0);",
-    className: "dropdown-item notify-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "mdi mdi-lifebuoy mr-1"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Support")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#",
-    className: "dropdown-item notify-item",
-    onClick: logoutUser
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "mdi mdi-logout mr-1"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Logout"))));
-} //
-// export const getServerSideProps = async (context) => {
-//     // const router = useRouter();
-//
-//     await http.post('/graphql', {query: print(gql`${QUERY_AUTH_USER}`)}).then(
-//         response => {
-//             if (response.data.data.me === null) {
-//                 // router.push('/auth/login')
-//             }
-//
-//             if (response.data.data.me) {
-//                 response.data.data.me.roles.map(role => {
-//                     if (role.name.toLowerCase().includes('unverified')) {
-//                         // router.push('/service-providers-registration/Register');
-//                     }
-//                 })
-//             }
-//         }
-//     )
-//
-//     return {props : {}}
-// }
-
-
-/* harmony default export */ __webpack_exports__["default"] = (UserMenu);
+    className: "mr-1",
+    height: "12"
+  }), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "align-middle"
+  }, "English"), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "mdi mdi-chevron-down align-middle"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu",
+    "aria-labelledby": "topbar-languagedrop"
+  }, selectable_locale.map(function (lang) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["InertiaLink"], {
+      href: lang.url,
+      className: "dropdown-item notify-item",
+      key: lang.code
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: lang.flag,
+      alt: "user-image",
+      className: "mr-1",
+      width: lang.flag_width,
+      height: 12
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "align-middle"
+    }, lang.name));
+  })));
+}
 
 /***/ })
 

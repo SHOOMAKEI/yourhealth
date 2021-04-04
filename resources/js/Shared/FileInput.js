@@ -39,7 +39,7 @@ export default ({ className, name, label, accept, errors = [], callback }) => {
         </label>
       )}
 
-      {errors && <div id={name+'-error'} className=" invalid-feedback animated fadeInDown">{errors[0]}</div>}
+      {errors && <div className="invalid-feedback" style={{display:'block'}}>{errors}</div>}
     </div>
     </div>
   );

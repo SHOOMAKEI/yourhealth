@@ -22,7 +22,24 @@ function Languages() {
       locale = _usePage$props.locale;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "dropdown notification-list topbar-dropdown d-none d-lg-block"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "nav-link dropdown-toggle arrow-none",
+    "data-toggle": "dropdown",
+    id: "topbar-languagedrop",
+    href: "#",
+    role: "button",
+    "aria-haspopup": "true",
+    "aria-expanded": "false"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "assets/images/flags/us.jpg",
+    alt: "user-image",
+    className: "mr-1",
+    height: "12"
+  }), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "align-middle"
+  }, "English"), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "mdi mdi-chevron-down align-middle"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu",
     "aria-labelledby": "topbar-languagedrop"
   }, selectable_locale.map(function (lang) {
@@ -34,8 +51,9 @@ function Languages() {
       src: lang.flag,
       alt: "user-image",
       className: "mr-1",
-      width: lang.flag_width
-    }), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      width: lang.flag_width,
+      height: 12
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "align-middle"
     }, lang.name));
   })));

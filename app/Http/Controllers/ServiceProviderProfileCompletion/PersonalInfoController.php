@@ -24,8 +24,7 @@ class PersonalInfoController extends Controller
 {
     public function index()
     {
-        $provider_company = ProviderProfile::find(auth()->user()->service_provider->id)->company;
-        $provider_facilities = ProviderProfile::find(auth()->user()->service_provider->id)->facilities;
+        $provider_profile = ProviderProfile::find(auth()->user()->service_provider->id);
         $qualification = ProviderQualification::where('provider_profile_id',
             auth()->user()->service_provider->id )->get()->map(function ($query){
                 $data['id'] = $query->id;
@@ -41,6 +40,8 @@ class PersonalInfoController extends Controller
            $data['certificate_name'] = $query->certificate_name;
            $data['certificate_number'] = $query->certificate_number;
            $data['registration_number'] = $query->registation_number;
+           $data['authorized_service'] = $query->service->name;
+           $data['expired_at'] = $query->expired_at;
            $data['attachment'] = $query->attachment;
            $data['year'] = $query->year;
            return $data;
@@ -50,14 +51,46 @@ class PersonalInfoController extends Controller
            'user' => collect(new UserResource(User::find(auth()->user()->id)))->toArray(),
            'provider_sub_levels' =>  ProviderSubLevel::all()->toArray(),
            'qualifications' => $qualification,
-           'company' =>   is_null($provider_company)?null: $provider_company->toArray(),
-           'facilities' =>  is_null($provider_facilities)?null: $provider_facilities->toArray(),
+           'company' =>   is_null($provider_profile->company)?null: $provider_profile->company->toArray(),
+           'facilities' =>  is_null($provider_profile->facilities)?null: $provider_profile->facilities->toArray(),
            'medical_registrations' => $medical_reg,
            'all_services' => Service::all()->toArray(),
-           'provider_services' => '',
+           'provider_services' => $provider_profile->services,
            'facility_services' => '',
            'full_profile' => ''
        ]);
+    }
+
+    public function getIndvidualProviderProfileStatus(ProviderProfile $profile)
+    {
+
+        return [
+            'profile-info' =>[
+                'last_updated_at' =>'',
+                'is_complete' => '',
+                'info-category' => '',
+                'remark' => ''
+            ],
+            'education-qualification' =>[
+                'last_updated_at' =>'',
+                'is_complete' => '',
+                'info-category' => '',
+                'remark' => ''
+            ],
+            'practice-license' =>[
+                'last_updated_at' =>'',
+                'is_complete' => '',
+                'info-category' => '',
+                'remark' => ''
+            ],
+            'services' =>[
+                'last_updated_at' =>'',
+                'is_complete' => '',
+                'info-category' => '',
+                'remark' => ''
+            ],
+
+        ];
     }
 
     public function update(Request $request, ServiceProviderRegistrationRepositoryInterface $repository)
@@ -85,8 +118,53 @@ class PersonalInfoController extends Controller
 
         $repository->createProviderProfile($data);
 
-        return redirect()->back();
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
 
+    }
+
+    public function uploadProfilePhoto(Request $request)
+    {
+        $request->validate([
+            'profile_photo' => ['required', 'string', 'base64image']
+        ]);
+        $provider_profile = ProviderProfile::find(auth()->user()->service_provider->id);
+        $user = User::find(auth()->user()->id);
+
+        $explode = explode(',', $request['profile_photo']);
+        $format = str_replace(
+            [
+                'data:image/',
+                ';',
+                'base64',
+            ],
+            [
+                '', '', '',
+            ],
+            $explode[0]
+        );
+        if(($provider_profile->account_category_type == 'facility') ||
+            ($provider_profile->account_category_type == 'company')) {
+
+            $provider_profile->company()->clearMediaCollection('company-profile-photo');
+            $provider_profile->company()->addMediaFromBase64($request['profile_photo'], 'image/'.$format)
+                ->usingFileName(str_replace(
+                    ' ',
+                    '-',
+                    rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . strtolower($provider_profile->company->name)  . '-photo'  . '.'.$format
+                ))
+                ->toMediaCollection('company-profile-photo');
+
+            return redirect()->back()->with(['status' => 'Operation Complete successful']);
+        }
+
+
+
+        $user->clearMediaCollection('profile-photo');
+        $user->addMediaFromBase64($request['profile_photo'], 'image/'.$format)
+            ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . strtolower($user->name) . '-photo'  . '.'.$format))
+            ->toMediaCollection('profile-photo');
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 
 }

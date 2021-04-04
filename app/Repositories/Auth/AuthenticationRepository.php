@@ -6,6 +6,7 @@ namespace App\Repositories\Auth;
 use App\Contracts\Repositories\Auth\AuthenticationRepositoryInterface;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -117,11 +118,18 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
             );
         }
         $this->guard->login($user);
-        return Redirect::route('dashboard')
-            ->with( [
-                'status'=> 'Your successful logged in',
-                'alertType' => 'success'
-            ]);
+        if ($user->hasRole('service-provider') && $user->hasRole('verified-service-provider')){
+            return redirect()->route('verified_sp.home');
+        }
+        if ($user->hasRole('service-provider') && $user->hasRole('unverified-service-provider')){
+            return redirect()->route('personalInfo.index');
+        }
+        if ($user->hasRole('super-admin')){
+            return redirect()->route('admin.dashboard');
+        }
+
+        return redirect(RouteServiceProvider::HOME);
+
 
 
     }

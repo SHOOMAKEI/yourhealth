@@ -1,44 +1,47 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import {usePage} from "@inertiajs/inertia-react";
+import {Inertia} from "@inertiajs/inertia";
+import TextInput from "@/Shared/TextInput";
+import SelectInput from "@/Shared/SelectInput";
+import LoadingButton from "@/Shared/LoadingButton";
 
 
-export default function UnregisteredServices({services, callback}) {
-    const initialValues = {
+export default function UnregisteredServices({services,shownServices, callback}) {
+    const { errors, status, alertType } = usePage().props;
+    const [sending, setSending] = useState(false);
+    const [selectedService, setSelectedService] = useState({});
+    const [values, setValues] = useState({
+        service_id: '',
         price: 0,
         currency: "TZS",
+        compare_price: 0
+    });
+
+    useEffect(()=>
+        setValues(values => ({
+        ...values,
+        service_id: selectedService.id
+    })),[selectedService])
+
+    function handleChange(e) {
+        const key = e.target.name;
+        const value =
+            e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+
+        setValues(values => ({
+            ...values,
+            [key]: value
+        }));
     }
 
-    const [shownServices, setShownServices] = useState([...services]);
-    const [selectedService, setSelectedService] = useState({})
-    const [success, setSuccess] = useState(false);
-
-    function onSubmit(values, { setSubmitting } ) {
-        let _registeredService = [{
-            service_id: selectedService.id,
-            price: values.price,
-            currency: values.currency,
-            compare_price: 0
-        }, ]
-
-        registerService({variables: {input: _registeredService}})
+    function handleSubmit(e) {
+        e.preventDefault();
+        setSending(true);
+        Inertia.post(route('providerService.store'), values).then(() => {
+            setSending(false);
+        });
     }
 
-    useEffect(() => {
-        let data = registerServiceResponse.data
-
-        if (data && data.createProviderProfileServices) {
-            callback()
-            setSuccess(true);
-            const timer = setTimeout(() => {
-                setSuccess(false);
-                clearTimeout(timer)
-            }, 5000)
-        }
-
-    }, [registerServiceResponse.data])
-
-    useEffect(() => {
-        setShownServices(services.slice(0, 5))
-    }, [])
 
     function onSearch() {
         $('#search-input-unregistered').on('input',function(e){
@@ -54,7 +57,7 @@ export default function UnregisteredServices({services, callback}) {
                     }
                 })
 
-                setShownServices(newShownServices);
+                // setShownServices(newShownServices);
             }
         });
     }
@@ -80,7 +83,7 @@ export default function UnregisteredServices({services, callback}) {
                 </thead>
                 <tbody>
                     {
-                        shownServices.slice(0, 4).map((service) => (
+                        services &&  services.slice(0, 4).map((service) => (
                             <tr key={service.id}>
                                 <td>{service.name}</td>
                                 <td>
@@ -104,55 +107,59 @@ export default function UnregisteredServices({services, callback}) {
                             </div>
                             <div className="modal-body">
                                 {
-                                    success && (
+                                    status && (
                                         <div className={`alert alert-success alert-dismissible bg-success text-white border-0 fade show`} role="alert">
-                                            <button type="button" className="close" onClick={() => setSuccess(false)}>
+                                            <button type="button" className="close" >
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
-                                            <strong>Success - </strong> Operation was completed successfully!
+                                            <strong>Success - </strong> {status}
                                         </div>
                                     )
                                 }
 
                                 {
-                                    registerServiceResponse.called && registerServiceResponse.loading ?
-                                        <Spinner /> :
-                                        (
-                                            <Formik
-                                                initialValues={initialValues}
-                                                onSubmit={onSubmit}
-                                                validationSchema={ServiceRegistrationSchema}
+
+                                    <form onSubmit={handleSubmit}>
+                                        <div className="row">
+                                            <div className="col-6">
+                                                <TextInput
+                                                    name="price"
+                                                    type="text"
+                                                    placeholder="Price"
+                                                    label="Price"
+                                                    errors={errors.price}
+                                                    value={values.price}
+                                                    onChange={handleChange}
+                                                />
+                                            </div>
+                                            <div className="col-6">
+                                                <SelectInput
+                                                    name="currency"
+                                                    type="text"
+                                                    placeholder="Currency"
+                                                    label="Currency"
+                                                    errors={errors.currency}
+                                                    value={values.currency}
+                                                    onChange={handleChange}
+                                                >
+                                                    <option value="TZS">TZS</option>
+                                                    <option value="KES">KES</option>
+                                                    <option value="UGS">UGS</option>
+                                                </SelectInput>
+                                            </div>
+                                        </div>
+                                        <div className="form-group mb-0 text-right">
+                                            <button type="button" className="btn btn-light mr-3" data-dismiss="modal">Close</button>
+                                            <LoadingButton
+                                                type="submit"
+                                                className="btn btn-primary btn-sm"
+                                                loading={sending}
                                             >
-                                                {({ errors, touched }) => (
-                                                    <Form>
-                                                        <div className="row">
-                                                            <div className="col-6">
-                                                                <div className="form-group">
-                                                                    <label htmlFor="price">Price</label>
-                                                                    <Field id="price" name="price" placeholder="John" type="text" className="form-control"/>
-                                                                    {errors.price && touched.price ? <FormInputError title="Price error" message={errors.price} /> : null}
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-6">
-                                                                <div className="form-group">
-                                                                    <label htmlFor="currency">Currency</label>
-                                                                    <Field as="select" name="currency" id="currency" className="form-control">
-                                                                        <option value="TZS">TZS</option>
-                                                                        <option value="KES">KES</option>
-                                                                        <option value="UGS">UGS</option>
-                                                                    </Field>
-                                                                    {errors.currency && touched.currency ? <FormInputError currency="Currency error" message={errors.currency} /> : null}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="form-group mb-0 text-right">
-                                                            <button type="button" className="btn btn-light mr-3" data-dismiss="modal">Close</button>
-                                                            <button className="btn btn-primary" type="submit"> Register </button>
-                                                        </div>
-                                                    </Form>
-                                                )}
-                                            </Formik>
-                                        )
+                                                Save Changes
+                                            </LoadingButton>
+                                        </div>
+                                    </form>
+
                                 }
 
                             </div>

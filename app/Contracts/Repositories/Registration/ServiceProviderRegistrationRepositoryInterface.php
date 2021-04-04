@@ -11,9 +11,11 @@ use App\Models\ProviderFacility;
 use App\Models\ProviderMedicalRegistration;
 use App\Models\ProviderProfile;
 use App\Models\ProviderQualification;
+use App\Models\RequestedService;
 use App\Models\Service;
 use App\Models\User;
 use App\Models\ProviderFacilityOwner;
+use Illuminate\Database\Eloquent\Collection;
 
 interface ServiceProviderRegistrationRepositoryInterface
 {
@@ -45,13 +47,15 @@ interface ServiceProviderRegistrationRepositoryInterface
 
     public function deleteProviderMedicalRegistration(array $request):ProviderMedicalRegistration;
 
-    public function createProviderProfileServices(array $request):Service;
+    public function createProviderProfileServices(array $request):Collection;
 
-    public function deleteProviderProfileServices(array $request):Service;
+    public function createRequestedService(array $request): RequestedService;
 
-    public function createProviderFacilityServices(array $request):Service;
+    public function deleteProviderProfileServices(array $request):Collection;
 
-    public function deleteProviderFacilityServices(array $request):Service;
+    public function createProviderFacilityServices(array $request):Collection;
+
+    public function deleteProviderFacilityServices(array $request):Collection;
 
     public function createProviderProfileCalendar(array $request):DaySession;
 

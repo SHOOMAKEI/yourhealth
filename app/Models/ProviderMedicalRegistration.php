@@ -24,4 +24,9 @@ class ProviderMedicalRegistration extends Model implements HasMedia
     {
         return $this->getFirstMediaUrl('provider-medical-registration-files');
     }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }

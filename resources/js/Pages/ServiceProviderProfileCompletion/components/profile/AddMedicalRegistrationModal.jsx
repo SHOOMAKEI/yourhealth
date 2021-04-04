@@ -11,27 +11,6 @@ import SelectInput from "@/Shared/SelectInput";
 
 
 
-function FileUpload(props) {
-    const {field, form} = props;
-
-    const handleChange = async (e) => {
-      const file  =  e.currentTarget.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      let base64;
-      reader.onload = await function(event) {
-          base64 = event.target?.result
-          form.setFieldValue(field.name, base64);
-      }
-    };
-
-    return (
-      <div>
-        <input type={'file'} onChange={(o) => handleChange(o)} className={'form-control'}/>
-      </div>
-    );
-  }
-
 export default function AddMedicalRegistrationModal({modalID, initialData, operation, title, callback, services}) {
     const { errors, status, alertType } = usePage().props;
     const [sending, setSending] = useState(false);
@@ -40,7 +19,8 @@ export default function AddMedicalRegistrationModal({modalID, initialData, opera
         certificate_name: "",
         year: "",
         attachment: "",
-        certificate_number: ""
+        certificate_number: "",
+        expired_at:""
     });
 
     function handleChange(e) {
@@ -57,9 +37,16 @@ export default function AddMedicalRegistrationModal({modalID, initialData, opera
     function handleSubmit(e) {
         e.preventDefault();
         setSending(true);
-        Inertia.post(route('login'), values).then(() => {
+        Inertia.post(route('practiceLicense.store'), values).then(() => {
             setSending(false);
         });
+    }
+
+    function handleFileUpload(field, file) {
+        setValues(values => ({
+            ...values,
+            [field]: file
+        }));
     }
 
 
@@ -77,7 +64,7 @@ export default function AddMedicalRegistrationModal({modalID, initialData, opera
                 )
             }
 
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-6">
                         <TextInput
@@ -107,7 +94,15 @@ export default function AddMedicalRegistrationModal({modalID, initialData, opera
                             value={values.year}
                             onChange={handleChange}
                         />
-
+                        <TextInput
+                            name="expired_at"
+                            type="date"
+                            placeholder="Expired Date"
+                            label="Expired Date"
+                            errors={errors.expired_at}
+                            value={values.expired_at}
+                            onChange={handleChange}
+                        />
                     </div>
                     <div className="col-6">
                         <TextInput
@@ -126,7 +121,7 @@ export default function AddMedicalRegistrationModal({modalID, initialData, opera
                             label="Attachment"
                             errors={errors.attachment}
                             value={values.attachment}
-                            onChange={handleChange}
+                            callback={handleFileUpload}
                         />
                         <SelectInput
                             name="service_id"

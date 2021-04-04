@@ -7,7 +7,6 @@ use App\Http\Controllers\Authentication\AuthenticationViewsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MedicalCourseController;
 use App\Http\Controllers\MedicalInstituteController;
-use App\Http\Controllers\MedicalProcedureController;
 use App\Http\Controllers\MedicalRegistrationCouncilController;
 use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\ProviderProfileController;
@@ -15,8 +14,9 @@ use App\Http\Controllers\Registration\RegistrationController;
 use App\Http\Controllers\RequiredVerificationController;
 use App\Http\Controllers\ServiceProviderProfileCompletion\EducationQualificationController;
 use App\Http\Controllers\ServiceProviderProfileCompletion\PersonalInfoController;
+use App\Http\Controllers\ServiceProviderProfileCompletion\PracticeLicenseController;
+use App\Http\Controllers\ServiceProviderProfileCompletion\ProviderServicesController;
 use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\SpecializationController;
 use App\Http\Controllers\VerifyMobileNumberController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -144,10 +144,30 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
             ->name('personalInfo.index');
         Route::post('/personal-information/update', [PersonalInfoController::class, 'update'])
             ->name('personalInfo.update');
+        Route::post('/personal-information/update', [PersonalInfoController::class, 'uploadProfilePhoto'])
+            ->name('personalInfo.uploadPhoto');
         Route::post('/education-qualification/store', [EducationQualificationController::class, 'store'])
             ->name('educationQualification.store');
         Route::get('/education-qualification/{qualification}/delete', [EducationQualificationController::class, 'destroy'])
             ->name('educationQualification.destroy');
+        Route::post('/practice-license/store', [PracticeLicenseController::class, 'store'])
+            ->name('practiceLicense.store');
+        Route::get('/practice-license/{registration}/delete', [PracticeLicenseController::class, 'destroy'])
+            ->name('practiceLicense.destroy');
+        Route::post('/provider-service/store', [ProviderServicesController::class, 'store'])
+            ->name('providerService.store');
+        Route::get('/provider-service/{service}/delete', [ProviderServicesController::class, 'destroy'])
+            ->name('providerService.destroy');
+        Route::post('/provider-service/store', [ProviderServicesController::class, 'store'])
+            ->name('providerService.store');
+        Route::get('/provider-service/{service}/delete', [ProviderServicesController::class, 'destroy'])
+            ->name('providerService.destroy');
+        Route::post('/provider-service/request-service', [ProviderServicesController::class, 'requestServiceStore'])
+            ->name('requestService.store');
+        Route::post('/facility-service/store', [ProviderServicesController::class, 'facilityStore'])
+            ->name('facilityService.store');
+        Route::get('/facility-service/{service}/delete', [ProviderServicesController::class, 'facilityDestroy'])
+            ->name('facilityService.destroy');
 
         Route::get('service_provider/profile_info', [ProviderProfileController::class ,'profileInfo'])
             ->name('profile-completion.index');

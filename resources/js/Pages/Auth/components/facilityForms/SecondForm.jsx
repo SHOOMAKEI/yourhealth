@@ -21,9 +21,10 @@ export default function SecondForm({callback, goBack}) {
         middle_name: "",
         mobile_number: "",
         password_confirmation: "",
-        email: '',
-        password: '',
-        ownership_type: 'self'
+        email: "",
+        password: "",
+        ownership_type: 'self',
+        send_form_two: false
     })
 
     function handleChange(e) {
@@ -35,10 +36,19 @@ export default function SecondForm({callback, goBack}) {
                 ...values,
                 [key]: value
         }));
+
+        callback({
+            form_number: 2,
+            form_two_data: values
+        })
 	}
 
     function handleSubmit(e) {
         e.preventDefault();
+        setValues(values => ({
+            ...values,
+            send_form_two: true
+        }))
         callback({
             form_number: 2,
             form_two_data: values
@@ -130,7 +140,13 @@ export default function SecondForm({callback, goBack}) {
 
                         <div className="form-group mb-0 text-right">
                             <a className="btn btn-light mr-2" onClick={() => goBack(1)}> Previous </a>
-                            <button className="btn btn-primary" type="submit"> Submit </button>
+                            <LoadingButton
+                                type="submit"
+                                className="btn btn-primary "
+                                loading={sending}
+                            >
+                                Register
+                            </LoadingButton>
                         </div>
                     </div>
                 </div>

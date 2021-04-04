@@ -1,8 +1,9 @@
 import { ADD_FACILITY_MODAL_ID } from '@/Pages/Utilities/Constants'
 import AddFacilityModal from '@/Pages/ServiceProviderProfileCompletion/components/profile/AddFacilityModal'
 import Heading from '@/Pages/ServiceProviderProfileCompletion/components/profile/Heading'
+import React from 'react'
 
-export default function Facility([facilities]) {
+export default function Facility({facilities}) {
     function searchFacilities() {
 
     }
@@ -32,19 +33,24 @@ export default function Facility([facilities]) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Linda G. Smith Linda G. Smith Linda G. Smith</td>
-                        <td>
-                            <a href="" className="btn btn-light">281-308-0793 <i className="uil-cloud-download ml-1"></i></a>
-                        </td>
-                        <td>
-                            <a href="" className="btn btn-light">281-308-0793 <i className="uil-cloud-download ml-1"></i></a>
-                        </td>
-                        <td>
-                            <a href="javascript: void(0);" className="action-icon"> <i className="mdi mdi-pencil"></i></a>
-                            <a href="javascript: void(0);" className="action-icon"> <i className="dripicons-trash"></i></a>
-                        </td>
-                    </tr>
+                {
+                    facilities.map((facility)=>(
+                        <tr>
+                            <td>{facility.name}</td>
+                            <td>
+                                <a href="" className="btn btn-light">{facility.vrn} <i className="uil-cloud-download ml-1"></i></a>
+                            </td>
+                            <td>
+                                <a href="" className="btn btn-light">{facility.tin} <i className="uil-cloud-download ml-1"></i></a>
+                            </td>
+                            <td>
+                                <a href="#" className="action-icon"> <i className="mdi mdi-pencil"></i></a>
+                                <a href="#" className="action-icon"> <i className="dripicons-trash"></i></a>
+                            </td>
+                        </tr>
+                    ))
+                }
+
                 </tbody>
             </table>
         </div>
