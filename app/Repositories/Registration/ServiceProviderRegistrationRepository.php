@@ -87,19 +87,20 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
             'registration_date' => $request['registration_date'] ?? null,
             'description' => $request['description'] ?? null,
         ];
+        $user = User::find($request['user_id']);
 
-        $provider_company = isset((User::find($request['user_id']))->service_provider->provider_companies[0]->id) ?
+        $provider_company = !empty($user->service_provider->provider_companies[0]->id) ?
             ProviderCompany::updateOrCreate(
                 [
-                'id' => (User::find($request['user_id']))->service_provider->provider_companies[0]->id
+                'id' => $user->service_provider->provider_companies[0]->id
             ],
                 $data
             ) : ProviderCompany::create($data);
 
         $provider_company->provider_profile()
-            ->detach((User::find($request['user_id']))->service_provider->id);
+            ->detach($user->service_provider->id);
         $provider_company->provider_profile()
-            ->attach((User::find($request['user_id']))->service_provider->id, ['role' => 'owner']);
+            ->attach($user->service_provider->id, ['role' => 'owner']);
 
         if (!empty($request['tin_attachment'])) {
             $provider_company->clearMediaCollection('provider-company-tin-files');
@@ -198,7 +199,6 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
         $provider_facility = ProviderFacility::find($request['id']);
 
         $provider_facility->update($this->facilityData($request));
-
         if (!empty($request['tin_attachment'])) {
             $provider_facility->clearMediaCollection('provider-facility-tin-files');
             $provider_facility->addMediaFromBase64($request['tin_attachment'], 'application/pdf')

@@ -23,13 +23,13 @@ class RegistrationRepository implements RegistrationRepositoryInterface
             if ($request['account_category_type'] == 'company') {
                 $user->assignRole('owner');
                 $provider_company = $repository->createOrUpdateProviderCompany($request);
-                $provider_company->provider_profile()->attach($user->service_provider->id, ['role' => 'owner']);
                 $request+= ['provider_company_id' =>  $provider_company->id];
             }
 
             if ($request['account_category_type'] == 'facility') {
                 $user->assignRole('owner');
                 $provider_company = $repository->createOrUpdateProviderCompany($request);
+                $provider_company->provider_profile()->detach($user->service_provider->id);
                 $provider_company->provider_profile()->attach($user->service_provider->id, ['role' => 'owner']);
                 $request+= ['provider_company_id' =>  $provider_company->id];
                 $provider_facility =$repository->createProviderFacility($request);

@@ -172,6 +172,10 @@ function FacilityRegister() {
     setSending(true);
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('account.create'), values).then(function () {
       setSending(false);
+      setValues(_objectSpread(_objectSpread({}, values), {}, {
+        send_form: false,
+        send_form_two: false
+      }));
     });
   }
 

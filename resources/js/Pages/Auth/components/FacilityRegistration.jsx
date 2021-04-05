@@ -90,6 +90,11 @@ export default function FacilityRegister() {
         setSending(true);
         Inertia.post(route('account.create'), values).then(() => {
             setSending(false);
+            setValues({
+                ...values,
+                send_form:false,
+                send_form_two:false
+            })
         });
     }
 

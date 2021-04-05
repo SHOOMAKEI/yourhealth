@@ -16,6 +16,7 @@ use App\Models\Service;
 use App\Models\User;
 use App\Rules\ProviderSubLevelFieldValidator;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
@@ -25,6 +26,12 @@ class PersonalInfoController extends Controller
     public function index()
     {
         $provider_profile = ProviderProfile::find(auth()->user()->service_provider->id);
+        $provider_facilities = null;
+        if(!empty($provider_profile->provider_companies[0]->id)){
+            $provider_facilities = ProviderFacility::where('provider_company_id',
+                $provider_profile->provider_companies[0]->id)->get();
+        }
+
         $qualification = ProviderQualification::where('provider_profile_id',
             auth()->user()->service_provider->id )->get()->map(function ($query){
                 $data['id'] = $query->id;
@@ -51,8 +58,8 @@ class PersonalInfoController extends Controller
            'user' => collect(new UserResource(User::find(auth()->user()->id)))->toArray(),
            'provider_sub_levels' =>  ProviderSubLevel::all()->toArray(),
            'qualifications' => $qualification,
-           'company' =>   is_null($provider_profile->company)?null: $provider_profile->company->toArray(),
-           'facilities' =>  is_null($provider_profile->facilities)?null: $provider_profile->facilities->toArray(),
+           'company' =>   is_null($provider_profile->provider_companies)?null: $provider_profile->provider_companies[0]->toArray(),
+           'facilities' => $provider_facilities ,
            'medical_registrations' => $medical_reg,
            'all_services' => Service::all()->toArray(),
            'provider_services' => $provider_profile->services,
