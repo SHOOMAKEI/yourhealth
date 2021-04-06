@@ -200,8 +200,10 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
 
 
 
-// Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:super-admin'])->group(function(){
-//     Route::resource('packages', PackagesController::class);
+ Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:super-admin'])->group(function(){
+     Route::get('admin/dashboard', function (){
+         return Inertia::render('Dashboard');
+     })->name('admin.dashboard');
 //     Route::resource('specializations', SpecializationController::class);
 //     Route::resource('procedures', MedicalProcedureController::class);
 //     Route::resource('medical_courses', MedicalCourseController::class);
@@ -212,7 +214,7 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
 //     Route::get('service_provider_profiles/provider/{provider}/verify', [ProviderProfileAdminController::class, 'verify'])->name('service_provider_profiles.verify');
 //     Route::get('service_provider_profiles/provider/{provider}/unverify', [ProviderProfileAdminController::class, 'unverify'])->name('service_provider_profiles.unverify');
 
-// });
+ });
 
 
 

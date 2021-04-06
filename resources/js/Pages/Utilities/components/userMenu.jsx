@@ -5,33 +5,33 @@ function UserMenu() {
     // const [logout, logoutResponse] = useApi({query: LOGOUT})
     // const router = useRouter();
 
-    useEffect(() => {
-        // queryAthUser({})
-    }, [])
+    // useEffect(() => {
+    //     // queryAthUser({})
+    // }, [])
+    //
+    // useEffect(() => {
+    //     // if(logoutResponse.data && logoutResponse.data.logoutSession.success) {
+    //     //     router.push('/auth/login')
+    //     // }
+    // }, [logoutResponse.data])
+    //
+    // useEffect(() => {
+    //     if (data && data.me === null) {
+    //         // router.push('/auth/login')
+    //     }
 
-    useEffect(() => {
-        // if(logoutResponse.data && logoutResponse.data.logoutSession.success) {
-        //     router.push('/auth/login')
-        // }
-    }, [logoutResponse.data])
+    //     if (data.me) {
+    //         data.me.roles.map(role => {
+    //             if (role.name.toLowerCase().includes('unverified')) {
+    //                 // router.push('/service-providers-registration/Register');
+    //             }
+    //         })
+    //     }
+    // }, [data])
 
-    useEffect(() => {
-        if (data && data.me === null) {
-            // router.push('/auth/login')
-        }
-
-        if (data.me) {
-            data.me.roles.map(role => {
-                if (role.name.toLowerCase().includes('unverified')) {
-                    // router.push('/service-providers-registration/Register');
-                }
-            })
-        }
-    }, [data])
-
-    function logoutUser() {
-        // logout({variables: {input: {email: data.me.email}}})
-    }
+    // function logoutUser() {
+    //     // logout({variables: {input: {email: data.me.email}}})
+    // }
 
     return (
         <li className="dropdown notification-list">
@@ -41,8 +41,8 @@ function UserMenu() {
                     <img src="/images/user.png" alt="user-image" className="rounded-circle" />
                 </span>
                 <span>
-                    <span className="account-user-name">{(data && data.me) ? data.me.name : 'Loading...'}</span>
-                    <span className="account-position">{(data && data.me) ? data.me.roles.map(role => role.name) : 'Loading...'}</span>
+                    <span className="account-user-name">{'Loading...'}</span>
+                    <span className="account-position">{ 'Loading...'}</span>
                 </span>
             </a>
             <div className="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown" aria-labelledby="topbar-userdrop">
@@ -50,22 +50,22 @@ function UserMenu() {
                     <h6 className="text-overflow m-0">Welcome !</h6>
                 </div>
 
-                <a href="javascript:void(0);" className="dropdown-item notify-item">
+                <a href="#" className="dropdown-item notify-item">
                     <i className="mdi mdi-account-circle mr-1"></i>
                     <span>My Account</span>
                 </a>
 
-                <a href="javascript:void(0);" className="dropdown-item notify-item">
+                <a href="#" className="dropdown-item notify-item">
                     <i className="mdi mdi-account-edit mr-1"></i>
                     <span>Settings</span>
                 </a>
 
-                <a href="javascript:void(0);" className="dropdown-item notify-item">
+                <a href="#" className="dropdown-item notify-item">
                     <i className="mdi mdi-lifebuoy mr-1"></i>
                     <span>Support</span>
                 </a>
 
-                <a href="#" className="dropdown-item notify-item" onClick={logoutUser}>
+                <a href="#" className="dropdown-item notify-item" >
                     <i className="mdi mdi-logout mr-1"></i>
                     <span>Logout</span>
                 </a>
@@ -74,27 +74,5 @@ function UserMenu() {
         </li>
     )
 }
-//
-// export const getServerSideProps = async (context) => {
-//     // const router = useRouter();
-//
-//     await http.post('/graphql', {query: print(gql`${QUERY_AUTH_USER}`)}).then(
-//         response => {
-//             if (response.data.data.me === null) {
-//                 // router.push('/auth/login')
-//             }
-//
-//             if (response.data.data.me) {
-//                 response.data.data.me.roles.map(role => {
-//                     if (role.name.toLowerCase().includes('unverified')) {
-//                         // router.push('/service-providers-registration/Register');
-//                     }
-//                 })
-//             }
-//         }
-//     )
-//
-//     return {props : {}}
-// }
 
 export default UserMenu

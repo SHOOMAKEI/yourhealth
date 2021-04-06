@@ -4,17 +4,17 @@ import {InertiaLink} from "@inertiajs/inertia-react";
 export default function Sidebar() {
     // const [queryAthUser, {loading, errors, data, called}] = useApi({query: QUERY_AUTH_USER})
 
-    useEffect(() => {
-        // queryAthUser({})
-    }, [])
+    // useEffect(() => {
+    //     // queryAthUser({})
+    // }, [])
 
     return (
         <div className="left-side-menu left-side-menu-detached">
 
             <div className="leftbar-user">
-                <a href="javascript: void(0);">
+                <a href="#">
                     <img src="/images/user.png" alt="user-image" height="42" className="rounded-circle shadow-sm" />
-                    <span className="leftbar-user-name">{(data && data.me) ? data.me.name : 'Loading...'}</span>
+                    <span className="leftbar-user-name">{'Loading...'}</span>
                 </a>
             </div>
 
@@ -23,7 +23,7 @@ export default function Sidebar() {
                 <li className="side-nav-title side-nav-item">Navigation</li>
 
                 <li className="side-nav-item">
-                    <a href="javascript: void(0);" className="side-nav-link">
+                    <a href="#" className="side-nav-link">
                         <i className="uil-home-alt"></i>
                         <span> Home </span>
                     </a>
@@ -32,7 +32,7 @@ export default function Sidebar() {
                 <li className="side-nav-title side-nav-item">Modules</li>
 
                 <li className="side-nav-item">
-                    <a href="javascript: void(0);" className="side-nav-link">
+                    <a href="#" className="side-nav-link">
                         <i className="uil-store"></i>
                         <span> Services </span>
                         <span className="menu-arrow"></span>
@@ -56,7 +56,7 @@ export default function Sidebar() {
                     </ul>
                 </li>
                 <li className="side-nav-item">
-                    <a href="javascript: void(0);" className="side-nav-link">
+                    <a href="#" className="side-nav-link">
                         <i className="uil-constructor"></i>
                         <span> Service Providers </span>
                         <span className="menu-arrow"></span>
