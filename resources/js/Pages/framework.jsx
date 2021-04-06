@@ -4,7 +4,7 @@ import SideNav from './Utilities/sidenav'
 import TopNav from './Utilities/topnav'
 
 
-function Framework({ renderContent }) {
+function Framework({ children }) {
 
     return (
         <React.Fragment>
@@ -14,7 +14,7 @@ function Framework({ renderContent }) {
                     <SideNav />
                     <div className="content-page">
                         <div className="content">
-                            {renderContent()}
+                            {children}
                         </div>
                     </div>
                 </div>

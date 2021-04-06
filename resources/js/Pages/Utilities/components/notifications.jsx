@@ -1,3 +1,5 @@
+import React from 'react'
+
 export default function Notifications() {
     return (
         <li className="dropdown notification-list">
@@ -10,7 +12,7 @@ export default function Notifications() {
                 <div className="dropdown-item noti-title">
                     <h5 className="m-0">
                         <span className="float-right">
-                            <a href="javascript: void(0);" className="text-dark">
+                            <a href="#" className="text-dark">
                                 <small>Clear All</small>
                             </a>
                         </span>Notification
@@ -74,7 +76,7 @@ export default function Notifications() {
                     </a>
                 </div>
 
-                
+
                 <a href="javascript:void(0);" className="dropdown-item text-center text-primary notify-item notify-all">
                     View All
                 </a>

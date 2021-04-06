@@ -10,19 +10,19 @@ export default function Company( {company}) {
     const { errors, status, alertType } = usePage().props;
     const [sending, setSending] = useState(false);
     const [values, setValues] = useState({
-        address: "",
-        description: "",
-        alternate_mobile_number: "",
-        email: "",
-        mobile_number: "",
-        name: "",
-        physical_address: "",
-        registration_date: "",
-        registration_number: "",
-        tin: "",
-        trading_name: "",
-        vrn: "",
-        website: ""
+        address: company?.address || "",
+        description: company?.description || "",
+        alternative_mobile_number:  company?.alternative_mobile_number ||"",
+        email:  company?.email || "",
+        mobile_number: company?.mobile_number || "",
+        name: company?.name || "",
+        physical_address: company?.physical_address || "",
+        registration_date: company?.registration_date || "",
+        registration_number: company?.registration_number || "",
+        tin: company?.tin || "",
+        trading_name: company?.trading_name || "",
+        vrn: company?.vrn || "",
+        website: company?.website || ""
     });
 
 
@@ -46,6 +46,8 @@ export default function Company( {company}) {
     }
 
         return (
+            <div className="tab-pane fade" id="v-pills-company" role="tabpanel"
+                 aria-labelledby="v-pills-company-tab">
             <form>
                 <div className="row">
                     <div className="col-6">
@@ -96,7 +98,7 @@ export default function Company( {company}) {
                         />
                         <TextInput
                             name="registration_date"
-                            type="text"
+                            type="date"
                             placeholder="Registration Date"
                             label="Registration Date"
                             errors={errors.registration_date}
@@ -143,12 +145,12 @@ export default function Company( {company}) {
                             onChange={handleChange}
                         />
                         <TextInput
-                            name="alternate_mobile_number"
+                            name="alternative_mobile_number"
                             type="text"
                             placeholder="Alternate Mobile Number"
                             label="Website"
-                            errors={errors.alternate_mobile_number}
-                            value={values.alternate_mobile_number}
+                            errors={errors.alternative_mobile_number}
+                            value={values.alternative_mobile_number}
                             onChange={handleChange}
                         />
                         <TextInput
@@ -182,6 +184,7 @@ export default function Company( {company}) {
                     </div>
                 </div>
             </form>
+            </div>
         )
 
 
