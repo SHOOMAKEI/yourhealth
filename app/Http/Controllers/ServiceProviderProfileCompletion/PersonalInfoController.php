@@ -54,6 +54,23 @@ class PersonalInfoController extends Controller
            return $data;
        });
 
+        $facility = ProviderFacility::where('provider_company_id', $provider_profile->provider_companies[0]->id)
+            ->get()->map(function ($query){
+                $data['id'] = $query->id;
+                $data['data'] = $query->services->map(function ($service){
+                    $pivot['id'] = $service->id;
+                    $pivot['name'] = $service->name;
+                    $pivot['pivot']['price'] = $service->pivot->price;
+                    $pivot['pivot']['compare_price'] = $service->pivot->compare_price;
+                    $pivot['pivot']['currency'] = $service->pivot->currency;
+                    return $pivot;
+                })->toArray();
+
+                return $data;
+            })->toArray();
+
+
+
        return Inertia::render('ServiceProviderProfileCompletion/Register',[
            'user' => collect(new UserResource(User::find(auth()->user()->id)))->toArray(),
            'provider_sub_levels' =>  ProviderSubLevel::all()->toArray(),
@@ -63,7 +80,7 @@ class PersonalInfoController extends Controller
            'medical_registrations' => $medical_reg,
            'all_services' => Service::all()->toArray(),
            'provider_services' => $provider_profile->services,
-           'facility_services' => '',
+           'facility_services' => !empty($facility)?$facility: '',
            'full_profile' => ''
        ]);
     }
@@ -110,19 +127,19 @@ class PersonalInfoController extends Controller
             'first_name' =>  ['required', 'string', 'max:255'],
             'email' =>  ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'username' =>  ['required', 'string', 'max:255'],
-            'title' =>  ['required', 'string', 'max:255'],
+            'title' =>  ['required', 'string', 'max:255' , Rule::in(['Mr','Mrs','Dr', 'Nurse','Prof'])],
             'alternative_mobile_number' =>  ['required', 'string', 'max:255'],
             'address' =>  ['required', 'string', 'max:255'],
             'physical_address' =>  ['required', 'string', 'max:255'],
             'gender' =>  ['required', 'string', Rule::in(['F', 'M'])],
-            'provider_sub_level_id' => ['numeric', new ProviderSubLevelFieldValidator],
+            'provider_sub_level_id' => [ 'required','numeric', 'exists:provider_sub_levels,id'],
             'dob' => ['required', 'date_format:Y-m-d', 'before:{$ten_year_validator}'],
             'bio' => ['string'],
         ]);
 
         $data = $request->toArray();
         $data+=['user_id' => auth()->user()->id];
-
+        $data+=['account_category_type' => auth()->user()->service_provider->account_category_type];
         $repository->createProviderProfile($data);
 
         return redirect()->back()->with(['status' => 'Operation Complete successful']);

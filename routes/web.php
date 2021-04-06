@@ -15,6 +15,7 @@ use App\Http\Controllers\RequiredVerificationController;
 use App\Http\Controllers\ServiceProviderProfileCompletion\EducationQualificationController;
 use App\Http\Controllers\ServiceProviderProfileCompletion\PersonalInfoController;
 use App\Http\Controllers\ServiceProviderProfileCompletion\PracticeLicenseController;
+use App\Http\Controllers\ServiceProviderProfileCompletion\ProviderFacilityController;
 use App\Http\Controllers\ServiceProviderProfileCompletion\ProviderServicesController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\VerifyMobileNumberController;
@@ -144,7 +145,7 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
             ->name('personalInfo.index');
         Route::post('/personal-information/update', [PersonalInfoController::class, 'update'])
             ->name('personalInfo.update');
-        Route::post('/personal-information/update', [PersonalInfoController::class, 'uploadProfilePhoto'])
+        Route::post('/personal-information/upload-photo', [PersonalInfoController::class, 'uploadProfilePhoto'])
             ->name('personalInfo.uploadPhoto');
         Route::post('/education-qualification/store', [EducationQualificationController::class, 'store'])
             ->name('educationQualification.store');
@@ -169,22 +170,12 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
         Route::get('/facility-service/{service}/delete', [ProviderServicesController::class, 'facilityDestroy'])
             ->name('facilityService.destroy');
 
-        Route::get('service_provider/profile_info', [ProviderProfileController::class ,'profileInfo'])
-            ->name('profile-completion.index');
-        Route::get('service_provider/establishments', [ProviderProfileController::class ,'establishments'])
-            ->name('establishments.index');
-        Route::get('service_provider/specializations', [ProviderProfileController::class ,'specializations'])
-            ->name('provider_specializations.index');
-        Route::get('service_provider/verifications', [ProviderProfileController::class ,'verifications'])
-            ->name('verifications.index');
-        Route::get('service_provider/submittion', [ProviderProfileController::class ,'submittion'])
-            ->name('submittion.index');
-        Route::get('service_provider/medical_qualification', [ProviderProfileController::class , 'medicalQualification'])
-            ->name('medical_qualification.index');
-        Route::post('service_provider/save', [ProviderProfileController::class ,'store'])
-            ->name('provider_profiles.store');
-        Route::get('service_provider/submittion/submit', [ProviderProfileController::class ,'submitted'])
-            ->name('submittion.store');
+        Route::post('/facility-information/store', [ProviderFacilityController::class, 'store'])
+            ->name('facilityInfo.store');
+        Route::post('/facility-information/{facility}/update', [ProviderFacilityController::class, 'update'])
+            ->name('facilityInfo.update');
+        Route::get('/facility-information/{facility}/delete', [ProviderFacilityController::class, 'destroy'])
+            ->name('facilityInfo.destroy');
     });
 
 

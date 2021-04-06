@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ServiceProviderProfileCompletion;
 
 use App\Contracts\Repositories\Registration\ServiceProviderRegistrationRepositoryInterface;
 use App\Http\Controllers\Controller;
+use App\Models\ProviderFacility;
 use App\Models\Service;
 use App\Models\Specialization;
 use Illuminate\Http\Request;
@@ -42,14 +43,18 @@ class ProviderServicesController extends Controller
 
     public function facilityStore(Request $request, ServiceProviderRegistrationRepositoryInterface $repository)
     {
+        $facilities = ProviderFacility::where(
+            'provider_company_id', auth()->user()->service_provider->provider_companies[0]->id)->get()->pluck('id');
         $request->validate([
-            'price'=> ['required', 'max:255' , 'numeric'],
+            'price'=> ['required' , 'numeric'],
             'currency'=> ['required', Rule::in(['TZS','KES', 'UGS']), 'max:255'],
+            'provider_facility_id' => Rule::in($facilities)
         ]);
 
         $data[0] = $request->toArray();
 
         $data[0]+=['user_id' => auth()->user()->id];
+
 
         $repository->createProviderFacilityServices($data);
 

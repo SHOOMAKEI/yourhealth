@@ -50,6 +50,17 @@ export default function ProfileInfo({user, provider_sub_levels}) {
     }
 
     return (
+        <>
+        {
+            status &&  (
+                <div className={`alert alert-success alert-dismissible bg-primary text-white border-0 fade show`} role="alert">
+                    <button type="button" className="close" >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Success - </strong> {status}
+                </div>
+        )
+        }
         <div className="tab-pane fade active show" id="v-pills-profile" role="tabpanel"
              aria-labelledby="v-pills-profile-tab">
             <form onSubmit={handleSubmit}>
@@ -159,8 +170,8 @@ export default function ProfileInfo({user, provider_sub_levels}) {
                         <TextInput
                             name="alternative_mobile_number"
                             type="text"
-                            placeholder="Alternate Phone number"
-                            label="Alternate Phone number"
+                            placeholder="Alternative Phone number"
+                            label="Alternative Phone number"
                             errors={errors.alternative_mobile_number}
                             value={values.alternative_mobile_number}
                             onChange={handleChange}
@@ -210,6 +221,7 @@ export default function ProfileInfo({user, provider_sub_levels}) {
                 </div>
             </form>
         </div>
+        </>
     )
 }
 

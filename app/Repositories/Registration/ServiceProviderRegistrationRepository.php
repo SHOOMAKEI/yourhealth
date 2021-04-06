@@ -363,9 +363,9 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
 
     public function createProviderFacilityServices(array $request):Collection
     {
-        $provider_facility = ProviderFacility::find($request['provider_facility_id']);
+        $provider_facility = ProviderFacility::find($request[0]['provider_facility_id']);
 
-        foreach ($request['service'] as $service) {
+        foreach ($request as $service) {
             $data[$service['service_id']]['price'] = $service['price'];
             $data[$service['service_id']]['compare_price'] = $service['compare_price'];
             $data[$service['service_id']]['currency'] = $service['currency'];

@@ -54,9 +54,11 @@ function Register() {
                                                 && <Company company={company} /> }
                                             {user.provider_profile.account_category_type === 'individual'
                                                 && <MedicalRegistrations medical_registrations={medical_registrations} services={all_services} /> }
-                                            <Services user={user} all_services={all_services} registeredServices={provider_services?provider_services:facility_services}/>
+                                            <Services facilities={facilities?facilities:{}}
+                                                      user={user} all_services={all_services}
+                                                      registeredServices={user.provider_profile.account_category_type === 'individual'?provider_services:facility_services}/>
                                             <ProfileStatuses/>
-                                            {user.provider_profile.account_category_type === 'facility' && <Facility facilities={facilities} /> }
+                                            {user.provider_profile.account_category_type === 'facility' && <Facility facilities={facilities} provider_sub_levels={provider_sub_levels}/> }
                                         </div>
                                     </div>
                                 </div>

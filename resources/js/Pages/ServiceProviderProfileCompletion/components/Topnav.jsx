@@ -29,7 +29,7 @@ export default function TopNav({user}) {
                                 <h6 className="text-overflow m-0">Welcome !</h6>
                             </div>
 
-                            <a href="javascript:void(0);" className="dropdown-item notify-item">
+                            <a href="#" className="dropdown-item notify-item">
                                 <i className="mdi mdi-lifebuoy mr-1"></i>
                                 <span>Support</span>
                             </a>

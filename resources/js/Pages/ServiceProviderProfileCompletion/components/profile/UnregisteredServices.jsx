@@ -6,7 +6,7 @@ import SelectInput from "@/Shared/SelectInput";
 import LoadingButton from "@/Shared/LoadingButton";
 
 
-export default function UnregisteredServices({services,shownServices, callback}) {
+export default function UnregisteredServices({services,shownServices, callback, user, facility={}}) {
     const { errors, status, alertType } = usePage().props;
     const [sending, setSending] = useState(false);
     const [selectedService, setSelectedService] = useState({});
@@ -14,7 +14,8 @@ export default function UnregisteredServices({services,shownServices, callback})
         service_id: '',
         price: 0,
         currency: "TZS",
-        compare_price: 0
+        compare_price: 0,
+        provider_facility_id: facility || ""
     });
 
     useEffect(()=>
@@ -37,9 +38,17 @@ export default function UnregisteredServices({services,shownServices, callback})
     function handleSubmit(e) {
         e.preventDefault();
         setSending(true);
-        Inertia.post(route('providerService.store'), values).then(() => {
-            setSending(false);
-        });
+        if(user.provider_profile.account_category_type === 'individual')
+        {
+            Inertia.post(route('providerService.store'), values).then(() => {
+                setSending(false);
+            });
+        }else {
+            Inertia.post(route('facilityService.store'), values).then(() => {
+                setSending(false);
+            });
+        }
+
     }
 
 
@@ -108,7 +117,7 @@ export default function UnregisteredServices({services,shownServices, callback})
                             <div className="modal-body">
                                 {
                                     status && (
-                                        <div className={`alert alert-success alert-dismissible bg-success text-white border-0 fade show`} role="alert">
+                                        <div className={`alert alert-success alert-dismissible bg-primary text-white border-0 fade show`} role="alert">
                                             <button type="button" className="close" >
                                                 <span aria-hidden="true">&times;</span>
                                             </button>

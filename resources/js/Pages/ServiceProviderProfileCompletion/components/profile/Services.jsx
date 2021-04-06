@@ -5,12 +5,23 @@ import { REQUEST_SERVICE_MODAL_ID } from '@/pages/Utilities/Constants'
 import RegisteredServices from "@/Pages/ServiceProviderProfileCompletion/components/profile/RegisteredServices";
 import RequestServiceModal from '@/Pages/ServiceProviderProfileCompletion/components/profile/RequestServiceModal'
 import UnregisteredServices from "@/Pages/ServiceProviderProfileCompletion/components/profile/UnregisteredServices";
+import SelectInput from "@/Shared/SelectInput";
+import {usePage} from "@inertiajs/inertia-react";
 
 export default function Services({user, facilities, all_services, registeredServices}) {
+    const {errors, status, alertType} = usePage().props
     const [services, setServices] = useState([])
-    // const [registeredServices, setRegisteredServices] = useState([])
-    // const [selectedFacility, setSelectedFacility] = useState( )
+    const [values, setValues] = useState({ facility: facilities[0].id})
 
+    function handleChange(e) {
+        const key = e.target.name;
+        const value = e.target.value;
+
+        setValues(values => ({
+            ...values,
+            [key]: value
+        }));
+    }
 
     function searchQualifications() {
 
@@ -20,27 +31,51 @@ export default function Services({user, facilities, all_services, registeredServ
         return <RequestServiceModal modalID={REQUEST_SERVICE_MODAL_ID} operation="add" />
     }
 
+
+    // useEffect(()=>{
+    //     console.log(registeredServices.find(service => service.id=== values.facility.id).data)
+    //     return registeredServices.find(service => service.id=== values.facility.id)
+    // }, [values])
+
+
+    function getRegisteredServiceProps(registeredServices) {
+        if( user.provider_profile.account_category_type === 'company' ||
+            user.provider_profile.account_category_type === 'facility'){
+            //
+            // useEffect(()=>{
+            //     console.log(registeredServices.find(service => service.id=== values.facility.id))
+            //     return registeredServices.find(service => service.id=== values.facility.id)
+            // }, [values])
+
+        }
+
+        return registeredServices;
+    }
+
     return (
         <div className="tab-pane fade" id="v-pills-services" role="tabpanel"
              aria-labelledby="v-pills-services-tab">
-
+            {console.log(registeredServices)}
             {
-                user.provider_profile.account_category_type === 'company' && (
+
+                user.provider_profile.account_category_type === 'company' || user.provider_profile.account_category_type === 'facility'&& (
                     <>
                         <h4>Select Facility</h4>
-                        <select className="custom-select mb-1">
-                            {
-                              facilities &&  facilities.map(facility =>
-                                <option value={facility.id}
-                                        // onSelect={() => setSelectedFacility(facility)}
-                                >
-                                    {facility.name}</option>
-                                )
-                            }
-                        </select>
+                        <SelectInput
+                            name="facility"
+                            type="text"
+                            errors={errors.facility}
+                            value={values.facility}
+                            onChange={handleChange}
+                        >
+                            {facilities.map((facility)=>(
+                                <option value={facility.id} key={facility.id}>{facility.name}</option>
+                            ))}
+                        </SelectInput>
                     </>
                 )
             }
+
 
             <Heading
                 // title={`Request Service for ${selectedFacility.name}`}
@@ -55,13 +90,13 @@ export default function Services({user, facilities, all_services, registeredServ
                 <div className="col-6">
                     {
 
-                            <UnregisteredServices services={all_services}  />
+                            <UnregisteredServices services={all_services}  user={user} facility={values.facility}/>
                     }
                 </div>
                 <div className="col-6">
                     {
 
-                            <RegisteredServices services={registeredServices} />
+                            // <RegisteredServices services={getRegisteredServiceProps(registeredServices)} user={user} facility={values.facility}/>
                     }
                 </div>
             </div>

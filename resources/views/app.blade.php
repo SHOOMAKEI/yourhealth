@@ -9,13 +9,18 @@
     <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="light-style" />
     <link href="{{asset('assets/css/app-dark.min.css')}}" rel="stylesheet" type="text/css" id="dark-style" />
+      <script src="{{asset('assets/js/vendor.min.js')}}"></script>
+      <script src="{{asset('assets/js/app.min.js')}}"></script>
     @routes
     <script src="{{ mix('/js/app.js') }}" defer></script>
     <title>{{ config('app.name', 'Your Health') }}</title>
+      <script>
+          jQuery(".success-alert").fadeTo(2000, 500).slideUp(500, function(){
+              jQuery(".success-alert").slideUp(500);
+          });
+      </script>
   </head>
   <body data-layout-config='{"darkMode":false}'>
     @inertia
-    <script src="{{asset('assets/js/vendor.min.js')}}"></script>
-    <script src="{{asset('assets/js/app.min.js')}}"></script>
   </body>
 </html>

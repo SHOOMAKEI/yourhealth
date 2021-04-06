@@ -13,14 +13,14 @@ export default function QualificationAttachment(award) {
                         </div>
                     </div>
                     <div className="col pl-0">
-                        <a href="javascript:void(0);" className="text-muted font-weight-bold">{award.award_title}</a>
+                        <a href="#" className="text-muted font-weight-bold">{award.award_title}</a>
                         <p className="mb-0">{`${award.award_institution} | ${award.award_year}`}</p>
                     </div>
                     <div className="col-auto">
-                        <a href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom" title="" className="btn btn-link text-muted btn-lg p-0" data-original-title="Download">
+                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="" className="btn btn-link text-muted btn-lg p-0" data-original-title="Download">
                             <i className="uil uil-cloud-download"></i>
                         </a>
-                        <a href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom" title="" className="btn btn-link text-danger btn-lg p-0" data-original-title="Delete">
+                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="" className="btn btn-link text-danger btn-lg p-0" data-original-title="Delete">
                             <i className="uil uil-multiply"></i>
                         </a>
                     </div>

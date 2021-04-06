@@ -1,24 +1,24 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[86],{
 
-/***/ "./resources/js/Pages/ServiceProviders/requests/components/profile/Company.jsx":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/Pages/ServiceProviders/requests/components/profile/Company.jsx ***!
-  \*************************************************************************************/
+/***/ "./resources/js/Pages/ServiceProviders/requests/components/profile/Facility.jsx":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviders/requests/components/profile/Facility.jsx ***!
+  \**************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Company; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Facility; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-function Company() {
+function Facility() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "tab-pane fade",
-    id: "v-pills-company",
+    id: "v-pills-facility",
     role: "tabpanel",
-    "aria-labelledby": "v-pills-company-tab"
+    "aria-labelledby": "v-pills-facility-tab"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

@@ -14,7 +14,8 @@ export default ({ label, name, className, errors = [],value, ...props }) => {
         {...props}
         className={`form-input form-control ${errors.length ? 'error' : ''}`}
         rows="2"
-      >{value}</textarea>
+        value={value}
+      ></textarea>
       {errors && <div className="invalid-feedback" style={{display:'block'}}>{errors}</div>}
     </div>
   );

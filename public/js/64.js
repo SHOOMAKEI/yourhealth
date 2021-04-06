@@ -54,7 +54,7 @@ function TopNav(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
     className: "text-overflow m-0"
   }, "Welcome !")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    href: "javascript:void(0);",
+    href: "#",
     className: "dropdown-item notify-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
     className: "mdi mdi-lifebuoy mr-1"

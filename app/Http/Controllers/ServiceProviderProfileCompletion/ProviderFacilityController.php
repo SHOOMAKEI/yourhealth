@@ -1,85 +1,79 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ServiceProviderProfileCompletion;
 
-use App\Models\ProviderEstablishment;
+use App\Contracts\Repositories\Registration\ServiceProviderRegistrationRepositoryInterface;
+use App\Http\Controllers\Controller;
+use App\Models\ProviderFacility;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Utils;
 
-class ProviderEstablishmentController extends Controller
+class ProviderFacilityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+
+    public function store(Request $request, ServiceProviderRegistrationRepositoryInterface $repository)
     {
-        //
+        $this->validateFacility($request);
+
+        $data = $request->toArray();
+        $data+=['user_id' => auth()->user()->id];
+        $data+=['provider_company_id' => auth()->user()->service_provider->provider_companies[0]->id];
+
+        $repository->createProviderFacility($data);
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+
+    public function update(
+        Request $request,
+        ProviderFacility $facility,
+        ServiceProviderRegistrationRepositoryInterface $repository)
     {
-        //
+
+
+        $this->validateFacility($request);
+        $data = $request->toArray();
+        $data+=['user_id' => auth()->user()->id];
+        $data+=['id' => $facility->id];
+        $data+=['provider_company_id' => auth()->user()->service_provider->provider_companies[0]->id];
+        $repository->updateProviderFacility($data);
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function destroy(
+        ProviderFacility $facility,
+        ServiceProviderRegistrationRepositoryInterface $repository)
     {
-        //
+        $request['facility_id'] = $facility->id;
+
+        $repository->deleteProviderFacility($request);
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ProviderEstablishment  $providerEstablishment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ProviderEstablishment $providerEstablishment)
-    {
-        //
-    }
+    private function validateFacility(Request $request){
+        return $request->validate([
+            'name' => ['required', 'max:255', 'string'],
+            'trading_name' => ['required', 'max:255', 'string'],
+            'website' => ['max:255', 'string'],
+            'vrn' => ['required', 'max:255', 'string'],
+            'tin' => ['required', 'max:255', 'string'],
+            'email' => ['required', 'max:255', 'string'],
+            'alternative_mobile_number' => [ 'max:255', 'string'],
+            'mobile_number' => ['required', 'max:255', 'string'],
+            'address' => ['required', 'max:255', 'string'],
+            'physical_address' => ['required', 'max:255', 'string'],
+            'registration_date' => ['required', 'max:255', 'date_format:Y-m-d'],
+            'registration_number' => ['required', 'max:255', 'string'],
+            'description' => ['string', 'max:900'],
+            'provider_sub_level_id' => ['required','numeric', 'exists:provider_sub_levels,id'],
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ProviderEstablishment  $providerEstablishment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ProviderEstablishment $providerEstablishment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ProviderEstablishment  $providerEstablishment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ProviderEstablishment $providerEstablishment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ProviderEstablishment  $providerEstablishment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ProviderEstablishment $providerEstablishment)
-    {
-        //
     }
 }
