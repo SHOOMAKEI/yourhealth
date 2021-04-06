@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import {InertiaLink} from "@inertiajs/inertia-react";
 
-export default function RegisteredServices({services, callback, user}) {
+export default function RegisteredServices({services, callback, user, facility}) {
     const [shownServices, setShownServices] = useState([...services]);
+    const [facilityId, setFacilityId] = useState({})
 
     useEffect(() => {
-        setShownServices(services.slice(0, 5))
-    }, [])
+        setShownServices(services)
+    }, [services])
+
+    useEffect(() => {
+        setFacilityId(facility)
+    }, [facility])
 
     function onSearch() {
         $('#search-input-registered').on('input',function(e){
@@ -50,12 +55,14 @@ export default function RegisteredServices({services, callback, user}) {
                 </thead>
                 <tbody>
                     {
-                        shownServices.slice(0, 4).map((service) => (
+                       shownServices && shownServices.slice(0, 4).map((service) => (
                             <tr key={service.id}>
                                 <td>{service.name}</td>
                                 <td>{`${service.pivot.price} ${service.pivot.currency}`}</td>
                                 <td>
-                                    <InertiaLink href={user.provider_profile.account_category_type === 'individual'?route('providerService.destroy', service.id):route('facilityService.destroy')} className="btn btn-danger btn-sm">
+                                    <InertiaLink href={user.provider_profile.account_category_type === 'individual'?
+                                        route('providerService.destroy', service.id):
+                                        route('facilityService.destroy', [service.id,facilityId])} className="btn btn-danger btn-sm">
                                         <i className="dripicons-trash"></i>
                                     </InertiaLink>
                                 </td>

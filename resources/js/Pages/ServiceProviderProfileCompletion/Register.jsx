@@ -26,6 +26,7 @@ function Register() {
         all_services,
         provider_services,
         facility_services,
+        full_profile,
     } = usePage().props
     return (
         <div className="account-pages mt-5 mb-5">
@@ -57,7 +58,7 @@ function Register() {
                                             <Services facilities={facilities?facilities:{}}
                                                       user={user} all_services={all_services}
                                                       registeredServices={user.provider_profile.account_category_type === 'individual'?provider_services:facility_services}/>
-                                            <ProfileStatuses/>
+                                            <ProfileStatuses profile_status={full_profile}/>
                                             {user.provider_profile.account_category_type === 'facility' && <Facility facilities={facilities} provider_sub_levels={provider_sub_levels}/> }
                                         </div>
                                     </div>

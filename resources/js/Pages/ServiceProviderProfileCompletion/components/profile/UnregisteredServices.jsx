@@ -15,7 +15,7 @@ export default function UnregisteredServices({services,shownServices, callback, 
         price: 0,
         currency: "TZS",
         compare_price: 0,
-        provider_facility_id: facility || ""
+        provider_facility_id:  null
     });
 
     useEffect(()=>
@@ -23,6 +23,12 @@ export default function UnregisteredServices({services,shownServices, callback, 
         ...values,
         service_id: selectedService.id
     })),[selectedService])
+
+    useEffect(()=>
+        setValues(values => ({
+            ...values,
+            provider_facility_id: facility
+        })),[facility])
 
     function handleChange(e) {
         const key = e.target.name;

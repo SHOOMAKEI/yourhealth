@@ -32,30 +32,18 @@ export default function Services({user, facilities, all_services, registeredServ
     }
 
 
-    // useEffect(()=>{
-    //     console.log(registeredServices.find(service => service.id=== values.facility.id).data)
-    //     return registeredServices.find(service => service.id=== values.facility.id)
-    // }, [values])
+    useEffect(()=>(
+        registeredServices.map(service => {
+            service.id == values.facility? setServices([...service.data]):null
+        })
+    ), [values.facility])
 
 
-    function getRegisteredServiceProps(registeredServices) {
-        if( user.provider_profile.account_category_type === 'company' ||
-            user.provider_profile.account_category_type === 'facility'){
-            //
-            // useEffect(()=>{
-            //     console.log(registeredServices.find(service => service.id=== values.facility.id))
-            //     return registeredServices.find(service => service.id=== values.facility.id)
-            // }, [values])
-
-        }
-
-        return registeredServices;
-    }
 
     return (
         <div className="tab-pane fade" id="v-pills-services" role="tabpanel"
              aria-labelledby="v-pills-services-tab">
-            {console.log(registeredServices)}
+            {/*{console.log(registeredServices)}*/}
             {
 
                 user.provider_profile.account_category_type === 'company' || user.provider_profile.account_category_type === 'facility'&& (
@@ -96,7 +84,10 @@ export default function Services({user, facilities, all_services, registeredServ
                 <div className="col-6">
                     {
 
-                            // <RegisteredServices services={getRegisteredServiceProps(registeredServices)} user={user} facility={values.facility}/>
+                            <RegisteredServices services={
+                                user.provider_profile.account_category_type === 'company' ||
+                                user.provider_profile.account_category_type === 'facility'?services:registeredServices
+                            } user={user} facility={values.facility}/>
                     }
                 </div>
             </div>

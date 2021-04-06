@@ -36,163 +36,21 @@ function ServiceProvidersTable(_ref) {
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(serviceProviders[0]),
       _useState2 = _slicedToArray(_useState, 2),
-      sending = _useState2[0],
-      setSending = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
-    address: (company === null || company === void 0 ? void 0 : company.address) || "",
-    description: (company === null || company === void 0 ? void 0 : company.description) || "",
-    alternative_mobile_number: (company === null || company === void 0 ? void 0 : company.alternative_mobile_number) || "",
-    email: (company === null || company === void 0 ? void 0 : company.email) || "",
-    mobile_number: (company === null || company === void 0 ? void 0 : company.mobile_number) || "",
-    name: (company === null || company === void 0 ? void 0 : company.name) || "",
-    physical_address: (company === null || company === void 0 ? void 0 : company.physical_address) || "",
-    registration_date: (company === null || company === void 0 ? void 0 : company.registration_date) || "",
-    registration_number: (company === null || company === void 0 ? void 0 : company.registration_number) || "",
-    tin: (company === null || company === void 0 ? void 0 : company.tin) || "",
-    trading_name: (company === null || company === void 0 ? void 0 : company.trading_name) || "",
-    vrn: (company === null || company === void 0 ? void 0 : company.vrn) || "",
-    website: (company === null || company === void 0 ? void 0 : company.website) || ""
-  }),
-      _useState4 = _slicedToArray(_useState3, 2),
-      values = _useState4[0],
-      setValues = _useState4[1];
-
-  function handleChange(e) {
-    var key = e.target.name;
-    var value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-    setValues(function (values) {
-      return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, key, value));
-    });
-  }
+      selectedProvider = _useState2[0],
+      setSelectedProvider = _useState2[1];
 
   function selectProvider(provider) {
     setSelectedProvider(provider);
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "tab-pane fade",
-    id: "v-pills-company",
-    role: "tabpanel",
-    "aria-labelledby": "v-pills-company-tab"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "name",
-    type: "text",
-    placeholder: "Company Name",
-    label: "Company Name",
-    errors: errors.name,
-    value: values.name,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "website",
-    type: "text",
-    placeholder: "Website",
-    label: "Website",
-    errors: errors.website,
-    value: values.website,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "tin",
-    type: "text",
-    placeholder: "TIN Number",
-    label: "TIN Number",
-    errors: errors.tin,
-    value: values.tin,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "mobile_number",
-    type: "text",
-    placeholder: "Mobile Number",
-    label: "Mobile Number",
-    errors: errors.mobile_number,
-    value: values.mobile_number,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "address",
-    type: "text",
-    placeholder: "Address",
-    label: "Address",
-    errors: errors.address,
-    value: values.address,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "registration_date",
-    type: "date",
-    placeholder: "Registration Date",
-    label: "Registration Date",
-    errors: errors.registration_date,
-    value: values.registration_date,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextAreaInput__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    name: "description",
-    type: "text",
-    placeholder: "Description",
-    label: "Description",
-    rows: 4,
-    errors: errors.description,
-    value: values.description,
-    onChange: handleChange
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "trading_name",
-    type: "text",
-    placeholder: "Trading Name",
-    label: "Trading Name",
-    errors: errors.trading_name,
-    value: values.trading_name,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "vrn",
-    type: "text",
-    placeholder: "VRN",
-    label: "VRN",
-    errors: errors.vrn,
-    value: values.vrn,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "email",
-    type: "text",
-    placeholder: "Email Address",
-    label: "Email Address",
-    errors: errors.email,
-    value: values.email,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "alternative_mobile_number",
-    type: "text",
-    placeholder: "Alternate Mobile Number",
-    label: "Website",
-    errors: errors.alternative_mobile_number,
-    value: values.alternative_mobile_number,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "physical_address",
-    type: "text",
-    placeholder: "Physical Address",
-    label: "Physical Address",
-    errors: errors.physical_address,
-    value: values.physical_address,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "registration_number",
-    type: "text",
-    placeholder: "Registration Number",
-    label: "Registration Number",
-    errors: errors.registration_number,
-    value: values.registration_number,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "form-group mb-0 text-right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    type: "submit",
-    className: "btn btn-primary btn-block",
-    loading: sending
-  }, "Save Changes"))))));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("table", {
+    className: "table dt-responsive nowrap w-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "Username"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "Phone number"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "Requested At"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "Updated At"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "Provider Category"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("tbody", null, serviceProviders.map(function (serviceProvider) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_pages_serviceProviders_requests_components__WEBPACK_IMPORTED_MODULE_0__["ServiceProvider"], {
+      serviceProvider: serviceProvider,
+      selectServiceProvider: selectProvider
+    });
+  })));
 }
 
 /***/ }),

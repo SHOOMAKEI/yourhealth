@@ -48,10 +48,6 @@ class ProviderProfile extends Model implements HasMedia
         return $this->belongsTo(City::class);
     }
 
-    public function consultation_fee()
-    {
-        return $this->hasOne(ConsultationFee::class, 'provider_id');
-    }
 
     public function provider_qualifications()
     {

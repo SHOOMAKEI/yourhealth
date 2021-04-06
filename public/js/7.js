@@ -107,16 +107,25 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function RegisteredServices(_ref) {
   var services = _ref.services,
       callback = _ref.callback,
-      user = _ref.user;
+      user = _ref.user,
+      facility = _ref.facility;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(_toConsumableArray(services)),
       _useState2 = _slicedToArray(_useState, 2),
       shownServices = _useState2[0],
       setShownServices = _useState2[1];
 
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+      _useState4 = _slicedToArray(_useState3, 2),
+      facilityId = _useState4[0],
+      setFacilityId = _useState4[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setShownServices(services.slice(0, 5));
-  }, []);
+    setShownServices(services);
+  }, [services]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    setFacilityId(facility);
+  }, [facility]);
 
   function onSearch() {
     $('#search-input-registered').on('input', function (e) {
@@ -150,11 +159,11 @@ function RegisteredServices(_ref) {
     onInput: onSearch
   }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "table table-centered table-borderless mb-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Action"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, shownServices.slice(0, 4).map(function (service) {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Action"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, shownServices && shownServices.slice(0, 4).map(function (service) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
       key: service.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, service.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "".concat(service.pivot.price, " ").concat(service.pivot.currency)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["InertiaLink"], {
-      href: user.provider_profile.account_category_type === 'individual' ? route('providerService.destroy', service.id) : route('facilityService.destroy'),
+      href: user.provider_profile.account_category_type === 'individual' ? route('providerService.destroy', service.id) : route('facilityService.destroy', [service.id, facilityId]),
       className: "btn btn-danger btn-sm"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "dripicons-trash"
@@ -321,6 +330,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Shared_SelectInput__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Shared/SelectInput */ "./resources/js/Shared/SelectInput.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -384,29 +401,19 @@ function Services(_ref) {
       modalID: _pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__["REQUEST_SERVICE_MODAL_ID"],
       operation: "add"
     });
-  } // useEffect(()=>{
-  //     console.log(registeredServices.find(service => service.id=== values.facility.id).data)
-  //     return registeredServices.find(service => service.id=== values.facility.id)
-  // }, [values])
-
-
-  function getRegisteredServiceProps(registeredServices) {
-    if (user.provider_profile.account_category_type === 'company' || user.provider_profile.account_category_type === 'facility') {//
-      // useEffect(()=>{
-      //     console.log(registeredServices.find(service => service.id=== values.facility.id))
-      //     return registeredServices.find(service => service.id=== values.facility.id)
-      // }, [values])
-    }
-
-    return registeredServices;
   }
 
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    return registeredServices.map(function (service) {
+      service.id == values.facility ? setServices(_toConsumableArray(service.data)) : null;
+    });
+  }, [values.facility]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "tab-pane fade",
     id: "v-pills-services",
     role: "tabpanel",
     "aria-labelledby": "v-pills-services-tab"
-  }, console.log(registeredServices), user.provider_profile.account_category_type === 'company' || user.provider_profile.account_category_type === 'facility' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Select Facility"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_SelectInput__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, user.provider_profile.account_category_type === 'company' || user.provider_profile.account_category_type === 'facility' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Select Facility"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_SelectInput__WEBPACK_IMPORTED_MODULE_6__["default"], {
     name: "facility",
     type: "text",
     errors: errors.facility,
@@ -434,7 +441,11 @@ function Services(_ref) {
     facility: values.facility
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-6"
-  })));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_RegisteredServices__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    services: user.provider_profile.account_category_type === 'company' || user.provider_profile.account_category_type === 'facility' ? services : registeredServices,
+    user: user,
+    facility: values.facility
+  }))));
 }
 
 /***/ }),
@@ -509,7 +520,7 @@ function UnregisteredServices(_ref) {
     price: 0,
     currency: "TZS",
     compare_price: 0,
-    provider_facility_id: facility || ""
+    provider_facility_id: null
   }),
       _useState6 = _slicedToArray(_useState5, 2),
       values = _useState6[0],
@@ -522,6 +533,13 @@ function UnregisteredServices(_ref) {
       });
     });
   }, [selectedService]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    return setValues(function (values) {
+      return _objectSpread(_objectSpread({}, values), {}, {
+        provider_facility_id: facility
+      });
+    });
+  }, [facility]);
 
   function handleChange(e) {
     var key = e.target.name;

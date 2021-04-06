@@ -64,9 +64,13 @@ class ProviderServicesController extends Controller
     }
 
 
-    public function facilityDestroy(Service $service, ServiceProviderRegistrationRepositoryInterface $repository)
+    public function facilityDestroy(
+        Service $service,
+        ProviderFacility $facility,
+        ServiceProviderRegistrationRepositoryInterface $repository)
     {
         $request['service_id'] = $service->id;
+        $request['facility_id'] = $facility->id;
 
         $repository->deleteProviderFacilityServices($request);
 

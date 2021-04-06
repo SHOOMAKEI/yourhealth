@@ -4,14 +4,18 @@ import {Inertia} from "@inertiajs/inertia";
 import FileInput from "@/Shared/FileInput";
 import LoadingButton from "@/Shared/LoadingButton";
 
-export default function ProfileStatuses() {
+export default function ProfileStatuses({profile_status}) {
     const { errors, status, alertType } = usePage().props;
     const [sending, setSending] = useState(false);
+    const [profile, setProfile] = useState({profile: {...profile_status}});
     const [values, setValues] = useState({
         profile_photo: '',
 
     });
 
+    useEffect(() => {
+        setProfile({profile: profile_status})
+    }, [profile_status])
 
     function handleChange(e) {
         const key = e.target.name;
@@ -42,6 +46,7 @@ export default function ProfileStatuses() {
 
 
     return (
+
         <div className="tab-pane fade" id="v-pills-submission" role="tabpanel"
              aria-labelledby="v-pills-submission-tab">
             <form onSubmit={handleSubmit}>
@@ -81,104 +86,19 @@ export default function ProfileStatuses() {
                                          style={{height: 'auto', overflow: 'hidden scroll'}}>
                                         <div className="simplebar-content" style={{padding: 0 +'px'}}>
                                             <div className="timeline-alt pb-0">
-                                                <div className="timeline-item">
-                                                    <i className="mdi mdi-upload bg-info-lighten text-info timeline-icon"></i>
-                                                    <div className="timeline-item-info">
-                                                        <a href="#" className="text-info font-weight-bold mb-1 d-block">You
-                                                            sold an item</a>
-                                                        <small>Paul Burgess just purchased “Hyper - Admin
-                                                            Dashboard”!</small>
-                                                        <p className="mb-0 pb-2">
-                                                            <small className="text-muted">5 minutes ago</small>
-                                                        </p>
+                                                { profile.profile_info && profile.profile_info (
+                                                    <div className="timeline-item">
+                                                        <i className={`mdi mdi-upload bg-${profile.profile_info.is_complete?'primary':'danger'}-lighten text-${profile.profile_info.is_complete?'primary':'danger'} timeline-icon`}></i>
+                                                        <div className={`timeline-item-${profile.profile_info.is_complete?'primary':'danger'}`}>
+                                                            <a href="#" className={`text-${profile.profile_info.is_complete?'primary':'danger'} font-weight-bold mb-1 d-block`}>{profile.profile_info.info_category}</a>
+                                                            <small>{profile.profile_info.remark}</small>
+                                                            <p className="mb-0 pb-2">
+                                                                <small className="text-muted">{profile.profile_info.last_updated_at}</small>
+                                                            </p>
+                                                        </div>
                                                     </div>
-                                                </div>
-
-                                                <div className="timeline-item">
-                                                    <i className="mdi mdi-airplane bg-danger-lighten text-primary timeline-icon"></i>
-                                                    <div className="timeline-item-info">
-                                                        <a href="#"
-                                                           className="text-primary font-weight-bold mb-1 d-block">Product
-                                                            on the Bootstrap Market</a>
-                                                        <small>Dave Gamache added
-                                                            <span className="font-weight-bold">Admin Dashboard</span>
-                                                        </small>
-                                                        <p className="mb-0 pb-2">
-                                                            <small className="text-muted">30 minutes ago</small>
-                                                        </p>
-                                                    </div>
-                                                </div>
-
-                                                <div className="timeline-item">
-                                                    <i className="mdi mdi-microphone bg-info-lighten text-info timeline-icon"></i>
-                                                    <div className="timeline-item-info">
-                                                        <a href="#" className="text-info font-weight-bold mb-1 d-block">Robert
-                                                            Delaney</a>
-                                                        <small>Send you message
-                                                            <span className="font-weight-bold">"Are you there?"</span>
-                                                        </small>
-                                                        <p className="mb-0 pb-2">
-                                                            <small className="text-muted">2 hours ago</small>
-                                                        </p>
-                                                    </div>
-                                                </div>
-
-                                                <div className="timeline-item">
-                                                    <i className="mdi mdi-upload bg-primary-lighten text-primary timeline-icon"></i>
-                                                    <div className="timeline-item-info">
-                                                        <a href="#"
-                                                           className="text-primary font-weight-bold mb-1 d-block">Audrey
-                                                            Tobey</a>
-                                                        <small>Uploaded a photo
-                                                            <span className="font-weight-bold">"Error.jpg"</span>
-                                                        </small>
-                                                        <p className="mb-0 pb-2">
-                                                            <small className="text-muted">14 hours ago</small>
-                                                        </p>
-                                                    </div>
-                                                </div>
-
-                                                <div className="timeline-item">
-                                                    <i className="mdi mdi-upload bg-info-lighten text-info timeline-icon"></i>
-                                                    <div className="timeline-item-info">
-                                                        <a href="#" className="text-info font-weight-bold mb-1 d-block">You
-                                                            sold an item</a>
-                                                        <small>Paul Burgess just purchased “Hyper - Admin
-                                                            Dashboard”!</small>
-                                                        <p className="mb-0 pb-2">
-                                                            <small className="text-muted">16 hours ago</small>
-                                                        </p>
-                                                    </div>
-                                                </div>
-
-                                                <div className="timeline-item">
-                                                    <i className="mdi mdi-airplane bg-primary-lighten text-primary timeline-icon"></i>
-                                                    <div className="timeline-item-info">
-                                                        <a href="#"
-                                                           className="text-primary font-weight-bold mb-1 d-block">Product
-                                                            on the Bootstrap Market</a>
-                                                        <small>Dave Gamache added
-                                                            <span className="font-weight-bold">Admin Dashboard</span>
-                                                        </small>
-                                                        <p className="mb-0 pb-2">
-                                                            <small className="text-muted">22 hours ago</small>
-                                                        </p>
-                                                    </div>
-                                                </div>
-
-                                                <div className="timeline-item">
-                                                    <i className="mdi mdi-microphone bg-info-lighten text-info timeline-icon"></i>
-                                                    <div className="timeline-item-info">
-                                                        <a href="#" className="text-info font-weight-bold mb-1 d-block">Robert
-                                                            Delaney</a>
-                                                        <small>Send you message
-                                                            <span className="font-weight-bold">"Are you there?"</span>
-                                                        </small>
-                                                        <p className="mb-0 pb-2">
-                                                            <small className="text-muted">2 days ago</small>
-                                                        </p>
-                                                    </div>
-                                                </div>
+                                                )}
+                                                {console.log(profile.profile_info)}
                                             </div>
                                         </div>
                                     </div>

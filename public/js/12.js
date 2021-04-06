@@ -58,19 +58,19 @@ function Company(_ref) {
       setSending = _useState2[1];
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
-    address: "",
-    description: "",
-    alternate_mobile_number: "",
-    email: "",
-    mobile_number: "",
-    name: "",
-    physical_address: "",
-    registration_date: "",
-    registration_number: "",
-    tin: "",
-    trading_name: "",
-    vrn: "",
-    website: ""
+    address: (company === null || company === void 0 ? void 0 : company.address) || "",
+    description: (company === null || company === void 0 ? void 0 : company.description) || "",
+    alternative_mobile_number: (company === null || company === void 0 ? void 0 : company.alternative_mobile_number) || "",
+    email: (company === null || company === void 0 ? void 0 : company.email) || "",
+    mobile_number: (company === null || company === void 0 ? void 0 : company.mobile_number) || "",
+    name: (company === null || company === void 0 ? void 0 : company.name) || "",
+    physical_address: (company === null || company === void 0 ? void 0 : company.physical_address) || "",
+    registration_date: (company === null || company === void 0 ? void 0 : company.registration_date) || "",
+    registration_number: (company === null || company === void 0 ? void 0 : company.registration_number) || "",
+    tin: (company === null || company === void 0 ? void 0 : company.tin) || "",
+    trading_name: (company === null || company === void 0 ? void 0 : company.trading_name) || "",
+    vrn: (company === null || company === void 0 ? void 0 : company.vrn) || "",
+    website: (company === null || company === void 0 ? void 0 : company.website) || ""
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       values = _useState4[0],
@@ -92,7 +92,12 @@ function Company(_ref) {
     });
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "tab-pane fade",
+    id: "v-pills-company",
+    role: "tabpanel",
+    "aria-labelledby": "v-pills-company-tab"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-6"
@@ -138,7 +143,7 @@ function Company(_ref) {
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
     name: "registration_date",
-    type: "text",
+    type: "date",
     placeholder: "Registration Date",
     label: "Registration Date",
     errors: errors.registration_date,
@@ -180,12 +185,12 @@ function Company(_ref) {
     value: values.email,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "alternate_mobile_number",
+    name: "alternative_mobile_number",
     type: "text",
     placeholder: "Alternate Mobile Number",
     label: "Website",
-    errors: errors.alternate_mobile_number,
-    value: values.alternate_mobile_number,
+    errors: errors.alternative_mobile_number,
+    value: values.alternative_mobile_number,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
     name: "physical_address",
@@ -209,7 +214,7 @@ function Company(_ref) {
     type: "submit",
     className: "btn btn-primary btn-block",
     loading: sending
-  }, "Save Changes")))));
+  }, "Save Changes"))))));
 }
 
 /***/ }),

@@ -1,15 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[53],{
 
-/***/ "./resources/js/Pages/Auth/components/PasswordResetByEmailForm.jsx":
+/***/ "./resources/js/Pages/Auth/components/PasswordResetByPhoneForm.jsx":
 /*!*************************************************************************!*\
-  !*** ./resources/js/Pages/Auth/components/PasswordResetByEmailForm.jsx ***!
+  !*** ./resources/js/Pages/Auth/components/PasswordResetByPhoneForm.jsx ***!
   \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PasswordResetByEmailForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PasswordResetByPhoneForm; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
@@ -41,10 +41,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function PasswordResetByEmailForm() {
+function PasswordResetByPhoneForm() {
   var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props,
       errors = _usePage$props.errors,
-      emailSentSuccessfully = _usePage$props.emailSentSuccessfully;
+      codeSentSuccessfully = _usePage$props.codeSentSuccessfully;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -52,7 +52,8 @@ function PasswordResetByEmailForm() {
       setSending = _useState2[1];
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    email: ''
+    mobile_number: '',
+    verification_code: ''
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       values = _useState4[0],
@@ -74,20 +75,29 @@ function PasswordResetByEmailForm() {
     });
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, function (_ref) {
-    var errors = _ref.errors;
+  function handleSubmitVerificationCode(e) {
+    e.preventDefault();
+    setSending(true);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('login'), values).then(function () {
+      setSending(false);
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, codeSentSuccessfully ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, function (_ref) {
+    var errors = _ref.errors,
+        touched = _ref.touched;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
       onSubmit: handleSubmit
-    }, emailSentSuccessfully && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "alert alert-success bg-success text-white border-0 fade show",
       role: "alert"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Success - "), " Email sent successfully, please visit your email and click the link to reset your password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      name: "email",
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Success - "), " Code sent successfully, please provide the code sent to your phone number"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      name: "verification_code",
       type: "text",
-      label: "Email",
-      placeholder: "Email",
-      errors: errors.email,
-      value: values.email,
+      label: "OTP Code",
+      placeholder: "OTP Code",
+      errors: errors.mobile_number,
+      value: values.mobile_number,
       onChange: handleChange
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "form-group mb-0 text-center"
@@ -95,8 +105,27 @@ function PasswordResetByEmailForm() {
       type: "submit",
       className: "btn btn-primary btn-block",
       loading: sending
-    }, "Reset Password")));
-  });
+    }, "Verify Code")));
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, function (_ref2) {
+    var errors = _ref2.errors;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      onSubmit: handleSubmitVerificationCode
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      name: "verification_code",
+      type: "text",
+      label: "OTP Code",
+      placeholder: "OTP Code",
+      errors: errors.verification_code,
+      value: values.verification_code,
+      onChange: handleChange
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-group mb-0 text-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      type: "submit",
+      className: "btn btn-primary btn-block",
+      loading: sending
+    }, "Reset password")));
+  }));
 }
 
 /***/ }),

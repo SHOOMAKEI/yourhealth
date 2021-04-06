@@ -167,7 +167,7 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
             ->name('requestService.store');
         Route::post('/facility-service/store', [ProviderServicesController::class, 'facilityStore'])
             ->name('facilityService.store');
-        Route::get('/facility-service/{service}/delete', [ProviderServicesController::class, 'facilityDestroy'])
+        Route::get('/facility-service/{service}/{facility}/delete', [ProviderServicesController::class, 'facilityDestroy'])
             ->name('facilityService.destroy');
 
         Route::post('/facility-information/store', [ProviderFacilityController::class, 'store'])
