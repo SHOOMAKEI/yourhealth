@@ -575,7 +575,7 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
         })->all();
     }
 
-    public function submitProfileForVerification(array $request):ProviderProfile
+    public function submitProfileForVerification():ProviderProfile
     {
         $user = User::find(auth()->user()->id);
         $profile = ProviderProfile::find(auth()->user()->service_provider->id);

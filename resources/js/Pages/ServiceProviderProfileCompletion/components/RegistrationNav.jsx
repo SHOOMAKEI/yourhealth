@@ -23,7 +23,9 @@ export default function RegistrationNav({user}) {
                     )
                 }
                 {
-                    user.provider_profile.account_category_type === 'facility' && (
+                    user.provider_profile.account_category_type === 'facility' ||
+                    user.provider_profile.account_category_type === 'company'
+                    && (
                         <a className="nav-link mb-2" id="v-pills-settings-tab" data-toggle="pill"
                             href="#v-pills-facility" role="tab" aria-controls="v-pills-facility"
                             aria-selected="false">

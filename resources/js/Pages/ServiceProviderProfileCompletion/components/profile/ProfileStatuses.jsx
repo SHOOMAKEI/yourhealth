@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {usePage} from "@inertiajs/inertia-react";
+import {InertiaLink, usePage} from "@inertiajs/inertia-react";
 import {Inertia} from "@inertiajs/inertia";
 import FileInput from "@/Shared/FileInput";
 import LoadingButton from "@/Shared/LoadingButton";
 
-export default function ProfileStatuses({profile_status}) {
+export default function ProfileStatuses({profile_status, user}) {
     const { errors, status, alertType } = usePage().props;
     const [sending, setSending] = useState(false);
-    const [profile, setProfile] = useState({profile: {...profile_status}});
+    const [profile, setProfile] = useState({profile: profile_status});
     const [values, setValues] = useState({
         profile_photo: '',
 
@@ -86,19 +86,90 @@ export default function ProfileStatuses({profile_status}) {
                                          style={{height: 'auto', overflow: 'hidden scroll'}}>
                                         <div className="simplebar-content" style={{padding: 0 +'px'}}>
                                             <div className="timeline-alt pb-0">
-                                                { profile.profile_info && profile.profile_info (
+                                                { profile_status.profile_info && (
                                                     <div className="timeline-item">
-                                                        <i className={`mdi mdi-upload bg-${profile.profile_info.is_complete?'primary':'danger'}-lighten text-${profile.profile_info.is_complete?'primary':'danger'} timeline-icon`}></i>
-                                                        <div className={`timeline-item-${profile.profile_info.is_complete?'primary':'danger'}`}>
-                                                            <a href="#" className={`text-${profile.profile_info.is_complete?'primary':'danger'} font-weight-bold mb-1 d-block`}>{profile.profile_info.info_category}</a>
-                                                            <small>{profile.profile_info.remark}</small>
+                                                        <i className={`mdi mdi-${profile_status.profile_info.is_complete?'check-bold':'close-thick'} bg-${profile_status.profile_info.is_complete?'primary':'danger'}-lighten text-${profile_status.profile_info.is_complete?'primary':'danger'} timeline-icon`}></i>
+                                                        <div className={`timeline-item-${profile_status.profile_info.is_complete?'primary':'danger'}`}>
+                                                            <a href="#" className={`text-${profile_status.profile_info.is_complete?'primary':'danger'} font-weight-bold mb-1 d-block pl-4`}>{profile_status.profile_info.info_category}</a>
+                                                            <small className="pl-4">{profile_status.profile_info.remark}</small>
                                                             <p className="mb-0 pb-2">
-                                                                <small className="text-muted">{profile.profile_info.last_updated_at}</small>
+                                                                <small className="text-muted pl-4">{profile_status.profile_info.last_updated_at}</small>
                                                             </p>
                                                         </div>
                                                     </div>
                                                 )}
-                                                {console.log(profile.profile_info)}
+                                                { profile_status.company_profile_info && (
+                                                    <div className="timeline-item">
+                                                        <i className={`mdi mdi-${profile_status.profile_info.is_complete?'check-bold':'close-thick'} bg-${profile_status.company_profile_info.is_complete?'primary':'danger'}-lighten text-${profile_status.company_profile_info.is_complete?'primary':'danger'} timeline-icon`}></i>
+                                                        <div className={`timeline-item-${profile_status.company_profile_info.is_complete?'primary':'danger'}`}>
+                                                            <a href="#" className={`text-${profile_status.company_profile_info.is_complete?'primary':'danger'} font-weight-bold mb-1 d-block pl-4`}>{profile_status.company_profile_info.info_category}</a>
+                                                            <small className="pl-4">{profile_status.company_profile_info.remark}</small>
+                                                            <p className="mb-0 pb-2">
+                                                                <small className="text-muted pl-4">{profile_status.company_profile_info.last_updated_at}</small>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                                { profile_status.education_qualification && (
+                                                    <div className="timeline-item">
+                                                        <i className={`mdi mdi-${profile_status.profile_info.is_complete?'check-bold':'close-thick'} bg-${profile_status.education_qualification.is_complete?'primary':'danger'}-lighten text-${profile_status.education_qualification.is_complete?'primary':'danger'} timeline-icon`}></i>
+                                                        <div className={`timeline-item-${profile_status.education_qualification.is_complete?'primary':'danger'}`}>
+                                                            <a href="#" className={`text-${profile_status.education_qualification.is_complete?'primary':'danger'} font-weight-bold mb-1 d-block pl-4`}>{profile_status.education_qualification.info_category}</a>
+                                                            <small className="pl-4">{profile_status.education_qualification.remark}</small>
+                                                            <p className="mb-0 pb-2">
+                                                                <small className="text-muted pl-4">{profile_status.education_qualification.last_updated_at}</small>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                                { profile_status.practice_license && (
+                                                    <div className="timeline-item">
+                                                        <i className={`mdi mdi-${profile_status.profile_info.is_complete?'check-bold':'close-thick'} bg-${profile_status.practice_license.is_complete?'primary':'danger'}-lighten text-${profile_status.practice_license.is_complete?'primary':'danger'} timeline-icon`}></i>
+                                                        <div className={`timeline-item-${profile_status.practice_license.is_complete?'primary':'danger'}`}>
+                                                            <a href="#" className={`text-${profile_status.practice_license.is_complete?'primary':'danger'} font-weight-bold mb-1 d-block pl-4`}>{profile_status.practice_license.info_category}</a>
+                                                            <small className="pl-4">{profile_status.practice_license.remark}</small>
+                                                            <p className="mb-0 pb-2">
+                                                                <small className="text-muted pl-4">{profile_status.practice_license.last_updated_at}</small>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                                { profile_status.facility_profile_info && (
+                                                    <div className="timeline-item">
+                                                        <i className={`mdi mdi-${profile_status.profile_info.is_complete?'check-bold':'close-thick'} bg-${profile_status.facility_profile_info.is_complete?'primary':'danger'}-lighten text-${profile_status.facility_profile_info.is_complete?'primary':'danger'} timeline-icon`}></i>
+                                                        <div className={`timeline-item-${profile_status.facility_profile_info.is_complete?'primary':'danger'}`}>
+                                                            <a href="#" className={`text-${profile_status.facility_profile_info.is_complete?'primary':'danger'} font-weight-bold mb-1 d-block pl-4`}>{profile_status.facility_profile_info.info_category}</a>
+                                                            <small className="pl-4">{profile_status.facility_profile_info.remark}</small>
+                                                            <p className="mb-0 pb-2">
+                                                                <small className="text-muted pl-4">{profile_status.facility_profile_info.last_updated_at}</small>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                                { profile_status.services && (
+                                                    <div className="timeline-item">
+                                                        <i className={`mdi mdi-${profile_status.profile_info.is_complete?'check-bold':'close-thick'} bg-${profile_status.services.is_complete?'primary':'danger'}-lighten text-${profile_status.services.is_complete?'primary':'danger'} timeline-icon`}></i>
+                                                        <div className={`timeline-item-${profile_status.services.is_complete?'primary':'danger'}`}>
+                                                            <a href="#" className={`text-${profile_status.services.is_complete?'primary':'danger'} font-weight-bold mb-1 d-block pl-4`}>{profile_status.services.info_category}</a>
+                                                            <small className="pl-4">{profile_status.services.remark}</small>
+                                                            <p className="mb-0 pb-2">
+                                                                <small className="text-muted pl-4">{profile_status.services.last_updated_at}</small>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                                { profile_status.profile_submission && (
+                                                    <div className="timeline-item">
+                                                        <i className={`mdi mdi-${profile_status.profile_submission.is_complete?'check-bold':'close-thick'} bg-${profile_status.profile_submission.is_complete?'primary':'danger'}-lighten text-${profile_status.profile_submission.is_complete?'primary':'danger'} timeline-icon`}></i>
+                                                        <div className={`timeline-item-${profile_status.profile_submission.is_complete?'primary':'danger'}`}>
+                                                            <a href="#" className={`text-${profile_status.profile_submission.is_complete?'primary':'danger'} font-weight-bold mb-1 d-block pl-4`}>{profile_status.profile_submission.info_category}</a>
+                                                            <small className="pl-4">{profile_status.profile_submission.remark}</small>
+                                                            <p className="mb-0 pb-2">
+                                                                <small className="text-muted pl-4">{profile_status.profile_submission.last_updated_at}</small>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
@@ -115,6 +186,22 @@ export default function ProfileStatuses({profile_status}) {
                         </div>
                     </div>
                 </div>
+                {
+                    (!user.provider_profile.is_submitted &&
+                    profile_status.profile_info.is_complete  &&
+                    (user.provider_profile.account_category_type === 'company'?
+                    profile_status?.company_profile_info.is_complete: true) &&
+                    (user.provider_profile.account_category_type === 'individual'?
+                    (profile_status?.education_qualification.is_complete &&
+                    profile_status?.practice_license.is_complete):true ) &&
+                    (user.provider_profile.account_category_type === 'facility' ||
+                    user.provider_profile.account_category_type === 'company')?
+                    profile_status?.facility_profile_info.is_complete:profile_status.services)?
+                        <InertiaLink href={route('profileSubmission.submit')} className="btn btn-primary btn-sm">
+                        <i className="mdi mdi-briefcase-check-outline"></i> Submit Profile for Verification
+                    </InertiaLink>: null
+                }
+
             </div>
         </div>
         </div>

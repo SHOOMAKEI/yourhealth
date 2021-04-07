@@ -11,7 +11,7 @@ import {usePage} from "@inertiajs/inertia-react";
 export default function Services({user, facilities, all_services, registeredServices}) {
     const {errors, status, alertType} = usePage().props
     const [services, setServices] = useState([])
-    const [values, setValues] = useState({ facility: facilities[0].id})
+    const [values, setValues] = useState({ facility: facilities[0]?.id})
 
     function handleChange(e) {
         const key = e.target.name;
@@ -32,11 +32,12 @@ export default function Services({user, facilities, all_services, registeredServ
     }
 
 
-    useEffect(()=>(
-        registeredServices.map(service => {
+   registeredServices &&
+   useEffect(()=>(
+        registeredServices && registeredServices.map(service => {
             service.id == values.facility? setServices([...service.data]):null
         })
-    ), [values.facility])
+    ), [values?.facility])
 
 
 
@@ -46,7 +47,9 @@ export default function Services({user, facilities, all_services, registeredServ
             {/*{console.log(registeredServices)}*/}
             {
 
-                user.provider_profile.account_category_type === 'company' || user.provider_profile.account_category_type === 'facility'&& (
+               ( user.provider_profile.account_category_type === 'company' ||
+                user.provider_profile.account_category_type === 'facility')
+               && (
                     <>
                         <h4>Select Facility</h4>
                         <SelectInput

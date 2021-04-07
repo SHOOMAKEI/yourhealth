@@ -18,6 +18,10 @@ class ProviderProfile extends Model implements HasMedia
 
     protected static $logAttribute = ['*'];
 
+    protected $casts = [
+      'submitted_at'
+    ];
+
     public function provider_medical_registrations()
     {
         return $this->hasMany(ProviderMedicalRegistration::class);

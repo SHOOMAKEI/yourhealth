@@ -81,7 +81,7 @@ class PersonalInfoController extends Controller
            'medical_registrations' => $medical_reg,
            'all_services' => Service::all()->toArray(),
            'provider_services' => $provider_profile->services,
-           'facility_services' => !empty($facility)?$facility: '',
+           'facility_services' => !empty($facility)?$facility: null,
            'full_profile' => $this->getIndvidualProviderProfileStatus($provider_profile)
        ]);
     }
@@ -93,7 +93,7 @@ class PersonalInfoController extends Controller
                                 $profile->mobile_number &&
                                 $profile->first_name &&
                                 $profile->last_name &&
-                                $profile->provider_sub_level;
+                                is_numeric($profile->provider_sub_level_id);
 
         $company_profile_is_complete =  $profile->provider_companies[0]->email &&
                                         $profile->provider_companies[0]->mobile_number &&
@@ -128,6 +128,14 @@ class PersonalInfoController extends Controller
             'info_category' => 'Profile Information',
             'remark' => $profile_is_complete?
                 'Minimum required profile information are available!':
+                'Please Submit your profile for verification'
+        ],
+        'profile_submission' =>[
+            'last_updated_at' => !is_null($profile->submitted_at)?Carbon::parse($profile->submitted_at)->diffForHumans(): 'Not Submitted',
+            'is_complete' => $profile->is_submitted,
+            'info_category' => 'Profile Submission',
+            'remark' => $profile->is_submitted?
+                'Your Profile is already submitted Please wait while we are verifying your profile. we will notify you via email when its ready!':
                 'Please provider minimum required profile information'
         ]
         ];
@@ -173,7 +181,7 @@ class PersonalInfoController extends Controller
 
             $data += [
             'facility_profile_info' =>[
-                'last_updated_at' => $facilities->last()->updated_at->diffForHumans(),
+                'last_updated_at' => !empty($facilities->last())? $facilities->last()->updated_at->diffForHumans():null,
                 'is_complete' => !in_array(false,$facility_profile_is_complete->toArray()),
                 'info_category' => 'Facility Profile Information',
                 'remark' => !in_array(false,$facility_profile_is_complete->toArray())?
@@ -181,7 +189,8 @@ class PersonalInfoController extends Controller
                     'Please provider minimum required Facility Profile Information'
             ],
             'services' =>[
-                'last_updated_at' => $facilities->last()->services->last()->updated_at->diffForHumans(),
+                'last_updated_at' => !empty($facilities->last()->services->last())?
+                                        $facilities->last()->services->last()->updated_at->diffForHumans():null,
                 'is_complete' => isset($facility_services),
                 'info_category' => 'Facility Services',
                 'remark' => isset($facility_services)?
@@ -287,6 +296,14 @@ class PersonalInfoController extends Controller
         $user->addMediaFromBase64($request['profile_photo'], 'image/'.$format)
             ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . strtolower($user->name) . '-photo'  . '.'.$format))
             ->toMediaCollection('profile-photo');
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
+    }
+
+
+    public function profileSubmission(ServiceProviderRegistrationRepositoryInterface $repository)
+    {
+        $repository->submitProfileForVerification();
 
         return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }

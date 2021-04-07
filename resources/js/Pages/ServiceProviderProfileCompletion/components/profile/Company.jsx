@@ -40,7 +40,7 @@ export default function Company( {company}) {
     function handleSubmit(e) {
         e.preventDefault();
         setSending(true);
-        Inertia.post(route('login'), values).then(() => {
+        Inertia.post(route('companyInfo.update'), values).then(() => {
             setSending(false);
         });
     }
@@ -48,7 +48,7 @@ export default function Company( {company}) {
         return (
             <div className="tab-pane fade" id="v-pills-company" role="tabpanel"
                  aria-labelledby="v-pills-company-tab">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-6">
                         <TextInput

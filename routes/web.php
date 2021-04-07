@@ -176,6 +176,10 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
             ->name('facilityInfo.update');
         Route::get('/facility-information/{facility}/delete', [ProviderFacilityController::class, 'destroy'])
             ->name('facilityInfo.destroy');
+        Route::post('/company-information/update', [ProviderFacilityController::class, 'CompanyInfoUpdate'])
+            ->name('companyInfo.update');
+        Route::get('service_provider/profile-submission', [PersonalInfoController::class, 'profileSubmission'])
+            ->name('profileSubmission.submit');
     });
 
 

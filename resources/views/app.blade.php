@@ -15,8 +15,8 @@
     <script src="{{ mix('/js/app.js') }}" defer></script>
     <title>{{ config('app.name', 'Your Health') }}</title>
       <script>
-          jQuery(".success-alert").fadeTo(2000, 500).slideUp(500, function(){
-              jQuery(".success-alert").slideUp(500);
+          jQuery(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
+              jQuery(".alert-success").slideUp(500);
           });
       </script>
   </head>

@@ -365,6 +365,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Services(_ref) {
+  var _facilities$;
+
   var user = _ref.user,
       facilities = _ref.facilities,
       all_services = _ref.all_services,
@@ -380,7 +382,7 @@ function Services(_ref) {
       setServices = _useState2[1];
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    facility: facilities[0].id
+    facility: (_facilities$ = facilities[0]) === null || _facilities$ === void 0 ? void 0 : _facilities$.id
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       values = _useState4[0],
@@ -403,17 +405,17 @@ function Services(_ref) {
     });
   }
 
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    return registeredServices.map(function (service) {
+  registeredServices && Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    return registeredServices && registeredServices.map(function (service) {
       service.id == values.facility ? setServices(_toConsumableArray(service.data)) : null;
     });
-  }, [values.facility]);
+  }, [values === null || values === void 0 ? void 0 : values.facility]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "tab-pane fade",
     id: "v-pills-services",
     role: "tabpanel",
     "aria-labelledby": "v-pills-services-tab"
-  }, user.provider_profile.account_category_type === 'company' || user.provider_profile.account_category_type === 'facility' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Select Facility"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_SelectInput__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, (user.provider_profile.account_category_type === 'company' || user.provider_profile.account_category_type === 'facility') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Select Facility"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_SelectInput__WEBPACK_IMPORTED_MODULE_6__["default"], {
     name: "facility",
     type: "text",
     errors: errors.facility,

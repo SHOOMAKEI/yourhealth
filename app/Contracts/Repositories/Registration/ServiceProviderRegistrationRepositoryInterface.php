@@ -65,5 +65,5 @@ interface ServiceProviderRegistrationRepositoryInterface
 
     public function updateProviderFacilityCalendar(array $request):DaySession;
 
-    public function submitProfileForVerification(array $request):ProviderProfile;
+    public function submitProfileForVerification():ProviderProfile;
 }

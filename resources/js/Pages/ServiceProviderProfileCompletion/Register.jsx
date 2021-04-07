@@ -37,8 +37,8 @@ function Register() {
                             <TopNav user={user} />
                             {
                                 user.provider_profile.is_submitted && (
-                                    <div className="alert alert-success alert-dismissible bg-success text-white border-0 fade show topnav-logo" role="alert">
-                                        <strong>Request submitted, please wait for verification. </strong>
+                                    <div className="alert alert-success alert-dismissible bg-primary text-white border-0 fade show topnav-logo" role="alert">
+                                        <strong>Your Profile was submitted Please wait while we are verifying your profile. we will notify you via email when its ready! </strong>
                                     </div>
                                 )
                             }
@@ -58,8 +58,10 @@ function Register() {
                                             <Services facilities={facilities?facilities:{}}
                                                       user={user} all_services={all_services}
                                                       registeredServices={user.provider_profile.account_category_type === 'individual'?provider_services:facility_services}/>
-                                            <ProfileStatuses profile_status={full_profile}/>
-                                            {user.provider_profile.account_category_type === 'facility' && <Facility facilities={facilities} provider_sub_levels={provider_sub_levels}/> }
+                                            <ProfileStatuses profile_status={full_profile} user={user}/>
+                                            {(user.provider_profile.account_category_type === 'facility' ||
+                                                user.provider_profile.account_category_type === 'company') &&
+                                            <Facility facilities={facilities} provider_sub_levels={provider_sub_levels}/> }
                                         </div>
                                     </div>
                                 </div>
