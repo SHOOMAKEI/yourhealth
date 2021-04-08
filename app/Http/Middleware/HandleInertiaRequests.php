@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Inertia\Middleware;
@@ -37,11 +38,21 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
+        $user = null;
+        $request->user()
+            ? $user = User::find(auth()->user()->id): null;
         return array_merge(parent::share($request), [
             'app_name' => config('app.name'),
-            'auth.user' => $request->user()
-                            ? $request->user()->only('id', 'name', 'email')
-                            : null,
+            'auth.user' => isset($user)?function () use ($user){
+                                $data['id'] = $user->id;
+                                $data['name'] = $user->name;
+                                $data['email'] = $user->email;
+                                $data['profile_photo_path'] = $user->profile_photo_path;
+                                $data['roles'] = $user->roles;
+                                $data['permissions'] = $user->permissions;
+
+                                return $data;
+                }:null,
             'status' => Session::get('status'),
             'alertType' => Session::get('alertType'),
             'locale' => app()->getLocale(),
@@ -60,6 +71,11 @@ class HandleInertiaRequests extends Middleware
             'language' => function(){
                 return translations(
                     resource_path('lang/'. app()->getLocale() .'.json'));
+            },
+            'roles' => function(Request $request) {
+                return $request->user()
+                    ? User::find(auth()->user()->id)->roles->only('id', 'name')
+                    : null;
             }
         ]);
     }

@@ -17,6 +17,9 @@ use App\Http\Controllers\ServiceProviderProfileCompletion\PersonalInfoController
 use App\Http\Controllers\ServiceProviderProfileCompletion\PracticeLicenseController;
 use App\Http\Controllers\ServiceProviderProfileCompletion\ProviderFacilityController;
 use App\Http\Controllers\ServiceProviderProfileCompletion\ProviderServicesController;
+use App\Http\Controllers\Services\ServiceCategoryController;
+use App\Http\Controllers\Services\ServiceController;
+use App\Http\Controllers\Services\ServiceSubCategoryController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\VerifyMobileNumberController;
 use Illuminate\Support\Facades\Route;
@@ -199,8 +202,9 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
      Route::get('admin/dashboard', function (){
          return Inertia::render('Dashboard');
      })->name('admin.dashboard');
-//     Route::resource('specializations', SpecializationController::class);
-//     Route::resource('procedures', MedicalProcedureController::class);
+     Route::resource('services', ServiceController::class);
+     Route::resource('services_sub_category', ServiceSubCategoryController::class);
+     Route::resource('services_category', ServiceCategoryController::class);
 //     Route::resource('medical_courses', MedicalCourseController::class);
 //     Route::resource('medical_institutes', MedicalInstituteController::class);
 //     Route::resource('medical_councils', MedicalRegistrationCouncilController::class);

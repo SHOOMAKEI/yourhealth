@@ -7,8 +7,8 @@ export default ({ icon, link, text }) => {
 
 
   return (
-    <li className="nav-item">
-      <InertiaLink href={route(link)} className={`nav-link ${ isActive? 'active': ''}`}>
+    <li className={`side-nav-item ${ isActive? 'mm-active': ''}`}>
+      <InertiaLink href={route(link)} className={`side-nav-link ${ isActive? 'active': ''}`}>
         <Icon className={icon} />
         <span >{text}</span>
       </InertiaLink>

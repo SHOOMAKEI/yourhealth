@@ -1,69 +1,59 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[96],{
 
-/***/ "./resources/js/Pages/Services/requested/components/infosidebar.jsx":
-/*!**************************************************************************!*\
-  !*** ./resources/js/Pages/Services/requested/components/infosidebar.jsx ***!
-  \**************************************************************************/
+/***/ "./resources/js/Pages/Services/requested/components/Heading.jsx":
+/*!**********************************************************************!*\
+  !*** ./resources/js/Pages/Services/requested/components/Heading.jsx ***!
+  \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return InfoSideBar; });
-// import { useDispatch, useSelector } from "react-redux";
-// import { useEffect } from 'react';
-//
-// import { selectService } from '@pages/data/actions/requestedService';
-// import {RequestedServicesState} from "@pages/data/reducers/requestedService";
-function InfoSideBar() {
-  var _useSelector = useSelector(function (state) {
-    return state.requestedServiceStore;
-  }),
-      selectedService = _useSelector.selectedService,
-      services = _useSelector.services;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Heading; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-  var dispatch = useDispatch();
-  useEffect(function () {
-    if (services.length > 0) {// dispatch(selectService(services[0]))
-    }
-  }, []);
-  return /*#__PURE__*/React.createElement("div", {
-    className: "card"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "card-body"
-  }, /*#__PURE__*/React.createElement("h4", null, selectedService.name), /*#__PURE__*/React.createElement("hr", {
-    className: "mt-3 mb-2"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "col"
-  }, /*#__PURE__*/React.createElement("p", null, selectedService.description), /*#__PURE__*/React.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "mt-2 mb-1 text-muted"
-  }, "Created At"), /*#__PURE__*/React.createElement("div", {
-    className: "media"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "uil uil-schedule font-18 text-success mr-1"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "media-body"
-  }, /*#__PURE__*/React.createElement("h5", {
-    className: "mt-1 font-14"
-  }, selectedService.createdAt)))), /*#__PURE__*/React.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "mt-2 mb-1 text-muted"
-  }, "Updated At"), /*#__PURE__*/React.createElement("div", {
-    className: "media"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "uil uil-schedule font-18 text-success mr-1"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "media-body"
-  }, /*#__PURE__*/React.createElement("h5", {
-    className: "mt-1 font-14"
-  }, selectedService.updatedAt)))))))));
+function Heading(_ref) {
+  var title = _ref.title,
+      renderModal = _ref.renderModal,
+      modalID = _ref.modalID,
+      search = _ref.search;
+
+  function onSearch() {
+    $('#search-input').on('input', function (e) {
+      var input = $(this);
+      var val = input.val();
+
+      if (input.data("lastval") != val) {
+        input.data("lastval", val);
+        search(val);
+      }
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "page-title-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "page-title-right"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "app-search"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    placeholder: "Search...",
+    id: "search-input",
+    onInput: onSearch
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group-append"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "btn btn-primary"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "uil uil-search"
+  }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "page-title"
+  }, title));
 }
 
 /***/ })

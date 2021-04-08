@@ -1,17 +1,25 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[91],{
 
-/***/ "./resources/js/Pages/Services/categories/components/paginator.jsx":
-/*!*************************************************************************!*\
-  !*** ./resources/js/Pages/Services/categories/components/paginator.jsx ***!
-  \*************************************************************************/
+/***/ "./resources/js/Pages/Services/categories/components/infosidebar.jsx":
+/*!***************************************************************************!*\
+  !*** ./resources/js/Pages/Services/categories/components/infosidebar.jsx ***!
+  \***************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Paginator; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return InfoSideBar; });
+/* harmony import */ var _Pages_services_categories_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/services/categories/components */ "./resources/js/Pages/services/categories/components/index.js");
+/* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -25,88 +33,159 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-function Paginator(_ref) {
-  var batchCount = _ref.batchCount,
-      totalItems = _ref.totalItems,
-      activePageCallBack = _ref.activePageCallBack;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([1]),
+
+function InfoSideBar() {
+  var _useSelector = useSelector(function (state) {
+    return state.categoriesStore;
+  }),
+      selectedCategory = _useSelector.selectedCategory,
+      categories = _useSelector.categories;
+
+  var _useSelector2 = useSelector(function (state) {
+    return state.subcategoriesStore;
+  }),
+      subcategories = _useSelector2.subcategories;
+
+  var _useState = useState(subcategories.slice(0, 5)),
       _useState2 = _slicedToArray(_useState, 2),
-      pages = _useState2[0],
-      setPages = _useState2[1];
+      shownSubcategories = _useState2[0],
+      setShownSubcategories = _useState2[1];
 
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    calculatePagination();
-  }, [batchCount, totalItems]);
+  useEffect(function () {
+    if (categories.length > 0) {
+      dispatch(selectCategory(categories[0]));
+    }
+  }, []);
+  useEffect(function () {
+    if (updateServiceCategoryResponse.data) {
+      setSuccess(true);
+      dispatch(updateCategory(_objectSpread(_objectSpread({}, selectedCategory), {}, {
+        is_active: !selectedCategory.is_active
+      })));
+    }
+  }, [updateServiceCategoryResponse.data]);
 
-  function calculatePagination() {
-    var _pages = Math.ceil(totalItems / batchCount);
-
-    setPages(Array.from(Array(_pages).keys()));
-  }
-
-  function setActive(id) {
-    pages.map(function (page) {
-      $("#page-".concat(page)).removeClass('active');
+  function toggleCategoryVisibility() {
+    var category = {
+      id: selectedCategory.id,
+      name: name,
+      description: selectedCategory.description
+    };
+    updateServiceCategory({
+      variables: category
     });
-    $("#page-".concat(id)).addClass('active');
-    activePageCallBack(id);
+    dispatch(updateCategory(_objectSpread(_objectSpread({}, selectedCategory), {}, {
+      is_active: !selectedCategory.is_active
+    })));
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row px-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-sm-12 col-md-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "dataTables_info",
-    id: "service-categories-table_info",
-    role: "status",
-    "aria-live": "polite"
-  }, "Showing 1 to ", batchCount, " of ", totalItems, " entries")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-sm-12 col-md-7"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "dataTables_paginate paging_simple_numbers float-right",
-    id: "service-categories-table_paginate"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-    className: "pagination pagination-rounded"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "paginate_button page-item previous disabled",
-    id: "service-categories-table_previous"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "card"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "card-body"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "dropdown card-widgets"
+  }, /*#__PURE__*/React.createElement("a", {
     href: "#",
-    "aria-controls": "service-categories-table",
-    "data-dt-idx": "0",
-    tabIndex: 0,
-    className: "page-link"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "uil uil-angle-left"
-  }))), pages.map(function (page) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "paginate_button page-item ".concat(page === 0 && 'active'),
-      key: page,
-      id: "page-".concat(page),
-      onClick: function onClick() {
-        return setActive(page);
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "#",
-      "aria-controls": "service-categories-table",
-      "data-dt-idx": "".concat(page),
-      tabIndex: 0,
-      className: "page-link"
-    }, page));
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "paginate_button page-item next",
-    id: "service-categories-table_next"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#",
-    "aria-controls": "service-categories-table",
-    "data-dt-idx": "3",
-    tabIndex: 0,
-    className: "page-link"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "uil uil-angle-right"
-  })))))));
+    className: "dropdown-toggle arrow-none",
+    "data-toggle": "dropdown",
+    "aria-expanded": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-ellipsis-h"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "dropdown-menu dropdown-menu-right"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "javascript:void(0);",
+    className: "dropdown-item",
+    "data-toggle": "modal",
+    "data-target": "#".concat(_Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__["UPDATE_CATEGORY_MODAL_ID"])
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-edit mr-1"
+  }), "Edit"), /*#__PURE__*/React.createElement("a", {
+    href: "javascript:void(0);",
+    className: "dropdown-item",
+    onClick: toggleCategoryVisibility
+  }, selectedCategory.is_active ? /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-ban mr-1"
+  }), "Hide from public") : /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-eye mr-1"
+  }), "Show to public")), /*#__PURE__*/React.createElement("div", {
+    className: "dropdown-divider"
+  }), /*#__PURE__*/React.createElement("a", {
+    href: "javascript:void(0);",
+    className: "dropdown-item text-danger",
+    "data-toggle": "modal",
+    "data-target": "#delete-category"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-trash-alt mr-1"
+  }), "Delete")), /*#__PURE__*/React.createElement(_Pages_services_categories_components__WEBPACK_IMPORTED_MODULE_0__["AddCategoryModal"], {
+    modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__["UPDATE_CATEGORY_MODAL_ID"],
+    initialData: {
+      name: selectedCategory.name,
+      description: selectedCategory.description,
+      is_active: false,
+      id: selectedCategory.id
+    },
+    operation: "update",
+    title: "Edit category ".concat(selectedCategory.name)
+  })), /*#__PURE__*/React.createElement("h4", null, selectedCategory.name), selectedCategory.is_active ? /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-circle text-success"
+  }), " Visible to public") : /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-circle text-danger"
+  }), " Hidden from public"), /*#__PURE__*/React.createElement("hr", {
+    className: "mt-3 mb-2"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col"
+  }, /*#__PURE__*/React.createElement("p", null, selectedCategory.description), /*#__PURE__*/React.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "mt-2 mb-1 text-muted"
+  }, "Created At"), /*#__PURE__*/React.createElement("div", {
+    className: "media"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-schedule font-18 text-success mr-1"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "media-body"
+  }, /*#__PURE__*/React.createElement("h5", {
+    className: "mt-1 font-14"
+  }, selectedCategory.created_at)))), /*#__PURE__*/React.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "mt-2 mb-1 text-muted"
+  }, "Updated At"), /*#__PURE__*/React.createElement("div", {
+    className: "media"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-schedule font-18 text-success mr-1"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "media-body"
+  }, /*#__PURE__*/React.createElement("h5", {
+    className: "mt-1 font-14"
+  }, selectedCategory.updated_at))))))), /*#__PURE__*/React.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-12"
+  }, /*#__PURE__*/React.createElement("h4", {
+    className: "header-title my-3"
+  }, "Subcategories (", selectedCategory.service_sub_categories.length, ")"), /*#__PURE__*/React.createElement("table", {
+    className: "table table-sm table-centered mb-0"
+  }, /*#__PURE__*/React.createElement("thead", {
+    className: "thead-light"
+  }, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Name"), /*#__PURE__*/React.createElement("th", null, "Public status"))), /*#__PURE__*/React.createElement("tbody", null, selectedCategory.service_sub_categories.slice(0, 9).map(function (subcategory) {
+    return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, subcategory.name), /*#__PURE__*/React.createElement("td", null, subcategory.is_active ? /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
+      className: "uil uil-eye font-16 mr-1 text-success"
+    }), " Visible") : /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
+      className: "uil uil-eye font-16 mr-1 text-danger"
+    }), " Not Visible")));
+  }))), /*#__PURE__*/React.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
+    href: "/services/subcategories/".concat(selectedCategory.id)
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "btn btn-primary btn-block mt-2"
+  }, "See subcategories"))))));
 }
 
 /***/ })

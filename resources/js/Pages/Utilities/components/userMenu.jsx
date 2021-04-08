@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react'
+import {usePage} from "@inertiajs/inertia-react";
 
 function UserMenu() {
+    const {auth} = usePage().props
     // const [queryAthUser, {loading, errors, data, called}] = useApi({query: QUERY_AUTH_USER})
     // const [logout, logoutResponse] = useApi({query: LOGOUT})
     // const router = useRouter();
@@ -38,11 +40,11 @@ function UserMenu() {
             <a className="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" id="topbar-userdrop" href="#" role="button" aria-haspopup="true"
                 aria-expanded="false">
                 <span className="account-user-avatar">
-                    <img src="/images/user.png" alt="user-image" className="rounded-circle" />
+                    <img src={auth.user.profile_photo_path} alt="user-image" className="rounded-circle" />
                 </span>
                 <span>
-                    <span className="account-user-name">{'Loading...'}</span>
-                    <span className="account-position">{ 'Loading...'}</span>
+                    <span className="account-user-name">{auth.user.name}</span>
+                    <span className="account-position">{ auth.user.roles[0].name}</span>
                 </span>
             </a>
             <div className="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown" aria-labelledby="topbar-userdrop">

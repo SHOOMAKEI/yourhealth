@@ -141,6 +141,11 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
             return asset('avatar/client_profile_avatar.jpg');
         }
 
+        if ($this->hasRole('super-admin')&&
+            $this->getFirstMediaUrl('profile-photo')==null) {
+            return asset('avatar/client_profile_avatar.jpg');
+        }
+
         return $this->getFirstMediaUrl('profile-photo');
     }
 }

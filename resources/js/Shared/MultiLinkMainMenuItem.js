@@ -15,12 +15,15 @@ export default ({ icon, link, text, children }) => {
   }
 
   return (
-    <li className={`nav-item has-submenu ${isActive? 'drop-down': ''}`} onClick={handleOnClick}>
-      <InertiaLink href="#" className="nav-link"  >
+    <li className={`side-nav-item`} aria-expanded={isActive? "true": "false"} onClick={handleOnClick}>
+      <a href="#" className="side-nav-link" onClick={handleOnClick} >
         <Icon className={icon} />
         <span >{text}</span>
-      </InertiaLink>
-      {children}
+          <span className="menu-arrow"></span>
+      </a>
+        <ul className={`side-nav-second-level mm-collapse ${isActive? "mm-show": ""}`} aria-expanded="false" style={isActive? '': {height: 0 + 'px'}}>
+            {children}
+        </ul>
     </li>
   );
 };

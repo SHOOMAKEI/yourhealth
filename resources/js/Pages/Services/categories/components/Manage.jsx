@@ -8,6 +8,8 @@ import {
 import React, {useEffect} from 'react'
 import { ADD_CATEGORY_MODAL_ID } from '@/Pages/Utilities/Constants'
 import Framework from '@/Pages/framework';
+import Layout from "@/Shared/Layout";
+import Dashboard from "@/Pages/Dashboard";
 
 // import { storeServiceCategories } from '@pages/data/actions/serviceCategories';
 // import { useApi } from '@pages/utils/ApolloClient';
@@ -86,5 +88,7 @@ const ManageServices = () => {
 
     return <Framework renderContent={renderContent}/>
 }
+
+ManageServices.layout = page => <Layout children={page} />;
 
 export default ManageServices;
