@@ -17,7 +17,8 @@ import Dashboard from "@/Pages/Dashboard";
 const CATEGORIES_BATCH_COUNT = 10;
 
 const ManageServices = () => {
-    const {categories} = useSelector(state => state.categoriesStore);
+    const {categories} = null
+        //useSelector(state => state.categoriesStore);
 
     const [categoriesBatchCount, setCategoriesBatchCount] = useState(CATEGORIES_BATCH_COUNT)
     const [shownCategories, setShownCategories] = useState(categories.slice(0, categoriesBatchCount))

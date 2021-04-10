@@ -40,12 +40,8 @@ function InfoSideBar() {
     return state.categoriesStore;
   }),
       selectedCategory = _useSelector.selectedCategory,
-      categories = _useSelector.categories;
+      categories = _useSelector.categories; // const {subcategories} = useSelector(state => state.subcategoriesStore);
 
-  var _useSelector2 = useSelector(function (state) {
-    return state.subcategoriesStore;
-  }),
-      subcategories = _useSelector2.subcategories;
 
   var _useState = useState(subcategories.slice(0, 5)),
       _useState2 = _slicedToArray(_useState, 2),

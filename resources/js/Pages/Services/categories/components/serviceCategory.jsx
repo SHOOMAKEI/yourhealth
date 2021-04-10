@@ -4,9 +4,9 @@ import {InertiaLink} from "@inertiajs/inertia-react";
 
 export default function Category(category) {
 
-    // function chooseCategory() {
-    //     dispatch(selectCategory(category))
-    // }
+    function chooseCategory() {
+        // dispatch(selectCategory(category))
+    }
 
     return (
         <tr key={category.id}>

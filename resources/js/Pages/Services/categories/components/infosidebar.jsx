@@ -4,7 +4,7 @@ import {InertiaLink} from "@inertiajs/inertia-react";
 
 export default function InfoSideBar() {
     const {selectedCategory, categories} = useSelector(state => state.categoriesStore);
-    const {subcategories} = useSelector(state => state.subcategoriesStore);
+    // const {subcategories} = useSelector(state => state.subcategoriesStore);
     const [shownSubcategories, setShownSubcategories] = useState(subcategories.slice(0, 5))
 
     useEffect(() => {

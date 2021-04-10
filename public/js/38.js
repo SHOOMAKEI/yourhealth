@@ -211,9 +211,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Category(category) {
-  // function chooseCategory() {
-  //     dispatch(selectCategory(category))
-  // }
+  function chooseCategory() {// dispatch(selectCategory(category))
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
     key: category.id
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {

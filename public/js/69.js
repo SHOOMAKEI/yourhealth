@@ -39,10 +39,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var CATEGORIES_BATCH_COUNT = 10;
 
 var ManageServices = function ManageServices() {
-  var _useSelector = useSelector(function (state) {
-    return state.categoriesStore;
-  }),
-      categories = _useSelector.categories;
+  var _ref = null,
+      categories = _ref.categories; //useSelector(state => state.categoriesStore);
 
   var _useState = useState(CATEGORIES_BATCH_COUNT),
       _useState2 = _slicedToArray(_useState, 2),

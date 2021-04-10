@@ -203,8 +203,8 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
          return Inertia::render('Dashboard');
      })->name('admin.dashboard');
      Route::resource('services', ServiceController::class);
-     Route::resource('services_sub_category', ServiceSubCategoryController::class);
-     Route::resource('services_category', ServiceCategoryController::class);
+     Route::resource('services_sub_categories', ServiceSubCategoryController::class);
+     Route::resource('services_categories', ServiceCategoryController::class);
 //     Route::resource('medical_courses', MedicalCourseController::class);
 //     Route::resource('medical_institutes', MedicalInstituteController::class);
 //     Route::resource('medical_councils', MedicalRegistrationCouncilController::class);
