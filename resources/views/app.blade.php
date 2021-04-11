@@ -9,19 +9,23 @@
     <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="light-style" />
     <link href="{{asset('assets/css/app-dark.min.css')}}" rel="stylesheet" type="text/css" id="dark-style" />
-      <script src="{{asset('assets/js/vendor.min.js')}}" defer></script>
-      <script src="{{asset('assets/js/app.min.js')}}" defer></script>
-      <script>
+
+    @routes
+    <script src="{{ mix('/js/app.js') }}" defer></script>
+      <script src="{{asset('assets/js/vendor.min.js')}}" defer ></script>
+
+      <script src="{{asset('assets/js/vendor/bootstrap.bundle.min.js')}}" defer ></script>
+      <script src="{{asset('assets/js/app.min.js')}}" defer ></script>
+      <script defer>
           $(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
               $(".alert-success").slideUp(500);
           });
       </script>
-    @routes
-    <script src="{{ mix('/js/app.js') }}" defer></script>
     <title>{{ config('app.name', 'MSON') }}</title>
 
   </head>
   <body data-layout="detached" data-layout-config='{"darkMode":false,leftSidebarCondensed":false}'>
     @inertia
+          <script src="{{asset('assets/js/vendor/jquery.min.js')}}"  ></script>
   </body>
 </html>

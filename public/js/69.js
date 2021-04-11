@@ -15,7 +15,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
 /* harmony import */ var _Pages_framework__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Pages/framework */ "./resources/js/Pages/framework.jsx");
 /* harmony import */ var _Shared_Layout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/Layout */ "./resources/js/Shared/Layout.js");
-/* harmony import */ var _Pages_Dashboard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Pages/Dashboard */ "./resources/js/Pages/Dashboard.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_5__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -33,43 +34,37 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
- // import { storeServiceCategories } from '@pages/data/actions/serviceCategories';
-// import { useApi } from '@pages/utils/ApolloClient';
 
 var CATEGORIES_BATCH_COUNT = 10;
 
 var ManageServices = function ManageServices() {
-  var _ref = null,
-      categories = _ref.categories; //useSelector(state => state.categoriesStore);
+  var categories = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_5__["usePage"])().props.categories; //useSelector(state => state.categoriesStore);
 
-  var _useState = useState(CATEGORIES_BATCH_COUNT),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(CATEGORIES_BATCH_COUNT),
       _useState2 = _slicedToArray(_useState, 2),
       categoriesBatchCount = _useState2[0],
       setCategoriesBatchCount = _useState2[1];
 
-  var _useState3 = useState(categories.slice(0, categoriesBatchCount)),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(categories.slice(0, categoriesBatchCount)),
       _useState4 = _slicedToArray(_useState3, 2),
       shownCategories = _useState4[0],
       setShownCategories = _useState4[1];
 
-  var _useState5 = useState(0),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
       _useState6 = _slicedToArray(_useState5, 2),
       paginatorSP = _useState6[0],
-      setPaginatorSP = _useState6[1]; // const [queryCategories, {loading, errors, data, called}] = useApi({query: QUERY_CATEGORIES})
-  // const dispatch = useDispatch()
+      setPaginatorSP = _useState6[1];
 
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(categories[0]),
+      _useState8 = _slicedToArray(_useState7, 2),
+      selectedCategory = _useState8[0],
+      setSelectedCategory = _useState8[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     if (categories.length > 0) {
       setShownCategories(categories.slice(paginatorSP, paginatorSP + categoriesBatchCount));
     }
   }, [categories]);
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {// queryCategories({});
-  }, []);
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    if (data) {// dispatch(storeServiceCategories(data.serviceCategories));
-    }
-  }, [data]);
 
   function renderAddCategoryModal() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Pages_services_categories_components__WEBPACK_IMPORTED_MODULE_0__["AddCategoryModal"], {
@@ -98,35 +93,32 @@ var ManageServices = function ManageServices() {
     }
   }
 
-  function renderContent() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "row",
-      style: {
-        paddingTop: 30 + 'px'
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-xl-7"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "card px-2"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Pages_services_categories_components__WEBPACK_IMPORTED_MODULE_0__["Heading"], {
-      title: "Service categories",
-      renderModal: renderAddCategoryModal,
-      modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__["ADD_CATEGORY_MODAL_ID"],
-      search: searchCategories
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Pages_services_categories_components__WEBPACK_IMPORTED_MODULE_0__["ServiceCategoriesTable"], {
-      categories: shownCategories
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Pages_services_categories_components__WEBPACK_IMPORTED_MODULE_0__["Paginator"], {
-      batchCount: categoriesBatchCount,
-      totalItems: categories.length,
-      activePageCallBack: selectPage
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-xl-5"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Pages_services_categories_components__WEBPACK_IMPORTED_MODULE_0__["InfoSideBar"], null)));
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Pages_framework__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    renderContent: renderContent
-  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "row",
+    style: {
+      paddingTop: 30 + 'px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-xl-7"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "card px-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Pages_services_categories_components__WEBPACK_IMPORTED_MODULE_0__["Heading"], {
+    title: "Service categories",
+    renderModal: renderAddCategoryModal,
+    modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__["ADD_CATEGORY_MODAL_ID"],
+    search: searchCategories
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Pages_services_categories_components__WEBPACK_IMPORTED_MODULE_0__["ServiceCategoriesTable"], {
+    categories: shownCategories,
+    callback: setSelectedCategory
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Pages_services_categories_components__WEBPACK_IMPORTED_MODULE_0__["Paginator"], {
+    batchCount: categoriesBatchCount,
+    totalItems: categories.length,
+    activePageCallBack: selectPage
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-xl-5"
+  }, categories && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Pages_services_categories_components__WEBPACK_IMPORTED_MODULE_0__["InfoSideBar"], {
+    selectedCategory: selectedCategory
+  })));
 };
 
 ManageServices.layout = function (page) {

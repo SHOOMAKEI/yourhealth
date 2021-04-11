@@ -2,10 +2,10 @@ import DeleteDialog from "./deleteDialog";
 import React from "react";
 import {InertiaLink} from "@inertiajs/inertia-react";
 
-export default function Category(category) {
+export default function Category({category, callback}) {
 
     function chooseCategory() {
-        // dispatch(selectCategory(category))
+        callback(category)
     }
 
     return (
@@ -15,10 +15,17 @@ export default function Category(category) {
                     {category.name}
                 </a>
             </td>
+
             <td>
                 {category.is_active ?
                     <span><i className="uil uil-eye font-16 mr-1 text-success"/> Visible</span> :
                     <span><i className="uil uil-eye font-16 mr-1 text-danger"/> Not Visible</span>
+                }
+            </td>
+            <td>
+                {category.approved_at ?
+                    <span><i className="uil uil-check-circle font-16 mr-1 text-success"/> Approved</span> :
+                    <span><i className="uil uil-times-circle font-16 mr-1 text-danger"/> Not Approved</span>
                 }
             </td>
             <td className="table-action">
@@ -29,7 +36,7 @@ export default function Category(category) {
                         <i className="uil uil-bright font-16 mr-1 text-primary"/>More
                     </button>
                     <div className="dropdown-menu">
-                        <a href="javascript:void(0);" className="dropdown-item" onClick={chooseCategory}>
+                        <a href="#" className="dropdown-item" onClick={chooseCategory}>
                             <i className="uil uil-eye mr-1"/>Show info
                         </a>
                         <InertiaLink href={`/services/subcategories/${category.id}`}>

@@ -5,26 +5,24 @@ import {
     Paginator,
     ServiceCategoriesTable
 } from '@/Pages/services/categories/components'
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { ADD_CATEGORY_MODAL_ID } from '@/Pages/Utilities/Constants'
 import Framework from '@/Pages/framework';
 import Layout from "@/Shared/Layout";
-import Dashboard from "@/Pages/Dashboard";
+import {usePage} from "@inertiajs/inertia-react";
 
-// import { storeServiceCategories } from '@pages/data/actions/serviceCategories';
-// import { useApi } from '@pages/utils/ApolloClient';
 
 const CATEGORIES_BATCH_COUNT = 10;
 
 const ManageServices = () => {
-    const {categories} = null
+    const {categories} = usePage().props
         //useSelector(state => state.categoriesStore);
 
     const [categoriesBatchCount, setCategoriesBatchCount] = useState(CATEGORIES_BATCH_COUNT)
     const [shownCategories, setShownCategories] = useState(categories.slice(0, categoriesBatchCount))
     const [paginatorSP, setPaginatorSP] = useState(0)
-    // const [queryCategories, {loading, errors, data, called}] = useApi({query: QUERY_CATEGORIES})
-    // const dispatch = useDispatch()
+    const[selectedCategory, setSelectedCategory] =  useState(categories[0])
+
 
     useEffect(() => {
         if(categories.length > 0) {
@@ -32,15 +30,6 @@ const ManageServices = () => {
         }
     }, [categories])
 
-    useEffect(() => {
-        // queryCategories({});
-    }, []);
-
-    useEffect(() => {
-        if(data) {
-            // dispatch(storeServiceCategories(data.serviceCategories));
-        }
-    }, [data])
 
     function renderAddCategoryModal() {
         return <AddCategoryModal modalID={ADD_CATEGORY_MODAL_ID} operation="add"/>
@@ -69,25 +58,23 @@ const ManageServices = () => {
         }
     }
 
-    function renderContent() {
         return (
             <div className="row" style={{paddingTop: 30 + 'px'}}>
                 <div className="col-xl-7">
                     <div className="card px-2">
                         <Heading title="Service categories" renderModal={renderAddCategoryModal} modalID={ADD_CATEGORY_MODAL_ID} search={searchCategories}  />
-                        <ServiceCategoriesTable categories={shownCategories} />
+                        <ServiceCategoriesTable categories={shownCategories} callback={setSelectedCategory} />
                         <Paginator batchCount={categoriesBatchCount} totalItems={categories.length} activePageCallBack={selectPage} />
                     </div>
                 </div>
 
                 <div className="col-xl-5">
-                    <InfoSideBar />
+                    { categories && <InfoSideBar selectedCategory={selectedCategory} />}
                 </div>
             </div>
         )
-    }
 
-    return <Framework renderContent={renderContent}/>
+
 }
 
 ManageServices.layout = page => <Layout children={page} />;

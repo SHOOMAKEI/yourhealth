@@ -28,15 +28,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function DeleteCategoryDialog() {
-  var _useSelector = useSelector(function (state) {
-    return state.categoriesStore;
-  }),
-      selectedCategory = _useSelector.selectedCategory;
+  var selectedCategory = {
+    name: 'omakei'
+  };
 
-  var _useState = useState(false),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
-      success = _useState2[0],
-      setSuccess = _useState2[1]; // useEffect(() => {
+      sending = _useState2[0],
+      setSending = _useState2[1]; // useEffect(() => {
   //     if (deleteServiceCategoryResponse.data) {
   //        setSuccess(true)
   //        dispatch(deleteCategory(selectedCategory));

@@ -1,9 +1,9 @@
 import LoadingButton from "@/Shared/LoadingButton";
-import React from "react";
+import React, { useState} from "react";
 
 export default function DeleteCategoryDialog() {
-    const {selectedCategory} = useSelector(state => state.categoriesStore)
-    const [success, setSuccess] = useState(false)
+    const selectedCategory = {name: 'omakei'}
+    const [sending, setSending] = useState(false)
 
     // useEffect(() => {
     //     if (deleteServiceCategoryResponse.data) {

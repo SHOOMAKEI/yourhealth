@@ -28,15 +28,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function DeleteCategoryDialog() {
-  var _useSelector = useSelector(function (state) {
-    return state.categoriesStore;
-  }),
-      selectedCategory = _useSelector.selectedCategory;
+  var selectedCategory = {
+    name: 'omakei'
+  };
 
-  var _useState = useState(false),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
-      success = _useState2[0],
-      setSuccess = _useState2[1]; // useEffect(() => {
+      sending = _useState2[0],
+      setSending = _useState2[1]; // useEffect(() => {
   //     if (deleteServiceCategoryResponse.data) {
   //        setSuccess(true)
   //        dispatch(deleteCategory(selectedCategory));
@@ -104,8 +103,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Category(category) {
-  function chooseCategory() {// dispatch(selectCategory(category))
+function Category(_ref) {
+  var category = _ref.category,
+      callback = _ref.callback;
+
+  function chooseCategory() {
+    callback(category);
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
@@ -119,7 +122,11 @@ function Category(category) {
     className: "uil uil-eye font-16 mr-1 text-success"
   }), " Visible") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
     className: "uil uil-eye font-16 mr-1 text-danger"
-  }), " Not Visible")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
+  }), " Not Visible")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, category.approved_at ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "uil uil-check-circle font-16 mr-1 text-success"
+  }), " Approved") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "uil uil-times-circle font-16 mr-1 text-danger"
+  }), " Not Approved")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
     className: "table-action"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "button",
@@ -137,7 +144,7 @@ function Category(category) {
   }), "More"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "dropdown-menu"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    href: "javascript:void(0);",
+    href: "#",
     className: "dropdown-item",
     onClick: chooseCategory
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {

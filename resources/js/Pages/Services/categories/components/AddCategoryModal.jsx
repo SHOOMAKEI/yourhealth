@@ -15,15 +15,37 @@ export default function AddCategoryModal({
   operation,
   title,
 }) {
+    const {errors, status, alertType} = usePage().props
   const initialValues = {
     name: "",
     description: "No description",
     status: false,
   };
-  const { selectedCategory } = useSelector((state) => state.categoriesStore);
+  const [values, setValues] = useState({
+      name: "",
+      description: "No description",
+      status: false,})
   const [success, setSuccess] = useState(false)
+  const [sending, setSending] = useState(false)
 
+    function handleChange(e) {
+        const key = e.target.name;
+        const value =
+            e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 
+        setValues(values => ({
+            ...values,
+            [key]: value
+        }));
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        setSending(true);
+        Inertia.post(route('login'), values).then(() => {
+            setSending(false);
+        });
+    }
   function onSubmit(
     values,
     { setSubmitting }
@@ -42,7 +64,7 @@ export default function AddCategoryModal({
           _updateCategory(
             values.name ,
             values.description ,
-            selectedCategory.is_active
+            values.is_active
           );
           break;
 
@@ -69,9 +91,9 @@ export default function AddCategoryModal({
     // addServiceCategoryCB({variables: category});
   }
 
-  function _updateCategory(name, description, status) {
+  function _updateCategory(id, name, description, status) {
     let category = {
-      id: selectedCategory.id,
+      id: id,
       name: name,
       description: description,
     };
@@ -81,7 +103,7 @@ export default function AddCategoryModal({
 
   function renderForm() {
     return (
-            <form>
+            <form onSubmit={onSubmit}>
                 {
                   status && (
                     <div className={`alert alert-success alert-dismissible bg-success text-white border-0 fade show`} role="alert">
@@ -101,7 +123,7 @@ export default function AddCategoryModal({
                     value={values.name}
                     onChange={handleChange}
                 />
-                <TextAreaInputInput
+                <TextAreaInput
                     name="description"
                     type="text"
                     placeholder="Category description"
