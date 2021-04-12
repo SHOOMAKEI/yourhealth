@@ -5,6 +5,7 @@ import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import TextInput from '@/Shared/TextInput'
 import LoadingButton from '@/Shared/LoadingButton'
 import TextAreaInput from "@/Shared/TextAreaInput";
+import CheckBoxInput from "../../../../Shared/CheckBoxInput";
 
 
 
@@ -24,7 +25,9 @@ export default function AddCategoryModal({
   const [values, setValues] = useState({
       name: "",
       description: "No description",
-      status: false,})
+      status: false,
+      approved_at:false,
+  })
   const [success, setSuccess] = useState(false)
   const [sending, setSending] = useState(false)
 
@@ -42,7 +45,7 @@ export default function AddCategoryModal({
     function handleSubmit(e) {
         e.preventDefault();
         setSending(true);
-        Inertia.post(route('login'), values).then(() => {
+        Inertia.post(route('services_categories.store'), values).then(() => {
             setSending(false);
         });
     }
@@ -103,7 +106,7 @@ export default function AddCategoryModal({
 
   function renderForm() {
     return (
-            <form onSubmit={onSubmit}>
+            <form onSubmit={handleSubmit}>
                 {
                   status && (
                     <div className={`alert alert-success alert-dismissible bg-success text-white border-0 fade show`} role="alert">
@@ -135,13 +138,19 @@ export default function AddCategoryModal({
                 {
                     operation === "add" && (
                         <div>
-                            <TextInput
-                                name="status"
-                                type="text"
+                            <CheckBoxInput
+                                name="is_active"
                                 placeholder="Show category to public"
                                 label="Show category to public"
                                 errors={errors.status}
                                 value={values.status}
+                                onChange={handleChange}
+                            />
+                            <CheckBoxInput
+                                name="approved_at"
+                                label="Approve Category"
+                                errors={errors.approved_at}
+                                value={values.approved_at}
                                 onChange={handleChange}
                             />
                             <p className="text-muted">
@@ -152,10 +161,10 @@ export default function AddCategoryModal({
                     )
                 }
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-light" data-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-light btn-sm" data-dismiss="modal">Close</button>
                     <LoadingButton
                         type="submit"
-                        className="btn btn-primary btn-block"
+                        className="btn btn-primary btn-sm"
                         loading={sending}
                     >
                         Save Changes

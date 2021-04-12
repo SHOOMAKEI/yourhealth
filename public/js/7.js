@@ -323,7 +323,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_Heading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/Heading */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Heading.jsx");
-/* harmony import */ var _pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/pages/Utilities/Constants */ "./resources/js/pages/Utilities/Constants.js");
+/* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
 /* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_RegisteredServices__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/RegisteredServices */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/RegisteredServices.jsx");
 /* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_RequestServiceModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/RequestServiceModal */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/RequestServiceModal.jsx");
 /* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_UnregisteredServices__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/UnregisteredServices */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/UnregisteredServices.jsx");
@@ -400,7 +400,7 @@ function Services(_ref) {
 
   function renderAddSubcategoryModal() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_RequestServiceModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      modalID: _pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__["REQUEST_SERVICE_MODAL_ID"],
+      modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__["REQUEST_SERVICE_MODAL_ID"],
       operation: "add"
     });
   }
@@ -428,7 +428,7 @@ function Services(_ref) {
     }, facility.name);
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_Heading__WEBPACK_IMPORTED_MODULE_1__["default"] // title={`Request Service for ${selectedFacility.name}`}
   , {
-    modalID: _pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__["REQUEST_SERVICE_MODAL_ID"],
+    modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__["REQUEST_SERVICE_MODAL_ID"],
     buttonText: "Request New Service To Registered",
     search: searchQualifications,
     renderModal: renderAddSubcategoryModal,
@@ -686,9 +686,9 @@ function UnregisteredServices(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/pages/Utilities/Constants.js":
+/***/ "./resources/js/Pages/Utilities/Constants.js":
 /*!***************************************************!*\
-  !*** ./resources/js/pages/Utilities/Constants.js ***!
+  !*** ./resources/js/Pages/Utilities/Constants.js ***!
   \***************************************************/
 /*! exports provided: ADD_CATEGORY_MODAL_ID, UPDATE_CATEGORY_MODAL_ID, SERVICE_CATEGORIES_TABLE, PROVIDER_PROFILE_MODAL_ID, ADD_MEMBERSHIP_MODAL_ID, UPDATE_MEMBERSHIP_MODAL_ID, ADD_FACILITY_MODAL_ID, EDIT_FACILITY_MODAL_ID, ADD_QUALIFICATION_MODAL_ID, ADD_MEDICAL_REGISTRATION_MODAL_ID, REQUEST_SERVICE_MODAL_ID, SET_SERVICE_MODAL_PRICE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {

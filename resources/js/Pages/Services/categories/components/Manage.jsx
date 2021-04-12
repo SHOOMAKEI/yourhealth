@@ -1,10 +1,8 @@
-import {
-    AddCategoryModal,
-    Heading,
-    InfoSideBar,
-    Paginator,
-    ServiceCategoriesTable
-} from '@/Pages/services/categories/components'
+import    AddCategoryModal  from './AddCategoryModal'
+import    Heading from './Heading'
+import    InfoSideBar from './infosidebar'
+import    Paginator from './paginator'
+import    ServiceCategoriesTable  from './serviceCategoryTable'
 import React, {useEffect, useState} from 'react'
 import { ADD_CATEGORY_MODAL_ID } from '@/Pages/Utilities/Constants'
 import Framework from '@/Pages/framework';

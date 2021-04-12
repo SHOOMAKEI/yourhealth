@@ -1,22 +1,17 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[47],{
 
-/***/ "./resources/js/Pages/Services/packages/Memberships.jsx":
-/*!**************************************************************!*\
-  !*** ./resources/js/Pages/Services/packages/Memberships.jsx ***!
-  \**************************************************************/
+/***/ "./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx ***!
+  \*******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Memberships; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DeleteCategoryDialog; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/pages/Utilities/Constants */ "./resources/js/pages/Utilities/Constants.js");
-/* harmony import */ var _Pages_Services_packages_membership_AddMembership__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Services/packages/membership/AddMembership */ "./resources/js/Pages/Services/packages/membership/AddMembership.jsx");
-/* harmony import */ var _Pages_Services_packages_membership_Heading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Pages/Services/packages/membership/Heading */ "./resources/js/Pages/Services/packages/membership/Heading.jsx");
-/* harmony import */ var _Pages_Services_packages_membership_List__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Pages/Services/packages/membership/List */ "./resources/js/Pages/Services/packages/membership/List.jsx");
-/* harmony import */ var _Pages_Services_packages_membership_SelectedInfo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Pages/Services/packages/membership/SelectedInfo */ "./resources/js/Pages/Services/packages/membership/SelectedInfo.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -30,411 +25,193 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-
-
-
-
- // import {membershipsStateValues} from "@pages/data/reducers/memberships";
-// import {useSelector} from "react-redux";
-
-function Memberships() {
+function DeleteCategoryDialog() {
   var _useSelector = useSelector(function (state) {
-    return state.membershipsStore;
+    return state.subcategoriesStore;
   }),
-      memberships = _useSelector.memberships;
+      selectedSubcategory = _useSelector.selectedSubcategory;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(memberships),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
-      shownMemberships = _useState2[0],
-      setShownMemberships = _useState2[1];
+      success = _useState2[0],
+      setSuccess = _useState2[1]; // useEffect(() => {
+  //     if (deleteServiceSubcategoryResponse.data) {
+  //        setSuccess(true)
+  //        dispatch(deleteSubcategory(selectedSubcategory));
+  //     }
+  //  }, [deleteServiceSubcategoryResponse.data])
+  //
+  // function _deleteCategory() {
+  //     deleteServiceSubcategory({variables: {id: selectedSubcategory.id}})
+  // }
 
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setShownMemberships(memberships);
-  }, [memberships]);
-
-  function searchMemberships(content) {
-    if (content.length === 0) {
-      setShownMemberships(memberships);
-    } else {
-      setShownMemberships(memberships.filter(function (membership) {
-        if (membership.name.toLowerCase().includes(content.toLowerCase())) {
-          return membership;
-        }
-      }));
-    }
-  }
-
-  function renderModal() {
-    return /*#__PURE__*/React.createElement(_Pages_Services_packages_membership_AddMembership__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      modalID: _pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__["ADD_MEMBERSHIP_MODAL_ID"],
-      operation: "add"
-    });
-  }
-
-  return /*#__PURE__*/React.createElement("div", {
-    className: "card"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "card-body"
-  }, /*#__PURE__*/React.createElement(_Pages_Services_packages_membership_Heading__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    title: "Create membership",
-    modalID: _pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__["ADD_MEMBERSHIP_MODAL_ID"],
-    renderModal: renderModal,
-    search: searchMemberships
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "row justify-content-sm-between"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "col-8"
-  }, /*#__PURE__*/React.createElement(_Pages_Services_packages_membership_List__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    memberships: shownMemberships
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "col-4"
-  }, /*#__PURE__*/React.createElement(_Pages_Services_packages_membership_SelectedInfo__WEBPACK_IMPORTED_MODULE_5__["default"], null)))));
-}
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Services/packages/membership/AddMembership.jsx":
-/*!***************************************************************************!*\
-  !*** ./resources/js/Pages/Services/packages/membership/AddMembership.jsx ***!
-  \***************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddMembershipModal; });
-/* harmony import */ var _Pages_Utilities_FormInputError__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/Utilities/FormInputError */ "./resources/js/Pages/Utilities/FormInputError.jsx");
-/* harmony import */ var _pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/pages/Utilities/ModalForm */ "./resources/js/pages/Utilities/ModalForm.jsx");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-// import * as Yup from "yup";
-//
-// import { CREATE_PACKAGE_MEMBERSHIP, UPDATE_PACKAGE_MEMBERSHIP } from "@pages/utils/Mutations";
-// import {Field, Form, Formik, FormikErrors, FormikHelpers} from "formik";
-// import {addMembership, updateMembership} from "@pages/data/actions/memberships";
-// import {useDispatch, useSelector} from "react-redux";
-
- // import Spinner from "@/pages/auth/components/Spinner";
-// import {membershipsStateValues} from "@pages/data/reducers/memberships";
-// import {membershipsValues} from "@pages/data/constants/memberships";
-// import { useApi } from "@pages/utils/ApolloClient";
-
-
-function AddMembershipModal(_ref) {
-  var modalID = _ref.modalID,
-      operation = _ref.operation,
-      title = _ref.title;
-  var initialValues = {
-    name: "",
-    description: "No description",
-    is_active: false
-  }; // const dispatch = useDispatch();
-  // const {selectedMembership} = useSelector(state => state.membershipsStore)
-  // const [createPackageMembership, createPackageMembershipResponse] = useApi({query: CREATE_PACKAGE_MEMBERSHIP});
-  // const [updatePackageMembership, updatePackageMembershipResponse] = useApi({query: UPDATE_PACKAGE_MEMBERSHIP});
-
-  Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
-    var data = createPackageMembershipResponse.data;
-
-    if (data && data.createPackageMemberShip) {// dispatch(addMembership(data.createPackageMemberShip));
-    }
-  }, [createPackageMembershipResponse.data]);
-  Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
-    var data = updatePackageMembershipResponse.data;
-
-    if (data && data.updatePackageMemberShip) {// dispatch(updateMembership(data.updatePackageMemberShip));
-    }
-  }, [updatePackageMembershipResponse.data]);
-
-  function onSubmit(values, _ref2) {
-    var setSubmitting = _ref2.setSubmitting;
-    setTimeout(function () {
-      switch (operation) {
-        case "add":
-          _addMembership(values.name, values.description, values.is_active);
-
-          break;
-
-        case "update":
-          _updateMembership(values.name, values.description, selectedMembership.is_active);
-
-          break;
-
-        default:
-          _addMembership(values.name, values.description, values.is_active);
-
-          break;
-      }
-
-      setSubmitting(false);
-    }, 500);
-  }
-
-  function _addMembership(name, description, status) {
-    var membership = {
-      name: name,
-      description: description,
-      is_active: status
-    };
-    createPackageMembership({
-      variables: {
-        input: membership
-      }
-    });
-  }
-
-  function _updateMembership(name, description, status) {
-    var membership = {
-      id: selectedMembership.id,
-      name: name,
-      description: description,
-      is_active: status
-    };
-    updatePackageMembership({
-      variables: {
-        input: membership
-      }
-    });
-  }
-
-  function renderForm() {
-    return createPackageMembershipResponse.loading || updatePackageMembershipResponse.loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Spinner, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Formik, {
-      initialValues: initialValues,
-      onSubmit: onSubmit,
-      validationSchema: MembershipSchema,
-      enableReinitialize: true
-    }, function (_ref3) {
-      var errors = _ref3.errors,
-          touched = _ref3.touched,
-          setFieldValue = _ref3.setFieldValue;
-      Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
-        if (operation === "update") {
-          setFieldValue("name", selectedMembership.name);
-          setFieldValue("description", selectedMembership.description);
-        }
-      }, [selectedMembership]);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Form, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-        className: "form-group"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("label", {
-        htmlFor: "name"
-      }, "Membership name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Field, {
-        id: "name",
-        name: "name",
-        placeholder: "membership name",
-        type: "text",
-        className: "form-control"
-      }), errors.name && touched.name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_Pages_Utilities_FormInputError__WEBPACK_IMPORTED_MODULE_0__["default"], {
-        title: "Membership name error",
-        message: errors.name
-      }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-        className: "form-group"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("label", {
-        htmlFor: "description"
-      }, "Membership description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Field, {
-        id: "description",
-        name: "description",
-        placeholder: "description",
-        as: "textarea",
-        className: "form-control",
-        rows: 3
-      }), errors.description && touched.description ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_Pages_Utilities_FormInputError__WEBPACK_IMPORTED_MODULE_0__["default"], {
-        title: "Description error",
-        message: errors.description
-      }) : null), operation === "add" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-        className: "custom-control custom-switch form-group"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Field, {
-        type: "checkbox",
-        className: "custom-control-input",
-        id: "is_active",
-        name: "is_active"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("label", {
-        className: "custom-control-label",
-        htmlFor: "is_active"
-      }, "Show membership to public")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("p", {
-        className: "text-muted"
-      }, "If the above option is selected the public will see the membership, otherwise the public will not see the membership. You can edit it later on from category settings.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-        className: "modal-footer"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
-        type: "button",
-        className: "btn btn-light",
-        "data-dismiss": "modal"
-      }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
-        type: "submit",
-        className: "btn btn-primary"
-      }, operation === "add" ? "Add membership" : "Update")));
-    });
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    modalID: modalID,
-    title: title ? title : "Add new membership",
-    renderForm: renderForm
-  });
-}
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Services/packages/membership/Heading.jsx":
-/*!*********************************************************************!*\
-  !*** ./resources/js/Pages/Services/packages/membership/Heading.jsx ***!
-  \*********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Heading; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-function Heading(_ref) {
-  var title = _ref.title,
-      renderModal = _ref.renderModal,
-      modalID = _ref.modalID,
-      search = _ref.search;
-
-  function onSearch() {
-    $('#search-input').on('input', function (e) {
-      var input = $(this);
-      var val = input.val();
-
-      if (input.data("lastval") != val) {
-        input.data("lastval", val);
-        search(val);
-      }
-    });
-  }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row mb-3"
+    id: "delete-category",
+    className: "modal fade",
+    tabIndex: -1,
+    role: "dialog",
+    "aria-labelledby": "delete-categoryLabel",
+    "aria-hidden": "true"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-sm-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#",
-    className: "btn btn-danger mb-3",
-    "data-toggle": "modal",
-    "data-target": "#".concat(modalID)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "mdi mdi-plus"
-  }), title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-sm-8"
+    className: "modal-dialog"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-sm-right float-right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "input-group"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "form-control",
-    placeholder: "Search...",
-    id: "search-input",
-    onInput: onSearch
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "input-group-append"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "btn btn-primary"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "uil uil-search"
-  }))))))), renderModal && renderModal());
+    className: "modal-content modal-filled bg-danger"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "modal-title",
+    id: "delete-categoryLabel"
+  }, "delete ", selectedSubcategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button",
+    className: "close",
+    "data-dismiss": "modal",
+    "aria-hidden": "true"
+  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-body"
+  }, "Are you sure you want to delete ", selectedSubcategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-footer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button",
+    className: "btn btn-light",
+    "data-dismiss": "modal"
+  }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button",
+    className: "btn btn-outline-light",
+    "data-dismiss": "modal",
+    onClick: _deleteCategory
+  }, "Delete")))));
 }
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Services/packages/membership/List.jsx":
-/*!******************************************************************!*\
-  !*** ./resources/js/Pages/Services/packages/membership/List.jsx ***!
-  \******************************************************************/
+/***/ "./resources/js/Pages/Services/subcategories/components/serviceCategoryTable.jsx":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/Pages/Services/subcategories/components/serviceCategoryTable.jsx ***!
+  \***************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return List; });
-// import {useDispatch, useSelector} from "react-redux";
-//
-// import {membershipsStateValues} from "@pages/data/reducers/memberships";
-// import {membershipsValues} from "@pages/data/constants/memberships";
-// import {selectMembership} from "@pages/data/actions/memberships";
-function List(_ref) {
-  var memberships = _ref.memberships;
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Pages_Services_subcategories_components_serviceSubategory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Services/subcategories/components/serviceSubategory */ "./resources/js/Pages/Services/subcategories/components/serviceSubategory.jsx");
+/* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
 
-  var _useSelector = useSelector(function (state) {
-    return state.membershipsStore;
-  }),
-      selectedMembership = _useSelector.selectedMembership;
 
-  var dispatch = useDispatch();
 
-  function _selectMembership(membership) {
-    dispatch(selectMembership(membership));
+
+var ServiceCategoriesTable = function ServiceCategoriesTable(_ref) {
+  var categories = _ref.categories;
+  // useEffect(() => {
+  //     initializeDataTable(false, false, SERVICE_CATEGORIES_TABLE)
+  // }, [])
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    id: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__["SERVICE_CATEGORIES_TABLE"],
+    className: "table dt-responsive nowrap w-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Public Status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, categories.map(function (category) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_Services_subcategories_components_serviceSubategory__WEBPACK_IMPORTED_MODULE_1__["default"], category);
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ServiceCategoriesTable);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Services/subcategories/components/serviceSubategory.jsx":
+/*!************************************************************************************!*\
+  !*** ./resources/js/Pages/Services/subcategories/components/serviceSubategory.jsx ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Subcategory; });
+/* harmony import */ var _deleteDialog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteDialog */ "./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx");
+
+function Subcategory(subcategory) {
+  function chooseSubcategory() {// dispatch(selectSubcategory(subcategory))
   }
 
-  return /*#__PURE__*/React.createElement("div", null, memberships.map(function (membership) {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "row"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "col-sm-4 mb-2 mb-sm-0"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "custom-control custom-checkbox",
-      onClick: function onClick() {
-        return _selectMembership(membership);
-      }
-    }, /*#__PURE__*/React.createElement("input", {
-      type: "checkbox",
-      className: "custom-control-input",
-      id: "membership-".concat(membership.id),
-      checked: membership.id === selectedMembership.id
-    }), /*#__PURE__*/React.createElement("label", {
-      className: "custom-control-label",
-      htmlFor: "task1"
-    }, membership.name))), /*#__PURE__*/React.createElement("div", {
-      className: "col-sm-8"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "d-flex justify-content-between float-right"
-    }, /*#__PURE__*/React.createElement("ul", {
-      className: "list-inline font-13 text-right"
-    }, /*#__PURE__*/React.createElement("li", {
-      className: "list-inline-item"
-    }, /*#__PURE__*/React.createElement("i", {
-      className: "uil uil-schedule font-16 mr-1"
-    }), " ", membership.created_at), /*#__PURE__*/React.createElement("li", {
-      className: "list-inline-item ml-2"
-    }, membership.is_active ? /*#__PURE__*/React.createElement("span", {
-      className: "badge badge-success-lighten p-1"
-    }, " Enabled") : /*#__PURE__*/React.createElement("span", {
-      className: "badge badge-danger-lighten p-1"
-    }, " Disabled")), /*#__PURE__*/React.createElement("li", {
-      className: "list-inline-item ml-2"
-    }, /*#__PURE__*/React.createElement("button", {
-      type: "button",
-      className: "btn btn-link dropdown-toggle",
-      "data-toggle": "dropdown",
-      "aria-haspopup": "true",
-      "aria-expanded": "false",
-      style: {
-        lineHeight: 0.5,
-        paddingTop: 0,
-        paddingBottom: 0
-      }
-    }, /*#__PURE__*/React.createElement("i", {
-      className: "uil uil-bright font-16 mr-1 text-primary"
-    }), "More"), /*#__PURE__*/React.createElement("div", {
-      className: "dropdown-menu"
-    }, /*#__PURE__*/React.createElement("a", {
-      href: "javascript:void(0);",
-      className: "dropdown-item",
-      onClick: function onClick() {
-        return _selectMembership(membership);
-      }
-    }, /*#__PURE__*/React.createElement("i", {
-      className: "uil uil-eye mr-1"
-    }), "Show info"), /*#__PURE__*/React.createElement("a", {
-      href: "javascript:void(0);",
-      className: "dropdown-item"
-    }, /*#__PURE__*/React.createElement("i", {
-      className: "uil uil-eye mr-1"
-    }), "Edit")))))));
-  }));
+  return /*#__PURE__*/React.createElement("tr", {
+    key: subcategory.id
+  }, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
+    href: '#',
+    className: "text-dark",
+    onClick: chooseSubcategory
+  }, subcategory.name)), /*#__PURE__*/React.createElement("td", null, subcategory.is_active ? /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-eye font-16 mr-1 text-success"
+  }), " Visible") : /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-eye font-16 mr-1 text-danger"
+  }), " Not Visible")), /*#__PURE__*/React.createElement("td", {
+    className: "table-action"
+  }, /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "btn btn-link dropdown-toggle",
+    "data-toggle": "dropdown",
+    "aria-haspopup": "true",
+    "aria-expanded": "false",
+    style: {
+      lineHeight: 0.5,
+      paddingTop: 0,
+      paddingBottom: 0
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-bright font-16 mr-1 text-primary"
+  }), "More"), /*#__PURE__*/React.createElement("div", {
+    className: "dropdown-menu"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "javascript:void(0);",
+    className: "dropdown-item",
+    onClick: chooseSubcategory
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-eye mr-1"
+  }), "Show info"), /*#__PURE__*/React.createElement(Link, {
+    href: "/services/services/".concat(subcategory.id)
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "dropdown-item"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-sitemap mr-1"
+  }), "services"))), /*#__PURE__*/React.createElement(_deleteDialog__WEBPACK_IMPORTED_MODULE_0__["default"], null)));
 }
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Utilities/Constants.js":
+/*!***************************************************!*\
+  !*** ./resources/js/Pages/Utilities/Constants.js ***!
+  \***************************************************/
+/*! exports provided: ADD_CATEGORY_MODAL_ID, UPDATE_CATEGORY_MODAL_ID, SERVICE_CATEGORIES_TABLE, PROVIDER_PROFILE_MODAL_ID, ADD_MEMBERSHIP_MODAL_ID, UPDATE_MEMBERSHIP_MODAL_ID, ADD_FACILITY_MODAL_ID, EDIT_FACILITY_MODAL_ID, ADD_QUALIFICATION_MODAL_ID, ADD_MEDICAL_REGISTRATION_MODAL_ID, REQUEST_SERVICE_MODAL_ID, SET_SERVICE_MODAL_PRICE */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_CATEGORY_MODAL_ID", function() { return ADD_CATEGORY_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_CATEGORY_MODAL_ID", function() { return UPDATE_CATEGORY_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SERVICE_CATEGORIES_TABLE", function() { return SERVICE_CATEGORIES_TABLE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROVIDER_PROFILE_MODAL_ID", function() { return PROVIDER_PROFILE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_MEMBERSHIP_MODAL_ID", function() { return ADD_MEMBERSHIP_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_MEMBERSHIP_MODAL_ID", function() { return UPDATE_MEMBERSHIP_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_FACILITY_MODAL_ID", function() { return ADD_FACILITY_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EDIT_FACILITY_MODAL_ID", function() { return EDIT_FACILITY_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_QUALIFICATION_MODAL_ID", function() { return ADD_QUALIFICATION_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_MEDICAL_REGISTRATION_MODAL_ID", function() { return ADD_MEDICAL_REGISTRATION_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REQUEST_SERVICE_MODAL_ID", function() { return REQUEST_SERVICE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SERVICE_MODAL_PRICE", function() { return SET_SERVICE_MODAL_PRICE; });
+var ADD_CATEGORY_MODAL_ID = "add-category-modal";
+var UPDATE_CATEGORY_MODAL_ID = "update-category-modal";
+var SERVICE_CATEGORIES_TABLE = 'service-categories-table';
+var PROVIDER_PROFILE_MODAL_ID = 'service-provider-profile-modal';
+var ADD_MEMBERSHIP_MODAL_ID = 'add-service-modal';
+var UPDATE_MEMBERSHIP_MODAL_ID = 'update-service-modal';
+var ADD_FACILITY_MODAL_ID = 'add-facility-modal';
+var EDIT_FACILITY_MODAL_ID = 'edit-facility-modal';
+var ADD_QUALIFICATION_MODAL_ID = 'add-qualifications-modal';
+var ADD_MEDICAL_REGISTRATION_MODAL_ID = 'add-medical-registration-modal';
+var REQUEST_SERVICE_MODAL_ID = 'request-service-modal';
+var SET_SERVICE_MODAL_PRICE = 'set-service-modal-price';
 
 /***/ })
 

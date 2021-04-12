@@ -1,5 +1,5 @@
 import {AddServiceModal} from '@/Pages/Services/services/components/index'
-import { UPDATE_CATEGORY_MODAL_ID } from '@/pages/Utilities/Constants'
+import { UPDATE_CATEGORY_MODAL_ID } from '@/Pages/Utilities/Constants'
 import { useEffect } from 'react';
 
 export default function InfoSideBar() {

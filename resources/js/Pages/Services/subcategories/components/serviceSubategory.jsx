@@ -1,4 +1,4 @@
-import DeleteDialog from "@/pages/services/subcategories/components/deleteDialog";
+import DeleteDialog from "./deleteDialog";
 
 export default function Subcategory(subcategory) {
 

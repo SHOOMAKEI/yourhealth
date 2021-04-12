@@ -32,25 +32,24 @@ class ServiceCategoryController extends Controller
 
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'max:255', 'string'],
             'description' => ['required','string'],
             'is_active' => ['required','boolean'],
+            'approved_at' => ['required','boolean'],
         ]);
+//        dd($request['approved_at']?now()->toDateTime():null);
 
         ServiceCategory::create([
             'name' => $request['name'],
             'description' => $request['description'],
             'is_active' => $request['is_active'],
-            'created_by' => auth()->user()->id
+            'created_by' => auth()->user()->id,
+            'approved_by' => $request['approved_at']?auth()->user()->id:null,
+            'approved_at' => $request['approved_at']?now():null
         ]);
 
         return redirect()->back()->with(['status' => 'Operation Complete successful']);

@@ -1,9 +1,9 @@
 import React, { FC, useEffect } from 'react';
 
-import Category from '@/pages/services/categories/components/serviceCategory'
-import { SERVICE_CATEGORIES_TABLE } from '@/pages/Utilities/Constants'
+import Category from './serviceCategory'
+import { SERVICE_CATEGORIES_TABLE } from '@/Pages/Utilities/Constants'
 
-const ServiceCategoriesTable  = ({categories, callback}) => {
+const ServiceCategoriesTable  = ({categories, callback}) =>{
     // useEffect(() => {
     //     initializeDataTable(false, false, SERVICE_CATEGORIES_TABLE)
     // }, [])

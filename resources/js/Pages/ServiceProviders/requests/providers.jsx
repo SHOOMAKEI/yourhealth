@@ -1,4 +1,5 @@
-import {Heading, ServiceProviderValues, ServiceProvidersTable} from '@/pages/serviceProviders/requests/components'
+import Heading from './components/Heading'
+ import   ServiceProvidersTable from './components/ServiceProvidersTable'
 import {useEffect, useState} from "react";
 
 import Framework from "@/Pages/framework";

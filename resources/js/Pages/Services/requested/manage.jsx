@@ -1,19 +1,16 @@
-import {Heading, InfoSideBar, Paginator, ServicesTable} from '@/Pages/services/requested/components'
-// import {useDispatch, useSelector} from 'react-redux';
+import Heading from './components/Heading'
+import InfoSideBar from './components/infosidebar';
+import Paginator from './components/paginator'
+import ServicesTable from './components/servicesTable';
 import React, { useEffect, useState } from 'react';
 
 import Framework from '@/Pages/framework';
-// import {NextPage} from 'next';
-// import { QUERY_REQUESTED_SERVICES } from '@pages/utils/Query';
-// import {RequestedServicesState} from "@pages/data/reducers/requestedService";
-// import Spinner from '@pages/auth/components/Spinner';
-// import { storeRequestedServices } from '@pages/data/actions/requestedService';
-// import { useApi } from '@pages/utils/ApolloClient';
+
 
 const SERVICES_BATCH_COUNT = 10;
 
 const ManageServices = () => {
-    const {services} = useSelector(state => state.requestedServiceStore);
+    const {services} = useState({});
 
     const [servicesBatchCount, setServicesBatchCount] = useState(SERVICES_BATCH_COUNT)
     const [shownServices, setShownServices] = useState(services.slice(0, servicesBatchCount))
@@ -34,9 +31,9 @@ const ManageServices = () => {
 
 
     useEffect(() => {
-        if (data && data.requestedService) {
-            dispatch(storeRequestedServices(data.requestedService));
-        }
+        // if (data && data.requestedService) {
+        //     dispatch(storeRequestedServices(data.requestedService));
+        // }
     }, [data])
 
     function selectPage(page) {

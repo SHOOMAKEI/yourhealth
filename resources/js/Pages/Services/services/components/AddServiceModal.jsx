@@ -9,8 +9,8 @@
 // import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 
-import FormInputError from "@/pages/Utilities/FormInputError";
-import ModalForm from "@/pages/Utilities/ModalForm";
+import FormInputError from "@/Pages/Utilities/FormInputError";
+import ModalForm from "@/Pages/Utilities/ModalForm";
 // import {ServicesState} from "@pages/data/reducers/service";
 // import {membershipsStateValues} from "@pages/data/reducers/memberships";
 // import { useApi } from "@pages/utils/ApolloClient";

@@ -1,19 +1,78 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[20],{
 
-/***/ "./resources/js/Pages/Services/subcategories/components/AddSubcategoryModal.jsx":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/Pages/Services/subcategories/components/AddSubcategoryModal.jsx ***!
-  \**************************************************************************************/
+/***/ "./resources/js/Pages/ServiceProviders/requests/components/Heading.jsx":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviders/requests/components/Heading.jsx ***!
+  \*****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddSubcategoryModal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Heading; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _pages_Utilities_FormInputError__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/pages/Utilities/FormInputError */ "./resources/js/pages/Utilities/FormInputError.jsx");
-/* harmony import */ var _pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/pages/Utilities/ModalForm */ "./resources/js/pages/Utilities/ModalForm.jsx");
+
+function Heading(_ref) {
+  var title = _ref.title,
+      search = _ref.search;
+
+  function onSearch() {
+    $('#search-input').on('input', function (e) {
+      var input = $(this);
+      var val = input.val();
+
+      if (input.data("lastval") != val) {
+        input.data("lastval", val);
+        search(val);
+      }
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "page-title-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "page-title-right"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "app-search"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    placeholder: "Search...",
+    id: "search-input",
+    onInput: onSearch
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "mdi mdi-magnify search-icon"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group-append"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "btn btn-primary"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "uil uil-search"
+  }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "page-title"
+  }, title));
+}
+
+/***/ }),
+
+/***/ "./resources/js/Pages/ServiceProviders/requests/components/ServiceProvidersTable.jsx":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviders/requests/components/ServiceProvidersTable.jsx ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ServiceProvidersTable; });
+/* harmony import */ var _ServiceProvider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ServiceProvider */ "./resources/js/Pages/ServiceProviders/requests/components/ServiceProvider.jsx");
+/* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
+/* harmony import */ var _ProviderProfile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProviderProfile */ "./resources/js/Pages/ServiceProviders/requests/components/ProviderProfile.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -26,204 +85,60 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-// import {
-//   addServiceSubcategory,
-//   updateSubcategory,
-// } from "@/pages/data/actions/serviceSubcategories";
 
 
 
-function AddSubcategoryModal(_ref) {
-  var modalID = _ref.modalID,
-      initialData = _ref.initialData,
-      operation = _ref.operation,
-      title = _ref.title;
-  var initialValues = {
-    name: "",
-    description: "No description",
-    status: false
-  };
 
-  var _useSelector = useSelector(function (state) {
-    return state.subcategoriesStore;
-  }),
-      selectedSubcategory = _useSelector.selectedSubcategory;
+function ServiceProvidersTable(_ref) {
+  var serviceProviders = _ref.serviceProviders;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_3__["useState"])(serviceProviders[0]),
       _useState2 = _slicedToArray(_useState, 2),
-      success = _useState2[0],
-      setSuccess = _useState2[1];
+      selectedProvider = _useState2[0],
+      setSelectedProvider = _useState2[1];
 
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    if (updateServiceSubcategoryResponse.data) {
-      setSuccess(true);
-      var timer = setTimeout(function () {
-        setSuccess(false);
-        clearTimeout(timer);
-      }, 5000);
-      dispatch(updateSubcategory(updateServiceSubcategoryResponse.data.updateServiceSubCategory));
-    }
-  }, [updateServiceSubcategoryResponse.data]);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    if (addServiceSubcategoryResponse.data) {
-      setSuccess(true);
-      var timer = setTimeout(function () {
-        setSuccess(false);
-        clearTimeout(timer);
-      }, 5000);
-      dispatch(addServiceSubcategory(addServiceSubcategoryResponse.data.createServiceSubCategory));
-    }
-  }, [addServiceSubcategoryResponse.data]);
-
-  function onSubmit(values, _ref2) {
-    var setSubmitting = _ref2.setSubmitting;
-    setTimeout(function () {
-      switch (operation) {
-        case "add":
-          addSubcategory(values.name, values.description, values.status);
-          break;
-
-        case "update":
-          _updateSubcategory(values.name, values.description, selectedSubcategory.is_active);
-
-          break;
-
-        default:
-          addSubcategory(values.name, values.description, values.status);
-          break;
-      }
-
-      setSubmitting(false);
-    }, 500);
+  function selectProvider(provider) {
+    setSelectedProvider(provider);
   }
 
-  function addSubcategory(name, description, status) {
-    var subcategory = {
-      name: name,
-      description: description,
-      is_active: status,
-      service_category_id: parseInt(category_id)
-    };
-    addServiceSubcategoryCB({
-      variables: subcategory
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("table", {
+    className: "table dt-responsive nowrap w-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "Username"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "Phone number"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "Requested At"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "Updated At"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "Provider Category"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("tbody", null, serviceProviders.map(function (serviceProvider) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_ServiceProvider__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      serviceProvider: serviceProvider,
+      selectServiceProvider: selectProvider
     });
-  }
-
-  function _updateSubcategory(name, description, status) {
-    var subcategory = {
-      id: selectedSubcategory.id,
-      name: name,
-      description: description,
-      service_category_id: parseInt(category_id)
-    };
-    updateServiceSubcategory({
-      variables: subcategory
-    });
-  }
-
-  function renderForm() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "alert alert-success alert-dismissible bg-success text-white border-0 fade show",
-      role: "alert"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      type: "button",
-      className: "close",
-      onClick: function onClick() {
-        return setSuccess(false);
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      "aria-hidden": "true"
-    }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Success - "), " Operation was completed successfully!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "form-group"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-      htmlFor: "name"
-    }, "Subcategory name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Field, {
-      id: "name",
-      name: "name",
-      placeholder: "category name",
-      type: "text",
-      className: "form-control"
-    }), errors.name && touched.name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_Utilities_FormInputError__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      title: "Category name error",
-      message: errors.name
-    }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "form-group"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-      htmlFor: "description"
-    }, "Subcategory description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Field, {
-      id: "description",
-      name: "description",
-      placeholder: "description",
-      as: "textarea",
-      className: "form-control",
-      rows: 3
-    }), errors.description && touched.description ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_Utilities_FormInputError__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      title: "Description error",
-      message: errors.description
-    }) : null), operation === "add" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "custom-control custom-switch form-group"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Field, {
-      type: "checkbox",
-      className: "custom-control-input",
-      id: "status",
-      name: "status"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-      className: "custom-control-label",
-      htmlFor: "status"
-    }, "Show subcategory to public")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "text-muted"
-    }, "If the above option is selected the public will see the category, otherwise the public will not see the category. You can edit it later on from category settings.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "modal-footer"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      type: "button",
-      className: "btn btn-light",
-      "data-dismiss": "modal"
-    }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      type: "submit",
-      className: "btn btn-primary",
-      disabled: updateServiceSubcategoryResponse.loading || addServiceSubcategoryResponse.loading
-    }, operation === "add" ? addServiceSubcategoryResponse.loading && addServiceSubcategoryResponse.called ? "Adding..." : "Add subcategory" : updateServiceSubcategoryResponse.loading && updateServiceSubcategoryResponse.called ? "Updating..." : "Update subcategory")));
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    modalID: modalID,
-    title: title ? title : "Add new service subcategory",
-    renderForm: renderForm
-  });
+  })));
 }
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Services/subcategories/components/index.js":
-/*!***********************************************************************!*\
-  !*** ./resources/js/Pages/Services/subcategories/components/index.js ***!
-  \***********************************************************************/
-/*! exports provided: AddSubcategoryModal, Heading, InfoSideBar, Paginator, ServiceCategoriesTable */
+/***/ "./resources/js/Pages/ServiceProviders/requests/components/index.jsx":
+/*!***************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviders/requests/components/index.jsx ***!
+  \***************************************************************************/
+/*! exports provided: Heading, ServiceProvidersTable, ServiceProvider, ProfileNav */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _AddSubcategoryModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddSubcategoryModal */ "./resources/js/Pages/Services/subcategories/components/AddSubcategoryModal.jsx");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AddSubcategoryModal", function() { return _AddSubcategoryModal__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+/* harmony import */ var _Heading__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Heading */ "./resources/js/Pages/ServiceProviders/requests/components/Heading.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Heading", function() { return _Heading__WEBPACK_IMPORTED_MODULE_0__["default"]; });
 
-/* harmony import */ var _pages_services_subcategories_components_Heading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/pages/services/subcategories/components/Heading */ "./resources/js/pages/services/subcategories/components/Heading.jsx");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Heading", function() { return _pages_services_subcategories_components_Heading__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+/* harmony import */ var _ServiceProvidersTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ServiceProvidersTable */ "./resources/js/Pages/ServiceProviders/requests/components/ServiceProvidersTable.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ServiceProvidersTable", function() { return _ServiceProvidersTable__WEBPACK_IMPORTED_MODULE_1__["default"]; });
 
-/* harmony import */ var _Pages_Services_subcategories_components_infosidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Services/subcategories/components/infosidebar */ "./resources/js/Pages/Services/subcategories/components/infosidebar.jsx");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "InfoSideBar", function() { return _Pages_Services_subcategories_components_infosidebar__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+/* harmony import */ var _ServiceProvider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ServiceProvider */ "./resources/js/Pages/ServiceProviders/requests/components/ServiceProvider.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ServiceProvider", function() { return _ServiceProvider__WEBPACK_IMPORTED_MODULE_2__["default"]; });
 
-/* harmony import */ var _Pages_Services_subcategories_components_paginator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Pages/Services/subcategories/components/paginator */ "./resources/js/Pages/Services/subcategories/components/paginator.jsx");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Paginator", function() { return _Pages_Services_subcategories_components_paginator__WEBPACK_IMPORTED_MODULE_3__["default"]; });
-
-/* harmony import */ var _Pages_Services_subcategories_components_serviceCategoryTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Pages/Services/subcategories/components/serviceCategoryTable */ "./resources/js/Pages/Services/subcategories/components/serviceCategoryTable.jsx");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ServiceCategoriesTable", function() { return _Pages_Services_subcategories_components_serviceCategoryTable__WEBPACK_IMPORTED_MODULE_4__["default"]; });
+/* harmony import */ var _ProfileNav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProfileNav */ "./resources/js/Pages/ServiceProviders/requests/components/ProfileNav.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ProfileNav", function() { return _ProfileNav__WEBPACK_IMPORTED_MODULE_3__["default"]; });
 
 
 
 
 
-
-
+ // export {ServiceProviderValues}
 
 /***/ })
 

@@ -1,5 +1,5 @@
 import {PROVIDER_PROFILE_MODAL_ID} from "@/Pages/Utilities/Constants";
-import ProviderProfile from "@/pages/serviceProviders/requests/components/ProviderProfile";
+import ProviderProfile from "./ProviderProfile";
 
 
 export default function ServiceProvider({serviceProvider, selectServiceProvider}) {

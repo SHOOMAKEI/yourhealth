@@ -6,7 +6,7 @@
 // import {useDispatch, useSelector} from "react-redux";
 
 import FormInputError from "@/Pages/Utilities/FormInputError";
-import ModalForm from "@/pages/Utilities/ModalForm";
+import ModalForm from "@/Pages/Utilities/ModalForm";
 // import Spinner from "@/pages/auth/components/Spinner";
 // import {membershipsStateValues} from "@pages/data/reducers/memberships";
 // import {membershipsValues} from "@pages/data/constants/memberships";

@@ -5,8 +5,8 @@
 // } from "@/pages/data/actions/serviceSubcategories";
 import React, { useEffect, useState } from "react";
 
-import FormInputError from "@/pages/Utilities/FormInputError";
-import ModalForm from "@/pages/Utilities/ModalForm";
+import FormInputError from "@/Pages/Utilities/FormInputError";
+import ModalForm from "@/Pages/Utilities/ModalForm";
 
 export default function AddSubcategoryModal({
   modalID,

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default ({ label, name, className, errors = [], ...props }) => {
   return (
-    <div className="custom-control custom-checkbox mb-2">
+    <div className="custom-control custom-switch mb-2">
 
       <input
         id={name}
@@ -13,7 +13,7 @@ export default ({ label, name, className, errors = [], ...props }) => {
 
       />
        {label && (
-        <label htmlFor={name}>
+        <label className="custom-control-label" htmlFor={name}>
           {label}
         </label>
       )}

@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[82],{
 
-/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Heading.jsx":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Heading.jsx ***!
-  \********************************************************************************************/
+/***/ "./resources/js/Pages/ServiceProviders/requests/components/Heading.jsx":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviders/requests/components/Heading.jsx ***!
+  \*****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -15,12 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function Heading(_ref) {
   var title = _ref.title,
-      renderModal = _ref.renderModal,
-      modalID = _ref.modalID,
-      search = _ref.search,
-      buttonText = _ref.buttonText,
-      _ref$showSearch = _ref.showSearch,
-      showSearch = _ref$showSearch === void 0 ? true : _ref$showSearch;
+      search = _ref.search;
 
   function onSearch() {
     $('#search-input').on('input', function (e) {
@@ -36,7 +31,7 @@ function Heading(_ref) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-title-box"
-  }, showSearch && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-title-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "app-search"
@@ -48,6 +43,8 @@ function Heading(_ref) {
     placeholder: "Search...",
     id: "search-input",
     onInput: onSearch
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "mdi mdi-magnify search-icon"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "input-group-append"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -56,14 +53,7 @@ function Heading(_ref) {
     className: "uil uil-search"
   }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     className: "page-title"
-  }, title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "button",
-    className: "btn btn-primary btn-sm ml-3",
-    "data-toggle": "modal",
-    "data-target": "#".concat(modalID)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "uil uil-plus mr-1"
-  }), buttonText)), renderModal && renderModal());
+  }, title));
 }
 
 /***/ })

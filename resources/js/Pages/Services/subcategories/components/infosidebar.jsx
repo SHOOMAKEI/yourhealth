@@ -1,8 +1,8 @@
 // import {selectSubcategory, updateSubcategory} from '@/pages/data/actions/serviceSubcategories';
 import React, { useEffect, useState } from 'react';
 
-import AddSubcategoryModal from '@/pages/services/subcategories/components/AddSubcategoryModal'
-import { UPDATE_CATEGORY_MODAL_ID } from '@/pages/Utilities/Constants'
+import AddSubcategoryModal from './AddSubcategoryModal'
+import { UPDATE_CATEGORY_MODAL_ID } from '@/Pages/Utilities/Constants'
 import {InertiaLink} from "@inertiajs/inertia-react";
 
 export default function InfoSideBar() {

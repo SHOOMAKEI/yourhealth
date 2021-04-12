@@ -1,5 +1,212 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[0],{
 
+/***/ "./resources/js/Pages/ServiceProviders/requests/components/ProfileNav.jsx":
+/*!********************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviders/requests/components/ProfileNav.jsx ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProfileNav; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+// import { ServiceProviderValues } from ".";
+
+function ProfileNav(_ref) {
+  var provider = _ref.provider;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-2 mb-2 mb-sm-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "nav flex-column nav-pills",
+    id: "v-pills-tab",
+    role: "tablist",
+    "aria-orientation": "vertical"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "nav-link active show mb-1",
+    id: "v-pills-home-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-profile",
+    role: "tab",
+    "aria-controls": "v-pills-profile",
+    "aria-selected": "true"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "mdi mdi-home-variant d-md-none d-block"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Profile Information")), provider.account_category_type === 'individual' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "nav-link mb-1",
+    id: "v-pills-profile-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-qualifications",
+    role: "tab",
+    "aria-controls": "v-pills-qualifications",
+    "aria-selected": "false"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "mdi mdi-account-circle d-md-none d-block"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Education Qualifications")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "nav-link mb-1",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-medical-registration",
+    role: "tab",
+    "aria-controls": "v-pills-medical-registration",
+    "aria-selected": "false"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Medical Registration")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "nav-link mb-1",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-services",
+    role: "tab",
+    "aria-controls": "v-pills-services",
+    "aria-selected": "false"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Services"))), provider.account_category_type === 'company' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "nav-link mb-1",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-company",
+    role: "tab",
+    "aria-controls": "v-pills-company",
+    "aria-selected": "false"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Company Information")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "nav-link mb-1",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-facility",
+    role: "tab",
+    "aria-controls": "v-pills-facility",
+    "aria-selected": "false"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Facility Information")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "nav-link mb-1",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-facility-services",
+    role: "tab",
+    "aria-controls": "v-pills-facility-services",
+    "aria-selected": "false"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Facility Services"))), provider.account_category_type === 'company' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "nav-link mb-1",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-facility",
+    role: "tab",
+    "aria-controls": "v-pills-facility",
+    "aria-selected": "false"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Facility Information")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "nav-link mb-1",
+    id: "v-pills-settings-tab",
+    "data-toggle": "pill",
+    href: "#v-pills-facility-services",
+    role: "tab",
+    "aria-controls": "v-pills-facility-services",
+    "aria-selected": "false"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "mdi mdi-settings-outline d-md-none d-block"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "d-none d-md-block"
+  }, "Facility Services")))));
+}
+
+/***/ }),
+
+/***/ "./resources/js/Pages/ServiceProviders/requests/components/ProviderProfile.jsx":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviders/requests/components/ProviderProfile.jsx ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProviderProfile; });
+/* harmony import */ var _Pages_ServiceProviders_requests_components_profile_Company__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/ServiceProviders/requests/components/profile/Company */ "./resources/js/Pages/ServiceProviders/requests/components/profile/Company.jsx");
+/* harmony import */ var _Pages_ServiceProviders_requests_components_profile_FacilityServices__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/ServiceProviders/requests/components/profile/FacilityServices */ "./resources/js/Pages/ServiceProviders/requests/components/profile/FacilityServices.jsx");
+/* harmony import */ var _Pages_ServiceProviders_requests_components_profile_MedicalRegistrations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/ServiceProviders/requests/components/profile/MedicalRegistrations */ "./resources/js/Pages/ServiceProviders/requests/components/profile/MedicalRegistrations.jsx");
+/* harmony import */ var _Pages_ServiceProviders_requests_components_profile_ProfileInfo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Pages/ServiceProviders/requests/components/profile/ProfileInfo */ "./resources/js/Pages/ServiceProviders/requests/components/profile/ProfileInfo.jsx");
+/* harmony import */ var _Pages_ServiceProviders_requests_components_profile_Qualifications__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Pages/ServiceProviders/requests/components/profile/Qualifications */ "./resources/js/Pages/ServiceProviders/requests/components/profile/Qualifications.jsx");
+/* harmony import */ var _Pages_ServiceProviders_requests_components_profile_Services__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Pages/ServiceProviders/requests/components/profile/Services */ "./resources/js/Pages/ServiceProviders/requests/components/profile/Services.jsx");
+/* harmony import */ var _ProfileNav__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ProfileNav */ "./resources/js/Pages/ServiceProviders/requests/components/ProfileNav.jsx");
+
+
+
+
+
+
+ //import {ServiceProviderValues} from "@/pages/serviceProviders/requests/components/ServiceProvider";
+
+function ProviderProfile(_ref) {
+  var modalId = _ref.modalId,
+      provider = _ref.provider;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "modal fade",
+    id: modalId,
+    "data-backdrop": "static",
+    tabIndex: -1,
+    role: "dialog",
+    "aria-labelledby": "scrollableModalTitle",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "modal-dialog modal-full-width",
+    role: "document"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "modal-content"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "modal-header"
+  }, /*#__PURE__*/React.createElement("h5", {
+    className: "modal-title",
+    id: "scrollableModalTitle"
+  }, "".concat(provider === null || provider === void 0 ? void 0 : provider.username, "'s profile")), /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "close",
+    "data-dismiss": "modal",
+    "aria-label": "Close"
+  }, /*#__PURE__*/React.createElement("span", {
+    "aria-hidden": "true"
+  }, "\xD7"))), /*#__PURE__*/React.createElement("div", {
+    className: "modal-body"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/React.createElement(_ProfileNav__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    provider: provider
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "col-sm-10"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "tab-content",
+    id: "v-pills-tabContent"
+  }, /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile_ProfileInfo__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    provider: provider
+  }), provider.account_category_type === 'individual' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile_Qualifications__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile_MedicalRegistrations__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile_Services__WEBPACK_IMPORTED_MODULE_5__["default"], null)), provider.account_category_type === 'company' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile_Company__WEBPACK_IMPORTED_MODULE_0__["default"], null), /*#__PURE__*/React.createElement(Facility, null), /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile_FacilityServices__WEBPACK_IMPORTED_MODULE_1__["default"], null)), provider.account_category_type === 'facility' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Facility, null), /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile_FacilityServices__WEBPACK_IMPORTED_MODULE_1__["default"], null)))))))));
+}
+
+/***/ }),
+
 /***/ "./resources/js/Pages/ServiceProviders/requests/components/ServiceProvider.jsx":
 /*!*************************************************************************************!*\
   !*** ./resources/js/Pages/ServiceProviders/requests/components/ServiceProvider.jsx ***!
@@ -11,7 +218,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ServiceProvider; });
 /* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
-/* harmony import */ var _pages_serviceProviders_requests_components_ProviderProfile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/pages/serviceProviders/requests/components/ProviderProfile */ "./resources/js/pages/serviceProviders/requests/components/ProviderProfile.jsx");
+/* harmony import */ var _ProviderProfile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProviderProfile */ "./resources/js/Pages/ServiceProviders/requests/components/ProviderProfile.jsx");
 
 
 function ServiceProvider(_ref) {
@@ -45,6 +252,77 @@ function ServiceProvider(_ref) {
   }, /*#__PURE__*/React.createElement("i", {
     className: "uil uil-eye mr-1"
   }), "Show info"))));
+}
+
+/***/ }),
+
+/***/ "./resources/js/Pages/ServiceProviders/requests/components/profile/Company.jsx":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviders/requests/components/profile/Company.jsx ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Company; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function Company() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "tab-pane fade",
+    id: "v-pills-company",
+    role: "tabpanel",
+    "aria-labelledby": "v-pills-company-tab"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    className: "table table-centered mb-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Name")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "336-508-2157")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Trading name")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "TIN")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "646-473-2057")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "VRN")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "281-308-0793")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Website")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Registration number")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Registration date")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    className: "table table-centered mb-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Phone number")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "336-508-2157")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Alternate phone number")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "646-473-2057")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Email")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "281-308-0793")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Address")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Physical Address")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Description")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207"))))));
+}
+
+/***/ }),
+
+/***/ "./resources/js/Pages/ServiceProviders/requests/components/profile/FacilityServices.jsx":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviders/requests/components/profile/FacilityServices.jsx ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FacilityServices; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Pages_Utilities_Services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Utilities/Services */ "./resources/js/Pages/Utilities/Services.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+var FACILITY_SERVICES_DATA_TABLE = 'facility-services-datatable';
+function FacilityServices() {
+  var facility_services = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props.facility_services;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    Object(_Pages_Utilities_Services__WEBPACK_IMPORTED_MODULE_1__["initializeDataTable"])(true, true, FACILITY_SERVICES_DATA_TABLE);
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "tab-pane fade",
+    id: "v-pills-facility-services",
+    role: "tabpanel",
+    "aria-labelledby": "v-pills-facility-services-tab"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    id: FACILITY_SERVICES_DATA_TABLE,
+    className: "table dt-responsive nowrap w-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price currency"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Tiger Nixon"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$320,800"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "System Architect")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")))));
 }
 
 /***/ }),
@@ -267,47 +545,6 @@ function Services() {
 
 /***/ }),
 
-/***/ "./resources/js/Pages/ServiceProviders/requests/components/profile/index.jsx":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/Pages/ServiceProviders/requests/components/profile/index.jsx ***!
-  \***********************************************************************************/
-/*! exports provided: Company, FacilityServices, Facility, MedicalRegistrations, ProfileInfo, Qualifications, Services */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _pages_serviceProviders_requests_components_profile_Company__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/pages/serviceProviders/requests/components/profile/Company */ "./resources/js/pages/serviceProviders/requests/components/profile/Company.jsx");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Company", function() { return _pages_serviceProviders_requests_components_profile_Company__WEBPACK_IMPORTED_MODULE_0__["default"]; });
-
-/* harmony import */ var _pages_serviceProviders_requests_components_profile_Facility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/pages/serviceProviders/requests/components/profile/Facility */ "./resources/js/pages/serviceProviders/requests/components/profile/Facility.jsx");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Facility", function() { return _pages_serviceProviders_requests_components_profile_Facility__WEBPACK_IMPORTED_MODULE_1__["default"]; });
-
-/* harmony import */ var _pages_serviceProviders_requests_components_profile_FacilityServices__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/pages/serviceProviders/requests/components/profile/FacilityServices */ "./resources/js/pages/serviceProviders/requests/components/profile/FacilityServices.jsx");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FacilityServices", function() { return _pages_serviceProviders_requests_components_profile_FacilityServices__WEBPACK_IMPORTED_MODULE_2__["default"]; });
-
-/* harmony import */ var _Pages_ServiceProviders_requests_components_profile_MedicalRegistrations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Pages/ServiceProviders/requests/components/profile/MedicalRegistrations */ "./resources/js/Pages/ServiceProviders/requests/components/profile/MedicalRegistrations.jsx");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MedicalRegistrations", function() { return _Pages_ServiceProviders_requests_components_profile_MedicalRegistrations__WEBPACK_IMPORTED_MODULE_3__["default"]; });
-
-/* harmony import */ var _Pages_ServiceProviders_requests_components_profile_ProfileInfo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Pages/ServiceProviders/requests/components/profile/ProfileInfo */ "./resources/js/Pages/ServiceProviders/requests/components/profile/ProfileInfo.jsx");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ProfileInfo", function() { return _Pages_ServiceProviders_requests_components_profile_ProfileInfo__WEBPACK_IMPORTED_MODULE_4__["default"]; });
-
-/* harmony import */ var _Pages_ServiceProviders_requests_components_profile_Qualifications__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Pages/ServiceProviders/requests/components/profile/Qualifications */ "./resources/js/Pages/ServiceProviders/requests/components/profile/Qualifications.jsx");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Qualifications", function() { return _Pages_ServiceProviders_requests_components_profile_Qualifications__WEBPACK_IMPORTED_MODULE_5__["default"]; });
-
-/* harmony import */ var _Pages_ServiceProviders_requests_components_profile_Services__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Pages/ServiceProviders/requests/components/profile/Services */ "./resources/js/Pages/ServiceProviders/requests/components/profile/Services.jsx");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Services", function() { return _Pages_ServiceProviders_requests_components_profile_Services__WEBPACK_IMPORTED_MODULE_6__["default"]; });
-
-
-
-
-
-
-
-
-
-
-/***/ }),
-
 /***/ "./resources/js/Pages/Utilities/Constants.js":
 /*!***************************************************!*\
   !*** ./resources/js/Pages/Utilities/Constants.js ***!
@@ -382,305 +619,6 @@ var updateServiceCategoriesTable = function updateServiceCategoriesTable(tableId
 
   initializeDataTable(false, false, tableId); // table.row.add([category.name, category.status, category.createdAt, category.updatedAt, ''])
 };
-
-/***/ }),
-
-/***/ "./resources/js/Pages/serviceProviders/requests/components/ProfileNav.jsx":
-/*!********************************************************************************!*\
-  !*** ./resources/js/Pages/serviceProviders/requests/components/ProfileNav.jsx ***!
-  \********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProfileNav; });
-// import { ServiceProviderValues } from ".";
-function ProfileNav(_ref) {
-  var provider = _ref.provider;
-  return /*#__PURE__*/React.createElement("div", {
-    className: "col-sm-2 mb-2 mb-sm-0"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "nav flex-column nav-pills",
-    id: "v-pills-tab",
-    role: "tablist",
-    "aria-orientation": "vertical"
-  }, /*#__PURE__*/React.createElement("a", {
-    className: "nav-link active show mb-1",
-    id: "v-pills-home-tab",
-    "data-toggle": "pill",
-    href: "#v-pills-profile",
-    role: "tab",
-    "aria-controls": "v-pills-profile",
-    "aria-selected": "true"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "mdi mdi-home-variant d-md-none d-block"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "d-none d-md-block"
-  }, "Profile Information")), provider.account_category_type === 'individual' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("a", {
-    className: "nav-link mb-1",
-    id: "v-pills-profile-tab",
-    "data-toggle": "pill",
-    href: "#v-pills-qualifications",
-    role: "tab",
-    "aria-controls": "v-pills-qualifications",
-    "aria-selected": "false"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "mdi mdi-account-circle d-md-none d-block"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "d-none d-md-block"
-  }, "Education Qualifications")), /*#__PURE__*/React.createElement("a", {
-    className: "nav-link mb-1",
-    id: "v-pills-settings-tab",
-    "data-toggle": "pill",
-    href: "#v-pills-medical-registration",
-    role: "tab",
-    "aria-controls": "v-pills-medical-registration",
-    "aria-selected": "false"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "mdi mdi-settings-outline d-md-none d-block"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "d-none d-md-block"
-  }, "Medical Registration")), /*#__PURE__*/React.createElement("a", {
-    className: "nav-link mb-1",
-    id: "v-pills-settings-tab",
-    "data-toggle": "pill",
-    href: "#v-pills-services",
-    role: "tab",
-    "aria-controls": "v-pills-services",
-    "aria-selected": "false"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "mdi mdi-settings-outline d-md-none d-block"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "d-none d-md-block"
-  }, "Services"))), provider.account_category_type === 'company' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("a", {
-    className: "nav-link mb-1",
-    id: "v-pills-settings-tab",
-    "data-toggle": "pill",
-    href: "#v-pills-company",
-    role: "tab",
-    "aria-controls": "v-pills-company",
-    "aria-selected": "false"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "mdi mdi-settings-outline d-md-none d-block"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "d-none d-md-block"
-  }, "Company Information")), /*#__PURE__*/React.createElement("a", {
-    className: "nav-link mb-1",
-    id: "v-pills-settings-tab",
-    "data-toggle": "pill",
-    href: "#v-pills-facility",
-    role: "tab",
-    "aria-controls": "v-pills-facility",
-    "aria-selected": "false"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "mdi mdi-settings-outline d-md-none d-block"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "d-none d-md-block"
-  }, "Facility Information")), /*#__PURE__*/React.createElement("a", {
-    className: "nav-link mb-1",
-    id: "v-pills-settings-tab",
-    "data-toggle": "pill",
-    href: "#v-pills-facility-services",
-    role: "tab",
-    "aria-controls": "v-pills-facility-services",
-    "aria-selected": "false"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "mdi mdi-settings-outline d-md-none d-block"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "d-none d-md-block"
-  }, "Facility Services"))), provider.account_category_type === 'company' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("a", {
-    className: "nav-link mb-1",
-    id: "v-pills-settings-tab",
-    "data-toggle": "pill",
-    href: "#v-pills-facility",
-    role: "tab",
-    "aria-controls": "v-pills-facility",
-    "aria-selected": "false"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "mdi mdi-settings-outline d-md-none d-block"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "d-none d-md-block"
-  }, "Facility Information")), /*#__PURE__*/React.createElement("a", {
-    className: "nav-link mb-1",
-    id: "v-pills-settings-tab",
-    "data-toggle": "pill",
-    href: "#v-pills-facility-services",
-    role: "tab",
-    "aria-controls": "v-pills-facility-services",
-    "aria-selected": "false"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "mdi mdi-settings-outline d-md-none d-block"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "d-none d-md-block"
-  }, "Facility Services")))));
-}
-
-/***/ }),
-
-/***/ "./resources/js/pages/serviceProviders/requests/components/ProviderProfile.jsx":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/pages/serviceProviders/requests/components/ProviderProfile.jsx ***!
-  \*************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProviderProfile; });
-/* harmony import */ var _Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/ServiceProviders/requests/components/profile */ "./resources/js/Pages/ServiceProviders/requests/components/profile/index.jsx");
-/* harmony import */ var _Pages_serviceProviders_requests_components_ProfileNav__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/serviceProviders/requests/components/ProfileNav */ "./resources/js/Pages/serviceProviders/requests/components/ProfileNav.jsx");
-
- //import {ServiceProviderValues} from "@/pages/serviceProviders/requests/components/ServiceProvider";
-
-function ProviderProfile(_ref) {
-  var modalId = _ref.modalId,
-      provider = _ref.provider;
-  return /*#__PURE__*/React.createElement("div", {
-    className: "modal fade",
-    id: modalId,
-    "data-backdrop": "static",
-    tabIndex: -1,
-    role: "dialog",
-    "aria-labelledby": "scrollableModalTitle",
-    "aria-hidden": "true"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "modal-dialog modal-full-width",
-    role: "document"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "modal-content"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "modal-header"
-  }, /*#__PURE__*/React.createElement("h5", {
-    className: "modal-title",
-    id: "scrollableModalTitle"
-  }, "".concat(provider === null || provider === void 0 ? void 0 : provider.username, "'s profile")), /*#__PURE__*/React.createElement("button", {
-    type: "button",
-    className: "close",
-    "data-dismiss": "modal",
-    "aria-label": "Close"
-  }, /*#__PURE__*/React.createElement("span", {
-    "aria-hidden": "true"
-  }, "\xD7"))), /*#__PURE__*/React.createElement("div", {
-    className: "modal-body"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/React.createElement(_Pages_serviceProviders_requests_components_ProfileNav__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    provider: provider
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "col-sm-10"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "tab-content",
-    id: "v-pills-tabContent"
-  }, /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["ProfileInfo"], {
-    provider: provider
-  }), provider.account_category_type === 'individual' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["Qualifications"], null), /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["MedicalRegistrations"], null), /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["Services"], null)), provider.account_category_type === 'company' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["Company"], null), /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["Facility"], null), /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["FacilityServices"], null)), provider.account_category_type === 'facility' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["Facility"], null), /*#__PURE__*/React.createElement(_Pages_ServiceProviders_requests_components_profile__WEBPACK_IMPORTED_MODULE_0__["FacilityServices"], null)))))))));
-}
-
-/***/ }),
-
-/***/ "./resources/js/pages/serviceProviders/requests/components/profile/Company.jsx":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/pages/serviceProviders/requests/components/profile/Company.jsx ***!
-  \*************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Company; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-function Company() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "tab-pane fade",
-    id: "v-pills-company",
-    role: "tabpanel",
-    "aria-labelledby": "v-pills-company-tab"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-    className: "table table-centered mb-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Name")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "336-508-2157")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Trading name")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "TIN")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "646-473-2057")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "VRN")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "281-308-0793")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Website")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Registration number")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Registration date")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-    className: "table table-centered mb-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Phone number")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "336-508-2157")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Alternate phone number")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "646-473-2057")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Email")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "281-308-0793")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Address")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Physical Address")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Description")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207"))))));
-}
-
-/***/ }),
-
-/***/ "./resources/js/pages/serviceProviders/requests/components/profile/Facility.jsx":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/pages/serviceProviders/requests/components/profile/Facility.jsx ***!
-  \**************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Facility; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-function Facility() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "tab-pane fade",
-    id: "v-pills-facility",
-    role: "tabpanel",
-    "aria-labelledby": "v-pills-facility-tab"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-    className: "table table-centered mb-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Name")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "336-508-2157")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Trading name")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "TIN")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "646-473-2057")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "VRN")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "281-308-0793")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Website")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Registration number")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Registration date")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-    className: "table table-centered mb-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Phone number")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "336-508-2157")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Alternate phone number")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "646-473-2057")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Email")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "281-308-0793")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Address")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Physical Address")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Description")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "606-253-1207"))))));
-}
-
-/***/ }),
-
-/***/ "./resources/js/pages/serviceProviders/requests/components/profile/FacilityServices.jsx":
-/*!**********************************************************************************************!*\
-  !*** ./resources/js/pages/serviceProviders/requests/components/profile/FacilityServices.jsx ***!
-  \**********************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FacilityServices; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Pages_Utilities_Services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Utilities/Services */ "./resources/js/Pages/Utilities/Services.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-var FACILITY_SERVICES_DATA_TABLE = 'facility-services-datatable';
-function FacilityServices() {
-  var facility_services = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props.facility_services;
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    Object(_Pages_Utilities_Services__WEBPACK_IMPORTED_MODULE_1__["initializeDataTable"])(true, true, FACILITY_SERVICES_DATA_TABLE);
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "tab-pane fade",
-    id: "v-pills-facility-services",
-    role: "tabpanel",
-    "aria-labelledby": "v-pills-facility-services-tab"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-    id: FACILITY_SERVICES_DATA_TABLE,
-    className: "table dt-responsive nowrap w-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price currency"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Tiger Nixon"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$320,800"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "System Architect")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Garrett Winters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$170,750"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "Accountant")))));
-}
 
 /***/ })
 

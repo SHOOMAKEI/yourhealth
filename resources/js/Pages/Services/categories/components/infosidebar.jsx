@@ -1,4 +1,4 @@
-import {AddCategoryModal} from '@/Pages/services/categories/components'
+import AddCategoryModal from './AddCategoryModal'
 import { UPDATE_CATEGORY_MODAL_ID } from '@/Pages/Utilities/Constants'
 import {InertiaLink, usePage} from "@inertiajs/inertia-react";
 import { Inertia } from '@inertiajs/inertia';

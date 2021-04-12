@@ -1,13 +1,12 @@
-import {
-    Company,
-    Facility,
-    FacilityServices,
-    MedicalRegistrations,
-    ProfileInfo,
-    Qualifications,
-    Services} from '@/Pages/ServiceProviders/requests/components/profile'
 
-import ProfileNav from "@/Pages/serviceProviders/requests/components/ProfileNav";
+import    Company      from '@/Pages/ServiceProviders/requests/components/profile/Company'
+import  FacilityServices from '@/Pages/ServiceProviders/requests/components/profile/FacilityServices'
+import   MedicalRegistrations from '@/Pages/ServiceProviders/requests/components/profile/MedicalRegistrations'
+import   ProfileInfo from '@/Pages/ServiceProviders/requests/components/profile/ProfileInfo'
+import  Qualifications from '@/Pages/ServiceProviders/requests/components/profile/Qualifications'
+import  Services from '@/Pages/ServiceProviders/requests/components/profile/Services'
+
+import ProfileNav from "./ProfileNav";
 //import {ServiceProviderValues} from "@/pages/serviceProviders/requests/components/ServiceProvider";
 
 export default function ProviderProfile({modalId, provider}) {

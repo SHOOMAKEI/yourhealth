@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-import {ADD_MEMBERSHIP_MODAL_ID} from "@/pages/Utilities/Constants";
+import {ADD_MEMBERSHIP_MODAL_ID} from "@/Pages/Utilities/Constants";
 import AddMembershipModal from "@/Pages/Services/packages/membership/AddMembership";
 import Heading from "@/Pages/Services/packages/membership/Heading";
 import List from "@/Pages/Services/packages/membership/List";

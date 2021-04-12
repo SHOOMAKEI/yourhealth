@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[101],{
 
-/***/ "./resources/js/Pages/Services/services/components/Heading.jsx":
-/*!*********************************************************************!*\
-  !*** ./resources/js/Pages/Services/services/components/Heading.jsx ***!
-  \*********************************************************************/
+/***/ "./resources/js/Pages/Services/subcategories/components/Heading.jsx":
+/*!**************************************************************************!*\
+  !*** ./resources/js/Pages/Services/subcategories/components/Heading.jsx ***!
+  \**************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 

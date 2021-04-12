@@ -1,8 +1,8 @@
 // import {useDispatch, useSelector} from "react-redux";
 
-import AddMembershipModal from "@/pages/services/packages/membership/AddMembership";
+import AddMembershipModal from "@/Pages/Services/packages/membership/AddMembership";
 // import Spinner from "@pages/auth/components/Spinner";
-import {UPDATE_MEMBERSHIP_MODAL_ID} from "@/pages/Utilities/Constants";
+import {UPDATE_MEMBERSHIP_MODAL_ID} from "@/Pages/Utilities/Constants";
 // import { UPDATE_PACKAGE_MEMBERSHIP } from "@pages/utils/Mutations";
 // import {membershipsStateValues} from "@pages/data/reducers/memberships";
 // import {updateMembership} from "@pages/data/actions/memberships";

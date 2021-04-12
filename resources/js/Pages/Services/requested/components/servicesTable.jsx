@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import Service from '@/Pages/Services/requested/components/service'
-import { SERVICE_CATEGORIES_TABLE } from '@/pages/Utilities/Constants'
+import { SERVICE_CATEGORIES_TABLE } from '@/Pages/Utilities/Constants'
 // import { requestedServiceValues } from "@pages/data/reducers/requestedService";
 
 

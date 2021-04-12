@@ -1,7 +1,7 @@
 import Framework from '@/Pages/framework';
 import React from 'react';
-import Memberships from "@/pages/services/packages/Memberships";
-import Packages from "@/pages/services/packages/Packages";
+import Memberships from "@/Pages/Services/packages/Memberships";
+import Packages from "@/Pages/Services/packages/Packages";
 
 const ManageServices = () => {
     function renderContent() {

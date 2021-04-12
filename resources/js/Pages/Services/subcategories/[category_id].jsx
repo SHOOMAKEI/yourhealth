@@ -1,14 +1,13 @@
-import {
-    AddSubcategoryModal,
-    Heading,
-    InfoSideBar,
-    Paginator,
-    ServiceCategoriesTable
-} from '@/pages/services/subcategories/components'
+import    AddSubcategoryModal from './components/AddSubcategoryModal'
+import   Heading from './components/Heading'
+import    InfoSideBar from './components/infosidebar'
+import    Paginator from './components/paginator'
+import   ServiceCategoriesTable from './components/serviceCategoryTable'
+
 
 import React, { useEffect, useState } from 'react';
 
-import { ADD_CATEGORY_MODAL_ID } from '@/pages/Utilities/Constants'
+import { ADD_CATEGORY_MODAL_ID } from '@/Pages/Utilities/Constants'
 import Framework from '@/Pages/framework';
 
 const CATEGORIES_BATCH_COUNT = 10;
