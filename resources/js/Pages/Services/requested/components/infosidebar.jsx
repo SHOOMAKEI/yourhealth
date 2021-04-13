@@ -1,30 +1,24 @@
-// import { useDispatch, useSelector } from "react-redux";
-// import { useEffect } from 'react';
-//
-// import { selectService } from '@pages/data/actions/requestedService';
-// import {RequestedServicesState} from "@pages/data/reducers/requestedService";
+import React, {useState, useEffect} from "react";
 
-export default function InfoSideBar() {
-    const {selectedService, services} = useSelector(state => state.requestedServiceStore);
-    const dispatch = useDispatch()
+export default function InfoSideBar({service}) {
+    const [selectedService, setSelectedService] = useState(service);
 
+console.log(service)
     useEffect(() => {
-        if(services.length > 0) {
-            // dispatch(selectService(services[0]))
-        }
-    }, [])
+       setSelectedService(service)
+    }, [service])
 
     return (
         <div className="card">
             <div className="card-body">
-                <h4>{selectedService.name}</h4>
+                <h4>{selectedService?.name}</h4>
 
                 <hr className="mt-3 mb-2" />
 
                 <div className="row">
                     <div className="col">
 
-                        <p>{selectedService.description}</p>
+                        <p>{selectedService?.description}</p>
 
                         <div className="row">
                             <div className="col-6">
@@ -33,7 +27,7 @@ export default function InfoSideBar() {
                                     <i className="uil uil-schedule font-18 text-success mr-1"></i>
                                     <div className="media-body">
                                         <h5 className="mt-1 font-14">
-                                            {selectedService.createdAt}
+                                            {selectedService?.created_at}
                                         </h5>
                                     </div>
                                 </div>
@@ -45,7 +39,7 @@ export default function InfoSideBar() {
                                     <i className="uil uil-schedule font-18 text-success mr-1"></i>
                                     <div className="media-body">
                                         <h5 className="mt-1 font-14">
-                                            {selectedService.updatedAt}
+                                            {selectedService?.updated_at}
                                         </h5>
                                     </div>
                                 </div>

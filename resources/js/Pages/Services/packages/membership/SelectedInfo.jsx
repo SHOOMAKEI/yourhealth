@@ -13,13 +13,13 @@ export default function SelectedInfo() {
     // const dispatch = useDispatch();
     // const [updatePackageMembership, updatePackageMembershipResponse] = useApi({query: UPDATE_PACKAGE_MEMBERSHIP});
 
-    useEffect(() => {
-        let data = updatePackageMembershipResponse.data;
-
-        if (data && data.updatePackageMemberShip) {
-            dispatch(updateMembership(data.updatePackageMemberShip));
-        }
-    }, [updatePackageMembershipResponse.data])
+    // useEffect(() => {
+    //     let data = updatePackageMembershipResponse.data;
+    //
+    //     if (data && data.updatePackageMemberShip) {
+    //         dispatch(updateMembership(data.updatePackageMemberShip));
+    //     }
+    // }, [updatePackageMembershipResponse.data])
 
 
     function toggleVisibility() {
@@ -30,14 +30,14 @@ export default function SelectedInfo() {
             is_active: !selectedMembership.is_active
         };
 
-        updatePackageMembership({variables: {input: membership}})
+        // updatePackageMembership({variables: {input: membership}})
     }
 
     function renderModal() {
         return <AddMembershipModal modalID={UPDATE_MEMBERSHIP_MODAL_ID} operation={"update"} />
     }
 
-    const {selectedMembership} = useSelector(state => state.membershipsStore)
+    // const {selectedMembership} = useSelector(state => state.membershipsStore)
 
     return (
         <div>

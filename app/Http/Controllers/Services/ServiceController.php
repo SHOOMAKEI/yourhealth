@@ -3,17 +3,16 @@
 namespace App\Http\Controllers\Services;
 
 use App\Http\Controllers\Controller;
+use App\Models\RequestedService;
 use App\Models\Service;
-use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ServiceController extends Controller
 {
-
     public function index()
     {
-       //
+        //
     }
 
     /**
@@ -59,5 +58,21 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         //
+    }
+
+    public function requestedServices()
+    {
+        $requested_services = RequestedService::all()->map(function ($query) {
+            $data['id'] = $query->id;
+            $data['is_active'] = $query->is_active;
+            $data['name'] = $query->name;
+            $data['description'] = $query->description;
+            $data['created_at'] = $query->created_at;
+            $data['updated_at'] = $query->updated_at;
+
+            return $data;
+        });
+
+        return Inertia::render('Services/requested/manage', ['services' => $requested_services]);
     }
 }

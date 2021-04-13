@@ -212,7 +212,7 @@ class PersonalInfoController extends Controller
                     'Please provider minimum required Facility Profile Information'
             ],
             'services' =>[
-                'last_updated_at' => $facilities->last()->services->last()->updated_at->diffForHumans(),
+                'last_updated_at' => '',
                 'is_complete' => isset($facility_services),
                 'info_category' => 'Facility Services',
                 'remark' => isset($facility_services)?

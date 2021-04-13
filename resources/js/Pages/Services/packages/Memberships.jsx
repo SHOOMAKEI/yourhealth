@@ -1,15 +1,15 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {ADD_MEMBERSHIP_MODAL_ID} from "@/Pages/Utilities/Constants";
 import AddMembershipModal from "@/Pages/Services/packages/membership/AddMembership";
 import Heading from "@/Pages/Services/packages/membership/Heading";
 import List from "@/Pages/Services/packages/membership/List";
 import SelectedInfo from "@/Pages/Services/packages/membership/SelectedInfo";
-// import {membershipsStateValues} from "@pages/data/reducers/memberships";
-// import {useSelector} from "react-redux";
+import {usePage} from "@inertiajs/inertia-react";
+
 
 export default function Memberships() {
-    const {memberships} = useSelector(state => state.membershipsStore)
+    const {memberships} = usePage().props
     const [shownMemberships, setShownMemberships] = useState(memberships)
 
     useEffect(() => {
@@ -44,10 +44,10 @@ export default function Memberships() {
                 />
                 <div className="row justify-content-sm-between">
                     <div className="col-8">
-                        <List memberships={shownMemberships}/>
+                        { shownMemberships && <List memberships={shownMemberships}/>}
                     </div>
                     <div className="col-4">
-                        <SelectedInfo />
+                        {/*<SelectedInfo />*/}
                     </div>
                 </div>
             </div>

@@ -2,9 +2,10 @@ import Framework from '@/Pages/framework';
 import React from 'react';
 import Memberships from "@/Pages/Services/packages/Memberships";
 import Packages from "@/Pages/Services/packages/Packages";
+import Layout from "@/Shared/Layout";
 
-const ManageServices = () => {
-    function renderContent() {
+const ManagePackages = () => {
+
         return (
             <div className="row" style={{paddingTop: 30 + 'px'}}>
                 <div className="col-sm-2 mb-2 mb-sm-0">
@@ -41,9 +42,8 @@ const ManageServices = () => {
                 </div>
             </div>
         )
-    }
 
-    return <Framework renderContent={renderContent}/>
+
 }
-
-export default ManageServices;
+ManagePackages.layout = page => <Layout children={page} />;
+export default ManagePackages;

@@ -19,7 +19,7 @@ export default function Heading({title, renderModal, modalID, search}) {
     return (
         <div className="row mb-3">
             <div className="col-sm-4">
-                <a href="#" className="btn btn-danger mb-3" data-toggle="modal" data-target={`#${modalID}`}>
+                <a href="#" className="btn btn-primary mb-3" data-toggle="modal" data-target={`#${modalID}`}>
                     <i className="mdi mdi-plus"/>{title}</a>
             </div>
             <div className="col-sm-8">
