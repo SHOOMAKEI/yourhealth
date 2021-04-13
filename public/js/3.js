@@ -56,18 +56,8 @@ function AddCategoryModal(_ref) {
       errors = _usePage$props.errors,
       status = _usePage$props.status,
       alertType = _usePage$props.alertType;
-  var initialValues = {
-    name: "",
-    description: "No description",
-    status: false
-  };
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
-    name: "",
-    description: "No description",
-    status: false,
-    approved_at: false
-  }),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialData),
       _useState2 = _slicedToArray(_useState, 2),
       values = _useState2[0],
       setValues = _useState2[1];
@@ -90,34 +80,35 @@ function AddCategoryModal(_ref) {
     });
   }
 
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    setValues(initialData);
+  }, [initialData]);
+
   function handleSubmit(e) {
     e.preventDefault();
-    setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('services_categories.store'), values).then(function () {
-      setSending(false);
-    });
-  }
 
-  function onSubmit(values, _ref2) {
-    var setSubmitting = _ref2.setSubmitting;
-    setTimeout(function () {
-      switch (operation) {
-        case "add":
-          addCategory(values.name, values.description, values.status);
-          break;
+    switch (operation) {
+      case "add":
+        setSending(true);
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('services_categories.store'), values).then(function () {
+          setSending(false);
+        });
+        break;
 
-        case "update":
-          _updateCategory(values.name, values.description, values.is_active);
+      case "update":
+        setSending(true);
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].put(route('services_categories.update', values.id), values).then(function () {
+          setSending(false);
+        });
+        break;
 
-          break;
-
-        default:
-          addCategory(values.name, values.description, values.status);
-          break;
-      }
-
-      setSubmitting(false);
-    }, 500);
+      default:
+        setSending(true);
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('services_categories.store'), values).then(function () {
+          setSending(false);
+        });
+        break;
+    }
   }
 
   function addCategory(name, description, status) {
@@ -140,7 +131,7 @@ function AddCategoryModal(_ref) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
       onSubmit: handleSubmit
     }, status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "alert alert-success alert-dismissible bg-success text-white border-0 fade show",
+      className: "alert alert-primary alert-dismissible bg-success text-white border-0 fade show",
       role: "alert"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       type: "button",
@@ -150,7 +141,7 @@ function AddCategoryModal(_ref) {
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
       "aria-hidden": "true"
-    }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Success - "), " Operation was completed successfully!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Success - "), " ", status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
       name: "name",
       type: "text",
       placeholder: "Category Name",
@@ -369,9 +360,8 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
     name: name
   }, props, {
     className: "form-input form-control ".concat(errors.length ? 'error' : ''),
-    rows: "2",
-    value: value
-  })), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    rows: "2"
+  }), value), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "invalid-feedback",
     style: {
       display: 'block'

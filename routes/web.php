@@ -202,9 +202,31 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
      Route::get('admin/dashboard', function (){
          return Inertia::render('Dashboard');
      })->name('admin.dashboard');
-     Route::resource('services', ServiceController::class);
-     Route::resource('services_sub_categories', ServiceSubCategoryController::class);
+
      Route::resource('services_categories', ServiceCategoryController::class);
+     Route::get('services_categories/{services_category}/visibility', [ServiceCategoryController::class, 'toggleVisibility'])
+            ->name('services_categories.visibility');
+     Route::get('services_categories/{services_category}/approval', [ServiceCategoryController::class, 'toggleApproval'])
+            ->name('services_categories.approval');
+//     Route::resource('services_sub_categories', ServiceSubCategoryController::class);
+     Route::get('services_sub_categories/{services_category}', [ServiceSubCategoryController::class, 'index'])
+        ->name('services_sub_categories.index');
+     Route::get('services_sub_categories/{services_sub_category}/show', [ServiceSubCategoryController::class, 'show'])
+        ->name('services_sub_categories.show');
+     Route::post('services_sub_categories', [ServiceSubCategoryController::class, 'store'])
+         ->name('services_sub_categories.store');
+     Route::put('services_sub_categories/{services_sub_category}/update', [ServiceSubCategoryController::class, 'update'])
+         ->name('services_sub_categories.update');
+     Route::get('services_sub_categories/{services_sub_category}', [ServiceSubCategoryController::class, 'destroy'])
+         ->name('services_sub_categories.destroy');
+     Route::get('services_sub_categories/{services_sub_category}/visibility', [ServiceSubCategoryController::class, 'toggleVisibility'])
+         ->name('services_sub_categories.visibility');
+     Route::get('services_sub_categories/{services_sub_category}/approval', [ServiceSubCategoryController::class, 'toggleApproval'])
+         ->name('services_sub_categories.approval');
+
+
+     Route::resource('services', ServiceController::class);
+
 //     Route::resource('medical_courses', MedicalCourseController::class);
 //     Route::resource('medical_institutes', MedicalInstituteController::class);
 //     Route::resource('medical_councils', MedicalRegistrationCouncilController::class);

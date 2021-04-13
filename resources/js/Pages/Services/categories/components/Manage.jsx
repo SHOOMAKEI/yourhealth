@@ -30,7 +30,12 @@ const ManageServices = () => {
 
 
     function renderAddCategoryModal() {
-        return <AddCategoryModal modalID={ADD_CATEGORY_MODAL_ID} operation="add"/>
+        return <AddCategoryModal modalID={ADD_CATEGORY_MODAL_ID} operation="add" initialData={{
+            name: "",
+            description: "No description",
+            status: false,
+            approved_at:false,
+        }}/>
     }
 
     function selectPage(page) {

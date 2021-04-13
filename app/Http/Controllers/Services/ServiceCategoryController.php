@@ -56,16 +56,19 @@ class ServiceCategoryController extends Controller
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ServiceCategory  $serviceCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ServiceCategory $serviceCategory)
+    public function update(Request $request, ServiceCategory $services_category)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:255', 'string'],
+            'description' => ['required','string'],
+        ]);
+
+        $services_category->update([
+            'name' => $request['name'],
+            'description' => $request['description'],
+        ]);
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 
     public function show(ServiceCategory $services_category)
@@ -88,14 +91,31 @@ class ServiceCategoryController extends Controller
         return $subcategories;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ServiceCategory  $serviceCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ServiceCategory $serviceCategory)
+    public function destroy(ServiceCategory $services_category)
     {
-        //
+        $services_category->delete();
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
+    }
+
+    public function toggleVisibility(ServiceCategory $services_category) {
+
+//        dd($services_category->id);
+        $services_category->forceFill([
+            'is_active' => !$services_category->is_active
+        ])->save();
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
+    }
+
+
+    public function toggleApproval(ServiceCategory $services_category) {
+
+        $services_category->forceFill([
+            'approved_by' => !is_null($services_category->approved_by)?null:auth()->user()->id,
+            'approved_at' => !is_null($services_category->approved_at)?null:now()
+        ])->save();
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 }

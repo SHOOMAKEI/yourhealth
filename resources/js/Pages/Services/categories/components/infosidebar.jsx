@@ -49,22 +49,22 @@ export default function InfoSideBar({selectedCategory}) {
                         <a href="#" className="dropdown-item" data-toggle="modal" data-target={`#${UPDATE_CATEGORY_MODAL_ID}`}>
                             <i className="uil uil-edit mr-1"></i>Edit
                         </a>
-                        <a href="#" className="dropdown-item" onClick={toggleCategoryVisibility}>
+                        <InertiaLink href={route('services_categories.visibility', selectedCategory.id)} className="dropdown-item">
                             {
                                 selectedCategory.is_active ? (
                                     <span><i className="uil uil-ban mr-1"></i>Hide from public</span>
                                 ) : <span><i className="uil uil-eye mr-1"></i>Show to public</span>
                             }
-                        </a>
-                        <a href="#" className="dropdown-item" onClick={toggleCategoryVisibility}>
+                        </InertiaLink>
+                        <InertiaLink href={route('services_categories.approval', selectedCategory.id)} className="dropdown-item" >
                             {
                                 selectedCategory.approved_at ? (
                                     <span><i className="uil uil-ban mr-1"></i>Deny</span>
                                 ) : <span><i className="uil uil-eye mr-1"></i>approve</span>
                             }
-                        </a>
+                        </InertiaLink>
                         <div className="dropdown-divider"></div>
-                        <a href="#" className="dropdown-item text-danger" data-toggle="modal" data-target="#delete-category">
+                        <a href="" className="dropdown-item text-danger" data-toggle="modal" data-target="#delete-category">
                             <i className="uil uil-trash-alt mr-1"></i>Delete
                         </a>
                     </div>
@@ -73,7 +73,6 @@ export default function InfoSideBar({selectedCategory}) {
                         initialData={{
                             name: selectedCategory.name,
                             description: selectedCategory.description,
-                            is_active: false,
                             id: selectedCategory.id,
                         }}
                         operation="update"
@@ -152,7 +151,7 @@ export default function InfoSideBar({selectedCategory}) {
                                 <i className="uil uil-schedule font-18 text-success mr-1"></i>
                                 <div className="media-body">
                                     <h5 className="mt-1 font-14">
-                                        {selectedCategory.apprved_at}
+                                        {selectedCategory.approved_at}
                                     </h5>
                                 </div>
                             </div>
@@ -175,9 +174,14 @@ export default function InfoSideBar({selectedCategory}) {
                             <tbody>
                                 {
                                     sending?(
-                                        <div className="d-flex justify-content-center">
-                                                <div className="spinner-border text-primary" role="status"></div>
-                                            </div>
+                                        <tr>
+                                            <td colSpan="3">
+                                                <div className="d-flex justify-content-center">
+                                                    <div className="spinner-border text-primary" role="status"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
                                         ):
                                     subcategories &&  subcategories.slice(0,9).map(subcategory => (
                                         <tr>
@@ -200,7 +204,7 @@ export default function InfoSideBar({selectedCategory}) {
                                 }
                             </tbody>
                         </table>
-                        <InertiaLink href={`/services/subcategories/${selectedCategory.id}`}>
+                        <InertiaLink href={route('services_sub_categories',selectedCategory.id)}>
                             <a className="btn btn-primary btn-block mt-2">See subcategories</a>
                         </InertiaLink>
                     </div>

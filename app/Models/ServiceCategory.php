@@ -41,11 +41,11 @@ class ServiceCategory extends Model
 
     public function approver()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'approved_by','id');
     }
 
     public function creator()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 }

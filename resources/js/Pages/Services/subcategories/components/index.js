@@ -1,7 +1,7 @@
-import AddSubcategoryModal from './AddSubcategoryModal'
+import AddCategoryModal from './AddCategoryModal'
 import Heading from './Heading'
 import InfoSideBar from './infosidebar';
 import Paginator from './paginator'
 import ServiceCategoriesTable from './serviceCategoryTable';
 
-export {AddSubcategoryModal, Heading, InfoSideBar, Paginator, ServiceCategoriesTable}
+export {AddCategoryModal, Heading, InfoSideBar, Paginator, ServiceCategoriesTable}

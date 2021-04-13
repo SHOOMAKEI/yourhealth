@@ -5,61 +5,115 @@ namespace App\Http\Controllers\Services;
 use App\Http\Controllers\Controller;
 use App\Models\ServiceSubCategory;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ServiceSubCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $servicesCategories = ServiceSubCategory::all()->map(function($query){
+            $data['id'] = $query->id;
+            $data['is_active'] = $query->is_active;
+            $data['name'] = $query->name;
+            $data['description'] = $query->description;
+            $data['created_at'] = $query->created_at;
+            $data['updated_at'] = $query->updated_at;
+            $data['approved_at'] = $query->approved_at;
+            $data['approved_by'] = !is_null($query->approver) && !is_null($query->approved_at) ?$query->approver->name: '';
+            $data['created_by'] = !is_null($query->creator)?$query->creator->name: config('app.name');
+
+            return $data;
+        });
+
+        return Inertia::render('Services/subcategories/components/Manage', ['categories'=> $servicesCategories]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
+
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:255', 'string'],
+            'description' => ['required','string'],
+            'is_active' => ['required','boolean'],
+            'approved_at' => ['required','boolean'],
+        ]);
+//        dd($request['approved_at']?now()->toDateTime():null);
+
+        ServiceSubCategory::create([
+            'name' => $request['name'],
+            'description' => $request['description'],
+            'is_active' => $request['is_active'],
+            'created_by' => auth()->user()->id,
+            'approved_by' => $request['approved_at']?auth()->user()->id:null,
+            'approved_at' => $request['approved_at']?now():null
+        ]);
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ServiceSubCategory  $serviceSubCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ServiceSubCategory $serviceSubCategory)
+
+    public function update(Request $request, ServiceSubCategory $services_category)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:255', 'string'],
+            'description' => ['required','string'],
+        ]);
+
+        $services_category->update([
+            'name' => $request['name'],
+            'description' => $request['description'],
+        ]);
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ServiceSubCategory  $serviceSubCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ServiceSubCategory $serviceSubCategory)
+    public function show(ServiceSubCategory $services_category)
     {
-        //
+        $subcategories = Service::where('service_sub_category_id', $services_category->id)->limit(9)->get()
+            ->map(function($query){
+                $data['id'] = $query->id;
+                $data['is_active'] = $query->is_active;
+                $data['name'] = $query->name;
+                $data['description'] = $query->description;
+                $data['created_at'] = $query->created_at;
+                $data['updated_at'] = $query->updated_at;
+                $data['approved_at'] = $query->approved_at;
+                $data['approved_by'] = !is_null($query->approver) && !is_null($query->approved_at) ?$query->approver->name: '';
+                $data['created_by'] = !is_null($query->creator)?$query->creator->name: config('app.name');
+
+                return $data;
+            });
+
+        return $subcategories;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ServiceSubCategory  $serviceSubCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ServiceSubCategory $serviceSubCategory)
+    public function destroy(ServiceSubCategory $services_category)
     {
-        //
+        $services_category->delete();
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
+    }
+
+    public function toggleVisibility(ServiceSubCategory $services_category) {
+
+//        dd($services_category->id);
+        $services_category->forceFill([
+            'is_active' => !$services_category->is_active
+        ])->save();
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
+    }
+
+
+    public function toggleApproval(ServiceSubCategory $services_category) {
+
+        $services_category->forceFill([
+            'approved_by' => !is_null($services_category->approved_by)?null:auth()->user()->id,
+            'approved_at' => !is_null($services_category->approved_at)?null:now()
+        ])->save();
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 }

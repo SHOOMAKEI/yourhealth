@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
+import LoadingButton from "@/Shared/LoadingButton";
+import React, { useState} from "react";
 
 export default function DeleteCategoryDialog() {
-    const {selectedSubcategory} = useSelector(state => state.subcategoriesStore)
-    const [success, setSuccess] = useState(false)
+    const selectedCategory = {name: 'omakei'}
+    const [sending, setSending] = useState(false)
 
     // useEffect(() => {
-    //     if (deleteServiceSubcategoryResponse.data) {
+    //     if (deleteServiceCategoryResponse.data) {
     //        setSuccess(true)
-    //        dispatch(deleteSubcategory(selectedSubcategory));
+    //        dispatch(deleteCategory(selectedCategory));
     //     }
-    //  }, [deleteServiceSubcategoryResponse.data])
+    //  }, [deleteServiceCategoryResponse.data])
     //
     // function _deleteCategory() {
-    //     deleteServiceSubcategory({variables: {id: selectedSubcategory.id}})
+    //     deleteServiceCategory({variables: {id: selectedCategory.id}})
     // }
 
     return (
@@ -20,15 +21,26 @@ export default function DeleteCategoryDialog() {
             <div className="modal-dialog">
                 <div className="modal-content modal-filled bg-danger">
                     <div className="modal-header">
-                        <h4 className="modal-title" id="delete-categoryLabel">delete {selectedSubcategory.name}</h4>
+                        <h4 className="modal-title" id="delete-categoryLabel">delete {selectedCategory.name}</h4>
                         <button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div className="modal-body">
-                        Are you sure you want to delete {selectedSubcategory.name}
+                        Are you sure you want to delete {selectedCategory.name}
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-light" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-outline-light" data-dismiss="modal" onClick={_deleteCategory}>Delete</button>
+                        <LoadingButton
+                            type="submit"
+                            className="btn btn-primary btn-block"
+                            loading={sending}
+                        >
+                            Save Changes
+                        </LoadingButton>
+                        {/*<button type="button" className="btn btn-outline-light" data-dismiss="modal" onClick={_deleteCategory}>*/}
+                        {/*    {*/}
+                        {/*        deleteServiceCategoryResponse.called && deleteServiceCategoryResponse.loading ? 'Deleting...' : 'Delete'*/}
+                        {/*    }*/}
+                        {/*</button>*/}
                     </div>
                 </div>
             </div>

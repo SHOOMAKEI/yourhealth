@@ -140,7 +140,13 @@ var ManageServices = function ManageServices() {
   function renderAddCategoryModal() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_AddCategoryModal__WEBPACK_IMPORTED_MODULE_0__["default"], {
       modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_6__["ADD_CATEGORY_MODAL_ID"],
-      operation: "add"
+      operation: "add",
+      initialData: {
+        name: "",
+        description: "No description",
+        status: false,
+        approved_at: false
+      }
     });
   }
 

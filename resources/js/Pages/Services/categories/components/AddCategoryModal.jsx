@@ -1,5 +1,5 @@
 import ModalForm from "@/Pages/Utilities/ModalForm";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import TextInput from '@/Shared/TextInput'
@@ -16,18 +16,9 @@ export default function AddCategoryModal({
   operation,
   title,
 }) {
-    const {errors, status, alertType} = usePage().props
-  const initialValues = {
-    name: "",
-    description: "No description",
-    status: false,
-  };
-  const [values, setValues] = useState({
-      name: "",
-      description: "No description",
-      status: false,
-      approved_at:false,
-  })
+  const {errors, status, alertType} = usePage().props
+
+  const [values, setValues] = useState(initialData)
   const [success, setSuccess] = useState(false)
   const [sending, setSending] = useState(false)
 
@@ -42,47 +33,38 @@ export default function AddCategoryModal({
         }));
     }
 
+    useEffect(function(){
+        setValues(initialData)
+    },[initialData])
+
     function handleSubmit(e) {
         e.preventDefault();
-        setSending(true);
-        Inertia.post(route('services_categories.store'), values).then(() => {
-            setSending(false);
-        });
+        switch (operation) {
+            case "add":
+                setSending(true);
+                Inertia.post(route('services_categories.store'), values).then(() => {
+                    setSending(false);
+                });
+                break;
+
+            case "update":
+                setSending(true);
+                Inertia.put(route('services_categories.update',values.id), values).then(() => {
+                    setSending(false);
+                });
+                break;
+
+            default:
+                setSending(true);
+                Inertia.post(route('services_categories.store'), values).then(() => {
+                    setSending(false);
+                });
+                break;
+        }
+
+
     }
-  function onSubmit(
-    values,
-    { setSubmitting }
-  ) {
-    setTimeout(() => {
-      switch (operation) {
-        case "add":
-          addCategory(
-            values.name,
-            values.description,
-            values.status
-          );
-          break;
 
-        case "update":
-          _updateCategory(
-            values.name ,
-            values.description ,
-            values.is_active
-          );
-          break;
-
-        default:
-          addCategory(
-            values.name,
-            values.description,
-            values.status
-          );
-          break;
-      }
-
-      setSubmitting(false);
-    }, 500);
-  }
 
   function addCategory(name, description, status) {
     let category = {
@@ -109,11 +91,11 @@ export default function AddCategoryModal({
             <form onSubmit={handleSubmit}>
                 {
                   status && (
-                    <div className={`alert alert-success alert-dismissible bg-success text-white border-0 fade show`} role="alert">
+                    <div className={`alert alert-primary alert-dismissible bg-success text-white border-0 fade show`} role="alert">
                         <button type="button" className="close" onClick={() => setSuccess(false)}>
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <strong>Success - </strong> Operation was completed successfully!
+                        <strong>Success - </strong> {status}
                     </div>
                   )
                 }

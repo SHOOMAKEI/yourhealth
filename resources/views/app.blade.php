@@ -9,7 +9,7 @@
     <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="light-style" />
     <link href="{{asset('assets/css/app-dark.min.css')}}" rel="stylesheet" type="text/css" id="dark-style" />
-
+      <script src="{{asset('assets/js/vendor/jquery.min.js')}}"  defer></script>
     @routes
     <script src="{{ mix('/js/app.js') }}" defer></script>
       <script src="{{asset('assets/js/vendor.min.js')}}" defer ></script>
@@ -26,6 +26,6 @@
   </head>
   <body data-layout="detached" data-layout-config='{"darkMode":false,leftSidebarCondensed":false}'>
     @inertia
-          <script src="{{asset('assets/js/vendor/jquery.min.js')}}"  ></script>
+
   </body>
 </html>
