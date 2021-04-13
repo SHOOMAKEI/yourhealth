@@ -226,7 +226,7 @@ function InfoSideBar(_ref) {
       className: "uil uil-times-circle font-16 mr-1 text-danger"
     }), " Not Approved")));
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
-    href: route('services_sub_categories', selectedCategory.id)
+    href: route('services_sub_categories.index', selectedCategory.id)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("a", {
     className: "btn btn-primary btn-block mt-2"
   }, "See subcategories"))))));

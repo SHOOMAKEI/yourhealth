@@ -220,8 +220,6 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
      Route::get('services_sub_categories/{services_sub_category}/approval', [ServiceSubCategoryController::class, 'toggleApproval'])
          ->name('services_sub_categories.approval');
 
-     
-
 
      Route::resource('services', ServiceController::class);
 
