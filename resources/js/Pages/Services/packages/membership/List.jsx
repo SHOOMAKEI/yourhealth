@@ -5,12 +5,14 @@
 // import {selectMembership} from "@pages/data/actions/memberships";
 
 
+import {usePage} from "@inertiajs/inertia-react";
+
 export default function List({memberships}) {
-    const {selectedMembership} = useSelector(state => state.membershipsStore)
-    const dispatch = useDispatch();
+    const {selectedMembership} = usePage().props
+    // const dispatch = useDispatch();
 
     function _selectMembership(membership) {
-        dispatch(selectMembership(membership))
+        // dispatch(selectMembership(membership))
     }
 
     return (

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MembershipCategory;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Inertia\Inertia;
 
 class PackagesController extends Controller
 {
@@ -15,7 +17,7 @@ class PackagesController extends Controller
      */
     public function index()
     {
-        return view('packages.index', ['packages' => app('rinvex.subscriptions.plan')->all()]);
+        return Inertia::render('Services/packages/manage');
     }
 
     /**
@@ -130,5 +132,22 @@ class PackagesController extends Controller
             'package_category' => ['required', Rule::in(array_column(getPackageCategories(), 'value'))],
         ]);
         // dd($request['package_category']);
+    }
+
+    public function membershipStore(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'max:255', 'string'],
+            'description' => ['required','string'],
+            'is_active' => ['required','boolean'],
+        ]);
+
+        MembershipCategory::create([
+            'name' => $request['name'],
+            'description' => $request['description'],
+            'is_active' => $request['is_active']
+        ]);
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 }

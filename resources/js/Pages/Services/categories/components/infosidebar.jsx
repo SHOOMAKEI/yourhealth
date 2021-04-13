@@ -152,7 +152,7 @@ export default function InfoSideBar({selectedCategory}) {
                                 <i className="uil uil-schedule font-18 text-success mr-1"></i>
                                 <div className="media-body">
                                     <h5 className="mt-1 font-14">
-                                        {selectedCategory.apprved_at}
+                                        {selectedCategory.apporved_at}
                                     </h5>
                                 </div>
                             </div>
@@ -175,9 +175,14 @@ export default function InfoSideBar({selectedCategory}) {
                             <tbody>
                                 {
                                     sending?(
-                                        <div className="d-flex justify-content-center">
-                                                <div className="spinner-border text-primary" role="status"></div>
-                                            </div>
+                                        <tr>
+                                            <td colSpan="3">
+                                                <div className="d-flex justify-content-center">
+                                                    <div className="spinner-border text-primary" role="status"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
                                         ):
                                     subcategories &&  subcategories.slice(0,9).map(subcategory => (
                                         <tr>

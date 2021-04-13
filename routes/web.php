@@ -5,11 +5,9 @@ use App\Http\Controllers\Api\Auth\VerifyEmailController;
 use App\Http\Controllers\Authentication\AuthenticationController;
 use App\Http\Controllers\Authentication\AuthenticationViewsController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MedicalCourseController;
 use App\Http\Controllers\MedicalInstituteController;
 use App\Http\Controllers\MedicalRegistrationCouncilController;
 use App\Http\Controllers\PackagesController;
-use App\Http\Controllers\ProviderProfileController;
 use App\Http\Controllers\Registration\RegistrationController;
 use App\Http\Controllers\RequiredVerificationController;
 use App\Http\Controllers\ServiceProviderProfileCompletion\EducationQualificationController;
@@ -139,11 +137,10 @@ Route::group(['middleware' => ['web']], function () {
 // Route::post('/mobile_number/verification-code/resend', [VerifyMobileNumberController::class, 'resend'])
 //     ->middleware(['auth', 'throttle:6,1'])
 //     ->name('verification_code.send');
-
 });
 
 Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_verified', 'role:service-provider'])
-    ->group(function(){
+    ->group(function () {
         Route::get('service_provider/personal-info', [PersonalInfoController::class, 'index'])
             ->name('personalInfo.index');
         Route::post('/personal-information/update', [PersonalInfoController::class, 'update'])
@@ -187,33 +184,34 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
 
 
  Route::middleware([ 'auth','auth:sanctum', 'verified', 'verified_sp','language', 'mobile_number_verified'])
-     ->group( function () {
+     ->group(function () {
 
 //     Route::get('/dashboard', [PersonalInfoController::class, 'index'])->name('dashboard');
 
-     Route::get('/settings/enable_otp', [SettingsController::class, 'enableOtp'])->name('otp.enable');
-     Route::get('/settings/disable_otp', [SettingsController::class, 'disableOtp'])->name('otp.disable');
-
- });
-
+         Route::get('/settings/enable_otp', [SettingsController::class, 'enableOtp'])->name('otp.enable');
+         Route::get('/settings/disable_otp', [SettingsController::class, 'disableOtp'])->name('otp.disable');
+     });
 
 
- Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:super-admin'])->group(function(){
-     Route::get('admin/dashboard', function (){
+
+ Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:super-admin'])->group(function () {
+     Route::get('admin/dashboard', function () {
          return Inertia::render('Dashboard');
      })->name('admin.dashboard');
      Route::resource('services', ServiceController::class);
      Route::resource('services_sub_categories', ServiceSubCategoryController::class);
      Route::resource('services_categories', ServiceCategoryController::class);
-//     Route::resource('medical_courses', MedicalCourseController::class);
-//     Route::resource('medical_institutes', MedicalInstituteController::class);
+     Route::get('requested_services', [ServiceController::class, 'requestedServices'])
+        ->name('requested_services.index');
+     Route::resource('packages_registration', PackagesController::class);
+     Route::get('membership_registration', [PackagesController::class, 'membershipIndex'])
+         ->name('membership_registration.index');
+     Route::post('membership_registration', [PackagesController::class, 'membershipStore'])
+         ->name('membership_registration.store');
+
 //     Route::resource('medical_councils', MedicalRegistrationCouncilController::class);
 //     Route::resource('profile_validations', RequiredVerificationController::class);
 //     Route::resource('service_provider_profiles', ProviderProfileAdminController::class);
 //     Route::get('service_provider_profiles/provider/{provider}/verify', [ProviderProfileAdminController::class, 'verify'])->name('service_provider_profiles.verify');
 //     Route::get('service_provider_profiles/provider/{provider}/unverify', [ProviderProfileAdminController::class, 'unverify'])->name('service_provider_profiles.unverify');
-
  });
-
-
-

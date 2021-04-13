@@ -11,8 +11,8 @@ export default () => {
       <li className="side-nav-title side-nav-item">Modules</li>
         <MultiLinkMainMenuItem icon="uil-store" text="Services">
             <MultiLinkMenuItem  text="Manage Services" link="services_categories.index"/>
-            <MultiLinkMenuItem  text="Requested Services" link="services_sub_categories.index"/>
-            <MultiLinkMenuItem  text="Packages" link="services.index"/>
+            <MultiLinkMenuItem  text="Requested Services" link="requested_services.index"/>
+            <MultiLinkMenuItem  text="Packages" link="packages_registration.index"/>
         </MultiLinkMainMenuItem>
         <MultiLinkMainMenuItem icon="uil-constructor" text="Service Provider">
             <MultiLinkMenuItem  text="Verification Requests" link="admin.dashboard"/>
