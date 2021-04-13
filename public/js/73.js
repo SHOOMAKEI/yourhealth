@@ -1,15 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[73],{
 
-/***/ "./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx ***!
-  \*******************************************************************************/
+/***/ "./resources/js/Pages/Services/services/components/deleteDialog.jsx":
+/*!**************************************************************************!*\
+  !*** ./resources/js/Pages/Services/services/components/deleteDialog.jsx ***!
+  \**************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DeleteCategoryDialog; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DeleteService; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -24,27 +24,29 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+// import { useDispatch, useSelector } from "react-redux"
+ // import { DELETE_SERVICE } from "@pages/utils/Mutations";
+// import {ServicesState} from "@pages/data/reducers/service";
+// import { deleteService } from "@pages/data/actions/service"
+// import { useApi } from "@pages/utils/ApolloClient";
 
-function DeleteCategoryDialog() {
-  var _useSelector = useSelector(function (state) {
-    return state.subcategoriesStore;
-  }),
-      selectedSubcategory = _useSelector.selectedSubcategory;
-
+function DeleteService() {
+  // const {selectedService} = useSelector(state => state.servicesStore);
+  // const dispatch = useDispatch()
+  // const [deleteServiceCB, deleteServiceCBResponse] = useApi({query: DELETE_SERVICE })
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       success = _useState2[0],
       setSuccess = _useState2[1]; // useEffect(() => {
-  //     if (deleteServiceSubcategoryResponse.data) {
-  //        setSuccess(true)
-  //        dispatch(deleteSubcategory(selectedSubcategory));
+  //     if (deleteServiceCBResponse.data) {
+  //        // setSuccess(true)
+  //        // dispatch(deleteService(selectedService));
   //     }
-  //  }, [deleteServiceSubcategoryResponse.data])
-  //
-  // function _deleteCategory() {
-  //     deleteServiceSubcategory({variables: {id: selectedSubcategory.id}})
-  // }
+  //  }, [deleteServiceCBResponse.data])
 
+
+  function _deleteService() {// deleteServiceCB({variables: {id: selectedService.id}})
+  }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "delete-category",
@@ -62,14 +64,14 @@ function DeleteCategoryDialog() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     className: "modal-title",
     id: "delete-categoryLabel"
-  }, "delete ", selectedSubcategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, "delete ", selectedService.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "button",
     className: "close",
     "data-dismiss": "modal",
     "aria-hidden": "true"
   }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "modal-body"
-  }, "Are you sure you want to delete ", selectedSubcategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Are you sure you want to delete ", selectedService.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "modal-footer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "button",
@@ -79,35 +81,35 @@ function DeleteCategoryDialog() {
     type: "button",
     className: "btn btn-outline-light",
     "data-dismiss": "modal",
-    onClick: _deleteCategory
+    onClick: _deleteService
   }, "Delete")))));
 }
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Services/subcategories/components/serviceSubategory.jsx":
-/*!************************************************************************************!*\
-  !*** ./resources/js/Pages/Services/subcategories/components/serviceSubategory.jsx ***!
-  \************************************************************************************/
+/***/ "./resources/js/Pages/Services/services/components/service.jsx":
+/*!*********************************************************************!*\
+  !*** ./resources/js/Pages/Services/services/components/service.jsx ***!
+  \*********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Subcategory; });
-/* harmony import */ var _deleteDialog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteDialog */ "./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Service; });
+/* harmony import */ var _deleteDialog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteDialog */ "./resources/js/Pages/Services/services/components/deleteDialog.jsx");
 
-function Subcategory(subcategory) {
-  function chooseSubcategory() {// dispatch(selectSubcategory(subcategory))
+function Service(service) {
+  function chooseCategory() {// dispatch(selectService(service))
   }
 
   return /*#__PURE__*/React.createElement("tr", {
-    key: subcategory.id
+    key: service.id
   }, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
-    href: '#',
+    href: "#",
     className: "text-dark",
-    onClick: chooseSubcategory
-  }, subcategory.name)), /*#__PURE__*/React.createElement("td", null, subcategory.is_active ? /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
+    onClick: chooseCategory
+  }, service.name)), /*#__PURE__*/React.createElement("td", null, service.is_active ? /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
     className: "uil uil-eye font-16 mr-1 text-success"
   }), " Visible") : /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
     className: "uil uil-eye font-16 mr-1 text-danger"
@@ -131,16 +133,10 @@ function Subcategory(subcategory) {
   }, /*#__PURE__*/React.createElement("a", {
     href: "javascript:void(0);",
     className: "dropdown-item",
-    onClick: chooseSubcategory
+    onClick: chooseCategory
   }, /*#__PURE__*/React.createElement("i", {
     className: "uil uil-eye mr-1"
-  }), "Show info"), /*#__PURE__*/React.createElement(Link, {
-    href: "/services/services/".concat(subcategory.id)
-  }, /*#__PURE__*/React.createElement("a", {
-    className: "dropdown-item"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "uil uil-sitemap mr-1"
-  }), "services"))), /*#__PURE__*/React.createElement(_deleteDialog__WEBPACK_IMPORTED_MODULE_0__["default"], null)));
+  }), "Show info")), /*#__PURE__*/React.createElement(_deleteDialog__WEBPACK_IMPORTED_MODULE_0__["default"], null)));
 }
 
 /***/ })

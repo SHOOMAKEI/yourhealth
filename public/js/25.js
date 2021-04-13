@@ -149,6 +149,200 @@ var ManageSubcategories = function ManageSubcategories() {
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Services/subcategories/components/AddSubcategoryModal.jsx":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/Pages/Services/subcategories/components/AddSubcategoryModal.jsx ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddSubcategoryModal; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Pages_Utilities_FormInputError__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Utilities/FormInputError */ "./resources/js/Pages/Utilities/FormInputError.jsx");
+/* harmony import */ var _Pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Utilities/ModalForm */ "./resources/js/Pages/Utilities/ModalForm.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+// import {
+//   addServiceSubcategory,
+//   updateSubcategory,
+// } from "@/pages/data/actions/serviceSubcategories";
+
+
+
+function AddSubcategoryModal(_ref) {
+  var modalID = _ref.modalID,
+      initialData = _ref.initialData,
+      operation = _ref.operation,
+      title = _ref.title;
+  var initialValues = {
+    name: "",
+    description: "No description",
+    status: false
+  };
+
+  var _useSelector = useSelector(function (state) {
+    return state.subcategoriesStore;
+  }),
+      selectedSubcategory = _useSelector.selectedSubcategory;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      success = _useState2[0],
+      setSuccess = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    if (updateServiceSubcategoryResponse.data) {
+      setSuccess(true);
+      var timer = setTimeout(function () {
+        setSuccess(false);
+        clearTimeout(timer);
+      }, 5000);
+      dispatch(updateSubcategory(updateServiceSubcategoryResponse.data.updateServiceSubCategory));
+    }
+  }, [updateServiceSubcategoryResponse.data]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    if (addServiceSubcategoryResponse.data) {
+      setSuccess(true);
+      var timer = setTimeout(function () {
+        setSuccess(false);
+        clearTimeout(timer);
+      }, 5000);
+      dispatch(addServiceSubcategory(addServiceSubcategoryResponse.data.createServiceSubCategory));
+    }
+  }, [addServiceSubcategoryResponse.data]);
+
+  function onSubmit(values, _ref2) {
+    var setSubmitting = _ref2.setSubmitting;
+    setTimeout(function () {
+      switch (operation) {
+        case "add":
+          addSubcategory(values.name, values.description, values.status);
+          break;
+
+        case "update":
+          _updateSubcategory(values.name, values.description, selectedSubcategory.is_active);
+
+          break;
+
+        default:
+          addSubcategory(values.name, values.description, values.status);
+          break;
+      }
+
+      setSubmitting(false);
+    }, 500);
+  }
+
+  function addSubcategory(name, description, status) {
+    var subcategory = {
+      name: name,
+      description: description,
+      is_active: status,
+      service_category_id: parseInt(category_id)
+    };
+    addServiceSubcategoryCB({
+      variables: subcategory
+    });
+  }
+
+  function _updateSubcategory(name, description, status) {
+    var subcategory = {
+      id: selectedSubcategory.id,
+      name: name,
+      description: description,
+      service_category_id: parseInt(category_id)
+    };
+    updateServiceSubcategory({
+      variables: subcategory
+    });
+  }
+
+  function renderForm() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "alert alert-success alert-dismissible bg-success text-white border-0 fade show",
+      role: "alert"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      type: "button",
+      className: "close",
+      onClick: function onClick() {
+        return setSuccess(false);
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      "aria-hidden": "true"
+    }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Success - "), " Operation was completed successfully!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-group"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      htmlFor: "name"
+    }, "Subcategory name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Field, {
+      id: "name",
+      name: "name",
+      placeholder: "category name",
+      type: "text",
+      className: "form-control"
+    }), errors.name && touched.name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_Utilities_FormInputError__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      title: "Category name error",
+      message: errors.name
+    }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-group"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      htmlFor: "description"
+    }, "Subcategory description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Field, {
+      id: "description",
+      name: "description",
+      placeholder: "description",
+      as: "textarea",
+      className: "form-control",
+      rows: 3
+    }), errors.description && touched.description ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_Utilities_FormInputError__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      title: "Description error",
+      message: errors.description
+    }) : null), operation === "add" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "custom-control custom-switch form-group"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Field, {
+      type: "checkbox",
+      className: "custom-control-input",
+      id: "status",
+      name: "status"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      className: "custom-control-label",
+      htmlFor: "status"
+    }, "Show subcategory to public")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "text-muted"
+    }, "If the above option is selected the public will see the category, otherwise the public will not see the category. You can edit it later on from category settings.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "modal-footer"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      type: "button",
+      className: "btn btn-light",
+      "data-dismiss": "modal"
+    }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      type: "submit",
+      className: "btn btn-primary",
+      disabled: updateServiceSubcategoryResponse.loading || addServiceSubcategoryResponse.loading
+    }, operation === "add" ? addServiceSubcategoryResponse.loading && addServiceSubcategoryResponse.called ? "Adding..." : "Add subcategory" : updateServiceSubcategoryResponse.loading && updateServiceSubcategoryResponse.called ? "Updating..." : "Update subcategory")));
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    modalID: modalID,
+    title: title ? title : "Add new service subcategory",
+    renderForm: renderForm
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Services/subcategories/components/Heading.jsx":
 /*!**************************************************************************!*\
   !*** ./resources/js/Pages/Services/subcategories/components/Heading.jsx ***!
@@ -222,8 +416,9 @@ function Heading(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DeleteCategoryDialog; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -237,62 +432,61 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-function DeleteCategoryDialog() {
-  var _useSelector = useSelector(function (state) {
-    return state.subcategoriesStore;
-  }),
-      selectedSubcategory = _useSelector.selectedSubcategory;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+function DeleteCategoryDialog() {
+  var selectedCategory = {
+    name: 'omakei'
+  };
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
-      success = _useState2[0],
-      setSuccess = _useState2[1]; // useEffect(() => {
-  //     if (deleteServiceSubcategoryResponse.data) {
+      sending = _useState2[0],
+      setSending = _useState2[1]; // useEffect(() => {
+  //     if (deleteServiceCategoryResponse.data) {
   //        setSuccess(true)
-  //        dispatch(deleteSubcategory(selectedSubcategory));
+  //        dispatch(deleteCategory(selectedCategory));
   //     }
-  //  }, [deleteServiceSubcategoryResponse.data])
+  //  }, [deleteServiceCategoryResponse.data])
   //
   // function _deleteCategory() {
-  //     deleteServiceSubcategory({variables: {id: selectedSubcategory.id}})
+  //     deleteServiceCategory({variables: {id: selectedCategory.id}})
   // }
 
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     id: "delete-category",
     className: "modal fade",
     tabIndex: -1,
     role: "dialog",
     "aria-labelledby": "delete-categoryLabel",
     "aria-hidden": "true"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal-dialog"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal-content modal-filled bg-danger"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal-header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
     className: "modal-title",
     id: "delete-categoryLabel"
-  }, "delete ", selectedSubcategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, "delete ", selectedCategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "button",
     className: "close",
     "data-dismiss": "modal",
     "aria-hidden": "true"
-  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal-body"
-  }, "Are you sure you want to delete ", selectedSubcategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Are you sure you want to delete ", selectedCategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal-footer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "button",
     className: "btn btn-light",
     "data-dismiss": "modal"
-  }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "button",
-    className: "btn btn-outline-light",
-    "data-dismiss": "modal",
-    onClick: _deleteCategory
-  }, "Delete")))));
+  }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_0__["default"], {
+    type: "submit",
+    className: "btn btn-primary btn-block",
+    loading: sending
+  }, "Save Changes")))));
 }
 
 /***/ }),
@@ -408,6 +602,82 @@ function Paginator(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Services/subcategories/components/serviceCategory.jsx":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/Pages/Services/subcategories/components/serviceCategory.jsx ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Category; });
+/* harmony import */ var _deleteDialog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteDialog */ "./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+function Category(_ref) {
+  var category = _ref.category,
+      callback = _ref.callback;
+
+  function chooseCategory() {
+    callback(category);
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
+    key: category.id
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
+    onClick: chooseCategory
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+    href: '#',
+    className: "text-dark"
+  }, category.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, category.is_active ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "uil uil-eye font-16 mr-1 text-success"
+  }), " Visible") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "uil uil-eye font-16 mr-1 text-danger"
+  }), " Not Visible")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, category.approved_at ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "uil uil-check-circle font-16 mr-1 text-success"
+  }), " Approved") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "uil uil-times-circle font-16 mr-1 text-danger"
+  }), " Not Approved")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
+    className: "table-action"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    type: "button",
+    className: "btn btn-link dropdown-toggle",
+    "data-toggle": "dropdown",
+    "aria-haspopup": "true",
+    "aria-expanded": "false",
+    style: {
+      lineHeight: 0.5,
+      paddingTop: 0,
+      paddingBottom: 0
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "uil uil-bright font-16 mr-1 text-primary"
+  }), "More"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "dropdown-menu"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+    href: "#",
+    className: "dropdown-item",
+    onClick: chooseCategory
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "uil uil-eye mr-1"
+  }), "Show info"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
+    href: "/services/subcategories/".concat(category.id)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+    className: "dropdown-item",
+    onClick: chooseCategory
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+    className: "uil uil-sitemap mr-1"
+  }), "Subcategories"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_deleteDialog__WEBPACK_IMPORTED_MODULE_0__["default"], null)));
+}
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Services/subcategories/components/serviceCategoryTable.jsx":
 /*!***************************************************************************************!*\
   !*** ./resources/js/Pages/Services/subcategories/components/serviceCategoryTable.jsx ***!
@@ -419,22 +689,26 @@ function Paginator(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Pages_Services_subcategories_components_serviceSubategory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Services/subcategories/components/serviceSubategory */ "./resources/js/Pages/Services/subcategories/components/serviceSubategory.jsx");
+/* harmony import */ var _serviceCategory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./serviceCategory */ "./resources/js/Pages/Services/subcategories/components/serviceCategory.jsx");
 /* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
 
 
 
 
 var ServiceCategoriesTable = function ServiceCategoriesTable(_ref) {
-  var categories = _ref.categories;
+  var categories = _ref.categories,
+      callback = _ref.callback;
   // useEffect(() => {
   //     initializeDataTable(false, false, SERVICE_CATEGORIES_TABLE)
   // }, [])
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     id: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__["SERVICE_CATEGORIES_TABLE"],
     className: "table dt-responsive nowrap w-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Public Status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, categories.map(function (category) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_Services_subcategories_components_serviceSubategory__WEBPACK_IMPORTED_MODULE_1__["default"], category);
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Public Status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Approval Status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, categories.map(function (category) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_serviceCategory__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      category: category,
+      callback: callback
+    });
   })));
 };
 
@@ -442,62 +716,26 @@ var ServiceCategoriesTable = function ServiceCategoriesTable(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Services/subcategories/components/serviceSubategory.jsx":
-/*!************************************************************************************!*\
-  !*** ./resources/js/Pages/Services/subcategories/components/serviceSubategory.jsx ***!
-  \************************************************************************************/
+/***/ "./resources/js/Pages/Utilities/FormInputError.jsx":
+/*!*********************************************************!*\
+  !*** ./resources/js/Pages/Utilities/FormInputError.jsx ***!
+  \*********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Subcategory; });
-/* harmony import */ var _deleteDialog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteDialog */ "./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FormInputError; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-function Subcategory(subcategory) {
-  function chooseSubcategory() {// dispatch(selectSubcategory(subcategory))
-  }
-
-  return /*#__PURE__*/React.createElement("tr", {
-    key: subcategory.id
-  }, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
-    href: '#',
-    className: "text-dark",
-    onClick: chooseSubcategory
-  }, subcategory.name)), /*#__PURE__*/React.createElement("td", null, subcategory.is_active ? /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
-    className: "uil uil-eye font-16 mr-1 text-success"
-  }), " Visible") : /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
-    className: "uil uil-eye font-16 mr-1 text-danger"
-  }), " Not Visible")), /*#__PURE__*/React.createElement("td", {
-    className: "table-action"
-  }, /*#__PURE__*/React.createElement("button", {
-    type: "button",
-    className: "btn btn-link dropdown-toggle",
-    "data-toggle": "dropdown",
-    "aria-haspopup": "true",
-    "aria-expanded": "false",
-    style: {
-      lineHeight: 0.5,
-      paddingTop: 0,
-      paddingBottom: 0
-    }
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "uil uil-bright font-16 mr-1 text-primary"
-  }), "More"), /*#__PURE__*/React.createElement("div", {
-    className: "dropdown-menu"
-  }, /*#__PURE__*/React.createElement("a", {
-    href: "javascript:void(0);",
-    className: "dropdown-item",
-    onClick: chooseSubcategory
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "uil uil-eye mr-1"
-  }), "Show info"), /*#__PURE__*/React.createElement(Link, {
-    href: "/services/services/".concat(subcategory.id)
-  }, /*#__PURE__*/React.createElement("a", {
-    className: "dropdown-item"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "uil uil-sitemap mr-1"
-  }), "services"))), /*#__PURE__*/React.createElement(_deleteDialog__WEBPACK_IMPORTED_MODULE_0__["default"], null)));
+function FormInputError(_ref) {
+  var title = _ref.title,
+      message = _ref.message;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("div", {
+    className: "alert alert-danger bg-danger text-white border-0 fade show mt-1",
+    role: "alert"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("strong", null, title, " - "), " ", message);
 }
 
 /***/ }),

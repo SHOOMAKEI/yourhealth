@@ -186,20 +186,35 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       text = _ref.text,
       children = _ref.children;
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group ".concat(className, " ").concat(errors.length ? 'is-invalid' : '')
-  }, label && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: name
-  }, label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", _extends({
-    id: name,
-    name: name
-  }, props, {
-    className: "form-input form-control ".concat(errors.length ? 'error' : ''),
-    rows: "2"
-  }), value), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "invalid-feedback",
-    style: {
-      display: 'block'
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isActive = _useState2[0],
+      setIsActive = _useState2[1];
+
+  var activeLink = route().current(link + '*');
+
+  function handleOnClick(e) {
+    e.preventDefault();
+    setIsActive(!isActive); // console.log(isActive)
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "side-nav-item",
+    "aria-expanded": isActive ? "true" : "false",
+    onClick: handleOnClick
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#",
+    className: "side-nav-link",
+    onClick: handleOnClick
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_Icon__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: icon
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, text), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "menu-arrow"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "side-nav-second-level mm-collapse ".concat(isActive ? "mm-show" : ""),
+    "aria-expanded": "false",
+    style: isActive ? {} : {
+      height: 0 + 'px'
     }
   }, children));
 });

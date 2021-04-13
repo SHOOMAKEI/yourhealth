@@ -35,67 +35,35 @@ function DeleteCategoryDialog() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       sending = _useState2[0],
-      setSending = _useState2[1];
+      setSending = _useState2[1]; // useEffect(() => {
+  //     if (deleteServiceCategoryResponse.data) {
+  //        setSuccess(true)
+  //        dispatch(deleteCategory(selectedCategory));
+  //     }
+  //  }, [deleteServiceCategoryResponse.data])
+  //
+  // function _deleteCategory() {
+  //     deleteServiceCategory({variables: {id: selectedCategory.id}})
+  // }
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    email: '',
-    password: '',
-    remember: false
-  }),
-      _useState4 = _slicedToArray(_useState3, 2),
-      values = _useState4[0],
-      setValues = _useState4[1];
 
-  function handleChange(e) {
-    var key = e.target.name;
-    var value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-    setValues(function (values) {
-      return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, key, value));
-    });
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('login'), values).then(function () {
-      setSending(false);
-    });
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "wrapper-login"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "app justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-3"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "login-form"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card mb-0 mt-5 p-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
-    className: "text-center mb-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Welcome back!"), ". Please Login to continue!"), status && alertType === 'success' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "alert alert-success alert-dismissible bg-success\r text-white border-0 fade show",
-    role: "alert"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "button",
-    className: "close",
-    "data-dismiss": "alert",
-    "aria-label": "Close"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    id: "delete-category",
+    className: "modal fade",
+    tabIndex: -1,
+    role: "dialog",
+    "aria-labelledby": "delete-categoryLabel",
     "aria-hidden": "true"
-  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Success - "), " ", status), status && alertType === 'error' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "alert alert-danger alert-dismissible bg-danger\r text-white border-0 fade show",
-    role: "alert"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-dialog"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-content modal-filled bg-danger"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
+    className: "modal-title",
+    id: "delete-categoryLabel"
+  }, "delete ", selectedCategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "button",
     className: "close",
     "data-dismiss": "modal",

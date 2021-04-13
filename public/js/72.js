@@ -1,163 +1,164 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[72],{
 
-/***/ "./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx ***!
-  \*******************************************************************************/
+/***/ "./resources/js/Pages/Services/packages/membership/SelectedInfo.jsx":
+/*!**************************************************************************!*\
+  !*** ./resources/js/Pages/Services/packages/membership/SelectedInfo.jsx ***!
+  \**************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DeleteCategoryDialog; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SelectedInfo; });
+/* harmony import */ var _Pages_Services_packages_membership_AddMembership__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/Services/packages/membership/AddMembership */ "./resources/js/Pages/Services/packages/membership/AddMembership.jsx");
+/* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+// import {useDispatch, useSelector} from "react-redux";
+ // import Spinner from "@pages/auth/components/Spinner";
 
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+ // import { UPDATE_PACKAGE_MEMBERSHIP } from "@pages/utils/Mutations";
+// import {membershipsStateValues} from "@pages/data/reducers/memberships";
+// import {updateMembership} from "@pages/data/actions/memberships";
+// import { useApi } from "@pages/utils/ApolloClient";
 
 
-function DeleteCategoryDialog() {
-  var _useSelector = useSelector(function (state) {
-    return state.subcategoriesStore;
-  }),
-      selectedSubcategory = _useSelector.selectedSubcategory;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      success = _useState2[0],
-      setSuccess = _useState2[1]; // useEffect(() => {
-  //     if (deleteServiceSubcategoryResponse.data) {
-  //        setSuccess(true)
-  //        dispatch(deleteSubcategory(selectedSubcategory));
-  //     }
-  //  }, [deleteServiceSubcategoryResponse.data])
+function SelectedInfo() {
+  // const dispatch = useDispatch();
+  // const [updatePackageMembership, updatePackageMembershipResponse] = useApi({query: UPDATE_PACKAGE_MEMBERSHIP});
+  // useEffect(() => {
+  //     let data = updatePackageMembershipResponse.data;
   //
-  // function _deleteCategory() {
-  //     deleteServiceSubcategory({variables: {id: selectedSubcategory.id}})
-  // }
+  //     if (data && data.updatePackageMemberShip) {
+  //         dispatch(updateMembership(data.updatePackageMemberShip));
+  //     }
+  // }, [updatePackageMembershipResponse.data])
+  function toggleVisibility() {
+    var membership = {
+      id: selectedMembership.id,
+      name: selectedMembership.name,
+      description: selectedMembership.description,
+      is_active: !selectedMembership.is_active
+    }; // updatePackageMembership({variables: {input: membership}})
+  }
+
+  function renderModal() {
+    return /*#__PURE__*/React.createElement(_Pages_Services_packages_membership_AddMembership__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__["UPDATE_MEMBERSHIP_MODAL_ID"],
+      operation: "update"
+    });
+  } // const {selectedMembership} = useSelector(state => state.membershipsStore)
 
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "delete-category",
-    className: "modal fade",
-    tabIndex: -1,
-    role: "dialog",
-    "aria-labelledby": "delete-categoryLabel",
-    "aria-hidden": "true"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "modal-dialog"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "modal-content modal-filled bg-danger"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "modal-header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-    className: "modal-title",
-    id: "delete-categoryLabel"
-  }, "delete ", selectedSubcategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "button",
-    className: "close",
-    "data-dismiss": "modal",
-    "aria-hidden": "true"
-  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "modal-body"
-  }, "Are you sure you want to delete ", selectedSubcategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "modal-footer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "button",
-    className: "btn btn-light",
-    "data-dismiss": "modal"
-  }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "button",
-    className: "btn btn-outline-light",
-    "data-dismiss": "modal",
-    onClick: _deleteCategory
-  }, "Delete")))));
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "dropdown card-widgets"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "#",
+    className: "dropdown-toggle arrow-none",
+    "data-toggle": "dropdown",
+    "aria-expanded": "false"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-ellipsis-h"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "dropdown-menu dropdown-menu-right"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "javascript:void(0);",
+    className: "dropdown-item",
+    onClick: toggleVisibility
+  }, selectedMembership.is_active ? /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-ban mr-1"
+  }), "Hide from public") : /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-eye mr-1"
+  }), "Show to public")), /*#__PURE__*/React.createElement("a", {
+    href: "javascript:void(0);",
+    className: "dropdown-item",
+    "data-toggle": "modal",
+    "data-target": "#".concat(_Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__["UPDATE_MEMBERSHIP_MODAL_ID"])
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-edit mr-1"
+  }), "Edit"), /*#__PURE__*/React.createElement("div", {
+    className: "dropdown-divider"
+  }), /*#__PURE__*/React.createElement("a", {
+    href: "javascript:void(0);",
+    className: "dropdown-item text-danger",
+    "data-toggle": "modal",
+    "data-target": "#delete-category"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-trash-alt mr-1"
+  }), "Delete"))), /*#__PURE__*/React.createElement("h4", null, selectedMembership.name), /*#__PURE__*/React.createElement("span", null, updatePackageMembershipResponse.loading ? /*#__PURE__*/React.createElement(Spinner, null) : selectedMembership.is_active ? /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-circle text-success"
+  }), " Enabled") : /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
+    className: "mdi mdi-circle text-danger"
+  }), "  Disabled")), /*#__PURE__*/React.createElement("hr", {
+    className: "mt-3 mb-2"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col"
+  }, /*#__PURE__*/React.createElement("p", null, selectedMembership.description), /*#__PURE__*/React.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "mt-2 mb-1 text-muted"
+  }, "Created At"), /*#__PURE__*/React.createElement("div", {
+    className: "media"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-schedule font-18 text-success mr-1"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "media-body"
+  }, /*#__PURE__*/React.createElement("h5", {
+    className: "mt-1 font-14"
+  }, selectedMembership.created_at)))), /*#__PURE__*/React.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "mt-2 mb-1 text-muted"
+  }, "Updated At"), /*#__PURE__*/React.createElement("div", {
+    className: "media"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-schedule font-18 text-success mr-1"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "media-body"
+  }, /*#__PURE__*/React.createElement("h5", {
+    className: "mt-1 font-14"
+  }, selectedMembership.updated_at))))))), renderModal());
 }
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Services/subcategories/components/serviceCategory.jsx":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/Pages/Services/subcategories/components/serviceCategory.jsx ***!
-  \**********************************************************************************/
-/*! exports provided: default */
+/***/ "./resources/js/Pages/Utilities/Constants.js":
+/*!***************************************************!*\
+  !*** ./resources/js/Pages/Utilities/Constants.js ***!
+  \***************************************************/
+/*! exports provided: ADD_CATEGORY_MODAL_ID, UPDATE_CATEGORY_MODAL_ID, SERVICE_CATEGORIES_TABLE, PROVIDER_PROFILE_MODAL_ID, ADD_MEMBERSHIP_MODAL_ID, UPDATE_MEMBERSHIP_MODAL_ID, ADD_FACILITY_MODAL_ID, EDIT_FACILITY_MODAL_ID, ADD_QUALIFICATION_MODAL_ID, ADD_MEDICAL_REGISTRATION_MODAL_ID, REQUEST_SERVICE_MODAL_ID, SET_SERVICE_MODAL_PRICE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Category; });
-/* harmony import */ var _deleteDialog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteDialog */ "./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-function Category(_ref) {
-  var category = _ref.category,
-      callback = _ref.callback;
-
-  function chooseCategory() {
-    callback(category);
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
-    key: category.id
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
-    onClick: chooseCategory
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    href: '#',
-    className: "text-dark"
-  }, category.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, category.is_active ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "uil uil-eye font-16 mr-1 text-success"
-  }), " Visible") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "uil uil-eye font-16 mr-1 text-danger"
-  }), " Not Visible")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, category.approved_at ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "uil uil-check-circle font-16 mr-1 text-success"
-  }), " Approved") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "uil uil-times-circle font-16 mr-1 text-danger"
-  }), " Not Approved")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
-    className: "table-action"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    type: "button",
-    className: "btn btn-link dropdown-toggle",
-    "data-toggle": "dropdown",
-    "aria-haspopup": "true",
-    "aria-expanded": "false",
-    style: {
-      lineHeight: 0.5,
-      paddingTop: 0,
-      paddingBottom: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "uil uil-bright font-16 mr-1 text-primary"
-  }), "More"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "dropdown-menu"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    href: "#",
-    className: "dropdown-item",
-    onClick: chooseCategory
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "uil uil-eye mr-1"
-  }), "Show info"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
-    href: "/services/subcategories/".concat(category.id)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    className: "dropdown-item",
-    onClick: chooseCategory
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "uil uil-sitemap mr-1"
-  }), "Subcategories"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_deleteDialog__WEBPACK_IMPORTED_MODULE_0__["default"], null)));
-}
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_CATEGORY_MODAL_ID", function() { return ADD_CATEGORY_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_CATEGORY_MODAL_ID", function() { return UPDATE_CATEGORY_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SERVICE_CATEGORIES_TABLE", function() { return SERVICE_CATEGORIES_TABLE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROVIDER_PROFILE_MODAL_ID", function() { return PROVIDER_PROFILE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_MEMBERSHIP_MODAL_ID", function() { return ADD_MEMBERSHIP_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_MEMBERSHIP_MODAL_ID", function() { return UPDATE_MEMBERSHIP_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_FACILITY_MODAL_ID", function() { return ADD_FACILITY_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EDIT_FACILITY_MODAL_ID", function() { return EDIT_FACILITY_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_QUALIFICATION_MODAL_ID", function() { return ADD_QUALIFICATION_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_MEDICAL_REGISTRATION_MODAL_ID", function() { return ADD_MEDICAL_REGISTRATION_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REQUEST_SERVICE_MODAL_ID", function() { return REQUEST_SERVICE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SERVICE_MODAL_PRICE", function() { return SET_SERVICE_MODAL_PRICE; });
+var ADD_CATEGORY_MODAL_ID = "add-category-modal";
+var UPDATE_CATEGORY_MODAL_ID = "update-category-modal";
+var SERVICE_CATEGORIES_TABLE = 'service-categories-table';
+var PROVIDER_PROFILE_MODAL_ID = 'service-provider-profile-modal';
+var ADD_MEMBERSHIP_MODAL_ID = 'add-service-modal';
+var UPDATE_MEMBERSHIP_MODAL_ID = 'update-service-modal';
+var ADD_FACILITY_MODAL_ID = 'add-facility-modal';
+var EDIT_FACILITY_MODAL_ID = 'edit-facility-modal';
+var ADD_QUALIFICATION_MODAL_ID = 'add-qualifications-modal';
+var ADD_MEDICAL_REGISTRATION_MODAL_ID = 'add-medical-registration-modal';
+var REQUEST_SERVICE_MODAL_ID = 'request-service-modal';
+var SET_SERVICE_MODAL_PRICE = 'set-service-modal-price';
 
 /***/ })
 
