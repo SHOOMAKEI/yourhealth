@@ -47,6 +47,6 @@ export default function Category({category, callback}) {
                     </div>
                     <DeleteDialog />
             </td>
-        </tr>
+        </tr> 
     )
 }
