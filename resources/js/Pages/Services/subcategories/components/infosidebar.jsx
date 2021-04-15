@@ -162,7 +162,7 @@ export default function InfoSideBar({selectedCategory}) {
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <h4 className="header-title my-3">Subcategories ({selectedCategory.name})</h4>
+                        <h4 className="header-title my-3">Services ({selectedCategory.name})</h4>
                         <table className="table table-sm table-centered mb-0">
                             <thead className="thead-light">
                                 <tr>
@@ -204,8 +204,8 @@ export default function InfoSideBar({selectedCategory}) {
                                 }
                             </tbody>
                         </table>
-                        <InertiaLink href={`/services/subcategories/${selectedCategory.id}`}>
-                            <a className="btn btn-primary btn-block mt-2">See subcategories</a>
+                        <InertiaLink href={route('services',selectedCategory.id)}>
+                            <a className="btn btn-primary btn-block mt-2">See Services</a>
                         </InertiaLink>
                     </div>
                 </div>

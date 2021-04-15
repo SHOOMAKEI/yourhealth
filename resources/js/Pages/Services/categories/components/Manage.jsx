@@ -65,7 +65,7 @@ const ManageServices = () => {
             <div className="row" style={{paddingTop: 30 + 'px'}}>
                 <div className="col-xl-7">
                     <div className="card px-2">
-                        <Heading title="Service categories" renderModal={renderAddCategoryModal} modalID={ADD_CATEGORY_MODAL_ID} search={searchCategories}  />
+                        <Heading title="Service Categories" renderModal={renderAddCategoryModal} modalID={ADD_CATEGORY_MODAL_ID} search={searchCategories}  />
                         <ServiceCategoriesTable categories={shownCategories} callback={setSelectedCategory} />
                         <Paginator batchCount={categoriesBatchCount} totalItems={categories.length} activePageCallBack={selectPage} />
                     </div>

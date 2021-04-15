@@ -41,7 +41,7 @@ export default function Category({category, callback}) {
                         </a>
                         <InertiaLink href={`/services/subcategories/${category.id}`}>
                             <a className="dropdown-item" onClick={chooseCategory}>
-                                <i className="uil uil-sitemap mr-1"/>Subcategories
+                                <i className="uil uil-sitemap mr-1"/>Services
                             </a>
                         </InertiaLink>
                     </div>

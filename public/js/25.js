@@ -159,10 +159,23 @@ var ManageSubcategories = function ManageSubcategories() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddSubcategoryModal; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Pages_Utilities_FormInputError__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Utilities/FormInputError */ "./resources/js/Pages/Utilities/FormInputError.jsx");
-/* harmony import */ var _Pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Utilities/ModalForm */ "./resources/js/Pages/Utilities/ModalForm.jsx");
+/* harmony import */ var _Pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/Utilities/ModalForm */ "./resources/js/Pages/Utilities/ModalForm.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/TextInput */ "./resources/js/Shared/TextInput.js");
+/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.js");
+/* harmony import */ var _Shared_TextAreaInput__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Shared/TextAreaInput */ "./resources/js/Shared/TextAreaInput.js");
+/* harmony import */ var _Shared_CheckBoxInput__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../Shared/CheckBoxInput */ "./resources/js/Shared/CheckBoxInput.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -175,10 +188,11 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-// import {
-//   addServiceSubcategory,
-//   updateSubcategory,
-// } from "@/pages/data/actions/serviceSubcategories";
+
+
+
+
+
 
 
 
@@ -187,156 +201,142 @@ function AddSubcategoryModal(_ref) {
       initialData = _ref.initialData,
       operation = _ref.operation,
       title = _ref.title;
-  var initialValues = {
-    name: "",
-    description: "No description",
-    status: false
-  };
+  var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__["usePage"])().props,
+      errors = _usePage$props.errors,
+      status = _usePage$props.status,
+      alertType = _usePage$props.alertType;
 
-  var _useSelector = useSelector(function (state) {
-    return state.subcategoriesStore;
-  }),
-      selectedSubcategory = _useSelector.selectedSubcategory;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialData),
       _useState2 = _slicedToArray(_useState, 2),
-      success = _useState2[0],
-      setSuccess = _useState2[1];
+      values = _useState2[0],
+      setValues = _useState2[1];
 
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    if (updateServiceSubcategoryResponse.data) {
-      setSuccess(true);
-      var timer = setTimeout(function () {
-        setSuccess(false);
-        clearTimeout(timer);
-      }, 5000);
-      dispatch(updateSubcategory(updateServiceSubcategoryResponse.data.updateServiceSubCategory));
-    }
-  }, [updateServiceSubcategoryResponse.data]);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    if (addServiceSubcategoryResponse.data) {
-      setSuccess(true);
-      var timer = setTimeout(function () {
-        setSuccess(false);
-        clearTimeout(timer);
-      }, 5000);
-      dispatch(addServiceSubcategory(addServiceSubcategoryResponse.data.createServiceSubCategory));
-    }
-  }, [addServiceSubcategoryResponse.data]);
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      success = _useState4[0],
+      setSuccess = _useState4[1];
 
-  function onSubmit(values, _ref2) {
-    var setSubmitting = _ref2.setSubmitting;
-    setTimeout(function () {
-      switch (operation) {
-        case "add":
-          addSubcategory(values.name, values.description, values.status);
-          break;
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      sending = _useState6[0],
+      setSending = _useState6[1];
 
-        case "update":
-          _updateSubcategory(values.name, values.description, selectedSubcategory.is_active);
-
-          break;
-
-        default:
-          addSubcategory(values.name, values.description, values.status);
-          break;
-      }
-
-      setSubmitting(false);
-    }, 500);
-  }
-
-  function addSubcategory(name, description, status) {
-    var subcategory = {
-      name: name,
-      description: description,
-      is_active: status,
-      service_category_id: parseInt(category_id)
-    };
-    addServiceSubcategoryCB({
-      variables: subcategory
+  function handleChange(e) {
+    var key = e.target.name;
+    var value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    setValues(function (values) {
+      return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, key, value));
     });
   }
 
-  function _updateSubcategory(name, description, status) {
-    var subcategory = {
-      id: selectedSubcategory.id,
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    setValues(initialData);
+  }, [initialData]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    switch (operation) {
+      case "add":
+        setSending(true);
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('services_sub_categories.store'), values).then(function () {
+          setSending(false);
+        });
+        break;
+
+      case "update":
+        setSending(true);
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].put(route('services_sub_categories.update', values.id), values).then(function () {
+          setSending(false);
+        });
+        break;
+
+      default:
+        setSending(true);
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('services_sub_categories.store'), values).then(function () {
+          setSending(false);
+        });
+        break;
+    }
+  }
+
+  function addCategory(name, description, status) {
+    var category = {
       name: name,
       description: description,
-      service_category_id: parseInt(category_id)
-    };
-    updateServiceSubcategory({
-      variables: subcategory
-    });
+      is_active: status
+    }; // addServiceCategoryCB({variables: category});
+  }
+
+  function _updateCategory(id, name, description, status) {
+    var category = {
+      id: id,
+      name: name,
+      description: description
+    }; // updateServiceCategory({variables: category});
   }
 
   function renderForm() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "alert alert-success alert-dismissible bg-success text-white border-0 fade show",
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+      onSubmit: handleSubmit
+    }, status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "alert alert-primary alert-dismissible bg-success text-white border-0 fade show",
       role: "alert"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       type: "button",
       className: "close",
       onClick: function onClick() {
         return setSuccess(false);
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
       "aria-hidden": "true"
-    }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Success - "), " Operation was completed successfully!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "form-group"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-      htmlFor: "name"
-    }, "Subcategory name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Field, {
-      id: "name",
+    }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Success - "), " ", status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
       name: "name",
-      placeholder: "category name",
       type: "text",
-      className: "form-control"
-    }), errors.name && touched.name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_Utilities_FormInputError__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      title: "Category name error",
-      message: errors.name
-    }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "form-group"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-      htmlFor: "description"
-    }, "Subcategory description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Field, {
-      id: "description",
+      placeholder: "Category Name",
+      label: "Category Name",
+      errors: errors.name,
+      value: values.name,
+      onChange: handleChange
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextAreaInput__WEBPACK_IMPORTED_MODULE_6__["default"], {
       name: "description",
-      placeholder: "description",
-      as: "textarea",
-      className: "form-control",
-      rows: 3
-    }), errors.description && touched.description ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_Utilities_FormInputError__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      title: "Description error",
-      message: errors.description
-    }) : null), operation === "add" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "custom-control custom-switch form-group"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Field, {
-      type: "checkbox",
-      className: "custom-control-input",
-      id: "status",
-      name: "status"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-      className: "custom-control-label",
-      htmlFor: "status"
-    }, "Show subcategory to public")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      type: "text",
+      placeholder: "Category description",
+      label: "Category description",
+      errors: errors.description,
+      value: values.description,
+      onChange: handleChange
+    }), operation === "add" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_CheckBoxInput__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      name: "is_active",
+      placeholder: "Show category to public",
+      label: "Show category to public",
+      errors: errors.status,
+      value: values.status,
+      onChange: handleChange
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_CheckBoxInput__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      name: "approved_at",
+      label: "Approve Category",
+      errors: errors.approved_at,
+      value: values.approved_at,
+      onChange: handleChange
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
       className: "text-muted"
-    }, "If the above option is selected the public will see the category, otherwise the public will not see the category. You can edit it later on from category settings.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, "If the above option is selected the public will see the category, otherwise the public will not see the category. You can edit it later on from category settings.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "modal-footer"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       type: "button",
-      className: "btn btn-light",
+      className: "btn btn-light btn-sm",
       "data-dismiss": "modal"
-    }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
       type: "submit",
-      className: "btn btn-primary",
-      disabled: updateServiceSubcategoryResponse.loading || addServiceSubcategoryResponse.loading
-    }, operation === "add" ? addServiceSubcategoryResponse.loading && addServiceSubcategoryResponse.called ? "Adding..." : "Add subcategory" : updateServiceSubcategoryResponse.loading && updateServiceSubcategoryResponse.called ? "Updating..." : "Update subcategory")));
+      className: "btn btn-primary btn-sm",
+      loading: sending
+    }, "Save Changes")));
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_0__["default"], {
     modalID: modalID,
-    title: title ? title : "Add new service subcategory",
+    title: title ? title : "Add new service sub category",
     renderForm: renderForm
   });
 }
@@ -673,7 +673,7 @@ function Category(_ref) {
     onClick: chooseCategory
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
     className: "uil uil-sitemap mr-1"
-  }), "Subcategories"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_deleteDialog__WEBPACK_IMPORTED_MODULE_0__["default"], null)));
+  }), "Services"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_deleteDialog__WEBPACK_IMPORTED_MODULE_0__["default"], null)));
 }
 
 /***/ }),
@@ -713,30 +713,6 @@ var ServiceCategoriesTable = function ServiceCategoriesTable(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ServiceCategoriesTable);
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Utilities/FormInputError.jsx":
-/*!*********************************************************!*\
-  !*** ./resources/js/Pages/Utilities/FormInputError.jsx ***!
-  \*********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FormInputError; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-function FormInputError(_ref) {
-  var title = _ref.title,
-      message = _ref.message;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("div", {
-    className: "alert alert-danger bg-danger text-white border-0 fade show mt-1",
-    role: "alert"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("strong", null, title, " - "), " ", message);
-}
 
 /***/ }),
 

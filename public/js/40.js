@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[40],{
 
-/***/ "./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx ***!
-  \*******************************************************************************/
+/***/ "./resources/js/Pages/Services/categories/components/deleteDialog.jsx":
+/*!****************************************************************************!*\
+  !*** ./resources/js/Pages/Services/categories/components/deleteDialog.jsx ***!
+  \****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -85,17 +85,17 @@ function DeleteCategoryDialog() {
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Services/subcategories/components/serviceCategory.jsx":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/Pages/Services/subcategories/components/serviceCategory.jsx ***!
-  \**********************************************************************************/
+/***/ "./resources/js/Pages/Services/categories/components/serviceCategory.jsx":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/Pages/Services/categories/components/serviceCategory.jsx ***!
+  \*******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Category; });
-/* harmony import */ var _deleteDialog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteDialog */ "./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx");
+/* harmony import */ var _deleteDialog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteDialog */ "./resources/js/Pages/Services/categories/components/deleteDialog.jsx");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
@@ -161,10 +161,10 @@ function Category(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Services/subcategories/components/serviceCategoryTable.jsx":
-/*!***************************************************************************************!*\
-  !*** ./resources/js/Pages/Services/subcategories/components/serviceCategoryTable.jsx ***!
-  \***************************************************************************************/
+/***/ "./resources/js/Pages/Services/categories/components/serviceCategoryTable.jsx":
+/*!************************************************************************************!*\
+  !*** ./resources/js/Pages/Services/categories/components/serviceCategoryTable.jsx ***!
+  \************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -172,7 +172,7 @@ function Category(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _serviceCategory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./serviceCategory */ "./resources/js/Pages/Services/subcategories/components/serviceCategory.jsx");
+/* harmony import */ var _serviceCategory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./serviceCategory */ "./resources/js/Pages/Services/categories/components/serviceCategory.jsx");
 /* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
 
 

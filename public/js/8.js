@@ -204,7 +204,7 @@ function InfoSideBar(_ref) {
     className: "col-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h4", {
     className: "header-title my-3"
-  }, "Subcategories (", selectedCategory.name, ")"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("table", {
+  }, "Services (", selectedCategory.name, ")"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("table", {
     className: "table table-sm table-centered mb-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("thead", {
     className: "thead-light"
@@ -226,10 +226,10 @@ function InfoSideBar(_ref) {
       className: "uil uil-times-circle font-16 mr-1 text-danger"
     }), " Not Approved")));
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
-    href: "/services/subcategories/".concat(selectedCategory.id)
+    href: route('services', selectedCategory.id)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("a", {
     className: "btn btn-primary btn-block mt-2"
-  }, "See subcategories"))))));
+  }, "See Services"))))));
 }
 
 /***/ }),

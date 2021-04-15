@@ -1,134 +1,140 @@
-
-// import {
-//   addServiceSubcategory,
-//   updateSubcategory,
-// } from "@/pages/data/actions/serviceSubcategories";
-import React, { useEffect, useState } from "react";
-
-import FormInputError from "@/Pages/Utilities/FormInputError";
 import ModalForm from "@/Pages/Utilities/ModalForm";
+import React, { useState, useEffect } from 'react';
+import { Inertia } from '@inertiajs/inertia';
+import { InertiaLink, usePage } from '@inertiajs/inertia-react';
+import TextInput from '@/Shared/TextInput'
+import LoadingButton from '@/Shared/LoadingButton'
+import TextAreaInput from "@/Shared/TextAreaInput";
+import CheckBoxInput from "../../../../Shared/CheckBoxInput";
+
+
+
 
 export default function AddSubcategoryModal({
-  modalID,
-  initialData,
-  operation,
-  title,
-}) {
-  const initialValues = {
-    name: "",
-    description: "No description",
-    status: false,
-  };
-  const { selectedSubcategory } = useSelector((state) => state.subcategoriesStore);
-  const [success, setSuccess] = useState(false)
+                                             modalID,
+                                             initialData,
+                                             operation,
+                                             title,
+                                         }) {
+    const {errors, status, alertType} = usePage().props
 
-  useEffect(() => {
-    if (updateServiceSubcategoryResponse.data) {
-       setSuccess(true);
-       const timer = setTimeout(() => {
-        setSuccess(false);
-        clearTimeout(timer)}, 5000)
-       dispatch(updateSubcategory(updateServiceSubcategoryResponse.data.updateServiceSubCategory));
+    const [values, setValues] = useState(initialData)
+    const [success, setSuccess] = useState(false)
+    const [sending, setSending] = useState(false)
+
+    function handleChange(e) {
+        const key = e.target.name;
+        const value =
+            e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+
+        setValues(values => ({
+            ...values,
+            [key]: value
+        }));
     }
- }, [updateServiceSubcategoryResponse.data])
 
- useEffect(() => {
-   if (addServiceSubcategoryResponse.data) {
-      setSuccess(true);
-      const timer = setTimeout(() => {
-        setSuccess(false);
-        clearTimeout(timer)}, 5000)
-      dispatch(addServiceSubcategory(addServiceSubcategoryResponse.data.createServiceSubCategory));
-   }
-}, [addServiceSubcategoryResponse.data])
+    useEffect(function(){
+        setValues(initialData)
+    },[initialData])
 
-  function onSubmit(
-    values,
-    { setSubmitting }
-  ) {
-    setTimeout(() => {
-      switch (operation) {
-        case "add":
-          addSubcategory(
-            values.name ,
-            values.description,
-            values.status
-          );
-          break;
+    function handleSubmit(e) {
+        e.preventDefault();
+        switch (operation) {
+            case "add":
+                setSending(true);
+                Inertia.post(route('services_sub_categories.store'), values).then(() => {
+                    setSending(false);
+                });
+                break;
 
-        case "update":
-          _updateSubcategory(
-            values.name,
-            values.description,
-            selectedSubcategory.is_active
-          );
-          break;
+            case "update":
+                setSending(true);
+                Inertia.put(route('services_sub_categories.update',values.id), values).then(() => {
+                    setSending(false);
+                });
+                break;
 
-        default:
-          addSubcategory(
-            values.name,
-            values.description,
-            values.status
-          );
-          break;
-      }
+            default:
+                setSending(true);
+                Inertia.post(route('services_sub_categories.store'), values).then(() => {
+                    setSending(false);
+                });
+                break;
+        }
 
-      setSubmitting(false);
-    }, 500);
-  }
 
-  function addSubcategory(name, description, status) {
-    let subcategory = {
-      name: name,
-      description: description,
-      is_active: status,
-      service_category_id: parseInt(category_id )
-    };
+    }
 
-    addServiceSubcategoryCB({variables: subcategory})
-  }
 
-  function _updateSubcategory(name, description, status) {
-    let subcategory = {
-      id: selectedSubcategory.id,
-      name: name,
-      description: description,
-      service_category_id: parseInt(category_id)
-    };
+    function addCategory(name, description, status) {
+        let category = {
+            name: name,
+            description: description,
+            is_active: status,
+        };
 
-    updateServiceSubcategory({variables: subcategory})
-  }
+        // addServiceCategoryCB({variables: category});
+    }
 
-  function renderForm() {
-    return (
-            <form>
+    function _updateCategory(id, name, description, status) {
+        let category = {
+            id: id,
+            name: name,
+            description: description,
+        };
+
+        // updateServiceCategory({variables: category});
+    }
+
+    function renderForm() {
+        return (
+            <form onSubmit={handleSubmit}>
                 {
-                  status && (
-                    <div className={`alert alert-success alert-dismissible bg-success text-white border-0 fade show`} role="alert">
-                        <button type="button" className="close" onClick={() => setSuccess(false)}>
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <strong>Success - </strong> Operation was completed successfully!
-                    </div>
-                  )
+                    status && (
+                        <div className={`alert alert-primary alert-dismissible bg-success text-white border-0 fade show`} role="alert">
+                            <button type="button" className="close" onClick={() => setSuccess(false)}>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>Success - </strong> {status}
+                        </div>
+                    )
                 }
-                <div className="form-group">
-                    <label htmlFor="name">Subcategory name</label>
-                    <Field id="name" name="name" placeholder="category name" type="text" className="form-control"/>
-                    {errors.name && touched.name ? <FormInputError title="Category name error" message={errors.name} /> : null}
-                </div>
-                <div className="form-group">
-                    <label htmlFor="description">Subcategory description</label>
-                    <Field id="description" name="description" placeholder="description" as="textarea" className="form-control" rows={3}/>
-                    {errors.description && touched.description ? <FormInputError title="Description error" message={errors.description} /> : null}
-                </div>
+                <TextInput
+                    name="name"
+                    type="text"
+                    placeholder="Category Name"
+                    label="Category Name"
+                    errors={errors.name}
+                    value={values.name}
+                    onChange={handleChange}
+                />
+                <TextAreaInput
+                    name="description"
+                    type="text"
+                    placeholder="Category description"
+                    label="Category description"
+                    errors={errors.description}
+                    value={values.description}
+                    onChange={handleChange}
+                />
                 {
                     operation === "add" && (
                         <div>
-                            <div className="custom-control custom-switch form-group">
-                                <Field type="checkbox" className="custom-control-input" id="status" name="status" />
-                                <label className="custom-control-label" htmlFor="status">Show subcategory to public</label>
-                            </div>
+                            <CheckBoxInput
+                                name="is_active"
+                                placeholder="Show category to public"
+                                label="Show category to public"
+                                errors={errors.status}
+                                value={values.status}
+                                onChange={handleChange}
+                            />
+                            <CheckBoxInput
+                                name="approved_at"
+                                label="Approve Category"
+                                errors={errors.approved_at}
+                                value={values.approved_at}
+                                onChange={handleChange}
+                            />
                             <p className="text-muted">
                                 If the above option is selected the public will see the category,
                                 otherwise the public will not see the category. You can edit it later on from category settings.
@@ -137,22 +143,24 @@ export default function AddSubcategoryModal({
                     )
                 }
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-light" data-dismiss="modal">Close</button>
-                    <button type="submit" className="btn btn-primary" disabled={updateServiceSubcategoryResponse.loading || addServiceSubcategoryResponse.loading}>
-                      {operation === "add" ?
-                        (addServiceSubcategoryResponse.loading && addServiceSubcategoryResponse.called) ? "Adding..." : "Add subcategory"
-                      : (updateServiceSubcategoryResponse.loading && updateServiceSubcategoryResponse.called) ? "Updating..." : "Update subcategory"}
-                    </button>
+                    <button type="button" className="btn btn-light btn-sm" data-dismiss="modal">Close</button>
+                    <LoadingButton
+                        type="submit"
+                        className="btn btn-primary btn-sm"
+                        loading={sending}
+                    >
+                        Save Changes
+                    </LoadingButton>
                 </div>
             </form>
-    );
-  }
+        );
+    }
 
-  return (
-    <ModalForm
-      modalID={modalID}
-      title={title ? title : "Add new service subcategory"}
-      renderForm={renderForm}
-    />
-  );
+    return (
+        <ModalForm
+            modalID={modalID}
+            title={title ? title : "Add new service sub category"}
+            renderForm={renderForm}
+        />
+    );
 }

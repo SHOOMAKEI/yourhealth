@@ -205,7 +205,7 @@ export default function InfoSideBar({selectedCategory}) {
                             </tbody>
                         </table>
                         <InertiaLink href={route('services_sub_categories.index',selectedCategory.id)}>
-                            <a className="btn btn-primary btn-block mt-2">See subcategories</a>
+                            <a className="btn btn-primary btn-block mt-2">See Sub Categories</a>
                         </InertiaLink>
                     </div>
                 </div>

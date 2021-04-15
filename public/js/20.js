@@ -363,7 +363,7 @@ function Category(_ref) {
     onClick: chooseCategory
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
     className: "uil uil-sitemap mr-1"
-  }), "Subcategories"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_deleteDialog__WEBPACK_IMPORTED_MODULE_0__["default"], null)));
+  }), "Services"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_deleteDialog__WEBPACK_IMPORTED_MODULE_0__["default"], null)));
 }
 
 /***/ }),
