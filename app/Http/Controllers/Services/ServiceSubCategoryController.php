@@ -4,15 +4,16 @@ namespace App\Http\Controllers\Services;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Models\ServiceCategory;
 use App\Models\ServiceSubCategory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ServiceSubCategoryController extends Controller
 {
-    public function index()
+    public function index(ServiceCategory $services_category)
     {
-        $servicesCategories = ServiceSubCategory::all()->map(function ($query) {
+        $servicesCategories = ServiceSubCategory::where('service_category_id', $services_category->id)->get()->map(function ($query) {
             $data['id'] = $query->id;
             $data['is_active'] = $query->is_active;
             $data['name'] = $query->name;
@@ -27,7 +28,7 @@ class ServiceSubCategoryController extends Controller
             return $data;
         });
 
-        return Inertia::render('Services/subcategories/components/Manage', ['categories'=> $servicesCategories]);
+        return Inertia::render('Services/subcategories/components/Manage', ['categories'=> $servicesCategories, 'service_category' => $services_category]);
     }
 
 
@@ -58,14 +59,14 @@ class ServiceSubCategoryController extends Controller
     }
 
 
-    public function update(Request $request, ServiceSubCategory $services_category)
+    public function update(Request $request, ServiceSubCategory $services_sub_category)
     {
         $request->validate([
             'name' => ['required', 'max:255', 'string'],
             'description' => ['required','string'],
         ]);
 
-        $services_category->update([
+        $services_sub_category->update([
             'name' => $request['name'],
             'description' => $request['description'],
         ]);
@@ -73,9 +74,9 @@ class ServiceSubCategoryController extends Controller
         return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 
-    public function show(ServiceSubCategory $services_category)
+    public function show(ServiceSubCategory $services_sub_category)
     {
-        $subcategories = Service::where('service_sub_category_id', $services_category->id)->limit(9)->get()
+        $subcategories = Service::where('service_sub_category_id', $services_sub_category->id)->limit(9)->get()
             ->map(function ($query) {
                 $data['id'] = $query->id;
                 $data['is_active'] = $query->is_active;
@@ -93,32 +94,30 @@ class ServiceSubCategoryController extends Controller
         return $subcategories;
     }
 
-    public function destroy(ServiceSubCategory $services_category)
+    public function destroy(ServiceSubCategory $services_sub_category)
     {
-        $services_category->delete();
+        $services_sub_category->delete();
 
         return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 
-    public function toggleVisibility(ServiceSubCategory $services_category)
+    public function toggleVisibility(ServiceSubCategory $services_sub_category)
     {
 
-//        dd($services_category->id);
-        $services_category->forceFill([
-            'is_active' => !$services_category->is_active
+        $services_sub_category->forceFill([
+            'is_active' => !$services_sub_category->is_active
         ])->save();
 
         return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 
 
-    public function toggleApproval(ServiceSubCategory $services_category)
+    public function toggleApproval(ServiceSubCategory $services_sub_category)
     {
-        $services_category->forceFill([
-            'approved_by' => !is_null($services_category->approved_by)?null:auth()->user()->id,
-            'approved_at' => !is_null($services_category->approved_at)?null:now()
+        $services_sub_category->forceFill([
+            'approved_by' => !is_null($services_sub_category->approved_by)?null:auth()->user()->id,
+            'approved_at' => !is_null($services_sub_category->approved_at)?null:now()
         ])->save();
-
         return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 }

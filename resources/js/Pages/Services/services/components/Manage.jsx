@@ -1,20 +1,19 @@
-import    AddCategoryModal  from './AddCategoryModal'
+import    AddServiceModal  from './AddServiceModal'
 import    Heading from './Heading'
 import    InfoSideBar from './infosidebar'
 import    Paginator from './paginator'
-import    ServiceCategoriesTable  from './serviceCategoryTable'
+import    ServicesTable  from './servicesTable'
 import React, {useEffect, useState} from 'react'
-import { ADD_CATEGORY_MODAL_ID } from '@/Pages/Utilities/Constants'
+import { ADD_SERVICE_MODAL_ID } from '@/Pages/Utilities/Constants'
 import Framework from '@/Pages/framework';
 import Layout from "@/Shared/Layout";
 import {usePage} from "@inertiajs/inertia-react";
-import AddSubcategoryModal from "@/Pages/Services/subcategories/components/AddSubcategoryModal";
 
 
 const CATEGORIES_BATCH_COUNT = 10;
 
 const ManageServices = () => {
-    const {categories, service_category} = usePage().props
+    const {categories} = usePage().props
         //useSelector(state => state.categoriesStore);
 
     const [categoriesBatchCount, setCategoriesBatchCount] = useState(CATEGORIES_BATCH_COUNT)
@@ -30,13 +29,12 @@ const ManageServices = () => {
     }, [categories])
 
 
-    function renderAddCategoryModal() {
-        return  <AddSubcategoryModal modalID={ADD_CATEGORY_MODAL_ID} operation="add" initialData={{
+    function renderAddServiceModal() {
+        return  <AddServiceModal modalID={ADD_SERVICE_MODAL_ID} operation="add" initialData={{
             name: "",
             description: "No description",
             status: false,
             approved_at:false,
-            service_category_id:  service_category.id,
         }}/>
     }
 
@@ -67,8 +65,8 @@ const ManageServices = () => {
             <div className="row" style={{paddingTop: 30 + 'px'}}>
                 <div className="col-xl-7">
                     <div className="card px-2">
-                        <Heading title="Service Sub Categories" renderModal={renderAddCategoryModal} modalID={ADD_CATEGORY_MODAL_ID} search={searchCategories}  />
-                        <ServiceCategoriesTable categories={shownCategories} callback={setSelectedCategory} />
+                        <Heading title="Services" renderModal={renderAddServiceModal} modalID={ADD_SERVICE_MODAL_ID} search={searchCategories}  />
+                        <ServicesTable services={shownCategories} callback={setSelectedCategory} />
                         <Paginator batchCount={categoriesBatchCount} totalItems={categories.length} activePageCallBack={selectPage} />
                     </div>
                 </div>
