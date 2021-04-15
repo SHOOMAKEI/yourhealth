@@ -34,7 +34,7 @@ const ManageServices = () => {
         return <AddSubcategoryModal modalID={ADD_CATEGORY_MODAL_ID} operation="add" initialData={{
             name: "",
             description: "No description",
-            status: false,
+            status: false ,
             approved_at:false,
             service_category_id: categories[0].service_category_id,
         }}/>
