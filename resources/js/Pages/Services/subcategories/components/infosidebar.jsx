@@ -49,14 +49,14 @@ export default function InfoSideBar({selectedCategory}) {
                         <a href="#" className="dropdown-item" data-toggle="modal" data-target={`#${UPDATE_CATEGORY_MODAL_ID}`}>
                             <i className="uil uil-edit mr-1"></i>Edit
                         </a>
-                        <InertiaLink href={route('services_categories.visibility', selectedCategory.id)} className="dropdown-item">
+                        <InertiaLink href={route('services_sub_categories.visibility', selectedCategory.id)} className="dropdown-item">
                             {
                                 selectedCategory.is_active ? (
                                     <span><i className="uil uil-ban mr-1"></i>Hide from public</span>
                                 ) : <span><i className="uil uil-eye mr-1"></i>Show to public</span>
                             }
                         </InertiaLink>
-                        <InertiaLink href={route('services_categories.approval', selectedCategory.id)} className="dropdown-item" >
+                        <InertiaLink href={route('services_sub_categories.approval', selectedCategory.id)} className="dropdown-item" >
                             {
                                 selectedCategory.approved_at ? (
                                     <span><i className="uil uil-ban mr-1"></i>Deny</span>
@@ -204,7 +204,7 @@ export default function InfoSideBar({selectedCategory}) {
                                 }
                             </tbody>
                         </table>
-                        <InertiaLink href={route('services',selectedCategory.id)}>
+                        <InertiaLink href={route('services.index',selectedCategory.id)}>
                             <a className="btn btn-primary btn-block mt-2">See Services</a>
                         </InertiaLink>
                     </div>

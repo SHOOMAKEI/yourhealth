@@ -1,203 +1,166 @@
-// import * as Yup from "yup";
-//
-// import { ADD_SERVICE, UPDATE_SERVICE } from "@pages/utils/Mutations";
-// import { Field, Form, Formik, FormikHelpers } from "formik";
-// import {
-//   addService,
-//   updateService,
-// } from "@pages/data/actions/service";
-// import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useState } from "react";
-
-import FormInputError from "@/Pages/Utilities/FormInputError";
 import ModalForm from "@/Pages/Utilities/ModalForm";
-// import {ServicesState} from "@pages/data/reducers/service";
-// import {membershipsStateValues} from "@pages/data/reducers/memberships";
-// import { useApi } from "@pages/utils/ApolloClient";
-// import { useRouter } from "next/router";
+import React, { useState, useEffect } from 'react';
+import { Inertia } from '@inertiajs/inertia';
+import { InertiaLink, usePage } from '@inertiajs/inertia-react';
+import TextInput from '@/Shared/TextInput'
+import LoadingButton from '@/Shared/LoadingButton'
+import TextAreaInput from "@/Shared/TextAreaInput";
+import CheckBoxInput from "../../../../Shared/CheckBoxInput";
+
 
 
 
 export default function AddServiceModal({
-  modalID,
-  operation,
-  title,
-}) {
-  const initialValues = {
-    name: "",
-    description: "No description",
-    status: false,
-  };
-  const { selectedService } = useSelector(state => state.servicesStore);
-  // const dispatch = useDispatch();
-  const [addServiceCB, addServiceCBResponse] = useApi({query: ADD_SERVICE})
-  const [updateServiceCB, updateServiceResponse] = useApi({query: UPDATE_SERVICE})
-  const [success, setSuccess] = useState(false)
-  // const router = useRouter();
-  const {subcategory_id} = router.query
+                                             modalID,
+                                             initialData,
+                                             operation,
+                                             title,
+                                         }) {
+    const {errors, status, alertType} = usePage().props
 
-  useEffect(() => {
-    if (addServiceCBResponse.data) {
-       setSuccess(true)
-       // dispatch(addService(addServiceCBResponse.data.createService));
+    const [values, setValues] = useState(initialData)
+    const [success, setSuccess] = useState(false)
+    const [sending, setSending] = useState(false)
+
+    function handleChange(e) {
+        const key = e.target.name;
+        const value =
+            e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+
+        setValues(values => ({
+            ...values,
+            [key]: value
+        }));
     }
- }, [addServiceCBResponse.data])
 
- useEffect(() => {
-   if (updateServiceResponse.data) {
-      setSuccess(true)
-      // dispatch(updateService(updateServiceResponse.data.updateService));
-   }
-}, [updateServiceResponse.data])
+    useEffect(function(){
+        setValues(initialData)
+    },[initialData])
 
-  function onSubmit(
-    values,
-    { setSubmitting }
-  ) {
-    setTimeout(() => {
-      switch (operation) {
-        case "add":
-          _addService(
-            values.name,
-            values.description ,
-            values.status
-          );
-          break;
+    function handleSubmit(e) {
+        e.preventDefault();
+        switch (operation) {
+            case "add":
+                setSending(true);
+                Inertia.post(route('services.store'), values).then(() => {
+                    setSending(false);
+                });
+                break;
 
-        case "update":
-          _updateService(
-            values.name,
-            values.description,
-            selectedService.is_active
-          );
-          break;
+            case "update":
+                setSending(true);
+                Inertia.put(route('services.update',values.id), values).then(() => {
+                    setSending(false);
+                });
+                break;
 
-        default:
-          _addService(
-            values.name,
-            values.description,
-            values.status
-          );
-          break;
-      }
+            default:
+                setSending(true);
+                Inertia.post(route('services.store'), values).then(() => {
+                    setSending(false);
+                });
+                break;
+        }
 
-      setSubmitting(false);
-    }, 500);
-  }
 
-  function _addService(name, description, status) {
-    let service = {
-      name: name,
-      description: description,
-      is_active: status,
-      service_sub_category_id: parseInt(subcategory_id )
-    };
-    addServiceCB({variables: service})
-  }
+    }
 
-  function _updateService(name, description, status) {
-    let service = {
-      id: selectedService.id,
-      name: name,
-      description: description,
-      is_active: selectedService.is_active,
-      service_sub_category_id: parseInt(subcategory_id)
-    };
-    updateServiceCB({variables: service})
-  }
 
-  function renderForm() {
-    return (
-      <Formik
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-        validationSchema={ServiceSchema}
-        enableReinitialize={true}
-      >
-        {({ errors, touched, setFieldValue }) => {
-          useEffect(() => {
-            if (operation === "update") {
-              setFieldValue("name", selectedService.name);
-              setFieldValue("description", selectedService.description || 'No description');
-            }
-          }, [selectedService]);
+    function addCategory(name, description, status) {
+        let category = {
+            name: name,
+            description: description,
+            is_active: status,
+        };
 
-          return (
-            <Form>
-              {
-                  success && (
-                    <div className={`alert alert-success alert-dismissible bg-success text-white border-0 fade show`} role="alert">
-                        <button type="button" className="close" onClick={() => setSuccess(false)}>
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <strong>Success - </strong> Operation was completed successfully!
-                    </div>
-                  )
-                }
+        // addServiceCategoryCB({variables: category});
+    }
+
+    function _updateCategory(id, name, description, status) {
+        let category = {
+            id: id,
+            name: name,
+            description: description,
+        };
+
+        // updateServiceCategory({variables: category});
+    }
+
+    function renderForm() {
+        return (
+            <form onSubmit={handleSubmit}>
                 {
-                  updateServiceResponse.errors && updateServiceResponse.errors.map(error => (
-                    <div className={`alert alert-danger alert-dismissible bg-danger text-white border-0 fade show`} role="alert">
-                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <strong>Error - </strong> {error.message}
-                    </div>
-                  ))
+                    status && (
+                        <div className={`alert alert-primary alert-dismissible bg-success text-white border-0 fade show`} role="alert">
+                            <button type="button" className="close" onClick={() => setSuccess(false)}>
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>Success - </strong> {status}
+                        </div>
+                    )
                 }
-                {
-                  addServiceCBResponse.errors && addServiceCBResponse.errors.map(error => (
-                    <div className={`alert alert-danger alert-dismissible bg-danger text-white border-0 fade show`} role="alert">
-                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <strong>Error - </strong> {error.message}
-                    </div>
-                  ))
-                }
-                <div className="form-group">
-                    <label htmlFor="name">Service name</label>
-                    <Field id="name" name="name" placeholder="service name" type="text" className="form-control"/>
-                    {errors.name && touched.name ? <FormInputError title="Service name error" message={errors.name} /> : null}
-                </div>
-                <div className="form-group">
-                    <label htmlFor="description">Service description</label>
-                    <Field id="description" name="description" placeholder="description" as="textarea" className="form-control" rows={3}/>
-                    {errors.description && touched.description ? <FormInputError title="Description error" message={errors.description} /> : null}
-                </div>
+                <TextInput
+                    name="name"
+                    type="text"
+                    placeholder="Service Name"
+                    label="Service Name"
+                    errors={errors.name}
+                    value={values.name}
+                    onChange={handleChange}
+                />
+                <TextAreaInput
+                    name="description"
+                    type="text"
+                    placeholder="Service description"
+                    label="Service description"
+                    errors={errors.description}
+                    value={values.description}
+                    onChange={handleChange}
+                />
                 {
                     operation === "add" && (
                         <div>
-                            <div className="custom-control custom-switch form-group">
-                                <Field type="checkbox" className="custom-control-input" id="status" name="status" />
-                                <label className="custom-control-label" htmlFor="status">Show service to public</label>
-                            </div>
+                            <CheckBoxInput
+                                name="is_active"
+                                placeholder="Show service to public"
+                                label="Show service to public"
+                                errors={errors.status}
+                                value={values.status}
+                                onChange={handleChange}
+                            />
+                            <CheckBoxInput
+                                name="approved_at"
+                                label="Approve Service"
+                                errors={errors.approved_at}
+                                value={values.approved_at}
+                                onChange={handleChange}
+                            />
                             <p className="text-muted">
                                 If the above option is selected the public will see the service,
-                                otherwise the public will not see the service. You can edit it later on from category settings.
+                                otherwise the public will not see the category. You can edit it later on from service settings.
                             </p>
                         </div>
                     )
                 }
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-light" data-dismiss="modal">Close</button>
-                    <button type="submit" className="btn btn-primary" disabled={updateServiceResponse.loading || addServiceCBResponse.loading}>
-                      {operation === "add" ?
-                        (addServiceCBResponse.loading && addServiceCBResponse.called) ? "Adding..." : "Add subcategory"
-                      : (updateServiceResponse.loading && updateServiceResponse.called) ? "Updating..." : "Update subcategory"}
-                    </button>
+                    <button type="button" className="btn btn-light btn-sm" data-dismiss="modal">Close</button>
+                    <LoadingButton
+                        type="submit"
+                        className="btn btn-primary btn-sm"
+                        loading={sending}
+                    >
+                        Save Changes
+                    </LoadingButton>
                 </div>
-            </Form>
-          );
-        }}
-      </Formik>
-    );
-  }
+            </form>
+        );
+    }
 
-  return (
-    <ModalForm
-      modalID={modalID}
-      title={title ? title : "Add new service"}
-      renderForm={renderForm}
-    />
-  );
+    return (
+        <ModalForm
+            modalID={modalID}
+            title={title ? title : "Add new Service"}
+            renderForm={renderForm}
+        />
+    );
 }

@@ -305,7 +305,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var CATEGORIES_BATCH_COUNT = 10;
 
 var ManageServices = function ManageServices() {
-  var categories = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_9__["usePage"])().props.categories; //useSelector(state => state.categoriesStore);
+  var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_9__["usePage"])().props,
+      categories = _usePage$props.categories,
+      service_category = _usePage$props.service_category; //useSelector(state => state.categoriesStore);
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_5__["useState"])(CATEGORIES_BATCH_COUNT),
       _useState2 = _slicedToArray(_useState, 2),
@@ -322,7 +324,7 @@ var ManageServices = function ManageServices() {
       paginatorSP = _useState6[0],
       setPaginatorSP = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_5__["useState"])(categories[0]),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_5__["useState"])(categories && categories[0]),
       _useState8 = _slicedToArray(_useState7, 2),
       selectedCategory = _useState8[0],
       setSelectedCategory = _useState8[1];
@@ -342,7 +344,7 @@ var ManageServices = function ManageServices() {
         description: "No description",
         status: false,
         approved_at: false,
-        service_category_id: categories[0].service_category_id
+        service_category_id: service_category.id
       }
     });
   }
@@ -390,7 +392,7 @@ var ManageServices = function ManageServices() {
     activePageCallBack: selectPage
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
     className: "col-xl-5"
-  }, categories && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_infosidebar__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, categories && selectedCategory && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_infosidebar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     selectedCategory: selectedCategory
   })));
 };

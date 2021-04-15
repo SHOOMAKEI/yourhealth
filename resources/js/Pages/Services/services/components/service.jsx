@@ -20,6 +20,8 @@ export default function Service(service ) {
                     <span><i className="uil uil-eye font-16 mr-1 text-danger"></i> Not Visible</span>
                 }
             </td>
+
+
             <td className="table-action">
                     <button type="button" className="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         style={{lineHeight: 0.5, paddingTop: 0, paddingBottom: 0 }}>

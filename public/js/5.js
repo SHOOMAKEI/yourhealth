@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[5],{
 
-/***/ "./resources/js/Pages/Services/categories/components/AddCategoryModal.jsx":
-/*!********************************************************************************!*\
-  !*** ./resources/js/Pages/Services/categories/components/AddCategoryModal.jsx ***!
-  \********************************************************************************/
+/***/ "./resources/js/Pages/Services/subcategories/components/AddCategoryModal.jsx":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/Pages/Services/subcategories/components/AddCategoryModal.jsx ***!
+  \***********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 

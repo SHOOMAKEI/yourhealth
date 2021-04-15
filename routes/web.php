@@ -220,8 +220,24 @@ Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_
      Route::get('services_sub_categories/{services_sub_category}/approval', [ServiceSubCategoryController::class, 'toggleApproval'])
          ->name('services_sub_categories.approval');
 
+     Route::get('services/{service}/index', [ServiceController::class, 'index'])
+         ->name('services.index');
+     Route::get('services/{service}', [ServiceController::class, 'index'])
+         ->name('services.index');
+     Route::get('services/{service}/show', [ServiceController::class, 'show'])
+         ->name('services.show');
+     Route::post('services', [ServiceController::class, 'store'])
+         ->name('services.store');
+     Route::put('services/{service}/update', [ServiceController::class, 'update'])
+         ->name('services.update');
+     Route::get('services/{service}', [ServiceController::class, 'destroy'])
+         ->name('services.destroy');
+     Route::get('services/{service}/visibility', [ServiceController::class, 'toggleVisibility'])
+         ->name('services.visibility');
+     Route::get('services/{service}/approval', [ServiceController::class, 'toggleApproval'])
+         ->name('services.approval');
 
-     Route::resource('services', ServiceController::class);
+
 
 //     Route::resource('medical_courses', MedicalCourseController::class);
 //     Route::resource('medical_institutes', MedicalInstituteController::class);
