@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class VerifyMobileNumberController extends Controller
 {
     public function show()
     {
-        return view('auth.verify-mobile-number');
+        return Inertia::render('Auth/VerifyMobileNumber');
     }
 
     public function verify(Request $request)
@@ -20,19 +21,19 @@ class VerifyMobileNumberController extends Controller
         ]);
 
         if ($request->user()->hasVerifiedMobileNumber()) {
-            return redirect()->intended(config('fortify.home').'?verified=1');
+            return redirect()->intended(route('login'));
         }
 
         if ($request->user()->getMobileNumberVerificationCode() != $request['verification_code']) {
             return redirect()->back()->with(['status'=> 'wrong-verification-code']);
         }
-        
+
         if ($request->user()->markMobileNumberAsVerified()) {
             event(new Verified($request->user()));
         }
-        
 
-        return redirect()->intended(config('fortify.home').'?verified=1');
+
+        return redirect()->intended(route('login'));
     }
 
     public function resend(Request $request)

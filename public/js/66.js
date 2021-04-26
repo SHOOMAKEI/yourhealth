@@ -1,18 +1,28 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[66],{
 
-/***/ "./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx ***!
-  \*******************************************************************************/
+/***/ "./resources/js/Pages/Auth/VerifyMobileNumber.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/Pages/Auth/VerifyMobileNumber.js ***!
+  \*******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DeleteCategoryDialog; });
-/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Shared/TextInput */ "./resources/js/Shared/TextInput.js");
+/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -27,121 +37,93 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function DeleteCategoryDialog() {
-  var selectedCategory = {
-    name: 'omakei'
-  };
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props,
+      status = _usePage$props.status,
+      errors = _usePage$props.errors;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       sending = _useState2[0],
-      setSending = _useState2[1]; // useEffect(() => {
-  //     if (deleteServiceCategoryResponse.data) {
-  //        setSuccess(true)
-  //        dispatch(deleteCategory(selectedCategory));
-  //     }
-  //  }, [deleteServiceCategoryResponse.data])
-  //
-  // function _deleteCategory() {
-  //     deleteServiceCategory({variables: {id: selectedCategory.id}})
-  // }
+      setSending = _useState2[1];
 
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    email: ''
+  }),
+      _useState4 = _slicedToArray(_useState3, 2),
+      values = _useState4[0],
+      setValues = _useState4[1];
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    id: "delete-category",
-    className: "modal fade",
-    tabIndex: -1,
-    role: "dialog",
-    "aria-labelledby": "delete-categoryLabel",
-    "aria-hidden": "true"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "modal-dialog"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "modal-content modal-filled bg-danger"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "modal-header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
-    className: "modal-title",
-    id: "delete-categoryLabel"
-  }, "delete ", selectedCategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    type: "button",
-    className: "close",
-    "data-dismiss": "modal",
-    "aria-hidden": "true"
-  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "modal-body"
-  }, "Are you sure you want to delete ", selectedCategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "modal-footer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    type: "button",
-    className: "btn btn-light",
-    "data-dismiss": "modal"
-  }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_0__["default"], {
-    type: "submit",
-    className: "btn btn-primary btn-block",
-    loading: sending
-  }, "Save Changes")))));
-}
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Services/subcategories/components/serviceSubategory.jsx":
-/*!************************************************************************************!*\
-  !*** ./resources/js/Pages/Services/subcategories/components/serviceSubategory.jsx ***!
-  \************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Subcategory; });
-/* harmony import */ var _deleteDialog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteDialog */ "./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx");
-
-function Subcategory(subcategory) {
-  function chooseSubcategory() {// dispatch(selectSubcategory(subcategory))
+  function handleChange(e) {
+    var key = e.target.name;
+    var value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    setValues(function (values) {
+      return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, key, value));
+    });
   }
 
-  return /*#__PURE__*/React.createElement("tr", {
-    key: subcategory.id
-  }, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
-    href: '#',
-    className: "text-dark",
-    onClick: chooseSubcategory
-  }, subcategory.name)), /*#__PURE__*/React.createElement("td", null, subcategory.is_active ? /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
-    className: "uil uil-eye font-16 mr-1 text-success"
-  }), " Visible") : /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
-    className: "uil uil-eye font-16 mr-1 text-danger"
-  }), " Not Visible")), /*#__PURE__*/React.createElement("td", {
-    className: "table-action"
-  }, /*#__PURE__*/React.createElement("button", {
-    type: "button",
-    className: "btn btn-link dropdown-toggle",
-    "data-toggle": "dropdown",
-    "aria-haspopup": "true",
-    "aria-expanded": "false",
-    style: {
-      lineHeight: 0.5,
-      paddingTop: 0,
-      paddingBottom: 0
-    }
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "uil uil-bright font-16 mr-1 text-primary"
-  }), "More"), /*#__PURE__*/React.createElement("div", {
-    className: "dropdown-menu"
-  }, /*#__PURE__*/React.createElement("a", {
-    href: "javascript:void(0);",
-    className: "dropdown-item",
-    onClick: chooseSubcategory
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "uil uil-eye mr-1"
-  }), "Show info"), /*#__PURE__*/React.createElement(Link, {
-    href: "/services/services/".concat(subcategory.id)
-  }, /*#__PURE__*/React.createElement("a", {
-    className: "dropdown-item"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "uil uil-sitemap mr-1"
-  }), "services"))), /*#__PURE__*/React.createElement(_deleteDialog__WEBPACK_IMPORTED_MODULE_0__["default"], null)));
-}
+  function handleSubmit(e) {
+    e.preventDefault();
+    setSending(true);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('verification_code.verify'), values).then(function () {
+      setSending(false);
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "wrapper-login"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "app justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-3"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "login-form"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card mb-0 mt-5 p-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "text-center mb-3"
+  }, "Verify Mobile Number"), status && status === 'wrong-verification-code' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "alert alert-danger alert-borderless",
+    role: "alert"
+  }, "Wrong code provided. Please try again.") : null, status && status === 'verification-code-sent' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "alert alert-primary alert-borderless",
+    role: "alert"
+  }, "Verification code sent to your mobile number successful.") : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "verification_code",
+    type: "text",
+    placeholder: "Verification Code",
+    label: "Enter Verification Code",
+    errors: errors.verification_code,
+    value: values.verification_code,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group my-3 row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
+    href: route('verification_code.send'),
+    className: "btn btn-success btn-md mr-3"
+  }, "Resend Verification Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    type: "submit",
+    className: "btn btn-primary btn-md",
+    loading: sending
+  }, "Verify")))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-3"
+  })))));
+});
 
 /***/ }),
 
@@ -177,6 +159,51 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
     role: "status",
     "aria-hidden": "true"
   }), children);
+});
+
+/***/ }),
+
+/***/ "./resources/js/Shared/TextInput.js":
+/*!******************************************!*\
+  !*** ./resources/js/Shared/TextInput.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
+  var label = _ref.label,
+      name = _ref.name,
+      className = _ref.className,
+      _ref$errors = _ref.errors,
+      errors = _ref$errors === void 0 ? [] : _ref$errors,
+      props = _objectWithoutProperties(_ref, ["label", "name", "className", "errors"]);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group ".concat(className)
+  }, label && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: name
+  }, label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", _extends({
+    id: name,
+    name: name
+  }, props, {
+    className: "form-control"
+  })), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback",
+    style: {
+      display: 'block'
+    }
+  }, errors));
 });
 
 /***/ })

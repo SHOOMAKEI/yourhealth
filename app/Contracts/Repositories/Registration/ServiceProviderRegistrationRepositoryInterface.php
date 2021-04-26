@@ -41,11 +41,11 @@ interface ServiceProviderRegistrationRepositoryInterface
 
     public function deleteProviderQualification(array $request):ProviderQualification;
 
-    public function createProviderMedicalRegistration(array $request):ProviderMedicalRegistration;
+    public function createProviderMedicalRegistration(array $request):object;
 
-    public function updateProviderMedicalRegistration(array $request):ProviderMedicalRegistration;
+    public function updateProviderMedicalRegistration(array $request):object;
 
-    public function deleteProviderMedicalRegistration(array $request):ProviderMedicalRegistration;
+    public function deleteProviderMedicalRegistration(array $request):object;
 
     public function createProviderProfileServices(array $request):Collection;
 

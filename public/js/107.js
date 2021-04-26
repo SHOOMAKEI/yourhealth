@@ -1,17 +1,19 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[107],{
 
-/***/ "./resources/js/Pages/Services/subcategories/components/paginator.jsx":
-/*!****************************************************************************!*\
-  !*** ./resources/js/Pages/Services/subcategories/components/paginator.jsx ***!
-  \****************************************************************************/
+/***/ "./resources/js/Pages/ServiceProviders/requests/components/profile/Qualifications.jsx":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviders/requests/components/profile/Qualifications.jsx ***!
+  \********************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Paginator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Qualifications; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -25,88 +27,51 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-function Paginator(_ref) {
-  var batchCount = _ref.batchCount,
-      totalItems = _ref.totalItems,
-      activePageCallBack = _ref.activePageCallBack;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([1]),
+function Qualifications(_ref) {
+  var provider = _ref.provider;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
-      pages = _useState2[0],
-      setPages = _useState2[1];
+      qualifications = _useState2[0],
+      setQualifications = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      sending = _useState4[0],
+      setSending = _useState4[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    calculatePagination();
-  }, [batchCount, totalItems]);
-
-  function calculatePagination() {
-    var _pages = Math.ceil(totalItems / batchCount);
-
-    setPages(Array.from(Array(_pages).keys()));
-  }
-
-  function setActive(id) {
-    pages.map(function (page) {
-      $("#page-".concat(page)).removeClass('active');
+    setSending(true);
+    axios.get(route('service_provider_profiles.qualifications', provider.id)).then(function (resp) {
+      setQualifications(resp.data);
+      setSending(false);
     });
-    $("#page-".concat(id)).addClass('active');
-    activePageCallBack(id);
-  }
-
+  }, [provider]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row px-2"
+    className: "tab-pane fade",
+    id: "v-pills-qualifications",
+    role: "tabpanel",
+    "aria-labelledby": "v-pills-qualifications-tab"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-sm-12 col-md-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "dataTables_info",
-    id: "service-categories-table_info",
-    role: "status",
-    "aria-live": "polite"
-  }, "Showing 1 to ", batchCount, " of ", totalItems, " entries")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-sm-12 col-md-7"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "dataTables_paginate paging_simple_numbers float-right",
-    id: "service-categories-table_paginate"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-    className: "pagination pagination-rounded"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "paginate_button page-item previous disabled",
-    id: "service-categories-table_previous"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#",
-    "aria-controls": "service-categories-table",
-    "data-dt-idx": "0",
-    tabIndex: 0,
-    className: "page-link"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "uil uil-angle-left"
-  }))), pages.map(function (page) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      className: "paginate_button page-item ".concat(page === 0 && 'active'),
-      key: page,
-      id: "page-".concat(page),
-      onClick: function onClick() {
-        return setActive(page);
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    className: "table table-centered table-borderless mb-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Institution"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Attachment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Actions"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, qualifications.map(function (qualification) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+      key: qualification.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, qualification.award_title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, qualification.institution_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["InertiaLink"], {
+      href: "".concat(qualification.attachment),
+      className: "btn btn-light"
+    }, "File ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "uil-cloud-download ml-1"
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["InertiaLink"], {
       href: "#",
-      "aria-controls": "service-categories-table",
-      "data-dt-idx": "".concat(page),
-      tabIndex: 0,
-      className: "page-link"
-    }, page));
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "paginate_button page-item next",
-    id: "service-categories-table_next"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#",
-    "aria-controls": "service-categories-table",
-    "data-dt-idx": "3",
-    tabIndex: 0,
-    className: "page-link"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "uil uil-angle-right"
-  })))))));
+      className: "action-icon"
+    }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "dripicons-trash"
+    }))));
+  })))));
 }
 
 /***/ })

@@ -131,7 +131,7 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
 
     public function getProfilePhotoPathAttribute()
     {
-        if (($this->hasRole('service-provider') || $this->hasRole('service-provider'))&&
+        if (($this->hasRole('service-provider'))&&
             $this->getFirstMediaUrl('profile-photo')==null) {
             return asset('avatar/service_provider_profile_avatar.jpg');
         }

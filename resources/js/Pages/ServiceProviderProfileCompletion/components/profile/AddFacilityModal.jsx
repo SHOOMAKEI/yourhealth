@@ -1,5 +1,5 @@
 import ModalForm from "@/Pages/Utilities/ModalForm";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import TextInput from '@/Shared/TextInput'
@@ -55,6 +55,15 @@ export default function AddFacilityModal( {modalID, initialData, operation, titl
 
     }
 
+    useEffect(()=>{
+        $(document).ready(function () {
+            window.setTimeout(()=>{
+                $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                    $(".alert").slideUp(500);
+                });
+            },2500)
+        });
+    },[status, errors])
 
     function renderForm() {
         return (

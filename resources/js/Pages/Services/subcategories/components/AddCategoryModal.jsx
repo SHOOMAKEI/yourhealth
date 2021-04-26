@@ -91,7 +91,7 @@ export default function AddCategoryModal({
             <form onSubmit={handleSubmit}>
                 {
                   status && (
-                    <div className={`alert alert-primary alert-dismissible bg-success text-white border-0 fade show`} role="alert">
+                    <div className={`alert alert-success alert-dismissible bg-primary text-white border-0 fade show`} role="alert">
                         <button type="button" className="close" onClick={() => setSuccess(false)}>
                             <span aria-hidden="true">&times;</span>
                         </button>

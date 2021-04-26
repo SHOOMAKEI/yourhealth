@@ -26,18 +26,19 @@ function Register() {
         all_services,
         provider_services,
         facility_services,
+        services_categories,
         full_profile,
     } = usePage().props
     return (
         <div className="account-pages mt-5 mb-5">
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row justify-content-center">
-                    <div className="col-12">
+                    <div className="col-lg-12">
                         <div className="card">
                             <TopNav user={user} />
                             {
                                 user.provider_profile.is_submitted && (
-                                    <div className="alert alert-success alert-dismissible bg-primary text-white border-0 fade show topnav-logo" role="alert">
+                                    <div className=" alert-success alert-dismissible bg-primary text-white border-0 fade show topnav-logo py-2 px-2" role="alert">
                                         <strong>Your Profile was submitted Please wait while we are verifying your profile. we will notify you via email when its ready! </strong>
                                     </div>
                                 )
@@ -53,8 +54,8 @@ function Register() {
                                                 && <Qualifications qualifications={qualifications} /> }
                                             {user.provider_profile.account_category_type === 'company'
                                                 && <Company company={company} /> }
-                                            {user.provider_profile.account_category_type === 'individual'
-                                                && <MedicalRegistrations medical_registrations={medical_registrations} services={all_services} /> }
+                                             <MedicalRegistrations medical_registrations={medical_registrations} facilities={facilities?facilities:{}}
+                                                                   user={user} services={services_categories} />
                                             <Services facilities={facilities?facilities:{}}
                                                       user={user} all_services={all_services}
                                                       registeredServices={user.provider_profile.account_category_type === 'individual'?provider_services:facility_services}/>

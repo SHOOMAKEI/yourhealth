@@ -3,6 +3,7 @@ import { UPDATE_CATEGORY_MODAL_ID } from '@/Pages/Utilities/Constants'
 import {InertiaLink, usePage} from "@inertiajs/inertia-react";
 import { Inertia } from '@inertiajs/inertia';
 import React, {useEffect, useState } from 'react'
+import DeleteCategoryDialog from "@/Pages/Services/categories/components/deleteDialog";
 
 export default function InfoSideBar({selectedCategory}) {
     const [category, setCategory] = useState(selectedCategory);
@@ -19,13 +20,7 @@ export default function InfoSideBar({selectedCategory}) {
 
 
     }, [selectedCategory])
-    //
-    // useEffect(() => {
-    //     if (updateServiceCategoryResponse.data) {
-    //        setSuccess(true)
-    //        dispatch(updateCategory({...selectedCategory, is_active: !selectedCategory.is_active}))
-    //     }
-    //  }, [updateServiceCategoryResponse.data])
+
 
     function toggleCategoryVisibility() {
         let category = {
@@ -34,8 +29,6 @@ export default function InfoSideBar({selectedCategory}) {
             description: selectedCategory.description,
           };
 
-        // updateServiceCategory({variables: category});
-        // dispatch(updateCategory({...selectedCategory, is_active: !selectedCategory.is_active}))
     }
 
     return (
@@ -64,10 +57,11 @@ export default function InfoSideBar({selectedCategory}) {
                             }
                         </InertiaLink>
                         <div className="dropdown-divider"></div>
-                        <a href="" className="dropdown-item text-danger" data-toggle="modal" data-target="#delete-category">
+                        <a href="" className="dropdown-item text-danger" data-toggle="modal" data-target={`#delete-category-${selectedCategory.id}`}>
                             <i className="uil uil-trash-alt mr-1"></i>Delete
                         </a>
                     </div>
+
                     <AddCategoryModal
                         modalID={UPDATE_CATEGORY_MODAL_ID}
                         initialData={{
@@ -76,7 +70,7 @@ export default function InfoSideBar({selectedCategory}) {
                             id: selectedCategory.id,
                         }}
                         operation="update"
-                        title={`Edit category ${selectedCategory.name}`}
+                        title={`Edit Category ${selectedCategory.name}`}
                     />
                 </div>
 
@@ -183,8 +177,8 @@ export default function InfoSideBar({selectedCategory}) {
                                         </tr>
 
                                         ):
-                                    subcategories &&  subcategories.slice(0,9).map(subcategory => (
-                                        <tr>
+                                    subcategories &&  subcategories.slice(0,9).map((subcategory, index) => (
+                                        <tr key={index+1}>
                                             <td>{subcategory.name}</td>
                                             <td>
                                                 {
@@ -204,8 +198,8 @@ export default function InfoSideBar({selectedCategory}) {
                                 }
                             </tbody>
                         </table>
-                        <InertiaLink href={route('services_sub_categories.index',selectedCategory.id)}>
-                            <a className="btn btn-primary btn-block mt-2">See Sub Categories</a>
+                        <InertiaLink className="btn btn-primary btn-block mt-2" href={route('services_sub_categories.index',selectedCategory.id)}>
+                           See Sub Categories
                         </InertiaLink>
                     </div>
                 </div>

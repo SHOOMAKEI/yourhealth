@@ -39,13 +39,12 @@ export default function Category({category, callback}) {
                         <a href="#" className="dropdown-item" onClick={chooseCategory}>
                             <i className="uil uil-eye mr-1"/>Show info
                         </a>
-                        <InertiaLink href={`/services/subcategories/${category.id}`}>
-                            <a className="dropdown-item" onClick={chooseCategory}>
+                        <InertiaLink className="dropdown-item" href={route('services.index',category.id)}>
+
                                 <i className="uil uil-sitemap mr-1"/>Services
-                            </a>
                         </InertiaLink>
                     </div>
-                    <DeleteDialog />
+                    <DeleteDialog category={category}/>
             </td>
         </tr>
     )

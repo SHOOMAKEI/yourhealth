@@ -1,6 +1,6 @@
 import FormInputError from "@/Pages/Utilities/FormInputError";
 import ModalForm from "@/Pages/Utilities/ModalForm";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import TextInput from '@/Shared/TextInput'
@@ -11,17 +11,18 @@ import SelectInput from "@/Shared/SelectInput";
 
 
 
-export default function AddMedicalRegistrationModal({modalID, initialData, operation, title, callback, services}) {
+export default function AddMedicalRegistrationModal({modalID, initialData, operation, title, callback, services, facility}) {
     const { errors, status, alertType } = usePage().props;
     const [sending, setSending] = useState(false);
-    const [values, setValues] = useState({
-        registration_number: "",
-        certificate_name: "",
-        year: "",
-        attachment: "",
-        certificate_number: "",
-        expired_at:""
-    });
+    const [data, setData] = useState({})
+
+    const [values, setValues] = useState(initialData);
+
+   useEffect(()=>{
+       setValues(initialData)
+   },[facility])
+
+
 
     function handleChange(e) {
         const key = e.target.name;
@@ -49,13 +50,23 @@ export default function AddMedicalRegistrationModal({modalID, initialData, opera
         }));
     }
 
+    useEffect(()=>{
+        $(document).ready(function () {
+            window.setTimeout(()=>{
+                $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                    $(".alert").slideUp(500);
+                });
+            },2500)
+        });
+    },[status, errors])
+
 
     function renderForm() {
         return (
         <div>
             {
                 status && (
-                    <div className={`alert alert-success alert-dismissible bg-success text-white border-0 fade show`} role="alert">
+                    <div className={`alert alert-success alert-dismissible bg-primary text-white border-0 fade show`} role="alert">
                         <button type="button" className="close" onClick={() => setSuccess(false)}>
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -124,12 +135,12 @@ export default function AddMedicalRegistrationModal({modalID, initialData, opera
                             callback={handleFileUpload}
                         />
                         <SelectInput
-                            name="service_id"
+                            name="service_category_id"
                             type="text"
                             placeholder="Authorize Service"
                             label="Authorize Service"
-                            errors={errors.service_id}
-                            value={values.service_id}
+                            errors={errors.service_category_id}
+                            value={values.service_category_id}
                             onChange={handleChange}
                         >
                             {services.map((service)=>(

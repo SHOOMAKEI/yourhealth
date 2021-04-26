@@ -3,8 +3,10 @@ import React from 'react';
 import Memberships from "@/Pages/Services/packages/Memberships";
 import Packages from "@/Pages/Services/packages/Packages";
 import Layout from "@/Shared/Layout";
+import {usePage} from "@inertiajs/inertia-react";
 
 const ManagePackages = () => {
+    const {memberships} = usePage().props
 
         return (
             <div className="row" style={{paddingTop: 30 + 'px'}}>
@@ -30,7 +32,7 @@ const ManagePackages = () => {
                     <div className="tab-content" id="v-pills-tabContent">
                         <div className="tab-pane fade active show" id="v-pills-memberships" role="tabpanel"
                              aria-labelledby="v-pills-memberships-tab">
-                            <Memberships />
+                            <Memberships memberships={memberships} />
                         </div>
                         <div className="tab-pane fade" id="v-pills-packages" role="tabpanel"
                              aria-labelledby="v-pills-packages-tab">

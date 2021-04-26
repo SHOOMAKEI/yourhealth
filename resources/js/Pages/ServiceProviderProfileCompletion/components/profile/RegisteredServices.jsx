@@ -7,6 +7,12 @@ export default function RegisteredServices({services, callback, user, facility})
 
     useEffect(() => {
         setShownServices(services)
+        $(document).ready(function() {
+            $('#registered-services-table').DataTable();
+            $('.dataTables_filter input[type="search"]').css(
+                {'width':'145px','display':'inline-block'}
+            );
+        } );
     }, [services])
 
     useEffect(() => {
@@ -34,18 +40,13 @@ export default function RegisteredServices({services, callback, user, facility})
         });
     }
 
+
     return (
         <div>
-            <div className="page-title-right mb-2">
-                <div className="app-search">
-                    <form>
-                        <div className="input-group">
-                            <input type="text" className="form-control" placeholder="Search..." id="search-input-registered" onInput={onSearch}/>
-                        </div>
-                    </form>
-                </div>
+            <div className="page-title-right mb-4">
+            <h4> Registered Services</h4>
             </div>
-            <table className="table table-centered table-borderless mb-0">
+            <table id="registered-services-table" className="table table-centered table-border mb-0">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -55,7 +56,7 @@ export default function RegisteredServices({services, callback, user, facility})
                 </thead>
                 <tbody>
                     {
-                       shownServices && shownServices.slice(0, 4).map((service) => (
+                       shownServices && shownServices.map((service) => (
                             <tr key={service.id}>
                                 <td>{service.name}</td>
                                 <td>{`${service.pivot.price} ${service.pivot.currency}`}</td>

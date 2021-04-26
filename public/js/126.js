@@ -1,13 +1,33 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[126],{
 
-/***/ "./resources/js/Pages/ServiceProviders/requests/components/profile/ProfileInfo.tsx":
-/*!*****************************************************************************************!*\
-  !*** ./resources/js/Pages/ServiceProviders/requests/components/profile/ProfileInfo.tsx ***!
-  \*****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./resources/js/Pages/Utilities/components/ActiveMainLink.jsx":
+/*!********************************************************************!*\
+  !*** ./resources/js/Pages/Utilities/components/ActiveMainLink.jsx ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: The keyword 'interface' is reserved (3:0)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n| import { ServiceProviderValues } from \"../ServiceProvider\";\n| \n> interface Props {\n|     provider: ServiceProviderValues;\n| }");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ActiveMainLink; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function ActiveMainLink(_ref) {
+  var title = _ref.title,
+      iconName = _ref.iconName,
+      compString = _ref.compString;
+  var _true = true,
+      asPath = _true.asPath;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "javascript: void(0);",
+    className: "side-nav-link ".concat(asPath.includes(compString) && 'active')
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: iconName
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " ", title, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "menu-arrow"
+  }));
+}
 
 /***/ })
 

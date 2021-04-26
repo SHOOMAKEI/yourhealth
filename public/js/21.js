@@ -19,6 +19,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Pages_Services_packages_membership_SelectedInfo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Pages/Services/packages/membership/SelectedInfo */ "./resources/js/Pages/Services/packages/membership/SelectedInfo.jsx");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _Pages_Services_packages_membership_deleteDialog__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Pages/Services/packages/membership/deleteDialog */ "./resources/js/Pages/Services/packages/membership/deleteDialog.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -38,34 +39,29 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Memberships() {
-  var memberships = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__["usePage"])().props.memberships;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(memberships),
+function Memberships(_ref) {
+  var memberships = _ref.memberships;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
       _useState2 = _slicedToArray(_useState, 2),
-      shownMemberships = _useState2[0],
-      setShownMemberships = _useState2[1];
+      selectedMembership = _useState2[0],
+      setSelectedMembership = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(memberships),
+      _useState4 = _slicedToArray(_useState3, 2),
+      shownMemberships = _useState4[0],
+      setShownMemberships = _useState4[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     setShownMemberships(memberships);
   }, [memberships]);
 
-  function searchMemberships(content) {
-    if (content.length === 0) {
-      setShownMemberships(memberships);
-    } else {
-      setShownMemberships(memberships.filter(function (membership) {
-        if (membership.name.toLowerCase().includes(content.toLowerCase())) {
-          return membership;
-        }
-      }));
-    }
-  }
-
   function renderModal() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_Services_packages_membership_AddMembership__WEBPACK_IMPORTED_MODULE_2__["default"], {
       modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__["ADD_MEMBERSHIP_MODAL_ID"],
-      operation: "add"
+      operation: selectedMembership.id ? "update" : "add",
+      initialData: selectedMembership
     });
   }
 
@@ -77,14 +73,17 @@ function Memberships() {
     title: "Create membership",
     modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__["ADD_MEMBERSHIP_MODAL_ID"],
     renderModal: renderModal,
-    search: searchMemberships
+    callback: setSelectedMembership
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row justify-content-sm-between"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-8"
+    className: "col-lg-12"
   }, shownMemberships && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_Services_packages_membership_List__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    memberships: shownMemberships
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    memberships: shownMemberships,
+    callback: setSelectedMembership
+  })), selectedMembership && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_Services_packages_membership_deleteDialog__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    membership: selectedMembership
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-4"
   }))));
 }
@@ -108,7 +107,8 @@ function Heading(_ref) {
   var title = _ref.title,
       renderModal = _ref.renderModal,
       modalID = _ref.modalID,
-      search = _ref.search;
+      search = _ref.search,
+      callback = _ref.callback;
 
   function onSearch() {
     $('#search-input').on('input', function (e) {
@@ -130,28 +130,21 @@ function Heading(_ref) {
     href: "#",
     className: "btn btn-primary mb-3",
     "data-toggle": "modal",
-    "data-target": "#".concat(modalID)
+    "data-target": "#".concat(modalID),
+    onClick: function onClick() {
+      return callback({
+        name: "",
+        description: "No description",
+        status: false
+      });
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "mdi mdi-plus"
   }), title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-8"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-sm-right float-right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "input-group"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "form-control",
-    placeholder: "Search...",
-    id: "search-input",
-    onInput: onSearch
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "input-group-append"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "btn btn-primary"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "uil uil-search"
-  }))))))), renderModal && renderModal());
+  })), renderModal && renderModal());
 }
 
 /***/ }),
@@ -166,58 +159,41 @@ function Heading(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return List; });
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__);
-// import {useDispatch, useSelector} from "react-redux";
-//
-// import {membershipsStateValues} from "@pages/data/reducers/memberships";
-// import {membershipsValues} from "@pages/data/constants/memberships";
-// import {selectMembership} from "@pages/data/actions/memberships";
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
+
+
 
 function List(_ref) {
-  var memberships = _ref.memberships;
-  var selectedMembership = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__["usePage"])().props.selectedMembership; // const dispatch = useDispatch();
+  var memberships = _ref.memberships,
+      callback = _ref.callback;
+  var selectedMembership = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["usePage"])().props.selectedMembership;
 
-  function _selectMembership(membership) {// dispatch(selectMembership(membership))
+  function _selectMembership(membership) {
+    callback(membership);
   }
 
-  return /*#__PURE__*/React.createElement("div", null, memberships.map(function (membership) {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "row"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "col-sm-4 mb-2 mb-sm-0"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "custom-control custom-checkbox",
-      onClick: function onClick() {
-        return _selectMembership(membership);
-      }
-    }, /*#__PURE__*/React.createElement("input", {
-      type: "checkbox",
-      className: "custom-control-input",
-      id: "membership-".concat(membership.id),
-      checked: membership.id === selectedMembership.id
-    }), /*#__PURE__*/React.createElement("label", {
-      className: "custom-control-label",
-      htmlFor: "task1"
-    }, membership.name))), /*#__PURE__*/React.createElement("div", {
-      className: "col-sm-8"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "d-flex justify-content-between float-right"
-    }, /*#__PURE__*/React.createElement("ul", {
-      className: "list-inline font-13 text-right"
-    }, /*#__PURE__*/React.createElement("li", {
-      className: "list-inline-item"
-    }, /*#__PURE__*/React.createElement("i", {
-      className: "uil uil-schedule font-16 mr-1"
-    }), " ", membership.created_at), /*#__PURE__*/React.createElement("li", {
-      className: "list-inline-item ml-2"
-    }, membership.is_active ? /*#__PURE__*/React.createElement("span", {
+  $(document).ready(function () {
+    $('#package-membership-table').DataTable();
+    $('.dataTables_filter input[type="search"]').css({
+      'width': '145px',
+      'display': 'inline-block'
+    });
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    id: "package-membership-table",
+    className: "table table-centered table-border mb-0 font-14"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, " Created At"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Action"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, memberships.map(function (membership, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
+      key: index + 1
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, membership.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, membership.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", membership.is_active ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "badge badge-success-lighten p-1"
-    }, " Enabled") : /*#__PURE__*/React.createElement("span", {
+    }, " Enabled") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "badge badge-danger-lighten p-1"
-    }, " Disabled")), /*#__PURE__*/React.createElement("li", {
-      className: "list-inline-item ml-2"
-    }, /*#__PURE__*/React.createElement("button", {
+    }, " Disabled")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       type: "button",
       className: "btn btn-link dropdown-toggle",
       "data-toggle": "dropdown",
@@ -228,25 +204,34 @@ function List(_ref) {
         paddingTop: 0,
         paddingBottom: 0
       }
-    }, /*#__PURE__*/React.createElement("i", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "uil uil-bright font-16 mr-1 text-primary"
-    }), "More"), /*#__PURE__*/React.createElement("div", {
+    }), "More"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "dropdown-menu"
-    }, /*#__PURE__*/React.createElement("a", {
-      href: "javascript:void(0);",
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "#",
       className: "dropdown-item",
+      "data-toggle": "modal",
+      "data-target": "#".concat(_Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__["ADD_MEMBERSHIP_MODAL_ID"]),
       onClick: function onClick() {
         return _selectMembership(membership);
       }
-    }, /*#__PURE__*/React.createElement("i", {
-      className: "uil uil-eye mr-1"
-    }), "Show info"), /*#__PURE__*/React.createElement("a", {
-      href: "javascript:void(0);",
-      className: "dropdown-item"
-    }, /*#__PURE__*/React.createElement("i", {
-      className: "uil uil-eye mr-1"
-    }), "Edit")))))));
-  }));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "uil uil-edit mr-1"
+    }), "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "dropdown-divider"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "",
+      className: "dropdown-item text-danger",
+      "data-toggle": "modal",
+      "data-target": "#delete-membership-".concat(membership.id),
+      onClick: function onClick() {
+        return _selectMembership(membership);
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "uil uil-trash-alt mr-1"
+    }), "Delete"))));
+  }))));
 }
 
 /***/ }),
@@ -313,7 +298,7 @@ function SelectedInfo() {
   })), /*#__PURE__*/React.createElement("div", {
     className: "dropdown-menu dropdown-menu-right"
   }, /*#__PURE__*/React.createElement("a", {
-    href: "javascript:void(0);",
+    href: "#",
     className: "dropdown-item",
     onClick: toggleVisibility
   }, selectedMembership.is_active ? /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
@@ -321,7 +306,7 @@ function SelectedInfo() {
   }), "Hide from public") : /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
     className: "uil uil-eye mr-1"
   }), "Show to public")), /*#__PURE__*/React.createElement("a", {
-    href: "javascript:void(0);",
+    href: "#",
     className: "dropdown-item",
     "data-toggle": "modal",
     "data-target": "#".concat(_Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__["UPDATE_MEMBERSHIP_MODAL_ID"])
@@ -330,7 +315,7 @@ function SelectedInfo() {
   }), "Edit"), /*#__PURE__*/React.createElement("div", {
     className: "dropdown-divider"
   }), /*#__PURE__*/React.createElement("a", {
-    href: "javascript:void(0);",
+    href: "#",
     className: "dropdown-item text-danger",
     "data-toggle": "modal",
     "data-target": "#delete-category"
@@ -377,11 +362,108 @@ function SelectedInfo() {
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Services/packages/membership/deleteDialog.jsx":
+/*!**************************************************************************!*\
+  !*** ./resources/js/Pages/Services/packages/membership/deleteDialog.jsx ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DeleteMembershipDialog; });
+/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+function DeleteMembershipDialog(_ref) {
+  var membership = _ref.membership;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
+      _useState2 = _slicedToArray(_useState, 2),
+      selectedMembership = _useState2[0],
+      setSelectedMembership = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      sending = _useState4[0],
+      setSending = _useState4[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    setSelectedMembership(membership);
+  }, [membership]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setSending(true);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__["Inertia"]["delete"](route('membership_registration.destroy', selectedMembership.id)).then(function () {
+      setSending(false);
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    id: "delete-membership-".concat(membership.id),
+    className: "modal fade",
+    tabIndex: -1,
+    role: "dialog",
+    "aria-labelledby": "delete-categoryLabel",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-dialog"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-content modal-filled bg-danger"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
+    className: "modal-title",
+    id: "delete-categoryLabel"
+  }, "delete ", selectedMembership.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    type: "button",
+    className: "close",
+    "data-dismiss": "modal",
+    "aria-hidden": "true"
+  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-body"
+  }, "Are you sure you want to delete ", selectedMembership.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-footer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    type: "button",
+    className: "btn btn-light",
+    "data-dismiss": "modal"
+  }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+    href: "#",
+    className: "btn btn-outline-light",
+    "data-dismiss": "modal",
+    onClick: handleSubmit
+  }, "Delete ")))));
+}
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Utilities/Constants.js":
 /*!***************************************************!*\
   !*** ./resources/js/Pages/Utilities/Constants.js ***!
   \***************************************************/
-/*! exports provided: ADD_CATEGORY_MODAL_ID, UPDATE_CATEGORY_MODAL_ID, SERVICE_CATEGORIES_TABLE, PROVIDER_PROFILE_MODAL_ID, ADD_MEMBERSHIP_MODAL_ID, UPDATE_MEMBERSHIP_MODAL_ID, ADD_FACILITY_MODAL_ID, EDIT_FACILITY_MODAL_ID, ADD_QUALIFICATION_MODAL_ID, ADD_MEDICAL_REGISTRATION_MODAL_ID, REQUEST_SERVICE_MODAL_ID, SET_SERVICE_MODAL_PRICE, ADD_SERVICE_MODAL_ID */
+/*! exports provided: ADD_CATEGORY_MODAL_ID, UPDATE_CATEGORY_MODAL_ID, SERVICE_CATEGORIES_TABLE, PROVIDER_PROFILE_MODAL_ID, ADD_MEMBERSHIP_MODAL_ID, UPDATE_MEMBERSHIP_MODAL_ID, ADD_FACILITY_MODAL_ID, EDIT_FACILITY_MODAL_ID, ADD_QUALIFICATION_MODAL_ID, ADD_MEDICAL_REGISTRATION_MODAL_ID, REQUEST_SERVICE_MODAL_ID, SET_SERVICE_MODAL_PRICE, ADD_SERVICE_MODAL_ID, UPDATE_SERVICE_MODAL_ID, ADD_SUB_CATEGORY_MODAL_ID, UPDATE_SUB_CATEGORY_MODAL_ID */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -399,6 +481,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REQUEST_SERVICE_MODAL_ID", function() { return REQUEST_SERVICE_MODAL_ID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SERVICE_MODAL_PRICE", function() { return SET_SERVICE_MODAL_PRICE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_SERVICE_MODAL_ID", function() { return ADD_SERVICE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_SERVICE_MODAL_ID", function() { return UPDATE_SERVICE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_SUB_CATEGORY_MODAL_ID", function() { return ADD_SUB_CATEGORY_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_SUB_CATEGORY_MODAL_ID", function() { return UPDATE_SUB_CATEGORY_MODAL_ID; });
 var ADD_CATEGORY_MODAL_ID = "add-category-modal";
 var UPDATE_CATEGORY_MODAL_ID = "update-category-modal";
 var SERVICE_CATEGORIES_TABLE = 'service-categories-table';
@@ -412,6 +497,9 @@ var ADD_MEDICAL_REGISTRATION_MODAL_ID = 'add-medical-registration-modal';
 var REQUEST_SERVICE_MODAL_ID = 'request-service-modal';
 var SET_SERVICE_MODAL_PRICE = 'set-service-modal-price';
 var ADD_SERVICE_MODAL_ID = 'add-service-modal';
+var UPDATE_SERVICE_MODAL_ID = 'update-service-modal';
+var ADD_SUB_CATEGORY_MODAL_ID = 'add-sub-category-modal';
+var UPDATE_SUB_CATEGORY_MODAL_ID = "update-sub-category-modal";
 
 /***/ })
 

@@ -10,7 +10,7 @@ export default function Qualifications({qualifications}) {
     const { errors, status, alertType } = usePage().props;
     const [sending, setSending] = useState(false);
 
-    function searchQualifications() {
+    function searchQualifications(content) {
 
     }
 

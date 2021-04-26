@@ -13,7 +13,7 @@ import {usePage} from "@inertiajs/inertia-react";
 const CATEGORIES_BATCH_COUNT = 10;
 
 const ManageServices = () => {
-    const {categories} = usePage().props
+    const {categories, service_sub_category} = usePage().props
         //useSelector(state => state.categoriesStore);
 
     const [categoriesBatchCount, setCategoriesBatchCount] = useState(CATEGORIES_BATCH_COUNT)
@@ -35,6 +35,7 @@ const ManageServices = () => {
             description: "No description",
             status: false,
             approved_at:false,
+            service_sub_category_id: service_sub_category.id
         }}/>
     }
 
@@ -62,8 +63,8 @@ const ManageServices = () => {
     }
 
         return (
-            <div className="row" style={{paddingTop: 30 + 'px'}}>
-                <div className="col-xl-7">
+            <div className="row col-lg-12" style={{paddingTop: 30 + 'px'}}>
+                <div className="col-lg-7">
                     <div className="card px-2">
                         <Heading title="Services" renderModal={renderAddServiceModal} modalID={ADD_SERVICE_MODAL_ID} search={searchCategories}  />
                         <ServicesTable services={shownCategories} callback={setSelectedCategory} />
@@ -71,7 +72,7 @@ const ManageServices = () => {
                     </div>
                 </div>
 
-                <div className="col-xl-5">
+                <div className="col-lg-5">
                     { categories && selectedCategory  && <InfoSideBar selectedCategory={selectedCategory} />}
                 </div>
             </div>

@@ -10,6 +10,8 @@ export default function ProfileInfo({provider}) {
             <div className="row">
                 <div className="col-6">
                     <table className="table table-centered mb-0">
+                        <thead></thead>
+                        <tbody>
                         <tr>
                             <td><strong>Title</strong></td>
                             <td> {provider.title} </td>
@@ -38,10 +40,13 @@ export default function ProfileInfo({provider}) {
                             <td><strong>Date of birth</strong></td>
                             <td>{provider.dob}</td>
                         </tr>
+                        </tbody>
                     </table>
                 </div>
                 <div className="col-6">
                     <table className="table table-centered mb-0">
+                        <thead></thead>
+                        <tbody>
                         <tr>
                             <td><strong>Phone number</strong></td>
                             <td>{provider.mobile_number}</td>
@@ -66,6 +71,8 @@ export default function ProfileInfo({provider}) {
                             <td><strong>Bio</strong></td>
                             <td>{provider.bio}</td>
                         </tr>
+                        </tbody>
+
                     </table>
                 </div>
             </div>

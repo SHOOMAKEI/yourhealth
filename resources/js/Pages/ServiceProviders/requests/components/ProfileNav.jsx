@@ -26,7 +26,7 @@ export default function ProfileNav({provider}) {
                                 href="#v-pills-medical-registration" role="tab" aria-controls="v-pills-medical-registration"
                                 aria-selected="false">
                                 <i className="mdi mdi-settings-outline d-md-none d-block"/>
-                                <span className="d-none d-md-block">Medical Registration</span>
+                                <span className="d-none d-md-block">Practice License</span>
                             </a>
                             <a className="nav-link mb-1" id="v-pills-settings-tab" data-toggle="pill"
                             href="#v-pills-services" role="tab" aria-controls="v-pills-services"
@@ -54,6 +54,12 @@ export default function ProfileNav({provider}) {
                                 <span className="d-none d-md-block">Facility Information</span>
                             </a>
                             <a className="nav-link mb-1" id="v-pills-settings-tab" data-toggle="pill"
+                               href="#v-pills-medical-registration" role="tab" aria-controls="v-pills-medical-registration"
+                               aria-selected="false">
+                                <i className="mdi mdi-settings-outline d-md-none d-block"/>
+                                <span className="d-none d-md-block">Practice License</span>
+                            </a>
+                            <a className="nav-link mb-1" id="v-pills-settings-tab" data-toggle="pill"
                             href="#v-pills-facility-services" role="tab" aria-controls="v-pills-facility-services"
                             aria-selected="false">
                                 <i className="mdi mdi-settings-outline d-md-none d-block"/>
@@ -64,13 +70,19 @@ export default function ProfileNav({provider}) {
                 }
 
                 {
-                    provider.account_category_type === 'company' && (
+                    provider.account_category_type === 'facility' && (
                         <>
                             <a className="nav-link mb-1" id="v-pills-settings-tab" data-toggle="pill"
                             href="#v-pills-facility" role="tab" aria-controls="v-pills-facility"
                             aria-selected="false">
                                 <i className="mdi mdi-settings-outline d-md-none d-block"/>
                                 <span className="d-none d-md-block">Facility Information</span>
+                            </a>
+                            <a className="nav-link mb-1" id="v-pills-settings-tab" data-toggle="pill"
+                               href="#v-pills-medical-registration" role="tab" aria-controls="v-pills-medical-registration"
+                               aria-selected="false">
+                                <i className="mdi mdi-settings-outline d-md-none d-block"/>
+                                <span className="d-none d-md-block">Practice License</span>
                             </a>
                             <a className="nav-link mb-1" id="v-pills-settings-tab" data-toggle="pill"
                             href="#v-pills-facility-services" role="tab" aria-controls="v-pills-facility-services"
@@ -82,7 +94,12 @@ export default function ProfileNav({provider}) {
                     )
                 }
 
-
+                <a className="nav-link mb-1" id="v-pills-settings-tab" data-toggle="pill"
+                   href="#v-pills-verification" role="tab" aria-controls="v-pills-verification"
+                   aria-selected="false">
+                    <i className="mdi mdi-settings-outline d-md-none d-block"/>
+                    <span className="d-none d-md-block">Verification</span>
+                </a>
             </div>
         </div>
     )

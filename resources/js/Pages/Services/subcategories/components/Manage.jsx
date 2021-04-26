@@ -4,7 +4,7 @@ import    InfoSideBar from './infosidebar'
 import    Paginator from './paginator'
 import    ServiceCategoriesTable  from './serviceCategoryTable'
 import React, {useEffect, useState} from 'react'
-import { ADD_CATEGORY_MODAL_ID } from '@/Pages/Utilities/Constants'
+import {ADD_CATEGORY_MODAL_ID, ADD_SUB_CATEGORY_MODAL_ID} from '@/Pages/Utilities/Constants'
 import Framework from '@/Pages/framework';
 import Layout from "@/Shared/Layout";
 import {usePage} from "@inertiajs/inertia-react";
@@ -31,7 +31,7 @@ const ManageServices = () => {
 
 
     function renderAddCategoryModal() {
-        return  <AddSubcategoryModal modalID={ADD_CATEGORY_MODAL_ID} operation="add" initialData={{
+        return  <AddSubcategoryModal modalID={ADD_SUB_CATEGORY_MODAL_ID} operation="add" initialData={{
             name: "",
             description: "No description",
             status: false ,
@@ -64,16 +64,16 @@ const ManageServices = () => {
     }
 
         return (
-            <div className="row" style={{paddingTop: 30 + 'px'}}>
-                <div className="col-xl-7">
+            <div className="row col-lg-12" style={{paddingTop: 30 + 'px'}}>
+                <div className="col-lg-7">
                     <div className="card px-2">
-                        <Heading title="Service Sub Categories" renderModal={renderAddCategoryModal} modalID={ADD_CATEGORY_MODAL_ID} search={searchCategories}  />
+                        <Heading title="Service Sub Categories" renderModal={renderAddCategoryModal} modalID={ADD_SUB_CATEGORY_MODAL_ID} search={searchCategories}  />
                         <ServiceCategoriesTable categories={shownCategories} callback={setSelectedCategory} />
                         <Paginator batchCount={categoriesBatchCount} totalItems={categories.length} activePageCallBack={selectPage} />
                     </div>
                 </div>
 
-                <div className="col-xl-5">
+                <div className="col-lg-5">
                     { categories && selectedCategory  && <InfoSideBar selectedCategory={selectedCategory} />}
                 </div>
             </div>

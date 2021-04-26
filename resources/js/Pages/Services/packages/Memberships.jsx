@@ -6,32 +6,25 @@ import Heading from "@/Pages/Services/packages/membership/Heading";
 import List from "@/Pages/Services/packages/membership/List";
 import SelectedInfo from "@/Pages/Services/packages/membership/SelectedInfo";
 import {usePage} from "@inertiajs/inertia-react";
+import DeleteMembershipDialog from "@/Pages/Services/packages/membership/deleteDialog";
 
 
-export default function Memberships() {
-    const {memberships} = usePage().props
+export default function Memberships({memberships}) {
+    const [selectedMembership, setSelectedMembership] = useState({})
     const [shownMemberships, setShownMemberships] = useState(memberships)
 
     useEffect(() => {
         setShownMemberships(memberships)
     }, [memberships])
 
-    function searchMemberships(content ) {
-        if(content.length === 0) {
-            setShownMemberships(memberships)
-        } else {
-            setShownMemberships(
-                memberships.filter(membership =>  {
-                    if(membership.name.toLowerCase().includes(content.toLowerCase())) {
-                        return membership
-                    }
-                })
-            )
-        }
-    }
 
     function renderModal() {
-        return <AddMembershipModal modalID={ADD_MEMBERSHIP_MODAL_ID} operation={"add"} />
+
+        return <AddMembershipModal
+            modalID={ADD_MEMBERSHIP_MODAL_ID}
+            operation={ selectedMembership.id? "update": "add"}
+            initialData={selectedMembership}
+        />
     }
 
     return (
@@ -40,12 +33,14 @@ export default function Memberships() {
                 <Heading
                     title={"Create membership"}
                     modalID={ADD_MEMBERSHIP_MODAL_ID}
-                    renderModal={renderModal} search={searchMemberships}
+                    renderModal={renderModal}
+                    callback={setSelectedMembership}
                 />
                 <div className="row justify-content-sm-between">
-                    <div className="col-8">
-                        { shownMemberships && <List memberships={shownMemberships}/>}
+                    <div className="col-lg-12">
+                        { shownMemberships && <List memberships={shownMemberships} callback={setSelectedMembership}/>}
                     </div>
+                    {selectedMembership && <DeleteMembershipDialog membership={selectedMembership}/>}
                     <div className="col-4">
                         {/*<SelectedInfo />*/}
                     </div>

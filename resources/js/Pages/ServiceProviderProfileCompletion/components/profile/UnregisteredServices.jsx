@@ -6,7 +6,7 @@ import SelectInput from "@/Shared/SelectInput";
 import LoadingButton from "@/Shared/LoadingButton";
 
 
-export default function UnregisteredServices({services,shownServices, callback, user, facility={}}) {
+export default function UnregisteredServices({services,shownServices, callback, user, facility}) {
     const { errors, status, alertType } = usePage().props;
     const [sending, setSending] = useState(false);
     const [selectedService, setSelectedService] = useState({});
@@ -24,8 +24,8 @@ export default function UnregisteredServices({services,shownServices, callback, 
         service_id: selectedService.id
     })),[selectedService])
 
-    useEffect(()=>
-        setValues(values => ({
+   useEffect(()=>
+       facility && setValues(values => ({
             ...values,
             provider_facility_id: facility
         })),[facility])
@@ -56,40 +56,30 @@ export default function UnregisteredServices({services,shownServices, callback, 
         }
 
     }
+    $(document).ready(function() {
+        $('#unregistered-services-table').DataTable();
+        $('.dataTables_filter input[type="search"]').css(
+            {'width':'145px','display':'inline-block'}
+        );
+    } );
 
 
-    function onSearch() {
-        $('#search-input-unregistered').on('input',function(e){
-            let input = $(this);
-            let val = input.val();
-
-            if (input.data("lastval") != val) {
-                input.data("lastval", val);
-
-                let newShownServices = services.filter(service => {
-                    if (service.name.toLocaleLowerCase().includes(val)) {
-                        return service
-                    }
-                })
-
-                // setShownServices(newShownServices);
-            }
+    useEffect(()=>{
+        $(document).ready(function () {
+            window.setTimeout(()=>{
+                $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                    $(".alert").slideUp(500);
+                });
+            },2500)
         });
-    }
+    },[status, errors])
 
     return (
         <div>
-            <div className="page-title-right mb-2">
-                <div className="app-search">
-                    <form>
-                        <div className="input-group">
-                            <input type="text" className="form-control" placeholder="Search..."
-                            id="search-input-unregistered" onInput={onSearch}/>
-                        </div>
-                    </form>
-                </div>
+            <div className="page-title-right mb-4">
+                <h4> Unregistered Services</h4>
             </div>
-            <table className="table table-centered table-borderless mb-0">
+            <table id="unregistered-services-table" className="table table-centered table-border mb-0 font-14">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -98,7 +88,7 @@ export default function UnregisteredServices({services,shownServices, callback, 
                 </thead>
                 <tbody>
                     {
-                        services &&  services.slice(0, 4).map((service) => (
+                        services &&  services.map((service) => (
                             <tr key={service.id}>
                                 <td>{service.name}</td>
                                 <td>

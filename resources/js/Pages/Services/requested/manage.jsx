@@ -53,7 +53,7 @@ const ManageServices = () => {
 
         return (
             <div className="row" style={{paddingTop: 30 + 'px'}}>
-                <div className="col-xl-8">
+                <div className="col-lg-8">
                     <div className="card px-2">
                         <Heading title="Service categories"  search={searchCategories}  />
                         {/*{*/}
@@ -73,7 +73,7 @@ const ManageServices = () => {
                     </div>
                 </div>
 
-                <div className="col-xl-4">
+                <div className="col-lg-4">
                     {
                         selectedCategory && <InfoSideBar service={selectedCategory} />
                     }

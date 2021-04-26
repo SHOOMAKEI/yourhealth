@@ -14,15 +14,15 @@ class AddUserAndDateColumnToServicesTable extends Migration
     public function up()
     {
         Schema::table('services', function (Blueprint $table) {
-            $table->foreignId('created_by')->nullable()->constrained('users');
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('SET NULL');
             $table->timestamp('approved_at')->nullable();
-            $table->foreignId('approved_by')->nullable()->constrained('users');
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('SET NULL');
         });
 
         Schema::table('service_categories', function (Blueprint $table) {
-            $table->foreignId('created_by')->nullable()->constrained('users');
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('SET NULL');
             $table->timestamp('approved_at')->nullable();
-            $table->foreignId('approved_by')->nullable()->constrained('users');
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('SET NULL');
         });
 
         Schema::table('service_sub_categories', function (Blueprint $table) {

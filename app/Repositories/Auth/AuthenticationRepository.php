@@ -4,7 +4,6 @@
 namespace App\Repositories\Auth;
 
 use App\Contracts\Repositories\Auth\AuthenticationRepositoryInterface;
-use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Contracts\Auth\StatefulGuard;
@@ -25,15 +24,13 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
     {
         $user = User::where($this->username($request)['field'], $request['username'])->first();
 
-        if($this->checkIfUserAccountIsAvailableOrDisabled($user)){
-
-           if ($request['type']== GRAPHQL_REQUEST)
-           {
-               return $this->graphQlResponseWithError(
-                   'User account does not exist or
+        if ($this->checkIfUserAccountIsAvailableOrDisabled($user)) {
+            if ($request['type']== GRAPHQL_REQUEST) {
+                return $this->graphQlResponseWithError(
+                    'User account does not exist or
                     has been disabled contact support team for more information.'
-               );
-           }
+                );
+            }
 
             return Redirect::route('login')
                     ->with(
@@ -43,74 +40,71 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
                     );
         }
 
-        if($this->checkIfThePasswordIsCorrect($user, $request['password'])) {
-
-            if ($request['type']== GRAPHQL_REQUEST)
-            {
+        if ($this->checkIfThePasswordIsCorrect($user, $request['password'])) {
+            if ($request['type']== GRAPHQL_REQUEST) {
                 return $this->graphQlResponseWithError('Incorrect Credentials Provided');
             }
 
             return Redirect::route('login')
-                ->with( [
+                ->with([
                     'status'=> 'Incorrect Credentials Provided',
                     'alertType' => 'error'
                     ]);
         }
 
-        if($this->checkIfTheEmailIsNotVerified($user)) {
-            if ($request['type']== GRAPHQL_REQUEST)
-            {
+//        if ($this->checkIfTheEmailIsNotVerified($user)) {
+//            if ($request['type']== GRAPHQL_REQUEST) {
+//                return $this->graphQlResponseWithSuccess($user);
+//            }
+//
+//            $this->guard->login($user);
+//            return Redirect::route('verification.notice')
+//                ->with([
+//                    'status'=> 'Please verify your email first',
+//                    'alertType' => 'error'
+//                ]);
+//        }
+
+        if ($this->checkIfTheMobileNumberIsNotVerified($user)) {
+            if ($request['type']== GRAPHQL_REQUEST) {
                 return $this->graphQlResponseWithSuccess($user);
             }
 
-            return Redirect::route('login')
-                ->with( [
-                    'status'=> 'Please verify your email first',
-                    'alertType' => 'error'
-                ]);
-        }
-
-        if($this->checkIfTheMobileNumberIsNotVerified($user)) {
-            if ($request['type']== GRAPHQL_REQUEST)
-            {
-                return $this->graphQlResponseWithSuccess($user);
-            }
-
-            return Redirect::route('login')
-                ->with( [
+            $this->guard->login($user);
+            return Redirect::route('verify.mobile-number')
+                ->with([
                     'status'=> 'Please verify your mobile number first first',
                     'alertType' => 'error'
                 ]);
         }
 
-        if($this->checkIfTheOTPIsEnabled($user)) {
-            if ($request['type']== GRAPHQL_REQUEST)
-            {
+        if ($this->checkIfTheOTPIsEnabled($user)) {
+            if ($request['type']== GRAPHQL_REQUEST) {
                 return $this->graphQlResponseWithSuccess($user);
             }
 
-            return Redirect::route('login')
-                ->with( [
+            $user->sendOtpCodeNotification();
+
+            return Redirect::route('otp.notice')
+                ->with([
                     'status'=> 'Please Enter the OTP code that sent to your mobile number',
-                    'alertType' => 'error'
+                    'alertType' => 'success',
+                    'email' => $user->email
                 ]);
         }
 
-        if($this->checkIfThe2FAIsEnabled($user)) {
-            if ($request['type']== GRAPHQL_REQUEST)
-            {
+        if ($this->checkIfThe2FAIsEnabled($user)) {
+            if ($request['type']== GRAPHQL_REQUEST) {
                 return $this->graphQlResponseWithSuccess($user);
             }
 
-            return Redirect::route('login')
-                ->with( [
-                    'status'=> 'Please Enter the two factor code obtain form your two factor authenticator',
-                    'alertType' => 'error'
+            return Redirect::route('two-factor.login')
+                ->with([
+                    'email' => $user->email
                 ]);
         }
 
-        if ($request['type']== GRAPHQL_REQUEST)
-        {
+        if ($request['type']== GRAPHQL_REQUEST) {
             return $this->graphQlResponseWithToken(
                 $user,
                 $user->createToken($request['device_name'])->plainTextToken,
@@ -118,21 +112,25 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
             );
         }
         $this->guard->login($user);
-        if ($user->hasRole('service-provider') && $user->hasRole('verified-service-provider')){
+
+        return $this->redirectUserAfterAuthentication($user);
+    }
+
+    public function redirectUserAfterAuthentication(User $user)
+    {
+        if ($user->hasRole('service-provider') && $user->hasRole('verified-service-provider')) {
             return redirect()->route('verified_sp.home');
         }
-        if ($user->hasRole('service-provider') && $user->hasRole('unverified-service-provider')){
+        if ($user->hasRole('service-provider') && $user->hasRole('unverified-service-provider')) {
             return redirect()->route('personalInfo.index');
         }
-        if ($user->hasRole('super-admin')){
+        if ($user->hasRole('super-admin')) {
             return redirect()->route('admin.dashboard');
         }
 
         return redirect(RouteServiceProvider::HOME);
-
-
-
     }
+
 
     public function resendOtpCode(array $request): object
     {
@@ -140,8 +138,7 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
 
         $user->sendOtpCodeNotification();
 
-        if ($request['type']== GRAPHQL_REQUEST)
-        {
+        if ($request['type']== GRAPHQL_REQUEST) {
             return $this->graphQlResponseWithToken(
                 $user,
                 $user->createToken($request['device_name'])->plainTextToken,
@@ -149,12 +146,12 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
             );
         }
 
-        return Redirect::route('home')
-            ->with( [
-                'status'=> 'Please Enter the two factor code obtain form your two factor authenticator',
-                'alertType' => 'error'
+        return Redirect::route('otp.notice')
+            ->with([
+                'status'=> 'Please Enter the OTP Code that sent to your mobile number',
+                'alertType' => 'success',
+                'email' => $user->email
             ]);
-
     }
 
     public function verifyOtpCode(array $request): object
@@ -162,15 +159,15 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
         $user = User::where('email', $request['email'])->first();
 
         if ($user->getOtpCodeForVerification() != $request['otp_code']) {
-            if ($request['type']== GRAPHQL_REQUEST)
-            {
+            if ($request['type']== GRAPHQL_REQUEST) {
                 return $this->graphQlResponseWithError('Incorrect OTP Provided');
             }
 
-            return Redirect::route('login')
-                ->with( [
-                    'status'=> 'Incorrect Credentials Provided',
-                    'alertType' => 'error'
+            return Redirect::route('otp.notice')
+                ->with([
+                    'status'=> 'Incorrect OTP Code Provided',
+                    'alertType' => 'error',
+                    'email' => $user->email
                 ]);
         }
 
@@ -178,8 +175,7 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
             'otp_code' => null,
         ])->save();
 
-        if ($request['type']== GRAPHQL_REQUEST)
-        {
+        if ($request['type']== GRAPHQL_REQUEST) {
             return $this->graphQlResponseWithToken(
                 $user,
                 $user->createToken($request['device_name'])->plainTextToken,
@@ -187,25 +183,20 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
             );
         }
         $this->guard->login($user);
-        return Redirect::route('home')
-            ->with( [
-                'status'=> 'Please Enter the two factor code obtain form your two factor authenticator',
-                'alertType' => 'error'
-            ]);
-
+        return $this->redirectUserAfterAuthentication($user);
     }
 
     public function hasValid2FACode(User $user, array $request): bool
     {
         return $request['code'] && app(TwoFactorAuthenticationProvider::class)->verify(
-                decrypt($user->two_factor_secret),
-                $request['code']
-            );
+            decrypt($user->two_factor_secret),
+            $request['code']
+        );
     }
 
-    public function valid2FARecoveryCode(User $user, array $request): ?int
+    public function valid2FARecoveryCode(User $user, array $request): ?String
     {
-        if (! $request['recovery_code']) {
+        if ($request['recovery_code'] == null) {
             return null;
         }
 
@@ -221,22 +212,19 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
         if ($code = $this->valid2FARecoveryCode($user, $request)) {
             $user->replaceRecoveryCode($code);
         } elseif (! $this->hasValid2FACode($user, $request)) {
-            if ($user->getOtpCodeForVerification() != $request['otp_code']) {
-                if ($request['type']== GRAPHQL_REQUEST)
-                {
-                    return $this->graphQlResponseWithError('Incorrect OTP Provided');
-                }
-
-                return Redirect::route('login')
-                    ->with( [
-                        'status'=> 'Incorrect 2FA Provided',
-                        'alertType' => 'error'
-                    ]);
+            if ($request['type']== GRAPHQL_REQUEST) {
+                return $this->graphQlResponseWithError('Incorrect Two Factory Code Provided');
             }
+
+            return Redirect::route('two-factor.login')
+                    ->with([
+                        'status'=> 'Incorrect Two Factory Code Provided',
+                        'alertType' => 'error',
+                        'email' => $user->email
+                    ]);
         }
 
-        if ($request['type']== GRAPHQL_REQUEST)
-        {
+        if ($request['type']== GRAPHQL_REQUEST) {
             return $this->graphQlResponseWithToken(
                 $user,
                 $user->createToken($request['device_name'])->plainTextToken,
@@ -244,11 +232,8 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
             );
         }
         $this->guard->login($user);
-        return Redirect::route('home')
-            ->with( [
-                'status'=> 'Please Enter the two factor code obtain form your two factor authenticator',
-                'alertType' => 'error'
-            ]);
+
+        return $this->redirectUserAfterAuthentication($user);
     }
 
     public function resendMobileNumberVerificationCode(array $request): object
@@ -257,13 +242,12 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
 
         $user->sendMobileNumberVerificationNotification();
 
-        if ($request['type']== GRAPHQL_REQUEST)
-        {
+        if ($request['type']== GRAPHQL_REQUEST) {
             return $this->graphQlResponseWithSuccess($user);
         }
 
         return Redirect::route('home')
-            ->with( [
+            ->with([
                 'status'=> 'Please Enter the two factor code obtain form your two factor authenticator',
                 'alertType' => 'error'
             ]);
@@ -274,13 +258,12 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
         $user = User::where('email', $request['email'])->first();
 
         if ($user->getMobileNumberVerificationCode() != $request['verification_code']) {
-            if ($request['type']== GRAPHQL_REQUEST)
-            {
+            if ($request['type']== GRAPHQL_REQUEST) {
                 return $this->graphQlResponseWithError('Incorrect Verification Code Provided');
             }
 
             return Redirect::route('login')
-                ->with( [
+                ->with([
                     'status'=> 'Incorrect Credentials Provided',
                     'alertType' => 'error'
                 ]);
@@ -288,8 +271,7 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
 
         $user->markMobileNumberAsVerified();
 
-        if ($request['type']== GRAPHQL_REQUEST)
-        {
+        if ($request['type']== GRAPHQL_REQUEST) {
             return $this->graphQlResponseWithToken(
                 $user,
                 $user->createToken($request['device_name'])->plainTextToken,
@@ -298,7 +280,7 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
         }
         $this->guard->login($user);
         return Redirect::route('home')
-            ->with( [
+            ->with([
                 'status'=> 'Please Enter the two factor code obtain form your two factor authenticator',
                 'alertType' => 'error'
             ]);
@@ -310,13 +292,12 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
 
         $user->sendEmailVerificationNotification();
 
-        if ($request['type']== GRAPHQL_REQUEST)
-        {
+        if ($request['type']== GRAPHQL_REQUEST) {
             return $this->graphQlResponseWithSuccess($user);
         }
 
         return Redirect::route('home')
-            ->with( [
+            ->with([
                 'status'=> 'Please Enter the two factor code obtain form your two factor authenticator',
                 'alertType' => 'error'
             ]);
@@ -326,13 +307,12 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
     {
         $user = User::where('email', $request['id'])->first();
 
-        if ($request['type']== GRAPHQL_REQUEST)
-        {
+        if ($request['type']== GRAPHQL_REQUEST) {
             return $this->graphQlResponseWithSuccess($user);
         }
 
         return Redirect::route('home')
-            ->with( [
+            ->with([
                 'status'=> 'Please Enter the two factor code obtain form your two factor authenticator',
                 'alertType' => 'error'
             ]);
@@ -355,7 +335,7 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
 
     public function logout(array $request):object
     {
-        if ($request['type'] == 'graphql') {
+        if ($request['type'] == GRAPHQL_REQUEST) {
             $user = User::where('email', $request['email'])->first();
 
             $user->tokens()->where('name', $request['device_name'])->delete();
@@ -363,7 +343,7 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
             return $this->graphQlResponse();
         }
         $this->guard->logout();
-       return Redirect::route('login')->with('status', 'You logout successful.');
+        return Redirect::route('login')->with('status', 'You logout successful.');
     }
 
     public function graphQlResponseWithError(string $message): object
@@ -397,7 +377,7 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
         ];
     }
 
-    public  function checkIfUserAccountIsAvailableOrDisabled($user):bool
+    public function checkIfUserAccountIsAvailableOrDisabled($user):bool
     {
         return (! $user || ($user->is_active ==false));
     }
@@ -426,5 +406,4 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
     {
         return ($user->two_factor_secret || $user->two_factor_recovery_codes);
     }
-
 }

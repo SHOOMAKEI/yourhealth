@@ -1,97 +1,41 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[98],{
 
-/***/ "./resources/js/Pages/Services/packages/membership/List.jsx":
-/*!******************************************************************!*\
-  !*** ./resources/js/Pages/Services/packages/membership/List.jsx ***!
-  \******************************************************************/
+/***/ "./resources/js/Pages/Dashboard.js":
+/*!*****************************************!*\
+  !*** ./resources/js/Pages/Dashboard.js ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return List; });
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__);
-// import {useDispatch, useSelector} from "react-redux";
-//
-// import {membershipsStateValues} from "@pages/data/reducers/memberships";
-// import {membershipsValues} from "@pages/data/constants/memberships";
-// import {selectMembership} from "@pages/data/actions/memberships";
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Shared_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Shared/Layout */ "./resources/js/Shared/Layout.js");
 
-function List(_ref) {
-  var memberships = _ref.memberships;
-  var selectedMembership = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__["usePage"])().props.selectedMembership; // const dispatch = useDispatch();
 
-  function _selectMembership(membership) {// dispatch(selectMembership(membership))
-  }
 
-  return /*#__PURE__*/React.createElement("div", null, memberships.map(function (membership) {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "row"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "col-sm-4 mb-2 mb-sm-0"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "custom-control custom-checkbox",
-      onClick: function onClick() {
-        return _selectMembership(membership);
-      }
-    }, /*#__PURE__*/React.createElement("input", {
-      type: "checkbox",
-      className: "custom-control-input",
-      id: "membership-".concat(membership.id),
-      checked: membership.id === selectedMembership.id
-    }), /*#__PURE__*/React.createElement("label", {
-      className: "custom-control-label",
-      htmlFor: "task1"
-    }, membership.name))), /*#__PURE__*/React.createElement("div", {
-      className: "col-sm-8"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "d-flex justify-content-between float-right"
-    }, /*#__PURE__*/React.createElement("ul", {
-      className: "list-inline font-13 text-right"
-    }, /*#__PURE__*/React.createElement("li", {
-      className: "list-inline-item"
-    }, /*#__PURE__*/React.createElement("i", {
-      className: "uil uil-schedule font-16 mr-1"
-    }), " ", membership.created_at), /*#__PURE__*/React.createElement("li", {
-      className: "list-inline-item ml-2"
-    }, membership.is_active ? /*#__PURE__*/React.createElement("span", {
-      className: "badge badge-success-lighten p-1"
-    }, " Enabled") : /*#__PURE__*/React.createElement("span", {
-      className: "badge badge-danger-lighten p-1"
-    }, " Disabled")), /*#__PURE__*/React.createElement("li", {
-      className: "list-inline-item ml-2"
-    }, /*#__PURE__*/React.createElement("button", {
-      type: "button",
-      className: "btn btn-link dropdown-toggle",
-      "data-toggle": "dropdown",
-      "aria-haspopup": "true",
-      "aria-expanded": "false",
-      style: {
-        lineHeight: 0.5,
-        paddingTop: 0,
-        paddingBottom: 0
-      }
-    }, /*#__PURE__*/React.createElement("i", {
-      className: "uil uil-bright font-16 mr-1 text-primary"
-    }), "More"), /*#__PURE__*/React.createElement("div", {
-      className: "dropdown-menu"
-    }, /*#__PURE__*/React.createElement("a", {
-      href: "javascript:void(0);",
-      className: "dropdown-item",
-      onClick: function onClick() {
-        return _selectMembership(membership);
-      }
-    }, /*#__PURE__*/React.createElement("i", {
-      className: "uil uil-eye mr-1"
-    }), "Show info"), /*#__PURE__*/React.createElement("a", {
-      href: "javascript:void(0);",
-      className: "dropdown-item"
-    }, /*#__PURE__*/React.createElement("i", {
-      className: "uil uil-eye mr-1"
-    }), "Edit")))))));
-  }));
-}
+var Dashboard = function Dashboard() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card mt-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-header pdn-20 pdn-sm-x-40"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Blank Page")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body pdn-sm-40 pdn-t-20-imp"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "card-text mb-3 wth-sm-70p"
+  }, "Paragraph title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pdn-sm-55 pdn-15 bdr"
+  }, "Page contents go here. Create something awesome!")));
+};
+
+Dashboard.layout = function (page) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    children: page
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Dashboard);
 
 /***/ })
 

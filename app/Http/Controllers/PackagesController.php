@@ -10,14 +10,10 @@ use Inertia\Inertia;
 
 class PackagesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return Inertia::render('Services/packages/manage');
+        return Inertia::render('Services/packages/manage', ['memberships' => MembershipCategory::all()]);
     }
 
     /**
@@ -27,7 +23,7 @@ class PackagesController extends Controller
      */
     public function create()
     {
-        return view('packages.create');
+//        return view('packages.create');
     }
 
     /**
@@ -148,6 +144,30 @@ class PackagesController extends Controller
             'is_active' => $request['is_active']
         ]);
 
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
+    }
+
+    public function membershipUpdate(MembershipCategory $membership, Request $request)
+    {
+        $request->validate([
+            'id' => ['required', 'numeric', 'exists:membership_categories,id'],
+            'name' => ['required', 'max:255', 'string'],
+            'description' => ['required','string'],
+            'is_active' => ['required','boolean'],
+        ]);
+
+        $membership->update([
+            'name' => $request['name'],
+            'description' => $request['description'],
+            'is_active' => $request['is_active']
+        ]);
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
+    }
+
+    public function membershipDestroy(MembershipCategory $membership)
+    {
+        $membership->delete();
         return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 }

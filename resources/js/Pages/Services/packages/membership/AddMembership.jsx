@@ -8,13 +8,10 @@ import {Inertia} from "@inertiajs/inertia";
 import LoadingButton from "@/Shared/LoadingButton";
 
 
-export default function AddMembershipModal({modalID, operation, title,}) {
+export default function AddMembershipModal({modalID, operation, title, initialData}) {
     const {errors, status, alertType} = usePage().props
-    const [values, setValues] = useState({
-        name: "",
-        description: "No description",
-        status: false,
-    })
+    const [type, setType] = useState(operation)
+    const [values, setValues] = useState(initialData)
     const [success, setSuccess] = useState(false)
     const [sending, setSending] = useState(false)
 
@@ -29,52 +26,44 @@ export default function AddMembershipModal({modalID, operation, title,}) {
         }));
     }
 
+    useEffect(() => setValues(initialData),[initialData])
+    useEffect(() => setType(operation),[operation])
+
     function handleSubmit(e) {
         e.preventDefault();
         setSending(true);
-        Inertia.post(route('membership_registration.store'), values).then(() => {
-            setSending(false);
-        });
+        switch (type) {
+            case "add":
+
+                Inertia.post(route('membership_registration.store'), values).then(() => {
+                    setSending(false);
+                });
+                break;
+
+            case "update":
+                Inertia.post(route('membership_registration.update', values.id), values).then(() => {
+                    setSending(false);
+                });
+                break;
+
+            default:
+                Inertia.post(route('membership_registration.store'), values).then(() => {
+                    setSending(false);
+                });
+                break;
+        }
     }
 
-        function onSubmit(values, {setSubmitting}) {
-            setTimeout(() => {
-                switch (operation) {
-                    case "add":
-                        _addMembership(values.name, values.description, values.is_active);
-                        break;
 
-                    case "update":
-                        // _updateMembership(values.name, values.description, selectedMembership.is_active);
-                        break;
-
-                    default:
-                        _addMembership(values.name, values.description, values.is_active);
-                        break;
-                }
-
-                setSubmitting(false);
-            }, 500);
-        }
-
-        function _addMembership(name, description, status) {
-            let membership = {
-                name: name,
-                description: description,
-                is_active: status,
-            };
-
-        }
-
-        function _updateMembership(name, description, status) {
-            // let membership = {
-            //     id: selectedMembership.id,
-            //     name: name,
-            //     description: description,
-            //     is_active: status
-            // };
-
-        }
+    useEffect(()=>{
+        $(document).ready(function () {
+            window.setTimeout(()=>{
+                $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                    $(".alert").slideUp(500);
+                });
+            },2500)
+        });
+    },[status, errors])
 
         function renderForm() {
 
@@ -82,7 +71,7 @@ export default function AddMembershipModal({modalID, operation, title,}) {
                 <form onSubmit={handleSubmit}>
                     {
                         status && (
-                            <div className={`alert alert-primary alert-dismissible bg-success text-white border-0 fade show`} role="alert">
+                            <div className={`alert alert-primary alert-dismissible bg-primary text-white border-0 fade show`} role="alert">
                                 <button type="button" className="close" onClick={() => setSuccess(false)}>
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -108,27 +97,25 @@ export default function AddMembershipModal({modalID, operation, title,}) {
                         value={values.description}
                         onChange={handleChange}
                     />
-                    {
-                        operation === "add" && (
-                            <div>
-                                <div className="custom-control custom-switch form-group">
-                                    <CheckBoxInput
-                                        name="is_active"
-                                        placeholder="Show membership to public"
-                                        label="Show membership to public"
-                                        errors={errors.status}
-                                        value={values.status}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                                <p className="text-muted">
-                                    If the above option is selected the public will see the membership,
-                                    otherwise the public will not see the membership. You can edit it
-                                    later on from category settings.
-                                </p>
-                            </div>
-                        )
-                    }
+
+                    <div>
+                        <div className="custom-control custom-switch form-group">
+                            <CheckBoxInput
+                                name="is_active"
+                                placeholder="Show membership to public"
+                                label="Show membership to public"
+                                errors={errors.status}
+                                value={values.status}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <p className="text-muted">
+                            If the above option is selected the public will see the membership,
+                            otherwise the public will not see the membership. You can edit it
+                            later on from category settings.
+                        </p>
+                    </div>
+
                     <div className="modal-footer">
                         <button type="button" className="btn btn-light" data-dismiss="modal">Close</button>
                         <LoadingButton

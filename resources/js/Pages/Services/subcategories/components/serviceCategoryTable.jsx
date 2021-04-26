@@ -19,7 +19,7 @@ const ServiceCategoriesTable  = ({categories, callback}) =>{
                 </tr>
             </thead>
             <tbody>
-                { categories.map(category => <Category category={category} callback={callback}  />) }
+                { categories.map((category, index )=> <Category category={category} callback={callback} key={index+1} />) }
             </tbody>
         </table>
     )

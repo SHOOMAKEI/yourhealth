@@ -1,5 +1,5 @@
 import ModalForm from "@/Pages/Utilities/ModalForm";
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import TextInput from '@/Shared/TextInput'
@@ -48,6 +48,15 @@ export default function ProfileInfo({user, provider_sub_levels}) {
             setSending(false);
         });
     }
+    useEffect(()=>{
+        $(document).ready(function () {
+            window.setTimeout(()=>{
+                $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                    $(".alert").slideUp(500);
+                });
+            },2500)
+        });
+    },[status, errors])
 
     return (
         <>
@@ -106,6 +115,7 @@ export default function ProfileInfo({user, provider_sub_levels}) {
                             label="Mobile Number"
                             errors={errors.mobile_number}
                             value={values.mobile_number}
+                            disabled
                             onChange={handleChange}
                         />
                         <TextInput
@@ -163,6 +173,7 @@ export default function ProfileInfo({user, provider_sub_levels}) {
                             type="text"
                             placeholder="Email Address"
                             label="Email Address"
+                            disabled
                             errors={errors.email}
                             value={values.email}
                             onChange={handleChange}

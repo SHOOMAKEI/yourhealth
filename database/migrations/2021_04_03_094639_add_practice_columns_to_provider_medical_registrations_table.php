@@ -15,7 +15,7 @@ class AddPracticeColumnsToProviderMedicalRegistrationsTable extends Migration
     {
         Schema::table('provider_medical_registrations', function (Blueprint $table) {
             $table->date('expired_at');
-            $table->foreignId('service_id')->constrained();
+            $table->foreignId('service_category_id')->constrained()->onDelete('RESTRICT');
         });
     }
 

@@ -46,18 +46,18 @@ export default function SelectedInfo() {
                     <i className="uil uil-ellipsis-h"/>
                 </a>
                 <div className="dropdown-menu dropdown-menu-right">
-                    <a href="javascript:void(0);" className="dropdown-item" onClick={toggleVisibility}>
+                    <a href="#" className="dropdown-item" onClick={toggleVisibility}>
                         {
                             selectedMembership.is_active ? (
                                 <span><i className="uil uil-ban mr-1"/>Hide from public</span>
                             ) : <span><i className="uil uil-eye mr-1"/>Show to public</span>
                         }
                     </a>
-                    <a href="javascript:void(0);" className="dropdown-item" data-toggle="modal" data-target={`#${UPDATE_MEMBERSHIP_MODAL_ID}`}>
+                    <a href="#" className="dropdown-item" data-toggle="modal" data-target={`#${UPDATE_MEMBERSHIP_MODAL_ID}`}>
                         <i className="uil uil-edit mr-1"/>Edit
                     </a>
                     <div className="dropdown-divider"/>
-                    <a href="javascript:void(0);" className="dropdown-item text-danger" data-toggle="modal" data-target="#delete-category">
+                    <a href="#" className="dropdown-item text-danger" data-toggle="modal" data-target="#delete-category">
                         <i className="uil uil-trash-alt mr-1"/>Delete
                     </a>
                 </div>

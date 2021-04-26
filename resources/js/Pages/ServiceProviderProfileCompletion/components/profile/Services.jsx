@@ -32,12 +32,11 @@ export default function Services({user, facilities, all_services, registeredServ
     }
 
 
-   registeredServices &&
-   useEffect(()=>(
-        registeredServices && registeredServices.map(service => {
-            service.id == values.facility? setServices([...service.data]):null
-        })
-    ), [values?.facility])
+
+   useEffect(()=>{
+          registeredServices?.map(sev => sev.id == values.facility?setServices(sev.data):null)
+
+   }, [values?.facility])
 
 
 
@@ -88,8 +87,8 @@ export default function Services({user, facilities, all_services, registeredServ
                     {
 
                             <RegisteredServices services={
-                                user.provider_profile.account_category_type === 'company' ||
-                                user.provider_profile.account_category_type === 'facility'?services:registeredServices
+                                (user.provider_profile.account_category_type === 'company' ||
+                                user.provider_profile.account_category_type === 'facility')?services:registeredServices
                             } user={user} facility={values.facility}/>
                     }
                 </div>

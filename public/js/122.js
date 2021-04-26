@@ -1,13 +1,26 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[122],{
 
-/***/ "./resources/js/Pages/ServiceProviders/requests/components/profile/Company.tsx":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/Pages/ServiceProviders/requests/components/profile/Company.tsx ***!
-  \*************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./resources/js/Pages/Utilities/FormInputError.jsx":
+/*!*********************************************************!*\
+  !*** ./resources/js/Pages/Utilities/FormInputError.jsx ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (3:8)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n| export default function Company() {\n|     return (\n>         <div className=\"tab-pane fade\" id=\"v-pills-company\" role=\"tabpanel\"\n|              aria-labelledby=\"v-pills-company-tab\">\n|             <div className=\"row\">");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FormInputError; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function FormInputError(_ref) {
+  var title = _ref.title,
+      message = _ref.message;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("div", {
+    className: "alert alert-danger bg-danger text-white border-0 fade show mt-1",
+    role: "alert"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__["React"].createElement("strong", null, title, " - "), " ", message);
+}
 
 /***/ })
 

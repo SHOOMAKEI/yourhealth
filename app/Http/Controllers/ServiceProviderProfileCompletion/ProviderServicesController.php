@@ -6,13 +6,11 @@ use App\Contracts\Repositories\Registration\ServiceProviderRegistrationRepositor
 use App\Http\Controllers\Controller;
 use App\Models\ProviderFacility;
 use App\Models\Service;
-use App\Models\Specialization;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class ProviderServicesController extends Controller
 {
-
     public function store(Request $request, ServiceProviderRegistrationRepositoryInterface $repository)
     {
         $request->validate([
@@ -27,8 +25,6 @@ class ProviderServicesController extends Controller
         $repository->createProviderProfileServices($data);
 
         return redirect()->back()->with(['status' => 'Operation Complete successful']);
-
-
     }
 
 
@@ -44,7 +40,9 @@ class ProviderServicesController extends Controller
     public function facilityStore(Request $request, ServiceProviderRegistrationRepositoryInterface $repository)
     {
         $facilities = ProviderFacility::where(
-            'provider_company_id', auth()->user()->service_provider->provider_companies[0]->id)->get()->pluck('id');
+            'provider_company_id',
+            auth()->user()->service_provider->provider_companies[0]->id
+        )->get()->pluck('id');
         $request->validate([
             'price'=> ['required' , 'numeric'],
             'currency'=> ['required', Rule::in(['TZS','KES', 'UGS']), 'max:255'],
@@ -59,15 +57,14 @@ class ProviderServicesController extends Controller
         $repository->createProviderFacilityServices($data);
 
         return redirect()->back()->with(['status' => 'Operation Complete successful']);
-
-
     }
 
 
     public function facilityDestroy(
         Service $service,
         ProviderFacility $facility,
-        ServiceProviderRegistrationRepositoryInterface $repository)
+        ServiceProviderRegistrationRepositoryInterface $repository
+    )
     {
         $request['service_id'] = $service->id;
         $request['facility_id'] = $facility->id;

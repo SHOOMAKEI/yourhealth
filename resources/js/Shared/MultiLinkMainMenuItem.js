@@ -21,7 +21,8 @@ export default ({ icon, link, text, children }) => {
       <a href="#" className="side-nav-link" onClick={handleOnClick} >
         <Icon className={icon} />
         <span >{text}</span>
-          <span className="menu-arrow"></span>
+          <span className="menu-arrow" style={isActive ? {transform: `rotate(90deg)`
+}:{}}/>
       </a>
         <ul className={`side-nav-second-level mm-collapse ${isActive? "mm-show": ""}`} aria-expanded="false" style={isActive? {}: {height: 0 + 'px'}}>
             {children}

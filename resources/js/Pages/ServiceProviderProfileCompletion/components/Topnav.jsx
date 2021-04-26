@@ -34,7 +34,7 @@ export default function TopNav({user}) {
                                 <span>Support</span>
                             </a>
 
-                            <InertiaLink href={route('logout')} className="dropdown-item notify-item" >
+                            <InertiaLink method="POST" href={route('logout')} className="dropdown-item notify-item" >
                                 <i className="mdi mdi-logout mr-1"></i>
                                 <span>Logout</span>
                             </InertiaLink>

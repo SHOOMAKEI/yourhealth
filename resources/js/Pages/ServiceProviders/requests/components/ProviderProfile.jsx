@@ -1,27 +1,30 @@
-
-import    Company      from '@/Pages/ServiceProviders/requests/components/profile/Company'
-import  FacilityServices from '@/Pages/ServiceProviders/requests/components/profile/FacilityServices'
-import   MedicalRegistrations from '@/Pages/ServiceProviders/requests/components/profile/MedicalRegistrations'
-import   ProfileInfo from '@/Pages/ServiceProviders/requests/components/profile/ProfileInfo'
-import  Qualifications from '@/Pages/ServiceProviders/requests/components/profile/Qualifications'
-import  Services from '@/Pages/ServiceProviders/requests/components/profile/Services'
+import React from 'react'
+import Company from './profile/Company'
+import FacilityServices from './profile/FacilityServices'
+import MedicalRegistrations from './profile/MedicalRegistrations'
+import ProfileInfo from './profile/ProfileInfo'
+import Qualifications from './profile/Qualifications'
+import Services from './profile/Services'
 
 import ProfileNav from "./ProfileNav";
+import Facility from './profile/Facility'
+import Verification from "@/Pages/ServiceProviders/requests/components/profile/Verification";
+import {usePage} from "@inertiajs/inertia-react";
+import Layout from "@/Shared/Layout";
+import ServiceProvider from "@/Pages/ServiceProviders/requests/components/ServiceProvider";
 //import {ServiceProviderValues} from "@/pages/serviceProviders/requests/components/ServiceProvider";
 
-export default function ProviderProfile({modalId, provider}) {
+ function ProviderProfile() {
+    const {provider} = usePage().props
+
     return (
-        <div className="modal fade" id={modalId} data-backdrop="static" tabIndex={-1} role="dialog"
-             aria-labelledby="scrollableModalTitle" aria-hidden="true">
-            <div className="modal-dialog modal-full-width" role="document">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="scrollableModalTitle">{`${provider?.username}'s profile`}</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+        <div>
+            <div className="col-lg-12 pt-4" >
+                <div className="card">
+                    <div className="card-header">
+                        <h3 className="card-title pt-2" id="scrollableModalTitle">{`${provider?.username}'s profile`}</h3>
                     </div>
-                    <div className="modal-body">
+                    <div className="card-body">
                         <div className="row">
                             <ProfileNav provider={provider} />
 
@@ -31,29 +34,32 @@ export default function ProviderProfile({modalId, provider}) {
                                     {
                                         provider.account_category_type === 'individual' && (
                                             <>
-                                                <Qualifications />
-                                                <MedicalRegistrations />
-                                                <Services />
+                                                <Qualifications provider={provider} />
+                                                <MedicalRegistrations  provider={provider}  />
+                                                <Services provider={provider}  />
                                             </>
                                         )
                                     }
                                     {
                                         provider.account_category_type === 'company' && (
                                             <>
-                                                <Company />
-                                                <Facility />
-                                                <FacilityServices />
+                                                <Company provider={provider} />
+                                                <Facility provider={provider} />
+                                                <MedicalRegistrations  provider={provider}  />
+                                                <FacilityServices  provider={provider} />
                                             </>
                                         )
                                     }
                                     {
                                         provider.account_category_type === 'facility' && (
                                             <>
-                                                <Facility />
-                                                <FacilityServices />
+                                                <Facility provider={provider} />
+                                                <MedicalRegistrations  provider={provider}  />
+                                                <FacilityServices provider={provider} />
                                             </>
                                         )
                                     }
+                                    <Verification provider={provider}/>
                                 </div>
                             </div>
                         </div>
@@ -63,3 +69,7 @@ export default function ProviderProfile({modalId, provider}) {
         </div>
     )
 }
+
+ProviderProfile.layout = page => <Layout children={page} />;
+
+export default ProviderProfile;

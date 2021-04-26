@@ -55,7 +55,8 @@ function AddMedicalRegistrationModal(_ref) {
       operation = _ref.operation,
       title = _ref.title,
       callback = _ref.callback,
-      services = _ref.services;
+      services = _ref.services,
+      facility = _ref.facility;
   var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__["usePage"])().props,
       errors = _usePage$props.errors,
       status = _usePage$props.status,
@@ -66,17 +67,19 @@ function AddMedicalRegistrationModal(_ref) {
       sending = _useState2[0],
       setSending = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])({
-    registration_number: "",
-    certificate_name: "",
-    year: "",
-    attachment: "",
-    certificate_number: "",
-    expired_at: ""
-  }),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])({}),
       _useState4 = _slicedToArray(_useState3, 2),
-      values = _useState4[0],
-      setValues = _useState4[1];
+      data = _useState4[0],
+      setData = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])(initialData),
+      _useState6 = _slicedToArray(_useState5, 2),
+      values = _useState6[0],
+      setValues = _useState6[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
+    setValues(initialData);
+  }, [facility]);
 
   function handleChange(e) {
     var key = e.target.name;
@@ -100,9 +103,19 @@ function AddMedicalRegistrationModal(_ref) {
     });
   }
 
+  Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
+    $(document).ready(function () {
+      window.setTimeout(function () {
+        $(".alert").fadeTo(2000, 500).slideUp(500, function () {
+          $(".alert").slideUp(500);
+        });
+      }, 2500);
+    });
+  }, [status, errors]);
+
   function renderForm() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-      className: "alert alert-success alert-dismissible bg-success text-white border-0 fade show",
+      className: "alert alert-success alert-dismissible bg-primary text-white border-0 fade show",
       role: "alert"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("button", {
       type: "button",
@@ -169,12 +182,12 @@ function AddMedicalRegistrationModal(_ref) {
       value: values.attachment,
       callback: handleFileUpload
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_Shared_SelectInput__WEBPACK_IMPORTED_MODULE_8__["default"], {
-      name: "service_id",
+      name: "service_category_id",
       type: "text",
       placeholder: "Authorize Service",
       label: "Authorize Service",
-      errors: errors.service_id,
-      value: values.service_id,
+      errors: errors.service_category_id,
+      value: values.service_category_id,
       onChange: handleChange
     }, services.map(function (service) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("option", {
@@ -221,6 +234,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_Heading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/Heading */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Heading.jsx");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Shared_SelectInput__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Shared/SelectInput */ "./resources/js/Shared/SelectInput.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -238,29 +258,74 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function MedicalRegistrations(_ref) {
-  var medical_registrations = _ref.medical_registrations,
-      services = _ref.services;
 
-  // const {medicalRegistrations} = usePage().props
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+function MedicalRegistrations(_ref) {
+  var _facilities$;
+
+  var user = _ref.user,
+      facilities = _ref.facilities,
+      medical_registrations = _ref.medical_registrations,
+      services = _ref.services;
+  var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__["usePage"])().props,
+      errors = _usePage$props.errors,
+      status = _usePage$props.status,
+      alertType = _usePage$props.alertType;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(medical_registrations),
       _useState2 = _slicedToArray(_useState, 2),
       medicalRegistrations = _useState2[0],
-      setMedicalRegistration = _useState2[1];
+      setMedicalRegistrations = _useState2[1];
 
-  function deleteMedicalRegistration(id) {// deleteMedReg({variables: {attachment_id: id}})
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(medical_registrations),
+      _useState4 = _slicedToArray(_useState3, 2),
+      medicalRegs = _useState4[0],
+      setMedicalRegs = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    facility: (_facilities$ = facilities[0]) === null || _facilities$ === void 0 ? void 0 : _facilities$.id
+  }),
+      _useState6 = _slicedToArray(_useState5, 2),
+      values = _useState6[0],
+      setValues = _useState6[1];
+
+  function handleChange(e) {
+    var key = e.target.name;
+    var value = e.target.value;
+    setValues(function (values) {
+      return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, key, value));
+    });
   }
-
-  function searchMedicalRegistrations() {}
 
   function renderAddSubcategoryModal() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_AddMedicalRegistrationModal__WEBPACK_IMPORTED_MODULE_2__["default"], {
       modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__["ADD_MEDICAL_REGISTRATION_MODAL_ID"],
       operation: "add",
       callback: addAttachment,
-      services: services
+      services: services,
+      facility: values.facility,
+      initialData: {
+        registration_number: "",
+        certificate_name: "",
+        year: "",
+        attachment: "",
+        certificate_number: "",
+        expired_at: "",
+        service_category_id: services[0].id,
+        provider_facility_id: values.facility
+      }
     });
   }
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    var data_reg = medicalRegistrations === null || medicalRegistrations === void 0 ? void 0 : medicalRegistrations.filter(function (registration) {
+      return registration.provider_facility_id == values.facility;
+    });
+    setMedicalRegs(data_reg);
+  }, [values === null || values === void 0 ? void 0 : values.facility]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    setMedicalRegs(medical_registrations);
+    setMedicalRegistrations(medical_registrations);
+  }, [medical_registrations]);
 
   function addAttachment() {//
   }
@@ -270,15 +335,25 @@ function MedicalRegistrations(_ref) {
     id: "v-pills-medical-registration",
     role: "tabpanel",
     "aria-labelledby": "v-pills-medical-registration-tab"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_Heading__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, (user.provider_profile.account_category_type === 'company' || user.provider_profile.account_category_type === 'facility') && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Select Facility"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_SelectInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    name: "facility",
+    type: "text",
+    errors: errors.facility,
+    value: values.facility,
+    onChange: handleChange
+  }, facilities.map(function (facility) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      value: facility.id,
+      key: facility.id
+    }, facility.name);
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_Heading__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: "Practice License",
     modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__["ADD_MEDICAL_REGISTRATION_MODAL_ID"],
     buttonText: "Add Practice License",
-    search: searchMedicalRegistrations,
     renderModal: renderAddSubcategoryModal
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "table table-centered table-borderless mb-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Certificate Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Certificate Number"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Authorized Service"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Expired At"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Attachment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Actions"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, medical_registrations.map(function (medReg) {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Certificate Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Certificate Number"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Authorized Service"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Expired At"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Attachment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Actions"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, medicalRegs && medicalRegs.map(function (medReg) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
       key: medReg.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, medReg.certificate_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, medReg.certificate_number), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, medReg.authorized_service), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, medReg.expired_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {

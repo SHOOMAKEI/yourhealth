@@ -22,8 +22,8 @@ class ServiceSubCategoryController extends Controller
             $data['created_at'] = $query->created_at;
             $data['updated_at'] = $query->updated_at;
             $data['approved_at'] = $query->approved_at;
-            $data['approved_by'] = !is_null($query->approver) && !is_null($query->approved_at) ?$query->approver->name: '';
-            $data['created_by'] = !is_null($query->creator)?$query->creator->name: config('app.name');
+            $data['approved_by'] = !is_null($query->approved_by) && !is_null($query->approved_at) ?$query->approve->name: '';
+            $data['created_by'] = !is_null($query->created_by)?$query->creator->name: config('app.name');
 
             return $data;
         });
@@ -39,16 +39,16 @@ class ServiceSubCategoryController extends Controller
         $request->validate([
             'name' => ['required', 'max:255', 'string'],
             'description' => ['required','string'],
-            'is_active' => ['required','boolean'],
-            'approved_at' => ['required','boolean'],
+            'is_active' => ['boolean'],
+            'approved_at' => ['boolean'],
             'service_category_id' => ['required','exists:service_categories,id'],
         ]);
-//        dd($request['approved_at']?now()->toDateTime():null);
+//        dd($request['description']);
 
         ServiceSubCategory::create([
             'name' => $request['name'],
             'description' => $request['description'],
-            'is_active' => $request['is_active'],
+            'is_active' => $request['is_active']?$request['is_active']:false,
             'created_by' => auth()->user()->id,
             'approved_by' => $request['approved_at']?auth()->user()->id:null,
             'approved_at' => $request['approved_at']?now():null,
@@ -85,7 +85,7 @@ class ServiceSubCategoryController extends Controller
                 $data['created_at'] = $query->created_at;
                 $data['updated_at'] = $query->updated_at;
                 $data['approved_at'] = $query->approved_at;
-                $data['approved_by'] = !is_null($query->approver) && !is_null($query->approved_at) ?$query->approver->name: '';
+                $data['approved_by'] = !is_null($query->approve) && ($query->approved_at != "") ?$query->approve->name: '';
                 $data['created_by'] = !is_null($query->creator)?$query->creator->name: config('app.name');
 
                 return $data;
@@ -115,9 +115,10 @@ class ServiceSubCategoryController extends Controller
     public function toggleApproval(ServiceSubCategory $services_sub_category)
     {
         $services_sub_category->forceFill([
-            'approved_by' => !is_null($services_sub_category->approved_by)?null:auth()->user()->id,
-            'approved_at' => !is_null($services_sub_category->approved_at)?null:now()
+            'approved_by' => isset($services_sub_category->approved_by)?null:auth()->user()->id,
+            'approved_at' => ($services_sub_category->approved_by != "")?null:now()
         ])->save();
+
         return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 }

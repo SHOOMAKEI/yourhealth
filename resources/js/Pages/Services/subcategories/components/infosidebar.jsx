@@ -1,8 +1,9 @@
 import AddCategoryModal from './AddCategoryModal'
-import { UPDATE_CATEGORY_MODAL_ID } from '@/Pages/Utilities/Constants'
+import {UPDATE_CATEGORY_MODAL_ID, UPDATE_SUB_CATEGORY_MODAL_ID} from '@/Pages/Utilities/Constants'
 import {InertiaLink, usePage} from "@inertiajs/inertia-react";
 import { Inertia } from '@inertiajs/inertia';
 import React, {useEffect, useState } from 'react'
+import AddSubcategoryModal from "@/Pages/Services/subcategories/components/AddSubcategoryModal";
 
 export default function InfoSideBar({selectedCategory}) {
     const [category, setCategory] = useState(selectedCategory);
@@ -11,7 +12,7 @@ export default function InfoSideBar({selectedCategory}) {
 
     useEffect(() => {
         setSending(true)
-        axios.get(route('services_categories.show',selectedCategory.id))
+        axios.get(route('services_sub_categories.show',selectedCategory.id))
             .then( resp => {
                 setSubCategory(resp.data)
                 setSending(false)
@@ -46,7 +47,7 @@ export default function InfoSideBar({selectedCategory}) {
                         <i className="uil uil-ellipsis-h"></i>
                     </a>
                     <div className="dropdown-menu dropdown-menu-right">
-                        <a href="#" className="dropdown-item" data-toggle="modal" data-target={`#${UPDATE_CATEGORY_MODAL_ID}`}>
+                        <a href="#" className="dropdown-item" data-toggle="modal" data-target={`#${UPDATE_SUB_CATEGORY_MODAL_ID}`}>
                             <i className="uil uil-edit mr-1"></i>Edit
                         </a>
                         <InertiaLink href={route('services_sub_categories.visibility', selectedCategory.id)} className="dropdown-item">
@@ -64,19 +65,19 @@ export default function InfoSideBar({selectedCategory}) {
                             }
                         </InertiaLink>
                         <div className="dropdown-divider"></div>
-                        <a href="" className="dropdown-item text-danger" data-toggle="modal" data-target="#delete-category">
+                        <a href="" className="dropdown-item text-danger" data-toggle="modal" data-target={`#delete-sub-category-${selectedCategory.id}`}>
                             <i className="uil uil-trash-alt mr-1"></i>Delete
                         </a>
                     </div>
-                    <AddCategoryModal
-                        modalID={UPDATE_CATEGORY_MODAL_ID}
+                    <AddSubcategoryModal
+                        modalID={UPDATE_SUB_CATEGORY_MODAL_ID}
                         initialData={{
                             name: selectedCategory.name,
                             description: selectedCategory.description,
                             id: selectedCategory.id,
                         }}
                         operation="update"
-                        title={`Edit category ${selectedCategory.name}`}
+                        title={`Edit Sub Category ${selectedCategory.name}`}
                     />
                 </div>
 
@@ -174,7 +175,7 @@ export default function InfoSideBar({selectedCategory}) {
                             <tbody>
                                 {
                                     sending?(
-                                        <tr>
+                                        <tr >
                                             <td colSpan="3">
                                                 <div className="d-flex justify-content-center">
                                                     <div className="spinner-border text-primary" role="status"></div>
@@ -183,8 +184,8 @@ export default function InfoSideBar({selectedCategory}) {
                                         </tr>
 
                                         ):
-                                    subcategories &&  subcategories.slice(0,9).map(subcategory => (
-                                        <tr>
+                                    subcategories &&  subcategories.slice(0,9).map((subcategory, index) => (
+                                        <tr key={index+1}>
                                             <td>{subcategory.name}</td>
                                             <td>
                                                 {
@@ -204,8 +205,8 @@ export default function InfoSideBar({selectedCategory}) {
                                 }
                             </tbody>
                         </table>
-                        <InertiaLink href={route('services.index',selectedCategory.id)}>
-                            <a className="btn btn-primary btn-block mt-2">See Services</a>
+                        <InertiaLink className="btn btn-primary btn-block mt-2" href={route('services.index',selectedCategory.id)}>
+                            See Services
                         </InertiaLink>
                     </div>
                 </div>

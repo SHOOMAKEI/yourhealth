@@ -106,11 +106,11 @@ class ProviderProfileAdminController extends Controller
         $user->forceFill([
             'profile_stage' => 11,
         ])->save();
-        
+
         $user->assignRole('verified-service-provider');
         $user->removeRole('unverified-service-provider');
 
-        $admin->notify(new ServiceProviderVerificationNotification());
+        $user->notify(new ServiceProviderVerificationNotification());
 
         return $provider;
     }
@@ -125,7 +125,7 @@ class ProviderProfileAdminController extends Controller
         if ($provider->is_verified == 0) {
             return $provider;
         }
-      
+
         $provider->forceFill([
             'is_verified' => 0,
             'submitted_at' => null
@@ -144,10 +144,10 @@ class ProviderProfileAdminController extends Controller
                 'reasons' => $args['input']['reasons'],
                 'rejected_round' => 1
             ]);
-            
+
             return $provider;
         }
-        
+
         $reasons = ProviderRejectionReason::create([
             'provider_profile_id'=> $provider->id,
             'reasons' => $args['input']['reasons'],

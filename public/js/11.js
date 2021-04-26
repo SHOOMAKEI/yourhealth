@@ -50,30 +50,32 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function AddMembershipModal(_ref) {
   var modalID = _ref.modalID,
       operation = _ref.operation,
-      title = _ref.title;
+      title = _ref.title,
+      initialData = _ref.initialData;
   var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_5__["usePage"])().props,
       errors = _usePage$props.errors,
       status = _usePage$props.status,
       alertType = _usePage$props.alertType;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
-    name: "",
-    description: "No description",
-    status: false
-  }),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(operation),
       _useState2 = _slicedToArray(_useState, 2),
-      values = _useState2[0],
-      setValues = _useState2[1];
+      type = _useState2[0],
+      setType = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(initialData),
       _useState4 = _slicedToArray(_useState3, 2),
-      success = _useState4[0],
-      setSuccess = _useState4[1];
+      values = _useState4[0],
+      setValues = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState6 = _slicedToArray(_useState5, 2),
-      sending = _useState6[0],
-      setSending = _useState6[1];
+      success = _useState6[0],
+      setSuccess = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      sending = _useState8[0],
+      setSending = _useState8[1];
 
   function handleChange(e) {
     var key = e.target.name;
@@ -83,58 +85,53 @@ function AddMembershipModal(_ref) {
     });
   }
 
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    return setValues(initialData);
+  }, [initialData]);
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    return setType(operation);
+  }, [operation]);
+
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__["Inertia"].post(route('membership_registration.store'), values).then(function () {
-      setSending(false);
+
+    switch (type) {
+      case "add":
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__["Inertia"].post(route('membership_registration.store'), values).then(function () {
+          setSending(false);
+        });
+        break;
+
+      case "update":
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__["Inertia"].post(route('membership_registration.update', values.id), values).then(function () {
+          setSending(false);
+        });
+        break;
+
+      default:
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__["Inertia"].post(route('membership_registration.store'), values).then(function () {
+          setSending(false);
+        });
+        break;
+    }
+  }
+
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    $(document).ready(function () {
+      window.setTimeout(function () {
+        $(".alert").fadeTo(2000, 500).slideUp(500, function () {
+          $(".alert").slideUp(500);
+        });
+      }, 2500);
     });
-  }
-
-  function onSubmit(values, _ref2) {
-    var setSubmitting = _ref2.setSubmitting;
-    setTimeout(function () {
-      switch (operation) {
-        case "add":
-          _addMembership(values.name, values.description, values.is_active);
-
-          break;
-
-        case "update":
-          // _updateMembership(values.name, values.description, selectedMembership.is_active);
-          break;
-
-        default:
-          _addMembership(values.name, values.description, values.is_active);
-
-          break;
-      }
-
-      setSubmitting(false);
-    }, 500);
-  }
-
-  function _addMembership(name, description, status) {
-    var membership = {
-      name: name,
-      description: description,
-      is_active: status
-    };
-  }
-
-  function _updateMembership(name, description, status) {// let membership = {
-    //     id: selectedMembership.id,
-    //     name: name,
-    //     description: description,
-    //     is_active: status
-    // };
-  }
+  }, [status, errors]);
 
   function renderForm() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
       onSubmit: handleSubmit
     }, status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "alert alert-primary alert-dismissible bg-success text-white border-0 fade show",
+      className: "alert alert-primary alert-dismissible bg-primary text-white border-0 fade show",
       role: "alert"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       type: "button",
@@ -160,7 +157,7 @@ function AddMembershipModal(_ref) {
       errors: errors.description,
       value: values.description,
       onChange: handleChange
-    }), operation === "add" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "custom-control custom-switch form-group"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_CheckBoxInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
       name: "is_active",
@@ -262,9 +259,10 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
   var label = _ref.label,
       name = _ref.name,
       className = _ref.className,
+      value = _ref.value,
       _ref$errors = _ref.errors,
       errors = _ref$errors === void 0 ? [] : _ref$errors,
-      props = _objectWithoutProperties(_ref, ["label", "name", "className", "errors"]);
+      props = _objectWithoutProperties(_ref, ["label", "name", "className", "value", "errors"]);
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "custom-control custom-switch mb-2"
@@ -359,8 +357,9 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
     name: name
   }, props, {
     className: "form-input form-control ".concat(errors.length ? 'error' : ''),
-    rows: "2"
-  }), value), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    rows: "2",
+    value: value ? value : ""
+  })), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "invalid-feedback",
     style: {
       display: 'block'

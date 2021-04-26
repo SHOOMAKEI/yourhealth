@@ -1,23 +1,26 @@
 import LoadingButton from "@/Shared/LoadingButton";
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
+import {InertiaLink} from "@inertiajs/inertia-react";
+import {Inertia} from "@inertiajs/inertia";
 
-export default function DeleteCategoryDialog() {
-    const selectedCategory = {name: 'omakei'}
+export default function DeleteCategoryDialog({category}) {
+    const [selectedCategory, setSelectedCategory] = useState({})
     const [sending, setSending] = useState(false)
 
-    // useEffect(() => {
-    //     if (deleteServiceCategoryResponse.data) {
-    //        setSuccess(true)
-    //        dispatch(deleteCategory(selectedCategory));
-    //     }
-    //  }, [deleteServiceCategoryResponse.data])
-    //
-    // function _deleteCategory() {
-    //     deleteServiceCategory({variables: {id: selectedCategory.id}})
-    // }
+    useEffect(() => {
+       setSelectedCategory(category)
+     }, [category])
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        setSending(true);
+        Inertia.delete(route('services_categories.destroy', selectedCategory.id)).then(() => {
+            setSending(false);
+        });
+    }
 
     return (
-        <div id="delete-category" className="modal fade" tabIndex={-1} role="dialog" aria-labelledby="delete-categoryLabel" aria-hidden="true">
+        <div id={`delete-category-${selectedCategory.id}`} className="modal fade" tabIndex={-1} role="dialog" aria-labelledby="delete-categoryLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content modal-filled bg-danger">
                     <div className="modal-header">
@@ -29,18 +32,7 @@ export default function DeleteCategoryDialog() {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-light" data-dismiss="modal">Close</button>
-                        <LoadingButton
-                            type="submit"
-                            className="btn btn-primary btn-block"
-                            loading={sending}
-                        >
-                            Save Changes
-                        </LoadingButton>
-                        {/*<button type="button" className="btn btn-outline-light" data-dismiss="modal" onClick={_deleteCategory}>*/}
-                        {/*    {*/}
-                        {/*        deleteServiceCategoryResponse.called && deleteServiceCategoryResponse.loading ? 'Deleting...' : 'Delete'*/}
-                        {/*    }*/}
-                        {/*</button>*/}
+                         <a href="#" className="btn btn-outline-light" data-dismiss="modal" onClick={handleSubmit}>Delete </a>
                     </div>
                 </div>
             </div>

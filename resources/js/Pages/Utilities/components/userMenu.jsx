@@ -1,39 +1,8 @@
 import React, {useEffect} from 'react'
-import {usePage} from "@inertiajs/inertia-react";
+import {InertiaLink, usePage} from "@inertiajs/inertia-react";
 
 function UserMenu() {
     const {auth} = usePage().props
-    // const [queryAthUser, {loading, errors, data, called}] = useApi({query: QUERY_AUTH_USER})
-    // const [logout, logoutResponse] = useApi({query: LOGOUT})
-    // const router = useRouter();
-
-    // useEffect(() => {
-    //     // queryAthUser({})
-    // }, [])
-    //
-    // useEffect(() => {
-    //     // if(logoutResponse.data && logoutResponse.data.logoutSession.success) {
-    //     //     router.push('/auth/login')
-    //     // }
-    // }, [logoutResponse.data])
-    //
-    // useEffect(() => {
-    //     if (data && data.me === null) {
-    //         // router.push('/auth/login')
-    //     }
-
-    //     if (data.me) {
-    //         data.me.roles.map(role => {
-    //             if (role.name.toLowerCase().includes('unverified')) {
-    //                 // router.push('/service-providers-registration/Register');
-    //             }
-    //         })
-    //     }
-    // }, [data])
-
-    // function logoutUser() {
-    //     // logout({variables: {input: {email: data.me.email}}})
-    // }
 
     return (
         <li className="dropdown notification-list">
@@ -54,23 +23,23 @@ function UserMenu() {
 
                 <a href="#" className="dropdown-item notify-item">
                     <i className="mdi mdi-account-circle mr-1"></i>
-                    <span>My Account</span>
+                    <span>My Profile</span>
                 </a>
 
-                <a href="#" className="dropdown-item notify-item">
+                <InertiaLink href={route('settings.index')} className="dropdown-item notify-item">
                     <i className="mdi mdi-account-edit mr-1"></i>
                     <span>Settings</span>
-                </a>
+                </InertiaLink>
 
                 <a href="#" className="dropdown-item notify-item">
                     <i className="mdi mdi-lifebuoy mr-1"></i>
                     <span>Support</span>
                 </a>
 
-                <a href="#" className="dropdown-item notify-item" >
+                <InertiaLink method="POST" href={route('logout')} className="dropdown-item notify-item" >
                     <i className="mdi mdi-logout mr-1"></i>
                     <span>Logout</span>
-                </a>
+                </InertiaLink>
 
             </div>
         </li>

@@ -122,6 +122,13 @@ function RegisteredServices(_ref) {
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     setShownServices(services);
+    $(document).ready(function () {
+      $('#registered-services-table').DataTable();
+      $('.dataTables_filter input[type="search"]').css({
+        'width': '145px',
+        'display': 'inline-block'
+      });
+    });
   }, [services]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     setFacilityId(facility);
@@ -146,20 +153,11 @@ function RegisteredServices(_ref) {
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "page-title-right mb-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "app-search"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "input-group"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "form-control",
-    placeholder: "Search...",
-    id: "search-input-registered",
-    onInput: onSearch
-  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-    className: "table table-centered table-borderless mb-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Action"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, shownServices && shownServices.slice(0, 4).map(function (service) {
+    className: "page-title-right mb-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, " Registered Services")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    id: "registered-services-table",
+    className: "table table-centered table-border mb-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Action"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, shownServices && shownServices.map(function (service) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
       key: service.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, service.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "".concat(service.pivot.price, " ").concat(service.pivot.currency)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["InertiaLink"], {
@@ -258,18 +256,25 @@ function RequestServiceModal(_ref) {
     });
   }
 
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    $(document).ready(function () {
+      window.setTimeout(function () {
+        $(".alert").fadeTo(2000, 500).slideUp(500, function () {
+          $(".alert").slideUp(500);
+        });
+      }, 2500);
+    });
+  }, [status, errors]);
+
   function renderForm() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
       onSubmit: handleSubmit
     }, status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "alert alert-success alert-dismissible bg-success text-white border-0 fade show",
+      className: "alert alert-success alert-dismissible bg-primary text-white border-0 fade show",
       role: "alert"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       type: "button",
-      className: "close",
-      onClick: function onClick() {
-        return setSuccess(false);
-      }
+      className: "close"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       "aria-hidden": "true"
     }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Success - "), " ", status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -330,14 +335,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Shared_SelectInput__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Shared/SelectInput */ "./resources/js/Shared/SelectInput.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__);
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -405,9 +402,9 @@ function Services(_ref) {
     });
   }
 
-  registeredServices && Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    return registeredServices && registeredServices.map(function (service) {
-      service.id == values.facility ? setServices(_toConsumableArray(service.data)) : null;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    registeredServices === null || registeredServices === void 0 ? void 0 : registeredServices.map(function (sev) {
+      return sev.id == values.facility ? setServices(sev.data) : null;
     });
   }, [values === null || values === void 0 ? void 0 : values.facility]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -500,8 +497,7 @@ function UnregisteredServices(_ref) {
       shownServices = _ref.shownServices,
       callback = _ref.callback,
       user = _ref.user,
-      _ref$facility = _ref.facility,
-      facility = _ref$facility === void 0 ? {} : _ref$facility;
+      facility = _ref.facility;
   var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["usePage"])().props,
       errors = _usePage$props.errors,
       status = _usePage$props.status,
@@ -536,7 +532,7 @@ function UnregisteredServices(_ref) {
     });
   }, [selectedService]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    return setValues(function (values) {
+    return facility && setValues(function (values) {
       return _objectSpread(_objectSpread({}, values), {}, {
         provider_facility_id: facility
       });
@@ -566,37 +562,28 @@ function UnregisteredServices(_ref) {
     }
   }
 
-  function onSearch() {
-    $('#search-input-unregistered').on('input', function (e) {
-      var input = $(this);
-      var val = input.val();
-
-      if (input.data("lastval") != val) {
-        input.data("lastval", val);
-        var newShownServices = services.filter(function (service) {
-          if (service.name.toLocaleLowerCase().includes(val)) {
-            return service;
-          }
-        }); // setShownServices(newShownServices);
-      }
+  $(document).ready(function () {
+    $('#unregistered-services-table').DataTable();
+    $('.dataTables_filter input[type="search"]').css({
+      'width': '145px',
+      'display': 'inline-block'
     });
-  }
-
+  });
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    $(document).ready(function () {
+      window.setTimeout(function () {
+        $(".alert").fadeTo(2000, 500).slideUp(500, function () {
+          $(".alert").slideUp(500);
+        });
+      }, 2500);
+    });
+  }, [status, errors]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "page-title-right mb-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "app-search"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "input-group"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "form-control",
-    placeholder: "Search...",
-    id: "search-input-unregistered",
-    onInput: onSearch
-  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-    className: "table table-centered table-borderless mb-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Action"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, services && services.slice(0, 4).map(function (service) {
+    className: "page-title-right mb-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, " Unregistered Services")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    id: "unregistered-services-table",
+    className: "table table-centered table-border mb-0 font-14"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Action"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, services && services.map(function (service) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
       key: service.id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, service.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -690,7 +677,7 @@ function UnregisteredServices(_ref) {
 /*!***************************************************!*\
   !*** ./resources/js/Pages/Utilities/Constants.js ***!
   \***************************************************/
-/*! exports provided: ADD_CATEGORY_MODAL_ID, UPDATE_CATEGORY_MODAL_ID, SERVICE_CATEGORIES_TABLE, PROVIDER_PROFILE_MODAL_ID, ADD_MEMBERSHIP_MODAL_ID, UPDATE_MEMBERSHIP_MODAL_ID, ADD_FACILITY_MODAL_ID, EDIT_FACILITY_MODAL_ID, ADD_QUALIFICATION_MODAL_ID, ADD_MEDICAL_REGISTRATION_MODAL_ID, REQUEST_SERVICE_MODAL_ID, SET_SERVICE_MODAL_PRICE, ADD_SERVICE_MODAL_ID */
+/*! exports provided: ADD_CATEGORY_MODAL_ID, UPDATE_CATEGORY_MODAL_ID, SERVICE_CATEGORIES_TABLE, PROVIDER_PROFILE_MODAL_ID, ADD_MEMBERSHIP_MODAL_ID, UPDATE_MEMBERSHIP_MODAL_ID, ADD_FACILITY_MODAL_ID, EDIT_FACILITY_MODAL_ID, ADD_QUALIFICATION_MODAL_ID, ADD_MEDICAL_REGISTRATION_MODAL_ID, REQUEST_SERVICE_MODAL_ID, SET_SERVICE_MODAL_PRICE, ADD_SERVICE_MODAL_ID, UPDATE_SERVICE_MODAL_ID, ADD_SUB_CATEGORY_MODAL_ID, UPDATE_SUB_CATEGORY_MODAL_ID */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -708,6 +695,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REQUEST_SERVICE_MODAL_ID", function() { return REQUEST_SERVICE_MODAL_ID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SERVICE_MODAL_PRICE", function() { return SET_SERVICE_MODAL_PRICE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_SERVICE_MODAL_ID", function() { return ADD_SERVICE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_SERVICE_MODAL_ID", function() { return UPDATE_SERVICE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_SUB_CATEGORY_MODAL_ID", function() { return ADD_SUB_CATEGORY_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_SUB_CATEGORY_MODAL_ID", function() { return UPDATE_SUB_CATEGORY_MODAL_ID; });
 var ADD_CATEGORY_MODAL_ID = "add-category-modal";
 var UPDATE_CATEGORY_MODAL_ID = "update-category-modal";
 var SERVICE_CATEGORIES_TABLE = 'service-categories-table';
@@ -721,6 +711,9 @@ var ADD_MEDICAL_REGISTRATION_MODAL_ID = 'add-medical-registration-modal';
 var REQUEST_SERVICE_MODAL_ID = 'request-service-modal';
 var SET_SERVICE_MODAL_PRICE = 'set-service-modal-price';
 var ADD_SERVICE_MODAL_ID = 'add-service-modal';
+var UPDATE_SERVICE_MODAL_ID = 'update-service-modal';
+var ADD_SUB_CATEGORY_MODAL_ID = 'add-sub-category-modal';
+var UPDATE_SUB_CATEGORY_MODAL_ID = "update-sub-category-modal";
 
 /***/ })
 

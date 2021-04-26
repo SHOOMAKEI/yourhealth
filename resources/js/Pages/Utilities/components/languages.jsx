@@ -6,11 +6,11 @@ export default function Languages() {
 
     return (
         <li className="dropdown notification-list topbar-dropdown d-none d-lg-block">
-            <a className="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" id="topbar-languagedrop" href="#"
+            <InertiaLink className="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" id="topbar-languagedrop" href={locale.url}
                role="button" aria-haspopup="true" aria-expanded="false">
-                <img src="assets/images/flags/us.jpg" alt="user-image" className="mr-1" height="12"/> <span
-                    className="align-middle">English</span> <i className="mdi mdi-chevron-down align-middle"></i>
-            </a>
+                <img src={locale.flag} alt="user-image" className="mr-1" width={locale.flag_width} height="12"/> <span
+                    className="align-middle">{locale.name}</span> <i className="mdi mdi-chevron-down align-middle"></i>
+            </InertiaLink>
             <div className="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu"
                  aria-labelledby="topbar-languagedrop">
                 {selectable_locale.map((lang)=>(

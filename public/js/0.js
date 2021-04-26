@@ -22,22 +22,23 @@ function Languages() {
       locale = _usePage$props.locale;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "dropdown notification-list topbar-dropdown d-none d-lg-block"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["InertiaLink"], {
     className: "nav-link dropdown-toggle arrow-none",
     "data-toggle": "dropdown",
     id: "topbar-languagedrop",
-    href: "#",
+    href: locale.url,
     role: "button",
     "aria-haspopup": "true",
     "aria-expanded": "false"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "assets/images/flags/us.jpg",
+    src: locale.flag,
     alt: "user-image",
     className: "mr-1",
+    width: locale.flag_width,
     height: "12"
   }), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "align-middle"
-  }, "English"), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+  }, locale.name), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "mdi mdi-chevron-down align-middle"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu",
@@ -107,7 +108,7 @@ function Notifications() {
     },
     "data-simplebar": true
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "javascript:void(0);",
+    href: "#",
     className: "dropdown-item notify-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "notify-icon bg-primary"
@@ -118,7 +119,7 @@ function Notifications() {
   }, "Caleb Flakelar commented on Admin", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
     className: "text-muted"
   }, "1 min ago"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "javascript:void(0);",
+    href: "#",
     className: "dropdown-item notify-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "notify-icon bg-info"
@@ -129,7 +130,7 @@ function Notifications() {
   }, "New user registered.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
     className: "text-muted"
   }, "5 hours ago"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "javascript:void(0);",
+    href: "#",
     className: "dropdown-item notify-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "notify-icon"
@@ -142,7 +143,7 @@ function Notifications() {
   }, "Cristina Pride"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "text-muted mb-0 user-msg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Hi, How are you? What about our next meeting"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "javascript:void(0);",
+    href: "#",
     className: "dropdown-item notify-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "notify-icon bg-primary"
@@ -153,7 +154,7 @@ function Notifications() {
   }, "Caleb Flakelar commented on Admin", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
     className: "text-muted"
   }, "4 days ago"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "javascript:void(0);",
+    href: "#",
     className: "dropdown-item notify-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "notify-icon"
@@ -166,7 +167,7 @@ function Notifications() {
   }, "Karen Robinson"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "text-muted mb-0 user-msg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Wow ! this admin looks good and awesome design"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "javascript:void(0);",
+    href: "#",
     className: "dropdown-item notify-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "notify-icon bg-info"
@@ -177,7 +178,7 @@ function Notifications() {
   }, "Carlos Crouch liked", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Admin"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
     className: "text-muted"
   }, "13 days ago")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "javascript:void(0);",
+    href: "#",
     className: "dropdown-item text-center text-primary notify-item notify-all"
   }, "View All")));
 }
@@ -201,35 +202,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function UserMenu() {
-  var auth = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["usePage"])().props.auth; // const [queryAthUser, {loading, errors, data, called}] = useApi({query: QUERY_AUTH_USER})
-  // const [logout, logoutResponse] = useApi({query: LOGOUT})
-  // const router = useRouter();
-  // useEffect(() => {
-  //     // queryAthUser({})
-  // }, [])
-  //
-  // useEffect(() => {
-  //     // if(logoutResponse.data && logoutResponse.data.logoutSession.success) {
-  //     //     router.push('/auth/login')
-  //     // }
-  // }, [logoutResponse.data])
-  //
-  // useEffect(() => {
-  //     if (data && data.me === null) {
-  //         // router.push('/auth/login')
-  //     }
-  //     if (data.me) {
-  //         data.me.roles.map(role => {
-  //             if (role.name.toLowerCase().includes('unverified')) {
-  //                 // router.push('/service-providers-registration/Register');
-  //             }
-  //         })
-  //     }
-  // }, [data])
-  // function logoutUser() {
-  //     // logout({variables: {input: {email: data.me.email}}})
-  // }
-
+  var auth = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["usePage"])().props.auth;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "dropdown notification-list"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -262,8 +235,8 @@ function UserMenu() {
     className: "dropdown-item notify-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "mdi mdi-account-circle mr-1"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "My Account")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#",
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "My Profile")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["InertiaLink"], {
+    href: route('settings.index'),
     className: "dropdown-item notify-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "mdi mdi-account-edit mr-1"
@@ -272,8 +245,9 @@ function UserMenu() {
     className: "dropdown-item notify-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "mdi mdi-lifebuoy mr-1"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Support")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#",
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Support")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["InertiaLink"], {
+    method: "POST",
+    href: route('logout'),
     className: "dropdown-item notify-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "mdi mdi-logout mr-1"

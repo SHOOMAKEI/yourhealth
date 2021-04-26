@@ -1,15 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[7],{
 
-/***/ "./resources/js/Pages/Services/categories/components/AddCategoryModal.jsx":
-/*!********************************************************************************!*\
-  !*** ./resources/js/Pages/Services/categories/components/AddCategoryModal.jsx ***!
-  \********************************************************************************/
+/***/ "./resources/js/Pages/Services/subcategories/components/AddSubcategoryModal.jsx":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/Pages/Services/subcategories/components/AddSubcategoryModal.jsx ***!
+  \**************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddCategoryModal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddSubcategoryModal; });
 /* harmony import */ var _Pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/Utilities/ModalForm */ "./resources/js/Pages/Utilities/ModalForm.jsx");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
@@ -47,7 +47,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function AddCategoryModal(_ref) {
+function AddSubcategoryModal(_ref) {
   var modalID = _ref.modalID,
       initialData = _ref.initialData,
       operation = _ref.operation,
@@ -90,21 +90,21 @@ function AddCategoryModal(_ref) {
     switch (operation) {
       case "add":
         setSending(true);
-        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('services_categories.store'), values).then(function () {
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('services_sub_categories.store'), values).then(function () {
           setSending(false);
         });
         break;
 
       case "update":
         setSending(true);
-        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].put(route('services_categories.update', values.id), values).then(function () {
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].put(route('services_sub_categories.update', values.id), values).then(function () {
           setSending(false);
         });
         break;
 
       default:
         setSending(true);
-        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('services_categories.store'), values).then(function () {
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('services_sub_categories.store'), values).then(function () {
           setSending(false);
         });
         break;
@@ -127,11 +127,21 @@ function AddCategoryModal(_ref) {
     }; // updateServiceCategory({variables: category});
   }
 
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    $(document).ready(function () {
+      window.setTimeout(function () {
+        $(".alert").fadeTo(2000, 500).slideUp(500, function () {
+          $(".alert").slideUp(500);
+        });
+      }, 2500);
+    });
+  }, [status, errors]);
+
   function renderForm() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
       onSubmit: handleSubmit
     }, status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "alert alert-primary alert-dismissible bg-success text-white border-0 fade show",
+      className: "alert alert-success alert-dismissible bg-primary text-white border-0 fade show",
       role: "alert"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       type: "button",
@@ -187,7 +197,7 @@ function AddCategoryModal(_ref) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_0__["default"], {
     modalID: modalID,
-    title: title ? title : "Add new service category",
+    title: title ? title : "Add new service sub category",
     renderForm: renderForm
   });
 }
@@ -263,9 +273,10 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
   var label = _ref.label,
       name = _ref.name,
       className = _ref.className,
+      value = _ref.value,
       _ref$errors = _ref.errors,
       errors = _ref$errors === void 0 ? [] : _ref$errors,
-      props = _objectWithoutProperties(_ref, ["label", "name", "className", "errors"]);
+      props = _objectWithoutProperties(_ref, ["label", "name", "className", "value", "errors"]);
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "custom-control custom-switch mb-2"
@@ -360,8 +371,9 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
     name: name
   }, props, {
     className: "form-input form-control ".concat(errors.length ? 'error' : ''),
-    rows: "2"
-  }), value), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    rows: "2",
+    value: value ? value : ""
+  })), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "invalid-feedback",
     style: {
       display: 'block'

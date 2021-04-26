@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -22,35 +26,35 @@ class ProviderProfile extends Model implements HasMedia
       'submitted_at'
     ];
 
-    public function provider_medical_registrations()
+    public function provider_medical_registrations(): HasMany
     {
         return $this->hasMany(ProviderMedicalRegistration::class);
     }
 
-    public function provider_companies()
+    public function provider_companies(): BelongsToMany
     {
         return $this->belongsToMany(ProviderCompany::class, 'company_provider_profile', 'provider_profile_id', 'provider_company_id');
     }
 
-    public function provider_facilities()
+    public function provider_facilities(): BelongsToMany
     {
         return $this->belongsToMany(ProviderFacility::class, 'facility_provider_profile', 'provider_profile_id', 'provider_facility_id');
     }
 
-    public function services()
+    public function services(): BelongsToMany
     {
         return $this->belongsToMany(Service::class, 'service_provider_profile', 'provider_profile_id', 'service_id')->withPivot('price', 'compare_price', 'currency');
     }
 
-    public function country()
-    {
-        return $this->belongsTo(Country::class);
-    }
-
-    public function city()
-    {
-        return $this->belongsTo(City::class);
-    }
+//    public function country(): BelongsTo
+//    {
+//        return $this->belongsTo(Country::class);
+//    }
+//
+//    public function city()
+//    {
+//        return $this->belongsTo(City::class);
+//    }
 
 
     public function provider_qualifications()
@@ -75,5 +79,15 @@ class ProviderProfile extends Model implements HasMedia
     public function rejection_reasons()
     {
         return $this->hasMany(ProviderRejectionReason::class, 'provider_profile_id');
+    }
+
+    public function getCreatedAtAttribute(): string
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['created_at'])->format('M j, Y G:ia');
+    }
+
+    public function getUpdatedAtAttribute(): string
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['updated_at'])->format('M j, Y G:ia');
     }
 }

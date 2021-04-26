@@ -1,6 +1,7 @@
 import DeleteDialog from "./deleteDialog";
 import React from "react";
 import {InertiaLink} from "@inertiajs/inertia-react";
+import DeleteCategoryDialog from "./deleteDialog";
 
 export default function Category({category, callback}) {
 
@@ -39,13 +40,11 @@ export default function Category({category, callback}) {
                         <a href="#" className="dropdown-item" onClick={chooseCategory}>
                             <i className="uil uil-eye mr-1"/>Show info
                         </a>
-                        <InertiaLink href={`/services/subcategories/${category.id}`}>
-                            <a className="dropdown-item" onClick={chooseCategory}>
+                        <InertiaLink className="dropdown-item" href={route('services_sub_categories.index',category.id)}>
                                 <i className="uil uil-sitemap mr-1"/>Subcategories
-                            </a>
                         </InertiaLink>
                     </div>
-                    <DeleteDialog />
+                {category && <DeleteDialog category={category}/>}
             </td>
         </tr>
     )

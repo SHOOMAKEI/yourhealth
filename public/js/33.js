@@ -439,7 +439,7 @@ var ManageServices = function ManageServices() {
       paddingTop: 30 + 'px'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "col-xl-8"
+    className: "col-lg-8"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
     className: "card px-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_components_Heading__WEBPACK_IMPORTED_MODULE_0__["default"], {
@@ -453,7 +453,7 @@ var ManageServices = function ManageServices() {
     totalItems: services.length,
     activePageCallBack: selectPage
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "col-xl-4"
+    className: "col-lg-4"
   }, selectedCategory && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_components_infosidebar__WEBPACK_IMPORTED_MODULE_1__["default"], {
     service: selectedCategory
   })));
@@ -473,7 +473,7 @@ ManageServices.layout = function (page) {
 /*!***************************************************!*\
   !*** ./resources/js/Pages/Utilities/Constants.js ***!
   \***************************************************/
-/*! exports provided: ADD_CATEGORY_MODAL_ID, UPDATE_CATEGORY_MODAL_ID, SERVICE_CATEGORIES_TABLE, PROVIDER_PROFILE_MODAL_ID, ADD_MEMBERSHIP_MODAL_ID, UPDATE_MEMBERSHIP_MODAL_ID, ADD_FACILITY_MODAL_ID, EDIT_FACILITY_MODAL_ID, ADD_QUALIFICATION_MODAL_ID, ADD_MEDICAL_REGISTRATION_MODAL_ID, REQUEST_SERVICE_MODAL_ID, SET_SERVICE_MODAL_PRICE, ADD_SERVICE_MODAL_ID */
+/*! exports provided: ADD_CATEGORY_MODAL_ID, UPDATE_CATEGORY_MODAL_ID, SERVICE_CATEGORIES_TABLE, PROVIDER_PROFILE_MODAL_ID, ADD_MEMBERSHIP_MODAL_ID, UPDATE_MEMBERSHIP_MODAL_ID, ADD_FACILITY_MODAL_ID, EDIT_FACILITY_MODAL_ID, ADD_QUALIFICATION_MODAL_ID, ADD_MEDICAL_REGISTRATION_MODAL_ID, REQUEST_SERVICE_MODAL_ID, SET_SERVICE_MODAL_PRICE, ADD_SERVICE_MODAL_ID, UPDATE_SERVICE_MODAL_ID, ADD_SUB_CATEGORY_MODAL_ID, UPDATE_SUB_CATEGORY_MODAL_ID */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -491,6 +491,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REQUEST_SERVICE_MODAL_ID", function() { return REQUEST_SERVICE_MODAL_ID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SERVICE_MODAL_PRICE", function() { return SET_SERVICE_MODAL_PRICE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_SERVICE_MODAL_ID", function() { return ADD_SERVICE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_SERVICE_MODAL_ID", function() { return UPDATE_SERVICE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_SUB_CATEGORY_MODAL_ID", function() { return ADD_SUB_CATEGORY_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_SUB_CATEGORY_MODAL_ID", function() { return UPDATE_SUB_CATEGORY_MODAL_ID; });
 var ADD_CATEGORY_MODAL_ID = "add-category-modal";
 var UPDATE_CATEGORY_MODAL_ID = "update-category-modal";
 var SERVICE_CATEGORIES_TABLE = 'service-categories-table';
@@ -504,6 +507,9 @@ var ADD_MEDICAL_REGISTRATION_MODAL_ID = 'add-medical-registration-modal';
 var REQUEST_SERVICE_MODAL_ID = 'request-service-modal';
 var SET_SERVICE_MODAL_PRICE = 'set-service-modal-price';
 var ADD_SERVICE_MODAL_ID = 'add-service-modal';
+var UPDATE_SERVICE_MODAL_ID = 'update-service-modal';
+var ADD_SUB_CATEGORY_MODAL_ID = 'add-sub-category-modal';
+var UPDATE_SUB_CATEGORY_MODAL_ID = "update-sub-category-modal";
 
 /***/ })
 

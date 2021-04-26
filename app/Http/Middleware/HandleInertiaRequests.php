@@ -43,20 +43,30 @@ class HandleInertiaRequests extends Middleware
             ? $user = User::find(auth()->user()->id): null;
         return array_merge(parent::share($request), [
             'app_name' => config('app.name'),
-            'auth.user' => isset($user)?function () use ($user){
-                                $data['id'] = $user->id;
-                                $data['name'] = $user->name;
-                                $data['email'] = $user->email;
-                                $data['profile_photo_path'] = $user->profile_photo_path;
-                                $data['roles'] = $user->roles;
-                                $data['permissions'] = $user->permissions;
+            'auth.user' => isset($user)?function () use ($user) {
+                $data['id'] = $user->id;
+                $data['name'] = $user->name;
+                $data['email'] = $user->email;
+                $data['mobile_number'] = $user->mobile_number;
+                $data['profile_photo_path'] = $user->profile_photo_path;
+                $data['enabled_otp'] = $user->enabled_otp;
+                $data['enable_2fa'] = $user->two_factor_recovery_codes != null;
+                $data['roles'] = $user->roles;
+                $data['permissions'] = $user->permissions;
 
-                                return $data;
-                }:null,
+                return $data;
+            }:null,
             'status' => Session::get('status'),
             'alertType' => Session::get('alertType'),
-            'locale' => app()->getLocale(),
-            'selectable_locale' => function() {
+            'locale' => function () {
+                $data['url'] = language()->back(app()->getLocale());
+                $data['name'] = language()->getName(app()->getLocale());
+                $data['flag'] = asset('assets/images/flags/'. language()->country(app()->getLocale()) .'.png');
+                $data['flag_width'] = config('language.flags.width');
+                $data['code'] = app()->getLocale();
+                return $data;
+            },
+            'selectable_locale' => function () {
                 $index=0;
                 $data = [];
                 foreach (language()->allowed() as $key => $value) {
@@ -68,11 +78,12 @@ class HandleInertiaRequests extends Middleware
                 }
                 return $data;
             },
-            'language' => function(){
+            'language' => function () {
                 return translations(
-                    resource_path('lang/'. app()->getLocale() .'.json'));
+                    resource_path('lang/'. app()->getLocale() .'.json')
+                );
             },
-            'roles' => function(Request $request) {
+            'roles' => function (Request $request) {
                 return $request->user()
                     ? User::find(auth()->user()->id)->roles->only('id', 'name')
                     : null;

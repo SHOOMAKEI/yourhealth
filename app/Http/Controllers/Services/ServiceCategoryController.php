@@ -10,10 +10,9 @@ use Inertia\Inertia;
 
 class ServiceCategoryController extends Controller
 {
-
     public function index()
     {
-        $servicesCategories = ServiceCategory::all()->map(function($query){
+        $servicesCategories = ServiceCategory::all()->map(function ($query) {
             $data['id'] = $query->id;
             $data['is_active'] = $query->is_active;
             $data['name'] = $query->name;
@@ -21,7 +20,7 @@ class ServiceCategoryController extends Controller
             $data['created_at'] = $query->created_at;
             $data['updated_at'] = $query->updated_at;
             $data['approved_at'] = $query->approved_at;
-            $data['approved_by'] = !is_null($query->approver) && !is_null($query->approved_at) ?$query->approver->name: '';
+            $data['approved_by'] = !is_null($query->approve) && ($query->approved_at != "") ?$query->approve->name: '';
             $data['created_by'] = !is_null($query->creator)?$query->creator->name: config('app.name');
 
             return $data;
@@ -38,15 +37,15 @@ class ServiceCategoryController extends Controller
         $request->validate([
             'name' => ['required', 'max:255', 'string'],
             'description' => ['required','string'],
-            'is_active' => ['required','boolean'],
-            'approved_at' => ['required','boolean'],
+            'is_active' => ['boolean'],
+            'approved_at' => ['boolean'],
         ]);
 //        dd($request['approved_at']?now()->toDateTime():null);
 
         ServiceCategory::create([
             'name' => $request['name'],
             'description' => $request['description'],
-            'is_active' => $request['is_active'],
+            'is_active' => $request['is_active']?$request['is_active']:false,
             'created_by' => auth()->user()->id,
             'approved_by' => $request['approved_at']?auth()->user()->id:null,
             'approved_at' => $request['approved_at']?now():null
@@ -74,19 +73,19 @@ class ServiceCategoryController extends Controller
     public function show(ServiceCategory $services_category)
     {
         $subcategories = ServiceSubCategory::where('service_category_id', $services_category->id)->limit(9)->get()
-            ->map(function($query){
-            $data['id'] = $query->id;
-            $data['is_active'] = $query->is_active;
-            $data['name'] = $query->name;
-            $data['description'] = $query->description;
-            $data['created_at'] = $query->created_at;
-            $data['updated_at'] = $query->updated_at;
-            $data['approved_at'] = $query->approved_at;
-            $data['approved_by'] = !is_null($query->approver) && !is_null($query->approved_at) ?$query->approver->name: '';
-            $data['created_by'] = !is_null($query->creator)?$query->creator->name: config('app.name');
+            ->map(function ($query) {
+                $data['id'] = $query->id;
+                $data['is_active'] = $query->is_active;
+                $data['name'] = $query->name;
+                $data['description'] = $query->description;
+                $data['created_at'] = $query->created_at;
+                $data['updated_at'] = $query->updated_at;
+                $data['approved_at'] = $query->approved_at;
+                $data['approved_by'] = !is_null($query->approve) && ($query->approved_at != "") ?$query->approve->name: '';
+                $data['created_by'] = !is_null($query->creator)?$query->creator->name: config('app.name');
 
-            return $data;
-        });
+                return $data;
+            });
 
         return $subcategories;
     }
@@ -98,7 +97,8 @@ class ServiceCategoryController extends Controller
         return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 
-    public function toggleVisibility(ServiceCategory $services_category) {
+    public function toggleVisibility(ServiceCategory $services_category)
+    {
 
 //        dd($services_category->id);
         $services_category->forceFill([
@@ -109,11 +109,11 @@ class ServiceCategoryController extends Controller
     }
 
 
-    public function toggleApproval(ServiceCategory $services_category) {
-
+    public function toggleApproval(ServiceCategory $services_category)
+    {
         $services_category->forceFill([
-            'approved_by' => !is_null($services_category->approved_by)?null:auth()->user()->id,
-            'approved_at' => !is_null($services_category->approved_at)?null:now()
+            'approved_by' => isset($services_category->approved_by)?null:auth()->user()->id,
+            'approved_at' => ($services_category->approved_at != "")?null:now()
         ])->save();
 
         return redirect()->back()->with(['status' => 'Operation Complete successful']);

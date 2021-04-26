@@ -100,6 +100,15 @@ function ProfileInfo(_ref) {
     });
   }
 
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    $(document).ready(function () {
+      window.setTimeout(function () {
+        $(".alert").fadeTo(2000, 500).slideUp(500, function () {
+          $(".alert").slideUp(500);
+        });
+      }, 2500);
+    });
+  }, [status, errors]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "alert alert-success alert-dismissible bg-primary text-white border-0 fade show",
     role: "alert"
@@ -160,6 +169,7 @@ function ProfileInfo(_ref) {
     label: "Mobile Number",
     errors: errors.mobile_number,
     value: values.mobile_number,
+    disabled: true,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
     name: "address",
@@ -212,6 +222,7 @@ function ProfileInfo(_ref) {
     type: "text",
     placeholder: "Email Address",
     label: "Email Address",
+    disabled: true,
     errors: errors.email,
     value: values.email,
     onChange: handleChange

@@ -62,8 +62,8 @@ const ManageServices = () => {
     }
 
         return (
-            <div className="row" style={{paddingTop: 30 + 'px'}}>
-                <div className="col-xl-7">
+            <div className="row col-lg-12" style={{paddingTop: 30 + 'px'}}>
+                <div className="col-lg-7">
                     <div className="card px-2">
                         <Heading title="Service Categories" renderModal={renderAddCategoryModal} modalID={ADD_CATEGORY_MODAL_ID} search={searchCategories}  />
                         <ServiceCategoriesTable categories={shownCategories} callback={setSelectedCategory} />
@@ -71,7 +71,7 @@ const ManageServices = () => {
                     </div>
                 </div>
 
-                <div className="col-xl-5">
+                <div className="col-lg-5">
                     { categories && <InfoSideBar selectedCategory={selectedCategory} />}
                 </div>
             </div>

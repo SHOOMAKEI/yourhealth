@@ -1,33 +1,59 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[112],{
 
-/***/ "./resources/js/Pages/Utilities/components/ActiveLink.jsx":
-/*!****************************************************************!*\
-  !*** ./resources/js/Pages/Utilities/components/ActiveLink.jsx ***!
-  \****************************************************************/
+/***/ "./resources/js/Pages/Services/requested/components/Heading.jsx":
+/*!**********************************************************************!*\
+  !*** ./resources/js/Pages/Services/requested/components/Heading.jsx ***!
+  \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ActiveLink; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Heading; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__);
 
+function Heading(_ref) {
+  var title = _ref.title,
+      renderModal = _ref.renderModal,
+      modalID = _ref.modalID,
+      search = _ref.search;
 
-function ActiveLink(_ref) {
-  var refLink = _ref.refLink,
-      title = _ref.title;
-  var _true = true,
-      asPath = _true.asPath;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "".concat(asPath === refLink ? "mm-active" : null)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["InertiaLink"], {
-    href: refLink
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "".concat(asPath === refLink ? "mm-active" : null)
-  }, title)));
+  function onSearch() {
+    $('#search-input').on('input', function (e) {
+      var input = $(this);
+      var val = input.val();
+
+      if (input.data("lastval") != val) {
+        input.data("lastval", val);
+        search(val);
+      }
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "page-title-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "page-title-right"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "app-search"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    placeholder: "Search...",
+    id: "search-input",
+    onInput: onSearch
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group-append"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "btn btn-primary"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "uil uil-search"
+  }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "page-title"
+  }, title));
 }
 
 /***/ })

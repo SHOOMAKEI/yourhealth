@@ -1,8 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import {InertiaLink, usePage} from "@inertiajs/inertia-react";
 
-export default function Qualifications() {
-    const { qualifications } = usePage().props
+export default function Qualifications({provider}) {
+    const [qualifications, setQualifications] = useState([])
+    const[sending, setSending] = useState(false)
+
+    useEffect(() => {
+        setSending(true)
+        axios.get(route('service_provider_profiles.qualifications',provider.id))
+            .then( resp => {
+                setQualifications(resp.data)
+                setSending(false)
+            })
+    }, [provider])
 
     return (
         <div className="tab-pane fade" id="v-pills-qualifications" role="tabpanel"

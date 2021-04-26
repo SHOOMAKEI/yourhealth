@@ -5,6 +5,8 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -18,33 +20,33 @@ class ServiceCategory extends Model
 
     protected static $logAttribute = ['*'];
 
-    public function service_sub_categories()
+    public function service_sub_categories(): HasMany
     {
         return $this->hasMany(ServiceSubCategory::class);
     }
 
-    public function getCreatedAtAttribute()
+    public function getCreatedAtAttribute(): string
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['created_at'])->format('M j, Y G:ia');
     }
-    public function getUpdatedAtAttribute()
+    public function getUpdatedAtAttribute(): string
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['updated_at'])->format('M j, Y G:ia');
     }
-    public function getApprovedAtAttribute()
+    public function getApprovedAtAttribute(): string
     {
-        if(!is_null($this->attributes['approved_at'])){
+        if (!is_null($this->attributes['approved_at'])) {
             return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['approved_at'])->format('M j, Y G:ia');
         }
-
+        return "";
     }
 
-    public function approver()
+    public function approve(): BelongsTo
     {
-        return $this->belongsTo(User::class,'approved_by','id');
+        return $this->belongsTo(User::class, 'approved_by', 'id');
     }
 
-    public function creator()
+    public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }

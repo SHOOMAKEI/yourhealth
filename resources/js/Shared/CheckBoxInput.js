@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({ label, name, className, errors = [], ...props }) => {
+export default ({ label, name, className, value, errors = [], ...props }) => {
   return (
     <div className="custom-control custom-switch mb-2">
 
@@ -10,7 +10,6 @@ export default ({ label, name, className, errors = [], ...props }) => {
         {...props}
         type="checkbox"
         className="custom-control-input"
-
       />
        {label && (
         <label className="custom-control-label" htmlFor={name}>

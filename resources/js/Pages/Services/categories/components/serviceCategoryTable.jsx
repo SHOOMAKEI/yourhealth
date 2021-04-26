@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, {  useEffect } from 'react';
 
 import Category from './serviceCategory'
 import { SERVICE_CATEGORIES_TABLE } from '@/Pages/Utilities/Constants'
@@ -19,7 +19,7 @@ const ServiceCategoriesTable  = ({categories, callback}) =>{
                 </tr>
             </thead>
             <tbody>
-                { categories.map(category => <Category category={category} callback={callback}  />) }
+                { categories.map((category, index) => <Category category={category} callback={callback}  key={index+1}/>) }
             </tbody>
         </table>
     )

@@ -17,18 +17,22 @@ class ServiceController extends Controller
             $data['id'] = $query->id;
             $data['is_active'] = $query->is_active;
             $data['name'] = $query->name;
-            $data['service_category_id'] = $query->service_category_id;
+            $data['service_sub_category_id'] = $query->service_sub_category_id;
             $data['description'] = $query->description;
             $data['created_at'] = $query->created_at;
             $data['updated_at'] = $query->updated_at;
             $data['approved_at'] = $query->approved_at;
-            $data['approved_by'] = !is_null($query->approver) && !is_null($query->approved_at) ?$query->approver->name: '';
+            $data['approved_by'] = !is_null($query->approve) && ($query->approved_at != "") ?$query->approve->name: '';
             $data['created_by'] = !is_null($query->creator)?$query->creator->name: config('app.name');
 
             return $data;
         });
 
-        return Inertia::render('Services/services/components/Manage', ['categories'=> $servicesCategories]);
+        return Inertia::render(
+            'Services/services/components/Manage',
+            ['categories'=> $servicesCategories,
+                'service_sub_category' => $services_sub_category]
+        );
     }
 
 
@@ -39,20 +43,20 @@ class ServiceController extends Controller
         $request->validate([
             'name' => ['required', 'max:255', 'string'],
             'description' => ['required','string'],
-            'is_active' => ['required','boolean'],
-            'approved_at' => ['required','boolean'],
-            'service_category_id' => ['required','exists:service_categories,id'],
+            'is_active' => ['boolean'],
+            'approved_at' => ['boolean'],
+            'service_sub_category_id' => ['required','exists:service_sub_categories,id'],
         ]);
 //        dd($request['approved_at']?now()->toDateTime():null);
 
         Service::create([
             'name' => $request['name'],
             'description' => $request['description'],
-            'is_active' => $request['is_active'],
+            'is_active' => $request['is_active']?$request['is_active']:false,
             'created_by' => auth()->user()->id,
             'approved_by' => $request['approved_at']?auth()->user()->id:null,
             'approved_at' => $request['approved_at']?now():null,
-            'service_category_id' => $request['service_category_id'],
+            'service_sub_category_id' => $request['service_sub_category_id'],
         ]);
 
         return redirect()->back()->with(['status' => 'Operation Complete successful']);
@@ -98,8 +102,8 @@ class ServiceController extends Controller
     public function toggleApproval(Service $service)
     {
         $service->forceFill([
-            'approved_by' => !is_null($service->approved_by)?null:auth()->user()->id,
-            'approved_at' => !is_null($service->approved_at)?null:now()
+            'approved_by' => isset($service->approved_by)?null:auth()->user()->id,
+            'approved_at' =>($service->approved_at != "")?null:now()
         ])->save();
 
         return redirect()->back()->with(['status' => 'Operation Complete successful']);

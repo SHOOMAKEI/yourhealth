@@ -26,7 +26,8 @@ class ProviderFacility extends Model implements HasMedia
             Service::class,
             'facility_service',
             'provider_facility_id',
-            'service_id')->withPivot('price', 'compare_price', 'currency');
+            'service_id'
+        )->withPivot('price', 'compare_price', 'currency');
     }
 
     public function provider_company()
@@ -51,5 +52,11 @@ class ProviderFacility extends Model implements HasMedia
 
     public function provider_profile()
     {
+    }
+
+    public function facility_practical_licenses()
+    {
+        return $this->hasMany(FacilityMedicalRegistration::class);
+
     }
 }

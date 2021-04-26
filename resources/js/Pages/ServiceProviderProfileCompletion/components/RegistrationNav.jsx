@@ -44,16 +44,14 @@ export default function RegistrationNav({user}) {
                         </a>
                     )
                 }
-                {
-                    user.provider_profile.account_category_type === 'individual' && (
-                        <a className="nav-link mb-2" id="v-pills-settings-tab" data-toggle="pill"
-                            href="#v-pills-medical-registration" role="tab" aria-controls="v-pills-medical-registration"
-                            aria-selected="false">
-                            <i className="mdi mdi-settings-outline d-md-none d-block"/>
-                            <span className="d-none d-md-block">Practice Licenses</span>
-                        </a>
-                    )
-                }
+
+                <a className="nav-link mb-2" id="v-pills-settings-tab" data-toggle="pill"
+                    href="#v-pills-medical-registration" role="tab" aria-controls="v-pills-medical-registration"
+                    aria-selected="false">
+                    <i className="mdi mdi-settings-outline d-md-none d-block"/>
+                    <span className="d-none d-md-block">Practice Licenses</span>
+                </a>
+
                 <a className="nav-link mb-2" id="v-pills-settings-tab" data-toggle="pill"
                     href="#v-pills-services" role="tab" aria-controls="v-pills-services"
                     aria-selected="false">
