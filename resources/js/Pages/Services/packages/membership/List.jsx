@@ -1,6 +1,6 @@
 import React from 'react'
 import {usePage} from "@inertiajs/inertia-react";
-import {ADD_MEMBERSHIP_MODAL_ID, UPDATE_CATEGORY_MODAL_ID} from "@/Pages/Utilities/Constants";
+import {ADD_MEMBERSHIP_MODAL_ID, ADD_PACKAGE_MODAL_ID, UPDATE_CATEGORY_MODAL_ID} from "@/Pages/Utilities/Constants";
 
 export default function List({memberships, callback}) {
     const {selectedMembership} = usePage().props
@@ -44,9 +44,11 @@ export default function List({memberships, callback}) {
                                 <i className="uil uil-bright font-16 mr-1 text-primary"/>More
                             </button>
                                 <div className="dropdown-menu">
+
                                     <a href="#" className="dropdown-item" data-toggle="modal" data-target={`#${ADD_MEMBERSHIP_MODAL_ID}`} onClick={() => _selectMembership(membership)}>
                                         <i className="uil uil-edit mr-1"/>Edit
                                     </a>
+
                                     <div className="dropdown-divider"/>
                                     <a href="" className="dropdown-item text-danger" data-toggle="modal" data-target={`#delete-membership-${membership.id}`} onClick={() => _selectMembership(membership)}>
                                         <i className="uil uil-trash-alt mr-1"/>Delete

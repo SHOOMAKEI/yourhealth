@@ -6,7 +6,10 @@ use App\Http\Controllers\Authentication\AuthenticationController;
 use App\Http\Controllers\Authentication\AuthenticationViewsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MedicalInstituteController;
-use App\Http\Controllers\PackagesController;
+use App\Http\Controllers\Packages\FeatureController;
+use App\Http\Controllers\Packages\MembershipController;
+use App\Http\Controllers\Packages\PackagesController;
+use App\Http\Controllers\Packages\RangeController;
 use App\Http\Controllers\Registration\RegistrationController;
 use App\Http\Controllers\RequiredVerificationController;
 use App\Http\Controllers\ServiceProviderProfileCompletion\EducationQualificationController;
@@ -247,12 +250,25 @@ Route::middleware([ 'auth','auth:sanctum', 'verified', 'verified_sp','language',
      Route::resource('packages_registration', PackagesController::class);
      Route::get('membership_registration', [PackagesController::class, 'membershipIndex'])
          ->name('membership_registration.index');
-     Route::post('membership_registration', [PackagesController::class, 'membershipStore'])
+     Route::post('membership_registration', [MembershipController::class, 'store'])
          ->name('membership_registration.store');
-     Route::post('membership_registration/{membership}/update', [PackagesController::class, 'membershipUpdate'])
+     Route::post('membership_registration/{membership}/update', [MembershipController::class, 'update'])
          ->name('membership_registration.update');
-     Route::delete('membership_registration/{membership}', [PackagesController::class, 'membershipDestroy'])
+     Route::delete('membership_registration/{membership}', [MembershipController::class, 'destroy'])
          ->name('membership_registration.destroy');
+     Route::post('feature_registration', [FeatureController::class, 'store'])
+         ->name('feature_registration.store');
+     Route::post('feature_registration/{feature}/update', [FeatureController::class, 'update'])
+         ->name('feature_registration.update');
+     Route::delete('feature_registration/{feature}', [FeatureController::class, 'destroy'])
+         ->name('feature_registration.destroy');
+     Route::post('range_registration', [RangeController::class, 'store'])
+         ->name('range_registration.store');
+     Route::post('range_registration/{range}/update', [RangeController::class, 'update'])
+         ->name('range_registration.update');
+     Route::delete('range_registration/{range}', [RangeController::class, 'destroy'])
+         ->name('range_registration.destroy');
+
 
      Route::get('service_provider_profiles', [VerificationRequestsController::class, 'profileInfo'])
         ->name('service_provider_profiles.index');

@@ -1,19 +1,28 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Packages;
 
+use App\Http\Controllers\Controller;
 use App\Models\MembershipCategory;
-use App\Models\Plan;
+use App\Models\PackageFeature;
+use App\Models\PackageMemberRange;
+use App\Models\PackagePlan;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class PackagesController extends Controller
 {
-
     public function index()
     {
-        return Inertia::render('Services/packages/manage', ['memberships' => MembershipCategory::all()]);
+        return Inertia::render(
+            'Services/packages/manage',
+            ['memberships' => MembershipCategory::all(),
+                'packages' => PackagePlan::all(),
+                'features' => PackageFeature::all(),
+                'ranges' => PackageMemberRange::all()
+                ]
+        );
     }
 
     /**
@@ -130,44 +139,4 @@ class PackagesController extends Controller
         // dd($request['package_category']);
     }
 
-    public function membershipStore(Request $request)
-    {
-        $request->validate([
-            'name' => ['required', 'max:255', 'string'],
-            'description' => ['required','string'],
-            'is_active' => ['required','boolean'],
-        ]);
-
-        MembershipCategory::create([
-            'name' => $request['name'],
-            'description' => $request['description'],
-            'is_active' => $request['is_active']
-        ]);
-
-        return redirect()->back()->with(['status' => 'Operation Complete successful']);
-    }
-
-    public function membershipUpdate(MembershipCategory $membership, Request $request)
-    {
-        $request->validate([
-            'id' => ['required', 'numeric', 'exists:membership_categories,id'],
-            'name' => ['required', 'max:255', 'string'],
-            'description' => ['required','string'],
-            'is_active' => ['required','boolean'],
-        ]);
-
-        $membership->update([
-            'name' => $request['name'],
-            'description' => $request['description'],
-            'is_active' => $request['is_active']
-        ]);
-
-        return redirect()->back()->with(['status' => 'Operation Complete successful']);
-    }
-
-    public function membershipDestroy(MembershipCategory $membership)
-    {
-        $membership->delete();
-        return redirect()->back()->with(['status' => 'Operation Complete successful']);
-    }
 }

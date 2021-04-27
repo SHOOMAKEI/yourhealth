@@ -99,20 +99,20 @@ export default function AddMembershipModal({modalID, operation, title, initialDa
                     />
 
                     <div>
-                        <div className="custom-control custom-switch form-group">
-                            <CheckBoxInput
-                                name="is_active"
-                                placeholder="Show membership to public"
-                                label="Show membership to public"
-                                errors={errors.status}
-                                value={values.status}
-                                onChange={handleChange}
-                            />
-                        </div>
+
+                    <CheckBoxInput
+                        name="is_active"
+                        placeholder="Show membership to public"
+                        label="Show membership to public"
+                        errors={errors.status}
+                        value={values.status}
+                        onChange={handleChange}
+                    />
+
                         <p className="text-muted">
                             If the above option is selected the public will see the membership,
                             otherwise the public will not see the membership. You can edit it
-                            later on from category settings.
+                            later on from membership settings.
                         </p>
                     </div>
 

@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
 
-import {ADD_MEMBERSHIP_MODAL_ID} from "@/Pages/Utilities/Constants";
+import {ADD_MEMBERSHIP_MODAL_ID, ADD_PACKAGE_MODAL_ID} from "@/Pages/Utilities/Constants";
 import AddMembershipModal from "@/Pages/Services/packages/membership/AddMembership";
 import Heading from "@/Pages/Services/packages/membership/Heading";
 import List from "@/Pages/Services/packages/membership/List";
 import SelectedInfo from "@/Pages/Services/packages/membership/SelectedInfo";
 import {usePage} from "@inertiajs/inertia-react";
 import DeleteMembershipDialog from "@/Pages/Services/packages/membership/deleteDialog";
+import AddPackageModal from "@/Pages/Services/packages/package/AddPackageModal";
 
 
 export default function Memberships({memberships}) {

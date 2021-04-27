@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMembershipClassesTable extends Migration
+class CreateMemberRangePackagePlanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateMembershipClassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('membership_classes', function (Blueprint $table) {
+        Schema::create('member_range_package_plan', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->boolean('is_active')->default(1);
+            $table->foreignId('package_plan_id')->constrained()->restrictOnDelete();
+            $table->foreignId('package_member_range_id')->constrained()->restrictOnDelete();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -30,6 +28,6 @@ class CreateMembershipClassesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('membership_classes');
+        Schema::dropIfExists('member_range_package_plan');
     }
 }

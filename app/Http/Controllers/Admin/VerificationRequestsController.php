@@ -41,7 +41,7 @@ class VerificationRequestsController extends Controller
 
     public function facilityServices(ProviderFacility $provider_facility)
     {
-        return $provider_facility->services??$provider_facility->services->toArray();
+        return $provider_facility->services ?? $provider_facility->services->toArray();
     }
 
     public function qualifications(ProviderProfile $provider_profile)
@@ -97,7 +97,7 @@ class VerificationRequestsController extends Controller
 
     public function practiceLicenseApproval(ProviderMedicalRegistration $practice_license)
     {
-        if ($practice_license->is_verified==false) {
+        if ($practice_license->is_verified == false) {
             $practice_license->forceFill([
                 'is_verified' => true,
                 'verified_at' => now(),
@@ -122,7 +122,7 @@ class VerificationRequestsController extends Controller
 
     public function facilityPracticeLicenseApproval(FacilityMedicalRegistration $practice_license)
     {
-        if ($practice_license->is_verified==false) {
+        if ($practice_license->is_verified == false) {
             $practice_license->forceFill([
                 'is_verified' => true,
                 'verified_at' => now(),
@@ -147,7 +147,7 @@ class VerificationRequestsController extends Controller
 
     public function IndividualServices(ProviderProfile $provider_profile)
     {
-        return $provider_profile->services??$provider_profile->services->toArray();
+        return $provider_profile->services ?? $provider_profile->services->toArray();
     }
 
     public function verify(ProviderProfile $provider_profile)
@@ -174,7 +174,7 @@ class VerificationRequestsController extends Controller
         return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 
-    public function reject(Request  $request)
+    public function reject(Request $request)
     {
         $request->validate([
             'reasons' => ['required', 'string'],
@@ -200,9 +200,9 @@ class VerificationRequestsController extends Controller
         $user->assignRole('unverified-service-provider');
 
         $reasons = ProviderRejectionReason::create([
-            'provider_profile_id'=> $provider_profile->id,
+            'provider_profile_id' => $provider_profile->id,
             'reasons' => $request['reasons'],
-            'rejected_round' => $provider_last_rejection->isEmpty()?1:$provider_last_rejection->rejection_round+1
+            'rejected_round' => $provider_last_rejection->isEmpty() ? 1 : $provider_last_rejection->rejection_round + 1
         ]);
 
         $user->notify(new ServiceProviderDisqualificationNotification($reasons));
@@ -212,6 +212,6 @@ class VerificationRequestsController extends Controller
 
     public function viewProviderProfileInfo(ProviderProfile $profile)
     {
-        return  Inertia::render('ServiceProviders/requests/components/ProviderProfile', ['provider' => $profile]);
+        return Inertia::render('ServiceProviders/requests/components/ProviderProfile', ['provider' => $profile]);
     }
 }

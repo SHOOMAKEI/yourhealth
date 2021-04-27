@@ -22,7 +22,7 @@ export default function Heading({title, renderModal, modalID, search, callback})
                 <a href="#" className="btn btn-primary mb-3" data-toggle="modal" data-target={`#${modalID}`} onClick={()=> callback({
                     name: "",
                     description: "No description",
-                    status: false,
+                    is_active: false,
                 })}>
                     <i className="mdi mdi-plus"/>{title}</a>
             </div>

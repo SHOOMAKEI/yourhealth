@@ -1,13 +1,34 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[145],{
 
-/***/ "./resources/js/Pages/Services/services/[subcategory_id].page.tsx":
-/*!************************************************************************!*\
-  !*** ./resources/js/Pages/Services/services/[subcategory_id].page.tsx ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./resources/js/Pages/Utilities/components/ActiveLink.jsx":
+/*!****************************************************************!*\
+  !*** ./resources/js/Pages/Utilities/components/ActiveLink.jsx ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (16:20)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n| const SERVICES_BATCH_COUNT = 10;\n| \n> const ManageServices: NextPage = () => {\n|     const {services} = useSelector<ServicesState, ServicesState>(state => state.servicesStore);\n| ");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ActiveLink; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function ActiveLink(_ref) {
+  var refLink = _ref.refLink,
+      title = _ref.title;
+  var _true = true,
+      asPath = _true.asPath;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "".concat(asPath === refLink ? "mm-active" : null)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["InertiaLink"], {
+    href: refLink
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "".concat(asPath === refLink ? "mm-active" : null)
+  }, title)));
+}
 
 /***/ })
 
