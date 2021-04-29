@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -50,5 +51,15 @@ class Service extends Model
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
+    public function individual_providers(): BelongsToMany
+    {
+        return $this->belongsToMany(ProviderProfile::class, 'service_provider_profile')->withPivot('price', 'compare_price', 'currency');
+    }
+
+    public function facility_providers(): BelongsToMany
+    {
+        return $this->belongsToMany(ProviderProfile::class, 'facility_service')->withPivot('price', 'compare_price', 'currency');
     }
 }

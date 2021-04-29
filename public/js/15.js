@@ -171,14 +171,7 @@ function AddPackageModal(_ref) {
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     return setValues(function (values) {
-      return _objectSpread(_objectSpread({}, values), {}, {
-        membership_category_id: membershipData && membershipData.length > 0 ? membershipData[0].id : null,
-        package_member_range_id: rangeData && rangeData.length > 0 ? rangeData[0].id : null,
-        package_feature_id: featureData && featureData.length > 0 ? featureData[0].id : null,
-        features: [],
-        ranges: [],
-        is_active: true
-      });
+      return initialData;
     });
   }, [initialData]);
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
@@ -191,19 +184,28 @@ function AddPackageModal(_ref) {
 
     switch (type) {
       case "add":
-        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__["Inertia"].post(route('membership_registration.store'), values).then(function () {
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__["Inertia"].post(route('packages_registration.store'), values).then(function () {
           setSending(false);
         });
         break;
 
       case "update":
-        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__["Inertia"].post(route('membership_registration.update', values.id), values).then(function () {
-          setSending(false);
-        });
+        if (values.clone) {
+          _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__["Inertia"].post(route('packages_registration.store'), values).then(function () {
+            setSending(false);
+          });
+        }
+
+        if (!values.clone) {
+          _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__["Inertia"].put(route('packages_registration.update', values.id), values).then(function () {
+            setSending(false);
+          });
+        }
+
         break;
 
       default:
-        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__["Inertia"].post(route('membership_registration.store'), values).then(function () {
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__["Inertia"].post(route('packages_registration.store'), values).then(function () {
           setSending(false);
         });
         break;
@@ -254,12 +256,42 @@ function AddPackageModal(_ref) {
       errors: errors.name,
       value: values.name,
       onChange: handleChange
-    }), values.features && values.features.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", null, "Package Features"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      name: "price",
+      type: "number",
+      placeholder: "Price (For Individual and Family category)",
+      label: "Price (For Individual and Family category)",
+      errors: errors.price,
+      value: values.price,
+      onChange: handleChange
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_SelectInput__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      name: "currency",
+      type: "text",
+      placeholder: "Currency (For Individual and Family category)",
+      label: "Currency (For Individual and Family category)",
+      errors: errors.currency,
+      value: values.currency,
+      onChange: handleChange
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "TZS"
+    }, "TZS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "USD"
+    }, "USD"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "KES"
+    }, "KES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "UGS"
+    }, "UGS")), values.features && values.features.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", null, "Package Features"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
       className: "table table-hover table-centered mb-0"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Features"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Actions"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, values.features && values.features.length > 0 && values.features.map(function (feature, index) {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Feature"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Services"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Actions"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, values.features && values.features.length > 0 && values.features.map(function (feature, index) {
+      var _feature$services;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
         key: index + 1
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, feature.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, feature.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, feature.services.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", null, (_feature$services = feature.services) === null || _feature$services === void 0 ? void 0 : _feature$services.map(function (service, index) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+          key: index + 1
+        }, service.name);
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         className: "btn btn-danger btn-sm",
         onClick: function onClick(e) {
           return removeFeature(e, feature);
@@ -282,7 +314,7 @@ function AddPackageModal(_ref) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
         value: feature.id,
         key: index + 1
-      }, feature.name);
+      }, feature.name, " ");
     })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "col-lg-2 my-auto"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
@@ -290,7 +322,7 @@ function AddPackageModal(_ref) {
       onClick: addFeature
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
       className: "dripicons-plus"
-    })))), values.features && values.features.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", null, "Stuff Members"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
+    })))), values.ranges && values.ranges.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", null, "Stuff Members"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
       className: "table table-hover table-centered mb-0"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Range"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Actions"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, values.ranges && values.ranges.length > 0 && values.ranges.map(function (range, index) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {

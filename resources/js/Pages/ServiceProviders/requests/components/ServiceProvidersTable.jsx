@@ -37,8 +37,8 @@ export default function ServiceProvidersTable({serviceProviders}) {
             <tbody>
             {
                 serviceProviders.map(
-                    serviceProvider =>
-                        <ServiceProvider serviceProvider={serviceProvider} selectServiceProvider={selectProvider} />
+                    (serviceProvider, index) =>
+                        <ServiceProvider key={index+1} serviceProvider={serviceProvider} selectServiceProvider={selectProvider} />
                 )
             }
             {/*{selectedProvider && <ProviderProfile modalId={PROVIDER_PROFILE_MODAL_ID} provider={selectedProvider}/>}*/}

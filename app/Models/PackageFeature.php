@@ -17,6 +17,11 @@ class PackageFeature extends Model
     protected static $logAttribute = ['*'];
 
 
+    public function services()
+    {
+        return $this->belongsToMany(Service::class, 'package_feature_service');
+    }
+
     public function getCreatedAtAttribute(): string
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['created_at'])->format('M j, Y G:ia');

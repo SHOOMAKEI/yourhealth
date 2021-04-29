@@ -16,6 +16,7 @@ class CreatePackagePlansTable extends Migration
         Schema::create('package_plans', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('membership_category_id')->constrained()->restrictOnDelete();
             $table->boolean('is_active')->default(true);
             $table->boolean('has_price')->default(false);
             $table->boolean('has_member_range')->default(false);

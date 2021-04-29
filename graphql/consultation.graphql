@@ -1,0 +1,14 @@
+type ServiceProvidersAndFacilities {
+    id: ID
+    name: String!
+    description: String
+    is_active: Boolean
+    doctors: [ProviderProfile]
+    facility:[ProviderFacility]
+}
+
+type ServicesWithProvidersCount {
+    id: ID
+    name: String!
+    provider_count: Int
+}

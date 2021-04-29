@@ -1,117 +1,115 @@
-// import {useDispatch, useSelector} from "react-redux";
+import React, {useEffect, useState} from "react";
+import {Inertia} from "@inertiajs/inertia";
+import {PACKAGE_INFO_MODAL_ID} from "@/Pages/Utilities/Constants";
 
-import AddMembershipModal from "@/Pages/Services/packages/membership/AddMembership";
-// import Spinner from "@pages/auth/components/Spinner";
-import {UPDATE_MEMBERSHIP_MODAL_ID} from "@/Pages/Utilities/Constants";
-// import { UPDATE_PACKAGE_MEMBERSHIP } from "@pages/utils/Mutations";
-// import {membershipsStateValues} from "@pages/data/reducers/memberships";
-// import {updateMembership} from "@pages/data/actions/memberships";
-// import { useApi } from "@pages/utils/ApolloClient";
-import { useEffect } from "react";
+export default function SelectedInfo({membership}) {
+    const [selectedMembership, setSelectedMembership] = useState(membership)
+    const [sending, setSending] = useState(false)
 
-export default function SelectedInfo() {
-    // const dispatch = useDispatch();
-    // const [updatePackageMembership, updatePackageMembershipResponse] = useApi({query: UPDATE_PACKAGE_MEMBERSHIP});
+    useEffect(() => {
+        setSelectedMembership(membership)
+    }, [membership])
 
-    // useEffect(() => {
-    //     let data = updatePackageMembershipResponse.data;
-    //
-    //     if (data && data.updatePackageMemberShip) {
-    //         dispatch(updateMembership(data.updatePackageMemberShip));
-    //     }
-    // }, [updatePackageMembershipResponse.data])
-
-
-    function toggleVisibility() {
-        let membership = {
-            id: selectedMembership.id,
-            name: selectedMembership.name,
-            description: selectedMembership.description,
-            is_active: !selectedMembership.is_active
-        };
-
-        // updatePackageMembership({variables: {input: membership}})
-    }
-
-    function renderModal() {
-        return <AddMembershipModal modalID={UPDATE_MEMBERSHIP_MODAL_ID} operation={"update"} />
-    }
-
-    // const {selectedMembership} = useSelector(state => state.membershipsStore)
 
     return (
-        <div>
-            <div className="dropdown card-widgets">
-                <a href="#" className="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-                    <i className="uil uil-ellipsis-h"/>
-                </a>
-                <div className="dropdown-menu dropdown-menu-right">
-                    <a href="#" className="dropdown-item" onClick={toggleVisibility}>
-                        {
-                            selectedMembership.is_active ? (
-                                <span><i className="uil uil-ban mr-1"/>Hide from public</span>
-                            ) : <span><i className="uil uil-eye mr-1"/>Show to public</span>
-                        }
-                    </a>
-                    <a href="#" className="dropdown-item" data-toggle="modal" data-target={`#${UPDATE_MEMBERSHIP_MODAL_ID}`}>
-                        <i className="uil uil-edit mr-1"/>Edit
-                    </a>
-                    <div className="dropdown-divider"/>
-                    <a href="#" className="dropdown-item text-danger" data-toggle="modal" data-target="#delete-category">
-                        <i className="uil uil-trash-alt mr-1"/>Delete
-                    </a>
-                </div>
-            </div>
-
-            <h4>{selectedMembership.name}</h4>
-            <span>
-                {
-                    updatePackageMembershipResponse.loading ? <Spinner /> :
-                        selectedMembership.is_active ?
-                            <span><i className="mdi mdi-circle text-success"/> Enabled</span>
-                                :
-                            <span><i className="mdi mdi-circle text-danger"/>  Disabled</span>
-                }
-            </span>
-
-            <hr className="mt-3 mb-2" />
-
-            <div className="row">
-                <div className="col">
-
-                    <p>
-                        {selectedMembership.description}
-                    </p>
-
-                    <div className="row">
-                        <div className="col-6">
-                            <p className="mt-2 mb-1 text-muted">Created At</p>
-                            <div className="media">
-                                <i className="uil uil-schedule font-18 text-success mr-1"/>
-                                <div className="media-body">
-                                    <h5 className="mt-1 font-14">
-                                        {selectedMembership.created_at}
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-6">
-                            <p className="mt-2 mb-1 text-muted">Updated At</p>
-                            <div className="media">
-                                <i className="uil uil-schedule font-18 text-success mr-1"/>
-                                <div className="media-body">
-                                    <h5 className="mt-1 font-14">
-                                        {selectedMembership.updated_at}
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
+        <div id={PACKAGE_INFO_MODAL_ID} className="modal fade" tabIndex={-1} role="dialog" aria-labelledby="info-categoryLabel" aria-hidden="true">
+            <div className="modal-dialog modal-lg modal-dialog-scrollable">
+                <div className="modal-content ">
+                    <div className="modal-header">
+                        <h4 className="modal-title" id="info-categoryLabel">{selectedMembership?.name} Package Information</h4>
+                        <button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
+                    <div className="modal-body">
+                       <h4>{selectedMembership?.name} package for {selectedMembership?.membership_category?.name} membership category</h4>
+                        {selectedMembership?.has_price?
+                            <>
+                                <br/>
+                                <h4>Package Price: {selectedMembership?.price} {selectedMembership?.currency}</h4>
+                            </>
+                            : null
+                        }
 
+                        {selectedMembership?.features && selectedMembership?.features.length>0 && (
+                            <>
+                                <br/><br/>
+                                <h4>Package Features</h4>
+                                <table className="table table-hover table-centered mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>
+                                            Feature
+                                        </th>
+                                        <th>
+                                            Services
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {selectedMembership?.features && selectedMembership?.features.length>0 && selectedMembership?.features.map((feature,index )=>(
+                                        <tr key={index+1}>
+                                            <td>
+                                                {index+1}
+                                            </td>
+                                            <td>
+                                                {feature.name}
+                                            </td>
+                                            <td>
+                                                <ul>
+                                                    {feature.services.map((service, index)=>(<li key={index+1}>{service.name}</li>))}
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    </tbody>
+                                </table>
+                            </>
+
+                        )}
+                        {selectedMembership?.ranges && selectedMembership?.ranges.length>0  && (
+                            <>
+                                <br/><br/>
+                                <h4>Stuff Members</h4>
+                                <table className="table table-hover table-centered mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            #
+                                        </th>
+                                        <th>
+                                            Range
+                                        </th>
+                                        <th>
+                                            Price
+                                        </th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {selectedMembership?.ranges && selectedMembership?.ranges.length>0 && selectedMembership?.ranges.map((range,index )=>(
+                                        <tr key={index+1}>
+                                            <td>{index+1}</td>
+                                            <td>
+                                                {range.min} - {range.max}
+                                            </td>
+                                            <td>
+                                                {range.price} {range.currency}
+                                            </td>
+
+                                        </tr>
+                                    ))}
+                                    </tbody>
+                                </table>
+                            </>
+
+                        )}
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-light" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
-            {renderModal()}
         </div>
     )
 }
+

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\Registration;
 
 use App\Models\ClientProfile;
 use App\Models\ClientTeam;
+use App\Models\MembershipCategory;
+use App\Models\PackagePlan;
 
 class ClientRegistrationController
 {
@@ -35,7 +37,7 @@ class ClientRegistrationController
           'physical_address' => $args['input']['physical_address'],
           'description' => $args['input']['description'],
       ]);
-      
+
         return $clientTeam;
     }
 
@@ -50,7 +52,6 @@ class ClientRegistrationController
             'tin' => $args['input']['tin'],
             'vrn' => $args['input']['vrn'],
             'trading_name' => $args['input']['trading_name'],
-            'mobile_number' => $args['input']['mobile_number'],
             'alternative_mobile_number' => $args['input']['alternative_mobile_number'],
             'address' => $args['input']['address'],
             'physical_address' => $args['input']['physical_address'],
@@ -62,8 +63,57 @@ class ClientRegistrationController
         return $clientTeam;
     }
 
+    public function membershipsCategories($rootValue, array $args)
+    {
+        return MembershipCategory::where('is_active', true)->get();
+    }
+
+    public function packages($rootValue, array $args)
+    {
+        return PackagePlan::where(['membership_category_id'=> $args['membership_category_id'], 'is_active'=> true])->get()->map(function ($query) {
+            $data['id'] = $query->id;
+            $data['name'] = $query->name;
+            $data['price'] = $query->price;
+            $data['currency'] = $query->currency;
+            $data['has_price'] = $query->has_price;
+            $data['has_member_range'] = $query->has_member_range;
+            $data['membership_category'] = $query->membership_category;
+            $data['features'] = $query->package_features->map(function ($q) {
+                $data['id'] = $q->id;
+                $data['name'] = $q->name;
+                $data['services'] = $q->services->map(function ($query) {
+                    $data['id'] = $query->id;
+                    $data['name'] = $query->name;
+                    $data['created_ta'] = $query->created_at;
+
+                    return $data;
+                });
+
+                return $data;
+            });
+            $data['ranges'] = $query->package_member_ranges->map(function ($d) {
+                $data['id'] = $d->id;
+                $data['min'] = $d->min;
+                $data['max'] = $d->max;
+                $data['price'] = $d->price;
+                $data['currency'] = $d->currency;
+
+                return $data;
+            });
+            $data['created_at'] = $query->created_at;
+            $data['updated_at'] = $query->updated_at;
+            $data['is_active'] = $query->is_active;
+
+            return $data;
+        });
+    }
+
+
+
+
     public function subscribeToPackagePlan($rootValue, array $args)
     {
+
     }
 
     public function inviteTeamMembers($rootValue, array $args)

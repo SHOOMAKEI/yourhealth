@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[130],{
 
-/***/ "./resources/js/Pages/Services/requested/components/Heading.jsx":
-/*!**********************************************************************!*\
-  !*** ./resources/js/Pages/Services/requested/components/Heading.jsx ***!
-  \**********************************************************************/
+/***/ "./resources/js/Pages/Services/packages/features/Heading.jsx":
+/*!*******************************************************************!*\
+  !*** ./resources/js/Pages/Services/packages/features/Heading.jsx ***!
+  \*******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -17,7 +17,9 @@ function Heading(_ref) {
   var title = _ref.title,
       renderModal = _ref.renderModal,
       modalID = _ref.modalID,
-      search = _ref.search;
+      search = _ref.search,
+      callback = _ref.callback,
+      services = _ref.services;
 
   function onSearch() {
     $('#search-input').on('input', function (e) {
@@ -32,28 +34,30 @@ function Heading(_ref) {
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "page-title-box"
+    className: "row mb-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "page-title-right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "app-search"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "input-group"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "form-control",
-    placeholder: "Search...",
-    id: "search-input",
-    onInput: onSearch
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "input-group-append"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "btn btn-primary"
+    className: "col-sm-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#",
+    className: "btn btn-primary mb-3",
+    "data-toggle": "modal",
+    "data-target": "#".concat(modalID),
+    onClick: function onClick() {
+      var _services$;
+
+      return callback({
+        name: "",
+        services: [],
+        service_id: (_services$ = services[0]) === null || _services$ === void 0 ? void 0 : _services$.id
+      });
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "uil uil-search"
-  }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-    className: "page-title"
-  }, title));
+    className: "mdi mdi-plus"
+  }), title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-8"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-sm-right float-right"
+  })), renderModal && renderModal());
 }
 
 /***/ })

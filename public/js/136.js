@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[136],{
 
-/***/ "./resources/js/Pages/Services/services/components/paginator.jsx":
-/*!***********************************************************************!*\
-  !*** ./resources/js/Pages/Services/services/components/paginator.jsx ***!
-  \***********************************************************************/
+/***/ "./resources/js/Pages/Services/requested/components/paginator.jsx":
+/*!************************************************************************!*\
+  !*** ./resources/js/Pages/Services/requested/components/paginator.jsx ***!
+  \************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 

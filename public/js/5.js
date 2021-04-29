@@ -104,7 +104,7 @@ function AddMembershipModal(_ref) {
         break;
 
       case "update":
-        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__["Inertia"].post(route('membership_registration.update', values.id), values).then(function () {
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__["Inertia"].put(route('membership_registration.update', values.id), values).then(function () {
           setSending(false);
         });
         break;

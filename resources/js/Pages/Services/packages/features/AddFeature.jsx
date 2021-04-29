@@ -6,11 +6,13 @@ import CheckBoxInput from "@/Shared/CheckBoxInput";
 import {usePage} from "@inertiajs/inertia-react";
 import {Inertia} from "@inertiajs/inertia";
 import LoadingButton from "@/Shared/LoadingButton";
+import SelectInput from "@/Shared/SelectInput";
 
 
-export default function AddFeatureModal({modalID, operation, title, initialData}) {
+export default function AddFeatureModal({modalID, operation, title, initialData, services}) {
     const {errors, status, alertType} = usePage().props
     const [type, setType] = useState(operation)
+    const [serviceData, setServiceData] = useState({})
     const [values, setValues] = useState(initialData)
     const [success, setSuccess] = useState(false)
     const [sending, setSending] = useState(false)
@@ -28,6 +30,7 @@ export default function AddFeatureModal({modalID, operation, title, initialData}
 
     useEffect(() => setValues(initialData), [initialData])
     useEffect(() => setType(operation), [operation])
+    useEffect(()=> setServiceData(services) ,[services])
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -41,7 +44,7 @@ export default function AddFeatureModal({modalID, operation, title, initialData}
                 break;
 
             case "update":
-                Inertia.post(route('feature_registration.update', values.id), values).then(() => {
+                Inertia.put(route('feature_registration.update', values.id), values).then(() => {
                     setSending(false);
                 });
                 break;
@@ -53,7 +56,27 @@ export default function AddFeatureModal({modalID, operation, title, initialData}
                 break;
         }
     }
+    function addService(e){
+        e.preventDefault();
+        if(values.service_id !== ""){
+            setValues(values => ({
+                ...values,
+                services:[...values.services , serviceData.find(d=> d.id == values.service_id)],
+            }));
+        }
 
+    }
+
+    function removeService(e,service){
+        e.preventDefault();
+
+        setValues(values => ({
+            ...values,
+            services:[...values.services.filter(fet => fet.id !=  service.id)],
+
+        }));
+
+    }
 
     useEffect(() => {
         $(document).ready(function () {
@@ -91,6 +114,62 @@ export default function AddFeatureModal({modalID, operation, title, initialData}
                     value={values.name}
                     onChange={handleChange}
                 />
+                {values.services && values.services.length>0 && (
+                    <>
+                        <h4>Feature Services</h4>
+                        <table className="table table-hover table-centered mb-0">
+                            <thead>
+                            <tr>
+                                <th>
+                                    Service
+                                </th>
+                                <th>
+                                    Actions
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {values.services && values.services.length>0 && values.services.map((service,index )=>(
+                                <tr key={index+1}>
+                                    <td>
+                                        {service.name}
+                                    </td>
+                                    <td>
+                                        <button className="btn btn-danger btn-sm" onClick={(e)=>removeService(e, service)}>
+                                            <i className="dripicons-trash"/>
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                    </>
+
+                )}
+                <div className="row">
+                    <div className="col-lg-10">
+                        <SelectInput
+                            name="service_id"
+                            placeholder="Feature Services"
+                            label="Feature Services"
+                            errors={errors.service_id}
+                            value={values.service_id}
+                            onChange={handleChange}
+                        >
+                            {
+                                serviceData && serviceData.length>0 && serviceData?.map((service, index)=>(
+                                    <option value={service.id} key={index+1}>{service.name}</option>
+                                ))
+                            }
+                        </SelectInput>
+                    </div>
+                    <div className="col-lg-2 my-auto">
+                        <button className="btn btn-primary btn-sm" onClick={addService}>
+                            <i className="dripicons-plus"/>
+                        </button>
+                    </div>
+
+                </div>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-light" data-dismiss="modal">Close</button>
                     <LoadingButton

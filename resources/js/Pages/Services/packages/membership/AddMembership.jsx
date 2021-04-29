@@ -41,7 +41,7 @@ export default function AddMembershipModal({modalID, operation, title, initialDa
                 break;
 
             case "update":
-                Inertia.post(route('membership_registration.update', values.id), values).then(() => {
+                Inertia.put(route('membership_registration.update', values.id), values).then(() => {
                     setSending(false);
                 });
                 break;

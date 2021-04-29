@@ -12,11 +12,18 @@ class FeatureController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string'],
+            'services.*.id' => ['numeric', 'exists:services,id'],
         ]);
 
-        PackageFeature::create([
+        $feature = PackageFeature::create([
             'name' => $request['name'],
         ]);
+
+
+        foreach ($request['services'] as $data) {
+            $feature->services()->syncWithoutDetaching($data['id']);
+        }
+
 
         return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
@@ -25,11 +32,18 @@ class FeatureController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string'],
+            'services.*.id' => ['numeric', 'exists:services,id'],
         ]);
 
         $feature->update([
             'name' => $request['name'],
         ]);
+
+
+        foreach ($request['services'] as $data) {
+            $feature->services()->syncWithoutDetaching($data['id']);
+        }
+
 
         return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
@@ -40,6 +54,4 @@ class FeatureController extends Controller
 
         return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
-
-
 }

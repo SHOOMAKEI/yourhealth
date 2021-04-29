@@ -14,21 +14,21 @@ export default function DeletePackageDialog({membership}) {
     function handleSubmit(e) {
         e.preventDefault();
         setSending(true);
-        Inertia.delete(route('membership_registration.destroy', selectedMembership.id)).then(() => {
+        Inertia.delete(route('packages_registration.destroy', selectedMembership.id)).then(() => {
             setSending(false);
         });
     }
 
     return (
-        <div id={`delete-membership-${membership.id}`} className="modal fade" tabIndex={-1} role="dialog" aria-labelledby="delete-categoryLabel" aria-hidden="true">
+        <div id={`delete-membership-${membership?.id}`} className="modal fade" tabIndex={-1} role="dialog" aria-labelledby="delete-categoryLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content modal-filled bg-danger">
                     <div className="modal-header">
-                        <h4 className="modal-title" id="delete-categoryLabel">delete {selectedMembership.name}</h4>
+                        <h4 className="modal-title" id="delete-categoryLabel">delete {selectedMembership?.name} Package</h4>
                         <button type="button" className="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div className="modal-body">
-                        Are you sure you want to delete {selectedMembership.name}
+                        Are you sure you want to delete {selectedMembership?.name} Package for {selectedMembership?.membership_category?.name} membership category?
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-light" data-dismiss="modal">Close</button>

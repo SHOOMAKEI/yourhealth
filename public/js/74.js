@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[74],{
 
-/***/ "./resources/js/Pages/Auth/VerifyMobileNumber.js":
-/*!*******************************************************!*\
-  !*** ./resources/js/Pages/Auth/VerifyMobileNumber.js ***!
-  \*******************************************************/
+/***/ "./resources/js/Pages/Auth/TwoFactoryAuthentication.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/Pages/Auth/TwoFactoryAuthentication.js ***!
+  \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -43,19 +43,28 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props,
       status = _usePage$props.status,
-      errors = _usePage$props.errors;
+      email = _usePage$props.email,
+      errors = _usePage$props.errors,
+      alertType = _usePage$props.alertType;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       sending = _useState2[0],
       setSending = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    email: ''
-  }),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState4 = _slicedToArray(_useState3, 2),
-      values = _useState4[0],
-      setValues = _useState4[1];
+      recovery = _useState4[0],
+      setRecovery = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    email: email,
+    two_factory_code: '',
+    recovery_code: ''
+  }),
+      _useState6 = _slicedToArray(_useState5, 2),
+      values = _useState6[0],
+      setValues = _useState6[1];
 
   function handleChange(e) {
     var key = e.target.name;
@@ -68,7 +77,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('verification_code.verify'), values).then(function () {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('two-factor.verify'), values).then(function () {
       setSending(false);
     });
   }
@@ -93,30 +102,46 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     className: "card-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     className: "text-center mb-3"
-  }, "Verify Mobile Number"), status && status === 'wrong-verification-code' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Two Factor Authentication"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, recovery ? 'Please confirm access to your account by entering one of your emergency recovery codes.' : 'Please confirm access to your account by entering the authentication code provided by your authenticator application.'), status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "alert alert-".concat(alertType === 'success' ? 'primary' : 'danger', " alert-borderless"),
+    role: "alert"
+  }, status), errors.email && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "alert alert-danger alert-borderless",
     role: "alert"
-  }, "Wrong code provided. Please try again.") : null, status && status === 'verification-code-sent' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "alert alert-primary alert-borderless",
-    role: "alert"
-  }, "Verification code sent to your mobile number successful.") : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  }, "Something went wrong please try to login again."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: handleSubmit
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "verification_code",
+  }, !recovery && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "two_factory_code",
     type: "text",
-    placeholder: "Verification Code",
-    label: "Enter Verification Code",
-    errors: errors.verification_code,
-    value: values.verification_code,
+    placeholder: "Two Factor Code",
+    label: "Two Factor Code",
+    errors: errors.two_factory_code,
+    value: values.two_factory_code,
+    onChange: handleChange
+  }), recovery && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "recovery_code",
+    type: "text",
+    placeholder: "Recovery Code",
+    label: "Recovery Code",
+    errors: errors.recovery_code,
+    value: values.recovery_code,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group my-3 row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
-    href: route('verification_code.send'),
-    className: "btn btn-success btn-md mr-3"
-  }, "Resend Verification Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    className: "col-md-12 text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#",
+    className: "btn btn-success btn-md mr-3",
+    onClick: function onClick() {
+      setRecovery(!recovery);
+      setValues({
+        email: email,
+        two_factory_code: '',
+        recovery_code: ''
+      });
+    }
+  }, recovery ? 'Use Two Factor Code' : 'Use Recovery Code'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
     type: "submit",
     className: "btn btn-primary btn-md",
     loading: sending

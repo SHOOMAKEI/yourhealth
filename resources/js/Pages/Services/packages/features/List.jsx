@@ -27,6 +27,7 @@ export default function List({memberships, callback}) {
                 <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Services</th>
                     <th> Created At</th>
                     <th>Action</th>
                 </tr>
@@ -36,6 +37,11 @@ export default function List({memberships, callback}) {
                     memberships.map((membership, index )=> (
                         <tr key={index+1}>
                             <td>{membership.name}</td>
+                            <td>
+                                <ul>
+                                    {membership.services.map((service, index)=>(<li key={index+1}>{service.name}</li>))}
+                                </ul>
+                            </td>
                             <td>{membership.created_at}</td>
 
                             <td> <button type="button" className="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"

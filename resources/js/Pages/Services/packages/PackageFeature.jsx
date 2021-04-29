@@ -6,7 +6,7 @@ import List from "@/Pages/Services/packages/features/List";
 import DeleteMembershipDialog from "@/Pages/Services/packages/features/deleteDialog";
 import AddFeatureModal from "@/Pages/Services/packages/features/AddFeature";
 
-export default function PackageFeature({packages}) {
+export default function PackageFeature({packages, services}) {
     const [selectedPackage, setSelectedPackage] = useState({})
     const [shownPackages, setShownPackages] = useState(packages)
 
@@ -20,7 +20,13 @@ export default function PackageFeature({packages}) {
         return <AddFeatureModal
             modalID={ADD_FEATURE_MODAL_ID}
             operation={ selectedPackage.id? "update": "add"}
-            initialData={selectedPackage}
+            initialData={{
+                id: selectedPackage.id,
+                name:selectedPackage.name,
+                service_id:services && services.length>0? services[0].id:null,
+                services:selectedPackage.services,
+            }}
+            services={services}
         />
     }
 
@@ -32,6 +38,7 @@ export default function PackageFeature({packages}) {
                     modalID={ADD_FEATURE_MODAL_ID}
                     renderModal={renderModal}
                     callback={setSelectedPackage}
+                    services={services}
                 />
                 <div className="row justify-content-sm-between">
                     <div className="col-lg-12">

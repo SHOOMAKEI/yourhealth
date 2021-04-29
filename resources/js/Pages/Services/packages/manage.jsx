@@ -8,7 +8,7 @@ import PackageFeature from "@/Pages/Services/packages/PackageFeature";
 import PackageMemberRange from "@/Pages/Services/packages/PackageMemberRange";
 
 const ManagePackages = () => {
-    const {memberships, packages, ranges, features} = usePage().props
+    const {memberships, packages, ranges, features, services} = usePage().props
 
         return (
             <div className="row" style={{paddingTop: 30 + 'px'}}>
@@ -50,7 +50,7 @@ const ManagePackages = () => {
                         </div>
                         <div className="tab-pane fade" id="v-pills-packages-feature" role="tabpanel"
                              aria-labelledby="v-pills-packages-feature-tab">
-                            <PackageFeature packages={features} />
+                            <PackageFeature packages={features} services={services} />
                         </div>
                         <div className="tab-pane fade" id="v-pills-packages-member-range" role="tabpanel"
                              aria-labelledby="v-pills-packages-member-range-tab">

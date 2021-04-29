@@ -7,8 +7,8 @@ use App\Models\MembershipCategory;
 use App\Models\PackageFeature;
 use App\Models\PackageMemberRange;
 use App\Models\PackagePlan;
+use App\Models\Service;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class PackagesController extends Controller
@@ -18,125 +18,147 @@ class PackagesController extends Controller
         return Inertia::render(
             'Services/packages/manage',
             ['memberships' => MembershipCategory::all(),
-                'packages' => PackagePlan::all(),
-                'features' => PackageFeature::all(),
-                'ranges' => PackageMemberRange::all()
+                'packages' => PackagePlan::all()->map(function ($query) {
+                    $data['id'] = $query->id;
+                    $data['name'] = $query->name;
+                    $data['price'] = $query->price;
+                    $data['currency'] = $query->currency;
+                    $data['has_price'] = $query->has_price;
+                    $data['has_member_range'] = $query->has_member_range;
+                    $data['membership_category'] = $query->membership_category;
+                    $data['features'] = $query->package_features->map(function ($q) {
+                        $data['id'] = $q->id;
+                        $data['name'] = $q->name;
+                        $data['services'] = $q->services->map(function ($query) {
+                            $data['id'] = $query->id;
+                            $data['name'] = $query->name;
+                            $data['created_ta'] = $query->created_at;
+
+                            return $data;
+                        });
+
+
+                        return $data;
+                    });
+                    $data['ranges'] = $query->package_member_ranges;
+                    $data['created_at'] = $query->created_at;
+                    $data['updated_at'] = $query->updated_at;
+                    $data['is_active'] = $query->is_active;
+
+                    return $data;
+                }),
+                'features' => PackageFeature::all()->map(function ($query) {
+                    $data['id'] = $query->id;
+                    $data['name'] = $query->name;
+                    $data['services'] = $query->services->map(function ($q) {
+                        $data['id'] = $q->id;
+                        $data['name'] = $q->name;
+
+                        return $data;
+                    });
+                    $data['created_at'] = $query->created_at;
+                    $data['updated_at'] = $query->updated_at;
+                    return $data;
+                }),
+                'ranges' => PackageMemberRange::all(),
+                'services' => Service::where('is_active', true)->get(['id', 'name'])
                 ]
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-//        return view('packages.create');
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $this->validateRequest($request);
 
-        $plan = app('rinvex.subscriptions.plan')->create([
-            'name' => $request['package_name'],
-            'description' => $request['package_description'],
-            'price' => $request['package_price'],
-            'signup_fee' => 0,
-            'invoice_period' => $request['package_invoice_period'],
-            'invoice_interval' => $request['package_invoice_interval'],
-            'trial_period' => $request['package_trial_period'],
-            'trial_interval' => 'day',
-            'sort_order' => $request['package_sort_order'],
-            'currency' => $request['package_currency'],
-            'category' => $request['package_category']
+        if (isset($request['price'])) {
+            $request->request->add(['has_price' => true]);
+        }
+
+        if (isset($request['features.*.id'])) {
+            $request->request->add(['has_member_range' => true]);
+        }
+
+        $package = PackagePlan::create([
+            'name' => $request['name'],
+            'membership_category_id' => $request['membership_category_id'],
+            'is_active' => $request['is_active'],
+            'price' => $request['price']??null,
+            'currency' => $request['currency']??null,
+            'has_member_range'=> $request['has_member_range']??false,
+            'has_price'=> $request['has_price']??false,
         ]);
 
-        return redirect()->route('packages.index')->with(['status' => 'success','message'=> 'Packege Saved Successful!']);
+
+        foreach ($request['features'] as $data) {
+            $package->package_features()->syncWithoutDetaching($data['id']);
+        }
+
+        foreach ($request['ranges'] as $data) {
+            $package->package_member_ranges()->syncWithoutDetaching($data['id']);
+        }
+
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  Plan  $package
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Plan $package)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  Plan  $package
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Plan $package)
+    public function update(PackagePlan $packages_registration, Request $request)
     {
-        return view('packages.edit', ['package'=> $package]);
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Plan  $package
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Plan $package)
-    {
         $this->validateRequest($request);
 
-        $package->update([
-            'name' => $request['package_name'],
-            'description' => $request['package_description'],
-            'price' => $request['package_price'],
-            'signup_fee' => 0,
-            'invoice_period' => $request['package_invoice_period'],
-            'invoice_interval' => $request['package_invoice_interval'],
-            'trial_period' => $request['package_trial_period'],
-            'trial_interval' => 'day',
-            'sort_order' => $request['package_sort_order'],
-            'currency' => $request['package_currency'],
-            'category' => $request['package_category']
+        if (($request['price'] >0)) {
+            $request->request->add(['has_price' => true]);
+
+        }
+
+        if (($request['features'][0]['id']>0)) {
+            $request->request->add(['has_member_range' => true]);
+        }
+
+        $packages_registration->update([
+            'name' => $request['name'],
+            'membership_category_id' => $request['membership_category_id'],
+            'is_active' => $request['is_active'],
+            'price' => $request['price']??null,
+            'currency' => $request['currency']??null,
+            'has_member_range'=> $request['has_member_range']??false,
+            'has_price'=> $request['has_price']??false,
         ]);
 
-        return redirect()->route('packages.index')->with(['status' => 'success','message'=> 'Packege Saved Successful!']);
+        if (!($request['price'] >0)) {
+
+            foreach ($request['features'] as $data) {
+                $packages_registration->package_features()->syncWithoutDetaching($data['id']);
+            }
+
+            foreach ($request['ranges'] as $data) {
+                $packages_registration->package_member_ranges()->syncWithoutDetaching($data['id']);
+            }
+        }
+
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Plan  $package
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Plan $package)
+    public function destroy(PackagePlan $package)
     {
-        //
+        $package->delete();
+        return redirect()->back()->with(['status' => 'Operation Complete successful']);
     }
 
 
     private function validateRequest(Request $request)
     {
         return $request->validate([
-            'package_name' => ['required' ,'String'],
-            'package_description' => ['required', 'String'],
-            'package_price' => ['required', 'numeric'],
-            'package_invoice_interval' => ['required', Rule::in(array_column(getInvoiceInterval(), 'value'))],
-            'package_trial_period' => ['required', 'numeric'],
-            'package_sort_order' => ['required', 'numeric'],
-            'package_currency' => ['required', Rule::in(array_column(getCurrency(), 'value'))],
-            'package_category' => ['required', Rule::in(array_column(getPackageCategories(), 'value'))],
+            'name' => ['required' ,'String', 'max:255'],
+            'membership_category_id' => ['required' ,'numeric', 'exists:membership_categories,id'],
+            'is_active' => ['required' ,'boolean'],
+            'price' => ['nullable','numeric'],
+            'currency' => ['required_if:price,!=,""'],
+            'features.*.id' => ['exists:package_features,id'],
+            'ranges.*.id' => ['exists:package_member_ranges,id'],
         ]);
-        // dd($request['package_category']);
     }
-
 }

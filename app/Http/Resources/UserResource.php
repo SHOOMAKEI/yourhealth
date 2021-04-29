@@ -26,6 +26,7 @@ class UserResource extends JsonResource
             'roles' => $this->roles,
             'permissions' => $this->permissions,
             'provider_profile' => $this->provider_profile,
+            'client_profile' => $this->client_profile,
 
 
         ];

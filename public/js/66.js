@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[66],{
 
-/***/ "./resources/js/Pages/Utilities/components/OneTimePassowrd.jsx":
-/*!*********************************************************************!*\
-  !*** ./resources/js/Pages/Utilities/components/OneTimePassowrd.jsx ***!
-  \*********************************************************************/
+/***/ "./resources/js/Pages/Utilities/components/AccountInformation.jsx":
+/*!************************************************************************!*\
+  !*** ./resources/js/Pages/Utilities/components/AccountInformation.jsx ***!
+  \************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -60,7 +60,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       setValues = _useState4[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setValues(user);
+    setValues({
+      email: user.email,
+      mobile_number: user.mobile_number,
+      photo: null
+    });
   }, [user]);
 
   function handleChange(e) {
@@ -74,8 +78,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('login'), values).then(function () {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('settings.updateAccountInfo'), values).then(function () {
       setSending(false);
+    });
+  }
+
+  function handleFileUpload(field, file) {
+    setValues(function (values) {
+      return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, field, file));
     });
   }
 
@@ -87,9 +97,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     className: "col-lg-5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     className: "header-title"
-  }, "One Time Password Authentication"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+  }, "Account Information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
     className: "text-muted font-14"
-  }, "Add additional security to your account using OTP (One Time Password Authentication).")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Update your account's information, email address and mobile number. make sure your provider valid information because we will use them to send security code and other notification.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card col-lg-7"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body"
@@ -98,22 +108,45 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-lg-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group text-center pb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: user.profile_photo_path,
+    alt: "image",
+    className: "img-fluid img-thumbnail rounded-circle mb-3",
+    width: "120"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-left"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
-    className: " font-14"
-  }, "When OTP (One Time Password Authentication) is enabled, you will be prompted for a secure, random code that's sent to your mobile number during authentication. You may retrieve this code from sms that we sent to you."), user.enabled_otp ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
-    className: " font-14"
-  }, "The OTP (One Time Password Authentication) code will be sent to this number ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, user.mobile_number), " .")) : '', user.enabled_otp ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group mt-3 text-left"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["InertiaLink"], {
-    href: route('settings.toggleOTP'),
-    className: "btn btn-danger btn-md"
-  }, "Disable")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group mt-3 text-left"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["InertiaLink"], {
-    href: route('settings.toggleOTP'),
-    className: "btn btn-primary btn-md"
-  }, "Enable"))))))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "email",
+    type: "text",
+    label: "Email",
+    placeholder: "Email",
+    errors: errors.email,
+    value: values.email,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "mobile_number",
+    type: "text",
+    label: "Mobile Number",
+    placeholder: "Mobile Number",
+    errors: errors.mobile_number,
+    value: values.mobile_number,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_FileInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    name: "photo",
+    label: "Change Photo",
+    errors: errors.photo,
+    value: values.photo,
+    callback: handleFileUpload
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group mb-0 text-right"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    type: "submit",
+    className: "btn btn-primary btn-md",
+    loading: sending
+  }, "Save Changes")))))))))));
 });
 
 /***/ }),

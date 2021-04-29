@@ -79,6 +79,68 @@ type TeamInvitation {
   updated_at: DateTime!
 }
 
+type MembershipCategory {
+    id: ID!
+    name: String!
+    description: String
+    is_active: Boolean
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type MembershipClass {
+    id: ID!
+    name: String!
+    description: String
+    is_active: Boolean
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type PackagePlan {
+    id: ID!
+    name: String!
+    currency: String
+    is_active: Boolean
+    price: Int
+    has_price: Boolean
+    has_member_range: Boolean
+    features: [PackageFeature] @belongsToMany
+    ranges: [PackageMembershipRange] @belongsToMany
+    invoice_interval: String
+    grace_period: Int
+    grace_interval: String
+    prorate_day: Int
+    prorate_period: Int
+    prorate_extend_due: Int
+    active_subscribers_limit: Int
+    membership_category: MembershipCategory @hasOne
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type PackageMembershipRange {
+    id: ID!
+    min: Int
+    max: Int
+    price: Int
+    currency: String
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type PackageFeature {
+    id: ID!
+    services: [Service]!
+    package_plan: PackagePlan!
+    price: Int!
+    compare_pricee: Int
+    currency: String!
+    other_price_factor: String
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
 enum Payer {
   SELF @enum(value: "self")
   TEAM @enum(value: "team")

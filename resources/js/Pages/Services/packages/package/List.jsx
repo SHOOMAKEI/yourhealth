@@ -1,13 +1,25 @@
-import React from 'react'
-import {usePage} from "@inertiajs/inertia-react";
-import {ADD_MEMBERSHIP_MODAL_ID, UPDATE_CATEGORY_MODAL_ID} from "@/Pages/Utilities/Constants";
+import React,{useState} from 'react'
+import {
+    ADD_PACKAGE_MODAL_ID,
+    PACKAGE_INFO_MODAL_ID,
+} from "@/Pages/Utilities/Constants";
 
 export default function List({memberships, callback}) {
-    const {selectedMembership} = usePage().props
+    const [selectedData, setSelectedData] = useState({})
 
 
-    function _selectMembership(membership) {
-        callback(membership)
+    function _selectMembership(membership, clone=false) {
+
+        if(clone){
+            setSelectedData({...membership, clone:true})
+            callback(selectedData)
+        }
+
+        if(!clone){
+            setSelectedData({...membership, clone:false})
+            callback(selectedData)
+        }
+
     }
     $(document).ready(function() {
         $('#package-packages-table').DataTable();
@@ -22,6 +34,7 @@ export default function List({memberships, callback}) {
                 <thead>
                 <tr>
                     <th>Name</th>
+                    <th>membership type</th>
                     <th> Created At</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -32,6 +45,7 @@ export default function List({memberships, callback}) {
                     memberships.map((membership, index )=> (
                         <tr key={index+1}>
                             <td>{membership.name}</td>
+                            <td>{membership.membership_category.name}</td>
                             <td>{membership.created_at}</td>
                             <td> {
                                 membership.is_active ?
@@ -44,7 +58,13 @@ export default function List({memberships, callback}) {
                                 <i className="uil uil-bright font-16 mr-1 text-primary"/>More
                             </button>
                                 <div className="dropdown-menu">
-                                    <a href="#" className="dropdown-item" data-toggle="modal" data-target={`#${ADD_MEMBERSHIP_MODAL_ID}`} onClick={() => _selectMembership(membership)}>
+                                    <a href="#" className="dropdown-item" data-toggle="modal" data-target={`#${PACKAGE_INFO_MODAL_ID}`} onClick={() => _selectMembership(membership)}>
+                                        <i className="uil uil-eye mr-1"/>show details
+                                    </a>
+                                    <a href="#" className="dropdown-item" data-toggle="modal" data-target={`#${ADD_PACKAGE_MODAL_ID}`} onClick={() => _selectMembership(membership,true)}>
+                                        <i className="uil uil-plus mr-1"/>Create new form this
+                                    </a>
+                                    <a href="#" className="dropdown-item" data-toggle="modal" data-target={`#${ADD_PACKAGE_MODAL_ID}`} onClick={() => _selectMembership(membership)}>
                                         <i className="uil uil-edit mr-1"/>Edit
                                     </a>
                                     <div className="dropdown-divider"/>

@@ -102,11 +102,10 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
 
     public function getClientProfileAttribute()
     {
+        $client_profile = ClientProfile::where('user_id', $this->id)
+            ->first();
 
-        // if($this->hasRole('patient')) {
-
-        //     $this->hasOne(ProviderProfile::class, 'user_id');
-        // }
+        return isset($client_profile)?$client_profile->toArray():null;
     }
 
     public function getAcountRolesAttribute()

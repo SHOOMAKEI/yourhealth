@@ -82,16 +82,7 @@ export default function AddPackageModal({modalID, operation, title, initialData,
     }
 
 
-    useEffect(() => setValues(values => ({
-        ...values,
-        membership_category_id:membershipData && membershipData.length>0? membershipData[0].id:null,
-        package_member_range_id:rangeData && rangeData.length>0? rangeData[0].id:null,
-        package_feature_id:featureData && featureData.length>0? featureData[0].id:null,
-        features:[],
-        ranges:[],
-        is_active: true,
-
-    })),[initialData])
+    useEffect(() => setValues(values => (initialData)),[initialData])
 
     useEffect(() => setType(operation),[operation])
 
@@ -101,19 +92,27 @@ export default function AddPackageModal({modalID, operation, title, initialData,
         switch (type) {
             case "add":
 
-                Inertia.post(route('membership_registration.store'), values).then(() => {
+                Inertia.post(route('packages_registration.store'), values).then(() => {
                     setSending(false);
                 });
                 break;
 
             case "update":
-                Inertia.post(route('membership_registration.update', values.id), values).then(() => {
-                    setSending(false);
-                });
+                if(values.clone){
+                    Inertia.post(route('packages_registration.store'), values).then(() => {
+                        setSending(false);
+                    });
+                }
+                if(!values.clone){
+                    Inertia.put(route('packages_registration.update', values.id), values).then(() => {
+                        setSending(false);
+                    });
+                }
+
                 break;
 
             default:
-                Inertia.post(route('membership_registration.store'), values).then(() => {
+                Inertia.post(route('packages_registration.store'), values).then(() => {
                     setSending(false);
                 });
                 break;
@@ -172,6 +171,30 @@ export default function AddPackageModal({modalID, operation, title, initialData,
                         value={values.name}
                         onChange={handleChange}
                     />
+                    <TextInput
+                        name="price"
+                        type="number"
+                        placeholder="Price (For Individual and Family category)"
+                        label="Price (For Individual and Family category)"
+                        errors={errors.price}
+                        value={values.price}
+                        onChange={handleChange}
+                    />
+                    <SelectInput
+                        name="currency"
+                        type="text"
+                        placeholder="Currency (For Individual and Family category)"
+                        label="Currency (For Individual and Family category)"
+                        errors={errors.currency}
+                        value={values.currency}
+                        onChange={handleChange}
+                    >
+                        <option value="TZS">TZS</option>
+                        <option value="USD">USD</option>
+                        <option value="KES">KES</option>
+                        <option value="UGS">UGS</option>
+                    </SelectInput>
+
                     {values.features && values.features.length>0 && (
                         <>
                             <h4>Package Features</h4>
@@ -179,7 +202,10 @@ export default function AddPackageModal({modalID, operation, title, initialData,
                                 <thead>
                                 <tr>
                                     <th>
-                                        Features
+                                        Feature
+                                    </th>
+                                    <th>
+                                        Services
                                     </th>
                                     <th>
                                         Actions
@@ -191,6 +217,14 @@ export default function AddPackageModal({modalID, operation, title, initialData,
                                     <tr key={index+1}>
                                         <td>
                                             {feature.name}
+                                        </td>
+                                        <td>
+                                            {
+                                                feature.services.length>0 &&
+                                                <ul>
+                                                    {feature.services?.map((service, index)=>(<li key={index+1}>{service.name}</li>))}
+                                                </ul>
+                                            }
                                         </td>
                                         <td>
                                             <button className="btn btn-danger btn-sm" onClick={(e)=>removeFeature(e, feature)}>
@@ -216,7 +250,7 @@ export default function AddPackageModal({modalID, operation, title, initialData,
                             >
                                 {
                                     featureData && featureData.length>0 && featureData?.map((feature, index)=>(
-                                        <option value={feature.id} key={index+1}>{feature.name}</option>
+                                        <option value={feature.id} key={index+1}>{feature.name} </option>
                                     ))
                                 }
                             </SelectInput>
@@ -229,7 +263,7 @@ export default function AddPackageModal({modalID, operation, title, initialData,
 
                     </div>
 
-                    {values.features && values.features.length>0 && (
+                    {values.ranges && values.ranges.length>0  && (
                         <>
                             <h4>Stuff Members</h4>
                             <table className="table table-hover table-centered mb-0">

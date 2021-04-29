@@ -28,13 +28,25 @@ export default () => {
             <>
                 <MainMenuItem text="Home" link="admin.dashboard" icon="uil-home-alt" />
                 <li className="side-nav-title side-nav-item">Modules</li>
-                <MultiLinkMainMenuItem icon="uil-store" text="Services">
-                    <MultiLinkMenuItem  text="Manage Services" link="services_categories.index"/>
-                    <MultiLinkMenuItem  text="Requested Services" link="requested_services.index"/>
-                    <MultiLinkMenuItem  text="Packages" link="packages_registration.index"/>
+                <MultiLinkMainMenuItem icon="uil-medkit" text="Consultation">
+                    <MultiLinkMenuItem  text="Bookings" link="services_categories.index"/>
+                    <MultiLinkMenuItem  text="Completed Services" link="requested_services.index"/>
+                    <MultiLinkMenuItem  text="Reports" link="packages_registration.index"/>
                 </MultiLinkMainMenuItem>
-                <MultiLinkMainMenuItem icon="uil-constructor" text="Service Provider">
-                    <MultiLinkMenuItem  text="Verification Requests" link="service_provider_profiles.index"/>
+                <MultiLinkMainMenuItem icon="uil-ambulance " text="Medical Evacuation">
+                    <MultiLinkMenuItem  text="Bookings" link="service_provider_profiles.index"/>
+                </MultiLinkMainMenuItem>
+                <MultiLinkMainMenuItem icon="uil-store-alt" text="Pharmacy">
+                    <MultiLinkMenuItem  text="Orders" link="service_provider_profiles.index"/>
+                </MultiLinkMainMenuItem>
+                <MultiLinkMainMenuItem icon="uil-book-reader" text="Health Education">
+                    <MultiLinkMenuItem  text="My Articles" link="service_provider_profiles.index"/>
+                </MultiLinkMainMenuItem>
+                <MultiLinkMainMenuItem icon="uil-users-alt" text="Staff Management">
+                    <MultiLinkMenuItem  text="My Stuff" link="service_provider_profiles.index"/>
+                </MultiLinkMainMenuItem>
+                <MultiLinkMainMenuItem icon="uil-building" text="Firm Management">
+                    <MultiLinkMenuItem  text="My Stuff" link="service_provider_profiles.index"/>
                 </MultiLinkMainMenuItem>
             </>
 
