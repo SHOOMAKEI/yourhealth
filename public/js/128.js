@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[128],{
 
-/***/ "./resources/js/Pages/Services/categories/components/Heading.jsx":
-/*!***********************************************************************!*\
-  !*** ./resources/js/Pages/Services/categories/components/Heading.jsx ***!
-  \***********************************************************************/
+/***/ "./resources/js/Pages/ServiceProviders/requests/components/Heading.jsx":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviders/requests/components/Heading.jsx ***!
+  \*****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -15,8 +15,6 @@ __webpack_require__.r(__webpack_exports__);
 
 function Heading(_ref) {
   var title = _ref.title,
-      renderModal = _ref.renderModal,
-      modalID = _ref.modalID,
       search = _ref.search;
 
   function onSearch() {
@@ -37,28 +35,9 @@ function Heading(_ref) {
     className: "page-title-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "app-search"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "input-group"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "form-control",
-    placeholder: "Search...",
-    id: "search-input",
-    onInput: onSearch
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "input-group-append"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "btn btn-primary"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "uil uil-search"
-  }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     className: "page-title"
-  }, title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "button",
-    className: "btn btn-primary btn-sm ml-3",
-    "data-toggle": "modal",
-    "data-target": "#".concat(modalID)
-  }, "Add New")), renderModal && renderModal());
+  }, title));
 }
 
 /***/ })

@@ -154,7 +154,7 @@ export default function UnregisteredServices({services,shownServices, callback, 
                                             </div>
                                         </div>
                                         <div className="form-group mb-0 text-right">
-                                            <button type="button" className="btn btn-light mr-3" data-dismiss="modal">Close</button>
+                                            <button type="button" className="btn btn-light btn-sm mr-3" data-dismiss="modal">Close</button>
                                             <LoadingButton
                                                 type="submit"
                                                 className="btn btn-primary btn-sm"

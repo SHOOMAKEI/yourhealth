@@ -1,94 +1,61 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[120],{
 
-/***/ "./resources/js/Pages/Landing/Nav.jsx":
-/*!********************************************!*\
-  !*** ./resources/js/Pages/Landing/Nav.jsx ***!
-  \********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./resources/js/Pages/Auth/TwoFactorChallenge.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/Pages/Auth/TwoFactorChallenge.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Nav; });
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function Nav() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("nav", {
-    className: "navbar navbar-expand-lg py-lg-3 navbar-dark"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    href: "index.html",
-    className: "navbar-brand mr-lg-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-    src: "assets/images/logo.png",
-    alt: "",
-    className: "logo-dark",
-    height: "18"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    className: "navbar-toggler",
-    type: "button",
-    "data-toggle": "collapse",
-    "data-target": "#navbarNavDropdown",
-    "aria-controls": "navbarNavDropdown",
-    "aria-expanded": "false",
-    "aria-label": "Toggle navigation"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "mdi mdi-menu"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "collapse navbar-collapse",
-    id: "navbarNavDropdown"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
-    className: "navbar-nav mr-auto align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
-    className: "nav-item mx-lg-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    className: "nav-link active",
-    href: ""
-  }, "Home")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
-    className: "nav-item mx-lg-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    className: "nav-link",
-    href: ""
-  }, "Features")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
-    className: "nav-item mx-lg-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    className: "nav-link",
-    href: ""
-  }, "Pricing")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
-    className: "nav-item mx-lg-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    className: "nav-link",
-    href: ""
-  }, "FAQs")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
-    className: "nav-item mx-lg-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    className: "nav-link",
-    href: ""
-  }, "Clients")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
-    className: "nav-item mx-lg-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    className: "nav-link",
-    href: ""
-  }, "Contact"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
-    className: "navbar-nav ml-auto align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
-    className: "nav-item mr-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__["InertiaLink"], {
-    href: route("register")
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    className: "btn btn-success"
-  }, "Register"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
-    className: "nav-item mr-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__["InertiaLink"], {
-    href: route("login")
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    className: "btn btn-link text-white"
-  }, "Login")))))));
+{
+  /* <x-guest-layout>
+     <x-jet-authentication-card>
+         <x-slot name="logo">
+             <img class="img-avatar img-avatar96 img-avatar-thumb" src="{{asset('storage/dit-logo.jpg')}}" alt="organization logo"/>
+         </x-slot>
+          <div x-data="{ recovery: false }">
+             <div class="mb-4 text-sm text-gray-600" x-show="! recovery">
+                 {{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.') }}
+             </div>
+              <div class="mb-4 text-sm text-gray-600" x-show="recovery">
+                 {{ __('Please confirm access to your account by entering one of your emergency recovery codes.') }}
+             </div>
+              <x-jet-validation-errors class="mb-4" />
+              <form method="POST" action="/two-factor-challenge">
+                 @csrf
+                  <div class="mt-4" x-show="! recovery">
+                     <x-jet-label value="{{ __('Code') }}" />
+                     <x-jet-input class="block mt-1 w-full" type="text" name="code" autofocus x-ref="code" autocomplete="one-time-code" />
+                 </div>
+                  <div class="mt-4" x-show="recovery">
+                     <x-jet-label value="{{ __('Recovery Code') }}" />
+                     <x-jet-input class="block mt-1 w-full" type="text" name="recovery_code" x-ref="recovery_code" autocomplete="one-time-code" />
+                 </div>
+                  <div class="flex items-center justify-end mt-4">
+                     <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
+                                     x-show="! recovery"
+                                     x-on:click="
+                                         recovery = true;
+                                         $nextTick(() => { $refs.recovery_code.focus() })
+                                     ">
+                         {{ __('Use a recovery code') }}
+                     </button>
+                      <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
+                                     x-show="recovery"
+                                     x-on:click="
+                                         recovery = false;
+                                         $nextTick(() => { $refs.code.focus() })
+                                     ">
+                         {{ __('Use an authentication code') }}
+                     </button>
+                      <x-jet-button class="ml-4">
+                         {{ __('Login') }}
+                     </x-jet-button>
+                 </div>
+             </form>
+         </div>
+     </x-jet-authentication-card>
+  </x-guest-layout> */
 }
 
 /***/ })

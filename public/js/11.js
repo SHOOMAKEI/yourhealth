@@ -662,7 +662,7 @@ function UnregisteredServices(_ref) {
     className: "form-group mb-0 text-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "button",
-    className: "btn btn-light mr-3",
+    className: "btn btn-light btn-sm mr-3",
     "data-dismiss": "modal"
   }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
     type: "submit",

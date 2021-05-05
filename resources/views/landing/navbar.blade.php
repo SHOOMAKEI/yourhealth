@@ -40,10 +40,10 @@
             <!-- right menu -->
             <ul class="navbar-nav ml-auto align-items-center">
                 @if (Route::has('login'))
-                    
+
                     @auth
                         <li class="nav-item mr-0 nav-item mx-lg-1">
-                            <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
+                            <a href="{{ url('/dashboard') }}" class="nav-link">MyArticle</a>
                         </li>
                     @else
                         <li class="nav-item mr-0 nav-item mx-lg-1">
@@ -55,7 +55,7 @@
                             </li>
                         @endif
                     @endif
-                
+
                 @endif
             </ul>
 

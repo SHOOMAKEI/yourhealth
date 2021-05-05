@@ -5,17 +5,27 @@ import Layout from '@/Shared/Layout';
 const MyArticle = () => {
 
     return(
-        <div className="card mt-4">
-            <div className="card-header pdn-20 pdn-sm-x-40">
-                <h6>Blank Page</h6>
-            </div>
-            <div className="card-body pdn-sm-40 pdn-t-20-imp">
-                <p className="card-text mb-3 wth-sm-70p">Paragraph title</p>
-                <div className="pdn-sm-55 pdn-15 bdr">
-                    Page contents go here. Create something awesome!
-                </div>
-            </div>
-        </div>
+       <>
+           <div className="row">
+               <div className="col-12">
+                   <div className="page-title-box">
+                       <h4 className="page-title">Calendar</h4>
+                   </div>
+               </div>
+           </div>
+           <div className="card d-block">
+               <img className="card-img-top" src="assets/images/small/small-4.jpg" alt="Card image cap"/>
+                   <div className="card-body">
+                       <h5 className="card-title">Card title</h5>
+                       <p className="card-text">This is a longer card with supporting text below as
+                           a natural lead-in to additional content. This content is a little
+                           bit longer.</p>
+                       <p className="card-text">
+                           <small className="text-muted">Last updated 3 mins ago</small>
+                       </p>
+                   </div>
+           </div>
+       </>
     )
 }
 

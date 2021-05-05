@@ -8,13 +8,19 @@ export default ({ label, name, className, errors = [], ...props }) => {
           {label}
         </label>
       )}
-      <input
-        id={name}
-        name={name}
-        {...props}
-        className="form-control"
-        
-      />
+        <div className="input-group">
+            <input
+                id={name}
+                name={name}
+                {...props}
+                className="form-control"
+                data-toggle="timepicker"
+            />
+            <div className="input-group-append">
+                <span className="input-group-text"><i className="dripicons-clock"/></span>
+            </div>
+        </div>
+
       {errors && <div className="invalid-feedback" style={{display:'block'}}>{errors}</div>}
     </div>
   );

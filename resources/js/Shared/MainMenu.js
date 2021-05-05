@@ -29,6 +29,7 @@ export default () => {
                 <MainMenuItem text="Home" link="admin.dashboard" icon="uil-home-alt" />
                 <li className="side-nav-title side-nav-item">Modules</li>
                 <MultiLinkMainMenuItem icon="uil-medkit" text="Consultation">
+                    <MultiLinkMenuItem  text="My Calender" link="calender.index"/>
                     <MultiLinkMenuItem  text="Bookings" link="services_categories.index"/>
                     <MultiLinkMenuItem  text="Completed Services" link="requested_services.index"/>
                     <MultiLinkMenuItem  text="Reports" link="packages_registration.index"/>
@@ -40,7 +41,8 @@ export default () => {
                     <MultiLinkMenuItem  text="Orders" link="service_provider_profiles.index"/>
                 </MultiLinkMainMenuItem>
                 <MultiLinkMainMenuItem icon="uil-book-reader" text="Health Education">
-                    <MultiLinkMenuItem  text="My Articles" link="service_provider_profiles.index"/>
+                    <MultiLinkMenuItem  text="Articles" link="service_provider_profiles.index"/>
+                    <MultiLinkMenuItem  text="My Articles" link="health_education.index"/>
                 </MultiLinkMainMenuItem>
                 <MultiLinkMainMenuItem icon="uil-users-alt" text="Staff Management">
                     <MultiLinkMenuItem  text="My Stuff" link="service_provider_profiles.index"/>

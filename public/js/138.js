@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[138],{
 
-/***/ "./resources/js/Pages/Services/services/components/Heading.jsx":
-/*!*********************************************************************!*\
-  !*** ./resources/js/Pages/Services/services/components/Heading.jsx ***!
-  \*********************************************************************/
+/***/ "./resources/js/Pages/Services/requested/components/Heading.jsx":
+/*!**********************************************************************!*\
+  !*** ./resources/js/Pages/Services/requested/components/Heading.jsx ***!
+  \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -53,12 +53,7 @@ function Heading(_ref) {
     className: "uil uil-search"
   }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     className: "page-title"
-  }, title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "button",
-    className: "btn btn-primary btn-sm ml-3",
-    "data-toggle": "modal",
-    "data-target": "#".concat(modalID)
-  }, "Add New")), renderModal && renderModal());
+  }, title));
 }
 
 /***/ })

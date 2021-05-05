@@ -12,6 +12,6 @@ class DashboardController extends Controller
 
     public function __invoke(Request $request): Response
     {
-        return Inertia::render('VerifiedServiceProviders/Dashboard');
+        return Inertia::render('VerifiedServiceProviders/MyArticle');
     }
 }

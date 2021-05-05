@@ -21,7 +21,9 @@ use App\Http\Controllers\Services\ServiceCategoryController;
 use App\Http\Controllers\Services\ServiceController;
 use App\Http\Controllers\Services\ServiceSubCategoryController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\VerifiedServiceProvider\CalenderController;
 use App\Http\Controllers\VerifiedServiceProvider\DashboardController;
+use App\Http\Controllers\VerifiedServiceProvider\HealthEducationController;
 use App\Http\Controllers\VerifyMobileNumberController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -178,11 +180,22 @@ Route::middleware(['auth','auth:sanctum', 'language','mobile_number_verified', '
          Route::get('/verified-service-provider-dashboard', DashboardController::class)
              ->name('verified_sp.home');
 
-         Route::get('/settings/enable_otp', [SettingsController::class, 'enableOtp'])->name('otp.enable');
+         Route::get('verified-service-provider/calender', [CalenderController::class, 'index'])
+             ->name('calender.index');
+         Route::get('verified-service-provider/calender/create', [CalenderController::class, 'create'])
+             ->name('calender.create');
+
+         Route::post('verified-service-provider/calender/store', [CalenderController::class, 'store'])
+             ->name('calender.store');
+         Route::post('verified-service-provider/calender/facility/store', [CalenderController::class, 'storeFacility'])
+             ->name('calender.facility_store');
          Route::get('/settings/disable_otp', [SettingsController::class, 'disableOtp'])->name('otp.disable');
+
+         Route::get('verified-service-provider/health-education', [HealthEducationController::class, 'index'])
+             ->name('health_education.index');
      });
 
-Route::middleware([ 'auth','auth:sanctum', 'verified', 'verified_sp','language', 'mobile_number_verified', 'role:verified-service-provider|super-admin'])
+Route::middleware([ 'auth','auth:sanctum', 'verified_sp','language', 'mobile_number_verified', 'role:verified-service-provider|super-admin'])
     ->group(function () {
         Route::get('/settings/index', [SettingsController::class, 'index'])->name('settings.index');
         Route::post('/settings/update-account-information', [SettingsController::class, 'updateAccountInfo'])
@@ -202,7 +215,7 @@ Route::middleware([ 'auth','auth:sanctum', 'verified', 'verified_sp','language',
 
  Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:super-admin'])->group(function () {
      Route::get('admin/dashboard', function () {
-         return Inertia::render('Dashboard');
+         return Inertia::render('MyArticle');
      })->name('admin.dashboard');
 
      Route::resource('services_categories', ServiceCategoryController::class);

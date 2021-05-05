@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[132],{
 
-/***/ "./resources/js/Pages/Services/packages/package/Heading.jsx":
-/*!******************************************************************!*\
-  !*** ./resources/js/Pages/Services/packages/package/Heading.jsx ***!
-  \******************************************************************/
+/***/ "./resources/js/Pages/Services/categories/components/Heading.jsx":
+/*!***********************************************************************!*\
+  !*** ./resources/js/Pages/Services/categories/components/Heading.jsx ***!
+  \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -17,11 +17,7 @@ function Heading(_ref) {
   var title = _ref.title,
       renderModal = _ref.renderModal,
       modalID = _ref.modalID,
-      search = _ref.search,
-      callback = _ref.callback,
-      memberships = _ref.memberships,
-      ranges = _ref.ranges,
-      features = _ref.features;
+      search = _ref.search;
 
   function onSearch() {
     $('#search-input').on('input', function (e) {
@@ -36,31 +32,33 @@ function Heading(_ref) {
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row mb-3"
+    className: "page-title-box"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-sm-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#",
-    className: "btn btn-primary mb-3",
-    "data-toggle": "modal",
-    "data-target": "#".concat(modalID),
-    onClick: function onClick() {
-      return callback({
-        membership_category_id: memberships && memberships.length > 0 ? memberships[0].id : null,
-        package_member_range_id: ranges && ranges.length > 0 ? ranges[0].id : null,
-        package_feature_id: features && features.length > 0 ? features[0].id : null,
-        features: [],
-        ranges: [],
-        is_active: true
-      });
-    }
+    className: "page-title-right"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "app-search"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    placeholder: "Search...",
+    id: "search-input",
+    onInput: onSearch
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group-append"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "btn btn-primary"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "mdi mdi-plus"
-  }), title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-sm-8"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-sm-right float-right"
-  })), renderModal && renderModal());
+    className: "uil uil-search"
+  }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "page-title"
+  }, title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button",
+    className: "btn btn-primary btn-sm ml-3",
+    "data-toggle": "modal",
+    "data-target": "#".concat(modalID)
+  }, "Add New")), renderModal && renderModal());
 }
 
 /***/ })
