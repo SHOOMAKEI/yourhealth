@@ -1,15 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[111],{
 
-/***/ "./resources/js/Pages/Services/packages/ranges/deleteDialog.jsx":
-/*!**********************************************************************!*\
-  !*** ./resources/js/Pages/Services/packages/ranges/deleteDialog.jsx ***!
-  \**********************************************************************/
+/***/ "./resources/js/Pages/Services/packages/package/deleteDialog.jsx":
+/*!***********************************************************************!*\
+  !*** ./resources/js/Pages/Services/packages/package/deleteDialog.jsx ***!
+  \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DeleteMembershipDialog; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DeletePackageDialog; });
 /* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
@@ -33,7 +33,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function DeleteMembershipDialog(_ref) {
+function DeletePackageDialog(_ref) {
+  var _selectedMembership$m;
+
   var membership = _ref.membership;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
@@ -53,13 +55,13 @@ function DeleteMembershipDialog(_ref) {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__["Inertia"]["delete"](route('range_registration.destroy', selectedMembership.id)).then(function () {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__["Inertia"]["delete"](route('packages_registration.destroy', selectedMembership.id)).then(function () {
       setSending(false);
     });
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    id: "delete-range-".concat(membership.id),
+    id: "delete-membership-".concat(membership === null || membership === void 0 ? void 0 : membership.id),
     className: "modal fade",
     tabIndex: -1,
     role: "dialog",
@@ -74,14 +76,14 @@ function DeleteMembershipDialog(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
     className: "modal-title",
     id: "delete-categoryLabel"
-  }, "delete ", selectedMembership.min, " to ", selectedMembership.max), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+  }, "delete ", selectedMembership === null || selectedMembership === void 0 ? void 0 : selectedMembership.name, " Package"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "button",
     className: "close",
     "data-dismiss": "modal",
     "aria-hidden": "true"
   }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal-body"
-  }, "Are you sure you want to delete ", selectedMembership.min, " to ", selectedMembership.max), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, "Are you sure you want to delete ", selectedMembership === null || selectedMembership === void 0 ? void 0 : selectedMembership.name, " Package for ", selectedMembership === null || selectedMembership === void 0 ? void 0 : (_selectedMembership$m = selectedMembership.membership_category) === null || _selectedMembership$m === void 0 ? void 0 : _selectedMembership$m.name, " membership category?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal-footer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "button",

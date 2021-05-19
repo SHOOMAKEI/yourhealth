@@ -134,10 +134,10 @@ input UpdateProviderMedicalRegistrationInput {
 
 input ProviderProfileDaySessionInput {
     name: String
-    from: String! @rules(apply: ["required", "date_format:H:i"])
-    to: String! @rules(apply: ["required", "date_format:H:i", "App\\Rules\\AfterTimeValidator"])
+    from: String
+    to: String
     interval: Int
-    day_id: Int! @rules(apply: ["required", "exists:days,id"])
+    day_id: Int
 }
 
 input ProviderFacilityDaySessionInput {
@@ -246,7 +246,7 @@ type ProviderCompany {
     tin: String
     vrn: String
     tin_attachment: String!
-    vrn_attachment: String 
+    vrn_attachment: String
     mobile_number: String!
     mobile_number: String
     alternative_mobile_number: String
@@ -271,7 +271,7 @@ type ProviderFacility {
     tin: String!
     vrn: String
     tin_attachment: String!
-    vrn_attachment: String 
+    vrn_attachment: String
     mobile_number: String!
     alternative_mobile_number: String
     email: String!
