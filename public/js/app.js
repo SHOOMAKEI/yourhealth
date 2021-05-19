@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"cbb2c9bf83acedda71bb","1":"a6362c86afb06be9f634","2":"7e6bfd3491bcb966b4d3","3":"e54f2f3afae5fb4fef2a","4":"7a1edbd15bd8ebd2e8b3","5":"3fb39d76b5963b0dc374","6":"abad4d79d180492476c5","7":"8feb86153315b07a8dc3","8":"5a10a5864cdd2a77d6eb","9":"b19563fa495048a0129b","10":"37b2d0226c7a2430ff55","11":"4f89cf636e209a5c5582","12":"c9ba1f3448b2ebe96c85","13":"020ea7a05ee3cff4245b","14":"abb93d4c9feb2009cf5e","15":"c60022cb68d9dfaf947c","16":"1cf305b3c453bfa2fc3f","17":"e287d6a4a35841f97c47","18":"078235b76ec1ac2f322b","19":"7a512bc0b47683755347","20":"806485603aa61153aa28","21":"0f56cb7b806c106678de","22":"e644d84b1e6ac4a43b5c","23":"385238d15f69246241c6","24":"52bcab752b12944a6751","25":"a124bd984f9c43fb6752","26":"99e2d91541a3c5096e34","27":"5e13e5c98f16c74dd1dd","28":"5de8ce031d69f0947a81","29":"397ee2531fe16569df41","30":"b7c9e909d1344e8e8e86","31":"f0ee155b5e087beb5585","32":"8a461fe9ae17295baf99","33":"46cc5d4a74ec3b9e509a","34":"d0bceea910717c802b66","35":"9c45211e1c654ca6ebf3","36":"bafa3603c71dd91cbbaf","37":"95a35359726005aad046","38":"769aabc04fc53468c48f","39":"542a388a2515f07857b3","40":"3ba3f377ddd3e92eca49","41":"96270ff4b01e16bd0306","42":"ba03a9e22705ec9a6caf","43":"ba0ec06ffe7843178e30","44":"0bdd06bf4171f56cdf4a","45":"5d9c11be600e07b60809","46":"4f2b03d3ad2446c4c371","47":"acbd02fc082e3a5af647","48":"d0081d8f7feeb2f69a0d","49":"1376a8ae64f43daefc79","50":"91fe3b65204980c3648f","51":"f40d9d3e60e582655342","52":"8c957cc9db95e418744a","53":"6446b1ad841e4266e17e","54":"c50c0757fc85848af496","55":"885e48e610cc13c7e970","56":"550da94c89fa1b139eaa","57":"be291b6621665b195c77","58":"fe20218912d238eb41d8","59":"113627738dc21a6af028","60":"52f6670224727a3d3123","61":"63a0832dc09b0e27c6d2","62":"2503eca4d39aface1339","63":"108802f1b12f5369be06","64":"2ab6f0b7ab93020c7789","65":"364b5c3e6ae748437540","66":"c3b994b468d0b466e95e","67":"80ecb89ecb03f773415f","68":"c4a0cd0af35eca6e3996","69":"aee0bdd00c64e80412d1","70":"cea013b9b828b3500f5e","71":"6b77c6bcf806ea4a9089","72":"f5cf1f7be6e905eb0755","73":"6e515ea572e098ced8aa","74":"3af93f84b151f26c6d1e","75":"c70b5888aecb1c75bd3a","76":"b74a4df329be31fb4c69","77":"1845dc13c3b661b160c0","78":"aac7aac01de88c7025a5","79":"e62848b195cbfbc85b2b","80":"edb1b7af03bfbc756ea7","81":"5ae0c8866d34c1e7d734","82":"f43b14d63d51b062c47e","83":"b74b1bc10c8584f98418","84":"5ed98428f77b32ae739f","85":"9deb20b5a7724bef0ffa","86":"95be9af48694ab193c76","87":"6d281bdfaa11264d8608","88":"aaf96f744ad70f66dfc3","89":"cd9bafb6f7a679458c25","90":"10bbeaff981a43b05d70","91":"e93ecc24bfaf9688d359","92":"0a8334dab525b5f89108","93":"c9f0ea65fccf28c3aafe","94":"3cf17ae51999874eea39","95":"4fb0731c03b35aff81e6","96":"ffe84454e4edf966d2f1","97":"768e78be6cd169d6e573","98":"49ba844eb05d3230340f","99":"9c9c2f3da4c72dc4883c","100":"50c6586a2a31d766a105","101":"9b46369180d60844320d","102":"d536cf364acdf6a9d4f9","103":"a2542c0a03749801eb33","104":"1221d651d6d73c6cc63a","105":"804709478ee8de78673f","106":"7dea181d01782b00854f","107":"bf62b998cf82ddfd3476","108":"4e5b8b6c55fe2c7d4f53","109":"330333006202040b18cb","110":"4e6661d33b5d654f9c1a","111":"b1d37ba327cfdc56a6b0","112":"2e8ab566b2f2ee31c5e2","113":"6cb80e1abd0ce053cfa5","114":"65d90d892d95af7ad130","115":"a6209f6e43cea5f63637","116":"859728a3db788f902287","117":"efe8cdc83f23cfcbcada","118":"627c73453d64a2c0ce46","119":"67b46d31e8e6a39d206e","120":"384f0bf9e73e4b67296e","121":"f085702891f077feca7f","122":"31751c72227d65ebe093","123":"90829ff8e3c34f945594","124":"12d181793631729f591a","125":"86943271ba55fdad2c89","126":"405b65b9476ce9b902f2","127":"65115fb1e9df58f895b1","128":"92e720a248942e35df16","129":"170006321668f466fc08","130":"b409463a5870861f990d","131":"81f49f19c712eadcc56e","132":"1456716a6dadda2a41cc","133":"bfd3604ebf4736b03f69","134":"93eaf1517dc809eb4595","135":"29f722e4360811232a4b","136":"dfe2a6610a601c42388b","137":"897b1e35581a5c59f383","138":"4e6fcd286fee10e26291","139":"08dc3df2898cb998baad","140":"218dc15795bd9073a910","141":"89aa38b47526034d891a","142":"8eee37e023c14024cc61","143":"31f297382d62e4395ba6","144":"54851a6f632945edbfeb","145":"bebadf48207d0ab34c78","146":"daed704ee151b6382890","147":"9ea483656cb34f703cff","148":"8ba9b2aa62059e16563e","149":"6626772303bb9e88632c","150":"a7d00a6bcf26495425e4","151":"67f2ecb851ba83ae49fb","152":"f4591e860ec34ab989e3","153":"f46b244017decf52be6c","154":"9faf67aaa99a7746af06","155":"d6dcabe09d98cd476b5e","156":"9223c0b339a4927f4e41","157":"022115538b23d763f8b1","158":"81d366faff24b4605d22","159":"dff7870c22e11052617d","160":"8cb13591bf518727df04","161":"e2aec7147239407d5974"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"cbb2c9bf83acedda71bb","1":"a6362c86afb06be9f634","2":"7e6bfd3491bcb966b4d3","3":"e54f2f3afae5fb4fef2a","4":"7a1edbd15bd8ebd2e8b3","5":"3fb39d76b5963b0dc374","6":"abad4d79d180492476c5","7":"8feb86153315b07a8dc3","8":"5a10a5864cdd2a77d6eb","9":"b19563fa495048a0129b","10":"37b2d0226c7a2430ff55","11":"4f89cf636e209a5c5582","12":"c9ba1f3448b2ebe96c85","13":"020ea7a05ee3cff4245b","14":"abb93d4c9feb2009cf5e","15":"c60022cb68d9dfaf947c","16":"1cf305b3c453bfa2fc3f","17":"e287d6a4a35841f97c47","18":"078235b76ec1ac2f322b","19":"7a512bc0b47683755347","20":"806485603aa61153aa28","21":"0f56cb7b806c106678de","22":"e644d84b1e6ac4a43b5c","23":"385238d15f69246241c6","24":"52bcab752b12944a6751","25":"a124bd984f9c43fb6752","26":"99e2d91541a3c5096e34","27":"5e13e5c98f16c74dd1dd","28":"5de8ce031d69f0947a81","29":"397ee2531fe16569df41","30":"b7c9e909d1344e8e8e86","31":"f0ee155b5e087beb5585","32":"8a461fe9ae17295baf99","33":"46cc5d4a74ec3b9e509a","34":"d0bceea910717c802b66","35":"9c45211e1c654ca6ebf3","36":"bafa3603c71dd91cbbaf","37":"95a35359726005aad046","38":"769aabc04fc53468c48f","39":"542a388a2515f07857b3","40":"3ba3f377ddd3e92eca49","41":"96270ff4b01e16bd0306","42":"ba03a9e22705ec9a6caf","43":"ba0ec06ffe7843178e30","44":"0bdd06bf4171f56cdf4a","45":"5d9c11be600e07b60809","46":"4f2b03d3ad2446c4c371","47":"acbd02fc082e3a5af647","48":"d0081d8f7feeb2f69a0d","49":"1376a8ae64f43daefc79","50":"91fe3b65204980c3648f","51":"f40d9d3e60e582655342","52":"8c957cc9db95e418744a","53":"6446b1ad841e4266e17e","54":"c50c0757fc85848af496","55":"885e48e610cc13c7e970","56":"550da94c89fa1b139eaa","57":"be291b6621665b195c77","58":"fe20218912d238eb41d8","59":"113627738dc21a6af028","60":"9e3bd571b87baf2d19cf","61":"63a0832dc09b0e27c6d2","62":"2503eca4d39aface1339","63":"108802f1b12f5369be06","64":"2ab6f0b7ab93020c7789","65":"364b5c3e6ae748437540","66":"c3b994b468d0b466e95e","67":"80ecb89ecb03f773415f","68":"c4a0cd0af35eca6e3996","69":"aee0bdd00c64e80412d1","70":"cea013b9b828b3500f5e","71":"6b77c6bcf806ea4a9089","72":"f5cf1f7be6e905eb0755","73":"6e515ea572e098ced8aa","74":"3af93f84b151f26c6d1e","75":"c70b5888aecb1c75bd3a","76":"b74a4df329be31fb4c69","77":"1845dc13c3b661b160c0","78":"aac7aac01de88c7025a5","79":"e62848b195cbfbc85b2b","80":"edb1b7af03bfbc756ea7","81":"5ae0c8866d34c1e7d734","82":"f43b14d63d51b062c47e","83":"b74b1bc10c8584f98418","84":"5ed98428f77b32ae739f","85":"9deb20b5a7724bef0ffa","86":"95be9af48694ab193c76","87":"6d281bdfaa11264d8608","88":"aaf96f744ad70f66dfc3","89":"cd9bafb6f7a679458c25","90":"10bbeaff981a43b05d70","91":"e93ecc24bfaf9688d359","92":"0a8334dab525b5f89108","93":"c9f0ea65fccf28c3aafe","94":"3cf17ae51999874eea39","95":"4fb0731c03b35aff81e6","96":"ffe84454e4edf966d2f1","97":"768e78be6cd169d6e573","98":"49ba844eb05d3230340f","99":"9c9c2f3da4c72dc4883c","100":"50c6586a2a31d766a105","101":"9b46369180d60844320d","102":"d536cf364acdf6a9d4f9","103":"a2542c0a03749801eb33","104":"1221d651d6d73c6cc63a","105":"804709478ee8de78673f","106":"7dea181d01782b00854f","107":"bf62b998cf82ddfd3476","108":"4e5b8b6c55fe2c7d4f53","109":"330333006202040b18cb","110":"4e6661d33b5d654f9c1a","111":"b1d37ba327cfdc56a6b0","112":"2e8ab566b2f2ee31c5e2","113":"6cb80e1abd0ce053cfa5","114":"65d90d892d95af7ad130","115":"a6209f6e43cea5f63637","116":"859728a3db788f902287","117":"efe8cdc83f23cfcbcada","118":"627c73453d64a2c0ce46","119":"67b46d31e8e6a39d206e","120":"f0c8a0ef2452b5e90069","121":"f085702891f077feca7f","122":"31751c72227d65ebe093","123":"90829ff8e3c34f945594","124":"12d181793631729f591a","125":"86943271ba55fdad2c89","126":"405b65b9476ce9b902f2","127":"65115fb1e9df58f895b1","128":"92e720a248942e35df16","129":"170006321668f466fc08","130":"b409463a5870861f990d","131":"81f49f19c712eadcc56e","132":"1456716a6dadda2a41cc","133":"bfd3604ebf4736b03f69","134":"93eaf1517dc809eb4595","135":"29f722e4360811232a4b","136":"dfe2a6610a601c42388b","137":"897b1e35581a5c59f383","138":"4e6fcd286fee10e26291","139":"08dc3df2898cb998baad","140":"218dc15795bd9073a910","141":"89aa38b47526034d891a","142":"8eee37e023c14024cc61","143":"31f297382d62e4395ba6","144":"54851a6f632945edbfeb","145":"bebadf48207d0ab34c78","146":"daed704ee151b6382890","147":"9ea483656cb34f703cff","148":"8ba9b2aa62059e16563e","149":"6626772303bb9e88632c","150":"a7d00a6bcf26495425e4","151":"67f2ecb851ba83ae49fb","152":"f4591e860ec34ab989e3","153":"f46b244017decf52be6c","154":"9faf67aaa99a7746af06","155":"d6dcabe09d98cd476b5e","156":"9223c0b339a4927f4e41","157":"022115538b23d763f8b1","158":"81d366faff24b4605d22","159":"dff7870c22e11052617d","160":"8cb13591bf518727df04"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -53236,14 +53236,14 @@ var map = {
 		9,
 		15,
 		23,
-		57
+		56
 	],
 	"./Services/packages/Packages.jsx": [
 		"./resources/js/Pages/Services/packages/Packages.jsx",
 		9,
 		15,
 		23,
-		57
+		56
 	],
 	"./Services/packages/features/AddFeature": [
 		"./resources/js/Pages/Services/packages/features/AddFeature.jsx",
@@ -53383,13 +53383,13 @@ var map = {
 		"./resources/js/Pages/Services/packages/package/AddPackageModal.jsx",
 		9,
 		15,
-		56
+		57
 	],
 	"./Services/packages/package/AddPackageModal.jsx": [
 		"./resources/js/Pages/Services/packages/package/AddPackageModal.jsx",
 		9,
 		15,
-		56
+		57
 	],
 	"./Services/packages/package/Heading": [
 		"./resources/js/Pages/Services/packages/package/Heading.jsx",
@@ -54119,20 +54119,6 @@ var map = {
 		1,
 		160
 	],
-	"./VerifiedServiceProviders/HealthEducation/MyArticle": [
-		"./resources/js/Pages/VerifiedServiceProviders/HealthEducation/MyArticle.js",
-		9,
-		0,
-		1,
-		161
-	],
-	"./VerifiedServiceProviders/HealthEducation/MyArticle.js": [
-		"./resources/js/Pages/VerifiedServiceProviders/HealthEducation/MyArticle.js",
-		9,
-		0,
-		1,
-		161
-	],
 	"./framework": [
 		"./resources/js/Pages/framework.jsx",
 		9,
@@ -54262,7 +54248,7 @@ window.axios.defaults.withCredentials = true;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/om4k31/projects/tmhs/yourhealth/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Projects\yourhealth\resources\js\app.js */"./resources/js/app.js");
 
 
 /***/ }),

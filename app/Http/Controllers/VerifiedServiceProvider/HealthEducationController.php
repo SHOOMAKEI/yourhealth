@@ -10,6 +10,6 @@ class HealthEducationController extends Controller
 {
     public function index()
     {
-        return Inertia::render('VerifiedServiceProviders/HealthEducation/MyArticle');
+//        return Inertia::render('VerifiedServiceProviders/HealthEducation/MyArticle');
     }
 }

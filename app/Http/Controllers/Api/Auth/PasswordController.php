@@ -60,7 +60,7 @@ class PasswordController extends Controller
 
         DB::table('password_resets')->where('email', $user->getEmailForPasswordReset())->delete();
 
-        $token = hash_hmac('sha256', Str::random(40), $key);
+        $token = hash_hmac('sha256',                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          Str::random(40), $key);
 
         DB::table('password_resets')->insert($this->getPayload($email, $token));
 
