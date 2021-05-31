@@ -21,9 +21,12 @@ class CreateArticlesTable extends Migration
             $table->boolean('is_published')->default(false);
             $table->boolean('request_publication')->default(false);
             $table->boolean('is_draft')->default(true);
+            $table->boolean('approve_one')->default(false);
+            $table->boolean('approve_two')->default(false);
             $table->timestamp('approved_at')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->foreignId('author')->constrained('users')->restrictOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
