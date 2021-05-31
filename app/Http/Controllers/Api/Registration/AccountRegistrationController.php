@@ -59,7 +59,7 @@ class AccountRegistrationController
             return null;
         }
 
-        
+
         return isset(auth()->user()->service_provider->services)?auth()->user()->service_provider->services->toArray():null;
     }
 
@@ -139,7 +139,7 @@ class AccountRegistrationController
             return null;
         }
 
-        
+
         return isset($provider_profile->services)?$provider_profile->services->toArray():null;
     }
 
@@ -171,12 +171,12 @@ class AccountRegistrationController
 
         $difference = $available_service->diffAssoc($services);
         return $difference;
-        
+
 
         if (auth()->user()->service_provider->account_category_type=='facility') {
             $services = auth()->user()->service_provider->services;
             $available_service = Service::all();
- 
+
             $difference = $available_service->diffAssoc($services);
             return $difference;
         }
@@ -185,7 +185,7 @@ class AccountRegistrationController
     public function getProviderFacilityUnselectedService($rootValue, array $args)
     {
         $facility = ProviderFacility::find($args['id']);
-        
+
 
         $services = $facility->services;
         $available_service = Service::all();
@@ -200,9 +200,10 @@ class AccountRegistrationController
         $provider_profile = ProviderProfile::find(auth()->user()->service_provider->id);
         $index = 0;
         $sessions = [];
+        dd($args);
         foreach ($args['input'] as $days_sessions) {
            $sessions[$index] = DaySession::create([
-                'name'=> $days_sessions['name'], 
+                'name'=> $days_sessions['name'],
                 'from'=> $days_sessions['from'],
                 'to'=> $days_sessions['to'],
                 'interval' => $days_sessions['interval'],
@@ -210,7 +211,7 @@ class AccountRegistrationController
             ]);
 
             $index++;
-        } 
+        }
 
         $provider_profile->day_sessions()->attach($sessions);
     }
@@ -222,7 +223,7 @@ class AccountRegistrationController
         $sessions = [];
         foreach ($args['input'] as $days_sessions) {
            $sessions[$index] = DaySession::create([
-                'name'=> $days_sessions['name'], 
+                'name'=> $days_sessions['name'],
                 'from'=> $days_sessions['from'],
                 'to'=> $days_sessions['to'],
                 'interval' => $days_sessions['interval'],
@@ -230,7 +231,7 @@ class AccountRegistrationController
             ]);
 
             $index++;
-        } 
+        }
 
         $provider_profile->day_sessions()->attach($sessions);
     }

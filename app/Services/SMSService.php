@@ -22,7 +22,9 @@ class SMSService
                     'text' => $sms,
                 ]);
 
+                Log::info($sms);
                 Log::info($respose);
+
                 activity()->log($respose);
             } catch (\Exception $e) {
                 activity()->log($e);

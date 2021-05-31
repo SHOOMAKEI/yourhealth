@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[76],{
 
-/***/ "./resources/js/Pages/Auth/ResetPassword.js":
-/*!**************************************************!*\
-  !*** ./resources/js/Pages/Auth/ResetPassword.js ***!
-  \**************************************************/
+/***/ "./resources/js/Pages/Auth/ForgotPassword.js":
+/*!***************************************************!*\
+  !*** ./resources/js/Pages/Auth/ForgotPassword.js ***!
+  \***************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -43,8 +43,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props,
       status = _usePage$props.status,
-      token = _usePage$props.token,
-      email = _usePage$props.email,
       errors = _usePage$props.errors;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
@@ -53,10 +51,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       setSending = _useState2[1];
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    email: email,
-    password: '',
-    password_confirmation: '',
-    token: token
+    email: ''
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       values = _useState4[0],
@@ -73,7 +68,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('password.update'), values).then(function () {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('password.email'), values).then(function () {
       setSending(false);
     });
   }
@@ -96,9 +91,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     className: "card mb-0 mt-5 p-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
     className: "text-center mb-3"
-  }, "Reset Password"), status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Forgot Password"), status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     "class": "alert alert-primary alert-borderless",
     role: "alert"
   }, status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -107,25 +102,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     name: "email",
     type: "text",
     placeholder: "Email",
-    label: "Email",
     errors: errors.email,
     value: values.email,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "password",
-    type: "password",
-    placeholder: "Password",
-    label: "Password",
-    errors: errors.password,
-    value: values.password,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "password_confirmation",
-    type: "password",
-    placeholder: "Confirm Password",
-    label: "Confirm Password",
-    errors: errors.password_confirmation,
-    value: values.password_confirmation,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group my-3 row"
@@ -135,7 +113,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     type: "submit",
     className: "btn btn-primary btn-block",
     loading: sending
-  }, "Reset Password")))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Email Password Reset Link")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group mb-0 mt-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 text-center text-muted text-signup"
+  }, "Have an account.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
+    href: route("login"),
+    className: "text-primary"
+  }, " Login"))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-3"
   })))));
 });

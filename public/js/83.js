@@ -1,15 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[83],{
 
-/***/ "./resources/js/Pages/Auth/components/facilityForms/ThirdForm.jsx":
-/*!************************************************************************!*\
-  !*** ./resources/js/Pages/Auth/components/facilityForms/ThirdForm.jsx ***!
-  \************************************************************************/
+/***/ "./resources/js/Pages/Auth/components/IndividualRegistration.jsx":
+/*!***********************************************************************!*\
+  !*** ./resources/js/Pages/Auth/components/IndividualRegistration.jsx ***!
+  \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ThirdForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return IndividualRegister; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
@@ -40,17 +40,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
- // interface formProps {
-//     callback: ({}: createInputDataValues) => void;
-//     goBack: (step: number) => void;
-// }
 
-function ThirdForm(_ref) {
-  var callback = _ref.callback,
-      goBack = _ref.goBack;
+function IndividualRegister() {
   var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props,
       errors = _usePage$props.errors,
-      emailSentSuccessfully = _usePage$props.emailSentSuccessfully;
+      emailSentSuccessfully = _usePage$props.emailSentSuccessfully,
+      csrf_token = _usePage$props.csrf_token;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -58,12 +53,17 @@ function ThirdForm(_ref) {
       setSending = _useState2[1];
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    owner_first_name: "",
-    owner_middle_name: "",
-    owner_last_name: "",
-    owner_mobile_number: "",
-    owner_email: "",
-    send_form: false
+    first_name: "",
+    last_name: "",
+    middle_name: "",
+    mobile_number: "",
+    password_confirmation: "",
+    email: '',
+    password: '',
+    account_category: "service-provider",
+    account_category_type: "individual",
+    ownership_type: '',
+    _token: csrf_token
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       values = _useState4[0],
@@ -75,87 +75,93 @@ function ThirdForm(_ref) {
     setValues(function (values) {
       return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, key, value));
     });
-    callback({
-      form_number: 3,
-      form_three_data: values
-    });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    setValues(function (values) {
-      return _objectSpread(_objectSpread({}, values), {}, {
-        send_form: true
-      });
-    });
-    callback({
-      form_number: 3,
-      form_three_data: values
+    setSending(true);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('account.create'), values).then(function () {
+      setSending(false);
     });
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     className: "text-dark-50 text-left mb-3 font-weight-bold"
-  }, "Facility Owner Personal information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Personal information"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "owner_first_name",
+    name: "first_name",
     type: "text",
     label: "First Name",
     placeholder: "First Name",
-    errors: errors.owner_first_name,
-    value: values.owner_first_name,
+    errors: errors.first_name,
+    value: values.first_name,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "owner_last_name",
+    name: "last_name",
     type: "text",
     label: "Last Name",
     placeholder: "Last Name",
-    errors: errors.owner_last_name,
-    value: values.owner_last_name,
+    errors: errors.ind_last_name,
+    value: values.ind_last_name,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "owner_middle_name",
+    name: "mobile_number",
     type: "text",
-    label: "Middle Name",
-    placeholder: "Middle Name",
-    errors: errors.owner_middle_name,
-    value: values.owner_middle_name,
+    label: "Mobile Number",
+    placeholder: "Mobile Number",
+    errors: errors.ind_mobile_number,
+    value: values.ind_mobile_number,
     onChange: handleChange
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "owner_mobile_number",
+    name: "middle_name",
     type: "text",
-    label: "Mobile Number",
-    placeholder: "Mobile Number",
-    errors: errors.owner_mobile_number,
-    value: values.owner_mobile_number,
+    label: "Middle Name",
+    placeholder: "Middle Name",
+    errors: errors.ind_middle_name,
+    value: values.ind_middle_name,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "owner_email",
+    name: "email",
     type: "text",
     label: "Email",
     placeholder: "Email",
-    errors: errors.owner_email,
-    value: values.owner_email,
+    errors: errors.ind_email,
+    value: values.ind_email,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "password",
+    type: "password",
+    label: "Password",
+    placeholder: "Password",
+    errors: errors.ind_password,
+    value: values.ind_password,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "password_confirmation",
+    type: "password",
+    label: "Confirm Password",
+    placeholder: "Confirm Password",
+    errors: errors.ind_password_confirmation,
+    value: values.ind_password_confirmation,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group mb-0 text-right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "btn btn-light mr-2",
-    onClick: function onClick() {
-      return goBack(2);
-    }
-  }, " Previous "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
     type: "submit",
-    className: "btn btn-primary ",
+    className: "btn btn-primary btn-block",
     loading: sending
-  }, "Register")))));
+  }, "Register"))))));
 }
 
 /***/ }),

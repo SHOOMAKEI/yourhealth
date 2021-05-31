@@ -1,91 +1,61 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[117],{
 
-/***/ "./resources/js/Shared/FileInput.js":
-/*!******************************************!*\
-  !*** ./resources/js/Shared/FileInput.js ***!
-  \******************************************/
-/*! exports provided: default */
+/***/ "./resources/js/Pages/Utilities/Constants.js":
+/*!***************************************************!*\
+  !*** ./resources/js/Pages/Utilities/Constants.js ***!
+  \***************************************************/
+/*! exports provided: ADD_CATEGORY_MODAL_ID, UPDATE_CATEGORY_MODAL_ID, SERVICE_CATEGORIES_TABLE, PROVIDER_PROFILE_MODAL_ID, ADD_MEMBERSHIP_MODAL_ID, ADD_PACKAGE_MODAL_ID, PACKAGE_INFO_MODAL_ID, ADD_FEATURE_MODAL_ID, ADD_RANGE_MODAL_ID, UPDATE_MEMBERSHIP_MODAL_ID, ADD_FACILITY_MODAL_ID, EDIT_FACILITY_MODAL_ID, ADD_QUALIFICATION_MODAL_ID, ADD_MEDICAL_REGISTRATION_MODAL_ID, REQUEST_SERVICE_MODAL_ID, SET_SERVICE_MODAL_PRICE, ADD_SERVICE_MODAL_ID, UPDATE_SERVICE_MODAL_ID, ADD_SUB_CATEGORY_MODAL_ID, UPDATE_SUB_CATEGORY_MODAL_ID */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
-  var className = _ref.className,
-      name = _ref.name,
-      label = _ref.label,
-      accept = _ref.accept,
-      _ref$errors = _ref.errors,
-      errors = _ref$errors === void 0 ? [] : _ref$errors,
-      callback = _ref.callback;
-  var fileInput = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
-      _useState2 = _slicedToArray(_useState, 2),
-      file = _useState2[0],
-      setFile = _useState2[1];
-
-  function handleFileChange(e) {
-    var file = e.target.files[0];
-    var reader = new FileReader();
-    reader.readAsDataURL(file);
-    var base64;
-
-    reader.onload = function (event) {
-      var _event$target;
-
-      base64 = (_event$target = event.target) === null || _event$target === void 0 ? void 0 : _event$target.result;
-      setFile(base64);
-      callback(name, base64);
-    };
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group ".concat(className, "  ").concat(errors.length ? 'is-invalid' : '')
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: name
-  }, label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "custom-file pl-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    id: name,
-    name: name,
-    ref: fileInput,
-    accept: accept,
-    type: "file",
-    "data-toggle": "custom-file-input",
-    className: "custom-file-input js-custom-file-input-enabled",
-    onChange: handleFileChange
-  }), label && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    className: "custom-file-label",
-    htmlFor: name
-  }, label), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "invalid-feedback",
-    style: {
-      display: 'block'
-    }
-  }, errors)));
-});
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_CATEGORY_MODAL_ID", function() { return ADD_CATEGORY_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_CATEGORY_MODAL_ID", function() { return UPDATE_CATEGORY_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SERVICE_CATEGORIES_TABLE", function() { return SERVICE_CATEGORIES_TABLE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROVIDER_PROFILE_MODAL_ID", function() { return PROVIDER_PROFILE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_MEMBERSHIP_MODAL_ID", function() { return ADD_MEMBERSHIP_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_PACKAGE_MODAL_ID", function() { return ADD_PACKAGE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PACKAGE_INFO_MODAL_ID", function() { return PACKAGE_INFO_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_FEATURE_MODAL_ID", function() { return ADD_FEATURE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_RANGE_MODAL_ID", function() { return ADD_RANGE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_MEMBERSHIP_MODAL_ID", function() { return UPDATE_MEMBERSHIP_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_FACILITY_MODAL_ID", function() { return ADD_FACILITY_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EDIT_FACILITY_MODAL_ID", function() { return EDIT_FACILITY_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_QUALIFICATION_MODAL_ID", function() { return ADD_QUALIFICATION_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_MEDICAL_REGISTRATION_MODAL_ID", function() { return ADD_MEDICAL_REGISTRATION_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REQUEST_SERVICE_MODAL_ID", function() { return REQUEST_SERVICE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SERVICE_MODAL_PRICE", function() { return SET_SERVICE_MODAL_PRICE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_SERVICE_MODAL_ID", function() { return ADD_SERVICE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_SERVICE_MODAL_ID", function() { return UPDATE_SERVICE_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_SUB_CATEGORY_MODAL_ID", function() { return ADD_SUB_CATEGORY_MODAL_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_SUB_CATEGORY_MODAL_ID", function() { return UPDATE_SUB_CATEGORY_MODAL_ID; });
+var ADD_CATEGORY_MODAL_ID = "add-category-modal";
+var UPDATE_CATEGORY_MODAL_ID = "update-category-modal";
+var SERVICE_CATEGORIES_TABLE = 'service-categories-table';
+var PROVIDER_PROFILE_MODAL_ID = 'service-provider-profile-modal';
+var ADD_MEMBERSHIP_MODAL_ID = 'add-membership-modal';
+var ADD_PACKAGE_MODAL_ID = 'add-package-modal';
+var PACKAGE_INFO_MODAL_ID = 'add-package-info-modal';
+var ADD_FEATURE_MODAL_ID = 'add-feature-modal';
+var ADD_RANGE_MODAL_ID = 'add-range-modal';
+var UPDATE_MEMBERSHIP_MODAL_ID = 'update-service-modal';
+var ADD_FACILITY_MODAL_ID = 'add-facility-modal';
+var EDIT_FACILITY_MODAL_ID = 'edit-facility-modal';
+var ADD_QUALIFICATION_MODAL_ID = 'add-qualifications-modal';
+var ADD_MEDICAL_REGISTRATION_MODAL_ID = 'add-medical-registration-modal';
+var REQUEST_SERVICE_MODAL_ID = 'request-service-modal';
+var SET_SERVICE_MODAL_PRICE = 'set-service-modal-price';
+var ADD_SERVICE_MODAL_ID = 'add-service-modal';
+var UPDATE_SERVICE_MODAL_ID = 'update-service-modal';
+var ADD_SUB_CATEGORY_MODAL_ID = 'add-sub-category-modal';
+var UPDATE_SUB_CATEGORY_MODAL_ID = "update-sub-category-modal";
 
 /***/ }),
 
-/***/ "./resources/js/Shared/LoadingButton.js":
-/*!**********************************************!*\
-  !*** ./resources/js/Shared/LoadingButton.js ***!
-  \**********************************************/
+/***/ "./resources/js/Shared/SelectInput.js":
+/*!********************************************!*\
+  !*** ./resources/js/Shared/SelectInput.js ***!
+  \********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -101,19 +71,29 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
-  var loading = _ref.loading,
+  var label = _ref.label,
+      name = _ref.name,
       className = _ref.className,
       children = _ref.children,
-      props = _objectWithoutProperties(_ref, ["loading", "className", "children"]);
+      _ref$errors = _ref.errors,
+      errors = _ref$errors === void 0 ? [] : _ref$errors,
+      props = _objectWithoutProperties(_ref, ["label", "name", "className", "children", "errors"]);
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _extends({
-    disabled: loading,
-    className: "focus:outline-none flex items-center ".concat(className)
-  }, props), loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "spinner-border spinner-border-sm mr-2 mb-0",
-    role: "status",
-    "aria-hidden": "true"
-  }), children);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group ".concat(className)
+  }, label && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: name
+  }, label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", _extends({
+    id: name,
+    name: name
+  }, props, {
+    className: "custom-select ".concat(errors.length ? 'error' : '')
+  }), children), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback ",
+    style: {
+      display: 'block'
+    }
+  }, errors));
 });
 
 /***/ })

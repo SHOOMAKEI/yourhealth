@@ -193,6 +193,12 @@ Route::middleware(['auth','auth:sanctum', 'language','mobile_number_verified', '
 
          Route::get('verified-service-provider/health-education', [HealthEducationController::class, 'index'])
              ->name('health_education.index');
+         Route::get('verified-service-provider/health-education/create', [HealthEducationController::class, 'create'])
+             ->name('health_education.create');
+         Route::get('verified-service-provider/health-education/{article}/show', [HealthEducationController::class, 'show'])
+             ->name('health_education.show');
+         Route::post('verified-service-provider/health-education/store', [HealthEducationController::class, 'store'])
+             ->name('health_education.store');
      });
 
 Route::middleware([ 'auth','auth:sanctum', 'verified_sp','language', 'mobile_number_verified', 'role:verified-service-provider|super-admin'])
@@ -215,7 +221,7 @@ Route::middleware([ 'auth','auth:sanctum', 'verified_sp','language', 'mobile_num
 
  Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:super-admin'])->group(function () {
      Route::get('admin/dashboard', function () {
-         return Inertia::render('MyArticle');
+         return Inertia::render('Dashboard');
      })->name('admin.dashboard');
 
      Route::resource('services_categories', ServiceCategoryController::class);

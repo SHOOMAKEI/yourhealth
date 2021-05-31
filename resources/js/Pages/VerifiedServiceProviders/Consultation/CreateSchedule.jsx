@@ -12,7 +12,7 @@ import ProviderSchedules from "@/Pages/VerifiedServiceProviders/Consultation/Com
 function CreateSchedule({facilities, days, user}) {
     const {errors, status, alertType} = usePage().props
     const [facilitiesData, setFacilitiesData] = useState(facilities);
-    const [selectedData, setSelectedData] = useState(facilities);
+    const [selectedData, setSelectedData] = useState();
     const [daysData, setDaysData] = useState(days);
     const [sending, setSending] = useState(false);
     const [values, setValues] = useState({
@@ -81,46 +81,54 @@ function CreateSchedule({facilities, days, user}) {
     function addSession(e) {
         e.preventDefault();
 
-        if (!(facilities.length > 0)) {
-            console.log('clicked wrongly')
-            setValues(values => ({
-                ...values,
-                sessions: [...values.sessions,
-                    {
-                        ...user,
-                        sessions: [...values.sessions.sessions, {
-                            name: values.name,
-                            from: values.from,
-                            to: values.to,
-                            interval: values.interval,
-                            day: daysData.find(d => d.id == values.day_id),
-                        }]
-                    }],
-            }));
-        }
+        // if (!(facilities.length > 0)) {
+        //     console.log('clicked wrongly')
+        //     setValues(values => ({
+        //         ...values,
+        //         sessions: [...values.sessions,
+        //             {
+        //                 ...user,
+        //                 sessions: [...values.sessions.sessions, {
+        //                     name: values.name,
+        //                     from: values.from,
+        //                     to: values.to,
+        //                     interval: values.interval,
+        //                     day: daysData.find(d => d.id == values.day_id),
+        //                 }]
+        //             }],
+        //     }));
+        // }
 
         if(facilities.length>0){
-           setSelectedData(values.sessions.find(data => data.id == values.facility_id))
-            if(selectedData.sessions !== null || selectedData.sessions !== 'undefined' ){
-                setSelectedData((selectedData)=>({
-                    ...selectedData,
-                    sessions:[ ...selectedData.sessions, {
-                        name: values.name,
-                        from: values.from,
-                        to: values.to,
-                        interval: values.interval,
-                        day: daysData.find(d => d.id == values.day_id),
-                    }]
-                }))
-            }
+            console.log(selectedData, 'initial data')
 
-            console.log(selectedData)
+            values.sessions.map(data => {
+                if ( parseInt(data.id, 10) === parseInt(values.facility_id, 10)) {
+                    console.log(data, 'data is found')
+                    setSelectedData(data)
+                }
+            })
+            console.log(selectedData, 'after updating state')
 
-            if(selectedData.id !== null){
-                setValues((values)=>({...values,
-                    sessions:[...values.sessions,{selectedData}]
-                }))
-            }
+            // if(selectedData.id !== null || selectedData.id !== 'undefined' ){
+            //     setSelectedData((selectedData)=>({
+            //         ...selectedData,
+            //         sessions:[ ...selectedData.sessions, {
+            //             name: values.name,
+            //             from: values.from,
+            //             to: values.to,
+            //             interval: values.interval,
+            //             day: daysData.find(d => d.id == values.day_id),
+            //         }]
+            //     }))
+            // }
+
+
+            // if(selectedData.id !== null){
+            //     setValues((values)=>({...values,
+            //         sessions:[...values.sessions,{selectedData}]
+            //     }))
+            // }
 
         }
 
@@ -132,18 +140,18 @@ function CreateSchedule({facilities, days, user}) {
     function removeSession(e, session) {
         e.preventDefault();
 
-        if (values.sessions.sessions == 0) {
-            setValues(values => ({
-                ...values,
-                sessions: [],
-
-            }));
-        }
-        setValues(values => ({
-            ...values,
-            sessions: [...values.sessions.sessions.filter(fet => fet.id != session.id)],
-
-        }));
+        // if (values.sessions.sessions == 0) {
+        //     setValues(values => ({
+        //         ...values,
+        //         sessions: [],
+        //
+        //     }));
+        // }
+        // setValues(values => ({
+        //     ...values,
+        //     sessions: [...values.sessions.sessions.filter(fet => fet.id != session.id)],
+        //
+        // }));
 
     }
 

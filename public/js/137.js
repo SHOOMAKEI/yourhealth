@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[137],{
 
-/***/ "./resources/js/Pages/Services/packages/ranges/Heading.jsx":
-/*!*****************************************************************!*\
-  !*** ./resources/js/Pages/Services/packages/ranges/Heading.jsx ***!
-  \*****************************************************************/
+/***/ "./resources/js/Pages/Services/packages/features/Heading.jsx":
+/*!*******************************************************************!*\
+  !*** ./resources/js/Pages/Services/packages/features/Heading.jsx ***!
+  \*******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -18,7 +18,8 @@ function Heading(_ref) {
       renderModal = _ref.renderModal,
       modalID = _ref.modalID,
       search = _ref.search,
-      callback = _ref.callback;
+      callback = _ref.callback,
+      services = _ref.services;
 
   function onSearch() {
     $('#search-input').on('input', function (e) {
@@ -42,10 +43,12 @@ function Heading(_ref) {
     "data-toggle": "modal",
     "data-target": "#".concat(modalID),
     onClick: function onClick() {
+      var _services$;
+
       return callback({
         name: "",
-        description: "No description",
-        status: false
+        services: [],
+        service_id: (_services$ = services[0]) === null || _services$ === void 0 ? void 0 : _services$.id
       });
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {

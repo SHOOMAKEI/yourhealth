@@ -1,15 +1,14 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[79],{
 
-/***/ "./resources/js/Pages/Auth/components/CompanyRegistration.jsx":
-/*!********************************************************************!*\
-  !*** ./resources/js/Pages/Auth/components/CompanyRegistration.jsx ***!
-  \********************************************************************/
+/***/ "./resources/js/Pages/Auth/ResetPassword.js":
+/*!**************************************************!*\
+  !*** ./resources/js/Pages/Auth/ResetPassword.js ***!
+  \**************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CompanyRegister; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
@@ -41,10 +40,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function CompanyRegister() {
+/* harmony default export */ __webpack_exports__["default"] = (function () {
   var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props,
-      errors = _usePage$props.errors,
-      emailSentSuccessfully = _usePage$props.emailSentSuccessfully;
+      status = _usePage$props.status,
+      token = _usePage$props.token,
+      email = _usePage$props.email,
+      errors = _usePage$props.errors;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -52,18 +53,10 @@ function CompanyRegister() {
       setSending = _useState2[1];
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    first_name: "",
-    last_name: "",
-    middle_name: "",
-    mobile_number: "",
-    name: "",
-    password_confirmation: "",
-    tin: "",
-    vrn: "",
-    email: '',
+    email: email,
     password: '',
-    account_category: "service-provider",
-    account_category_type: "company"
+    password_confirmation: '',
+    token: token
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       values = _useState4[0],
@@ -80,119 +73,72 @@ function CompanyRegister() {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('account.create'), values).then(function () {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('password.update'), values).then(function () {
       setSending(false);
     });
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row mb-2"
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "wrapper-login"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
-    href: route('register')
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "btn btn-light"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: " uil-arrow-left mr-1"
-  }), "Go back")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-    className: "text-dark-50 text-left mb-3 font-weight-bold"
-  }, "Personal information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "app justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6"
+    className: "col-md-3"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "login-form"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card mb-0 mt-5 p-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "text-center mb-3"
+  }, "Reset Password"), status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "alert alert-primary alert-borderless",
+    role: "alert"
+  }, status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "first_name",
-    type: "text",
-    label: "First Name",
-    placeholder: "First Name",
-    errors: errors.first_name,
-    value: values.first_name,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "last_name",
-    type: "text",
-    label: "Last Name",
-    placeholder: "Last Name",
-    errors: errors.last_name,
-    value: values.last_name,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "middle_name",
-    type: "text",
-    label: "Middle Name",
-    placeholder: "Middle Name",
-    errors: errors.middle_name,
-    value: values.middle_name,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "mobile_number",
-    type: "text",
-    label: "Mobile Number",
-    placeholder: "Mobile Number",
-    errors: errors.mobile_number,
-    value: values.mobile_number,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: "email",
     type: "text",
-    label: "Email",
     placeholder: "Email",
+    label: "Email",
     errors: errors.email,
     value: values.email,
     onChange: handleChange
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: "password",
     type: "password",
-    label: "Password",
     placeholder: "Password",
+    label: "Password",
     errors: errors.password,
     value: values.password,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
     name: "password_confirmation",
     type: "password",
-    label: "Password",
-    placeholder: "Password",
+    placeholder: "Confirm Password",
+    label: "Confirm Password",
     errors: errors.password_confirmation,
     value: values.password_confirmation,
     onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "name",
-    type: "text",
-    label: "Company Name",
-    placeholder: "Company Name",
-    errors: errors.name,
-    value: values.name,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "tin",
-    type: "text",
-    label: "TIN",
-    placeholder: "TIN",
-    errors: errors.tin,
-    value: values.tin,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "vrn",
-    type: "text",
-    label: "VRN",
-    placeholder: "VRN",
-    errors: errors.vrn,
-    value: values.vrn,
-    onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group mb-0 text-right"
+    className: "form-group my-3 row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 text-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
     type: "submit",
     className: "btn btn-primary btn-block",
     loading: sending
-  }, "Save Changes"))))));
-}
+  }, "Reset Password")))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-3"
+  })))));
+});
 
 /***/ }),
 
