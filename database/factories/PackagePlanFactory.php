@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\MembershipCategory;
 use App\Models\PackagePlan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +23,10 @@ class PackagePlanFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'membership_category_id' => (MembershipCategory::inRandomOrder()
+                ->limit(1)->get())[0]->id,
+
         ];
     }
 }

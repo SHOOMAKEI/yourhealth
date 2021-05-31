@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\ClientTeam;
 use App\Models\TeamInvitation;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TeamInvitationFactory extends Factory
@@ -22,7 +24,10 @@ class TeamInvitationFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'client_team_id' => ClientTeam::factory(),
+            'user_id' => User::factory(),
+            'role' => 'stuff',
+            'has_account' => true
         ];
     }
 }

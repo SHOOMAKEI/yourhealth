@@ -5,7 +5,7 @@ namespace Database\Factories;
 use App\Models\ProviderVerification;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProviderVerificaitonFactory extends Factory
+class ProviderVerificationFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.

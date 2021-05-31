@@ -22,7 +22,12 @@ class ProviderFacilityOwnerFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'first_name' => $this->faker->firstName,
+            'middle_name' => $this->faker->lastName,
+            'last_name' => $this->faker->lastName,
+            'mobile_number' => $this->faker->e164PhoneNumber,
+            'email' => $this->faker->email,
+            'provider_facility_id' => ProviderCompany::factory(),
         ];
     }
 }
