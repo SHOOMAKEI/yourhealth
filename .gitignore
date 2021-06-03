@@ -18,3 +18,4 @@ _lighthouse_ide_helper.php
 .php_cs.cache
 /.idea/*
 public/js/*.js
+public/js/*
