@@ -53,7 +53,7 @@ export default function Verification({provider}) {
             }
             {
                 provider.is_verified && (
-                    <div className="alert alert-success alert-dismissible bg-success text-white border-0 fade show topnav-logo" role="alert">
+                    <div className=" alert-success alert-dismissible bg-primary text-white border-0 p-2 fade show topnav-logo" role="alert">
                         <strong> This service provider is verified </strong>
                     </div>
                 )

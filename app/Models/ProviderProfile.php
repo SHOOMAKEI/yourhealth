@@ -26,6 +26,10 @@ class ProviderProfile extends Model implements HasMedia
       'submitted_at'
     ];
 
+    protected $appends = [
+        'profile_photo_path'
+    ];
+
     public function provider_medical_registrations(): HasMany
     {
         return $this->hasMany(ProviderMedicalRegistration::class);
@@ -89,5 +93,13 @@ class ProviderProfile extends Model implements HasMedia
     public function getUpdatedAtAttribute(): string
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['updated_at'])->format('M j, Y G:ia');
+    }
+
+    public function getProfilePhotoPathAttribute(): ?string
+    {
+        $user = User::where('id', $this->user_id)
+            ->first();
+
+        return isset($user)?$user->profile_photo_path:null;
     }
 }

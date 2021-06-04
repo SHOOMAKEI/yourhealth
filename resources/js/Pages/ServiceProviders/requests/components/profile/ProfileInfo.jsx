@@ -7,6 +7,10 @@ export default function ProfileInfo({provider}) {
     return (
         <div className="tab-pane fade active show" id="v-pills-profile" role="tabpanel"
              aria-labelledby="v-pills-profile-tab">
+            <div className="text-center pb-3">
+                <img src={provider.profile_photo_path} alt="image"
+                     className="img-fluid img-thumbnail rounded-circle mb-3" width="120"/>
+            </div>
             <div className="row">
                 <div className="col-6">
                     <table className="table table-centered mb-0">
