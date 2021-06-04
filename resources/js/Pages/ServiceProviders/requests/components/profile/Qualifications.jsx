@@ -33,7 +33,7 @@ export default function Qualifications({provider}) {
                                     <td>{qualification.award_title}</td>
                                     <td>{qualification.institution_name}</td>
                                     <td>
-                                        <InertiaLink href={`${qualification.attachment}`} className="btn btn-light">File <i className="uil-cloud-download ml-1"></i></InertiaLink>
+                                        <a href={`${qualification.attachment}`} className="btn btn-light">File <i className="uil-cloud-download ml-1"></i></a>
                                     </td>
                                 </tr>
                             ))
