@@ -22,7 +22,9 @@ class PackageMemberRangeFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'min' => $this->faker->numberBetween(0, 50),
+            'max' => $this->faker->numberBetween(50, 9999),
+            'description' => $this->faker->text(50),
         ];
     }
 }

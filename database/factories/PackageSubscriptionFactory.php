@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\PackagePlan;
 use App\Models\PackageSubscription;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PackageSubscriptionFactory extends Factory
@@ -22,7 +24,11 @@ class PackageSubscriptionFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'package_plan_id' => (PackagePlan::inRandomOrder()
+                ->limit(1)->get())[0]->id,
+            'user_id' => (User::inRandomOrder()
+                ->limit(1)->get())[0]->id,
+            'payer' => $this->faker->randomElement(['self', 'team'])
         ];
     }
 }

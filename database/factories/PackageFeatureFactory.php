@@ -22,7 +22,10 @@ class PackageFeatureFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'price' => $this->faker->numberBetween(111111,99999),
+            'compare_price' => $this->faker->numberBetween(111111,99999),
+            'currency' => 'TZS'
         ];
     }
 }

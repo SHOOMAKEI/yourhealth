@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\ProviderCategoryj;
+use App\Models\ProviderCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProviderCategoryFactory extends Factory
@@ -12,7 +12,7 @@ class ProviderCategoryFactory extends Factory
      *
      * @var string
      */
-    protected $model = ProviderCategoryj::class;
+    protected $model = ProviderCategory::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,7 @@ class ProviderCategoryFactory extends Factory
     public function definition()
     {
         return [
-            //
+
         ];
     }
 }

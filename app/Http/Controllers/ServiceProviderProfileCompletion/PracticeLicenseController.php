@@ -44,6 +44,7 @@ class PracticeLicenseController extends Controller
     {
         return auth()->user()->service_provider->is_submitted == false || auth()->user()->hasRole('verified-service-provider');
     }
+    
     public function destroy(
         ProviderMedicalRegistration $registration,
         ServiceProviderRegistrationRepositoryInterface $repository

@@ -108,7 +108,7 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
         return isset($client_profile)?$client_profile->toArray():null;
     }
 
-    public function getAcountRolesAttribute()
+    public function getAccountRolesAttribute()
     {
         return $this->getRoleNames();
     }

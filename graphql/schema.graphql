@@ -59,8 +59,8 @@ type Query {
     @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\ClientRegistrationController@membershipsCategories")
     packages(membership_category_id: Int):[PackagePlan]
     @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\ClientRegistrationController@packages")
-    getAvalilableServicesWithProviderCount:[ServicesWithProvidersCount]
-    @field(resolver: "App\\Http\\Controllers\\Api\\Client\\Consultation@getAvalilableServicesWithProviderCount")
+    getAvailableServicesWithProviderCount:[ServicesWithProvidersCount]
+    @field(resolver: "App\\Http\\Controllers\\Api\\Client\\Consultation@getAvailableServicesWithProviderCount")
     getServiceProvidersAndFacilities(service_id: Int):[ServiceProvidersAndFacilities]
     @field(resolver: "App\\Http\\Controllers\\Api\\Client\\Consultation@getServiceProvidersAndFacilities")
     getProviderSchedule(provider_id: Int):[DaySession]
@@ -106,7 +106,7 @@ type Mutation {
     #     @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfileCalendar")
     createRequestedService(input: RequestedServiceInput): RequestedService @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createRequestedService")
-    submittProfileForVerification: ProviderProfile @guard
+    submitProfileForVerification: ProviderProfile @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@submitted")
     verifyServiceProviderRequest(id:ID @rules(apply:["required", "exists:provider_profiles,id"])): ProviderProfile @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@verify")
@@ -163,8 +163,7 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@login")
     logoutSession(input: logoutSessionInput): loginSessionResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@logout")
-    verifyOtpCodeSession(input: verifyOtpCodeSessionInput!): loginSessionResponse
-        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@verifyOtpCode")
+                    
     verify2FACodeSession(input: verify2FACodeSessionInput!): loginSessionResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@verify2FACode")
     verifyMobileNumberSession(input: verifyMobileNumberSessionInput!): loginSessionResponse
