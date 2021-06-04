@@ -20,7 +20,9 @@ class ProviderQualification extends Model implements HasMedia
 
     protected static $logAttribute = ['*'];
 
-    public function getAttachmentAttribute()
+    protected $appends= ['attachment'];
+
+    public function getAttachmentAttribute(): string
     {
         return $this->getFirstMediaUrl('provider-qualification-files');
     }

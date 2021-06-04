@@ -24,7 +24,6 @@ export default function Qualifications({provider}) {
                             <th>Title</th>
                             <th>Institution</th>
                             <th>Attachment</th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,9 +34,6 @@ export default function Qualifications({provider}) {
                                     <td>{qualification.institution_name}</td>
                                     <td>
                                         <InertiaLink href={`${qualification.attachment}`} className="btn btn-light">File <i className="uil-cloud-download ml-1"></i></InertiaLink>
-                                    </td>
-                                    <td>
-                                        <InertiaLink href="#" className="action-icon"> <i className="dripicons-trash"></i></InertiaLink>
                                     </td>
                                 </tr>
                             ))
