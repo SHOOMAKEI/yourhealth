@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[106],{
 
-/***/ "./resources/js/Pages/Services/packages/membership/List.jsx":
-/*!******************************************************************!*\
-  !*** ./resources/js/Pages/Services/packages/membership/List.jsx ***!
-  \******************************************************************/
+/***/ "./resources/js/Pages/Services/packages/features/List.jsx":
+/*!****************************************************************!*\
+  !*** ./resources/js/Pages/Services/packages/features/List.jsx ***!
+  \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -28,23 +28,23 @@ function List(_ref) {
   }
 
   $(document).ready(function () {
-    $('#package-membership-table').DataTable();
+    $('#package-feature-table').DataTable();
     $('.dataTables_filter input[type="search"]').css({
       'width': '145px',
       'display': 'inline-block'
     });
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-    id: "package-membership-table",
+    id: "package-feature-table",
     className: "table table-centered table-border mb-0 font-14"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, " Created At"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Action"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, memberships.map(function (membership, index) {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Services"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, " Created At"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Action"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, memberships.map(function (membership, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
       key: index + 1
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, membership.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, membership.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", membership.is_active ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "badge badge-success-lighten p-1"
-    }, " Enabled") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "badge badge-danger-lighten p-1"
-    }, " Disabled")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, membership.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, membership.services.map(function (service, index) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        key: index + 1
+      }, service.name);
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, membership.created_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       type: "button",
       className: "btn btn-link dropdown-toggle",
       "data-toggle": "dropdown",
@@ -63,7 +63,7 @@ function List(_ref) {
       href: "#",
       className: "dropdown-item",
       "data-toggle": "modal",
-      "data-target": "#".concat(_Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__["ADD_MEMBERSHIP_MODAL_ID"]),
+      "data-target": "#".concat(_Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__["ADD_FEATURE_MODAL_ID"]),
       onClick: function onClick() {
         return _selectMembership(membership);
       }
@@ -75,7 +75,7 @@ function List(_ref) {
       href: "",
       className: "dropdown-item text-danger",
       "data-toggle": "modal",
-      "data-target": "#delete-membership-".concat(membership.id),
+      "data-target": "#delete-feature-".concat(membership.id),
       onClick: function onClick() {
         return _selectMembership(membership);
       }

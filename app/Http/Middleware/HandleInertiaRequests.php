@@ -53,6 +53,7 @@ class HandleInertiaRequests extends Middleware
                 $data['enable_2fa'] = $user->two_factor_recovery_codes != null;
                 $data['roles'] = $user->roles;
                 $data['permissions'] = $user->permissions;
+                $data['provider_profile']['account_category_type'] = !empty($user->service_provider)? $user->service_provider->account_category_type:null;
 
                 return $data;
             }:null,

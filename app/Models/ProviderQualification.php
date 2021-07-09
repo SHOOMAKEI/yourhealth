@@ -26,4 +26,6 @@ class ProviderQualification extends Model implements HasMedia
     {
         return $this->getFirstMediaUrl('provider-qualification-files');
     }
+
+
 }

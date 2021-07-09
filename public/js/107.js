@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[107],{
 
-/***/ "./resources/js/Pages/Services/packages/membership/SelectedInfo.jsx":
-/*!**************************************************************************!*\
-  !*** ./resources/js/Pages/Services/packages/membership/SelectedInfo.jsx ***!
-  \**************************************************************************/
+/***/ "./resources/js/Pages/Services/packages/features/SelectedInfo.jsx":
+/*!************************************************************************!*\
+  !*** ./resources/js/Pages/Services/packages/features/SelectedInfo.jsx ***!
+  \************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 

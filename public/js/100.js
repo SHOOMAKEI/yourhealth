@@ -1,20 +1,20 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[100],{
 
-/***/ "./resources/js/Pages/ServiceProviders/requests/components/profile/Services.jsx":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/Pages/ServiceProviders/requests/components/profile/Services.jsx ***!
-  \**************************************************************************************/
+/***/ "./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx ***!
+  \*******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Services; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Pages_Utilities_Services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Utilities/Services */ "./resources/js/Pages/Utilities/Services.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DeleteCategoryDialog; });
+/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -30,90 +30,163 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var SERVICES_DATA_TABLE = 'provider-services-datatable';
-function Services(_ref) {
-  var provider = _ref.provider;
+function DeleteCategoryDialog(_ref) {
+  var category = _ref.category;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
       _useState2 = _slicedToArray(_useState, 2),
-      services = _useState2[0],
-      setServices = _useState2[1];
+      selectedCategory = _useState2[0],
+      setSelectedCategory = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState4 = _slicedToArray(_useState3, 2),
       sending = _useState4[0],
       setSending = _useState4[1];
 
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setSending(true);
-    axios.get(route('service_provider_profiles.services', provider.id)).then(function (resp) {
-      setServices(resp.data);
-      setSending(false);
-      console.log(resp.data);
-    });
-  }, [provider]); // useEffect(() => {
-  //     initializeDataTable(true, true, SERVICES_DATA_TABLE)
-  // }, [])
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    setSelectedCategory(category);
+  }, [category]);
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "tab-pane fade",
-    id: "v-pills-services",
-    role: "tabpanel",
-    "aria-labelledby": "v-pills-services-tab"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
-    id: SERVICES_DATA_TABLE,
-    className: "table dt-responsive nowrap w-100"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Currency"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, services && services.map(function (service) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, service.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, service.pivot.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, service.pivot.currency));
-  }))));
+  function handleSubmit(e) {
+    e.preventDefault();
+    setSending(true);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"]["delete"](route('services_sub_categories.destroy', selectedCategory.id)).then(function () {
+      setSending(false);
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    id: "delete-sub-category-".concat(selectedCategory.id),
+    className: "modal fade",
+    tabIndex: -1,
+    role: "dialog",
+    "aria-labelledby": "delete-categoryLabel",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-dialog"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-content modal-filled bg-danger"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
+    className: "modal-title",
+    id: "delete-categoryLabel"
+  }, "delete ", selectedCategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    type: "button",
+    className: "close",
+    "data-dismiss": "modal",
+    "aria-hidden": "true"
+  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-body"
+  }, "Are you sure you want to delete ", selectedCategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-footer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    type: "button",
+    className: "btn btn-light",
+    "data-dismiss": "modal"
+  }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+    href: "#",
+    className: "btn btn-outline-light",
+    "data-dismiss": "modal",
+    onClick: handleSubmit
+  }, "Delete ")))));
 }
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Utilities/Services.js":
-/*!**************************************************!*\
-  !*** ./resources/js/Pages/Utilities/Services.js ***!
-  \**************************************************/
-/*! exports provided: initializeDataTable, updateServiceCategoriesTable */
+/***/ "./resources/js/Pages/Services/subcategories/components/serviceSubategory.jsx":
+/*!************************************************************************************!*\
+  !*** ./resources/js/Pages/Services/subcategories/components/serviceSubategory.jsx ***!
+  \************************************************************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initializeDataTable", function() { return initializeDataTable; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateServiceCategoriesTable", function() { return updateServiceCategoriesTable; });
-var initializeDataTable = function initializeDataTable(bSort, bDestroy, tableId) {
-  $(document).ready(function () {
-    $("#".concat(tableId)).DataTable({
-      bSort: bSort,
-      bDestroy: bDestroy,
-      searching: false,
-      destroy: true,
-      pageLength: 7,
-      "lengthMenu": [[7, 25, 50, -1], [7, 25, 50, "All"]],
-      // "aaSorting": [],
-      language: {
-        paginate: {
-          previous: "<i class='uil uil-angle-left'>",
-          next: "<i class='uil uil-angle-right'>",
-          first: '',
-          last: ''
-        }
-      },
-      drawCallback: function drawCallback() {
-        $(document).ready(function () {
-          $(".dataTables_paginate > .pagination").addClass("pagination-rounded");
-        });
-      }
-    });
-  });
-};
-var updateServiceCategoriesTable = function updateServiceCategoriesTable(tableId, category) {
-  $(document).ready(function () {
-    var table = $("#".concat(tableId)).DataTable(); //table.clear().destroy();
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Subcategory; });
+/* harmony import */ var _deleteDialog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteDialog */ "./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx");
 
-    initializeDataTable(false, false, tableId); // table.row.add([category.name, category.status, category.createdAt, category.updatedAt, ''])
-  });
-};
+function Subcategory(subcategory) {
+  function chooseSubcategory() {// dispatch(selectSubcategory(subcategory))
+  }
+
+  return /*#__PURE__*/React.createElement("tr", {
+    key: subcategory.id
+  }, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
+    href: '#',
+    className: "text-dark",
+    onClick: chooseSubcategory
+  }, subcategory.name)), /*#__PURE__*/React.createElement("td", null, subcategory.is_active ? /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-eye font-16 mr-1 text-success"
+  }), " Visible") : /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-eye font-16 mr-1 text-danger"
+  }), " Not Visible")), /*#__PURE__*/React.createElement("td", {
+    className: "table-action"
+  }, /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "btn btn-link dropdown-toggle",
+    "data-toggle": "dropdown",
+    "aria-haspopup": "true",
+    "aria-expanded": "false",
+    style: {
+      lineHeight: 0.5,
+      paddingTop: 0,
+      paddingBottom: 0
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-bright font-16 mr-1 text-primary"
+  }), "More"), /*#__PURE__*/React.createElement("div", {
+    className: "dropdown-menu"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "javascript:void(0);",
+    className: "dropdown-item",
+    onClick: chooseSubcategory
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-eye mr-1"
+  }), "Show info"), /*#__PURE__*/React.createElement(Link, {
+    href: "/services/services/".concat(subcategory.id)
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "dropdown-item"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-sitemap mr-1"
+  }), "services"))), /*#__PURE__*/React.createElement(_deleteDialog__WEBPACK_IMPORTED_MODULE_0__["default"], null)));
+}
+
+/***/ }),
+
+/***/ "./resources/js/Shared/LoadingButton.js":
+/*!**********************************************!*\
+  !*** ./resources/js/Shared/LoadingButton.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
+  var loading = _ref.loading,
+      className = _ref.className,
+      children = _ref.children,
+      props = _objectWithoutProperties(_ref, ["loading", "className", "children"]);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _extends({
+    disabled: loading,
+    className: "focus:outline-none flex items-center ".concat(className)
+  }, props), loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "spinner-border spinner-border-sm mr-2 mb-0",
+    role: "status",
+    "aria-hidden": "true"
+  }), children);
+});
 
 /***/ })
 

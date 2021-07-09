@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '@/Shared/Layout';
 import {InertiaLink, usePage} from "@inertiajs/inertia-react";
+import PageTitle from "@/Shared/PageTitle";
 
 
 const MyArticle = () => {
@@ -8,18 +9,7 @@ const MyArticle = () => {
 
     return(
       <>
-          <div className="row">
-              <div className="col-12">
-                  <div className="page-title-box">
-                      <div className="page-title-right">
-                              <InertiaLink href={route('health_education.create')} className="btn btn-primary"><i
-                                className="uil uil-plus mr-1"/>Create new article
-                              </InertiaLink>
-                      </div>
-                      <h4 className="page-title">My Articles</h4>
-                  </div>
-              </div>
-          </div>
+          <PageTitle title="My Articles" link_name="Create new article" link_url={route('health_education.create')}/>
 
           <div className="row">
               {

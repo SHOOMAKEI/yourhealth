@@ -393,7 +393,7 @@ __webpack_require__.r(__webpack_exports__);
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_MultiLinkMenuItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
     text: "My Articles",
     link: "health_education.index"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_MultiLinkMainMenuItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  })), auth.user.provider_profile.account_category_type !== 'individual' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_MultiLinkMainMenuItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
     icon: "uil-users-alt",
     text: "Staff Management"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_MultiLinkMenuItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -403,9 +403,12 @@ __webpack_require__.r(__webpack_exports__);
     icon: "uil-building",
     text: "Firm Management"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_MultiLinkMenuItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    text: "My Stuff",
-    link: "service_provider_profiles.index"
-  }))));
+    text: "Company",
+    link: "provider_profile.firm.company"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_MultiLinkMenuItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    text: "Facilities",
+    link: "provider_profile.firm.facilities"
+  })))));
 });
 
 /***/ }),

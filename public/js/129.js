@@ -1,69 +1,61 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[129],{
 
-/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Heading.jsx":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Heading.jsx ***!
-  \********************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./resources/js/Pages/Auth/TwoFactorChallenge.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/Pages/Auth/TwoFactorChallenge.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Heading; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-function Heading(_ref) {
-  var title = _ref.title,
-      renderModal = _ref.renderModal,
-      modalID = _ref.modalID,
-      search = _ref.search,
-      buttonText = _ref.buttonText,
-      _ref$showSearch = _ref.showSearch,
-      showSearch = _ref$showSearch === void 0 ? true : _ref$showSearch;
-
-  function onSearch() {
-    $('#search-input').on('input', function (e) {
-      var input = $(this);
-      var val = input.val();
-
-      if (input.data("lastval") != val) {
-        input.data("lastval", val);
-        search(val);
-      }
-    });
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "page-title-box"
-  }, showSearch && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "page-title-right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "app-search"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "input-group"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "form-control",
-    placeholder: "Search...",
-    id: "search-input",
-    onInput: onSearch
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "input-group-append"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "btn btn-primary"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "uil uil-search"
-  }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-    className: "page-title"
-  }, title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "button",
-    className: "btn btn-primary btn-sm ml-3",
-    "data-toggle": "modal",
-    "data-target": "#".concat(modalID)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "uil uil-plus mr-1"
-  }), buttonText)), renderModal && renderModal());
+{
+  /* <x-guest-layout>
+     <x-jet-authentication-card>
+         <x-slot name="logo">
+             <img class="img-avatar img-avatar96 img-avatar-thumb" src="{{asset('storage/dit-logo.jpg')}}" alt="organization logo"/>
+         </x-slot>
+          <div x-data="{ recovery: false }">
+             <div class="mb-4 text-sm text-gray-600" x-show="! recovery">
+                 {{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.') }}
+             </div>
+              <div class="mb-4 text-sm text-gray-600" x-show="recovery">
+                 {{ __('Please confirm access to your account by entering one of your emergency recovery codes.') }}
+             </div>
+              <x-jet-validation-errors class="mb-4" />
+              <form method="POST" action="/two-factor-challenge">
+                 @csrf
+                  <div class="mt-4" x-show="! recovery">
+                     <x-jet-label value="{{ __('Code') }}" />
+                     <x-jet-input class="block mt-1 w-full" type="text" name="code" autofocus x-ref="code" autocomplete="one-time-code" />
+                 </div>
+                  <div class="mt-4" x-show="recovery">
+                     <x-jet-label value="{{ __('Recovery Code') }}" />
+                     <x-jet-input class="block mt-1 w-full" type="text" name="recovery_code" x-ref="recovery_code" autocomplete="one-time-code" />
+                 </div>
+                  <div class="flex items-center justify-end mt-4">
+                     <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
+                                     x-show="! recovery"
+                                     x-on:click="
+                                         recovery = true;
+                                         $nextTick(() => { $refs.recovery_code.focus() })
+                                     ">
+                         {{ __('Use a recovery code') }}
+                     </button>
+                      <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
+                                     x-show="recovery"
+                                     x-on:click="
+                                         recovery = false;
+                                         $nextTick(() => { $refs.code.focus() })
+                                     ">
+                         {{ __('Use an authentication code') }}
+                     </button>
+                      <x-jet-button class="ml-4">
+                         {{ __('Login') }}
+                     </x-jet-button>
+                 </div>
+             </form>
+         </div>
+     </x-jet-authentication-card>
+  </x-guest-layout> */
 }
 
 /***/ })

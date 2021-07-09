@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[135],{
 
-/***/ "./resources/js/Pages/Services/categories/components/Heading.jsx":
-/*!***********************************************************************!*\
-  !*** ./resources/js/Pages/Services/categories/components/Heading.jsx ***!
-  \***********************************************************************/
+/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Heading.jsx":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Heading.jsx ***!
+  \********************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -17,7 +17,10 @@ function Heading(_ref) {
   var title = _ref.title,
       renderModal = _ref.renderModal,
       modalID = _ref.modalID,
-      search = _ref.search;
+      search = _ref.search,
+      buttonText = _ref.buttonText,
+      _ref$showSearch = _ref.showSearch,
+      showSearch = _ref$showSearch === void 0 ? true : _ref$showSearch;
 
   function onSearch() {
     $('#search-input').on('input', function (e) {
@@ -33,7 +36,7 @@ function Heading(_ref) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-title-box"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, showSearch && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-title-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "app-search"
@@ -58,7 +61,9 @@ function Heading(_ref) {
     className: "btn btn-primary btn-sm ml-3",
     "data-toggle": "modal",
     "data-target": "#".concat(modalID)
-  }, "Add New")), renderModal && renderModal());
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "uil uil-plus mr-1"
+  }), buttonText)), renderModal && renderModal());
 }
 
 /***/ })

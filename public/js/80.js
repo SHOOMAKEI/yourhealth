@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[80],{
 
-/***/ "./resources/js/Pages/Auth/TwoFactoryAuthentication.js":
-/*!*************************************************************!*\
-  !*** ./resources/js/Pages/Auth/TwoFactoryAuthentication.js ***!
-  \*************************************************************/
+/***/ "./resources/js/Pages/Auth/OneTimePassword.js":
+/*!****************************************************!*\
+  !*** ./resources/js/Pages/Auth/OneTimePassword.js ***!
+  \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -52,19 +52,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       sending = _useState2[0],
       setSending = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      recovery = _useState4[0],
-      setRecovery = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     email: email,
-    two_factory_code: '',
-    recovery_code: ''
+    otp_code: ''
   }),
-      _useState6 = _slicedToArray(_useState5, 2),
-      values = _useState6[0],
-      setValues = _useState6[1];
+      _useState4 = _slicedToArray(_useState3, 2),
+      values = _useState4[0],
+      setValues = _useState4[1];
 
   function handleChange(e) {
     var key = e.target.name;
@@ -77,7 +71,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('two-factor.verify'), values).then(function () {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('otp.verify'), values).then(function () {
       setSending(false);
     });
   }
@@ -102,7 +96,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     className: "card-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     className: "text-center mb-3"
-  }, "Two Factor Authentication"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, recovery ? 'Please confirm access to your account by entering one of your emergency recovery codes.' : 'Please confirm access to your account by entering the authentication code provided by your authenticator application.'), status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "One Time Password"), status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     "class": "alert alert-".concat(alertType === 'success' ? 'primary' : 'danger', " alert-borderless"),
     role: "alert"
   }, status), errors.email && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -110,38 +104,26 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     role: "alert"
   }, "Something went wrong please try to login again."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: handleSubmit
-  }, !recovery && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "two_factory_code",
-    type: "text",
-    placeholder: "Two Factor Code",
-    label: "Two Factor Code",
-    errors: errors.two_factory_code,
-    value: values.two_factory_code,
-    onChange: handleChange
-  }), recovery && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "recovery_code",
-    type: "text",
-    placeholder: "Recovery Code",
-    label: "Recovery Code",
-    errors: errors.recovery_code,
-    value: values.recovery_code,
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    name: "otp_code",
+    type: "password",
+    placeholder: "OTP Code",
+    label: "OTP Code",
+    errors: errors.otp_code,
+    value: values.otp_code,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group my-3 row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-12 text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#",
-    className: "btn btn-success btn-md mr-3",
-    onClick: function onClick() {
-      setRecovery(!recovery);
-      setValues({
-        email: email,
-        two_factory_code: '',
-        recovery_code: ''
-      });
-    }
-  }, recovery ? 'Use Two Factor Code' : 'Use Recovery Code'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
+    href: route('otp.resend'),
+    method: "POST",
+    data: {
+      email: email
+    },
+    className: "btn btn-success btn-md mr-3"
+  }, "Resend OTP Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
     type: "submit",
     className: "btn btn-primary btn-md",
     loading: sending

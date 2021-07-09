@@ -23,7 +23,9 @@ use App\Http\Controllers\Services\ServiceSubCategoryController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\VerifiedServiceProvider\CalenderController;
 use App\Http\Controllers\VerifiedServiceProvider\DashboardController;
+use App\Http\Controllers\VerifiedServiceProvider\FirmManagementController;
 use App\Http\Controllers\VerifiedServiceProvider\HealthEducationController;
+use App\Http\Controllers\VerifiedServiceProvider\MyProfileController;
 use App\Http\Controllers\VerifyMobileNumberController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -131,7 +133,7 @@ Route::group(['middleware' => ['web']], function () {
      ->name('verification_code.send');
 });
 
-Route::middleware(['auth','auth:sanctum', 'language','mobile_number_verified', 'role:unverified-service-provider'])
+Route::middleware(['auth','auth:sanctum', 'language','mobile_number_verified', 'role:service-provider'])
     ->group(function () {
         Route::get('service_provider/personal-info', [PersonalInfoController::class, 'index'])
             ->name('personalInfo.index');
@@ -199,6 +201,14 @@ Route::middleware(['auth','auth:sanctum', 'language','mobile_number_verified', '
              ->name('health_education.show');
          Route::post('verified-service-provider/health-education/store', [HealthEducationController::class, 'store'])
              ->name('health_education.store');
+         Route::get('verified-service-provider/my-profile', [MyProfileController::class, 'index'])
+             ->name('provider_profile.my_profile');
+         Route::get('verified-service-provider/firm-management/company', [FirmManagementController::class, 'company'])
+             ->name('provider_profile.firm.company');
+         Route::get('verified-service-provider/firm-management/facilities', [FirmManagementController::class, 'facilities'])
+             ->name('provider_profile.firm.facilities');
+         Route::get('verified-service-provider/firm-management/facilities-services', [FirmManagementController::class, 'facilitiesServices'])
+             ->name('provider_profile.firm.facilities_services');
      });
 
 Route::middleware([ 'auth','auth:sanctum', 'verified_sp','language', 'mobile_number_verified', 'role:verified-service-provider|super-admin'])

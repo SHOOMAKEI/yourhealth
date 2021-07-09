@@ -1,19 +1,22 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[115],{
 
-/***/ "./resources/js/Pages/Services/services/components/deleteDialog.jsx":
-/*!**************************************************************************!*\
-  !*** ./resources/js/Pages/Services/services/components/deleteDialog.jsx ***!
-  \**************************************************************************/
+/***/ "./resources/js/Pages/Services/packages/package/deleteDialog.jsx":
+/*!***********************************************************************!*\
+  !*** ./resources/js/Pages/Services/packages/package/deleteDialog.jsx ***!
+  \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DeleteService; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DeletePackageDialog; });
+/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -28,61 +31,65 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function DeleteService(_ref) {
-  var service = _ref.service;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+
+function DeletePackageDialog(_ref) {
+  var _selectedMembership$m;
+
+  var membership = _ref.membership;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
       _useState2 = _slicedToArray(_useState, 2),
-      selectedService = _useState2[0],
-      setService = _useState2[1];
+      selectedMembership = _useState2[0],
+      setSelectedMembership = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState4 = _slicedToArray(_useState3, 2),
       sending = _useState4[0],
       setSending = _useState4[1];
 
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setService(service);
-  }, [service]);
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    setSelectedMembership(membership);
+  }, [membership]);
 
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"]["delete"](route('services.destroy', selectedService.id)).then(function () {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__["Inertia"]["delete"](route('packages_registration.destroy', selectedMembership.id)).then(function () {
       setSending(false);
     });
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "delete-service-".concat(selectedService.id),
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    id: "delete-membership-".concat(membership === null || membership === void 0 ? void 0 : membership.id),
     className: "modal fade",
     tabIndex: -1,
     role: "dialog",
     "aria-labelledby": "delete-categoryLabel",
     "aria-hidden": "true"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal-dialog"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal-content modal-filled bg-danger"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal-header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
     className: "modal-title",
     id: "delete-categoryLabel"
-  }, "delete ", selectedService === null || selectedService === void 0 ? void 0 : selectedService.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, "delete ", selectedMembership === null || selectedMembership === void 0 ? void 0 : selectedMembership.name, " Package"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "button",
     className: "close",
     "data-dismiss": "modal",
     "aria-hidden": "true"
-  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal-body"
-  }, "Are you sure you want to delete ", selectedService === null || selectedService === void 0 ? void 0 : selectedService.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Are you sure you want to delete ", selectedMembership === null || selectedMembership === void 0 ? void 0 : selectedMembership.name, " Package for ", selectedMembership === null || selectedMembership === void 0 ? void 0 : (_selectedMembership$m = selectedMembership.membership_category) === null || _selectedMembership$m === void 0 ? void 0 : _selectedMembership$m.name, " membership category?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "modal-footer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     type: "button",
     className: "btn btn-light",
     "data-dismiss": "modal"
-  }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
     href: "#",
     className: "btn btn-outline-light",
     "data-dismiss": "modal",
@@ -92,70 +99,39 @@ function DeleteService(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Services/services/components/service.jsx":
-/*!*********************************************************************!*\
-  !*** ./resources/js/Pages/Services/services/components/service.jsx ***!
-  \*********************************************************************/
+/***/ "./resources/js/Shared/LoadingButton.js":
+/*!**********************************************!*\
+  !*** ./resources/js/Shared/LoadingButton.js ***!
+  \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Service; });
-/* harmony import */ var _deleteDialog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteDialog */ "./resources/js/Pages/Services/services/components/deleteDialog.jsx");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 
-function Service(_ref) {
-  var service = _ref.service,
-      callback = _ref.callback;
+/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
+  var loading = _ref.loading,
+      className = _ref.className,
+      children = _ref.children,
+      props = _objectWithoutProperties(_ref, ["loading", "className", "children"]);
 
-  function chooseCategory() {
-    callback(service);
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
-    key: service.id
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    href: "#",
-    className: "text-dark",
-    onClick: chooseCategory
-  }, service.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, service.is_active ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "uil uil-eye font-16 mr-1 text-success"
-  }), " Visible") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "uil uil-eye font-16 mr-1 text-danger"
-  }), " Not Visible")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, service.approved_at ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "uil uil-check-circle font-16 mr-1 text-success"
-  }), " Approved") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "uil uil-times-circle font-16 mr-1 text-danger"
-  }), " Not Approved")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
-    className: "table-action"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    type: "button",
-    className: "btn btn-link dropdown-toggle",
-    "data-toggle": "dropdown",
-    "aria-haspopup": "true",
-    "aria-expanded": "false",
-    style: {
-      lineHeight: 0.5,
-      paddingTop: 0,
-      paddingBottom: 0
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "uil uil-bright font-16 mr-1 text-primary"
-  }), "More"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "dropdown-menu"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    href: "#",
-    className: "dropdown-item",
-    onClick: chooseCategory
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-    className: "uil uil-eye mr-1"
-  }), "Show info")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_deleteDialog__WEBPACK_IMPORTED_MODULE_0__["default"], {
-    service: service
-  })));
-}
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _extends({
+    disabled: loading,
+    className: "focus:outline-none flex items-center ".concat(className)
+  }, props), loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "spinner-border spinner-border-sm mr-2 mb-0",
+    role: "status",
+    "aria-hidden": "true"
+  }), children);
+});
 
 /***/ })
 

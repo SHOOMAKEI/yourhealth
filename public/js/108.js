@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[108],{
 
-/***/ "./resources/js/Pages/Services/packages/membership/deleteDialog.jsx":
-/*!**************************************************************************!*\
-  !*** ./resources/js/Pages/Services/packages/membership/deleteDialog.jsx ***!
-  \**************************************************************************/
+/***/ "./resources/js/Pages/Services/packages/features/deleteDialog.jsx":
+/*!************************************************************************!*\
+  !*** ./resources/js/Pages/Services/packages/features/deleteDialog.jsx ***!
+  \************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -53,13 +53,13 @@ function DeleteMembershipDialog(_ref) {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__["Inertia"]["delete"](route('membership_registration.destroy', selectedMembership.id)).then(function () {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__["Inertia"]["delete"](route('feature_registration.destroy', selectedMembership.id)).then(function () {
       setSending(false);
     });
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    id: "delete-membership-".concat(membership.id),
+    id: "delete-feature-".concat(membership.id),
     className: "modal fade",
     tabIndex: -1,
     role: "dialog",

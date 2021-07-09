@@ -1,22 +1,31 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[14],{
 
-/***/ "./resources/js/Pages/Services/categories/components/deleteDialog.jsx":
-/*!****************************************************************************!*\
-  !*** ./resources/js/Pages/Services/categories/components/deleteDialog.jsx ***!
-  \****************************************************************************/
+/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Company.jsx":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Company.jsx ***!
+  \********************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DeleteCategoryDialog; });
-/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Company; });
+/* harmony import */ var _Pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/Utilities/ModalForm */ "./resources/js/Pages/Utilities/ModalForm.jsx");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/TextInput */ "./resources/js/Shared/TextInput.js");
+/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.js");
+/* harmony import */ var _Shared_TextAreaInput__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Shared/TextAreaInput */ "./resources/js/Shared/TextAreaInput.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -33,89 +42,324 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function DeleteCategoryDialog(_ref) {
-  var category = _ref.category;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
+
+
+function Company(_ref) {
+  var company = _ref.company;
+  var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__["usePage"])().props,
+      errors = _usePage$props.errors,
+      status = _usePage$props.status,
+      alertType = _usePage$props.alertType;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
-      selectedCategory = _useState2[0],
-      setSelectedCategory = _useState2[1];
+      sending = _useState2[0],
+      setSending = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
+    address: (company === null || company === void 0 ? void 0 : company.address) || "",
+    description: (company === null || company === void 0 ? void 0 : company.description) || "",
+    alternative_mobile_number: (company === null || company === void 0 ? void 0 : company.alternative_mobile_number) || "",
+    email: (company === null || company === void 0 ? void 0 : company.email) || "",
+    mobile_number: (company === null || company === void 0 ? void 0 : company.mobile_number) || "",
+    name: (company === null || company === void 0 ? void 0 : company.name) || "",
+    physical_address: (company === null || company === void 0 ? void 0 : company.physical_address) || "",
+    registration_date: (company === null || company === void 0 ? void 0 : company.registration_date) || "",
+    registration_number: (company === null || company === void 0 ? void 0 : company.registration_number) || "",
+    tin: (company === null || company === void 0 ? void 0 : company.tin) || "",
+    trading_name: (company === null || company === void 0 ? void 0 : company.trading_name) || "",
+    vrn: (company === null || company === void 0 ? void 0 : company.vrn) || "",
+    website: (company === null || company === void 0 ? void 0 : company.website) || ""
+  }),
       _useState4 = _slicedToArray(_useState3, 2),
-      sending = _useState4[0],
-      setSending = _useState4[1];
+      values = _useState4[0],
+      setValues = _useState4[1];
 
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    setSelectedCategory(category);
-  }, [category]);
+  function handleChange(e) {
+    var key = e.target.name;
+    var value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    setValues(function (values) {
+      return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, key, value));
+    });
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__["Inertia"]["delete"](route('services_categories.destroy', selectedCategory.id)).then(function () {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('companyInfo.update'), values).then(function () {
       setSending(false);
     });
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    id: "delete-category-".concat(selectedCategory.id),
-    className: "modal fade",
-    tabIndex: -1,
-    role: "dialog",
-    "aria-labelledby": "delete-categoryLabel",
-    "aria-hidden": "true"
+    className: "tab-pane fade",
+    id: "v-pills-company",
+    role: "tabpanel",
+    "aria-labelledby": "v-pills-company-tab"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+    onSubmit: handleSubmit
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "modal-dialog"
+    className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "modal-content modal-filled bg-danger"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "modal-header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
-    className: "modal-title",
-    id: "delete-categoryLabel"
-  }, "delete ", selectedCategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    type: "button",
-    className: "close",
-    "data-dismiss": "modal",
-    "aria-hidden": "true"
-  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "modal-body"
-  }, "Are you sure you want to delete ", selectedCategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "modal-footer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    type: "button",
-    className: "btn btn-light",
-    "data-dismiss": "modal"
-  }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
-    href: "#",
-    className: "btn btn-outline-light",
-    "data-dismiss": "modal",
-    onClick: handleSubmit
-  }, "Delete ")))));
+    className: "col-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "name",
+    type: "text",
+    placeholder: "Company Name",
+    label: "Company Name",
+    errors: errors.name,
+    value: values.name,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "website",
+    type: "text",
+    placeholder: "Website",
+    label: "Website",
+    errors: errors.website,
+    value: values.website,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "tin",
+    type: "text",
+    placeholder: "TIN Number",
+    label: "TIN Number",
+    errors: errors.tin,
+    value: values.tin,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "mobile_number",
+    type: "text",
+    placeholder: "Mobile Number",
+    label: "Mobile Number",
+    errors: errors.mobile_number,
+    value: values.mobile_number,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "address",
+    type: "text",
+    placeholder: "Address",
+    label: "Address",
+    errors: errors.address,
+    value: values.address,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "registration_date",
+    type: "date",
+    placeholder: "Registration Date",
+    label: "Registration Date",
+    errors: errors.registration_date,
+    value: values.registration_date,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextAreaInput__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    name: "description",
+    type: "text",
+    placeholder: "Description",
+    label: "Description",
+    rows: 4,
+    errors: errors.description,
+    value: values.description,
+    onChange: handleChange
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "col-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "trading_name",
+    type: "text",
+    placeholder: "Trading Name",
+    label: "Trading Name",
+    errors: errors.trading_name,
+    value: values.trading_name,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "vrn",
+    type: "text",
+    placeholder: "VRN",
+    label: "VRN",
+    errors: errors.vrn,
+    value: values.vrn,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "email",
+    type: "text",
+    placeholder: "Email Address",
+    label: "Email Address",
+    errors: errors.email,
+    value: values.email,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "alternative_mobile_number",
+    type: "text",
+    placeholder: "Alternate Mobile Number",
+    label: "Website",
+    errors: errors.alternative_mobile_number,
+    value: values.alternative_mobile_number,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "physical_address",
+    type: "text",
+    placeholder: "Physical Address",
+    label: "Physical Address",
+    errors: errors.physical_address,
+    value: values.physical_address,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "registration_number",
+    type: "text",
+    placeholder: "Registration Number",
+    label: "Registration Number",
+    errors: errors.registration_number,
+    value: values.registration_number,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group mb-0 text-right"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    type: "submit",
+    className: "btn btn-primary btn-block",
+    loading: sending
+  }, "Save Changes"))))));
 }
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Services/categories/components/infosidebar.jsx":
-/*!***************************************************************************!*\
-  !*** ./resources/js/Pages/Services/categories/components/infosidebar.jsx ***!
-  \***************************************************************************/
+/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Facility.jsx":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Facility.jsx ***!
+  \*********************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return InfoSideBar; });
-/* harmony import */ var _AddCategoryModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddCategoryModal */ "./resources/js/Pages/Services/categories/components/AddCategoryModal.jsx");
-/* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _Pages_Services_categories_components_deleteDialog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Pages/Services/categories/components/deleteDialog */ "./resources/js/Pages/Services/categories/components/deleteDialog.jsx");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Facility; });
+/* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
+/* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_AddFacilityModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/AddFacilityModal */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/AddFacilityModal.jsx");
+/* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_Heading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/Heading */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Heading.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+
+
+function Facility(_ref) {
+  var facilities = _ref.facilities,
+      provider_sub_levels = _ref.provider_sub_levels;
+
+  function searchFacilities() {}
+
+  function renderAddSubcategoryModal() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_AddFacilityModal__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_0__["ADD_FACILITY_MODAL_ID"],
+      operation: "add",
+      provider_sub_levels: provider_sub_levels
+    });
+  }
+
+  function renderEditFacilityModal(data) {
+    // e.preventDefault()
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_AddFacilityModal__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_0__["EDIT_FACILITY_MODAL_ID"],
+      operation: "edit",
+      provider_sub_levels: provider_sub_levels,
+      data: data
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
+    className: "tab-pane fade",
+    id: "v-pills-facility",
+    role: "tabpanel",
+    "aria-labelledby": "v-pills-facility-tab"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_Heading__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    title: "Facilities",
+    modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_0__["ADD_FACILITY_MODAL_ID"],
+    buttonText: "Add Facility",
+    search: searchFacilities,
+    renderModal: renderAddSubcategoryModal
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("table", {
+    className: "table table-centered table-borderless mb-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "TIN Attachment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "VRN Attachment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("th", null, "Actions"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("tbody", null, facilities.map(function (facility) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("tr", {
+      key: facility.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("td", null, facility.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("a", {
+      href: facility.vrn_attachment ? facility.vrn_attachment : '#',
+      className: "btn btn-light"
+    }, facility.vrn_attachment ? facility.vrn : 'No file Uploaded ' + '(' + facility.vrn + ')', " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("i", {
+      className: "uil-cloud-download ml-1"
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("a", {
+      href: facility.tin_attachment ? facility.tin_attachment : '#',
+      className: "btn btn-light"
+    }, facility.tin_attachment ? facility.tin : 'No file Uploaded ' + '(' + facility.tin + ')', " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("i", {
+      className: "uil-cloud-download ml-1"
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("a", {
+      href: "#",
+      className: "action-icon",
+      "data-toggle": "modal",
+      "data-target": "#".concat(_Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_0__["EDIT_FACILITY_MODAL_ID"])
+    }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("i", {
+      className: "dripicons-pencil"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__["InertiaLink"], {
+      href: route('facilityInfo.destroy', facility.id),
+      className: "action-icon"
+    }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("i", {
+      className: "dripicons-trash"
+    }))), renderEditFacilityModal(facility));
+  }))));
+}
+
+/***/ }),
+
+/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/FacilityServices.jsx":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/FacilityServices.jsx ***!
+  \*****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FacilityServices; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Pages_Utilities_Services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Utilities/Services */ "./resources/js/Pages/Utilities/Services.js");
+
+
+var FACILITY_SERVICES_DATA_TABLE = 'facility-services-datatable';
+function FacilityServices() {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    Object(_Pages_Utilities_Services__WEBPACK_IMPORTED_MODULE_1__["initializeDataTable"])(true, true, FACILITY_SERVICES_DATA_TABLE);
+  }, []);
+  return /*#__PURE__*/React.createElement("div", {
+    className: "tab-pane fade",
+    id: "v-pills-facility-services",
+    role: "tabpanel",
+    "aria-labelledby": "v-pills-facility-services-tab"
+  }, /*#__PURE__*/React.createElement("p", null, "facility services"));
+}
+
+/***/ }),
+
+/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Qualifications.jsx":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Qualifications.jsx ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Qualifications; });
+/* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_AddQualificationModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/AddQualificationModal */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/AddQualificationModal.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
+/* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_Heading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/Heading */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Heading.jsx");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_5__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -134,248 +378,159 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function InfoSideBar(_ref) {
-  var selectedCategory = _ref.selectedCategory;
+function Qualifications(_ref) {
+  var qualifications = _ref.qualifications;
+  var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__["usePage"])().props,
+      errors = _usePage$props.errors,
+      status = _usePage$props.status,
+      alertType = _usePage$props.alertType;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])(selectedCategory),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
-      category = _useState2[0],
-      setCategory = _useState2[1];
+      sending = _useState2[0],
+      setSending = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])([]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      subcategories = _useState4[0],
-      setSubCategory = _useState4[1];
+  function searchQualifications(content) {}
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      sending = _useState6[0],
-      setSending = _useState6[1];
-
-  Object(react__WEBPACK_IMPORTED_MODULE_4__["useEffect"])(function () {
+  function _deleteQualification(e, id) {
+    e.preventDefault();
     setSending(true);
-    axios.get(route('services_categories.show', selectedCategory.id)).then(function (resp) {
-      setSubCategory(resp.data);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_5__["Inertia"].get(route('educationQualification.destroy', id)).then(function () {
       setSending(false);
     });
-  }, [selectedCategory]);
-
-  function toggleCategoryVisibility() {
-    var category = {
-      id: selectedCategory.id,
-      name: name,
-      description: selectedCategory.description
-    };
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "card-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "dropdown card-widgets"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("a", {
-    href: "#",
-    className: "dropdown-toggle arrow-none",
-    "data-toggle": "dropdown",
-    "aria-expanded": "false"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-    className: "uil uil-ellipsis-h"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "dropdown-menu dropdown-menu-right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("a", {
-    href: "#",
-    className: "dropdown-item",
-    "data-toggle": "modal",
-    "data-target": "#".concat(_Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__["UPDATE_CATEGORY_MODAL_ID"])
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-    className: "uil uil-edit mr-1"
-  }), "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
-    href: route('services_categories.visibility', selectedCategory.id),
-    className: "dropdown-item"
-  }, selectedCategory.is_active ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-    className: "uil uil-ban mr-1"
-  }), "Hide from public") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-    className: "uil uil-eye mr-1"
-  }), "Show to public")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
-    href: route('services_categories.approval', selectedCategory.id),
-    className: "dropdown-item"
-  }, selectedCategory.approved_at ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-    className: "uil uil-ban mr-1"
-  }), "Deny") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-    className: "uil uil-eye mr-1"
-  }), "approve")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "dropdown-divider"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("a", {
-    href: "",
-    className: "dropdown-item text-danger",
-    "data-toggle": "modal",
-    "data-target": "#delete-category-".concat(selectedCategory.id)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-    className: "uil uil-trash-alt mr-1"
-  }), "Delete")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_AddCategoryModal__WEBPACK_IMPORTED_MODULE_0__["default"], {
-    modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_1__["UPDATE_CATEGORY_MODAL_ID"],
-    initialData: {
-      name: selectedCategory.name,
-      description: selectedCategory.description,
-      id: selectedCategory.id
-    },
-    operation: "update",
-    title: "Edit Category ".concat(selectedCategory.name)
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h4", null, selectedCategory.name), selectedCategory.is_active ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-    className: "mdi mdi-circle text-success"
-  }), " Visible to public") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-    className: "mdi mdi-circle text-danger"
-  }), " Hidden from public"), selectedCategory.approved_at ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("span", {
-    className: "pl-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-    className: "mdi mdi-circle text-success"
-  }), " Approved") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("span", {
-    className: "pl-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-    className: "mdi mdi-circle text-danger"
-  }), " Not Approved"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("hr", {
-    className: "mt-3 mb-2"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "col"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("p", null, selectedCategory.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("p", {
-    className: "mt-2 mb-1 text-muted"
-  }, "Created By"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "media"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-    className: "uil uil-user-square font-18 text-success mr-1"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "media-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h5", {
-    className: "mt-1 font-14"
-  }, selectedCategory.created_by)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("p", {
-    className: "mt-2 mb-1 text-muted"
-  }, "Approved by"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "media"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-    className: "uil uil-user-square font-18 text-success mr-1"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "media-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h5", {
-    className: "mt-1 font-14"
-  }, selectedCategory.approved_by)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("p", {
-    className: "mt-2 mb-1 text-muted"
-  }, "Created At"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "media"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-    className: "uil uil-schedule font-18 text-success mr-1"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "media-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h5", {
-    className: "mt-1 font-14"
-  }, selectedCategory.created_at)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("p", {
-    className: "mt-2 mb-1 text-muted"
-  }, "Approved At"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "media"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-    className: "uil uil-schedule font-18 text-success mr-1"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "media-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h5", {
-    className: "mt-1 font-14"
-  }, selectedCategory.approved_at))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "col-12"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("h4", {
-    className: "header-title my-3"
-  }, "Subcategories (", selectedCategory.name, ")"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("table", {
-    className: "table table-sm table-centered mb-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("thead", {
-    className: "thead-light"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("th", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("th", null, "Public status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("th", null, "Approval Status"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("tbody", null, sending ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", {
-    colSpan: "3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "d-flex justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
-    className: "spinner-border text-primary",
-    role: "status"
-  })))) : subcategories && subcategories.slice(0, 9).map(function (subcategory, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("tr", {
-      key: index + 1
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, subcategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, subcategory.is_active ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-      className: "uil uil-eye font-16 mr-1 text-success"
-    }), " Visible") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-      className: "uil uil-eye font-16 mr-1 text-danger"
-    }), " Not Visible")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("td", null, subcategory.approved_at ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-      className: "uil uil-check-circle font-16 mr-1 text-success"
-    }), " Approved") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("i", {
-      className: "uil uil-times-circle font-16 mr-1 text-danger"
-    }), " Not Approved")));
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
-    className: "btn btn-primary btn-block mt-2",
-    href: route('services_sub_categories.index', selectedCategory.id)
-  }, "See Sub Categories")))));
+  function addAttachment(attachment) {// let newQualifications = [...qualifications];
+    // newQualifications.push(attachment);
+    // setQualifications(newQualifications)
+  }
+
+  function renderAddSubcategoryModal() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_AddQualificationModal__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__["ADD_QUALIFICATION_MODAL_ID"],
+      operation: "add",
+      callback: addAttachment
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "tab-pane fade",
+    id: "v-pills-qualifications",
+    role: "tabpanel",
+    "aria-labelledby": "v-pills-qualifications-tab"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Pages_ServiceProviderProfileCompletion_components_profile_Heading__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    title: "Qualifications",
+    modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__["ADD_QUALIFICATION_MODAL_ID"],
+    buttonText: "Add Qualification",
+    search: searchQualifications,
+    renderModal: renderAddSubcategoryModal
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
+    className: "table table-centered table-borderless mb-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Institution"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Attachment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", null, "Actions"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, qualifications.map(function (qualification) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
+      key: qualification.id
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, qualification.award_title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, qualification.institution_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+      href: "".concat(qualification.attachment),
+      className: "btn btn-light"
+    }, "File ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+      className: "uil-cloud-download ml-1"
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_4__["InertiaLink"], {
+      href: route('educationQualification.destroy', qualification.id),
+      method: "get",
+      className: "action-icon"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+      className: "dripicons-trash"
+    }))));
+  }))));
 }
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Utilities/Constants.js":
-/*!***************************************************!*\
-  !*** ./resources/js/Pages/Utilities/Constants.js ***!
-  \***************************************************/
-/*! exports provided: ADD_CATEGORY_MODAL_ID, UPDATE_CATEGORY_MODAL_ID, SERVICE_CATEGORIES_TABLE, PROVIDER_PROFILE_MODAL_ID, ADD_MEMBERSHIP_MODAL_ID, ADD_PACKAGE_MODAL_ID, PACKAGE_INFO_MODAL_ID, ADD_FEATURE_MODAL_ID, ADD_RANGE_MODAL_ID, UPDATE_MEMBERSHIP_MODAL_ID, ADD_FACILITY_MODAL_ID, EDIT_FACILITY_MODAL_ID, ADD_QUALIFICATION_MODAL_ID, ADD_MEDICAL_REGISTRATION_MODAL_ID, REQUEST_SERVICE_MODAL_ID, SET_SERVICE_MODAL_PRICE, ADD_SERVICE_MODAL_ID, UPDATE_SERVICE_MODAL_ID, ADD_SUB_CATEGORY_MODAL_ID, UPDATE_SUB_CATEGORY_MODAL_ID */
+/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/index.jsx":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/index.jsx ***!
+  \******************************************************************************************/
+/*! exports provided: Company, FacilityServices, Facility, MedicalRegistrations, ProfileInfo, Qualifications, Services */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_CATEGORY_MODAL_ID", function() { return ADD_CATEGORY_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_CATEGORY_MODAL_ID", function() { return UPDATE_CATEGORY_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SERVICE_CATEGORIES_TABLE", function() { return SERVICE_CATEGORIES_TABLE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PROVIDER_PROFILE_MODAL_ID", function() { return PROVIDER_PROFILE_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_MEMBERSHIP_MODAL_ID", function() { return ADD_MEMBERSHIP_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_PACKAGE_MODAL_ID", function() { return ADD_PACKAGE_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PACKAGE_INFO_MODAL_ID", function() { return PACKAGE_INFO_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_FEATURE_MODAL_ID", function() { return ADD_FEATURE_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_RANGE_MODAL_ID", function() { return ADD_RANGE_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_MEMBERSHIP_MODAL_ID", function() { return UPDATE_MEMBERSHIP_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_FACILITY_MODAL_ID", function() { return ADD_FACILITY_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EDIT_FACILITY_MODAL_ID", function() { return EDIT_FACILITY_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_QUALIFICATION_MODAL_ID", function() { return ADD_QUALIFICATION_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_MEDICAL_REGISTRATION_MODAL_ID", function() { return ADD_MEDICAL_REGISTRATION_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REQUEST_SERVICE_MODAL_ID", function() { return REQUEST_SERVICE_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_SERVICE_MODAL_PRICE", function() { return SET_SERVICE_MODAL_PRICE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_SERVICE_MODAL_ID", function() { return ADD_SERVICE_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_SERVICE_MODAL_ID", function() { return UPDATE_SERVICE_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_SUB_CATEGORY_MODAL_ID", function() { return ADD_SUB_CATEGORY_MODAL_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_SUB_CATEGORY_MODAL_ID", function() { return UPDATE_SUB_CATEGORY_MODAL_ID; });
-var ADD_CATEGORY_MODAL_ID = "add-category-modal";
-var UPDATE_CATEGORY_MODAL_ID = "update-category-modal";
-var SERVICE_CATEGORIES_TABLE = 'service-categories-table';
-var PROVIDER_PROFILE_MODAL_ID = 'service-provider-profile-modal';
-var ADD_MEMBERSHIP_MODAL_ID = 'add-membership-modal';
-var ADD_PACKAGE_MODAL_ID = 'add-package-modal';
-var PACKAGE_INFO_MODAL_ID = 'add-package-info-modal';
-var ADD_FEATURE_MODAL_ID = 'add-feature-modal';
-var ADD_RANGE_MODAL_ID = 'add-range-modal';
-var UPDATE_MEMBERSHIP_MODAL_ID = 'update-service-modal';
-var ADD_FACILITY_MODAL_ID = 'add-facility-modal';
-var EDIT_FACILITY_MODAL_ID = 'edit-facility-modal';
-var ADD_QUALIFICATION_MODAL_ID = 'add-qualifications-modal';
-var ADD_MEDICAL_REGISTRATION_MODAL_ID = 'add-medical-registration-modal';
-var REQUEST_SERVICE_MODAL_ID = 'request-service-modal';
-var SET_SERVICE_MODAL_PRICE = 'set-service-modal-price';
-var ADD_SERVICE_MODAL_ID = 'add-service-modal';
-var UPDATE_SERVICE_MODAL_ID = 'update-service-modal';
-var ADD_SUB_CATEGORY_MODAL_ID = 'add-sub-category-modal';
-var UPDATE_SUB_CATEGORY_MODAL_ID = "update-sub-category-modal";
+/* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_Company__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/Company */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Company.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Company", function() { return _Pages_ServiceProviderProfileCompletion_components_profile_Company__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_Facility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/Facility */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Facility.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Facility", function() { return _Pages_ServiceProviderProfileCompletion_components_profile_Facility__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+/* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_FacilityServices__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/FacilityServices */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/FacilityServices.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FacilityServices", function() { return _Pages_ServiceProviderProfileCompletion_components_profile_FacilityServices__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+/* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_MedicalRegistrations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/MedicalRegistrations */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/MedicalRegistrations.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MedicalRegistrations", function() { return _Pages_ServiceProviderProfileCompletion_components_profile_MedicalRegistrations__WEBPACK_IMPORTED_MODULE_3__["default"]; });
+
+/* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_ProfileInfo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/ProfileInfo */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/ProfileInfo.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ProfileInfo", function() { return _Pages_ServiceProviderProfileCompletion_components_profile_ProfileInfo__WEBPACK_IMPORTED_MODULE_4__["default"]; });
+
+/* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_Qualifications__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/Qualifications */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Qualifications.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Qualifications", function() { return _Pages_ServiceProviderProfileCompletion_components_profile_Qualifications__WEBPACK_IMPORTED_MODULE_5__["default"]; });
+
+/* harmony import */ var _Pages_ServiceProviderProfileCompletion_components_profile_Services__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Pages/ServiceProviderProfileCompletion/components/profile/Services */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Services.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Services", function() { return _Pages_ServiceProviderProfileCompletion_components_profile_Services__WEBPACK_IMPORTED_MODULE_6__["default"]; });
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Utilities/Services.js":
+/*!**************************************************!*\
+  !*** ./resources/js/Pages/Utilities/Services.js ***!
+  \**************************************************/
+/*! exports provided: initializeDataTable, updateServiceCategoriesTable */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initializeDataTable", function() { return initializeDataTable; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateServiceCategoriesTable", function() { return updateServiceCategoriesTable; });
+var initializeDataTable = function initializeDataTable(bSort, bDestroy, tableId) {
+  $(document).ready(function () {
+    $("#".concat(tableId)).DataTable({
+      bSort: bSort,
+      bDestroy: bDestroy,
+      searching: false,
+      destroy: true,
+      pageLength: 7,
+      "lengthMenu": [[7, 25, 50, -1], [7, 25, 50, "All"]],
+      // "aaSorting": [],
+      language: {
+        paginate: {
+          previous: "<i class='uil uil-angle-left'>",
+          next: "<i class='uil uil-angle-right'>",
+          first: '',
+          last: ''
+        }
+      },
+      drawCallback: function drawCallback() {
+        $(document).ready(function () {
+          $(".dataTables_paginate > .pagination").addClass("pagination-rounded");
+        });
+      }
+    });
+  });
+};
+var updateServiceCategoriesTable = function updateServiceCategoriesTable(tableId, category) {
+  $(document).ready(function () {
+    var table = $("#".concat(tableId)).DataTable(); //table.clear().destroy();
+
+    initializeDataTable(false, false, tableId); // table.row.add([category.name, category.status, category.createdAt, category.updatedAt, ''])
+  });
+};
 
 /***/ })
 

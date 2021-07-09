@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[137],{
 
-/***/ "./resources/js/Pages/Services/packages/features/Heading.jsx":
-/*!*******************************************************************!*\
-  !*** ./resources/js/Pages/Services/packages/features/Heading.jsx ***!
-  \*******************************************************************/
+/***/ "./resources/js/Pages/ServiceProviders/requests/components/Heading.jsx":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviders/requests/components/Heading.jsx ***!
+  \*****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -15,11 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function Heading(_ref) {
   var title = _ref.title,
-      renderModal = _ref.renderModal,
-      modalID = _ref.modalID,
-      search = _ref.search,
-      callback = _ref.callback,
-      services = _ref.services;
+      search = _ref.search;
 
   function onSearch() {
     $('#search-input').on('input', function (e) {
@@ -34,30 +30,14 @@ function Heading(_ref) {
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row mb-3"
+    className: "page-title-box"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-sm-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#",
-    className: "btn btn-primary mb-3",
-    "data-toggle": "modal",
-    "data-target": "#".concat(modalID),
-    onClick: function onClick() {
-      var _services$;
-
-      return callback({
-        name: "",
-        services: [],
-        service_id: (_services$ = services[0]) === null || _services$ === void 0 ? void 0 : _services$.id
-      });
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "mdi mdi-plus"
-  }), title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-sm-8"
+    className: "page-title-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-sm-right float-right"
-  })), renderModal && renderModal());
+    className: "app-search"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "page-title"
+  }, title));
 }
 
 /***/ })

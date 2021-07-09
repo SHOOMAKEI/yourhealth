@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[47],{
 
-/***/ "./resources/js/Pages/Services/categories/components/Heading.jsx":
-/*!***********************************************************************!*\
-  !*** ./resources/js/Pages/Services/categories/components/Heading.jsx ***!
-  \***********************************************************************/
+/***/ "./resources/js/Pages/Services/subcategories/components/Heading.jsx":
+/*!**************************************************************************!*\
+  !*** ./resources/js/Pages/Services/subcategories/components/Heading.jsx ***!
+  \**************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63,20 +63,20 @@ function Heading(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Services/categories/components/Manage.jsx":
-/*!**********************************************************************!*\
-  !*** ./resources/js/Pages/Services/categories/components/Manage.jsx ***!
-  \**********************************************************************/
+/***/ "./resources/js/Pages/Services/subcategories/components/Manage.jsx":
+/*!*************************************************************************!*\
+  !*** ./resources/js/Pages/Services/subcategories/components/Manage.jsx ***!
+  \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _AddCategoryModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddCategoryModal */ "./resources/js/Pages/Services/categories/components/AddCategoryModal.jsx");
-/* harmony import */ var _Heading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Heading */ "./resources/js/Pages/Services/categories/components/Heading.jsx");
-/* harmony import */ var _infosidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./infosidebar */ "./resources/js/Pages/Services/categories/components/infosidebar.jsx");
-/* harmony import */ var _paginator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./paginator */ "./resources/js/Pages/Services/categories/components/paginator.jsx");
-/* harmony import */ var _serviceCategoryTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./serviceCategoryTable */ "./resources/js/Pages/Services/categories/components/serviceCategoryTable.jsx");
+/* harmony import */ var _AddCategoryModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddCategoryModal */ "./resources/js/Pages/Services/subcategories/components/AddCategoryModal.jsx");
+/* harmony import */ var _Heading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Heading */ "./resources/js/Pages/Services/subcategories/components/Heading.jsx");
+/* harmony import */ var _infosidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./infosidebar */ "./resources/js/Pages/Services/subcategories/components/infosidebar.jsx");
+/* harmony import */ var _paginator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./paginator */ "./resources/js/Pages/Services/subcategories/components/paginator.jsx");
+/* harmony import */ var _serviceCategoryTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./serviceCategoryTable */ "./resources/js/Pages/Services/subcategories/components/serviceCategoryTable.jsx");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
@@ -84,6 +84,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Shared_Layout__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Shared/Layout */ "./resources/js/Shared/Layout.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _Pages_Services_subcategories_components_AddSubcategoryModal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/Pages/Services/subcategories/components/AddSubcategoryModal */ "./resources/js/Pages/Services/subcategories/components/AddSubcategoryModal.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -106,10 +107,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var CATEGORIES_BATCH_COUNT = 10;
 
 var ManageServices = function ManageServices() {
-  var categories = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_9__["usePage"])().props.categories; //useSelector(state => state.categoriesStore);
+  var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_9__["usePage"])().props,
+      categories = _usePage$props.categories,
+      service_category = _usePage$props.service_category; //useSelector(state => state.categoriesStore);
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_5__["useState"])(CATEGORIES_BATCH_COUNT),
       _useState2 = _slicedToArray(_useState, 2),
@@ -126,7 +130,7 @@ var ManageServices = function ManageServices() {
       paginatorSP = _useState6[0],
       setPaginatorSP = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_5__["useState"])(categories[0]),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_5__["useState"])(categories && categories[0]),
       _useState8 = _slicedToArray(_useState7, 2),
       selectedCategory = _useState8[0],
       setSelectedCategory = _useState8[1];
@@ -138,14 +142,15 @@ var ManageServices = function ManageServices() {
   }, [categories]);
 
   function renderAddCategoryModal() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_AddCategoryModal__WEBPACK_IMPORTED_MODULE_0__["default"], {
-      modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_6__["ADD_CATEGORY_MODAL_ID"],
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_Pages_Services_subcategories_components_AddSubcategoryModal__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_6__["ADD_SUB_CATEGORY_MODAL_ID"],
       operation: "add",
       initialData: {
         name: "",
         description: "No description",
         status: false,
-        approved_at: false
+        approved_at: false,
+        service_category_id: service_category.id
       }
     });
   }
@@ -180,9 +185,9 @@ var ManageServices = function ManageServices() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
     className: "card px-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_Heading__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    title: "Service Categories",
+    title: "Service Sub Categories",
     renderModal: renderAddCategoryModal,
-    modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_6__["ADD_CATEGORY_MODAL_ID"],
+    modalID: _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_6__["ADD_SUB_CATEGORY_MODAL_ID"],
     search: searchCategories
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_serviceCategoryTable__WEBPACK_IMPORTED_MODULE_4__["default"], {
     categories: shownCategories,
@@ -193,7 +198,7 @@ var ManageServices = function ManageServices() {
     activePageCallBack: selectPage
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
     className: "col-lg-5"
-  }, categories && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_infosidebar__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, categories && selectedCategory && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_infosidebar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     selectedCategory: selectedCategory
   })));
 };
@@ -208,10 +213,104 @@ ManageServices.layout = function (page) {
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Services/categories/components/paginator.jsx":
-/*!*************************************************************************!*\
-  !*** ./resources/js/Pages/Services/categories/components/paginator.jsx ***!
-  \*************************************************************************/
+/***/ "./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DeleteCategoryDialog; });
+/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+function DeleteCategoryDialog(_ref) {
+  var category = _ref.category;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
+      _useState2 = _slicedToArray(_useState, 2),
+      selectedCategory = _useState2[0],
+      setSelectedCategory = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      sending = _useState4[0],
+      setSending = _useState4[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    setSelectedCategory(category);
+  }, [category]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setSending(true);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"]["delete"](route('services_sub_categories.destroy', selectedCategory.id)).then(function () {
+      setSending(false);
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    id: "delete-sub-category-".concat(selectedCategory.id),
+    className: "modal fade",
+    tabIndex: -1,
+    role: "dialog",
+    "aria-labelledby": "delete-categoryLabel",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-dialog"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-content modal-filled bg-danger"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
+    className: "modal-title",
+    id: "delete-categoryLabel"
+  }, "delete ", selectedCategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    type: "button",
+    className: "close",
+    "data-dismiss": "modal",
+    "aria-hidden": "true"
+  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-body"
+  }, "Are you sure you want to delete ", selectedCategory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "modal-footer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    type: "button",
+    className: "btn btn-light",
+    "data-dismiss": "modal"
+  }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+    href: "#",
+    className: "btn btn-outline-light",
+    "data-dismiss": "modal",
+    onClick: handleSubmit
+  }, "Delete ")))));
+}
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Services/subcategories/components/paginator.jsx":
+/*!****************************************************************************!*\
+  !*** ./resources/js/Pages/Services/subcategories/components/paginator.jsx ***!
+  \****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -319,22 +418,21 @@ function Paginator(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Services/categories/components/serviceCategory.jsx":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/Pages/Services/categories/components/serviceCategory.jsx ***!
-  \*******************************************************************************/
+/***/ "./resources/js/Pages/Services/subcategories/components/serviceCategory.jsx":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/Pages/Services/subcategories/components/serviceCategory.jsx ***!
+  \**********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Category; });
-/* harmony import */ var _deleteDialog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteDialog */ "./resources/js/Pages/Services/categories/components/deleteDialog.jsx");
+/* harmony import */ var _deleteDialog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteDialog */ "./resources/js/Pages/Services/subcategories/components/deleteDialog.jsx");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
-
 
 
 
@@ -386,20 +484,20 @@ function Category(_ref) {
     className: "uil uil-eye mr-1"
   }), "Show info"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
     className: "dropdown-item",
-    href: route('services_sub_categories.index', category.id)
+    href: route('services.index', category.id)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
     className: "uil uil-sitemap mr-1"
-  }), "Subcategories")), category && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_deleteDialog__WEBPACK_IMPORTED_MODULE_0__["default"], {
+  }), "Services")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_deleteDialog__WEBPACK_IMPORTED_MODULE_0__["default"], {
     category: category
   })));
 }
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Services/categories/components/serviceCategoryTable.jsx":
-/*!************************************************************************************!*\
-  !*** ./resources/js/Pages/Services/categories/components/serviceCategoryTable.jsx ***!
-  \************************************************************************************/
+/***/ "./resources/js/Pages/Services/subcategories/components/serviceCategoryTable.jsx":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/Pages/Services/subcategories/components/serviceCategoryTable.jsx ***!
+  \***************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -407,7 +505,7 @@ function Category(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _serviceCategory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./serviceCategory */ "./resources/js/Pages/Services/categories/components/serviceCategory.jsx");
+/* harmony import */ var _serviceCategory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./serviceCategory */ "./resources/js/Pages/Services/subcategories/components/serviceCategory.jsx");
 /* harmony import */ var _Pages_Utilities_Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/Utilities/Constants */ "./resources/js/Pages/Utilities/Constants.js");
 
 

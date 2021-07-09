@@ -44,12 +44,21 @@ export default () => {
                     <MultiLinkMenuItem  text="Articles" link="service_provider_profiles.index"/>
                     <MultiLinkMenuItem  text="My Articles" link="health_education.index"/>
                 </MultiLinkMainMenuItem>
-                <MultiLinkMainMenuItem icon="uil-users-alt" text="Staff Management">
-                    <MultiLinkMenuItem  text="My Stuff" link="service_provider_profiles.index"/>
-                </MultiLinkMainMenuItem>
-                <MultiLinkMainMenuItem icon="uil-building" text="Firm Management">
-                    <MultiLinkMenuItem  text="My Stuff" link="service_provider_profiles.index"/>
-                </MultiLinkMainMenuItem>
+                {
+                    auth.user.provider_profile.account_category_type !== 'individual' && (
+                        <>
+                            <MultiLinkMainMenuItem icon="uil-users-alt" text="Staff Management">
+                                <MultiLinkMenuItem  text="My Stuff" link="service_provider_profiles.index"/>
+                            </MultiLinkMainMenuItem>
+                            <MultiLinkMainMenuItem icon="uil-building" text="Firm Management">
+                                <MultiLinkMenuItem  text="Company" link="provider_profile.firm.company"/>
+                                <MultiLinkMenuItem  text="Facilities" link="provider_profile.firm.facilities"/>
+                                <MultiLinkMenuItem  text="Facilities Services" link="provider_profile.firm.facilities_services"/>
+                            </MultiLinkMainMenuItem>
+                        </>
+                    )
+                }
+
             </>
 
             }
