@@ -103,7 +103,6 @@ class PersonalInfoController extends Controller
                 if (!$values->isEmpty()) {
                     $medical_reg_data =  $medical_reg_data->merge($values);
 
-
                 }
 
             }

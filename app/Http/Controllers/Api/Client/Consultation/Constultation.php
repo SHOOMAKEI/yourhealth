@@ -74,4 +74,6 @@ class Constultation
     {
         return DaySession::all();
     }
+
+
 }

@@ -4,6 +4,8 @@ namespace App\Repositories\Registration;
 
 use App\Contracts\Repositories\Registration\RegistrationRepositoryInterface;
 use App\Contracts\Repositories\Registration\ServiceProviderRegistrationRepositoryInterface;
+use App\Models\ClientTeam;
+use App\Models\ProviderFacility;
 use App\Models\User;
 
 class RegistrationRepository implements RegistrationRepositoryInterface
@@ -19,7 +21,11 @@ class RegistrationRepository implements RegistrationRepositoryInterface
             $request += ['user_id' => $user->id];
             $request+= ['mobile_number' => $user->mobile_number];
             $request+= ['email' => $user->email];
-            $repository->createProviderProfile($request);
+
+            $profile = $repository->createProviderProfile($request);
+
+            joinProviderProfileToFacilityViaInvitation($user, $profile);
+
             if ($request['account_category_type'] == 'company') {
                 $user->assignRole('owner');
                 $provider_company = $repository->createOrUpdateProviderCompany($request);
@@ -40,7 +46,9 @@ class RegistrationRepository implements RegistrationRepositoryInterface
             }
         } else {
             $user->assignRole('patient');
-            $repository->createClientProfile($request);
+            $profile = $repository->createClientProfile($request);
+
+            joinClientProfileToTeamViaInvitation($user, $profile);
         }
 
         return $user;

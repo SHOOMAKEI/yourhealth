@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[77],{
 
-/***/ "./resources/js/Pages/Utilities/components/PasswordUpdate.jsx":
-/*!********************************************************************!*\
-  !*** ./resources/js/Pages/Utilities/components/PasswordUpdate.jsx ***!
-  \********************************************************************/
+/***/ "./resources/js/Pages/Utilities/components/AccountInformation.jsx":
+/*!************************************************************************!*\
+  !*** ./resources/js/Pages/Utilities/components/AccountInformation.jsx ***!
+  \************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -54,14 +54,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       sending = _useState2[0],
       setSending = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    current_password: "",
-    password: "",
-    password_confirmation: ""
-  }),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
       _useState4 = _slicedToArray(_useState3, 2),
       values = _useState4[0],
       setValues = _useState4[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    setValues({
+      email: user.email,
+      mobile_number: user.mobile_number,
+      photo: null
+    });
+  }, [user]);
 
   function handleChange(e) {
     var key = e.target.name;
@@ -74,8 +78,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('settings.updatePassword'), values).then(function () {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('settings.updateAccountInfo'), values).then(function () {
       setSending(false);
+    });
+  }
+
+  function handleFileUpload(field, file) {
+    setValues(function (values) {
+      return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, field, file));
     });
   }
 
@@ -87,9 +97,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     className: "col-lg-5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     className: "header-title"
-  }, "Update Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+  }, "Account Information"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
     className: "text-muted font-14"
-  }, "Ensure you account is using long and random password to stay secure.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Update your account's information, email address and mobile number. make sure your provider valid information because we will use them to send security code and other notification.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card col-lg-7"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body"
@@ -98,33 +108,38 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-lg-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group text-center pb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: user.profile_photo_path,
+    alt: "image",
+    className: "img-fluid img-thumbnail rounded-circle mb-3",
+    width: "120"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-left"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "current_password",
-    type: "password",
-    label: "Current Password",
-    placeholder: "Current Password",
-    errors: errors.current_password,
-    value: values.current_password,
+    name: "email",
+    type: "text",
+    label: "Email",
+    placeholder: "Email",
+    errors: errors.email,
+    value: values.email,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "password",
-    type: "password",
-    label: "Password",
-    placeholder: "Password",
-    errors: errors.password,
-    value: values.password,
+    name: "mobile_number",
+    type: "text",
+    label: "Mobile Number",
+    placeholder: "Mobile Number",
+    errors: errors.mobile_number,
+    value: values.mobile_number,
     onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "password_confirmation",
-    type: "password",
-    label: "Confirm Password",
-    placeholder: "Confirm Password",
-    errors: errors.password_confirmation,
-    value: values.password_confirmation,
-    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_FileInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    name: "photo",
+    label: "Change Photo",
+    errors: errors.photo,
+    value: values.photo,
+    callback: handleFileUpload
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group mb-0 text-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {

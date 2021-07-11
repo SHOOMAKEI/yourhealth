@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\ProviderProfileAdminController;
 use App\Http\Controllers\Admin\VerificationRequestsController;
 use App\Http\Controllers\Authentication\AuthenticationController;
-use App\Http\Controllers\Authentication\AuthenticationViewsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MedicalInstituteController;
 use App\Http\Controllers\Packages\FeatureController;
@@ -21,19 +20,19 @@ use App\Http\Controllers\Services\ServiceCategoryController;
 use App\Http\Controllers\Services\ServiceController;
 use App\Http\Controllers\Services\ServiceSubCategoryController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\VerifiedServiceProvider\Authentication\AuthenticationViewsController;
 use App\Http\Controllers\VerifiedServiceProvider\CalenderController;
 use App\Http\Controllers\VerifiedServiceProvider\DashboardController;
 use App\Http\Controllers\VerifiedServiceProvider\FirmManagementController;
 use App\Http\Controllers\VerifiedServiceProvider\HealthEducationController;
 use App\Http\Controllers\VerifiedServiceProvider\MyProfileController;
+use App\Http\Controllers\VerifiedServiceProvider\StuffManagementController;
 use App\Http\Controllers\VerifyMobileNumberController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Http\Controllers\EmailVerificationNotificationController;
 use Laravel\Fortify\Http\Controllers\NewPasswordController;
-use Laravel\Fortify\Http\Controllers\PasswordController;
 use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
-use Laravel\Fortify\Http\Controllers\ProfileInformationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +60,8 @@ Route::group(['middleware' => ['web']], function () {
         ->middleware('guest')->name('register.company');
     Route::post('/create_account', [RegistrationController::class, 'createUserAccount'])
         ->middleware('guest')->name('account.create');
+    Route::get('/stuff-invitation/{token}/{email}', [StuffManagementController::class, 'invitation'])
+        ->name('provider_profile.stuff.invitation');
 
     //Authentication Routes
     Route::post('login', [AuthenticationController::class, 'login'])
@@ -207,8 +208,14 @@ Route::middleware(['auth','auth:sanctum', 'language','mobile_number_verified', '
              ->name('provider_profile.firm.company');
          Route::get('verified-service-provider/firm-management/facilities', [FirmManagementController::class, 'facilities'])
              ->name('provider_profile.firm.facilities');
+         Route::get('verified-service-provider/firm-management/facilities-registration', [FirmManagementController::class, 'facilitiesRegistrations'])
+             ->name('provider_profile.firm.facilities_registrations');
          Route::get('verified-service-provider/firm-management/facilities-services', [FirmManagementController::class, 'facilitiesServices'])
              ->name('provider_profile.firm.facilities_services');
+         Route::get('verified-service-provider/stuff-management/stuff', [StuffManagementController::class, 'index'])
+             ->name('provider_profile.stuff.index');
+         Route::post('verified-service-provider/stuff-management/stuff-store', [StuffManagementController::class, 'store'])
+             ->name('provider_profile.stuff.store');
      });
 
 Route::middleware([ 'auth','auth:sanctum', 'verified_sp','language', 'mobile_number_verified', 'role:verified-service-provider|super-admin'])

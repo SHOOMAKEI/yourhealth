@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[82],{
 
-/***/ "./resources/js/Pages/Auth/ResetPassword.js":
-/*!**************************************************!*\
-  !*** ./resources/js/Pages/Auth/ResetPassword.js ***!
-  \**************************************************/
+/***/ "./resources/js/Pages/Auth/OneTimePassword.js":
+/*!****************************************************!*\
+  !*** ./resources/js/Pages/Auth/OneTimePassword.js ***!
+  \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -43,9 +43,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props,
       status = _usePage$props.status,
-      token = _usePage$props.token,
       email = _usePage$props.email,
-      errors = _usePage$props.errors;
+      errors = _usePage$props.errors,
+      alertType = _usePage$props.alertType;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -54,9 +54,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     email: email,
-    password: '',
-    password_confirmation: '',
-    token: token
+    otp_code: ''
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       values = _useState4[0],
@@ -73,7 +71,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('password.update'), values).then(function () {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('otp.verify'), values).then(function () {
       setSending(false);
     });
   }
@@ -89,7 +87,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-3"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-5"
+    className: "col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "login-form"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -98,44 +96,38 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     className: "card-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     className: "text-center mb-3"
-  }, "Reset Password"), status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    "class": "alert alert-primary alert-borderless",
+  }, "One Time Password"), status && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "alert alert-".concat(alertType === 'success' ? 'primary' : 'danger', " alert-borderless"),
     role: "alert"
-  }, status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  }, status), errors.email && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "alert alert-danger alert-borderless",
+    role: "alert"
+  }, "Something went wrong please try to login again."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "email",
-    type: "text",
-    placeholder: "Email",
-    label: "Email",
-    errors: errors.email,
-    value: values.email,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "password",
+    name: "otp_code",
     type: "password",
-    placeholder: "Password",
-    label: "Password",
-    errors: errors.password,
-    value: values.password,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "password_confirmation",
-    type: "password",
-    placeholder: "Confirm Password",
-    label: "Confirm Password",
-    errors: errors.password_confirmation,
-    value: values.password_confirmation,
+    placeholder: "OTP Code",
+    label: "OTP Code",
+    errors: errors.otp_code,
+    value: values.otp_code,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group my-3 row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 text-right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    className: "col-md-12 text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
+    href: route('otp.resend'),
+    method: "POST",
+    data: {
+      email: email
+    },
+    className: "btn btn-success btn-md mr-3"
+  }, "Resend OTP Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
     type: "submit",
-    className: "btn btn-primary btn-block",
+    className: "btn btn-primary btn-md",
     loading: sending
-  }, "Reset Password")))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Verify")))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-3"
   })))));
 });

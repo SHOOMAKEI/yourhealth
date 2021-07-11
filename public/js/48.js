@@ -199,7 +199,7 @@ __webpack_require__.r(__webpack_exports__);
     text: "Staff Management"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_MultiLinkMenuItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
     text: "My Stuff",
-    link: "service_provider_profiles.index"
+    link: "provider_profile.stuff.index"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_MultiLinkMainMenuItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
     icon: "uil-building",
     text: "Firm Management"
@@ -209,6 +209,12 @@ __webpack_require__.r(__webpack_exports__);
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_MultiLinkMenuItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
     text: "Facilities",
     link: "provider_profile.firm.facilities"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_MultiLinkMenuItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    text: "Facilities Registrations",
+    link: "provider_profile.firm.facilities_registrations"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_MultiLinkMenuItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    text: "Facilities Services",
+    link: "provider_profile.firm.facilities_services"
   })))));
 });
 

@@ -34,9 +34,9 @@ class AuthenticatedSessionSPAController extends Controller
     public function login($rootValue, array $args)
     {
         $data =  $this->username($rootValue, $args);
-       
+
         $user = User::where($data['field'], $args['input']['username'])->first();
-        
+
         if (! $user || ($user->is_active ==false)) {
             return (object)([
                 'user' => null,
@@ -49,7 +49,7 @@ class AuthenticatedSessionSPAController extends Controller
                 'success' => false,
                 ]);
         }
-    
+
         if (! $user || ! Hash::check($args['input']['password'], $user->password)) {
             $user->forceFill([
                 'login_trial_count' => ($user->login_trial_count-1),
@@ -80,11 +80,11 @@ class AuthenticatedSessionSPAController extends Controller
 
         if ($user->mobile_number_verified_at == null) {
             $user->sendMobileNumberVerificationNotification();
-            
+
             $user->forceFill([
                 'text_resend_count' => ($user->text_resend_count-1),
             ])->save();
-            
+
             return (object)([
                 'user' => new UserResource($user),
                 'is_authenticated' => false,
@@ -123,8 +123,8 @@ class AuthenticatedSessionSPAController extends Controller
         ])->save();
 
         $this->guard->login($user);
-            
-            
+
+
 
         return (object)([
             'user' => new UserResource($user),
@@ -139,7 +139,7 @@ class AuthenticatedSessionSPAController extends Controller
         $user = User::where('email', $args['input']['email'])->first();
 
         $user->sendOtpCodeNotification();
-        
+
         return (object)([
             'user' => null,
             'is_authenticated' => false,
@@ -155,17 +155,17 @@ class AuthenticatedSessionSPAController extends Controller
         if ($user->getOtpCodeForVerification() != $args['input']['otp_code']) {
             return (object)([
                 'user' => new UserResource($user),
-                
+
                 'errors'=> [
                     [
                         'message' => 'Incorrect OTP Provided'
                     ]
-                    
+
                 ],
                 'success' => false,
                 ]);
         }
-        
+
         $user->forceFill([
             'otp_code' => null,
             'text_resend_count' => 5,
@@ -203,7 +203,7 @@ class AuthenticatedSessionSPAController extends Controller
     public function verify2FACode($rootValue, array $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
-      
+
         if ($code = $this->valid2FARecoveryCode($user, $args)) {
             $user->replaceRecoveryCode($code);
         } elseif (! $this->hasValid2FACode($user, $args)) {
@@ -213,7 +213,7 @@ class AuthenticatedSessionSPAController extends Controller
                     [
                         'message' => 'Incorrect 2FA code Provided'
                     ]
-                    
+
                 ],
                 'success' => false,
                 ]);
@@ -232,7 +232,7 @@ class AuthenticatedSessionSPAController extends Controller
         $user = User::where('email', $args['input']['email'])->first();
 
         $user->sendMobileNumberVerificationNotification();
-        
+
         return (object)([
             'user' => null,
             'is_authenticated' => false,
@@ -254,12 +254,12 @@ class AuthenticatedSessionSPAController extends Controller
         //             [
         //                 'message' => 'Incorrect Verification Code Provided'
         //             ]
-                    
+
         //         ],
         //         'success' => false,
         //         ]);
         // }
-        
+
         $user->markMobileNumberAsVerified();
 
         if ($user->email_verified_at == null) {
@@ -270,7 +270,7 @@ class AuthenticatedSessionSPAController extends Controller
                     [
                         'message' => 'Email is not verified.'
                     ]
-                    
+
                 ],
                 'success' => false,
                 ]);
@@ -334,7 +334,7 @@ class AuthenticatedSessionSPAController extends Controller
         } else {
             $field = 'mobile_number';
         }
-       
+
         $args =  array_merge([$field => $login], $args);
 
         return ['field' => $field, 'args' => $args];

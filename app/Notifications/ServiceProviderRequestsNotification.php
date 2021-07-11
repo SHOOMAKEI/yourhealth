@@ -41,7 +41,7 @@ class ServiceProviderRequestsNotification extends Notification
     {
         return (new MailMessage)
                     ->subject('New service provider request arrive for verification')
-                    ->line('There is a new service provider profile submited for verification.')
+                    ->line('There is a new service provider profile submitted for verification.')
                     ->action('Visit the application to verify it', url('/'))
                     ->line('Thank you for using our application!');
     }

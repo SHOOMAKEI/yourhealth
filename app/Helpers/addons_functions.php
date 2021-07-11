@@ -14,10 +14,10 @@ if (!function_exists('getVerificationCode')) {
     }
 }
 
-if(!function_exists('translations')) {
+if (!function_exists('translations')) {
     function translations($json): array
     {
-        if(!file_exists($json)) {
+        if (!file_exists($json)) {
             return [];
         }
         return json_decode(file_get_contents($json), true);
