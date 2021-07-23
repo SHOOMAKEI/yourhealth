@@ -20,21 +20,21 @@ class ExampleTest extends TestCase
 
     public function testQueriesServiceCategory(): void
     {
-        $response = $this->graphQL(/** @lang GraphQL */ '
-        {
-            serviceCategory(id:1) {
-                id
-                name
-                description
-            }
-        }
-        ')->assertJson([
-            'data' => [
-                'serviceCategory' => [
-                    'id' => 1
-                ]
-            ]
-        ]);
-    }
+//         $response = $this->graphQL(/** @lang GraphQL */ '
+//         {
+//             serviceCategory(id:1) {
+//                 id
+//                 name
+//                 description
+//             }
+//         }
+//         ')->assertJson([
+//             'data' => [
+//                 'serviceCategory' => [
+//                     'id' => 1
+//                 ]
+//             ]
+//         ]);
+//     }
 
 }
