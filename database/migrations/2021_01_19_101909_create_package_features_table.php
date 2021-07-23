@@ -15,11 +15,10 @@ class CreatePackageFeaturesTable extends Migration
     {
         Schema::create('package_features', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id')->constrained();
-            $table->foreignId('package_plan_id')->constrained();
+            $table->text('name');
             $table->decimal('price')->default('0.00');
             $table->decimal('compare_price')->nullable();
-            $table->string('currency', 3);
+            $table->string('currency', 3)->default('TZS');
             $table->json('other_price_factor')->nullable();
             $table->timestamps();
             $table->softDeletes();

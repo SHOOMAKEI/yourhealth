@@ -21,7 +21,7 @@ class AccountSettingsController
           'two_factor_recovery_codes' => null,
       ])->save();
         }
-    
+
         $user->forceFill([
       'enabled_otp' => !$user->enabled_otp,
     ])->save();
@@ -79,7 +79,7 @@ class AccountSettingsController
         }
 
         $enable($user);
-   
+
         return (object) [
       'qrcode_svg' => $user->twoFactorQrCodeSvg(),
       'two_factor_recovery_codes' => collect(json_decode(decrypt($user->two_factor_recovery_codes), true))
@@ -136,7 +136,7 @@ class AccountSettingsController
         $user->addMediaFromBase64($args['photo'], 'image/'.$format)
       ->usingFileName(str_replace(' ', '-', rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . strtolower($user->name) . '-photo'  . '.'.$format))
       ->toMediaCollection('profile-photo');
-      
+
         return $user;
     }
 }

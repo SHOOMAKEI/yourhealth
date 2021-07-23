@@ -1,29 +1,24 @@
-import {Heading, InfoSideBar, Paginator, ServicesTable} from '@/Pages/services/requested/components'
-// import {useDispatch, useSelector} from 'react-redux';
+import Heading from './components/Heading'
+import InfoSideBar from './components/infosidebar';
+import Paginator from './components/paginator'
+import ServicesTable from './components/servicesTable';
 import React, { useEffect, useState } from 'react';
+import Layout from "@/Shared/Layout";
+import {usePage} from "@inertiajs/inertia-react";
 
-import Framework from '@/Pages/framework';
-// import {NextPage} from 'next';
-// import { QUERY_REQUESTED_SERVICES } from '@pages/utils/Query';
-// import {RequestedServicesState} from "@pages/data/reducers/requestedService";
-// import Spinner from '@pages/auth/components/Spinner';
-// import { storeRequestedServices } from '@pages/data/actions/requestedService';
-// import { useApi } from '@pages/utils/ApolloClient';
 
 const SERVICES_BATCH_COUNT = 10;
 
 const ManageServices = () => {
-    const {services} = useSelector(state => state.requestedServiceStore);
+
+    const {services} = usePage().props;
 
     const [servicesBatchCount, setServicesBatchCount] = useState(SERVICES_BATCH_COUNT)
     const [shownServices, setShownServices] = useState(services.slice(0, servicesBatchCount))
     const [paginatorSP, setPaginatorSP] = useState(0)
-    // const [queryServices, {data, called, loading, errors}] = useApi({query: QUERY_REQUESTED_SERVICES})
-    // const dispatch = useDispatch();
+    const[selectedCategory, setSelectedCategory] =  useState(services[0])
 
-    useEffect(() => {
-        // queryServices({})
-    }, [])
+
 
     useEffect(() => {
         if(services.length > 0) {
@@ -31,13 +26,6 @@ const ManageServices = () => {
         }
     }, [services])
 
-
-
-    useEffect(() => {
-        if (data && data.requestedService) {
-            dispatch(storeRequestedServices(data.requestedService));
-        }
-    }, [data])
 
     function selectPage(page) {
         let startingPoint = page === 0 ? 0 : (page * servicesBatchCount);
@@ -62,37 +50,39 @@ const ManageServices = () => {
         }
     }
 
-    function renderContent() {
+
         return (
             <div className="row" style={{paddingTop: 30 + 'px'}}>
-                <div className="col-xl-8">
+                <div className="col-lg-8">
                     <div className="card px-2">
                         <Heading title="Service categories"  search={searchCategories}  />
+                        {/*{*/}
+                        {/*    errors && errors.map((error) => (*/}
+                        {/*        <div className="alert alert-danger bg-danger text-white border-0 mb-0 show mb-4" role="alert">*/}
+                        {/*            <strong>Error </strong> {error.message}*/}
+                        {/*        </div>*/}
+                        {/*    ))*/}
+
                         {
-                            errors && errors.map((error) => (
-                                <div className="alert alert-danger bg-danger text-white border-0 mb-0 show mb-4" role="alert">
-                                    <strong>Error </strong> {error.message}
-                                </div>
-                            ))
-                        }
-                        {
-                            loading ? <Spinner /> :
-                                <div>
-                                    <ServicesTable services={shownServices} />
-                                    <Paginator batchCount={servicesBatchCount} totalItems={services.length} activePageCallBack={selectPage} />
-                                </div>
+
+                            <div>
+                                <ServicesTable services={shownServices} callback={setSelectedCategory} />
+                                <Paginator batchCount={servicesBatchCount} totalItems={services.length} activePageCallBack={selectPage} />
+                            </div>
                         }
                     </div>
                 </div>
 
-                <div className="col-xl-4">
-                    <InfoSideBar />
+                <div className="col-lg-4">
+                    {
+                        selectedCategory && <InfoSideBar service={selectedCategory} />
+                    }
+
                 </div>
             </div>
         )
-    }
 
-    return <Framework renderContent={renderContent}/>
+
 }
-
+ManageServices.layout = page => <Layout children={page} />;
 export default ManageServices;

@@ -6,15 +6,17 @@ namespace App\Repositories\Registration;
 use App\Contracts\Repositories\Registration\ServiceProviderRegistrationRepositoryInterface;
 use App\Models\ClientProfile;
 use App\Models\DaySession;
+use App\Models\FacilityMedicalRegistration;
 use App\Models\ProviderCompany;
 use App\Models\ProviderFacility;
 use App\Models\ProviderFacilityOwner;
 use App\Models\ProviderMedicalRegistration;
 use App\Models\ProviderProfile;
 use App\Models\ProviderQualification;
-use App\Models\Service;
+use App\Models\RequestedService;
 use App\Models\User;
 use App\Notifications\ServiceProviderRequestsNotification;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Hash;
 
 class ServiceProviderRegistrationRepository implements ServiceProviderRegistrationRepositoryInterface
@@ -50,6 +52,7 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
                 'dob' => $request['dob'] ?? null,
                 'gender' => $request['gender'] ?? null,
                 'bio' => $request['bio'] ?? null,
+                'account_category_type' => $request['account_category_type']??null,
                 'provider_sub_level_id' => $request['provider_sub_level_id'] ?? null
             ]
         );
@@ -84,19 +87,20 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
             'registration_date' => $request['registration_date'] ?? null,
             'description' => $request['description'] ?? null,
         ];
+        $user = User::find($request['user_id']);
 
-        $provider_company = isset((User::find($request['user_id']))->service_provider->provider_companies[0]->id) ?
+        $provider_company = !empty($user->service_provider->provider_companies[0]->id) ?
             ProviderCompany::updateOrCreate(
                 [
-                'id' => (User::find($request['user_id']))->service_provider->provider_companies[0]->id
+                'id' => $user->service_provider->provider_companies[0]->id
             ],
                 $data
             ) : ProviderCompany::create($data);
 
         $provider_company->provider_profile()
-            ->detach((User::find($request['user_id']))->service_provider->id);
+            ->detach($user->service_provider->id);
         $provider_company->provider_profile()
-            ->attach((User::find($request['user_id']))->service_provider->id, ['role' => 'owner']);
+            ->attach($user->service_provider->id, ['role' => 'owner']);
 
         if (!empty($request['tin_attachment'])) {
             $provider_company->clearMediaCollection('provider-company-tin-files');
@@ -195,7 +199,6 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
         $provider_facility = ProviderFacility::find($request['id']);
 
         $provider_facility->update($this->facilityData($request));
-
         if (!empty($request['tin_attachment'])) {
             $provider_facility->clearMediaCollection('provider-facility-tin-files');
             $provider_facility->addMediaFromBase64($request['tin_attachment'], 'application/pdf')
@@ -237,7 +240,7 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
 
     public function createProviderQualification(array $request):ProviderQualification
     {
-        $qualification = $request['input'];
+        $qualification = $request;
 
         $provider_qualification = ProviderQualification::create([
             'award_title' => $qualification['award_title'],
@@ -295,72 +298,133 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
         return $provider_qualification;
     }
 
-    public function createProviderMedicalRegistration(array $request):ProviderMedicalRegistration
+    public function createProviderMedicalRegistration(array $request):object
     {
         $medical_registration = $request;
-
-        $provider_medical_registration = ProviderMedicalRegistration::create([
+        $provider_medical_registration = null;
+        $data = [
             'certificate_name' => $medical_registration['certificate_name'],
             'certificate_number' => $medical_registration['certificate_number'],
             'registration_number' => $medical_registration['registration_number'],
-            'provider_profile_id' => auth()->user()->service_provider->id,
             'year' => $medical_registration['year'],
-        ]);
+            'expired_at' => $medical_registration['expired_at'],
+            'service_category_id' => $medical_registration['service_category_id'],
+        ];
 
-        $provider_medical_registration->addMediaFromBase64($medical_registration['attachment'], 'application/pdf')
-            ->usingFileName(str_replace(
-                ' ',
-                '-',
-                rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . auth()->user()->name . '-' .
-                $medical_registration['certificate_name'] . '.pdf'
-            ))
-            ->toMediaCollection('provider-medical-registration-files');
+        if (auth()->user()->service_provider->account_category_type == SERVICE_PROVIDER_INDIVIDUAL_ACCOUNT) {
+            $data+=[
+                'provider_profile_id' => auth()->user()->service_provider->id];
+            $provider_medical_registration = ProviderMedicalRegistration::create($data);
 
-        return $provider_medical_registration;
-    }
-
-    public function updateProviderMedicalRegistration(array $request):ProviderMedicalRegistration
-    {
-        $provider_medical_registration = ProviderMedicalRegistration::find($request['id']);
-        $provider_medical_registration->update([
-            'certificate_name' => $request['certificate_name'],
-            'certificate_number' => $request['certificate_number'],
-            'registration_number' => $request['registration_number'],
-            'provider_profile_id' => auth()->user()->service_provider->id,
-            'year' => $request['year'],
-        ]);
-
-        if (!empty($request['attachment'])) {
-            $provider_medical_registration->clearMediaCollection('provider-medical-registration-files');
-            $provider_medical_registration->addMediaFromBase64($request['attachment'], 'application/pdf')
+            $provider_medical_registration->addMediaFromBase64($medical_registration['attachment'], 'application/pdf')
                 ->usingFileName(str_replace(
                     ' ',
                     '-',
                     rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . auth()->user()->name . '-' .
-                    $request['certificate_name'] . '.pdf'
+                    $medical_registration['certificate_name'] . '.pdf'
                 ))
                 ->toMediaCollection('provider-medical-registration-files');
+        }
+
+        if (auth()->user()->service_provider->account_category_type == SERVICE_PROVIDER_FACILITY_ACCOUNT
+            ||auth()->user()->service_provider->account_category_type == SERVICE_PROVIDER_COMPANY_ACCOUNT) {
+            $data+=[
+                'provider_facility_id' => $medical_registration['provider_facility_id']];
+            $provider_medical_registration = FacilityMedicalRegistration::create($data);
+
+            $provider_medical_registration->addMediaFromBase64($medical_registration['attachment'], 'application/pdf')
+                ->usingFileName(str_replace(
+                    ' ',
+                    '-',
+                    rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . auth()->user()->name . '-' .
+                    $medical_registration['certificate_name'] . '.pdf'
+                ))
+                ->toMediaCollection('facility-medical-registration-files');
         }
 
         return $provider_medical_registration;
     }
 
-    public function deleteProviderMedicalRegistration(array $request):ProviderMedicalRegistration
+    public function updateProviderMedicalRegistration(array $request):object
     {
-        $provider_medical_registration = ProviderMedicalRegistration::find($request['medical_reg_id']);
+        $provider_medical_registration = null;
+        if (auth()->user()->service_provider->account_category_type == SERVICE_PROVIDER_INDIVIDUAL_ACCOUNT) {
+            $provider_medical_registration = ProviderMedicalRegistration::find($request['id']);
+            $provider_medical_registration->update([
+                'certificate_name' => $request['certificate_name'],
+                'certificate_number' => $request['certificate_number'],
+                'registration_number' => $request['registration_number'],
+                'provider_profile_id' => auth()->user()->service_provider->id,
+                'year' => $request['year'],
+            ]);
 
-        $provider_medical_registration->clearMediaCollection('provider-medical-registration-files');
+            if (!empty($request['attachment'])) {
+                $provider_medical_registration->clearMediaCollection('provider-medical-registration-files');
+                $provider_medical_registration->addMediaFromBase64($request['attachment'], 'application/pdf')
+                    ->usingFileName(str_replace(
+                        ' ',
+                        '-',
+                        rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . auth()->user()->name . '-' .
+                        $request['certificate_name'] . '.pdf'
+                    ))
+                    ->toMediaCollection('provider-medical-registration-files');
+            }
+        }
 
-        $provider_medical_registration->delete();
+        if (auth()->user()->service_provider->account_category_type == SERVICE_PROVIDER_FACILITY_ACCOUNT
+            ||auth()->user()->service_provider->account_category_type == SERVICE_PROVIDER_COMPANY_ACCOUNT) {
+            $provider_medical_registration = FacilityMedicalRegistration::find($request['id']);
+            $provider_medical_registration->update([
+                'certificate_name' => $request['certificate_name'],
+                'certificate_number' => $request['certificate_number'],
+                'registration_number' => $request['registration_number'],
+                'provider_facility_id' => $request['provider_facility_id'],
+                'year' => $request['year'],
+            ]);
+
+            if (!empty($request['attachment'])) {
+                $provider_medical_registration->clearMediaCollection('facility-medical-registration-files');
+                $provider_medical_registration->addMediaFromBase64($request['attachment'], 'application/pdf')
+                    ->usingFileName(str_replace(
+                        ' ',
+                        '-',
+                        rand(1111, 9999) . '-' . rand(1111, 9999) . '-' . auth()->user()->name . '-' .
+                        $request['certificate_name'] . '.pdf'
+                    ))
+                    ->toMediaCollection('facility-medical-registration-files');
+            }
+        }
 
         return $provider_medical_registration;
     }
 
-    public function createProviderProfileServices(array $request):Service
+    public function deleteProviderMedicalRegistration(array $request):object
     {
-        $provider_facility = ProviderFacility::find($request['provider_facility_id']);
+        $provider_medical_registration = null;
+        if (auth()->user()->service_provider->account_category_type == SERVICE_PROVIDER_INDIVIDUAL_ACCOUNT) {
+            $provider_medical_registration = ProviderMedicalRegistration::find($request['medical_reg_id']);
 
-        foreach ($request['service'] as $service) {
+            $provider_medical_registration->clearMediaCollection('provider-medical-registration-files');
+
+            $provider_medical_registration->delete();
+        }
+
+        if (auth()->user()->service_provider->account_category_type == SERVICE_PROVIDER_FACILITY_ACCOUNT
+            ||auth()->user()->service_provider->account_category_type == SERVICE_PROVIDER_COMPANY_ACCOUNT) {
+            $provider_medical_registration = FacilityMedicalRegistration::find($request['medical_reg_id']);
+
+            $provider_medical_registration->clearMediaCollection('facility-medical-registration-files');
+
+            $provider_medical_registration->delete();
+        }
+        return $provider_medical_registration;
+    }
+
+    public function createProviderFacilityServices(array $request):Collection
+    {
+        $provider_facility = ProviderFacility::find($request[0]['provider_facility_id']);
+
+        foreach ($request as $service) {
             $data[$service['service_id']]['price'] = $service['price'];
             $data[$service['service_id']]['compare_price'] = $service['compare_price'];
             $data[$service['service_id']]['currency'] = $service['currency'];
@@ -371,7 +435,12 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
         return $provider_facility->services;
     }
 
-    public function deleteProviderProfileServices(array $request):Service
+    public function createRequestedService(array $request): RequestedService
+    {
+        return RequestedService::create($request);
+    }
+
+    public function deleteProviderFacilityServices(array $request):Collection
     {
         $provider_facility = ProviderFacility::find($request['facility_id']);
 
@@ -380,7 +449,7 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
         return $provider_facility->services;
     }
 
-    public function createProviderFacilityServices(array $request):Service
+    public function createProviderProfileServices(array $request):Collection
     {
         $provider_profile = ProviderProfile::find(auth()->user()->service_provider->id);
 
@@ -391,40 +460,16 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
         }
         $provider_profile->services()->syncWithoutDetaching($data);
 
-        return $provider_profile->services->map(function ($query) {
-            $services['service']['id'] = $query->id;
-            $services['service']['name'] = $query->name;
-            $services['service']['description'] = $query->description;
-            $services['service']['is_active'] = $query->is_active;
-            $services['service']['created_at'] = $query->created_at;
-            $services['service']['updated_at'] = $query->updated_at;
-            $services['price'] = $query->pivot->price;
-            $services['compare_price'] = $query->pivot->compare_price;
-            $services['currency'] = $query->pivot->currency;
-
-            return $services;
-        })->all();
+        return $provider_profile->services;
     }
 
-    public function deleteProviderFacilityServices(array $request):Service
+    public function deleteProviderProfileServices(array $request):Collection
     {
         $provider_profile = ProviderProfile::find(auth()->user()->service_provider->id);
 
         $provider_profile->services()->detach($request['service_id']);
 
-        return $provider_profile->services->map(function ($query) {
-            $services['service']['id'] = $query->id;
-            $services['service']['name'] = $query->name;
-            $services['service']['description'] = $query->description;
-            $services['service']['is_active'] = $query->is_active;
-            $services['service']['created_at'] = $query->created_at;
-            $services['service']['updated_at'] = $query->updated_at;
-            $services['price'] = $query->pivot->price;
-            $services['compare_price'] = $query->pivot->compare_price;
-            $services['currency'] = $query->pivot->currency;
-
-            return $services;
-        })->all();
+        return $provider_profile->services;
     }
 
     public function createProviderProfileCalendar(array $request):DaySession
@@ -589,7 +634,7 @@ class ServiceProviderRegistrationRepository implements ServiceProviderRegistrati
         })->all();
     }
 
-    public function submitProfileForVerification(array $request):ProviderProfile
+    public function submitProfileForVerification():ProviderProfile
     {
         $user = User::find(auth()->user()->id);
         $profile = ProviderProfile::find(auth()->user()->service_provider->id);

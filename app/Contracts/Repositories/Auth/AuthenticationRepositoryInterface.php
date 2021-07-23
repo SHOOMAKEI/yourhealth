@@ -3,8 +3,6 @@
 namespace App\Contracts\Repositories\Auth;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use phpDocumentor\Reflection\DocBlock\Tags\Since;
 
 interface AuthenticationRepositoryInterface
 {
@@ -16,7 +14,7 @@ interface AuthenticationRepositoryInterface
 
     public function hasValid2FACode(User $user, array $request): bool;
 
-    public function valid2FARecoveryCode(User $user, array $request): ?int;
+    public function valid2FARecoveryCode(User $user, array $request): ?String;
 
     public function verify2FACode(array $request): object;
 
@@ -46,7 +44,7 @@ interface AuthenticationRepositoryInterface
         bool $success  = true
     ): object;
 
-    public  function checkIfUserAccountIsAvailableOrDisabled($user):bool;
+    public function checkIfUserAccountIsAvailableOrDisabled($user):bool;
 
     public function checkIfThePasswordIsCorrect(User $user, string $password): bool;
 
@@ -57,5 +55,4 @@ interface AuthenticationRepositoryInterface
     public function checkIfTheOTPIsEnabled(User $user): bool;
 
     public function checkIfThe2FAIsEnabled(User $user): bool;
-
 }

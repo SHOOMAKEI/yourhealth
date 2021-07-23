@@ -102,14 +102,13 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
 
     public function getClientProfileAttribute()
     {
+        $client_profile = ClientProfile::where('user_id', $this->id)
+            ->first();
 
-        // if($this->hasRole('patient')) {
-
-        //     $this->hasOne(ProviderProfile::class, 'user_id');
-        // }
+        return isset($client_profile)?$client_profile->toArray():null;
     }
 
-    public function getAcountRolesAttribute()
+    public function getAccountRolesAttribute()
     {
         return $this->getRoleNames();
     }
@@ -131,12 +130,17 @@ class User extends Authenticatable implements MustVerifyEmail, MustVerifyMobileN
 
     public function getProfilePhotoPathAttribute()
     {
-        if (($this->hasRole('service-provider') || $this->hasRole('service-provider'))&&
+        if (($this->hasRole('service-provider'))&&
             $this->getFirstMediaUrl('profile-photo')==null) {
             return asset('avatar/service_provider_profile_avatar.jpg');
         }
 
         if ($this->hasRole('patient')&&
+            $this->getFirstMediaUrl('profile-photo')==null) {
+            return asset('avatar/client_profile_avatar.jpg');
+        }
+
+        if ($this->hasRole('super-admin')&&
             $this->getFirstMediaUrl('profile-photo')==null) {
             return asset('avatar/client_profile_avatar.jpg');
         }

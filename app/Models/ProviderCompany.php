@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
@@ -33,5 +35,10 @@ class ProviderCompany extends Model implements HasMedia
     public function getVrnAttachmentAttribute()
     {
         return $this->getFirstMediaUrl('provider-company-vrn-files');
+    }
+
+    public function facilities(): HasMany
+    {
+        return $this->hasMany(ProviderFacility::class);
     }
 }

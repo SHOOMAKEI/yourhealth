@@ -1,11 +1,23 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import {InertiaLink} from "@inertiajs/inertia-react";
 
-export default function RegisteredServices({services, callback}) {
+export default function RegisteredServices({services, callback, user, facility}) {
     const [shownServices, setShownServices] = useState([...services]);
+    const [facilityId, setFacilityId] = useState({})
 
     useEffect(() => {
-        setShownServices(services.slice(0, 5))
-    }, [])
+        setShownServices(services)
+        $(document).ready(function() {
+            $('#registered-services-table').DataTable();
+            $('.dataTables_filter input[type="search"]').css(
+                {'width':'145px','display':'inline-block'}
+            );
+        } );
+    }, [services])
+
+    useEffect(() => {
+        setFacilityId(facility)
+    }, [facility])
 
     function onSearch() {
         $('#search-input-registered').on('input',function(e){
@@ -28,18 +40,13 @@ export default function RegisteredServices({services, callback}) {
         });
     }
 
+
     return (
         <div>
-            <div className="page-title-right mb-2">
-                <div className="app-search">
-                    <form>
-                        <div className="input-group">
-                            <input type="text" className="form-control" placeholder="Search..." id="search-input-registered" onInput={onSearch}/>
-                        </div>
-                    </form>
-                </div>
+            <div className="page-title-right mb-4">
+            <h4> Registered Services</h4>
             </div>
-            <table className="table table-centered table-borderless mb-0">
+            <table id="registered-services-table" className="table table-centered table-border mb-0">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -49,14 +56,16 @@ export default function RegisteredServices({services, callback}) {
                 </thead>
                 <tbody>
                     {
-                        shownServices.slice(0, 4).map((service) => (
+                       shownServices && shownServices.map((service) => (
                             <tr key={service.id}>
                                 <td>{service.name}</td>
                                 <td>{`${service.pivot.price} ${service.pivot.currency}`}</td>
                                 <td>
-                                    <a href="#" className="btn btn-danger btn-sm">
+                                    <InertiaLink href={user.provider_profile.account_category_type === 'individual'?
+                                        route('providerService.destroy', service.id):
+                                        route('facilityService.destroy', [service.id,facilityId])} className="btn btn-danger btn-sm">
                                         <i className="dripicons-trash"></i>
-                                    </a>
+                                    </InertiaLink>
                                 </td>
                             </tr>
                         ))

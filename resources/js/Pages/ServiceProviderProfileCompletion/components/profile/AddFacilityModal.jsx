@@ -1,28 +1,30 @@
 import ModalForm from "@/Pages/Utilities/ModalForm";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import TextInput from '@/Shared/TextInput'
 import LoadingButton from '@/Shared/LoadingButton'
 import TextAreaInput from "@/Shared/TextAreaInput";
+import SelectInput from "@/Shared/SelectInput";
 
-export default function FacilityModal( {modalID, initialData, operation, title}) {
+export default function AddFacilityModal( {modalID, initialData, operation, title, provider_sub_levels, data={}}) {
     const { errors, status, alertType } = usePage().props;
     const [sending, setSending] = useState(false);
     const [values, setValues] = useState({
-        address: "",
-        description: "",
-        alternate_mobile_number: "",
-        email: "",
-        mobile_number: "",
-        name: "",
-        physical_address: "",
-        registration_date: "",
-        registration_number: "",
-        tin: "",
-        trading_name: "",
-        vrn: "",
-        website: ""
+        id: data?.id || "",
+        address: data?.address || "",
+        description: data?.id || "",
+        alternative_mobile_number: data?.alternative_mobile_number || "",
+        email: data?.email || "",
+        mobile_number: data?.mobile_number || "",
+        name: data?.name || "",
+        physical_address: data?.physical_address || "",
+        registration_date: data?.registration_date || "",
+        registration_number: data?.registration_number || "",
+        tin: data?.tin || "",
+        trading_name: data?.trading_name || "",
+        vrn: data?.vrn || "",
+        website: data?.website || ""
     });
 
 
@@ -40,15 +42,43 @@ export default function FacilityModal( {modalID, initialData, operation, title})
     function handleSubmit(e) {
         e.preventDefault();
         setSending(true);
-        Inertia.post(route('login'), values).then(() => {
-            setSending(false);
-        });
+        if (operation==='add'){
+            Inertia.post(route('facilityInfo.store'), values).then(() => {
+                setSending(false);
+            });
+        }else {
+            Inertia.post(route('facilityInfo.update',data.id), values).then(() => {
+                setSending(false);
+            });
+        }
+
+
     }
 
+    useEffect(()=>{
+        $(document).ready(function () {
+            window.setTimeout(()=>{
+                $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                    $(".alert").slideUp(500);
+                });
+            },2500)
+        });
+    },[status, errors])
 
     function renderForm() {
         return (
-        <form>
+            <>
+            {
+                status &&  (
+                    <div className={`alert alert-success alert-dismissible bg-primary text-white border-0 fade show`} role="alert">
+                        <button type="button" className="close" data-bs-dismiss="alert" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Success - </strong> {status}
+                    </div>
+                )
+            }
+        <form onSubmit={handleSubmit}>
             <div className="row">
                 <div className="col-6">
                     <TextInput
@@ -98,7 +128,7 @@ export default function FacilityModal( {modalID, initialData, operation, title})
                     />
                     <TextInput
                         name="registration_date"
-                        type="text"
+                        type="date"
                         placeholder="Registration Date"
                         label="Registration Date"
                         errors={errors.registration_date}
@@ -145,12 +175,12 @@ export default function FacilityModal( {modalID, initialData, operation, title})
                         onChange={handleChange}
                     />
                     <TextInput
-                        name="alternate_mobile_number"
+                        name="alternative_mobile_number"
                         type="text"
-                        placeholder="Alternate Mobile Number"
-                        label="Website"
-                        errors={errors.alternate_mobile_number}
-                        value={values.alternate_mobile_number}
+                        placeholder="Alternative Mobile Number"
+                        label="Alternative Mobile Number"
+                        errors={errors.alternative_mobile_number}
+                        value={values.alternative_mobile_number}
                         onChange={handleChange}
                     />
                     <TextInput
@@ -171,7 +201,19 @@ export default function FacilityModal( {modalID, initialData, operation, title})
                         value={values.registration_number}
                         onChange={handleChange}
                     />
-
+                    <SelectInput
+                        name="provider_sub_level_id"
+                        type="text"
+                        placeholder="Provider Sub Level"
+                        label="Provider Sub Level"
+                        errors={errors.provider_sub_level_id}
+                        value={values.provider_sub_level_id}
+                        onChange={handleChange}
+                    >
+                        {provider_sub_levels.map((level)=>(
+                            <option value={level.id} key={level.id}>{level.name}</option>
+                        ))}
+                    </SelectInput>
                     <div className="form-group mb-0 text-right">
                         <LoadingButton
                             type="submit"
@@ -184,6 +226,7 @@ export default function FacilityModal( {modalID, initialData, operation, title})
                 </div>
             </div>
         </form>
+            </>
         )
     }
 

@@ -1,9 +1,9 @@
-import React, { FC, useEffect } from 'react';
+import React, {  useEffect } from 'react';
 
-import Category from '@/pages/services/categories/components/serviceCategory'
-import { SERVICE_CATEGORIES_TABLE } from '@/pages/Utilities/Constants'
+import Category from './serviceCategory'
+import { SERVICE_CATEGORIES_TABLE } from '@/Pages/Utilities/Constants'
 
-const ServiceCategoriesTable  = ({categories}) => {
+const ServiceCategoriesTable  = ({categories, callback}) =>{
     // useEffect(() => {
     //     initializeDataTable(false, false, SERVICE_CATEGORIES_TABLE)
     // }, [])
@@ -14,11 +14,12 @@ const ServiceCategoriesTable  = ({categories}) => {
                 <tr>
                     <th>Name</th>
                     <th>Public Status</th>
+                    <th>Approval Status</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                { categories.map(category => <Category {...category} />) }
+                { categories.map((category, index) => <Category category={category} callback={callback}  key={index+1}/>) }
             </tbody>
         </table>
     )

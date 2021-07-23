@@ -2,7 +2,7 @@ import React from "react";
 
 
 
-export default function Heading({title, renderModal, modalID, search}) {
+export default function Heading({title, renderModal, modalID, search, callback}) {
 
     function onSearch() {
         $('#search-input').on('input',function(e){
@@ -19,21 +19,16 @@ export default function Heading({title, renderModal, modalID, search}) {
     return (
         <div className="row mb-3">
             <div className="col-sm-4">
-                <a href="#" className="btn btn-danger mb-3" data-toggle="modal" data-target={`#${modalID}`}>
+                <a href="#" className="btn btn-primary mb-3" data-toggle="modal" data-target={`#${modalID}`} onClick={()=> callback({
+                    name: "",
+                    description: "No description",
+                    is_active: false,
+                })}>
                     <i className="mdi mdi-plus"/>{title}</a>
             </div>
             <div className="col-sm-8">
                 <div className="text-sm-right float-right">
-                    <form>
-                        <div className="input-group">
-                            <input type="text" className="form-control" placeholder="Search..." id="search-input" onInput={onSearch}/>
-                            <div className="input-group-append">
-                                        <span className="btn btn-primary">
-                                            <i className="uil uil-search" />
-                                        </span>
-                            </div>
-                        </div>
-                    </form>
+
                 </div>
             </div>
             {renderModal && renderModal()}

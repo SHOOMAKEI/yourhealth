@@ -13,3 +13,13 @@ if (!function_exists('getVerificationCode')) {
         return $verification_code;
     }
 }
+
+if (!function_exists('translations')) {
+    function translations($json): array
+    {
+        if (!file_exists($json)) {
+            return [];
+        }
+        return json_decode(file_get_contents($json), true);
+    }
+}

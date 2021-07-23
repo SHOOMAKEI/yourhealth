@@ -1,30 +1,38 @@
 <?php
 
 use App\Http\Controllers\Admin\ProviderProfileAdminController;
-use App\Http\Controllers\Api\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\VerificationRequestsController;
 use App\Http\Controllers\Authentication\AuthenticationController;
-use App\Http\Controllers\Authentication\AuthenticationViewsController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MedicalCourseController;
 use App\Http\Controllers\MedicalInstituteController;
-use App\Http\Controllers\MedicalProcedureController;
-use App\Http\Controllers\MedicalRegistrationCouncilController;
-use App\Http\Controllers\PackagesController;
-use App\Http\Controllers\ProviderProfileController;
+use App\Http\Controllers\Packages\FeatureController;
+use App\Http\Controllers\Packages\MembershipController;
+use App\Http\Controllers\Packages\PackagesController;
+use App\Http\Controllers\Packages\RangeController;
 use App\Http\Controllers\Registration\RegistrationController;
 use App\Http\Controllers\RequiredVerificationController;
+use App\Http\Controllers\ServiceProviderProfileCompletion\EducationQualificationController;
 use App\Http\Controllers\ServiceProviderProfileCompletion\PersonalInfoController;
+use App\Http\Controllers\ServiceProviderProfileCompletion\PracticeLicenseController;
+use App\Http\Controllers\ServiceProviderProfileCompletion\ProviderFacilityController;
+use App\Http\Controllers\ServiceProviderProfileCompletion\ProviderServicesController;
+use App\Http\Controllers\Services\ServiceCategoryController;
+use App\Http\Controllers\Services\ServiceController;
+use App\Http\Controllers\Services\ServiceSubCategoryController;
 use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\SpecializationController;
+use App\Http\Controllers\VerifiedServiceProvider\Authentication\AuthenticationViewsController;
+use App\Http\Controllers\VerifiedServiceProvider\CalenderController;
+use App\Http\Controllers\VerifiedServiceProvider\DashboardController;
+use App\Http\Controllers\VerifiedServiceProvider\FirmManagementController;
+use App\Http\Controllers\VerifiedServiceProvider\HealthEducationController;
+use App\Http\Controllers\VerifiedServiceProvider\MyProfileController;
+use App\Http\Controllers\VerifiedServiceProvider\StuffManagementController;
 use App\Http\Controllers\VerifyMobileNumberController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Http\Controllers\EmailVerificationNotificationController;
-use Laravel\Fortify\Http\Controllers\EmailVerificationPromptController;
 use Laravel\Fortify\Http\Controllers\NewPasswordController;
-use Laravel\Fortify\Http\Controllers\PasswordController;
 use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
-use Laravel\Fortify\Http\Controllers\ProfileInformationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +60,8 @@ Route::group(['middleware' => ['web']], function () {
         ->middleware('guest')->name('register.company');
     Route::post('/create_account', [RegistrationController::class, 'createUserAccount'])
         ->middleware('guest')->name('account.create');
+    Route::get('/stuff-invitation/{token}/{email}', [StuffManagementController::class, 'invitation'])
+        ->name('provider_profile.stuff.invitation');
 
     //Authentication Routes
     Route::post('login', [AuthenticationController::class, 'login'])
@@ -64,118 +74,269 @@ Route::group(['middleware' => ['web']], function () {
         ->middleware(['guest'])->name('password.email');
     Route::post('/reset-password', [NewPasswordController::class, 'store'])
         ->middleware(['guest'])->name('password.update');
-    Route::post('/logout', [EmailVerificationNotificationController::class, 'store'])
-        ->middleware(['auth', 'throttle:6,1'])
+    Route::post('/logout', [AuthenticationController::class, 'logout'])
+        ->middleware(['auth'])
         ->name('logout');
 
+    Route::get('/email/verify', [AuthenticationController::class, 'VerifyEmailView'])
+        ->middleware(['auth'])
+        ->name('verification.notice');
 
-//    //Email Verification
-//    Route::get('/email/verify', [EmailVerificationPromptController::class, '__invoke'])
-//        ->middleware(['auth'])
-//        ->name('verification.notice');
-//
-//
-//    Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-//        ->middleware(['auth', 'signed', 'throttle:6,1'])
-//        ->name('verification.verify');
-//
-//    Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-//        ->middleware(['auth', 'throttle:6,1'])
-//        ->name('verification.send');
-//
-//
-//    // Profile Information...
-//    Route::put('/user/profile-information', [ProfileInformationController::class, 'update'])
-//        ->middleware(['auth'])
-//        ->name('user-profile-information.update');
-//
-//
-//    // Passwords...
-//    Route::put('/user/password', [PasswordController::class, 'update'])
-//        ->middleware(['auth'])
-//        ->name('user-password.update');
-//
-//
-//    // Two Factor Authentication...
-//
-//    Route::get('/two-factor-challenge', [TwoFactorAuthenticatedSessionController::class, 'create'])
-//        ->middleware(['guest'])
-//        ->name('two-factor.login');
-//
-//    Route::post('/two-factor-challenge', [TwoFactorAuthenticatedSessionController::class, 'store'])
-//        ->middleware(array_filter([
-//            'guest',
-//            $twoFactorLimiter ? 'throttle:'.$twoFactorLimiter : null,
-//        ]));
-//
-//    $twoFactorMiddleware =  ['auth'];
-//
-//    Route::post('/user/two-factor-authentication', [TwoFactorAuthenticationController::class, 'store'])
-//        ->middleware($twoFactorMiddleware);
-//
-//    Route::delete('/user/two-factor-authentication', [TwoFactorAuthenticationController::class, 'destroy'])
-//        ->middleware($twoFactorMiddleware);
-//
-//    Route::get('/user/two-factor-qr-code', [TwoFactorQrCodeController::class, 'show'])
-//        ->middleware($twoFactorMiddleware);
-//
-//    Route::get('/user/two-factor-recovery-codes', [RecoveryCodeController::class, 'index'])
-//        ->middleware($twoFactorMiddleware);
-//
-//    Route::post('/user/two-factor-recovery-codes', [RecoveryCodeController::class, 'store'])
-//        ->middleware($twoFactorMiddleware);
 
+    Route::get('/email/verify/{id}/{hash}', [AuthenticationController::class, 'VerifyEmail'])
+        ->middleware(['auth', 'signed', 'throttle:6,1'])
+        ->name('verification.verify');
+
+    Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+        ->middleware(['auth', 'throttle:6,1'])
+        ->name('verification.send');
+
+    Route::get('/reset-password/{token}', [AuthenticationController::class, 'resetPassword'])
+        ->middleware(['guest'])
+        ->name('password.reset');
+
+    Route::post('/reset-password', [NewPasswordController::class, 'store'])
+        ->middleware(['guest'])
+        ->name('password.update');
+
+    Route::get('/one-time-password', [AuthenticationController::class, 'otpView'])
+        ->middleware(['guest'])
+        ->name('otp.notice');
+
+    Route::post('/one-time-password/resend', [AuthenticationController::class, 'resendOtpCode'])
+        ->middleware(['guest'])
+        ->name('otp.resend');
+
+    Route::post('/one-time-password/verify', [AuthenticationController::class, 'verifyOtpCode'])
+        ->middleware(['guest'])
+        ->name('otp.verify');
+
+
+    Route::get('/two-factor-challenge/index', [AuthenticationController::class, 'TwoFactoryAuthView'])
+        ->middleware(['guest'])
+        ->name('two-factor.login');
+
+    Route::post('/two-factor-challenge', [AuthenticationController::class, 'verify2FACode'])
+        ->middleware(array_filter([
+            'guest',
+            'throttle:6,1',
+        ]))->name('two-factor.verify');
+
+    Route::middleware(['auth'])->get('/mobile_number/verify', [VerifyMobileNumberController::class, 'show'])
+     ->name('verify.mobile-number');
+
+    Route::post('/mobile_number/verification_code/verify', [VerifyMobileNumberController::class, 'verify'])
+     ->middleware(['auth', 'throttle:6,1'])
+     ->name('verification_code.verify');
+
+    Route::get('/mobile_number/verification-code/resend', [VerifyMobileNumberController::class, 'resend'])
+     ->middleware(['auth', 'throttle:6,1'])
+     ->name('verification_code.send');
 });
 
- Route::middleware([ 'auth','auth:sanctum', 'verified', 'verified_sp','language', 'mobile_number_verified'])
-     ->group( function () {
+Route::middleware(['auth','auth:sanctum', 'language','mobile_number_verified', 'role:service-provider'])
+    ->group(function () {
+        Route::get('service_provider/personal-info', [PersonalInfoController::class, 'index'])
+            ->name('personalInfo.index');
+        Route::post('/personal-information/update', [PersonalInfoController::class, 'update'])
+            ->name('personalInfo.update');
+        Route::post('/personal-information/upload-photo', [PersonalInfoController::class, 'uploadProfilePhoto'])
+            ->name('personalInfo.uploadPhoto');
+        Route::post('/education-qualification/store', [EducationQualificationController::class, 'store'])
+            ->name('educationQualification.store');
+        Route::get('/education-qualification/{qualification}/delete', [EducationQualificationController::class, 'destroy'])
+            ->name('educationQualification.destroy');
+        Route::post('/practice-license/store', [PracticeLicenseController::class, 'store'])
+            ->name('practiceLicense.store');
+        Route::get('/practice-license/{registration}/delete', [PracticeLicenseController::class, 'destroy'])
+            ->name('practiceLicense.destroy');
+        Route::post('/provider-service/store', [ProviderServicesController::class, 'store'])
+            ->name('providerService.store');
+        Route::get('/provider-service/{service}/delete', [ProviderServicesController::class, 'destroy'])
+            ->name('providerService.destroy');
+        Route::post('/provider-service/store', [ProviderServicesController::class, 'store'])
+            ->name('providerService.store');
+        Route::get('/provider-service/{service}/delete', [ProviderServicesController::class, 'destroy'])
+            ->name('providerService.destroy');
+        Route::post('/provider-service/request-service', [ProviderServicesController::class, 'requestServiceStore'])
+            ->name('requestService.store');
+        Route::post('/facility-service/store', [ProviderServicesController::class, 'facilityStore'])
+            ->name('facilityService.store');
+        Route::get('/facility-service/{service}/{facility}/delete', [ProviderServicesController::class, 'facilityDestroy'])
+            ->name('facilityService.destroy');
 
-     Route::get('/dashboard',[PersonalInfoController::class, 'index'])->name('dashboard');
+        Route::post('/facility-information/store', [ProviderFacilityController::class, 'store'])
+            ->name('facilityInfo.store');
+        Route::post('/facility-information/{facility}/update', [ProviderFacilityController::class, 'update'])
+            ->name('facilityInfo.update');
+        Route::get('/facility-information/{facility}/delete', [ProviderFacilityController::class, 'destroy'])
+            ->name('facilityInfo.destroy');
+        Route::post('/company-information/update', [ProviderFacilityController::class, 'CompanyInfoUpdate'])
+            ->name('companyInfo.update');
+        Route::get('service_provider/profile-submission', [PersonalInfoController::class, 'profileSubmission'])
+            ->name('profileSubmission.submit');
+    });
 
-     Route::get('/settings/enable_otp', [SettingsController::class, 'enableOtp'])->name('otp.enable');
-     Route::get('/settings/disable_otp', [SettingsController::class, 'disableOtp'])->name('otp.disable');
 
- });
+ Route::middleware([ 'auth','auth:sanctum',  'verified_sp','language', 'mobile_number_verified', 'role:verified-service-provider'])
+     ->group(function () {
+         Route::get('/verified-service-provider-dashboard', DashboardController::class)
+             ->name('verified_sp.home');
 
-// Route::middleware(['auth'])->get('/mobile_number/verify', [VerifyMobileNumberController::class, 'show'])
-//     ->name('verify.mobile-number');
+         Route::get('verified-service-provider/calender', [CalenderController::class, 'index'])
+             ->name('calender.index');
+         Route::get('verified-service-provider/calender/create', [CalenderController::class, 'create'])
+             ->name('calender.create');
 
-// Route::post('/mobile_number/verification_code/verify', [VerifyMobileNumberController::class, 'verify'])
-//     ->middleware(['auth', 'throttle:6,1'])
-//     ->name('verification_code.verify');
+         Route::post('verified-service-provider/calender/store', [CalenderController::class, 'store'])
+             ->name('calender.store');
+         Route::post('verified-service-provider/calender/facility/store', [CalenderController::class, 'storeFacility'])
+             ->name('calender.facility_store');
+         Route::get('/settings/disable_otp', [SettingsController::class, 'disableOtp'])->name('otp.disable');
 
-// Route::post('/mobile_number/verification-code/resend', [VerifyMobileNumberController::class, 'resend'])
-//     ->middleware(['auth', 'throttle:6,1'])
-//     ->name('verification_code.send');
+         Route::get('verified-service-provider/health-education', [HealthEducationController::class, 'index'])
+             ->name('health_education.index');
+         Route::get('verified-service-provider/health-education/create', [HealthEducationController::class, 'create'])
+             ->name('health_education.create');
+         Route::get('verified-service-provider/health-education/{article}/show', [HealthEducationController::class, 'show'])
+             ->name('health_education.show');
+         Route::post('verified-service-provider/health-education/store', [HealthEducationController::class, 'store'])
+             ->name('health_education.store');
+         Route::get('verified-service-provider/my-profile', [MyProfileController::class, 'index'])
+             ->name('provider_profile.my_profile');
+         Route::get('verified-service-provider/firm-management/company', [FirmManagementController::class, 'company'])
+             ->name('provider_profile.firm.company');
+         Route::get('verified-service-provider/firm-management/facilities', [FirmManagementController::class, 'facilities'])
+             ->name('provider_profile.firm.facilities');
+         Route::get('verified-service-provider/firm-management/facilities-registration', [FirmManagementController::class, 'facilitiesRegistrations'])
+             ->name('provider_profile.firm.facilities_registrations');
+         Route::get('verified-service-provider/firm-management/facilities-services', [FirmManagementController::class, 'facilitiesServices'])
+             ->name('provider_profile.firm.facilities_services');
+         Route::get('verified-service-provider/stuff-management/stuff', [StuffManagementController::class, 'index'])
+             ->name('provider_profile.stuff.index');
+         Route::post('verified-service-provider/stuff-management/stuff-store', [StuffManagementController::class, 'store'])
+             ->name('provider_profile.stuff.store');
+     });
 
-// Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:super-admin'])->group(function(){
-//     Route::resource('packages', PackagesController::class);
-//     Route::resource('specializations', SpecializationController::class);
-//     Route::resource('procedures', MedicalProcedureController::class);
+Route::middleware([ 'auth','auth:sanctum', 'verified_sp','language', 'mobile_number_verified', 'role:verified-service-provider|super-admin'])
+    ->group(function () {
+        Route::get('/settings/index', [SettingsController::class, 'index'])->name('settings.index');
+        Route::post('/settings/update-account-information', [SettingsController::class, 'updateAccountInfo'])
+            ->name('settings.updateAccountInfo');
+        Route::post('/settings/update-password', [SettingsController::class, 'updatePassword'])
+            ->name('settings.updatePassword');
+        Route::get('/settings/toggle_otp', [SettingsController::class, 'toggleOTP'])
+            ->name('settings.toggleOTP');
+        Route::get('/settings/toggle_2fa', [SettingsController::class, 'toggle2FA'])
+            ->name('settings.toggle2fa');
+        Route::get('/settings/generate_recovery_code', [SettingsController::class, 'generateRecoveryCodes'])
+            ->name('settings.recovery_code');
+        Route::post('/settings/logout_other_sessions_browser', [SettingsController::class, 'sessionsBrowser'])
+            ->name('settings.sessions_browser');
+    });
+
+
+ Route::middleware(['auth','auth:sanctum', 'verified', 'language', 'role:super-admin'])->group(function () {
+     Route::get('admin/dashboard', function () {
+         return Inertia::render('Dashboard');
+     })->name('admin.dashboard');
+
+     Route::resource('services_categories', ServiceCategoryController::class);
+     Route::get('services_categories/{services_category}/visibility', [ServiceCategoryController::class, 'toggleVisibility'])
+            ->name('services_categories.visibility');
+     Route::get('services_categories/{services_category}/approval', [ServiceCategoryController::class, 'toggleApproval'])
+            ->name('services_categories.approval');
+//     Route::resource('services_sub_categories', ServiceSubCategoryController::class);
+     Route::get('services_sub_categories/{services_category}', [ServiceSubCategoryController::class, 'index'])
+        ->name('services_sub_categories.index');
+     Route::get('services_sub_categories/{services_sub_category}/show', [ServiceSubCategoryController::class, 'show'])
+        ->name('services_sub_categories.show');
+     Route::post('services_sub_categories', [ServiceSubCategoryController::class, 'store'])
+         ->name('services_sub_categories.store');
+     Route::put('services_sub_categories/{services_sub_category}/update', [ServiceSubCategoryController::class, 'update'])
+         ->name('services_sub_categories.update');
+     Route::delete('services_sub_categories/{services_sub_category}', [ServiceSubCategoryController::class, 'destroy'])
+         ->name('services_sub_categories.destroy');
+     Route::get('services_sub_categories/{services_sub_category}/visibility', [ServiceSubCategoryController::class, 'toggleVisibility'])
+         ->name('services_sub_categories.visibility');
+     Route::get('services_sub_categories/{services_sub_category}/approval', [ServiceSubCategoryController::class, 'toggleApproval'])
+         ->name('services_sub_categories.approval');
+
+     Route::get('services/{services_sub_category}/index', [ServiceController::class, 'index'])
+         ->name('services.index');
+     Route::get('services/{service}/show', [ServiceController::class, 'show'])
+         ->name('services.show');
+     Route::post('services', [ServiceController::class, 'store'])
+         ->name('services.store');
+     Route::put('services/{service}/update', [ServiceController::class, 'update'])
+         ->name('services.update');
+     Route::delete('services/{service}', [ServiceController::class, 'destroy'])
+         ->name('services.destroy');
+     Route::get('services/{service}/visibility', [ServiceController::class, 'toggleVisibility'])
+         ->name('services.visibility');
+     Route::get('services/{service}/approval', [ServiceController::class, 'toggleApproval'])
+         ->name('services.approval');
+
+
+
 //     Route::resource('medical_courses', MedicalCourseController::class);
 //     Route::resource('medical_institutes', MedicalInstituteController::class);
-//     Route::resource('medical_councils', MedicalRegistrationCouncilController::class);
-//     Route::resource('profile_validations', RequiredVerificationController::class);
+     Route::get('requested_services', [ServiceController::class, 'requestedServices'])
+        ->name('requested_services.index');
+     Route::resource('packages_registration', PackagesController::class);
+     Route::get('membership_registration', [PackagesController::class, 'membershipIndex'])
+         ->name('membership_registration.index');
+     Route::post('membership_registration', [MembershipController::class, 'store'])
+         ->name('membership_registration.store');
+     Route::post('membership_registration/{membership}/update', [MembershipController::class, 'update'])
+         ->name('membership_registration.update');
+     Route::delete('membership_registration/{membership}', [MembershipController::class, 'destroy'])
+         ->name('membership_registration.destroy');
+     Route::post('feature_registration', [FeatureController::class, 'store'])
+         ->name('feature_registration.store');
+     Route::post('feature_registration/{feature}/update', [FeatureController::class, 'update'])
+         ->name('feature_registration.update');
+     Route::delete('feature_registration/{feature}', [FeatureController::class, 'destroy'])
+         ->name('feature_registration.destroy');
+     Route::post('range_registration', [RangeController::class, 'store'])
+         ->name('range_registration.store');
+     Route::post('range_registration/{range}/update', [RangeController::class, 'update'])
+         ->name('range_registration.update');
+     Route::delete('range_registration/{range}', [RangeController::class, 'destroy'])
+         ->name('range_registration.destroy');
+
+
+     Route::get('service_provider_profiles', [VerificationRequestsController::class, 'profileInfo'])
+        ->name('service_provider_profiles.index');
+     Route::get('service_provider_profiles/{provider_profile}', [VerificationRequestsController::class, 'companyInfo'])
+         ->name('service_provider_profiles.company');
+     Route::get('service_provider_profiles/{provider_profile}/facilities', [VerificationRequestsController::class, 'facilities'])
+         ->name('service_provider_profiles.facilities');
+     Route::get('service_provider_profiles/{provider_facility}/services/facility', [VerificationRequestsController::class, 'facilityServices'])
+         ->name('service_provider_profiles.facility_services');
+     Route::get('service_provider_profiles/{provider_profile}/services/individual', [VerificationRequestsController::class, 'IndividualServices'])
+         ->name('service_provider_profiles.services');
+     Route::get('service_provider_profiles/{provider_profile}/qualifications', [VerificationRequestsController::class, 'qualifications'])
+         ->name('service_provider_profiles.qualifications');
+     Route::get('service_provider_profiles/{provider_profile}/practice_license', [VerificationRequestsController::class, 'practiceLicense'])
+         ->name('service_provider_profiles.practice_license');
+     Route::get('service_provider_profiles/{facility}/facility_practice_license', [VerificationRequestsController::class, 'facilityPracticeLicense'])
+         ->name('service_provider_profiles.facility_practice_license');
+     Route::get('service_provider_profiles/{practice_license}/practice_license_approval', [VerificationRequestsController::class, 'practiceLicenseApproval'])
+         ->name('service_provider_profiles.practice_license_approval');
+     Route::get('service_provider_profiles/{practice_license}/practice_license_deny', [VerificationRequestsController::class, 'practiceLicenseDeny'])
+         ->name('service_provider_profiles.practice_license_deny');
+     Route::get('service_provider_profiles/{practice_license}/facility_practice_license_approval', [VerificationRequestsController::class, 'facilityPracticeLicenseApproval'])
+         ->name('service_provider_profiles.facility_practice_license_approval');
+     Route::get('service_provider_profiles/{practice_license}/facility_practice_license_deny', [VerificationRequestsController::class, 'facilityPracticeLicenseDeny'])
+         ->name('service_provider_profiles.facility_practice_license_deny');
+     Route::get('service_provider_profiles/provider/{provider_profile}/verify', [VerificationRequestsController::class, 'verify'])
+      ->name('service_provider_profiles.verify');
+     Route::post('service_provider_profiles/provider/reject', [VerificationRequestsController::class, 'reject'])
+         ->name('service_provider_profiles.reject');
+     Route::get('service_provider_profiles/{profile}/show', [VerificationRequestsController::class, 'viewProviderProfileInfo'])
+         ->name('service_provider_profiles.show');
+//
+//     Route::resource('profile_validations', RequiredVerificationController::class); viewProviderProfileInfo
 //     Route::resource('service_provider_profiles', ProviderProfileAdminController::class);
-//     Route::get('service_provider_profiles/provider/{provider}/verify', [ProviderProfileAdminController::class, 'verify'])->name('service_provider_profiles.verify');
-//     Route::get('service_provider_profiles/provider/{provider}/unverify', [ProviderProfileAdminController::class, 'unverify'])->name('service_provider_profiles.unverify');
-
-// });
-
- Route::middleware(['auth','auth:sanctum', 'verified', 'language','mobile_number_verified', 'role:service-provider'])->group(function(){Route::resource('provider_profiles',ProviderProfileController::class);
-   Route::get('service_provider/profile_info', [ProviderProfileController::class ,'profileInfo'])->name('profile-completion.index');
-   Route::get('service_provider/establishments', [ProviderProfileController::class ,'establishments'])->name('establishments.index');
-   Route::get('service_provider/specializations', [ProviderProfileController::class ,'specializations'])->name('provider_specializations.index');
-   Route::get('service_provider/verifications', [ProviderProfileController::class ,'verifications'])->name('verifications.index');
-   Route::get('service_provider/submittion', [ProviderProfileController::class ,'submittion'])->name('submittion.index');
-   Route::get('service_provider/medical_qualification', [ProviderProfileController::class , 'medicalQualification'])->name('medical_qualification.index');
-   Route::post('service_provider/save', [ProviderProfileController::class ,'store'])->name('provider_profiles.store');
-   Route::get('service_provider/submittion/submit', [ProviderProfileController::class ,'submitted'])->name('submittion.store');
  });
-
-
-
-
-Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-    ->middleware(['signed', 'throttle:6,1'])
-    ->name('verification.verify');

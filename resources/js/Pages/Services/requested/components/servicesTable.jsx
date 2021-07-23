@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 
 import Service from '@/Pages/Services/requested/components/service'
-import { SERVICE_CATEGORIES_TABLE } from '@/pages/Utilities/Constants'
+import { SERVICE_CATEGORIES_TABLE } from '@/Pages/Utilities/Constants'
 // import { requestedServiceValues } from "@pages/data/reducers/requestedService";
 
 
-const ServicesTable = ({services}) => {
+const ServicesTable = ({services, callback}) => {
 
     return (
         <table id={SERVICE_CATEGORIES_TABLE} className="table dt-responsive nowrap w-100">
@@ -19,7 +19,7 @@ const ServicesTable = ({services}) => {
                 </tr>
             </thead>
             <tbody>
-                { services.map(service => <Service {...service} />) }
+                { services.map(service => <Service service={service} callback={callback}  key={service.id}/>) }
             </tbody>
         </table>
     )

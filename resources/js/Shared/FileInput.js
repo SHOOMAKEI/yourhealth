@@ -1,14 +1,20 @@
 import React, { useState, useRef } from 'react';
 
 
-export default ({ className, name, label, accept, errors = [], onChange }) => {
+export default ({ className, name, label, accept, errors = [], callback }) => {
   const fileInput = useRef();
   const [file, setFile] = useState(null);
 
   function handleFileChange(e) {
-    const file = e.target.files[0];
-    setFile(file);
-    onChange(file);
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      let base64;
+      reader.onload =  function(event) {
+          base64 = event.target?.result
+          setFile(base64);
+          callback(name,base64);
+      }
   }
 
   return (
@@ -33,8 +39,8 @@ export default ({ className, name, label, accept, errors = [], onChange }) => {
         </label>
       )}
 
-      {errors && <div id={name+'-error'} className=" invalid-feedback animated fadeInDown">{errors[0]}</div>}
+      {errors && <div className="invalid-feedback" style={{display:'block'}}>{errors}</div>}
     </div>
     </div>
   );
-};
+}

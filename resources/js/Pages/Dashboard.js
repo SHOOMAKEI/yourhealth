@@ -5,7 +5,7 @@ import Layout from '@/Shared/Layout';
 const Dashboard = () => {
 
     return(
-        <div className="card">
+        <div className="card mt-3">
             <div className="card-header pdn-20 pdn-sm-x-40">
                 <h6>Blank Page</h6>
             </div>

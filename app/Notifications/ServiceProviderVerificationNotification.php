@@ -41,7 +41,7 @@ class ServiceProviderVerificationNotification extends Notification
     {
         return (new MailMessage)
                     ->subject('Profile verification feedback')
-                    ->line('We are happy to tell you that your profile has been verified as a service provider in yourhealth application.')
+                    ->line('We are happy to tell you that your profile has been verified as a service provider in MSON application.')
                     ->line('You can continue setting up your calender, finishing adding services that your offer and invite your co worker.')
                     ->action('Visit the application', url('/'))
                     ->line('Thank you for using our application!');

@@ -1,37 +1,31 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
-import {ADD_MEMBERSHIP_MODAL_ID} from "@/pages/Utilities/Constants";
+import {ADD_MEMBERSHIP_MODAL_ID, ADD_PACKAGE_MODAL_ID} from "@/Pages/Utilities/Constants";
 import AddMembershipModal from "@/Pages/Services/packages/membership/AddMembership";
 import Heading from "@/Pages/Services/packages/membership/Heading";
 import List from "@/Pages/Services/packages/membership/List";
 import SelectedInfo from "@/Pages/Services/packages/membership/SelectedInfo";
-// import {membershipsStateValues} from "@pages/data/reducers/memberships";
-// import {useSelector} from "react-redux";
+import {usePage} from "@inertiajs/inertia-react";
+import DeleteMembershipDialog from "@/Pages/Services/packages/membership/deleteDialog";
+import AddPackageModal from "@/Pages/Services/packages/package/AddPackageModal";
 
-export default function Memberships() {
-    const {memberships} = useSelector(state => state.membershipsStore)
+
+export default function Memberships({memberships}) {
+    const [selectedMembership, setSelectedMembership] = useState({})
     const [shownMemberships, setShownMemberships] = useState(memberships)
 
     useEffect(() => {
         setShownMemberships(memberships)
     }, [memberships])
 
-    function searchMemberships(content ) {
-        if(content.length === 0) {
-            setShownMemberships(memberships)
-        } else {
-            setShownMemberships(
-                memberships.filter(membership =>  {
-                    if(membership.name.toLowerCase().includes(content.toLowerCase())) {
-                        return membership
-                    }
-                })
-            )
-        }
-    }
 
     function renderModal() {
-        return <AddMembershipModal modalID={ADD_MEMBERSHIP_MODAL_ID} operation={"add"} />
+
+        return <AddMembershipModal
+            modalID={ADD_MEMBERSHIP_MODAL_ID}
+            operation={ selectedMembership.id? "update": "add"}
+            initialData={selectedMembership}
+        />
     }
 
     return (
@@ -40,14 +34,16 @@ export default function Memberships() {
                 <Heading
                     title={"Create membership"}
                     modalID={ADD_MEMBERSHIP_MODAL_ID}
-                    renderModal={renderModal} search={searchMemberships}
+                    renderModal={renderModal}
+                    callback={setSelectedMembership}
                 />
                 <div className="row justify-content-sm-between">
-                    <div className="col-8">
-                        <List memberships={shownMemberships}/>
+                    <div className="col-lg-12">
+                        { shownMemberships && <List memberships={shownMemberships} callback={setSelectedMembership}/>}
                     </div>
+                    {selectedMembership && <DeleteMembershipDialog membership={selectedMembership}/>}
                     <div className="col-4">
-                        <SelectedInfo />
+                        {/*<SelectedInfo />*/}
                     </div>
                 </div>
             </div>

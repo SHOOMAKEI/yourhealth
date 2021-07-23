@@ -33,7 +33,7 @@ export default function Paginator({ batchCount, totalItems, activePageCallBack }
                     <ul className="pagination pagination-rounded">
                         <li className="paginate_button page-item previous disabled" id="service-categories-table_previous">
                             <a href="#" aria-controls="service-categories-table" data-dt-idx="0" tabIndex={0} className="page-link">
-                                <i className="uil uil-angle-left"></i>
+                                <i className="uil uil-angle-left"/>
                             </a>
                         </li>
                         {
@@ -47,7 +47,7 @@ export default function Paginator({ batchCount, totalItems, activePageCallBack }
                         }
                         <li className="paginate_button page-item next" id="service-categories-table_next">
                             <a href="#" aria-controls="service-categories-table" data-dt-idx="3" tabIndex={0} className="page-link">
-                                <i className="uil uil-angle-right"></i>
+                                <i className="uil uil-angle-right"/>
                             </a>
                         </li>
                     </ul>

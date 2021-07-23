@@ -4,7 +4,7 @@ import Service from '@/Pages/Services/services/components/service'
 
 
 
-const ServicesTable = ({services}) => {
+const ServicesTable = ({services, callback}) => {
 
     return (
         <table id={SERVICE_CATEGORIES_TABLE} className="table dt-responsive nowrap w-100">
@@ -12,11 +12,12 @@ const ServicesTable = ({services}) => {
                 <tr>
                     <th>Name</th>
                     <th>Public Status</th>
+                    <th>Approval Status</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                { services.map(service => <Service {...service} />) }
+                { services.map((service, index )=> <Service service={service} callback={callback} key={index+1}/>) }
             </tbody>
         </table>
     )

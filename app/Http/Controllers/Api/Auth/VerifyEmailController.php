@@ -18,13 +18,13 @@ class VerifyEmailController extends Controller
     public function __invoke(User $id, Request $request)
     {
         if ($id->hasVerifiedEmail()) {
-            return redirect('http://127.0.0.1:3000/auth/emailVerificationStatus/'.$id->id);
+            return redirect(route('login'));
         }
 
         if ($id->markEmailAsVerified()) {
             event(new Verified($request->user()));
         }
 
-        return redirect('http://127.0.0.1:3000/auth/emailVerificationStatus/'.$id->id);
+        return redirect(route('login'));
     }
 }

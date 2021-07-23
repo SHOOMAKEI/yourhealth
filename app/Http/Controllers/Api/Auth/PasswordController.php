@@ -17,12 +17,12 @@ class PasswordController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Laravel\Fortify\Contracts\UpdatesUserPasswords  $updater
-     * @return \Illuminate\Http\Response
+     * @return object
      */
     public function update($rootVaule, $args)
     {
         $user = auth()->user();
-        
+
         if (! Hash::check($args['input']['current_password'], $user->password)) {
             return (object) [
                 'errors' => [
@@ -33,7 +33,7 @@ class PasswordController extends Controller
                 'success' => false
                 ];
         }
-      
+
 
         $user->forceFill([
             'password' => Hash::make($args['input']['password']),
@@ -48,14 +48,14 @@ class PasswordController extends Controller
     public function resetUserPasswordViaEmail($rootVaule, $args)
     {
         $user = User::where('email', $args['input']['email'])->first();
-        
+
         $key = app('config')['app.key'];
 
         if (Str::startsWith($key, 'base64:')) {
             $key = base64_decode(substr($key, 7));
         }
 
-        
+
         $email = $user->getEmailForPasswordReset();
 
         DB::table('password_resets')->where('email', $user->getEmailForPasswordReset())->delete();
@@ -80,7 +80,7 @@ class PasswordController extends Controller
     public function resetUserPasswordViaOtp($rootVaule, $args)
     {
         $user = User::where('mobile_number', $args['input']['mobile_number'])->first();
-        
+
         $user->sendMobileNumberResetPasswordNotification();
 
         return (object)[
@@ -92,7 +92,7 @@ class PasswordController extends Controller
     public function verifyUserPasswordViaOtp($rootVaule, $args)
     {
         $user = User::where('mobile_number', $args['input']['mobile_number'])->first();
-    
+
         $result = DB::table('password_resets')->where('email', $args['input']['mobile_number'])->where('token', $args['input']['otp_code'])->first();
 
         if (!isset($result->email)) {

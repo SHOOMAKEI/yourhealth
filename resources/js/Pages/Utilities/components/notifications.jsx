@@ -1,3 +1,5 @@
+import React from 'react'
+
 export default function Notifications() {
     return (
         <li className="dropdown notification-list">
@@ -10,7 +12,7 @@ export default function Notifications() {
                 <div className="dropdown-item noti-title">
                     <h5 className="m-0">
                         <span className="float-right">
-                            <a href="javascript: void(0);" className="text-dark">
+                            <a href="#" className="text-dark">
                                 <small>Clear All</small>
                             </a>
                         </span>Notification
@@ -18,7 +20,7 @@ export default function Notifications() {
                 </div>
 
                 <div style={{maxHeight: 230 + 'px'}} data-simplebar>
-                    <a href="javascript:void(0);" className="dropdown-item notify-item">
+                    <a href="#" className="dropdown-item notify-item">
                         <div className="notify-icon bg-primary">
                             <i className="mdi mdi-comment-account-outline"></i>
                         </div>
@@ -27,7 +29,7 @@ export default function Notifications() {
                         </p>
                     </a>
 
-                    <a href="javascript:void(0);" className="dropdown-item notify-item">
+                    <a href="#" className="dropdown-item notify-item">
                         <div className="notify-icon bg-info">
                             <i className="mdi mdi-account-plus"></i>
                         </div>
@@ -36,7 +38,7 @@ export default function Notifications() {
                         </p>
                     </a>
 
-                    <a href="javascript:void(0);" className="dropdown-item notify-item">
+                    <a href="#" className="dropdown-item notify-item">
                         <div className="notify-icon">
                             <img src="assets/images/users/avatar-2.jpg" className="img-fluid rounded-circle" alt="" /> </div>
                         <p className="notify-details">Cristina Pride</p>
@@ -45,7 +47,7 @@ export default function Notifications() {
                         </p>
                     </a>
 
-                    <a href="javascript:void(0);" className="dropdown-item notify-item">
+                    <a href="#" className="dropdown-item notify-item">
                         <div className="notify-icon bg-primary">
                             <i className="mdi mdi-comment-account-outline"></i>
                         </div>
@@ -54,7 +56,7 @@ export default function Notifications() {
                         </p>
                     </a>
 
-                    <a href="javascript:void(0);" className="dropdown-item notify-item">
+                    <a href="#" className="dropdown-item notify-item">
                         <div className="notify-icon">
                             <img src="assets/images/users/avatar.jpg" className="img-fluid rounded-circle" alt="" /> </div>
                         <p className="notify-details">Karen Robinson</p>
@@ -63,7 +65,7 @@ export default function Notifications() {
                         </p>
                     </a>
 
-                    <a href="javascript:void(0);" className="dropdown-item notify-item">
+                    <a href="#" className="dropdown-item notify-item">
                         <div className="notify-icon bg-info">
                             <i className="mdi mdi-heart"></i>
                         </div>
@@ -74,8 +76,8 @@ export default function Notifications() {
                     </a>
                 </div>
 
-                
-                <a href="javascript:void(0);" className="dropdown-item text-center text-primary notify-item notify-all">
+
+                <a href="#" className="dropdown-item text-center text-primary notify-item notify-all">
                     View All
                 </a>
 

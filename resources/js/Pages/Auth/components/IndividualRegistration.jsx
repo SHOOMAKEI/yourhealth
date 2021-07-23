@@ -66,8 +66,8 @@ export default function IndividualRegister() {
                         type="text"
                         label="Last Name"
                         placeholder="Last Name"
-                        errors={errors.ind_last_name}
-                        value={values.ind_last_name}
+                        errors={errors.last_name}
+                        value={values.last_name}
                         onChange={handleChange}
                     />
                     <TextInput
@@ -75,8 +75,8 @@ export default function IndividualRegister() {
                         type="text"
                         label="Mobile Number"
                         placeholder="Mobile Number"
-                        errors={errors.ind_mobile_number}
-                        value={values.ind_mobile_number}
+                        errors={errors.mobile_number}
+                        value={values.mobile_number}
                         onChange={handleChange}
                     />
                     </div>
@@ -86,8 +86,8 @@ export default function IndividualRegister() {
                         type="text"
                         label="Middle Name"
                         placeholder="Middle Name"
-                        errors={errors.ind_middle_name}
-                        value={values.ind_middle_name}
+                        errors={errors.middle_name}
+                        value={values.middle_name}
                         onChange={handleChange}
                     />
                     <TextInput
@@ -95,8 +95,8 @@ export default function IndividualRegister() {
                         type="text"
                         label="Email"
                         placeholder="Email"
-                        errors={errors.ind_email}
-                        value={values.ind_email}
+                        errors={errors.email}
+                        value={values.email}
                         onChange={handleChange}
                     />
                     <TextInput
@@ -104,8 +104,8 @@ export default function IndividualRegister() {
                         type="password"
                         label="Password"
                         placeholder="Password"
-                        errors={errors.ind_password}
-                        value={values.ind_password}
+                        errors={errors.password}
+                        value={values.password}
                         onChange={handleChange}
                     />
                     <TextInput
@@ -113,8 +113,8 @@ export default function IndividualRegister() {
                         type="password"
                         label="Confirm Password"
                         placeholder="Confirm Password"
-                        errors={errors.ind_password_confirmation}
-                        value={values.ind_password_confirmation}
+                        errors={errors.password_confirmation}
+                        value={values.password_confirmation}
                         onChange={handleChange}
                     />
                     <div className="form-group mb-0 text-right">

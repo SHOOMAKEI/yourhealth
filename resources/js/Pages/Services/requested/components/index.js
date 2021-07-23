@@ -1,6 +1,6 @@
-import Heading from '@/pages/services/requested/components/Heading'
-import InfoSideBar from '@/pages/services/requested/components/infosidebar';
-import Paginator from '@/pages/services/requested/components/paginator'
-import ServicesTable from '@/pages/services/requested/components/servicesTable';
+import Heading from './Heading'
+import InfoSideBar from './infosidebar';
+import Paginator from './paginator'
+import ServicesTable from './servicesTable';
 
 export { Heading, InfoSideBar, Paginator, ServicesTable};

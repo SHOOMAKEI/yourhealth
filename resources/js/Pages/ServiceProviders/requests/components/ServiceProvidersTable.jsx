@@ -1,7 +1,7 @@
-import {ServiceProvider, ServiceProviderValues} from "@/pages/serviceProviders/requests/components";
+import ServiceProvider from "./ServiceProvider";
 
 import {PROVIDER_PROFILE_MODAL_ID} from "@/Pages/Utilities/Constants";
-import ProviderProfile from "@/pages/serviceProviders/requests/components/ProviderProfile";
+import ProviderProfile from "./ProviderProfile";
 import React, {useState} from "react";
 
 
@@ -12,8 +12,15 @@ export default function ServiceProvidersTable({serviceProviders}) {
         setSelectedProvider(provider)
     }
 
+    $(document).ready(function() {
+        $('#service-provider-verification-request-table').DataTable();
+        $('.dataTables_filter input[type="search"]').css(
+            {'width':'145px','display':'inline-block'}
+        );
+    } );
+
     return (
-        <table className="table dt-responsive nowrap w-100">
+        <table id="service-provider-verification-request-table" className="table dt-responsive nowrap w-100">
             <thead>
             <tr>
                 <th>Title</th>
@@ -23,17 +30,18 @@ export default function ServiceProvidersTable({serviceProviders}) {
                 <th>Requested At</th>
                 <th>Updated At</th>
                 <th>Provider Category</th>
+                <th>Verification Status</th>
                 <th />
             </tr>
             </thead>
             <tbody>
             {
                 serviceProviders.map(
-                    serviceProvider =>
-                        <ServiceProvider serviceProvider={serviceProvider} selectServiceProvider={selectProvider} />
+                    (serviceProvider, index) =>
+                        <ServiceProvider key={index+1} serviceProvider={serviceProvider} selectServiceProvider={selectProvider} />
                 )
             }
-            {/* <ProviderProfile modalId={PROVIDER_PROFILE_MODAL_ID} provider={selectedProvider} /> */}
+            {/*{selectedProvider && <ProviderProfile modalId={PROVIDER_PROFILE_MODAL_ID} provider={selectedProvider}/>}*/}
             </tbody>
         </table>
     )

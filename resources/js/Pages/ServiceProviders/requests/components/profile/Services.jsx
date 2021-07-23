@@ -1,12 +1,25 @@
-import {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {initializeDataTable} from "@/Pages/Utilities/Services";
+import {usePage} from "@inertiajs/inertia-react";
 
 const SERVICES_DATA_TABLE = 'provider-services-datatable'
 
-export default function Services() {
+export default function Services({provider}) {
+    const [services, setServices] = useState([])
+    const[sending, setSending] = useState(false)
+
     useEffect(() => {
-        initializeDataTable(true, true, SERVICES_DATA_TABLE)
-    }, [])
+        setSending(true)
+        axios.get(route('service_provider_profiles.services',provider.id))
+            .then( resp => {
+                setServices(resp.data)
+                setSending(false)
+                console.log(resp.data)
+            })
+    }, [provider])
+    // useEffect(() => {
+    //     initializeDataTable(true, true, SERVICES_DATA_TABLE)
+    // }, [])
 
     return (
         <div className="tab-pane fade" id="v-pills-services" role="tabpanel"
@@ -16,67 +29,17 @@ export default function Services() {
                     <tr>
                         <th>Name</th>
                         <th>Price</th>
-                        <th>Price currency</th>
+                        <th>Currency</th>
                     </tr>
                 </thead>
                 <tbody>
+                { services && services.map((service)=>(
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>$320,800</td>
-                        <td>System Architect</td>
+                        <td>{service.name}</td>
+                        <td>{service.pivot.price}</td>
+                        <td>{service.pivot.currency}</td>
                     </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>$170,750</td>
-                        <td>Accountant</td>
-                    </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>$170,750</td>
-                        <td>Accountant</td>
-                    </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>$170,750</td>
-                        <td>Accountant</td>
-                    </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>$170,750</td>
-                        <td>Accountant</td>
-                    </tr><tr>
-                        <td>Garrett Winters</td>
-                        <td>$170,750</td>
-                        <td>Accountant</td>
-                    </tr><tr>
-                        <td>Garrett Winters</td>
-                        <td>$170,750</td>
-                        <td>Accountant</td>
-                    </tr><tr>
-                        <td>Garrett Winters</td>
-                        <td>$170,750</td>
-                        <td>Accountant</td>
-                    </tr><tr>
-                        <td>Garrett Winters</td>
-                        <td>$170,750</td>
-                        <td>Accountant</td>
-                    </tr><tr>
-                        <td>Garrett Winters</td>
-                        <td>$170,750</td>
-                        <td>Accountant</td>
-                    </tr><tr>
-                        <td>Garrett Winters</td>
-                        <td>$170,750</td>
-                        <td>Accountant</td>
-                    </tr><tr>
-                        <td>Garrett Winters</td>
-                        <td>$170,750</td>
-                        <td>Accountant</td>
-                    </tr><tr>
-                        <td>Garrett Winters</td>
-                        <td>$170,750</td>
-                        <td>Accountant</td>
-                    </tr>
+                ))}
                 </tbody>
             </table>
         </div>

@@ -18,10 +18,11 @@ export default function ThirdForm({callback, goBack}) {
         owner_middle_name: "",
         owner_last_name: "",
         owner_mobile_number: "",
-        owner_email: ''
+        owner_email: "",
+        send_form: false
     })
 
-    function handleChange(e) {
+     function handleChange(e) {
         const key = e.target.name;
         const value =
                 e.target.type === 'checkbox' ? e.target.checked : e.target.value;
@@ -30,10 +31,18 @@ export default function ThirdForm({callback, goBack}) {
                 ...values,
                 [key]: value
         }));
+        callback({
+            form_number: 3,
+            form_three_data: values
+        })
 	}
 
-    function handleSubmit(e) {
+     function handleSubmit(e) {
         e.preventDefault();
+         setValues(values => ({
+            ...values,
+            send_form: true
+        }))
         callback({
             form_number: 3,
             form_three_data: values
@@ -96,7 +105,13 @@ export default function ThirdForm({callback, goBack}) {
                         />
                         <div className="form-group mb-0 text-right">
                             <a className="btn btn-light mr-2" onClick={() => goBack(2)}> Previous </a>
-                            <button className="btn btn-primary" type="submit"> Submit </button>
+                            <LoadingButton
+                                type="submit"
+                                className="btn btn-primary "
+                                loading={sending}
+                            >
+                                Register
+                            </LoadingButton>
                         </div>
                     </div>
                 </div>

@@ -1,46 +1,28 @@
 import FormInputError from "@/Pages/Utilities/FormInputError";
 import ModalForm from "@/Pages/Utilities/ModalForm";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import TextInput from '@/Shared/TextInput'
 import LoadingButton from '@/Shared/LoadingButton'
 import FileInput from "@/Shared/FileInput";
+import SelectInput from "@/Shared/SelectInput";
 
 
 
 
-function FileUpload(props) {
-    const {field, form} = props;
-
-    const handleChange = async (e) => {
-      const file  =  e.currentTarget.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      let base64;
-      reader.onload = await function(event) {
-          base64 = event.target?.result
-          form.setFieldValue(field.name, base64);
-      }
-    };
-
-    return (
-      <div>
-        <input type={'file'} onChange={(o) => handleChange(o)} className={'form-control'}/>
-      </div>
-    );
-  }
-
-export default function AddQualificationsModal({modalID, initialData, operation, title, callback}) {
+export default function AddMedicalRegistrationModal({modalID, initialData, operation, title, callback, services, facility}) {
     const { errors, status, alertType } = usePage().props;
     const [sending, setSending] = useState(false);
-    const [values, setValues] = useState({
-        registration_number: "",
-        certificate_name: "",
-        year: "",
-        attachment: "",
-        certificate_number: ""
-    });
+    const [data, setData] = useState({})
+
+    const [values, setValues] = useState(initialData);
+
+   useEffect(()=>{
+       setValues(initialData)
+   },[facility])
+
+
 
     function handleChange(e) {
         const key = e.target.name;
@@ -56,10 +38,27 @@ export default function AddQualificationsModal({modalID, initialData, operation,
     function handleSubmit(e) {
         e.preventDefault();
         setSending(true);
-        Inertia.post(route('login'), values).then(() => {
+        Inertia.post(route('practiceLicense.store'), values).then(() => {
             setSending(false);
         });
     }
+
+    function handleFileUpload(field, file) {
+        setValues(values => ({
+            ...values,
+            [field]: file
+        }));
+    }
+
+    useEffect(()=>{
+        $(document).ready(function () {
+            window.setTimeout(()=>{
+                $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                    $(".alert").slideUp(500);
+                });
+            },2500)
+        });
+    },[status, errors])
 
 
     function renderForm() {
@@ -67,7 +66,7 @@ export default function AddQualificationsModal({modalID, initialData, operation,
         <div>
             {
                 status && (
-                    <div className={`alert alert-success alert-dismissible bg-success text-white border-0 fade show`} role="alert">
+                    <div className={`alert alert-success alert-dismissible bg-primary text-white border-0 fade show`} role="alert">
                         <button type="button" className="close" onClick={() => setSuccess(false)}>
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -76,7 +75,7 @@ export default function AddQualificationsModal({modalID, initialData, operation,
                 )
             }
 
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-6">
                         <TextInput
@@ -106,7 +105,15 @@ export default function AddQualificationsModal({modalID, initialData, operation,
                             value={values.year}
                             onChange={handleChange}
                         />
-
+                        <TextInput
+                            name="expired_at"
+                            type="date"
+                            placeholder="Expired Date"
+                            label="Expired Date"
+                            errors={errors.expired_at}
+                            value={values.expired_at}
+                            onChange={handleChange}
+                        />
                     </div>
                     <div className="col-6">
                         <TextInput
@@ -125,16 +132,29 @@ export default function AddQualificationsModal({modalID, initialData, operation,
                             label="Attachment"
                             errors={errors.attachment}
                             value={values.attachment}
-                            onChange={handleChange}
+                            callback={handleFileUpload}
                         />
+                        <SelectInput
+                            name="service_category_id"
+                            type="text"
+                            placeholder="Authorize Service"
+                            label="Authorize Service"
+                            errors={errors.service_category_id}
+                            value={values.service_category_id}
+                            onChange={handleChange}
+                        >
+                            {services.map((service)=>(
+                                <option value={service.id} key={service.id}>{service.name}</option>
+                            ))}
+                        </SelectInput>
 
                     </div>
                 </div>
                 <div className="form-group mb-0 text-right">
-                    <button type="button" className="btn btn-light mr-3" data-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-light btn-sm mr-3" data-dismiss="modal">Close</button>
                     <LoadingButton
                         type="submit"
-                        className="btn btn-primary btn-block"
+                        className="btn btn-primary btn-sm"
                         loading={sending}
                     >
                         Save Changes

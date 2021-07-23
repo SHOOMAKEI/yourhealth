@@ -9,7 +9,7 @@
                         <span class="text-white-50 ml-1">Welcome to new landing page</span>
                     </div>
                     <h2 class="text-white font-weight-normal mb-4 mt-3 hero-title">
-                        Responsive Web UI Kit & Dashboard Template
+                        Responsive Web UI Kit & MyArticle Template
                     </h2>
 
                     <p class="mb-4 font-16 text-white-50">Hyper is a fully featured dashboard and admin template

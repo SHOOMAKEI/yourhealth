@@ -1,29 +1,124 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[50],{
 
-/***/ "./resources/js/Pages/Auth/components/IndividualRegistration.jsx":
-/*!***********************************************************************!*\
-  !*** ./resources/js/Pages/Auth/components/IndividualRegistration.jsx ***!
-  \***********************************************************************/
+/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/QualificationAttachment.jsx":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/QualificationAttachment.jsx ***!
+  \************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return IndividualRegister; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return QualificationAttachment; });
+/* harmony import */ var _Qualifications__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Qualifications */ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/Qualifications.jsx");
+
+function QualificationAttachment(award) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "card mb-2 shadow-none border"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "p-1"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "row align-items-center"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-auto"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "avatar-sm"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "avatar-title rounded"
+  }, ".FILE"))), /*#__PURE__*/React.createElement("div", {
+    className: "col pl-0"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "#",
+    className: "text-muted font-weight-bold"
+  }, award.award_title), /*#__PURE__*/React.createElement("p", {
+    className: "mb-0"
+  }, "".concat(award.award_institution, " | ").concat(award.award_year))), /*#__PURE__*/React.createElement("div", {
+    className: "col-auto"
+  }, /*#__PURE__*/React.createElement("a", {
+    href: "#",
+    "data-toggle": "tooltip",
+    "data-placement": "bottom",
+    title: "",
+    className: "btn btn-link text-muted btn-lg p-0",
+    "data-original-title": "Download"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-cloud-download"
+  })), /*#__PURE__*/React.createElement("a", {
+    href: "#",
+    "data-toggle": "tooltip",
+    "data-placement": "bottom",
+    title: "",
+    className: "btn btn-link text-danger btn-lg p-0",
+    "data-original-title": "Delete"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "uil uil-multiply"
+  })))), /*#__PURE__*/React.createElement("div", {
+    className: "row pt-2"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-12"
+  }, /*#__PURE__*/React.createElement("p", null, award.award_description)))));
+}
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Utilities/ModalForm.jsx":
+/*!****************************************************!*\
+  !*** ./resources/js/Pages/Utilities/ModalForm.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Modal; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Shared/TextInput */ "./resources/js/Shared/TextInput.js");
-/* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function Modal(_ref) {
+  var modalID = _ref.modalID,
+      title = _ref.title,
+      size = _ref.size,
+      renderForm = _ref.renderForm;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: modalID,
+    className: "modal fade",
+    tabIndex: -1,
+    role: "dialog",
+    "data-backdrop": "static",
+    "aria-labelledby": "".concat(modalID, "Label"),
+    "aria-hidden": "true"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-dialog ".concat(size === 'large' ? 'modal-lg modal-dialog-scrollable' : null)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "modal-title",
+    id: "".concat(modalID, "Label")
+  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button",
+    className: "close",
+    "data-dismiss": "modal",
+    "aria-hidden": "true"
+  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-body"
+  }, renderForm()))));
+}
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+/***/ }),
 
+/***/ "./resources/js/Shared/FileInput.js":
+/*!******************************************!*\
+  !*** ./resources/js/Shared/FileInput.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -37,132 +132,61 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
+/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
+  var className = _ref.className,
+      name = _ref.name,
+      label = _ref.label,
+      accept = _ref.accept,
+      _ref$errors = _ref.errors,
+      errors = _ref$errors === void 0 ? [] : _ref$errors,
+      callback = _ref.callback;
+  var fileInput = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
 
-
-
-
-function IndividualRegister() {
-  var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["usePage"])().props,
-      errors = _usePage$props.errors,
-      emailSentSuccessfully = _usePage$props.emailSentSuccessfully,
-      csrf_token = _usePage$props.csrf_token;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
       _useState2 = _slicedToArray(_useState, 2),
-      sending = _useState2[0],
-      setSending = _useState2[1];
+      file = _useState2[0],
+      setFile = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    first_name: "",
-    last_name: "",
-    middle_name: "",
-    mobile_number: "",
-    password_confirmation: "",
-    email: '',
-    password: '',
-    account_category: "service-provider",
-    account_category_type: "individual",
-    ownership_type: '',
-    _token: csrf_token
-  }),
-      _useState4 = _slicedToArray(_useState3, 2),
-      values = _useState4[0],
-      setValues = _useState4[1];
+  function handleFileChange(e) {
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    var base64;
 
-  function handleChange(e) {
-    var key = e.target.name;
-    var value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-    setValues(function (values) {
-      return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, key, value));
-    });
+    reader.onload = function (event) {
+      var _event$target;
+
+      base64 = (_event$target = event.target) === null || _event$target === void 0 ? void 0 : _event$target.result;
+      setFile(base64);
+      callback(name, base64);
+    };
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post(route('account.create'), values).then(function () {
-      setSending(false);
-    });
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-    className: "text-dark-50 text-left mb-3 font-weight-bold"
-  }, "Personal information"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "first_name",
-    type: "text",
-    label: "First Name",
-    placeholder: "First Name",
-    errors: errors.first_name,
-    value: values.first_name,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "last_name",
-    type: "text",
-    label: "Last Name",
-    placeholder: "Last Name",
-    errors: errors.ind_last_name,
-    value: values.ind_last_name,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "mobile_number",
-    type: "text",
-    label: "Mobile Number",
-    placeholder: "Mobile Number",
-    errors: errors.ind_mobile_number,
-    value: values.ind_mobile_number,
-    onChange: handleChange
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "middle_name",
-    type: "text",
-    label: "Middle Name",
-    placeholder: "Middle Name",
-    errors: errors.ind_middle_name,
-    value: values.ind_middle_name,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "email",
-    type: "text",
-    label: "Email",
-    placeholder: "Email",
-    errors: errors.ind_email,
-    value: values.ind_email,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "password",
-    type: "password",
-    label: "Password",
-    placeholder: "Password",
-    errors: errors.ind_password,
-    value: values.ind_password,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    name: "password_confirmation",
-    type: "password",
-    label: "Confirm Password",
-    placeholder: "Confirm Password",
-    errors: errors.ind_password_confirmation,
-    value: values.ind_password_confirmation,
-    onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group mb-0 text-right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    type: "submit",
-    className: "btn btn-primary btn-block",
-    loading: sending
-  }, "Register"))))));
-}
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group ".concat(className, "  ").concat(errors.length ? 'is-invalid' : '')
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: name
+  }, label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-file pl-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: name,
+    name: name,
+    ref: fileInput,
+    accept: accept,
+    type: "file",
+    "data-toggle": "custom-file-input",
+    className: "custom-file-input js-custom-file-input-enabled",
+    onChange: handleFileChange
+  }), label && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "custom-file-label",
+    htmlFor: name
+  }, label), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback",
+    style: {
+      display: 'block'
+    }
+  }, errors)));
+});
 
 /***/ }),
 
@@ -193,9 +217,59 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", _extends({
     disabled: loading,
     className: "focus:outline-none flex items-center ".concat(className)
-  }, props), loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "btn-spinner mr-2"
+  }, props), loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "spinner-border spinner-border-sm mr-2 mb-0",
+    role: "status",
+    "aria-hidden": "true"
   }), children);
+});
+
+/***/ }),
+
+/***/ "./resources/js/Shared/TextAreaInput.js":
+/*!**********************************************!*\
+  !*** ./resources/js/Shared/TextAreaInput.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
+  var label = _ref.label,
+      name = _ref.name,
+      className = _ref.className,
+      _ref$errors = _ref.errors,
+      errors = _ref$errors === void 0 ? [] : _ref$errors,
+      value = _ref.value,
+      props = _objectWithoutProperties(_ref, ["label", "name", "className", "errors", "value"]);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group ".concat(className, " ").concat(errors.length ? 'is-invalid' : '')
+  }, label && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: name
+  }, label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", _extends({
+    id: name,
+    name: name
+  }, props, {
+    className: "form-input form-control ".concat(errors.length ? 'error' : ''),
+    rows: "2",
+    value: value ? value : ""
+  })), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback",
+    style: {
+      display: 'block'
+    }
+  }, errors));
 });
 
 /***/ }),

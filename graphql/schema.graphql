@@ -1,16 +1,16 @@
 
 type Query {
-    users: [User!]! @guard  @paginate(defaultCount: 10) 
+    users: [User!]! @guard  @paginate(defaultCount: 10)
     user(id: ID @eq): User  @guard @find
     me: User @auth
-    provider_sub_levels: [ProviderSubLevel!]! @all 
-    serviceCategories(trashed: Trashed @trashed): [ServiceCategory!]! @guard @hasRole(role:"super-admin") @all 
+    provider_sub_levels: [ProviderSubLevel!]! @all
+    serviceCategories(trashed: Trashed @trashed): [ServiceCategory!]! @guard @hasRole(role:"super-admin") @all
     serviceCategory(id: ID @eq): ServiceCategory  @guard @find
-    serviceSubCategories(trashed: Trashed @trashed): [ServiceSubCategory!]! @guard @all 
+    serviceSubCategories(trashed: Trashed @trashed): [ServiceSubCategory!]! @guard @all
     serviceSubCategory(id: ID @eq): ServiceSubCategory  @guard @find
-    services(trashed: Trashed @trashed): [Service!]! @guard  @all 
+    services(trashed: Trashed @trashed): [Service!]! @guard  @all
     service(id: ID @eq): Service  @guard @find
-    requestedService(orderBy: _ @orderBy(columns: ["created_at"])): [RequestedService] @all 
+    requestedService(orderBy: _ @orderBy(columns: ["created_at"])): [RequestedService] @all
     unverifiedServiceProviderRequests: [ProviderProfile]
         @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@index")
     providerProfileInfo:ProviderProfile @guard
@@ -43,22 +43,25 @@ type Query {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderFacilityServicesInfoWithId")
     providerFacilityUnelectedServices(id: ID @rules(apply: ["required","exists:provider_facilities,id"])):[ProviderFacilityServices] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@getProviderFacilityUnselectedService")
-    
+
     #package queries
-    packageMembershipsCategories: [MembershipCategory!]! @guard  @all 
+    packageMembershipsCategories: [MembershipCategory!]! @guard  @all
     packageMembershipsCategory(id: ID @eq): MembershipCategory  @guard @find
-    packageMembershipsClasses: [MembershipClass!]! @guard @all 
+    packageMembershipsClasses: [MembershipClass!]! @guard @all
     PackageMembershipClass(id: ID @eq): MembershipClass  @guard @find
-    PackagePlans: [PackagePlan!]! @guard  @all 
+    PackagePlans: [PackagePlan!]! @guard  @all
     PackagePlan(id: ID @eq): PackagePlan  @guard @find
-    PackageFeatures: [PackagePlan!]! @guard  @all 
+    PackageFeatures: [PackagePlan!]! @guard  @all
     PackageFeature(id: ID @eq): PackagePlan  @guard @find
-    
+
+    #client
+
+
 }
 
 type Mutation {
-    #account creation 
-    createAccount(input: AccountInput): User 
+    #account creation
+    createAccount(input: AccountInput): User
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@create")
     updateProviderProfile(input: ProviderProfileInput): ProviderProfile @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@updateProviderProfile")
@@ -94,7 +97,7 @@ type Mutation {
     #     @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createProviderProfileCalendar")
     createRequestedService(input: RequestedServiceInput): RequestedService @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@createRequestedService")
-    submittProfileForVerification: ProviderProfile @guard
+    submitProfileForVerification: ProviderProfile @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\CreateNewUserAccountController@submitted")
     verifyServiceProviderRequest(id:ID @rules(apply:["required", "exists:provider_profiles,id"])): ProviderProfile @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Admin\\ProviderProfileAdminController@verify")
@@ -106,11 +109,11 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@createProviderProfileDailySchedule")
     createProviderFacilityDailySchedule(input:[ProviderFacilityDaySessionInput]!):[DaySession] @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\AccountRegistrationController@createProviderProfileDailySchedule")
-    
+
     #authentication mobile
     login(input: loginInput!): loginResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@login")
-    logout(input: logoutInput): loginResponse @guard 
+    logout(input: logoutInput): loginResponse @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@logout")
     verifyOtpCode(input: verifyOtpCodeInput!): loginResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@verifyOtpCode")
@@ -126,13 +129,13 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\MobileAuthController@checkEmailVerification")
     updateUserPassword(input: updateUserPassword): Response @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@update")
-    resetUserPasswordViaOtp(input: resetUserPasswordViaOtpInput): Response 
+    resetUserPasswordViaOtp(input: resetUserPasswordViaOtpInput): Response
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@resetUserPasswordViaOtp")
-    resetUserPasswordViaEmail(input: resetUserPasswordViaEmailInput): Response 
+    resetUserPasswordViaEmail(input: resetUserPasswordViaEmailInput): Response
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@resetUserPasswordViaEmail")
-    verifyUserPasswordViaOtp(input: verifyUserPasswordViaOtpInput): Response 
+    verifyUserPasswordViaOtp(input: verifyUserPasswordViaOtpInput): Response
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@verifyUserPasswordViaOtp")
-    verifyUserPasswordViaEmail(input: verifyUserPasswordViaEmailInput): Response 
+    verifyUserPasswordViaEmail(input: verifyUserPasswordViaEmailInput): Response
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\PasswordController@resetUserPasswordViaEmail")
     toggleOtp: User @guard
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AccountSettingsController@toggleOTP")
@@ -151,8 +154,7 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@login")
     logoutSession(input: logoutSessionInput): loginSessionResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@logout")
-    verifyOtpCodeSession(input: verifyOtpCodeSessionInput!): loginSessionResponse
-        @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@verifyOtpCode")
+
     verify2FACodeSession(input: verify2FACodeSessionInput!): loginSessionResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@verify2FACode")
     verifyMobileNumberSession(input: verifyMobileNumberSessionInput!): loginSessionResponse
@@ -162,7 +164,7 @@ type Mutation {
     resendEmailVerificationSession(input: resendEmailVerificationSessionInput!): loginSessionResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@resendEmailVerification")
 
-   
+
    #service registration
     createServiceCategory(name: String! @rules(apply: [ "string", "max:255"]), description: String! @rules(apply: [ "string", "max:255"]), is_active: Boolean): ServiceCategory @guard @create
     updateServiceCategory(id: ID!, name: String! @rules(apply: [ "string", "max:255"]), description: String! @rules(apply: [ "string", "max:255"])): ServiceCategory @guard @update
@@ -194,3 +196,4 @@ type Mutation {
 #import auth.graphql
 #import packages_registration.graphql
 #import client_registration.graphql
+#import consultation.graphql

@@ -6,6 +6,7 @@ import LoadingButton from '@/Shared/LoadingButton'
 import FirstForm from './facilityForms/FirstForm'
 import SecondForm from './facilityForms/SecondForm'
 import ThirdForm from './facilityForms/ThirdForm'
+import {useEffect} from "react/cjs/react.production.min";
 
 
 export default function FacilityRegister() {
@@ -14,7 +15,13 @@ export default function FacilityRegister() {
         const [values, setValues] = useState({})
         const [sending, setSending] = useState(false);
 
-    function createInputData({form_number, form_one_data, form_two_data, form_three_data}) {
+        // useEffect(() => {
+        //     if (sending) {
+        //         handleSubmit();
+        //     }
+        // }, [sending]);
+
+     function createInputData({form_number, form_one_data, form_two_data, form_three_data}) {
         if(form_number === 1) {
             setValues({
                 ...values,
@@ -42,41 +49,52 @@ export default function FacilityRegister() {
                 ownership_type: form_two_data?.ownership_type,
                 password: form_two_data?.password,
                 password_confirmation: form_two_data?.password_confirmation,
+                send_form_two:form_two_data?.send_form_two,
 
                 // // incase the user owns the facility themselves
-                // owner_first_name: form_two_data?.owner_first_name,
-                // owner_middle_name: form_two_data?.owner_middle_name,
-                // owner_last_name: form_two_data?.owner_last_name,
-                // owner_email: form_two_data?.owner_email,
-                // owner_mobile_number: form_two_data?.owner_mobile_number,
+
             })
 
             if (form_two_data?.ownership_type === 'other') {
                 setStepNumber(3)
+
             } else {
-                 handleSubmit();
+                if(values?.send_form_two){
+                    handleSubmit();
+                }
 
             }
         }
 
         if (form_number === 3) {
-            setValues({
+              setValues({
                 ...values,
                 owner_first_name: form_three_data?.owner_first_name,
                 owner_middle_name: form_three_data?.owner_middle_name,
                 owner_last_name: form_three_data?.owner_last_name,
                 owner_email: form_three_data?.owner_email,
                 owner_mobile_number: form_three_data?.owner_mobile_number,
+                send_form: form_three_data?.send_form
             })
-            handleSubmit();
+
+            if(values?.send_form){
+                handleSubmit();
+            }
 
         }
     }
+
+
     function handleSubmit() {
         // e.preventDefault();
         setSending(true);
         Inertia.post(route('account.create'), values).then(() => {
             setSending(false);
+            setValues({
+                ...values,
+                send_form:false,
+                send_form_two:false
+            })
         });
     }
 

@@ -5,13 +5,13 @@ import TextInput from '@/Shared/TextInput'
 import LoadingButton from '@/Shared/LoadingButton'
 
 export default () => {
-    const { flash, errors } = usePage().props;
+    const { status,token, email, errors } = usePage().props;
     const [sending, setSending] = useState(false);
     const [values, setValues] = useState({
-        email: '',
+        email: email,
         password: '',
         password_confirmation:'',
-        token: flash.token
+        token: token
 
     });
 
@@ -49,10 +49,10 @@ export default () => {
               <div className="login-form">
                   <div className="card mb-0 mt-5 p-4">
                     <div className="card-body">
-                      <h6 className="text-center mb-3">Reset Password</h6>
-                      {flash.status && 
+                      <h4 className="text-center mb-3">Reset Password</h4>
+                      {status &&
                         <div class="alert alert-primary alert-borderless" role="alert">
-                            {flash.status}
+                            {status}
                         </div>
                         }
                       <form onSubmit={handleSubmit}>
@@ -60,6 +60,7 @@ export default () => {
                         name="email"
                         type="text"
                         placeholder="Email"
+                        label="Email"
                         errors={errors.email}
                         value={values.email}
                         onChange={handleChange}
@@ -68,26 +69,28 @@ export default () => {
                         name="password"
                         type="password"
                         placeholder="Password"
+                        label="Password"
                         errors={errors.password}
                         value={values.password}
                         onChange={handleChange}
                       />
                       <TextInput
                         name="password_confirmation"
-                        type="text"
+                        type="password"
                         placeholder="Confirm Password"
+                        label="Confirm Password"
                         errors={errors.password_confirmation}
                         value={values.password_confirmation}
                         onChange={handleChange}
                       />
-                       
+
                         <div className="form-group my-3 row">
                           <div className="col-12 text-right">
-                          <LoadingButton 
-                              type="submit" 
-                              className="btn btn-primary btn-block" 
+                          <LoadingButton
+                              type="submit"
+                              className="btn btn-primary btn-block"
                               loading={sending}
-                            > 
+                            >
                             Reset Password
                             </LoadingButton>
                           </div>

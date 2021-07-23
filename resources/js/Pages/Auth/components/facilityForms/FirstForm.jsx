@@ -5,32 +5,6 @@ import TextInput from '@/Shared/TextInput'
 import SelectInput from '@/Shared/SelectInput'
 import LoadingButton from '@/Shared/LoadingButton'
 
-// function FileUpload(props) {
-//     const {field, form} = props;
-
-//     const handleChange = async (e) => {
-//       const file  =  e.currentTarget.files[0];
-//       const reader = new FileReader();
-//       reader.readAsDataURL(file);
-//       let base64;
-//       reader.onload = await function(event) {
-//           base64 = event.target?.result
-//           form.setFieldValue(field.name, base64);
-//       }
-//     };
-
-//     return (
-//       <div>
-//         <input type={'file'} onChange={(o) => handleChange(o)} className={'form-control'}/>
-//       </div>
-//     );
-// }
-
-
-
-// interface formProps {
-//     callback: ({}: createInputDataValues) => void;
-// }
 
 export default function FirstForm({callback, data}) {
     const { errors, emailSentSuccessfully } = usePage().props;

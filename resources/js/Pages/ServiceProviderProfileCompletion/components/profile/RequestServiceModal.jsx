@@ -2,92 +2,65 @@ import React, { useEffect, useState } from "react";
 import ModalForm from "@/Pages/Utilities/ModalForm";
 import TextInput from "@/Shared/TextInput";
 import LoadingButton from "@/Shared/LoadingButton";
+import {usePage} from "@inertiajs/inertia-react";
+import {Inertia} from "@inertiajs/inertia";
+import TextAreaInput from "@/Shared/TextAreaInput";
 
 export default function RequestServiceModal({
   modalID,
   operation,
   title,
 }) {
-  const initialValues= {
-    name: "",
-    description: "No description",
-  };
-  const { selectedService } = useSelector(state => state.servicesStore);
-  const [success, setSuccess] = useState(false)
+    const { errors, status, alertType } = usePage().props;
+    const [sending, setSending] = useState(false);
+    const [values, setValues] = useState({
+        name: "",
+        description: "No description",
+    });
 
-  useEffect(() => {
-    if (addServiceCBResponse.data) {
-       setSuccess(true);
-        const timer = setTimeout(() => {
-            setSuccess(false);
-            clearTimeout(timer)
-        }, 5000)
+    function handleChange(e) {
+        const key = e.target.name;
+        const value =
+            e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+
+        setValues(values => ({
+            ...values,
+            [key]: value
+        }));
     }
- }, [addServiceCBResponse.data])
 
+    function handleSubmit(e) {
+        e.preventDefault();
+        setSending(true);
+        Inertia.post(route('requestService.store'), values).then(() => {
+            setSending(false);
+        });
+    }
 
-  function onSubmit(
-    values,
-    { setSubmitting }
-  ) {
-    setTimeout(() => {
-      _addService(
-        values.name,
-        values.description,
-      );
-
-      setSubmitting(false);
-    }, 500);
-  }
-
-  function _addService(name, description) {
-    let service = {
-      name: name,
-      description: description,
-    };
-    addServiceCB({variables: {input: service}})
-  }
+    useEffect(()=>{
+        $(document).ready(function () {
+            window.setTimeout(()=>{
+                $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                    $(".alert").slideUp(500);
+                });
+            },2500)
+        });
+    },[status, errors])
 
   function renderForm() {
-    return (
-      addServiceCBResponse.called && addServiceCBResponse.loading ?
-        <Spinner /> :
-      <Formik
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-        validationSchema={ServiceSchema}
-        enableReinitialize={true}
-      >
-        {({ errors, touched, setFieldValue }) => {
-          useEffect(() => {
-            if (operation === "update") {
-              setFieldValue("name", selectedService.name);
-              setFieldValue("description", selectedService.description || 'No description');
-            }
-          }, [selectedService]);
-
           return (
-            <form>
+            <form onSubmit={handleSubmit}>
               {
-                  success && (
-                    <div className={`alert alert-success alert-dismissible bg-success text-white border-0 fade show`} role="alert">
-                        <button type="button" className="close" onClick={() => setSuccess(false)}>
+                  status && (
+                    <div className={`alert alert-success alert-dismissible bg-primary text-white border-0 fade show`} role="alert">
+                        <button type="button" className="close" >
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <strong>Success - </strong> Operation was completed successfully!
+                        <strong>Success - </strong> {status}
                     </div>
                   )
                 }
-                {
-                  addServiceCBResponse.errors && addServiceCBResponse.errors.map(error => (
-                    <div className={`alert alert-danger alert-dismissible bg-danger text-white border-0 fade show`} role="alert">
-                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <strong>Error - </strong> {error.message}
-                    </div>
-                  ))
-                }
+
                 <TextInput
                     name="name"
                     type="text"
@@ -97,7 +70,7 @@ export default function RequestServiceModal({
                     value={values.name}
                     onChange={handleChange}
                 />
-                <TextInput
+                <TextAreaInput
                     name="description"
                     type="text"
                     placeholder="Service Description"
@@ -108,19 +81,16 @@ export default function RequestServiceModal({
                 />
 
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-light" data-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-light btn-sm" data-dismiss="modal">Close</button>
                     <LoadingButton
                         type="submit"
-                        className="btn btn-primary btn-block"
+                        className="btn btn-primary btn-sm"
                         loading={sending}
                     >
                         Save Changes
                     </LoadingButton>
                 </div>
             </form>
-          );
-        }}
-      </Formik>
     );
   }
 

@@ -1,15 +1,53 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[12],{
 
-/***/ "./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/ProfileInfo.jsx":
-/*!************************************************************************************************!*\
-  !*** ./resources/js/Pages/ServiceProviderProfileCompletion/components/profile/ProfileInfo.jsx ***!
-  \************************************************************************************************/
+/***/ "./resources/js/Pages/Dashboard.js":
+/*!*****************************************!*\
+  !*** ./resources/js/Pages/Dashboard.js ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProfileInfo; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Shared_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Shared/Layout */ "./resources/js/Shared/Layout.js");
+
+
+
+var Dashboard = function Dashboard() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card mt-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-header pdn-20 pdn-sm-x-40"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", null, "Blank Page")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body pdn-sm-40 pdn-t-20-imp"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "card-text mb-3 wth-sm-70p"
+  }, "Paragraph title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pdn-sm-55 pdn-15 bdr"
+  }, "Page contents go here. Create something awesome!")));
+};
+
+Dashboard.layout = function (page) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Shared_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    children: page
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Dashboard);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/VerifiedServiceProviders/FirmManagement/Company.jsx":
+/*!********************************************************************************!*\
+  !*** ./resources/js/Pages/VerifiedServiceProviders/FirmManagement/Company.jsx ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Pages_Utilities_ModalForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/Utilities/ModalForm */ "./resources/js/Pages/Utilities/ModalForm.jsx");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
@@ -20,8 +58,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/TextInput */ "./resources/js/Shared/TextInput.js");
 /* harmony import */ var _Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Shared/LoadingButton */ "./resources/js/Shared/LoadingButton.js");
 /* harmony import */ var _Shared_TextAreaInput__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Shared/TextAreaInput */ "./resources/js/Shared/TextAreaInput.js");
-/* harmony import */ var _Shared_FileInput__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Shared/FileInput */ "./resources/js/Shared/FileInput.js");
-/* harmony import */ var _Shared_SelectInput__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Shared/SelectInput */ "./resources/js/Shared/SelectInput.js");
+/* harmony import */ var _Shared_Layout__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Shared/Layout */ "./resources/js/Shared/Layout.js");
+/* harmony import */ var _Pages_Dashboard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Pages/Dashboard */ "./resources/js/Pages/Dashboard.js");
+/* harmony import */ var _Shared_PageTitle__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/Shared/PageTitle */ "./resources/js/Shared/PageTitle.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -49,12 +88,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function ProfileInfo(_ref) {
-  var _user$provider_profil, _user$provider_profil2, _user$provider_profil3, _user$provider_profil4, _user$provider_profil5, _user$provider_profil6, _user$provider_profil7, _user$provider_profil8, _user$provider_profil9, _user$provider_profil10, _user$provider_profil11, _user$provider_profil12, _user$provider_profil13, _user$provider_profil14;
 
-  var user = _ref.user,
-      provider_sub_levels = _ref.provider_sub_levels;
+
+var Company = function Company() {
   var _usePage$props = Object(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__["usePage"])().props,
+      company = _usePage$props.company,
       errors = _usePage$props.errors,
       status = _usePage$props.status,
       alertType = _usePage$props.alertType;
@@ -65,20 +103,19 @@ function ProfileInfo(_ref) {
       setSending = _useState2[1];
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
-    'title': ((_user$provider_profil = user.provider_profile) === null || _user$provider_profil === void 0 ? void 0 : _user$provider_profil.title) || '',
-    'first_name': ((_user$provider_profil2 = user.provider_profile) === null || _user$provider_profil2 === void 0 ? void 0 : _user$provider_profil2.first_name) || '',
-    'middle_name': ((_user$provider_profil3 = user.provider_profile) === null || _user$provider_profil3 === void 0 ? void 0 : _user$provider_profil3.middle_name) || '',
-    'last_name': ((_user$provider_profil4 = user.provider_profile) === null || _user$provider_profil4 === void 0 ? void 0 : _user$provider_profil4.last_name) || '',
-    'username': ((_user$provider_profil5 = user.provider_profile) === null || _user$provider_profil5 === void 0 ? void 0 : _user$provider_profil5.username) || '',
-    'mobile_number': ((_user$provider_profil6 = user.provider_profile) === null || _user$provider_profil6 === void 0 ? void 0 : _user$provider_profil6.mobile_number) || '',
-    'alternative_mobile_number': ((_user$provider_profil7 = user.provider_profile) === null || _user$provider_profil7 === void 0 ? void 0 : _user$provider_profil7.alternative_mobile_number) || '',
-    'email': ((_user$provider_profil8 = user.provider_profile) === null || _user$provider_profil8 === void 0 ? void 0 : _user$provider_profil8.email) || '',
-    'address': ((_user$provider_profil9 = user.provider_profile) === null || _user$provider_profil9 === void 0 ? void 0 : _user$provider_profil9.address) || '',
-    'physical_address': ((_user$provider_profil10 = user.provider_profile) === null || _user$provider_profil10 === void 0 ? void 0 : _user$provider_profil10.physical_address) || '',
-    'dob': ((_user$provider_profil11 = user.provider_profile) === null || _user$provider_profil11 === void 0 ? void 0 : _user$provider_profil11.dob) && ((_user$provider_profil12 = user.provider_profile) === null || _user$provider_profil12 === void 0 ? void 0 : _user$provider_profil12.dob.split(' ')[0]) || '',
-    'gender': ((_user$provider_profil13 = user.provider_profile) === null || _user$provider_profil13 === void 0 ? void 0 : _user$provider_profil13.gender) || 'Male',
-    'bio': ((_user$provider_profil14 = user.provider_profile) === null || _user$provider_profil14 === void 0 ? void 0 : _user$provider_profil14.bio) || 'No Bio',
-    'provider_sub_level_id': provider_sub_levels[0].id
+    address: (company === null || company === void 0 ? void 0 : company.address) || "",
+    description: (company === null || company === void 0 ? void 0 : company.description) || "",
+    alternative_mobile_number: (company === null || company === void 0 ? void 0 : company.alternative_mobile_number) || "",
+    email: (company === null || company === void 0 ? void 0 : company.email) || "",
+    mobile_number: (company === null || company === void 0 ? void 0 : company.mobile_number) || "",
+    name: (company === null || company === void 0 ? void 0 : company.name) || "",
+    physical_address: (company === null || company === void 0 ? void 0 : company.physical_address) || "",
+    registration_date: (company === null || company === void 0 ? void 0 : company.registration_date) || "",
+    registration_number: (company === null || company === void 0 ? void 0 : company.registration_number) || "",
+    tin: (company === null || company === void 0 ? void 0 : company.tin) || "",
+    trading_name: (company === null || company === void 0 ? void 0 : company.trading_name) || "",
+    vrn: (company === null || company === void 0 ? void 0 : company.vrn) || "",
+    website: (company === null || company === void 0 ? void 0 : company.website) || ""
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       values = _useState4[0],
@@ -95,53 +132,46 @@ function ProfileInfo(_ref) {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('login'), values).then(function () {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__["Inertia"].post(route('companyInfo.update'), values).then(function () {
       setSending(false);
     });
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "tab-pane fade active show",
-    id: "v-pills-profile",
-    role: "tabpanel",
-    "aria-labelledby": "v-pills-profile-tab"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: ""
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_PageTitle__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    title: "My Company"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "card card-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_SelectInput__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
     name: "name",
     type: "text",
-    placeholder: "Facility Name",
-    label: "Facility Name",
+    placeholder: "Company Name",
+    label: "Company Name",
     errors: errors.name,
     value: values.name,
     onChange: handleChange
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "Mr"
-  }, "Mr"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "Mrs"
-  }, "Mrs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "Dr"
-  }, "Dr"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "Nurse"
-  }, "Nurse"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "Prof"
-  }, "Prof")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "first_name",
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "website",
     type: "text",
-    placeholder: "First Name",
-    label: "First Name",
-    errors: errors.first_name,
-    value: values.first_name,
+    placeholder: "Website",
+    label: "Website",
+    errors: errors.website,
+    value: values.website,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "last_name",
+    name: "tin",
     type: "text",
-    placeholder: "Last Name",
-    label: "Last Name",
-    errors: errors.last_name,
-    value: values.last_name,
+    placeholder: "TIN Number",
+    label: "TIN Number",
+    errors: errors.tin,
+    value: values.tin,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
     name: "mobile_number",
@@ -159,43 +189,40 @@ function ProfileInfo(_ref) {
     errors: errors.address,
     value: values.address,
     onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_SelectInput__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    name: "gender",
-    type: "text",
-    placeholder: "Gender",
-    label: "Gender",
-    errors: errors.gender,
-    value: values.gender,
-    onChange: handleChange
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "Male"
-  }, "Male"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "Female"
-  }, "Female")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "date",
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "registration_date",
     type: "date",
-    placeholder: "Date of Birth",
-    label: "Date of Birth",
-    errors: errors.date,
-    value: values.date,
+    placeholder: "Registration Date",
+    label: "Registration Date",
+    errors: errors.registration_date,
+    value: values.registration_date,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextAreaInput__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    name: "description",
+    type: "text",
+    placeholder: "Description",
+    label: "Description",
+    rows: 4,
+    errors: errors.description,
+    value: values.description,
     onChange: handleChange
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "username",
+    name: "trading_name",
     type: "text",
-    placeholder: "Username",
-    label: "Username",
-    errors: errors.username,
-    value: values.username,
+    placeholder: "Trading Name",
+    label: "Trading Name",
+    errors: errors.trading_name,
+    value: values.trading_name,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "middle_name",
+    name: "vrn",
     type: "text",
-    placeholder: "Middle Name",
-    label: "Middle Name",
-    errors: errors.middle_name,
-    value: values.middle_name,
+    placeholder: "VRN",
+    label: "VRN",
+    errors: errors.vrn,
+    value: values.vrn,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
     name: "email",
@@ -208,8 +235,8 @@ function ProfileInfo(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
     name: "alternative_mobile_number",
     type: "text",
-    placeholder: "Alternate Phone number",
-    label: "Alternate Phone number",
+    placeholder: "Alternative Mobile Number",
+    label: "Alternative Mobile Number",
     errors: errors.alternative_mobile_number,
     value: values.alternative_mobile_number,
     onChange: handleChange
@@ -221,45 +248,37 @@ function ProfileInfo(_ref) {
     errors: errors.physical_address,
     value: values.physical_address,
     onChange: handleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_SelectInput__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    name: "provider_sub_level_id",
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    name: "registration_number",
     type: "text",
-    placeholder: "Provider Sub Level",
-    label: "Provider Sub Level",
-    errors: errors.provider_sub_level_id,
-    value: values.provider_sub_level_id,
+    placeholder: "Registration Number",
+    label: "Registration Number",
+    errors: errors.registration_number,
+    value: values.registration_number,
     onChange: handleChange
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "Mrs"
-  }, "Mrs"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "Dr"
-  }, "Dr"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "Dr"
-  }, "Nurse"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-    value: "Dr"
-  }, "Prof")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    name: "bio",
-    type: "text",
-    placeholder: "Bio",
-    label: "Bio",
-    errors: errors.bio,
-    value: values.bio,
-    onChange: handleChange
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group mb-0 text-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_LoadingButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
     type: "submit",
     className: "btn btn-primary btn-block",
     loading: sending
-  }, "Save Changes"))));
-}
+  }, "Save Changes")))))));
+};
+
+Company.layout = function (page) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_Layout__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    children: page
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Company);
 
 /***/ }),
 
-/***/ "./resources/js/Shared/SelectInput.js":
-/*!********************************************!*\
-  !*** ./resources/js/Shared/SelectInput.js ***!
-  \********************************************/
+/***/ "./resources/js/Shared/PageTitle.js":
+/*!******************************************!*\
+  !*** ./resources/js/Shared/PageTitle.js ***!
+  \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -267,37 +286,30 @@ function ProfileInfo(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
-  var label = _ref.label,
-      name = _ref.name,
-      className = _ref.className,
-      children = _ref.children,
-      _ref$errors = _ref.errors,
-      errors = _ref$errors === void 0 ? [] : _ref$errors,
-      props = _objectWithoutProperties(_ref, ["label", "name", "className", "children", "errors"]);
-
+  var title = _ref.title,
+      link_url = _ref.link_url,
+      link_name = _ref.link_name;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group ".concat(className)
-  }, label && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: name
-  }, label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", _extends({
-    id: name,
-    name: name
-  }, props, {
-    className: "custom-select ".concat(errors.length ? 'error' : '')
-  }), children), errors && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "invalid-feedback ",
-    style: {
-      display: 'block'
-    }
-  }, errors));
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "page-title-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "page-title-right"
+  }, link_url && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__["InertiaLink"], {
+    href: link_url,
+    className: "btn btn-primary"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "uil uil-plus mr-1"
+  }), link_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "page-title"
+  }, title))));
 });
 
 /***/ })

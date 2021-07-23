@@ -1,13 +1,13 @@
 window._ = require('lodash');
 
 try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
+    // window.Popper = require('popper.js').default;
+    // window.$ = window.jQuery = require('jquery');
 } catch (e) {}
 
-import * as Bootstrap from 'bootstrap'
-
-window.Bootstrap = Bootstrap;
+// import * as Bootstrap from 'bootstrap'
+//
+// window.Bootstrap = Bootstrap;
 
 
 

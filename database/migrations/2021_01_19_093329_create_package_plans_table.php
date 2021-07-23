@@ -16,12 +16,13 @@ class CreatePackagePlansTable extends Migration
         Schema::create('package_plans', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('membership_category_id')->constrained()->onDelete('cascade');
-            $table->foreignId('membership_class_id')->constrained()->onDelete('cascade');
+            $table->foreignId('membership_category_id')->constrained()->restrictOnDelete();
             $table->boolean('is_active')->default(true);
-            $table->decimal('price')->default('0.00');
-            $table->decimal('signup_fee')->default('0.00');
-            $table->string('currency', 3);
+            $table->boolean('has_price')->default(false);
+            $table->boolean('has_member_range')->default(false);
+            $table->double('price')->default('0.00');
+            $table->double('signup_fee')->default('0.00');
+            $table->string('currency', 3)->default('TZS');
             $table->smallInteger('trial_period')->unsigned()->default(0);
             $table->string('trial_interval')->default('day');
             $table->smallInteger('invoice_period')->unsigned()->default(0);

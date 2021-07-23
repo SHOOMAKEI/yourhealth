@@ -1,77 +1,85 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import {usePage} from "@inertiajs/inertia-react";
+import {Inertia} from "@inertiajs/inertia";
+import TextInput from "@/Shared/TextInput";
+import SelectInput from "@/Shared/SelectInput";
+import LoadingButton from "@/Shared/LoadingButton";
 
 
-export default function UnregisteredServices({services, callback}) {
-    const initialValues = {
+export default function UnregisteredServices({services,shownServices, callback, user, facility}) {
+    const { errors, status, alertType } = usePage().props;
+    const [sending, setSending] = useState(false);
+    const [selectedService, setSelectedService] = useState({});
+    const [values, setValues] = useState({
+        service_id: '',
         price: 0,
         currency: "TZS",
+        compare_price: 0,
+        provider_facility_id:  null
+    });
+
+    useEffect(()=>
+        setValues(values => ({
+        ...values,
+        service_id: selectedService.id
+    })),[selectedService])
+
+   useEffect(()=>
+       facility && setValues(values => ({
+            ...values,
+            provider_facility_id: facility
+        })),[facility])
+
+    function handleChange(e) {
+        const key = e.target.name;
+        const value =
+            e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+
+        setValues(values => ({
+            ...values,
+            [key]: value
+        }));
     }
 
-    const [shownServices, setShownServices] = useState([...services]);
-    const [selectedService, setSelectedService] = useState({})
-    const [success, setSuccess] = useState(false);
-
-    function onSubmit(values, { setSubmitting } ) {
-        let _registeredService = [{
-            service_id: selectedService.id,
-            price: values.price,
-            currency: values.currency,
-            compare_price: 0
-        }, ]
-
-        registerService({variables: {input: _registeredService}})
-    }
-
-    useEffect(() => {
-        let data = registerServiceResponse.data
-
-        if (data && data.createProviderProfileServices) {
-            callback()
-            setSuccess(true);
-            const timer = setTimeout(() => {
-                setSuccess(false);
-                clearTimeout(timer)
-            }, 5000)
+    function handleSubmit(e) {
+        e.preventDefault();
+        setSending(true);
+        if(user.provider_profile.account_category_type === 'individual')
+        {
+            Inertia.post(route('providerService.store'), values).then(() => {
+                setSending(false);
+            });
+        }else {
+            Inertia.post(route('facilityService.store'), values).then(() => {
+                setSending(false);
+            });
         }
 
-    }, [registerServiceResponse.data])
-
-    useEffect(() => {
-        setShownServices(services.slice(0, 5))
-    }, [])
-
-    function onSearch() {
-        $('#search-input-unregistered').on('input',function(e){
-            let input = $(this);
-            let val = input.val();
-
-            if (input.data("lastval") != val) {
-                input.data("lastval", val);
-
-                let newShownServices = services.filter(service => {
-                    if (service.name.toLocaleLowerCase().includes(val)) {
-                        return service
-                    }
-                })
-
-                setShownServices(newShownServices);
-            }
-        });
     }
+    $(document).ready(function() {
+        $('#unregistered-services-table').DataTable();
+        $('.dataTables_filter input[type="search"]').css(
+            {'width':'145px','display':'inline-block'}
+        );
+    } );
+
+
+    useEffect(()=>{
+        $(document).ready(function () {
+            window.setTimeout(()=>{
+                $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                    $(".alert").slideUp(500);
+                });
+            },2500)
+        });
+    },[status, errors])
 
     return (
         <div>
-            <div className="page-title-right mb-2">
-                <div className="app-search">
-                    <form>
-                        <div className="input-group">
-                            <input type="text" className="form-control" placeholder="Search..."
-                            id="search-input-unregistered" onInput={onSearch}/>
-                        </div>
-                    </form>
-                </div>
+            <div className="page-title-right mb-4">
+                <h4> Unregistered Services</h4>
             </div>
-            <table className="table table-centered table-borderless mb-0">
+            <table id="unregistered-services-table" className="table table-centered table-border mb-0 font-14">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -80,7 +88,7 @@ export default function UnregisteredServices({services, callback}) {
                 </thead>
                 <tbody>
                     {
-                        shownServices.slice(0, 4).map((service) => (
+                        services &&  services.map((service) => (
                             <tr key={service.id}>
                                 <td>{service.name}</td>
                                 <td>
@@ -104,55 +112,59 @@ export default function UnregisteredServices({services, callback}) {
                             </div>
                             <div className="modal-body">
                                 {
-                                    success && (
-                                        <div className={`alert alert-success alert-dismissible bg-success text-white border-0 fade show`} role="alert">
-                                            <button type="button" className="close" onClick={() => setSuccess(false)}>
+                                    status && (
+                                        <div className={`alert alert-success alert-dismissible bg-primary text-white border-0 fade show`} role="alert">
+                                            <button type="button" className="close" >
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
-                                            <strong>Success - </strong> Operation was completed successfully!
+                                            <strong>Success - </strong> {status}
                                         </div>
                                     )
                                 }
 
                                 {
-                                    registerServiceResponse.called && registerServiceResponse.loading ?
-                                        <Spinner /> :
-                                        (
-                                            <Formik
-                                                initialValues={initialValues}
-                                                onSubmit={onSubmit}
-                                                validationSchema={ServiceRegistrationSchema}
+
+                                    <form onSubmit={handleSubmit}>
+                                        <div className="row">
+                                            <div className="col-6">
+                                                <TextInput
+                                                    name="price"
+                                                    type="text"
+                                                    placeholder="Price"
+                                                    label="Price"
+                                                    errors={errors.price}
+                                                    value={values.price}
+                                                    onChange={handleChange}
+                                                />
+                                            </div>
+                                            <div className="col-6">
+                                                <SelectInput
+                                                    name="currency"
+                                                    type="text"
+                                                    placeholder="Currency"
+                                                    label="Currency"
+                                                    errors={errors.currency}
+                                                    value={values.currency}
+                                                    onChange={handleChange}
+                                                >
+                                                    <option value="TZS">TZS</option>
+                                                    <option value="KES">KES</option>
+                                                    <option value="UGS">UGS</option>
+                                                </SelectInput>
+                                            </div>
+                                        </div>
+                                        <div className="form-group mb-0 text-right">
+                                            <button type="button" className="btn btn-light btn-sm mr-3" data-dismiss="modal">Close</button>
+                                            <LoadingButton
+                                                type="submit"
+                                                className="btn btn-primary btn-sm"
+                                                loading={sending}
                                             >
-                                                {({ errors, touched }) => (
-                                                    <Form>
-                                                        <div className="row">
-                                                            <div className="col-6">
-                                                                <div className="form-group">
-                                                                    <label htmlFor="price">Price</label>
-                                                                    <Field id="price" name="price" placeholder="John" type="text" className="form-control"/>
-                                                                    {errors.price && touched.price ? <FormInputError title="Price error" message={errors.price} /> : null}
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-6">
-                                                                <div className="form-group">
-                                                                    <label htmlFor="currency">Currency</label>
-                                                                    <Field as="select" name="currency" id="currency" className="form-control">
-                                                                        <option value="TZS">TZS</option>
-                                                                        <option value="KES">KES</option>
-                                                                        <option value="UGS">UGS</option>
-                                                                    </Field>
-                                                                    {errors.currency && touched.currency ? <FormInputError currency="Currency error" message={errors.currency} /> : null}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="form-group mb-0 text-right">
-                                                            <button type="button" className="btn btn-light mr-3" data-dismiss="modal">Close</button>
-                                                            <button className="btn btn-primary" type="submit"> Register </button>
-                                                        </div>
-                                                    </Form>
-                                                )}
-                                            </Formik>
-                                        )
+                                                Save Changes
+                                            </LoadingButton>
+                                        </div>
+                                    </form>
+
                                 }
 
                             </div>

@@ -22,7 +22,12 @@ class ProviderFacility extends Model implements HasMedia
 
     public function services()
     {
-        return $this->belongsToMany(Service::class, 'facility_service', 'provider_facility_id', 'service_id')->withPivot('price', 'compare_price', 'currency');
+        return $this->belongsToMany(
+            Service::class,
+            'facility_service',
+            'provider_facility_id',
+            'service_id'
+        )->withPivot('price', 'compare_price', 'currency');
     }
 
     public function provider_company()
@@ -43,5 +48,15 @@ class ProviderFacility extends Model implements HasMedia
     public function getVrnAttachmentAttribute()
     {
         return $this->getFirstMediaUrl('provider-facility-vrn-files');
+    }
+
+    public function provider_profile()
+    {
+    }
+
+    public function facility_practical_licenses()
+    {
+        return $this->hasMany(FacilityMedicalRegistration::class);
+
     }
 }

@@ -15,7 +15,7 @@ export default function TopNav({user}) {
                         <a className="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" id="topbar-userdrop" href="#" role="button" aria-haspopup="true"
                            aria-expanded="false">
                 <span className="account-user-avatar">
-                    <img src="/images/avatar.jpg" alt="user-image" className="rounded-circle" />
+                    <img src={user.profile_photo_path} alt="user-image" className="rounded-circle" />
                 </span>
                             <span>
                     <span className="account-user-name">{user.name}</span>
@@ -29,12 +29,12 @@ export default function TopNav({user}) {
                                 <h6 className="text-overflow m-0">Welcome !</h6>
                             </div>
 
-                            <a href="javascript:void(0);" className="dropdown-item notify-item">
+                            <a href="#" className="dropdown-item notify-item">
                                 <i className="mdi mdi-lifebuoy mr-1"></i>
                                 <span>Support</span>
                             </a>
 
-                            <InertiaLink href={route('logout')} className="dropdown-item notify-item" >
+                            <InertiaLink method="POST" href={route('logout')} className="dropdown-item notify-item" >
                                 <i className="mdi mdi-logout mr-1"></i>
                                 <span>Logout</span>
                             </InertiaLink>

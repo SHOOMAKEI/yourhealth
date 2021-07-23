@@ -1,5 +1,5 @@
 import ModalForm from "@/Pages/Utilities/ModalForm";
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import TextInput from '@/Shared/TextInput'
@@ -44,24 +44,44 @@ export default function ProfileInfo({user, provider_sub_levels}) {
     function handleSubmit(e) {
         e.preventDefault();
         setSending(true);
-        Inertia.post(route('login'), values).then(() => {
+        Inertia.post(route('personalInfo.update'), values).then(() => {
             setSending(false);
         });
     }
+    useEffect(()=>{
+        $(document).ready(function () {
+            window.setTimeout(()=>{
+                $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                    $(".alert").slideUp(500);
+                });
+            },2500)
+        });
+    },[status, errors])
 
     return (
+        <>
+        {
+            status &&  (
+                <div className={`alert alert-success alert-dismissible bg-primary text-white border-0 fade show`} role="alert">
+                    <button type="button" className="close" >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Success - </strong> {status}
+                </div>
+        )
+        }
         <div className="tab-pane fade active show" id="v-pills-profile" role="tabpanel"
              aria-labelledby="v-pills-profile-tab">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-6">
                         <SelectInput
-                            name="name"
+                            name="title"
                             type="text"
-                            placeholder="Facility Name"
-                            label="Facility Name"
-                            errors={errors.name}
-                            value={values.name}
+                            placeholder="Title"
+                            label="Title"
+                            errors={errors.title}
+                            value={values.title}
                             onChange={handleChange}
                         >
                             <option value="Mr">Mr</option>
@@ -95,6 +115,7 @@ export default function ProfileInfo({user, provider_sub_levels}) {
                             label="Mobile Number"
                             errors={errors.mobile_number}
                             value={values.mobile_number}
+                            disabled
                             onChange={handleChange}
                         />
                         <TextInput
@@ -115,16 +136,16 @@ export default function ProfileInfo({user, provider_sub_levels}) {
                             value={values.gender}
                             onChange={handleChange}
                         >
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
                         </SelectInput>
                         <TextInput
-                            name="date"
+                            name="dob"
                             type="date"
                             placeholder="Date of Birth"
                             label="Date of Birth"
-                            errors={errors.date}
-                            value={values.date}
+                            errors={errors.dob}
+                            value={values.dob}
                             onChange={handleChange}
                         />
                     </div>
@@ -152,6 +173,7 @@ export default function ProfileInfo({user, provider_sub_levels}) {
                             type="text"
                             placeholder="Email Address"
                             label="Email Address"
+                            disabled
                             errors={errors.email}
                             value={values.email}
                             onChange={handleChange}
@@ -159,8 +181,8 @@ export default function ProfileInfo({user, provider_sub_levels}) {
                         <TextInput
                             name="alternative_mobile_number"
                             type="text"
-                            placeholder="Alternate Phone number"
-                            label="Alternate Phone number"
+                            placeholder="Alternative Phone number"
+                            label="Alternative Phone number"
                             errors={errors.alternative_mobile_number}
                             value={values.alternative_mobile_number}
                             onChange={handleChange}
@@ -184,12 +206,11 @@ export default function ProfileInfo({user, provider_sub_levels}) {
                             value={values.provider_sub_level_id}
                             onChange={handleChange}
                         >
-                            <option value="Mrs">Mrs</option>
-                            <option value="Dr">Dr</option>
-                            <option value="Dr">Nurse</option>
-                            <option value="Dr">Prof</option>
+                            {provider_sub_levels.map((level)=>(
+                                <option value={level.id} key={level.id}>{level.name}</option>
+                            ))}
                         </SelectInput>
-                        <TextInput
+                        <TextAreaInput
                             name="bio"
                             type="text"
                             placeholder="Bio"
@@ -203,7 +224,7 @@ export default function ProfileInfo({user, provider_sub_levels}) {
                 <div className="form-group mb-0 text-right">
                     <LoadingButton
                         type="submit"
-                        className="btn btn-primary btn-block"
+                        className="btn btn-primary btn-sm"
                         loading={sending}
                     >
                     Save Changes
@@ -211,6 +232,7 @@ export default function ProfileInfo({user, provider_sub_levels}) {
                 </div>
             </form>
         </div>
+        </>
     )
 }
 

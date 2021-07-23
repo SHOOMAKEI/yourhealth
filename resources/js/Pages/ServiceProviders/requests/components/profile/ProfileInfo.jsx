@@ -1,5 +1,5 @@
 import { ServiceProviderValues } from "../ServiceProvider";
-
+import React from 'react'
 
 
 
@@ -7,9 +7,15 @@ export default function ProfileInfo({provider}) {
     return (
         <div className="tab-pane fade active show" id="v-pills-profile" role="tabpanel"
              aria-labelledby="v-pills-profile-tab">
+            <div className="text-center pb-3">
+                <img src={provider.profile_photo_path} alt="image"
+                     className="img-fluid img-thumbnail rounded-circle mb-3" width="120"/>
+            </div>
             <div className="row">
                 <div className="col-6">
                     <table className="table table-centered mb-0">
+                        <thead></thead>
+                        <tbody>
                         <tr>
                             <td><strong>Title</strong></td>
                             <td> {provider.title} </td>
@@ -38,10 +44,13 @@ export default function ProfileInfo({provider}) {
                             <td><strong>Date of birth</strong></td>
                             <td>{provider.dob}</td>
                         </tr>
+                        </tbody>
                     </table>
                 </div>
                 <div className="col-6">
                     <table className="table table-centered mb-0">
+                        <thead></thead>
+                        <tbody>
                         <tr>
                             <td><strong>Phone number</strong></td>
                             <td>{provider.mobile_number}</td>
@@ -66,6 +75,8 @@ export default function ProfileInfo({provider}) {
                             <td><strong>Bio</strong></td>
                             <td>{provider.bio}</td>
                         </tr>
+                        </tbody>
+
                     </table>
                 </div>
             </div>

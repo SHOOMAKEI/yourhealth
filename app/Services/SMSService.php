@@ -9,7 +9,7 @@ class SMSService
 {
     public static function sendSMSToSingeUser(string $number, string $sms)
     {
-        if (app()->isLocal()) {
+        if (!app()->isLocal()) {
             try {
 
                 $respose = Http::withHeaders([
@@ -22,7 +22,9 @@ class SMSService
                     'text' => $sms,
                 ]);
 
+                Log::info($sms);
                 Log::info($respose);
+
                 activity()->log($respose);
             } catch (\Exception $e) {
                 activity()->log($e);

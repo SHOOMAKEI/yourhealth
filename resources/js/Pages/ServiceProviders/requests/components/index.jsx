@@ -1,7 +1,7 @@
-import Heading from '@/pages/serviceProviders/requests/components/Heading'
-import ServiceProvidersTable from "@/pages/serviceProviders/requests/components/ServiceProvidersTable";
-import ServiceProvider from "@/pages/serviceProviders/requests/components/ServiceProvider";
-import ProfileNav from "@/Pages/serviceProviders/requests/components/ProfileNav";
+import Heading from './Heading'
+import ServiceProvidersTable from "./ServiceProvidersTable";
+import ServiceProvider from "./ServiceProvider";
+import ProfileNav from "./ProfileNav";
 
 export {Heading, ServiceProvidersTable, ServiceProvider, ProfileNav}
 // export {ServiceProviderValues}

@@ -17,6 +17,7 @@ if (!function_exists('getCurrency')) {
         return [
             ['option'=> 'USD', 'value'=> 'USD'],
             ['option'=> 'TZS', 'value'=> 'TZS'],
+            ['option'=> 'KES', 'value'=> 'TZS'],
             ['option'=> 'CDF', 'value'=> 'CDF'],
             ['option'=> 'MZN', 'value'=> 'MZN'],
         ];

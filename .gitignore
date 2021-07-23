@@ -16,4 +16,6 @@ programmatic-types.graphql
 schema-directives.graphql
 _lighthouse_ide_helper.php
 .php_cs.cache
-/.idea
+/.idea/*
+public/js/*.js
+public/js/*
