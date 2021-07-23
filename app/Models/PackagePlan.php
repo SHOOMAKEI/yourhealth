@@ -26,7 +26,7 @@ class PackagePlan extends Model
 
     public function package_member_ranges(): BelongsToMany
     {
-        return $this->belongsToMany(PackageMemberRange::class, 'member_range_package_plan');
+        return $this->belongsToMany(PackageMemberRange::class, 'member_range_package_plan')->withPivot(['price', 'currency']);
     }
 
     public function membership_category(): BelongsTo

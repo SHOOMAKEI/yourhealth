@@ -70,6 +70,8 @@ function Packages(_ref) {
         id: selectedPackage.id,
         membership_category_id: (_selectedPackage$memb = selectedPackage.membership_category) === null || _selectedPackage$memb === void 0 ? void 0 : _selectedPackage$memb.id,
         package_member_range_id: ranges && ranges.length > 0 ? ranges[0].id : null,
+        package_member_range_price: ranges && ranges.length > 0 ? ranges[0].price : null,
+        package_member_range_currency: ranges && ranges.length > 0 ? ranges[0].currency : null,
         package_feature_id: features && features.length > 0 ? features[0].id : null,
         features: selectedPackage.features,
         ranges: selectedPackage.ranges,

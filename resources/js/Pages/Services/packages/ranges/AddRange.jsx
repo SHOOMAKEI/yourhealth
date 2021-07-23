@@ -98,29 +98,6 @@ export default function AddRangeModal({modalID, operation, title, initialData}) 
                         value={values.max}
                         onChange={handleChange}
                     />
-                    <TextInput
-                        name="price"
-                        type="number"
-                        placeholder="Price"
-                        label="Price"
-                        errors={errors.price}
-                        value={values.price}
-                        onChange={handleChange}
-                    />
-                    <SelectInput
-                        name="currency"
-                        type="text"
-                        placeholder="Currency"
-                        label="Currency"
-                        errors={errors.currency}
-                        value={values.currency}
-                        onChange={handleChange}
-                    >
-                        <option value="TZS">TZS</option>
-                        <option value="USD">USD</option>
-                        <option value="KES">KES</option>
-                        <option value="UGS">UGS</option>
-                    </SelectInput>
 
                     <div className="modal-footer">
                         <button type="button" className="btn btn-light" data-dismiss="modal">Close</button>

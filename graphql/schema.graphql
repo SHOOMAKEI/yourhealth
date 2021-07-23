@@ -55,16 +55,7 @@ type Query {
     PackageFeature(id: ID @eq): PackagePlan  @guard @find
 
     #client
-    membershipsCategories:[MembershipCategory]
-    @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\ClientRegistrationController@membershipsCategories")
-    packages(membership_category_id: Int):[PackagePlan]
-    @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\ClientRegistrationController@packages")
-    getAvailableServicesWithProviderCount:[ServicesWithProvidersCount]
-    @field(resolver: "App\\Http\\Controllers\\Api\\Client\\Consultation@getAvailableServicesWithProviderCount")
-    getServiceProvidersAndFacilities(service_id: Int):[ServiceProvidersAndFacilities]
-    @field(resolver: "App\\Http\\Controllers\\Api\\Client\\Consultation@getServiceProvidersAndFacilities")
-    getProviderSchedule(provider_id: Int):[DaySession]
-    @field(resolver: "App\\Http\\Controllers\\Api\\Client\\Consultation@getProviderSchedule")
+
 
 }
 
@@ -163,7 +154,7 @@ type Mutation {
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@login")
     logoutSession(input: logoutSessionInput): loginSessionResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@logout")
-                    
+
     verify2FACodeSession(input: verify2FACodeSessionInput!): loginSessionResponse
         @field(resolver: "App\\Http\\Controllers\\Api\\Auth\\AuthenticatedSessionSPAController@verify2FACode")
     verifyMobileNumberSession(input: verifyMobileNumberSessionInput!): loginSessionResponse
@@ -205,4 +196,4 @@ type Mutation {
 #import auth.graphql
 #import packages_registration.graphql
 #import client_registration.graphql
-
+#import consultation.graphql

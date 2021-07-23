@@ -9,6 +9,7 @@ use App\Models\PackageMemberRange;
 use App\Models\PackagePlan;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class PackagesController extends Controller
@@ -40,7 +41,15 @@ class PackagesController extends Controller
 
                         return $data;
                     });
-                    $data['ranges'] = $query->package_member_ranges;
+                    $data['ranges'] = $query->package_member_ranges->map(function ($q) {
+                        $data['id'] = $q->id;
+                        $data['min'] = $q->min;
+                        $data['max'] = $q->max;
+                        $data['price'] = $q->pivot->price;
+                        $data['currency'] = $q->pivot->currency;
+
+                        return $data;
+                    });
                     $data['created_at'] = $query->created_at;
                     $data['updated_at'] = $query->updated_at;
                     $data['is_active'] = $query->is_active;
@@ -91,12 +100,21 @@ class PackagesController extends Controller
         ]);
 
 
-        foreach ($request['features'] as $data) {
-            $package->package_features()->syncWithoutDetaching($data['id']);
-        }
+        if (($request['price'] >0)) {
+            if (count($request['features'])>0) {
+                foreach ($request['features'] as $data) {
+                    $package->package_features()->syncWithoutDetaching($data['id']);
+                }
+            }
 
-        foreach ($request['ranges'] as $data) {
-            $package->package_member_ranges()->syncWithoutDetaching($data['id']);
+            if (count($request['ranges'])>0) {
+                $rangeData = [];
+                foreach ($request['ranges'] as $data) {
+                    $rangeData[$data['id']] = ['price' => $data['price'], 'currency' => $data['currency']];
+                }
+
+                $package->package_member_ranges()->syncWithoutDetaching($rangeData);
+            }
         }
 
 
@@ -106,15 +124,13 @@ class PackagesController extends Controller
 
     public function update(PackagePlan $packages_registration, Request $request)
     {
-
         $this->validateRequest($request);
 
         if (($request['price'] >0)) {
             $request->request->add(['has_price' => true]);
-
         }
 
-        if (($request['features'][0]['id']>0)) {
+        if ((count($request['ranges'])>0)) {
             $request->request->add(['has_member_range' => true]);
         }
 
@@ -128,14 +144,21 @@ class PackagesController extends Controller
             'has_price'=> $request['has_price']??false,
         ]);
 
-        if (!($request['price'] >0)) {
-
-            foreach ($request['features'] as $data) {
-                $packages_registration->package_features()->syncWithoutDetaching($data['id']);
+        if (($request['price'] >0)) {
+            if (count($request['features'])>0) {
+                foreach ($request['features'] as $data) {
+                    $packages_registration->package_features()->syncWithoutDetaching($data['id']);
+                }
             }
 
-            foreach ($request['ranges'] as $data) {
-                $packages_registration->package_member_ranges()->syncWithoutDetaching($data['id']);
+            if (count($request['ranges'])>0) {
+                $rangeData = [];
+
+                foreach ($request['ranges'] as $data) {
+                    $rangeData[$data['id']] = ['price' => $data['price'], 'currency' => $data['currency']];
+                }
+
+                $packages_registration->package_member_ranges()->syncWithoutDetaching($rangeData);
             }
         }
 
@@ -155,10 +178,10 @@ class PackagesController extends Controller
             'name' => ['required' ,'String', 'max:255'],
             'membership_category_id' => ['required' ,'numeric', 'exists:membership_categories,id'],
             'is_active' => ['required' ,'boolean'],
-            'price' => ['nullable','numeric'],
-            'currency' => ['required_if:price,!=,""'],
             'features.*.id' => ['exists:package_features,id'],
             'ranges.*.id' => ['exists:package_member_ranges,id'],
+            'currency' => ['required', 'string', Rule::in(array_column(getCurrency(), 'value'))],
+            'price' => ['required', 'numeric'],
         ]);
     }
 }

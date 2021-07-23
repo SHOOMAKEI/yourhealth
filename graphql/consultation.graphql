@@ -1,3 +1,23 @@
+extend type Query {
+    membershipsCategories:[MembershipCategory]
+    @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\ClientRegistrationController@membershipsCategories")
+    packages(membership_category_id: Int):PackagePlanResponse
+    @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\ClientRegistrationController@packages")
+    subscribe(membership_category_id: Int, package_id: Int):PackagePlanResponse
+    @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\ClientRegistrationController@packages")
+    getAvailableServicesWithProviderCount:[ServicesWithProvidersCount]
+    @field(resolver: "App\\Http\\Controllers\\Api\\Client\\Consultation\\Consultation@getAvailableServicesWithProviderCount")
+    getServiceProvidersAndFacilities(service_id: Int):[ServiceProvidersAndFacilities]
+    @field(resolver: "App\\Http\\Controllers\\Api\\Client\\Consultation\\Consultation@getServiceProvidersAndFacilities")
+    getProviderSchedule(provider_id: Int):[DaySession]
+    @field(resolver: "App\\Http\\Controllers\\Api\\Client\\Consultation\\Consultation@getProviderSchedule")
+}
+
+interface Response {
+    success: Boolean
+    errors: [Errors]
+}
+
 type ServiceProvidersAndFacilities {
     id: ID
     name: String!
@@ -11,4 +31,10 @@ type ServicesWithProvidersCount {
     id: ID
     name: String!
     provider_count: Int
+}
+
+type PackagePlanResponse implements Response {
+    PackagePlan: [PackagePlan]
+    errors: [Errors]
+    success: Boolean
 }

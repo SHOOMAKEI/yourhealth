@@ -149,10 +149,20 @@ function AddPackageModal(_ref) {
 
     if (values.package_member_range_id !== "") {
       setValues(function (values) {
+        var _rangeData$find, _rangeData$find2;
+
         return _objectSpread(_objectSpread({}, values), {}, {
-          ranges: [].concat(_toConsumableArray(values.ranges), [rangeData.find(function (d) {
-            return d.id == values.package_member_range_id;
-          })])
+          ranges: [].concat(_toConsumableArray(values.ranges), [{
+            id: values.package_member_range_id,
+            min: (_rangeData$find = rangeData.find(function (d) {
+              return d.id == values.package_member_range_id;
+            })) === null || _rangeData$find === void 0 ? void 0 : _rangeData$find.min,
+            max: (_rangeData$find2 = rangeData.find(function (d) {
+              return d.id == values.package_member_range_id;
+            })) === null || _rangeData$find2 === void 0 ? void 0 : _rangeData$find2.max,
+            price: values.package_member_range_price,
+            currency: values.package_member_range_currency
+          }])
         });
       });
     }
@@ -338,7 +348,7 @@ function AddPackageModal(_ref) {
     })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "row"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-lg-10"
+      className: "col-lg-3"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_SelectInput__WEBPACK_IMPORTED_MODULE_8__["default"], {
       name: "package_member_range_id",
       placeholder: "Package Stuff Member",
@@ -350,9 +360,37 @@ function AddPackageModal(_ref) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
         value: range.id,
         key: index + 1
-      }, range.min, " - ", range.max, "  (", range.price, " ", range.currency, ")");
+      }, range.min, " - ", range.max, " ");
     })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "col-lg-2 my-auto"
+      className: "col-lg-3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_TextInput__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      name: "package_member_range_price",
+      type: "number",
+      placeholder: "Price",
+      label: "Price",
+      errors: errors.package_member_range_price,
+      value: values.package_member_range_price,
+      onChange: handleChange
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-lg-3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Shared_SelectInput__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      name: "package_member_range_currency",
+      type: "text",
+      placeholder: "Currency",
+      label: "Currency",
+      errors: errors.package_member_range_currency,
+      value: values.package_member_range_currency,
+      onChange: handleChange
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "TZS"
+    }, "TZS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "USD"
+    }, "USD"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "KES"
+    }, "KES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "UGS"
+    }, "UGS"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "col-lg-3 my-auto"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       className: "btn btn-primary btn-sm",
       onClick: addRange

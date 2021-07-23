@@ -27,6 +27,8 @@ export default function Packages({packages,memberships, features, ranges}) {
                     id: selectedPackage.id,
                     membership_category_id:selectedPackage.membership_category?.id,
                     package_member_range_id:ranges && ranges.length>0? ranges[0].id:null,
+                    package_member_range_price:ranges && ranges.length>0? ranges[0].price:null,
+                    package_member_range_currency:ranges && ranges.length>0? ranges[0].currency:null,
                     package_feature_id:features && features.length>0? features[0].id:null,
                     features:selectedPackage.features,
                     ranges:selectedPackage.ranges,

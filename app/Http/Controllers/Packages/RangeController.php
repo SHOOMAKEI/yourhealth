@@ -15,15 +15,11 @@ class RangeController extends Controller
         $request->validate([
             'min' => ['required', 'numeric'],
             'max' => ['required', 'numeric','gt:min'],
-            'currency' => ['required', 'string', Rule::in(array_column(getCurrency(), 'value'))],
-            'price' => ['required', 'numeric',],
         ]);
 
         PackageMemberRange::create([
             'min' => $request['min'],
             'max' => $request['max'],
-            'currency' => $request['currency'],
-            'price' => $request['price'],
         ]);
 
         return redirect()->back()->with(['status' => 'Operation Complete successful']);
@@ -34,15 +30,11 @@ class RangeController extends Controller
         $request->validate([
             'min' => ['required', 'numeric'],
             'max' => ['required', 'numeric','gt:min'],
-            'currency' => ['required', 'string', Rule::in(array_column(getCurrency(), 'value'))],
-            'price' => ['required', 'numeric',],
         ]);
 
         $range->update([
             'min' => $request['min'],
             'max' => $request['max'],
-            'currency' => $request['currency'],
-            'price' => $request['price'],
         ]);
 
         return redirect()->back()->with(['status' => 'Operation Complete successful']);

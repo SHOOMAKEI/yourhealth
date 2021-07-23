@@ -63,7 +63,11 @@ export default function AddPackageModal({modalID, operation, title, initialData,
         if(values.package_member_range_id !== ""){
             setValues(values => ({
                 ...values,
-                ranges:[...values.ranges , rangeData.find(d=> d.id == values.package_member_range_id)],
+                ranges:[...values.ranges , {id: values.package_member_range_id,
+                    min: rangeData.find(d=> d.id == values.package_member_range_id)?.min,
+                    max: rangeData.find(d=> d.id == values.package_member_range_id)?.max,
+                    price: values.package_member_range_price,
+                    currency:values.package_member_range_currency }],
 
             }));
         }
@@ -302,7 +306,7 @@ export default function AddPackageModal({modalID, operation, title, initialData,
 
                     )}
                     <div className="row">
-                        <div className="col-lg-10">
+                        <div className="col-lg-3">
                             <SelectInput
                                 name="package_member_range_id"
                                 placeholder="Package Stuff Member"
@@ -315,12 +319,40 @@ export default function AddPackageModal({modalID, operation, title, initialData,
                                     rangeData
                                     &&  rangeData.length>0
                                     &&  rangeData?.map((range, index)=>(
-                                        <option value={range.id} key={index+1}>{range.min} - {range.max}  ({range.price} {range.currency})</option>
+                                        <option value={range.id} key={index+1}>{range.min} - {range.max} </option>
                                     ))
                                 }
                             </SelectInput>
                         </div>
-                        <div className="col-lg-2 my-auto">
+                        <div className="col-lg-3">
+                            <TextInput
+                                name="package_member_range_price"
+                                type="number"
+                                placeholder="Price"
+                                label="Price"
+                                errors={errors.package_member_range_price}
+                                value={values.package_member_range_price}
+                                onChange={handleChange}
+                            />
+                        </div>
+                      <div className="col-lg-3">
+                          <SelectInput
+                              name="package_member_range_currency"
+                              type="text"
+                              placeholder="Currency"
+                              label="Currency"
+                              errors={errors.package_member_range_currency}
+                              value={values.package_member_range_currency}
+                              onChange={handleChange}
+                          >
+                              <option value="TZS">TZS</option>
+                              <option value="USD">USD</option>
+                              <option value="KES">KES</option>
+                              <option value="UGS">UGS</option>
+                          </SelectInput>
+                      </div>
+
+                        <div className="col-lg-3 my-auto">
                             <button className="btn btn-primary btn-sm" onClick={addRange}>
                                 <i className="dripicons-plus"/>
                             </button>

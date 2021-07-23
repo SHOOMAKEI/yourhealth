@@ -105,8 +105,8 @@ type PackagePlan {
     price: Int
     has_price: Boolean
     has_member_range: Boolean
-    features: [PackageFeature] @belongsToMany
-    ranges: [PackageMembershipRange] @belongsToMany
+    features: [PackageFeature]
+    ranges: [PackageMembershipRange]
     invoice_interval: String
     grace_period: Int
     grace_interval: String
@@ -114,7 +114,7 @@ type PackagePlan {
     prorate_period: Int
     prorate_extend_due: Int
     active_subscribers_limit: Int
-    membership_category: MembershipCategory @hasOne
+    membership_category: MembershipCategory
     created_at: DateTime!
     updated_at: DateTime!
 }
@@ -131,6 +131,8 @@ type PackageMembershipRange {
 
 type PackageFeature {
     id: ID!
+    name: String
+    description: String
     services: [Service]!
     package_plan: PackagePlan!
     price: Int!

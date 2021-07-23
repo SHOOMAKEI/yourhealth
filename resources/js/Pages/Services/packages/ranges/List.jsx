@@ -28,7 +28,6 @@ export default function List({memberships, callback}) {
                 <tr>
                     <th>Min Member</th>
                     <th>Max Member</th>
-                    <th>Price</th>
                     <th> Created At</th>
                     <th>Action</th>
                 </tr>
@@ -39,7 +38,6 @@ export default function List({memberships, callback}) {
                         <tr key={index+1}>
                             <td>{membership.min}</td>
                             <td>{membership.max}</td>
-                            <td>{membership.price} {membership.currency}</td>
                             <td>{membership.created_at}</td>
 
                             <td> <button type="button" className="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"

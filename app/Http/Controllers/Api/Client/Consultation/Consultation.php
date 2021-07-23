@@ -6,9 +6,9 @@ namespace App\Http\Controllers\Api\Client\Consultation;
 use App\Models\DaySession;
 use App\Models\Service;
 
-class Constultation
+class Consultation
 {
-    public function getAvalilableServicesWithProviderCount($rootValue, array $args)
+    public function getAvailableServicesWithProviderCount($rootValue, array $args)
     {
         return Service::where(['is_active'=> true])->map(function ($query) {
             $data['id'] = $query->id;

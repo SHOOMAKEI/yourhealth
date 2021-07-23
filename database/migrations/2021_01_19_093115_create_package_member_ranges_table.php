@@ -18,8 +18,6 @@ class CreatePackageMemberRangesTable extends Migration
             $table->integer('min')->default(1);
             $table->integer('max')->default(5);
             $table->text('description')->nullable();
-            $table->double('price')->default('0.00');
-            $table->string('currency', 3)->default('TZS');
             $table->boolean('is_active')->default(1);
             $table->timestamps();
             $table->softDeletes();
