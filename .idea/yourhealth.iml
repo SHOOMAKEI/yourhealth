@@ -185,6 +185,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/akaunting/laravel-money" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/akaunting/laravel-language" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-medialibrary" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/deployer/recipes" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/deprecations" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -2,7 +2,7 @@
 namespace Deployer;
 
 require 'recipe/laravel.php';
-require 'recipe/rsync.php';
+require 'vendor/deployer/recipes/recipe/rsync.php';
 
 // Project name
 set('application', 'yourhealth');
@@ -94,5 +94,3 @@ task('deploy', [
 // Migrate database before symlink new release.
 
 before('deploy:symlink', 'artisan:migrate');
-before('deploy:symlink', 'npm install');
-before('deploy:symlink', 'npm run production');
