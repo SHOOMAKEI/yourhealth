@@ -54,6 +54,7 @@ task('deploy:secrets', function () {
 
 task('build:assets', function () {
     cd('{{release_path}}');
+    run('npm install');
     run('npm run production');
 });
 
@@ -63,16 +64,11 @@ desc('Deploy the application');
 task('deploy', [
     'deploy:info',
     'deploy:prepare',
-    'deploy:release',
-    'rsync', // Deploy code & built assets
-    'deploy:secrets', // Deploy secrets
-    'deploy:shared',
     'deploy:vendors',
     'deploy:writable',
     'artisan:storage:link', // |
     'artisan:view:cache',   // |
     'artisan:config:cache', // | Laravel specific steps
-    'artisan:optimize',     // |
     'artisan:migrate',      // |
     'deploy:symlink',
     'build:assets',

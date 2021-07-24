@@ -1,16 +1,13 @@
 <?php
 
-use App\Http\Controllers\Admin\ProviderProfileAdminController;
 use App\Http\Controllers\Admin\VerificationRequestsController;
 use App\Http\Controllers\Authentication\AuthenticationController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MedicalInstituteController;
 use App\Http\Controllers\Packages\FeatureController;
 use App\Http\Controllers\Packages\MembershipController;
 use App\Http\Controllers\Packages\PackagesController;
 use App\Http\Controllers\Packages\RangeController;
 use App\Http\Controllers\Registration\RegistrationController;
-use App\Http\Controllers\RequiredVerificationController;
 use App\Http\Controllers\ServiceProviderProfileCompletion\EducationQualificationController;
 use App\Http\Controllers\ServiceProviderProfileCompletion\PersonalInfoController;
 use App\Http\Controllers\ServiceProviderProfileCompletion\PracticeLicenseController;
@@ -20,7 +17,7 @@ use App\Http\Controllers\Services\ServiceCategoryController;
 use App\Http\Controllers\Services\ServiceController;
 use App\Http\Controllers\Services\ServiceSubCategoryController;
 use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\VerifiedServiceProvider\Authentication\AuthenticationViewsController;
+use App\Http\Controllers\Authentication\AuthenticationViewsController;
 use App\Http\Controllers\VerifiedServiceProvider\CalenderController;
 use App\Http\Controllers\VerifiedServiceProvider\DashboardController;
 use App\Http\Controllers\VerifiedServiceProvider\FirmManagementController;
