@@ -63,7 +63,6 @@ desc('Deploy the application');
 task('deploy', [
     'deploy:info',
     'deploy:prepare',
-    'deploy:lock',
     'deploy:release',
     'rsync', // Deploy code & built assets
     'deploy:secrets', // Deploy secrets
@@ -76,5 +75,6 @@ task('deploy', [
     'artisan:optimize',     // |
     'artisan:migrate',      // |
     'deploy:symlink',
-    'build:assets'
+    'build:assets',
+    'deploy:unlock',
 ]);
