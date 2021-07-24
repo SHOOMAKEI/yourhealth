@@ -7,7 +7,7 @@ require 'vendor/deployer/recipes/recipe/rsync.php';
 
 set('application', 'afyacom');
 set('deploy_path', '~/{{application}}');
-set('repository', 'yes');
+set('repository', 'git@github.com:TMHS-TANZANIA/yourhealth.git');
 set('default_stage', 'production');
 
 set('ssh_multiplexing', true);
@@ -34,8 +34,15 @@ add('writable_dirs', []);
 
 // Hosts
 
-host('198.199.91.107');
-host('afyacom.co.tz');
+host('production')
+    ->set('remote_user', 'tmhs')
+    ->set('hostname', '198.199.91.107')
+    ->set('deploy_path', '/home/tmhs/afyacom/production');
+
+host('staging')
+    ->set('remote_user', 'tmhs')
+    ->set('hostname', '198.199.91.107')
+    ->set('deploy_path', '/home/tmhs/afyacom/staging');
 
 
 // Tasks
@@ -45,10 +52,29 @@ task('deploy:secrets', function () {
     upload('.env', get('deploy_path') . '/shared');
 });
 
-task('build', function () {
+task('build:assets', function () {
     cd('{{release_path}}');
-    run('npm run build');
+    run('npm run production');
 });
 
 after('deploy:failed', 'deploy:unlock');
 
+desc('Deploy the application');
+task('deploy', [
+    'deploy:info',
+    'deploy:prepare',
+    'deploy:lock',
+    'deploy:release',
+    'rsync', // Deploy code & built assets
+    'deploy:secrets', // Deploy secrets
+    'deploy:shared',
+    'deploy:vendors',
+    'deploy:writable',
+    'artisan:storage:link', // |
+    'artisan:view:cache',   // |
+    'artisan:config:cache', // | Laravel specific steps
+    'artisan:optimize',     // |
+    'artisan:migrate',      // |
+    'deploy:symlink',
+    'build:assets'
+]);
