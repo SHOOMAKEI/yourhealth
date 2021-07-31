@@ -1,56 +1,44 @@
+# For more information: https://laravel.com/docs/sail
 version: '3'
 services:
-
-  #PHP Service
-  yourhealth:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: yourhealth
-    restart: unless-stopped
-    tty: true
-    command: "php artisan serve --host=0.0.0.0 --port 8020"
-    ports:
-      - 8030:8020
-    env_file:
-      - .env
-    working_dir: /var/www
-    volumes:
-       - ./:/var/www
-       - ./php/php.ini:/usr/local/etc/php.ini
-    depends_on:
-      - yourhealth_db
-    networks:
-      - yourhealth-network
-
-  #Postgis Service
-  yourhealth_db:
-    image: kartoza/postgis:12.0
-    container_name: yourhealth_db
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "54322:5432"
-    env_file:
-      - .env
-    volumes:
-      - postgres_data:/var/lib/postgresql
-      - /backups:/interface
-    networks:
-      - yourhealth-network
-
-  yourhealth_redis:
-    image: redis:6.0.9-alpine
-    restart: unless-stopped
-    expose:
-      - "6379"
-
-#Docker Networks
+    laravel.test:
+        build:
+            context: ./vendor/laravel/sail/runtimes/8.0
+            dockerfile: Dockerfile
+            args:
+                WWWGROUP: '${WWWGROUP}'
+        image: sail-8.0/app
+        ports:
+            - '${APP_PORT:-8030}:80'
+        environment:
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - sail
+        depends_on:
+            - pgsql
+    pgsql:
+        image: 'postgres:13'
+        ports:
+            - '${FORWARD_DB_PORT:-54321}:5432'
+        environment:
+            PGPASSWORD: '${DB_PASSWORD:-secret}'
+            POSTGRES_DB: '${DB_DATABASE}'
+            POSTGRES_USER: '${DB_USERNAME}'
+            POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
+        volumes:
+            - 'sailpgsql:/var/lib/postgresql/data'
+        networks:
+            - sail
+        healthcheck:
+          test: ["CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}"]
+          retries: 3
+          timeout: 5s
 networks:
-  yourhealth-network:
-    driver: bridge
-
-#Volumes
+    sail:
+        driver: bridge
 volumes:
-  postgres_data:
-    driver: local
+    sailpgsql:
+        driver: local

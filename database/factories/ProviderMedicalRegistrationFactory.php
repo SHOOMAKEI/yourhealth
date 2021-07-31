@@ -3,19 +3,19 @@
 namespace Database\Factories;
 
 use App\Models\FacilityMedicalRegistration;
-use App\Models\ProviderFacility;
+use App\Models\ProviderMedicalRegistration;
 use App\Models\ProviderProfile;
 use App\Models\ServiceCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class FacilityMedicalRegistrationFactory extends Factory
+class ProviderMedicalRegistrationFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = FacilityMedicalRegistration::class;
+    protected $model = ProviderMedicalRegistration::class;
 
     /**
      * Define the model's default state.
@@ -28,7 +28,7 @@ class FacilityMedicalRegistrationFactory extends Factory
             'certificate_name' => $this->faker->text(30),
             'certificate_number' => $this->faker->text(10),
             'registration_number' => $this->faker->text(10),
-            'provider_facility_id' => (ProviderFacility::inRandomOrder()
+            'provider_profile_id' => (ProviderProfile::inRandomOrder()
                 ->limit(1)->get())[0]->id,
             'service_category_id' => (ServiceCategory::inRandomOrder()
                 ->limit(1)->get())[0]->id,

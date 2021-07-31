@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\ClientTeam;
 use App\Models\PackagePlan;
 use App\Models\TeamPackageSubscription;
 use App\Models\User;
@@ -26,13 +27,14 @@ class TeamPackageSubscriptionFactory extends Factory
         return [
             'package_plan_id' => (PackagePlan::inRandomOrder()
                 ->limit(1)->get())[0]->id,
-            'user_id' => (User::inRandomOrder()
+            'client_team_id' => (ClientTeam::inRandomOrder()
                 ->limit(1)->get())[0]->id,
-            'payer' => $this->faker->randomElement(['self', 'team']),
+            'quantity' => 1,
             'trial_ends_at' => $this->faker->dateTime,
-            'ends_at' => $this->faker->dateTime,
-            'cancels_at' => $this->faker->dateTime,
-            'canceled_at' => $this->faker->dateTime,
+            'ends_at' => now()->addMonth(),
+            'starts_at' => now(),
+            'cancels_at' => null,
+            'canceled_at' => null,
 
         ];
     }

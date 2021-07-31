@@ -28,7 +28,11 @@ class PackageSubscriptionFactory extends Factory
                 ->limit(1)->get())[0]->id,
             'user_id' => (User::inRandomOrder()
                 ->limit(1)->get())[0]->id,
-            'payer' => $this->faker->randomElement(['self', 'team'])
+            'payer' => $this->faker->randomElement(['self', 'team']),
+            'ends_at' => now()->addMonth(),
+            'starts_at' => now(),
+            'cancels_at' => null,
+            'canceled_at' => null,
         ];
     }
 }

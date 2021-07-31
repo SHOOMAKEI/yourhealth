@@ -14,4 +14,9 @@ class ClientProfile extends Model
     protected $guarded = [];
 
     protected static $logAttribute = ['*'];
+
+    public function account()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

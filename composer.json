@@ -26,6 +26,7 @@
         "livewire/livewire": "^2.0",
         "mll-lab/laravel-graphql-playground": "^2.4",
         "nuwave/lighthouse": "^4.18",
+        "omakei/laravel-selcom": "^1.0@alpha",
         "spatie/array-to-xml": "^2.15",
         "spatie/icalendar-generator": "^2.0",
         "spatie/laravel-activitylog": "^3.16",
@@ -35,12 +36,13 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
-        "barryvdh/laravel-ide-helper": "^2.9",
+        "barryvdh/laravel-ide-helper": "^2.10",
         "deployer/recipes": "^6.2",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "friendsofphp/php-cs-fixer": "^2.18",
         "haydenpierce/class-finder": "^0.4.3",
+        "laravel/sail": "^1.8",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3"

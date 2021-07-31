@@ -3,8 +3,6 @@ extend type Query {
     @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\ClientRegistrationController@membershipsCategories")
     packages(membership_category_id: Int):PackagePlanResponse
     @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\ClientRegistrationController@packages")
-    subscribe(membership_category_id: Int, package_id: Int):PackagePlanResponse
-    @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\ClientRegistrationController@packages")
     getAvailableServicesWithProviderCount:[ServicesWithProvidersCount]
     @field(resolver: "App\\Http\\Controllers\\Api\\Client\\Consultation\\Consultation@getAvailableServicesWithProviderCount")
     getServiceProvidersAndFacilities(service_id: Int):[ServiceProvidersAndFacilities]
@@ -12,6 +10,12 @@ extend type Query {
     getProviderSchedule(provider_id: Int):[DaySession]
     @field(resolver: "App\\Http\\Controllers\\Api\\Client\\Consultation\\Consultation@getProviderSchedule")
 }
+
+extend type Mutation {
+    subscribe(package_id: Int):PackagePlanResponse
+    @field(resolver: "App\\Http\\Controllers\\Api\\Registration\\ClientRegistrationController@subscribeToPackagePlan")
+}
+
 
 interface Response {
     success: Boolean
