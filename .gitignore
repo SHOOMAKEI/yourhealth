@@ -20,3 +20,4 @@ _lighthouse_ide_helper.php
 public/js/*.js
 public/js/*
 ./.idea/*
+.idea/*
