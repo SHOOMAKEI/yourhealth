@@ -1,47 +1,83 @@
-FROM php:7.4-fpm-alpine
+FROM alpine:3.13
+LABEL Maintainer="Stanislav Khromov <stanislav+github@khromov.se>" \
+      Description="Lightweight container with Nginx 1.18 & PHP-FPM 8 based on Alpine Linux."
 
-# Copy composer.lock and composer.json
-COPY composer.lock composer.json /var/www/
+ARG PHP_VERSION="8.0.8-r0"
 
-# Set working directory
-WORKDIR /var/www
+# Install packages and remove default server definition
+RUN apk --no-cache add php8=${PHP_VERSION} \
+    php8-ctype \
+    php8-curl \
+    php8-dom \
+    php8-exif \
+    php8-fileinfo \
+    php8-fpm \
+    php8-gd \
+    php8-iconv \
+    php8-intl \
+    php8-mbstring \
+    php8-mysqli \
+    php8-pgsql \
+    php8-opcache \
+    php8-openssl \
+    php8-pecl-imagick \
+    php8-pecl-redis \
+    php8-phar \
+    php8-session \
+    php8-simplexml \
+    php8-soap \
+    php8-xml \
+    php8-xmlreader \
+    php8-zip \
+    php8-zlib \
+    php8-pdo \
+    php8-xmlwriter \
+    php8-tokenizer \
+    php8-pdo_mysql \
+    php8-bcmath\
+    nginx supervisor curl tzdata htop mysql-client dcron
 
-# Install dependencies
-RUN apk update \
-    && apk add zip unzip libzip-dev git \
-    && apk add --virtual build-deps gcc libffi libffi-dev musl-dev \
-    && apk add postgresql \
-    && apk add postgresql-dev \
-    && apk add libgd libpng-dev libjpeg-turbo-dev freetype-dev alpine-sdk \
-    && apk add php7-pgsql php7-gd \
-    && echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" > /etc/apk/repositories \
-   	&& echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
-   	&& echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories  \
-    && apk add geos proj gdal binutils \
-    && apk del build-deps
+RUN rm /etc/nginx/conf.d/default.conf
 
-# Install extensions and composer
-RUN docker-php-ext-install pdo_pgsql zip exif pcntl bcmath \
-    && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
-    && docker-php-ext-install gd \
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Symlink php8 => php
+RUN ln -s /usr/bin/php8 /usr/bin/php
 
-# Add user for laravel application
-ARG APP_USER=www
-RUN addgroup -S ${APP_USER} && adduser -S ${APP_USER} -G ${APP_USER}
+# Install PHP tools
+#RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
-# Copy existing application directory contents
-COPY . /var/www
+# Configure nginx
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
-# Copy existing application directory permissions
-COPY --chown=www:www . /var/www
+# Configure PHP-FPM
+COPY nginx/fpm-pool.conf /etc/php8/php-fpm.d/www.conf
+COPY nginx/php.ini /etc/php8/conf.d/custom.ini
 
-# Change current user to www
-USER www
 
-# Expose port 9000 and start php-fpm server
+# Configure supervisord
+COPY nginx/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Setup document root
+RUN mkdir -p /var/www/html
+
+# Make sure files/folders needed by the processes are accessable when they run under the nobody user
+RUN chown -R nobody.nobody /var/www/html && \
+  chown -R nobody.nobody /run && \
+  chown -R nobody.nobody /var/lib/nginx && \
+  chown -R nobody.nobody /var/log/nginx
+
+# Switch to use a non-root user from here on
+USER nobody
+
+# Add application
+WORKDIR /var/www/html
+
+
+# Expose the port nginx is reachable on
 EXPOSE 9000
-CMD ["php-fpm"]
 
-# run entrypoint.sh
-ENTRYPOINT [ "/var/www/entrypoint.sh" ]
+# Let supervisord start nginx & php-fpm
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+
+# Configure a healthcheck to validate that everything is up&running
+HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:9000/fpm-ping

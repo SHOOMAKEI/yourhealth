@@ -6,6 +6,8 @@ use App\Models\ClientProfile;
 use App\Models\ClientTeam;
 use App\Models\MembershipCategory;
 use App\Models\PackagePlan;
+use Illuminate\Support\Str;
+use Omakei\LaravelSelcom\LaravelSelcom;
 
 class ClientRegistrationController
 {
@@ -116,11 +118,31 @@ class ClientRegistrationController
 
     public function createSubscriptionInvoice($_, array $args)
     {
+
     }
 
 
-    public function subscribeToPackagePlan($rootValue, array $args)
+    public function subscribeToPackagePlan($args)
     {
+        $package = PackagePlan::find($args);
+
+        if(is_null($package)) {
+            return respondWithErrors('invalid package');
+        }
+
+       $response = LaravelSelcom::checkout()->createOrderMinimal(
+             Str::random(40),
+            'omakei96@gmail.com',
+            'Michael Omakei',
+            '255656699895',
+            '30000',
+            'TSZ',
+            '0656699895',
+            '255656699895',
+            60,
+        );
+
+        dd($response->body());
 
     }
 

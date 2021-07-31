@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Day;
+use App\Models\DaySession;
 use App\Models\ProviderCategory;
 use App\Models\ProviderLevel;
 use App\Models\ProviderSubLevel;
@@ -28,6 +29,154 @@ class ProviderLevelSeeder extends Seeder
         Day::firstOrCreate(['name' => 'Friday']);
         Day::firstOrCreate(['name' => 'Saturday']);
         Day::firstOrCreate(['name' => 'Sunday']);
+
+        $days = Day::all();
+
+        foreach($days as $day){
+            DaySession::firstOrCreate([
+                'name' => 'Morning',
+                'from' => '08:00:00',
+                'to' => '12:00:00',
+                'interval' => 10,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Morning',
+                'from' => '08:00:00',
+                'to' => '12:00:00',
+                'interval' => 5,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Morning',
+                'from' => '08:00:00',
+                'to' => '12:00:00',
+                'interval' => 15,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Morning',
+                'from' => '08:00:00',
+                'to' => '12:00:00',
+                'interval' => 20,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Morning',
+                'from' => '08:00:00',
+                'to' => '12:00:00',
+                'interval' => 25,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Morning',
+                'from' => '08:00:00',
+                'to' => '12:00:00',
+                'interval' => 30,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Afternoon',
+                'from' => '14:00:00',
+                'to' => '17:00:00',
+                'interval' => 5,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Afternoon',
+                'from' => '14:00:00',
+                'to' => '17:00:00',
+                'interval' => 10,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Afternoon',
+                'from' => '14:00:00',
+                'to' => '17:00:00',
+                'interval' => 15,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Afternoon',
+                'from' => '14:00:00',
+                'to' => '17:00:00',
+                'interval' => 20,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Afternoon',
+                'from' => '14:00:00',
+                'to' => '17:00:00',
+                'interval' => 25,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Afternoon',
+                'from' => '14:00:00',
+                'to' => '17:00:00',
+                'interval' => 30,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Evening',
+                'from' => '18:00:00',
+                'to' => '20:00:00',
+                'interval' => 5,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Evening',
+                'from' => '18:00:00',
+                'to' => '20:00:00',
+                'interval' => 10,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Evening',
+                'from' => '18:00:00',
+                'to' => '20:00:00',
+                'interval' => 15,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Evening',
+                'from' => '18:00:00',
+                'to' => '20:00:00',
+                'interval' => 20,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Evening',
+                'from' => '18:00:00',
+                'to' => '20:00:00',
+                'interval' => 25,
+                'day_id' => $day->id
+            ]);
+
+            DaySession::firstOrCreate([
+                'name' => 'Evening',
+                'from' => '18:00:00',
+                'to' => '20:00:00',
+                'interval' => 30,
+                'day_id' => $day->id
+            ]);
+        }
 
         ProviderLevel::firstOrCreate(['name' => 'Health Post']);
         ProviderLevel::firstOrCreate(['name' => 'Dispensary']);
@@ -104,9 +253,9 @@ class ProviderLevelSeeder extends Seeder
         ProviderLevel::firstOrCreate(['name' => 'Family Medicine']);
         ProviderLevel::firstOrCreate(['name' => 'Intensivist']);
         ProviderLevel::firstOrCreate(['name' => 'Dentist']);
-        
+
         $sample = ProviderLevel::where('name', 'Diagnostic Center')->first();
-        
+
         ProviderSubLevel::firstOrCreate(['provider_level_id' => $sample->id,'name' => 'Pathology']);
         ProviderSubLevel::firstOrCreate(['provider_level_id' => $sample->id,'name' => 'Radiology']);
         ProviderSubLevel::firstOrCreate(['provider_level_id' => $sample->id,'name' => 'Laboratory']);

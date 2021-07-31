@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call(MedicalCoursesSeeder::class);
         $this->call(MedicalInstitutesSeeder::class);
         $this->call(MedicalCouncilsSeeder::class);
+        $this->call(ClientAccountsSeeder::class);
+        $this->call(ServiceProviderAccountsSeeder::class);
 
-        
     }
 }
